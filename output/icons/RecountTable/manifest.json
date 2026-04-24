@@ -1,0 +1,3360 @@
+{
+  "GeneratedAt": "2026-04-24T17:06:37.059Z",
+  "SourceGroup": "RecountTable",
+  "OutputDir": "output/icons/RecountTable",
+  "AssetCount": 114,
+  "Assets": [
+    {
+      "AssetId": "RecountTable|Sprite|841625591|changqiang447|RecountTable/changqiang447.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_4/changqiang447",
+      "Address": "ui/atlas/talent_passive_4/changqiang447",
+      "AddressHash": 359924875,
+      "BundleHash": 841625591,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/changqiang447.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 12,
+          "Name": "Valor Cyclone"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_4",
+      "AtlasHash": 359924875,
+      "SpriteName": "changqiang447",
+      "SpriteAddress": 3020913642,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 147,
+      "PngMode": "RGBA",
+      "PixelSha256": "85997005abe70d8e049041e59931631c750296ec1b6e5d99d3fe5cd183666381"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|2255238245|gongjian1152|RecountTable/gongjian1152.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_11/gongjian1152",
+      "Address": "ui/atlas/talent_passive_11/gongjian1152",
+      "AddressHash": 3287586233,
+      "BundleHash": 2255238245,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/gongjian1152.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 101,
+          "Name": "Implosion"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_11",
+      "AtlasHash": 3287586233,
+      "SpriteName": "gongjian1152",
+      "SpriteAddress": 3315583134,
+      "PngExported": true,
+      "PngWidth": 147,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "004e786473cf2ed9b4f1f1692a425eaecd6a8fc9df752dabc48592b46acea1c4"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3586866662|jiandun1223|RecountTable/jiandun1223.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_12/jiandun1223",
+      "Address": "ui/atlas/talent_passive_12/jiandun1223",
+      "AddressHash": 3287586234,
+      "BundleHash": 3586866662,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/jiandun1223.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 163,
+          "Name": "Holy Radiance"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_12",
+      "AtlasHash": 3287586234,
+      "SpriteName": "jiandun1223",
+      "SpriteAddress": 4243426650,
+      "PngExported": true,
+      "PngWidth": 138,
+      "PngHeight": 143,
+      "PngMode": "RGBA",
+      "PixelSha256": "7488dec8ab4ca1ac39f31f1dc59ae05f66f7e95b8ecf9989969fcbe7a6cd63e2"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3586866662|jiandun1224|RecountTable/jiandun1224.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_12/jiandun1224",
+      "Address": "ui/atlas/talent_passive_12/jiandun1224",
+      "AddressHash": 3287586234,
+      "BundleHash": 3586866662,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/jiandun1224.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 158,
+          "Name": "Holy Mark"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_12",
+      "AtlasHash": 3287586234,
+      "SpriteName": "jiandun1224",
+      "SpriteAddress": 4243426651,
+      "PngExported": true,
+      "PngWidth": 138,
+      "PngHeight": 138,
+      "PngMode": "RGBA",
+      "PixelSha256": "dd255345109dd1fe7c0bf070cde7e21f6ce5242cf06c0dada8ea3c17904d9753"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3586866662|jiandun1245|RecountTable/jiandun1245.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_12/jiandun1245",
+      "Address": "ui/atlas/talent_passive_12/jiandun1245",
+      "AddressHash": 3287586234,
+      "BundleHash": 3586866662,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/jiandun1245.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 160,
+          "Name": "Shield Guard"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_12",
+      "AtlasHash": 3287586234,
+      "SpriteName": "jiandun1245",
+      "SpriteAddress": 4243426718,
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 136,
+      "PngMode": "RGBA",
+      "PixelSha256": "181848c4c798df7cf3db87033fe9c32121260424b5fdd3d17fb46cbaf3e1e061"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|4119821754|s2talent01_04|RecountTable/s2talent01_04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/season_talent_icon/s2talent01_04",
+      "Address": "ui/atlas/season_talent_icon/s2talent01_04",
+      "AddressHash": 3703755086,
+      "BundleHash": 4119821754,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/s2talent01_04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 288,
+          "Name": "Shattered Illusion"
+        },
+        {
+          "Id": 289,
+          "Name": "Shattered Illusion - Judgment - Heal"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/season_talent_icon",
+      "AtlasHash": 3703755086,
+      "SpriteName": "s2talent01_04",
+      "SpriteAddress": 2797434254,
+      "PngExported": true,
+      "PngWidth": 39,
+      "PngHeight": 39,
+      "PngMode": "RGBA",
+      "PixelSha256": "25b74aa4d4f105255edddc79f95ca37e19e7e7d713a071948add077addeb8f7c"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1856683875|skill_aoyi_skill_icon_005|RecountTable/skill_aoyi_skill_icon_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
+      "AddressHash": 3660535822,
+      "BundleHash": 1856683875,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 231,
+          "Name": "Arcane! Furious Hammer"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_005",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "b412f92f98fe3681213f00f56d5d7891feb3cb0f98d547fc9c8ee897b37777ad"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1861427559|skill_aoyi_skill_icon_009|RecountTable/skill_aoyi_skill_icon_009.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
+      "AddressHash": 3660535826,
+      "BundleHash": 1861427559,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_009.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 241,
+          "Name": "Stunt! Chaotic Barrage"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_009",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "d090c0141ef3092d9dbab65ea261e113402e88393d75d16d54cfa030aa9ddca1"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1889889663|skill_aoyi_skill_icon_010|RecountTable/skill_aoyi_skill_icon_010.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010",
+      "AddressHash": 3660535850,
+      "BundleHash": 1889889663,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_010.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 240,
+          "Name": "Stunt! Electro Bomb"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_010",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "ab95be324e2174ca2af854bdd179e461850f7330ab51fa982db2851831d6d381"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1894633347|skill_aoyi_skill_icon_014|RecountTable/skill_aoyi_skill_icon_014.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
+      "AddressHash": 3660535854,
+      "BundleHash": 1894633347,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_014.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 247,
+          "Name": "Arcane! Thunderfall Grasp"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_014",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "c1bcc13dcd8a225ad092433f51002ec1635d38364fdcf3ecb16ec1d73f16f853"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1895819268|skill_aoyi_skill_icon_015|RecountTable/skill_aoyi_skill_icon_015.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
+      "AddressHash": 3660535855,
+      "BundleHash": 1895819268,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_015.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 254,
+          "Name": "Arcane! Frostquake"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_015",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "e7f6da817ff2ab01990f09bba6c6f707ee40b7258038ffd00aaed415e31e3511"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1898191110|skill_aoyi_skill_icon_017|RecountTable/skill_aoyi_skill_icon_017.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017",
+      "AddressHash": 3660535857,
+      "BundleHash": 1898191110,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_017.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 249,
+          "Name": "Arcane! Flame Roar"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_017",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "26462fa176d4a7935ee0154294a5be3e149f8561d49f406f9a8c0f52b1b69253"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1900562952|skill_aoyi_skill_icon_019|RecountTable/skill_aoyi_skill_icon_019.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019",
+      "AddressHash": 3660535859,
+      "BundleHash": 1900562952,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_019.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 242,
+          "Name": "Stunt! Blade Sweep"
+        },
+        {
+          "Id": 282,
+          "Name": "Void Corruption Frenzy Pulse (formerly Void Corruption Frenzy Focus)"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_019",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "0945cf85ce3268af512c64a5f0ca3360d9484687340d15da79b0740bc9b648bc"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1934954661|skill_aoyi_skill_icon_025|RecountTable/skill_aoyi_skill_icon_025.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
+      "AddressHash": 3660535888,
+      "BundleHash": 1934954661,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_025.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 255,
+          "Name": "Arcane! Flash Execution"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_025",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "58412d80fbf9bbff3e9bcc63d88b5cfc0b4dacf432bdcedb748e63ec21f44200"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1936140582|skill_aoyi_skill_icon_026|RecountTable/skill_aoyi_skill_icon_026.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
+      "AddressHash": 3660535889,
+      "BundleHash": 1936140582,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_026.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 228,
+          "Name": "Stunt! Super Critical"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_026",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "cfd93d29bdd04a5e99f3b121fea2d0828898fcb1da6660a1d488ef32ab0a629c"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1938512424|skill_aoyi_skill_icon_028|RecountTable/skill_aoyi_skill_icon_028.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028",
+      "AddressHash": 3660535891,
+      "BundleHash": 1938512424,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_028.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 251,
+          "Name": "Stunt! Invisible Impact"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_028",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "dea1adc5cca8c0f09433d736f31749e991a04005f751d7d0de6d2093076c7f54"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1969346370|skill_aoyi_skill_icon_031|RecountTable/skill_aoyi_skill_icon_031.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
+      "AddressHash": 3660535917,
+      "BundleHash": 1969346370,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_031.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 225,
+          "Name": "Stunt! Predator Slash"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_031",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "3a98c30e058ddf22489e9b57a1d57b26dda71140a14f03e913bd82565cec88e7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1976461896|skill_aoyi_skill_icon_037|RecountTable/skill_aoyi_skill_icon_037.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
+      "AddressHash": 3660535923,
+      "BundleHash": 1976461896,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_037.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 224,
+          "Name": "Stunt! Blink Ambush"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_037",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "2a31b63e881d8ea7f9c738da47f7f4ccacdb26296f635bdb441ea12fd42f38d8"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2007295842|skill_aoyi_skill_icon_040|RecountTable/skill_aoyi_skill_icon_040.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
+      "AddressHash": 3660535949,
+      "BundleHash": 2007295842,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_040.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 230,
+          "Name": "Stunt! Thunder Suppress"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_040",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "26f91918fbfb8d48ed50b17d6df89eb3df1162d7bad074fd730c20977fdfbed6"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2008481763|skill_aoyi_skill_icon_041|RecountTable/skill_aoyi_skill_icon_041.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
+      "AddressHash": 3660535950,
+      "BundleHash": 2008481763,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_041.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 234,
+          "Name": "Arcane! Cocoon Technique"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_041",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "339cce5e92fd906837ee8f57c6a4710751b8ef5ee1fe2cb26af9627ae9994652"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2012039526|skill_aoyi_skill_icon_044|RecountTable/skill_aoyi_skill_icon_044.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
+      "AddressHash": 3660535953,
+      "BundleHash": 2012039526,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_044.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 237,
+          "Name": "Stunt! Whirlwind Strike"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_044",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "bb0977b93d2df3a36444ba939389feab2e99106cfa6958522ab40215987b91d9"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2016783210|skill_aoyi_skill_icon_048|RecountTable/skill_aoyi_skill_icon_048.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
+      "AddressHash": 3660535957,
+      "BundleHash": 2016783210,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_048.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 233,
+          "Name": "Arcane! Azure Gale"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_048",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "f627ce68dd7f39b6869a900a22a268ea741ef7e9b0302948c6ec99c892237413"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2017969131|skill_aoyi_skill_icon_049|RecountTable/skill_aoyi_skill_icon_049.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
+      "AddressHash": 3660535958,
+      "BundleHash": 2017969131,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_049.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 253,
+          "Name": "Arcane! Silent Tide"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_049",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "f03428dea25570e1c08c96039b45bcc84ae477045e20b53269a0a21ee311f276"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2052360840|skill_aoyi_skill_icon_055|RecountTable/skill_aoyi_skill_icon_055.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
+      "AddressHash": 3660535987,
+      "BundleHash": 2052360840,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_055.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 261,
+          "Name": "Arcane! Allscape Sublimation"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_055",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "67d7baf65874697bafde4eeb03ebc898d8dc3bfa2eec0243b8dad3f875f41c28"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2053546761|skill_aoyi_skill_icon_056|RecountTable/skill_aoyi_skill_icon_056.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
+      "AddressHash": 3660535988,
+      "BundleHash": 2053546761,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_056.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 270,
+          "Name": "Stunt! Frost Breath"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_056",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "2372a5b2333c5f2d4e53f038877db30560a04a127fc91fdbf295d50a0dd94c01"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2055918603|skill_aoyi_skill_icon_058|RecountTable/skill_aoyi_skill_icon_058.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
+      "AddressHash": 3660535990,
+      "BundleHash": 2055918603,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_058.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 264,
+          "Name": "Arcane! Blazing Flames"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_058",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "32fe85e56c5eb010e7cc6e17fc97a14ba0b9e3b547f01201f1f2578c91f1cd48"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2057104524|skill_aoyi_skill_icon_059|RecountTable/skill_aoyi_skill_icon_059.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
+      "AddressHash": 3660535991,
+      "BundleHash": 2057104524,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_059.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 272,
+          "Name": "Stunt! Blade Storm"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_059",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "8fdf5c051ccb8e13b5fb13d05acbddf81a47fa5f144712b6a0c948993d663d32"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2086752549|skill_aoyi_skill_icon_061|RecountTable/skill_aoyi_skill_icon_061.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
+      "AddressHash": 3660536016,
+      "BundleHash": 2086752549,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_061.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 274,
+          "Name": "Stunt! Carpet Bombing"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_061",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "1bfefc720e499ff6e4089b1e804cfc68905507261c8d6a27409c204aa28e78aa"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2087938470|skill_aoyi_skill_icon_062|RecountTable/skill_aoyi_skill_icon_062.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
+      "AddressHash": 3660536017,
+      "BundleHash": 2087938470,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_062.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 273,
+          "Name": "Stunt! Healing Bomb"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_062",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "001a6860833e7f8de56e3ca5078bc4154564445a8097eeda1c388b8f9e1ed887"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2089124391|skill_aoyi_skill_icon_063|RecountTable/skill_aoyi_skill_icon_063.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
+      "AddressHash": 3660536018,
+      "BundleHash": 2089124391,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_063.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 265,
+          "Name": "Arcane! Peerless Thrust"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_063",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "bffc42d5ebf1cbb0f5439b0d156256847da7958e1d6969065f1b063666e78a4a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2090310312|skill_aoyi_skill_icon_064|RecountTable/skill_aoyi_skill_icon_064.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
+      "AddressHash": 3660536019,
+      "BundleHash": 2090310312,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_064.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 276,
+          "Name": "Stunt! Cabbage Boomerang"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_064",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "7c27efe06bf7291936436b65349bf1c6e6d4b29a534809665e6a9a841b576900"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2092682154|skill_aoyi_skill_icon_066|RecountTable/skill_aoyi_skill_icon_066.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
+      "AddressHash": 3660536021,
+      "BundleHash": 2092682154,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_066.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 267,
+          "Name": "Arcane! Cabbage Hammer"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_066",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "cc13788dbb260c27303e9af74040b46e460c6ea3c5baacfd66fb7afe5589d784"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2093868075|skill_aoyi_skill_icon_067|RecountTable/skill_aoyi_skill_icon_067.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
+      "AddressHash": 3660536022,
+      "BundleHash": 2093868075,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_067.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 275,
+          "Name": "Stunt! Kinetic Strike"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_067",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "59532ae667aca82bc9a6ee66e67751078822f5674e952384f8d38738fbb2c64f"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2095053996|skill_aoyi_skill_icon_068|RecountTable/skill_aoyi_skill_icon_068.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
+      "AddressHash": 3660536023,
+      "BundleHash": 2095053996,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_068.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 266,
+          "Name": "Arcane! Phantom Ambush"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_068",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "633cc234f8a6b20b12c4c05ccec201adf7362b4ae8bf5f8085905c448a31f0ca"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2096239917|skill_aoyi_skill_icon_069|RecountTable/skill_aoyi_skill_icon_069.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
+      "AddressHash": 3660536024,
+      "BundleHash": 2096239917,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_069.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 278,
+          "Name": "Stunt! Twin Fangs"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_069",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "6aeabe26eac9b46e120723fd90a17cec872558ad6cca904436520a177670e3fb"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2124702021|skill_aoyi_skill_icon_070|RecountTable/skill_aoyi_skill_icon_070.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
+      "AddressHash": 3660536048,
+      "BundleHash": 2124702021,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/skill_aoyi_skill_icon_070.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 268,
+          "Name": "Arcane! Flame Spirit's Fortune"
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_070",
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "f5dc71ec93649667aadf38897cf6f027bd9a0a641a96d4fc9520aa352f576d7e"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|2173254008|talent_passive_icon_general_sup_healshield|RecountTable/talent_passive_icon_general_sup_healshield.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healshield",
+      "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healshield",
+      "AddressHash": 359924876,
+      "BundleHash": 2173254008,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_general_sup_healshield.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 185,
+          "Name": "Nature Shield"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_5",
+      "AtlasHash": 359924876,
+      "SpriteName": "talent_passive_icon_general_sup_healshield",
+      "SpriteAddress": 4005295435,
+      "PngExported": true,
+      "PngWidth": 133,
+      "PngHeight": 144,
+      "PngMode": "RGBA",
+      "PixelSha256": "9749552e1f2f4467350d8bc007118d73e2e6abe9d0bc01174b9e6579e72792d0"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3204800380|talent_passive_icon_general_sup_starfield|RecountTable/talent_passive_icon_general_sup_starfield.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_starfield",
+      "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_starfield",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_general_sup_starfield.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 128,
+          "Name": "Block Recovery"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "talent_passive_icon_general_sup_starfield",
+      "SpriteAddress": 1002167994,
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "98e19c09cdd349873d5ecb78845a8b0989ed901ec95c47e76bdc22f7594bfdff"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3204800380|talent_passive_icon_general_tank_grind|RecountTable/talent_passive_icon_general_tank_grind.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_grind",
+      "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_grind",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_general_tank_grind.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 283,
+          "Name": "Void Corruption Frenzy Wave"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "talent_passive_icon_general_tank_grind",
+      "SpriteAddress": 1611022150,
+      "PngExported": true,
+      "PngWidth": 115,
+      "PngHeight": 146,
+      "PngMode": "RGBA",
+      "PixelSha256": "5d46da442d5205da628e40aadda4dade194093bf1a89c370661f4bdbc57dc0a1"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3204800380|talent_passive_icon_tank_ridicule02|RecountTable/talent_passive_icon_tank_ridicule02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule02",
+      "Address": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule02",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_tank_ridicule02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 130,
+          "Name": "Shield Echo"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "talent_passive_icon_tank_ridicule02",
+      "SpriteAddress": 2206635592,
+      "PngExported": true,
+      "PngWidth": 146,
+      "PngHeight": 126,
+      "PngMode": "RGBA",
+      "PixelSha256": "5fcfa8033b6a756fc1bca41e808008ab2bb62e82736a19e0ef9826b67603f8cb"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3452920197|weapon_cannongun_skill_01|RecountTable/weapon_cannongun_skill_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_01",
+      "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_01",
+      "AddressHash": 3382812208,
+      "BundleHash": 3452920197,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cannongun_skill_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 263,
+          "Name": "Arcane! Illusion Resonance"
+        }
+      ],
+      "TextureName": "weapon_cannongun_skill_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "1102a872121e580863191db4ec3130f1f099bd66e40ba81766945cc95964d9be"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|782473215|weapon_cannongun_skill_passive|RecountTable/weapon_cannongun_skill_passive.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_passive",
+      "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_passive",
+      "AddressHash": 2889132650,
+      "BundleHash": 782473215,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cannongun_skill_passive.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 263,
+          "Name": "Arcane! Illusion Resonance"
+        }
+      ],
+      "TextureName": "weapon_cannongun_skill_passive",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "764a78f91e835a0e63aadcd431fa50cbaa084fd521a9d3ee587de9784ab1d80b"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2682831039|weapon_cq_skill_01|RecountTable/weapon_cq_skill_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq_skill_01",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq_skill_01",
+      "AddressHash": 3906095594,
+      "BundleHash": 2682831039,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq_skill_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 20,
+          "Name": "Tornado"
+        }
+      ],
+      "TextureName": "weapon_cq_skill_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "1426e3e0180acfa595ac7187bb59d9aa9012496fb508dad992405155a23f1f65"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|4183542590|weapon_cq_skill_atk|RecountTable/weapon_cq_skill_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq_skill_atk",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq_skill_atk",
+      "AddressHash": 52191401,
+      "BundleHash": 4183542590,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq_skill_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3,
+          "Name": "Windborne Grace"
+        }
+      ],
+      "TextureName": "weapon_cq_skill_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "f4a35553bb26231546cc9cc8cde2b5687c38fed5b5c237b4d4bd1bf878d9408a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2399221586|weapon_cq-01_kx01|RecountTable/weapon_cq-01_kx01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx01",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx01",
+      "AddressHash": 2315875133,
+      "BundleHash": 2399221586,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7,
+          "Name": "Galeform"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "f66a1554841369e126fbbd99dc6c7dbb3703e7836f02c0d23e1d1b8c6b0860b8"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2400407507|weapon_cq-01_kx02|RecountTable/weapon_cq-01_kx02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx02",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx02",
+      "AddressHash": 2315875134,
+      "BundleHash": 2400407507,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 8,
+          "Name": "Spiral Thrust"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "161db5f4cf10038ca982e8b01be73961fd5eaee4d37723c54cca7e44ef511320"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2401593428|weapon_cq-01_kx03|RecountTable/weapon_cq-01_kx03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx03",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx03",
+      "AddressHash": 2315875135,
+      "BundleHash": 2401593428,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9,
+          "Name": "Breach Pursuit"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "f0d7e7256e56593b82be42f0d4d8535becbf9efb64adfd011cd77dfa73c615bc"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2402779349|weapon_cq-01_kx04|RecountTable/weapon_cq-01_kx04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx04",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx04",
+      "AddressHash": 2315875136,
+      "BundleHash": 2402779349,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 14,
+          "Name": "Aegis Gale"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx04",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0ce8da0d0e2c5186322e9d73e7912650daf2708c7b5644147220a1e5359e6a77"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2403965270|weapon_cq-01_kx05|RecountTable/weapon_cq-01_kx05.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx05",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx05",
+      "AddressHash": 2315875137,
+      "BundleHash": 2403965270,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx05.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 11,
+          "Name": "Instant Edge"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx05",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "1565a5a12a5a52569c558c581c00d241ea2becc1aa22e0b879c6039ceb9ab6e7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2405151191|weapon_cq-01_kx06|RecountTable/weapon_cq-01_kx06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx06",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx06",
+      "AddressHash": 2315875138,
+      "BundleHash": 2405151191,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 10,
+          "Name": "Falcon Toss"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx06",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "c2a6c110b107c46431aa64c4365385e66106b3a7ec2ca849cd524c82bec5eb6a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2407523033|weapon_cq-01_kx08|RecountTable/weapon_cq-01_kx08.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx08",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx08",
+      "AddressHash": 2315875140,
+      "BundleHash": 2407523033,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_kx08.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 13,
+          "Name": "Sharp Impact"
+        }
+      ],
+      "TextureName": "weapon_cq-01_kx08",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "99bf7661042033256555dd9f8acf966ffabf39f84ea7058e71123b5da42b0891"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1941532073|weapon_cq-01_tf01|RecountTable/weapon_cq-01_tf01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tf01",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tf01",
+      "AddressHash": 2316178964,
+      "BundleHash": 1941532073,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_tf01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17,
+          "Name": "Azure Sever"
+        }
+      ],
+      "TextureName": "weapon_cq-01_tf01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "7edfbdb692801ebee9f54ce827474098ec6f093d8902685b9e67c7690f4f6d65"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1942717994|weapon_cq-01_tf02|RecountTable/weapon_cq-01_tf02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tf02",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tf02",
+      "AddressHash": 2316178965,
+      "BundleHash": 1942717994,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_tf02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 16,
+          "Name": "Vortex Strike"
+        }
+      ],
+      "TextureName": "weapon_cq-01_tf02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0938e4a52415060fd76909a24466dfbf8f070e88d0fb8b87b8540ec320711506"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1943903915|weapon_cq-01_tf03|RecountTable/weapon_cq-01_tf03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tf03",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tf03",
+      "AddressHash": 2316178966,
+      "BundleHash": 1943903915,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_tf03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 15,
+          "Name": "Drake Cannon"
+        }
+      ],
+      "TextureName": "weapon_cq-01_tf03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "872f3f84950cf68cf445b06e1fcc354b851816044229110af86551bce25f8950"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3233000042|weapon_cq-01_tg01|RecountTable/weapon_cq-01_tg01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tg01",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tg01",
+      "AddressHash": 2316180053,
+      "BundleHash": 3233000042,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_tg01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4,
+          "Name": "Gale Thrust"
+        }
+      ],
+      "TextureName": "weapon_cq-01_tg01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "715edba2d2ffb1274efb81f9a020bd9dd72ed2f41de9f2bff1b99c3b950a1eb7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3234185963|weapon_cq-01_tg02|RecountTable/weapon_cq-01_tg02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tg02",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tg02",
+      "AddressHash": 2316180054,
+      "BundleHash": 3234185963,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_tg02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 5,
+          "Name": "Skyfall"
+        }
+      ],
+      "TextureName": "weapon_cq-01_tg02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "12403bf5596a310ddcb3df78de27557ed05a3b37821307f3f7d0c83daa0957db"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2638712739|weapon_cq-01_ult_01|RecountTable/weapon_cq-01_ult_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_ult_01",
+      "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_ult_01",
+      "AddressHash": 1221835406,
+      "BundleHash": 2638712739,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cq-01_ult_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 6,
+          "Name": "Typhoon Cleave"
+        }
+      ],
+      "TextureName": "weapon_cq-01_ult_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0d0b2a53c5be2d72d2fbc09c8b535e1217e98956473adb930686dafa91236756"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3775238002|weapon_fh_skill_atk|RecountTable/weapon_fh_skill_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk",
+      "Address": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk",
+      "AddressHash": 1682189021,
+      "BundleHash": 3775238002,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_fh_skill_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 6,
+      "Rows": [
+        {
+          "Id": 166,
+          "Name": "Vines' Embrace"
+        },
+        {
+          "Id": 172,
+          "Name": "Feral Seed"
+        },
+        {
+          "Id": 174,
+          "Name": "Regen Pulse"
+        },
+        {
+          "Id": 175,
+          "Name": "Infusion"
+        },
+        {
+          "Id": 181,
+          "Name": "Stag Charge"
+        },
+        {
+          "Id": 189,
+          "Name": "Healing Pulse"
+        }
+      ],
+      "TextureName": "weapon_fh_skill_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "1a4a061775c4608886294bc23c2a65b650bd97ccf5afd7a2e7f5e21c001008f0"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3652252044|weapon_fh-01_kx07|RecountTable/weapon_fh-01_kx07.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07",
+      "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07",
+      "AddressHash": 2861637751,
+      "BundleHash": 3652252044,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_fh-01_kx07.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 179,
+          "Name": "Blossom Charge"
+        }
+      ],
+      "TextureName": "weapon_fh-01_kx07",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "985eb212c6bd936e588b4dcf49859f8861142326b5d43a8c97fcd7fa13c2a5b7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3785884631|weapon_fh-01_ult|RecountTable/weapon_fh-01_ult.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_ult",
+      "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_ult",
+      "AddressHash": 2429436290,
+      "BundleHash": 3785884631,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_fh-01_ult.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 169,
+          "Name": "Divine Circle Bloom"
+        }
+      ],
+      "TextureName": "weapon_fh-01_ult",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "82fe67cf7e7fcc3489847403601212f3c18c2dd0c7f09dcaa0e0ccd769760c19"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3957183545|weapon_fh-01_ult02|RecountTable/weapon_fh-01_ult02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_ult02",
+      "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_ult02",
+      "AddressHash": 4251234404,
+      "BundleHash": 3957183545,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_fh-01_ult02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 170,
+          "Name": "Bloomheal"
+        }
+      ],
+      "TextureName": "weapon_fh-01_ult02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "89c9127a964920b588d8558b73521dd41f750861592c5803047651fc437a7b28"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1324721544|weapon_gj-01_atk|RecountTable/weapon_gj-01_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_atk",
+      "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_atk",
+      "AddressHash": 1792324275,
+      "BundleHash": 1324721544,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_gj-01_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 12,
+      "Rows": [
+        {
+          "Id": 75,
+          "Name": "Bullseye"
+        },
+        {
+          "Id": 76,
+          "Name": "Storm Arrow"
+        },
+        {
+          "Id": 77,
+          "Name": "Double Arrow"
+        },
+        {
+          "Id": 78,
+          "Name": "​Quadraflare​"
+        },
+        {
+          "Id": 81,
+          "Name": "Torrent Volley"
+        },
+        {
+          "Id": 87,
+          "Name": "Blast Shot"
+        },
+        {
+          "Id": 88,
+          "Name": "Deter Shot"
+        },
+        {
+          "Id": 96,
+          "Name": "Phantom Falcon"
+        },
+        {
+          "Id": 103,
+          "Name": "Lightseeker Arrow"
+        },
+        {
+          "Id": 104,
+          "Name": "Photon Arrow"
+        },
+        {
+          "Id": 105,
+          "Name": "Magic Arrow"
+        },
+        {
+          "Id": 106,
+          "Name": "Explosive Arrow"
+        }
+      ],
+      "TextureName": "weapon_gj-01_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "91c914efd3ba9a749f1f7404ea768e6e75cd472cba5fd96856093a6da1abf248"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|4123660140|weapon_gj-01_kx01_01|RecountTable/weapon_gj-01_kx01_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01_01",
+      "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01_01",
+      "AddressHash": 1569761687,
+      "BundleHash": 4123660140,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_gj-01_kx01_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 82,
+          "Name": "Lumi Torrent"
+        }
+      ],
+      "TextureName": "weapon_gj-01_kx01_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "d82ae95b6d718eb2911c6ac7199aff42a32e24f71bc21c70415da8ae0fac3543"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|316653968|weapon_gj-01_kx05|RecountTable/weapon_gj-01_kx05.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx05",
+      "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx05",
+      "AddressHash": 3312488059,
+      "BundleHash": 316653968,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_gj-01_kx05.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 84,
+          "Name": "Powerdraw"
+        }
+      ],
+      "TextureName": "weapon_gj-01_kx05",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "d6bf20d97c37895b190cf10ec0d9a4b06849cb4091216d2b2a0f14be3d0853b2"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3124207486|weapon_jd-01_atk_ex|RecountTable/weapon_jd-01_atk_ex.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex",
+      "AddressHash": 2964853993,
+      "BundleHash": 3124207486,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_atk_ex.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 155,
+          "Name": "Enhanced Condemn"
+        }
+      ],
+      "TextureName": "weapon_jd-01_atk_ex",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "3cb8230831108d9cf7b09146bf8d9e80cedfb63abf856b7b7586f36aeed5377b"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3220549186|weapon_jd-01_atk|RecountTable/weapon_jd-01_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_atk",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_atk",
+      "AddressHash": 3167317613,
+      "BundleHash": 3220549186,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 139,
+          "Name": "Blade of Justice"
+        },
+        {
+          "Id": 148,
+          "Name": "Shield Toss"
+        }
+      ],
+      "TextureName": "weapon_jd-01_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "c88f20d7551b5717c7f4544445bd3e72cdf517953db5d21934826b456320bb6a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2747052168|weapon_jd-01_kx03|RecountTable/weapon_jd-01_kx03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx03",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx03",
+      "AddressHash": 1442627955,
+      "BundleHash": 2747052168,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_kx03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 144,
+          "Name": "Judgment"
+        }
+      ],
+      "TextureName": "weapon_jd-01_kx03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "3355b45ed1861f8aa1d8f039cb5bd56fb3e9a37caf66635bed6cd56784374e8b"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3391068389|weapon_jd-01_kx04_ex|RecountTable/weapon_jd-01_kx04_ex.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04_ex",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04_ex",
+      "AddressHash": 3465698960,
+      "BundleHash": 3391068389,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_kx04_ex.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 156,
+          "Name": "Inferno Reckon"
+        }
+      ],
+      "TextureName": "weapon_jd-01_kx04_ex",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "7fa6ffcbf22ae22e3216ae31018c283eb4086240a474d0666fc83b4753761f57"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2748238089|weapon_jd-01_kx04|RecountTable/weapon_jd-01_kx04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04",
+      "AddressHash": 1442627956,
+      "BundleHash": 2748238089,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_kx04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 147,
+          "Name": "Reckoning"
+        }
+      ],
+      "TextureName": "weapon_jd-01_kx04",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "31309c9788edefb2ba6c4d078e477125cad4cb61dd41a0dea221a5a9a86746af"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2754167694|weapon_jd-01_kx09|RecountTable/weapon_jd-01_kx09.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx09",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx09",
+      "AddressHash": 1442627961,
+      "BundleHash": 2754167694,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_kx09.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 149,
+          "Name": "Sacred Blade"
+        }
+      ],
+      "TextureName": "weapon_jd-01_kx09",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0b20cce2b1b7acf58e27e0628a32a63c4fde2fa608e12108674075998771a7eb"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3578458782|weapon_jd-01_tg01|RecountTable/weapon_jd-01_tg01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_tg01",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_tg01",
+      "AddressHash": 1442932873,
+      "BundleHash": 3578458782,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_tg01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 140,
+          "Name": "Valor Bash"
+        }
+      ],
+      "TextureName": "weapon_jd-01_tg01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0e8a9cccdb860543f6beee74b8b1a70544d2bdeb5fc46e68d46bb6daff2771c1"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3579644703|weapon_jd-01_tg02|RecountTable/weapon_jd-01_tg02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_tg02",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_tg02",
+      "AddressHash": 1442932874,
+      "BundleHash": 3579644703,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_tg02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 141,
+          "Name": "Vanguard Strike"
+        },
+        {
+          "Id": 142,
+          "Name": "Vanguard Hunt"
+        }
+      ],
+      "TextureName": "weapon_jd-01_tg02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "de685e8480f97d63788826575620f1e199ea0f35e5b24cb5d00020ab5ab087e0"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|886158551|weapon_jd-01_ult_01|RecountTable/weapon_jd-01_ult_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01",
+      "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01",
+      "AddressHash": 3738396098,
+      "BundleHash": 886158551,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jd-01_ult_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 143,
+          "Name": "Radiant Infusion"
+        }
+      ],
+      "TextureName": "weapon_jd-01_ult_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "3138534bd247a8110fa26725329ed2d16d3f4811fa0f07d75b023e980b7ef12a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|4193267298|weapon_jt-01_atk|RecountTable/weapon_jt-01_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_atk",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_atk",
+      "AddressHash": 1648942733,
+      "BundleHash": 4193267298,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 196,
+          "Name": "Resonant Strings"
+        }
+      ],
+      "TextureName": "weapon_jt-01_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "f3263d61ff4a2e4b0b92eb3b6aa48dbe2430621fa1d22924e0f0568ccf74da69"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|484639654|weapon_jt-01_kx01|RecountTable/weapon_jt-01_kx01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx01",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx01",
+      "AddressHash": 2875864465,
+      "BundleHash": 484639654,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_kx01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 202,
+          "Name": "Rhapsody of Flame"
+        }
+      ],
+      "TextureName": "weapon_jt-01_kx01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0e89808cfb7045372562f2449b2fb2744a915c7efc621ca02abe1539253ff62d"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|485825575|weapon_jt-01_kx02|RecountTable/weapon_jt-01_kx02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx02",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx02",
+      "AddressHash": 2875864466,
+      "BundleHash": 485825575,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_kx02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 202,
+          "Name": "Rhapsody of Flame"
+        }
+      ],
+      "TextureName": "weapon_jt-01_kx02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "7bc3d518660e8750dca7ce1e170f333b81516625267b6f8ec98cc1b9b1ab4417"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|313859848|weapon_jt-01_kx03_01|RecountTable/weapon_jt-01_kx03_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01",
+      "AddressHash": 143412019,
+      "BundleHash": 313859848,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_kx03_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 206,
+          "Name": "Fierce Strike"
+        }
+      ],
+      "TextureName": "weapon_jt-01_kx03_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "639936bf27a694a625621b091da55220d49902754bfa6b3842b3dd7aafabfb13"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|487011496|weapon_jt-01_kx03|RecountTable/weapon_jt-01_kx03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[2]",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03",
+      "AddressHash": 2875864467,
+      "BundleHash": 487011496,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_kx03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 202,
+          "Name": "Rhapsody of Flame"
+        }
+      ],
+      "TextureName": "weapon_jt-01_kx03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "ca19504913725f951687f8f78b0b0863d64732214b71ecd6cb090239b4221f66"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|489383338|weapon_jt-01_kx05|RecountTable/weapon_jt-01_kx05.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx05",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx05",
+      "AddressHash": 2875864469,
+      "BundleHash": 489383338,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_kx05.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 208,
+          "Name": "Fivefold Crescendo"
+        }
+      ],
+      "TextureName": "weapon_jt-01_kx05",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "30cda621652e184653923bad64e6e6fd5cfbedd4c47f5af71d1f8a2247c7961e"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|490569259|weapon_jt-01_kx06|RecountTable/weapon_jt-01_kx06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx06",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx06",
+      "AddressHash": 2875864470,
+      "BundleHash": 490569259,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_kx06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 209,
+          "Name": "Passion Burst"
+        }
+      ],
+      "TextureName": "weapon_jt-01_kx06",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "9d584f45f02a74e48d670e74fdad4bb5955049ad750af598dbf8e7472667413a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2050574847|weapon_jt-01_tf03_01|RecountTable/weapon_jt-01_tf03_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01",
+      "AddressHash": 2472252074,
+      "BundleHash": 2050574847,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_tf03_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 210,
+          "Name": "Passion Fury"
+        }
+      ],
+      "TextureName": "weapon_jt-01_tf03_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "bb60b6e49bae5a91fc1b4962ae7bd8eedb4e4b7322c60ec6cac3145ee6a6f897"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1318418110|weapon_jt-01_tg01|RecountTable/weapon_jt-01_tg01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
+      "AddressHash": 2876169385,
+      "BundleHash": 1318418110,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_tg01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 197,
+          "Name": "Amplified Beat"
+        }
+      ],
+      "TextureName": "weapon_jt-01_tg01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "b48db55a0f0eeb5b527385eae079fbab58ec78c80b981ab53451838e897354e7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3950413047|weapon_jt-01_ult|RecountTable/weapon_jt-01_ult.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_ult",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_ult",
+      "AddressHash": 1648964258,
+      "BundleHash": 3950413047,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_ult.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 199,
+          "Name": "Rock the Stage/Infinite Rhapsody"
+        }
+      ],
+      "TextureName": "weapon_jt-01_ult",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "704c4a27efe9363bbdd25a1df44326e50fdcea1abf6c9ad50a14512b0700d2b7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2738816216|weapon_jt-01_ult01|RecountTable/weapon_jt-01_ult01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_ult01",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_ult01",
+      "AddressHash": 425748867,
+      "BundleHash": 2738816216,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_ult01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 199,
+          "Name": "Rock the Stage/Infinite Rhapsody"
+        }
+      ],
+      "TextureName": "weapon_jt-01_ult01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "71085f349763f77a67e8bb854668053268d31f8ee1198e06bd1198ccfd2efb20"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2740002137|weapon_jt-01_ult02|RecountTable/weapon_jt-01_ult02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_ult02",
+      "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_ult02",
+      "AddressHash": 425748868,
+      "BundleHash": 2740002137,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_jt-01_ult02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 200,
+          "Name": "Concert Circuit"
+        }
+      ],
+      "TextureName": "weapon_jt-01_ult02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "203cb79eaa57ea075144949f994ebc9df8d6a7e964bddc76e96136cd7c49af8b"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3371048761|weapon_mz-01_kx02|RecountTable/weapon_mz-01_kx02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx02",
+      "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx02",
+      "AddressHash": 4228415396,
+      "BundleHash": 3371048761,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_mz-01_kx02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 37,
+          "Name": "Frost Shelter"
+        }
+      ],
+      "TextureName": "weapon_mz-01_kx02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "14527aff1c740feabf8344413227a54eb3509d03311bcd67b6a2080c97943548"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3375792445|weapon_mz-01_kx06|RecountTable/weapon_mz-01_kx06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx06",
+      "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx06",
+      "AddressHash": 4228415400,
+      "BundleHash": 3375792445,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_mz-01_kx06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 27,
+          "Name": "Frost Lance"
+        },
+        {
+          "Id": 44,
+          "Name": "Piercing Ice Lance"
+        }
+      ],
+      "TextureName": "weapon_mz-01_kx06",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0f081996d7b1d6a0a50d233bea582ac5daa95094a5c5bee9c026cb916f35cab7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3378164287|weapon_mz-01_kx08|RecountTable/weapon_mz-01_kx08.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx08",
+      "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx08",
+      "AddressHash": 4228415402,
+      "BundleHash": 3378164287,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_mz-01_kx08.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 34,
+          "Name": "Frozen Gale"
+        }
+      ],
+      "TextureName": "weapon_mz-01_kx08",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "a071965406089035a84c433b268627ab5906d7ef688fa169afac95f16efecba1"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|4203641296|weapon_mz-01_tg01|RecountTable/weapon_mz-01_tg01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_tg01",
+      "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_tg01",
+      "AddressHash": 4228720315,
+      "BundleHash": 4203641296,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_mz-01_tg01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 28,
+          "Name": "Frostbeam"
+        }
+      ],
+      "TextureName": "weapon_mz-01_tg01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "908b7ac4fab69d8c15ad15a2ae0448994a5484677be6375670e686a24a768014"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|133328329|weapon_mz-01_ult|RecountTable/weapon_mz-01_ult.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_ult",
+      "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_ult",
+      "AddressHash": 4032660084,
+      "BundleHash": 133328329,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_mz-01_ult.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 29,
+          "Name": "Glacier Hymn"
+        },
+        {
+          "Id": 43,
+          "Name": "Ice Arrow"
+        }
+      ],
+      "TextureName": "weapon_mz-01_ult",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "46ca6f5806a5cbf1b3561de4fc6ebf00db2340aea7faf1ae60d62716d581d792"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1564110835|weapon_tdl-01_kx02|RecountTable/weapon_tdl-01_kx02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02",
+      "AddressHash": 212367582,
+      "BundleHash": 1564110835,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_kx02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 53,
+          "Name": "Flash Strike"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_kx02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "4da2b0d73a4a6e01835292c8121edcb1bcac6cdfd2634a301ae75de42a71fd22"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1565296756|weapon_tdl-01_kx03|RecountTable/weapon_tdl-01_kx03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03",
+      "AddressHash": 212367583,
+      "BundleHash": 1565296756,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_kx03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 54,
+          "Name": "Raijin Dash"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_kx03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "ef41ada427c1aeea4eed310f1eb4c8f88557f041f2b9d82fda3ac14e6da69003"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1566482677|weapon_tdl-01_kx04|RecountTable/weapon_tdl-01_kx04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04",
+      "AddressHash": 212367584,
+      "BundleHash": 1566482677,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_kx04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 55,
+          "Name": "Scythe Wheel"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_kx04",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "f533baa76213227656983de5e26f66ca8d34cadf1cfb93234a6ddb730eefb89a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1567668598|weapon_tdl-01_kx05|RecountTable/weapon_tdl-01_kx05.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
+      "AddressHash": 212367585,
+      "BundleHash": 1567668598,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_kx05.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 61,
+          "Name": "True Sight"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_kx05",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "49e45c7b3121942bacf8f8582e8337d4215b916e8ee3c0e84cb07f56ecf02305"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1568854519|weapon_tdl-01_kx06|RecountTable/weapon_tdl-01_kx06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx06",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx06",
+      "AddressHash": 212367586,
+      "BundleHash": 1568854519,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_kx06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 58,
+          "Name": "Thundercut"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_kx06",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "0dd8d25710ad89cf6601a8a871d4726628beb4820b7d3279057f5204614411c6"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|384870951|weapon_tdl-01_skill_passive|RecountTable/weapon_tdl-01_skill_passive.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_passive",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_passive",
+      "AddressHash": 1116578514,
+      "BundleHash": 384870951,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_skill_passive.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 7,
+      "Rows": [
+        {
+          "Id": 57,
+          "Name": "Moonblade Whirl"
+        },
+        {
+          "Id": 64,
+          "Name": "Phantom Slash"
+        },
+        {
+          "Id": 65,
+          "Name": "Divine Sickle"
+        },
+        {
+          "Id": 69,
+          "Name": "Piercing Slash"
+        },
+        {
+          "Id": 70,
+          "Name": "Bladewind Domain"
+        },
+        {
+          "Id": 71,
+          "Name": "Thunderstrike"
+        },
+        {
+          "Id": 72,
+          "Name": "Thunderburst"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_skill_passive",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "e81b96e8f4998fc2be9f72a6150953c33536602b94fb589f6c803f5068980e37"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1105235401|weapon_tdl-01_tf01|RecountTable/weapon_tdl-01_tf01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf01",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf01",
+      "AddressHash": 212671412,
+      "BundleHash": 1105235401,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_tf01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 65,
+          "Name": "Divine Sickle"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_tf01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "d2307897247deab7ee6183846898391ce3f2e5c1928dc30f3c2e40b0f1cd92d0"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1106421322|weapon_tdl-01_tf02|RecountTable/weapon_tdl-01_tf02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf02",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf02",
+      "AddressHash": 212671413,
+      "BundleHash": 1106421322,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_tf02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 68,
+          "Name": "Chaos Breaker"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_tf02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "f5387b3afe7b6cf71ac90f8190c7a94d9545d445343d568bc14af0d5272dbb33"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1107607243|weapon_tdl-01_tf03|RecountTable/weapon_tdl-01_tf03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf03",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf03",
+      "AddressHash": 212671414,
+      "BundleHash": 1107607243,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_tf03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 63,
+          "Name": "Dracoflash"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_tf03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "2b4cdcad5b52f9a8864a4780f0cb725c7b94fe40ea914d4f8d39d1f9c2e3249a"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1108793164|weapon_tdl-01_tf04|RecountTable/weapon_tdl-01_tf04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf04",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf04",
+      "AddressHash": 212671415,
+      "BundleHash": 1108793164,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_tf04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 64,
+          "Name": "Phantom Slash"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_tf04",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "3845cc498d563d8071d8b6fc001d53d477dacf46446dfb0230cd130316ef8cf1"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2396703370|weapon_tdl-01_tg01|RecountTable/weapon_tdl-01_tg01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01",
+      "AddressHash": 212672501,
+      "BundleHash": 2396703370,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_tg01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 49,
+          "Name": "Iaido Slash"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_tg01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "5efd0ace4d66713350a5e946c32221e2287fe95ca22e24fa575ee8ca59c5d985"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2397889291|weapon_tdl-01_tg02|RecountTable/weapon_tdl-01_tg02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02",
+      "AddressHash": 212672502,
+      "BundleHash": 2397889291,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_tg02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 50,
+          "Name": "Moonstrike"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_tg02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "9f1ab4787a0667a07f62d5f2e6f7b2b77aa631861427cc1d1c4f5f10deb20e01"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|859475779|weapon_tdl-01_ult|RecountTable/weapon_tdl-01_ult.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_ult",
+      "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_ult",
+      "AddressHash": 266746990,
+      "BundleHash": 859475779,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_tdl-01_ult.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 51,
+          "Name": "Oblivion Combo"
+        }
+      ],
+      "TextureName": "weapon_tdl-01_ult",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "43f8f771e1fb3540fe43b7792bd710f6e617deacead5ddf040b7b5b4ae0c30d7"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3952640040|weapon_wr_skill_atk|RecountTable/weapon_wr_skill_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk",
+      "AddressHash": 2717855891,
+      "BundleHash": 3952640040,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr_skill_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 109,
+          "Name": "Halberd's Edge"
+        },
+        {
+          "Id": 124,
+          "Name": "Rupture"
+        },
+        {
+          "Id": 135,
+          "Name": "Granite"
+        }
+      ],
+      "TextureName": "weapon_wr_skill_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "76ecd91c1a22a83c2fe5a401d56306d7bccec830bd66dda19b937b846cd97179"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|901278620|weapon_wr-01_kx01_01|RecountTable/weapon_wr-01_kx01_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01_01",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01_01",
+      "AddressHash": 4091047367,
+      "BundleHash": 901278620,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_kx01_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 123,
+          "Name": "Starfall"
+        }
+      ],
+      "TextureName": "weapon_wr-01_kx01_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "d46a815cebf5a506ddd412651f76e13cf717b1f697f28f0ce71375870aeafd8c"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1909959100|weapon_wr-01_kx01|RecountTable/weapon_wr-01_kx01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01",
+      "AddressHash": 4081270951,
+      "BundleHash": 1909959100,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_kx01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 114,
+          "Name": "Star Shatter"
+        }
+      ],
+      "TextureName": "weapon_wr-01_kx01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "c98c34e0735755042a757868d1efc4c4453bbcf03b2f9229b36deccb313ef236"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1911145021|weapon_wr-01_kx02|RecountTable/weapon_wr-01_kx02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx02",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx02",
+      "AddressHash": 4081270952,
+      "BundleHash": 1911145021,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_kx02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 115,
+          "Name": "Sandshroud"
+        }
+      ],
+      "TextureName": "weapon_wr-01_kx02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "4fddef57cbbfd8bdfafa0c563fe6ce2dc0ef91b982de8987c3315ee36ef2c376"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1912330942|weapon_wr-01_kx03|RecountTable/weapon_wr-01_kx03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx03",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx03",
+      "AddressHash": 4081270953,
+      "BundleHash": 1912330942,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_kx03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 119,
+          "Name": "Rage Burst"
+        }
+      ],
+      "TextureName": "weapon_wr-01_kx03",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "500e2581a9fab0c12dd66b57f989e0de0788e70721859de9e8375267490f0ff9"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|1915888705|weapon_wr-01_kx06|RecountTable/weapon_wr-01_kx06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx06",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx06",
+      "AddressHash": 4081270956,
+      "BundleHash": 1915888705,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_kx06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 121,
+          "Name": "Sandward"
+        }
+      ],
+      "TextureName": "weapon_wr-01_kx06",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "9c161b8ecd61071299252ed3121a54d96d32b70d984c8de9138a975cbfc8971d"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2705794996|weapon_wr-01_tg01_01|RecountTable/weapon_wr-01_tg01_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_tg01_01",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_tg01_01",
+      "AddressHash": 2164055519,
+      "BundleHash": 2705794996,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_tg01_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 112,
+          "Name": "Countercrush"
+        }
+      ],
+      "TextureName": "weapon_wr-01_tg01_01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "71997992822867ebfdf5c44abe62845e38e58c4f9a5bfd7d973f4f171bed54c5"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|2744923477|weapon_wr-01_tg02|RecountTable/weapon_wr-01_tg02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_tg02",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_tg02",
+      "AddressHash": 4081575872,
+      "BundleHash": 2744923477,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_tg02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 110,
+          "Name": "Shield Bash"
+        }
+      ],
+      "TextureName": "weapon_wr-01_tg02",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "99ffa582a3ab5fd93bf881359a9029b966674e803ba2a732657665b9eb3672ce"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|3603152973|weapon_wr-01_ult|RecountTable/weapon_wr-01_ult.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_ult",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_ult",
+      "AddressHash": 2466394872,
+      "BundleHash": 3603152973,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr-01_ult.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 113,
+          "Name": "Cracking Echo"
+        }
+      ],
+      "TextureName": "weapon_wr-01_ult",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "c0f5bcec8c3a0b599d98649c4076b26613d18202b501297018aef44fa706dbc8"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3204800380|weiren939|RecountTable/weiren939.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_9/weiren939",
+      "Address": "ui/atlas/talent_passive_9/weiren939",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/weiren939.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 131,
+          "Name": "Sandstone Revival"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "weiren939",
+      "SpriteAddress": 2871073422,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 138,
+      "PngMode": "RGBA",
+      "PixelSha256": "f97535d9594e0d16cfcd7eda97c78e5be32252d99f96dcec1457399b5b5353c4"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|3204800380|weiren955|RecountTable/weiren955.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_9/weiren955",
+      "Address": "ui/atlas/talent_passive_9/weiren955",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/weiren955.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 125,
+          "Name": "Terra Sunder"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "weiren955",
+      "SpriteAddress": 2871073484,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 142,
+      "PngMode": "RGBA",
+      "PixelSha256": "264341a78f05cc1d073a5952f15eba3fb11c00b38f40153a6ae078786dc81bad"
+    }
+  ],
+  "PngExportedAt": "2026-04-24T17:07:42.209Z",
+  "PngAssetCount": 114,
+  "PngFailedCount": 0,
+  "PngVerifiedCount": 0
+}

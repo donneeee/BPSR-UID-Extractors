@@ -6,6 +6,7 @@ let localeIdFromGameLanguage;
 let readU16;
 let readU32;
 
+const STRING_POOL = 6;
 const IDENTITY_REGION_START = 660000000;
 const IDENTITY_REGION_END = 670000000;
 const MIN_ITEM_ID = 1;
@@ -125,10 +126,15 @@ async function main() {
     readU32: readU32
   } = common);
   const {
+    displayPath,
+    loadMetaEntries,
+    looksLikeIconPath,
     maybeWriteJson,
     parseArgs,
     printHelp,
     readPackage,
+    readCtbString,
+    readCtbTable,
     resolvePaths
   } = common;
 
@@ -146,7 +152,7 @@ Item-specific options:
   --region-end <offset>      End of the item identity scan region. Default: ${IDENTITY_REGION_END}.
 
 Output shape:
-  Id, NameDesign, NameId, Names, SourceOffset.
+  Id, NameDesign, NameId, Names, IconPath when ItemTable.ctb exposes one, SourceOffset.
   Names is now a locale-keyed object such as { en, fr, de, es, pt-BR, ja, ko-KR, zh-CN, zh-TW, th, id }.
   If a name id has no direct locale-table hit, fallback-only output uses Names.und.
 `
@@ -157,7 +163,14 @@ Output shape:
   const paths = resolvePaths(args, "itemnames.json");
   const buffer = readPackage(paths.m0Path);
   const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir);
+  const itemIconLookup = buildItemIconLookup(containerDir, metaEntries, {
+    looksLikeIconPath,
+    readCtbString,
+    readCtbTable,
+    readU32
+  });
   const { candidates, wantedNameIds } = collectIdentityCandidates(
     buffer,
     args.regionStart,
@@ -167,6 +180,7 @@ Output shape:
   console.log(`Candidate rows: ${candidates.length.toLocaleString()}`);
   console.log(`Referenced name ids: ${wantedNameIds.size.toLocaleString()}`);
   console.log(`Loaded localization files: ${localizationTables.length.toLocaleString()}`);
+  console.log(`ItemTable icon rows: ${itemIconLookup.size.toLocaleString()}`);
   console.log("Resolving locale-keyed names");
 
   const localizedNamesById = collectLocalizedNamesForNameIds(wantedNameIds, localizationTables);
@@ -174,9 +188,9 @@ Output shape:
   console.log(`Resolved localized name ids: ${localizedNamesById.size.toLocaleString()}`);
   console.log(`Resolved fallback name ids: ${fallbackLabelsById.size.toLocaleString()}`);
 
-  const entries = buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabelsById);
+  const entries = buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabelsById, itemIconLookup);
   console.log(`Generated ${entries.length.toLocaleString()} item name entries.`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, entries, Boolean(args.dryRun));
 }
 
@@ -390,6 +404,35 @@ function collectIdentityCandidates(buffer, regionStart, regionEnd) {
   return { candidates, wantedNameIds };
 }
 
+function buildItemIconLookup(containerDir, metaEntries, helpers) {
+  const { looksLikeIconPath, readCtbString, readCtbTable, readU32 } = helpers;
+  const table = readCtbTable(containerDir, metaEntries, "ItemTable.ctb");
+  const out = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const itemId = readU32(table.data, rowOffset);
+    const iconPathOffset = readU32(table.data, rowOffset + 8);
+    const iconPath = readCtbString(table, STRING_POOL, iconPathOffset, { allowZero: true });
+    if (!itemId || !looksLikeItemIconReference(iconPath, looksLikeIconPath)) {
+      continue;
+    }
+    out.set(String(itemId), {
+      iconPath,
+      iconPathOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    });
+  }
+  return out;
+}
+
+function looksLikeItemIconReference(value, sharedLooksLikeIconPath) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return false;
+  }
+  return sharedLooksLikeIconPath(text) || /icon/i.test(text);
+}
+
 function collectLocalizedNamesForNameIds(wantedNameIds, localizationTables) {
   const localizedById = new Map();
   for (const id of wantedNameIds) {
@@ -545,7 +588,7 @@ function scoreCandidate(buffer, candidate) {
   return structureScore * 100 + bestLabelScore;
 }
 
-function buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabelsById) {
+function buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabelsById, itemIconLookup) {
   const byItem = new Map();
 
   for (const candidate of candidates) {
@@ -576,7 +619,8 @@ function buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabels
       nameId: candidate.nameId,
       names,
       namesByLocale,
-      preferredName: localized?.preferredLabel || choosePreferredLabel(names)
+      preferredName: localized?.preferredLabel || choosePreferredLabel(names),
+      icon: itemIconLookup.get(String(candidate.itemId)) ?? null
     };
     if (!usesLocalizedNames && entry.preferredName.length <= 4) {
       continue;
@@ -601,6 +645,14 @@ function buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabels
       NameDesign: entry.preferredName,
       NameId: entry.nameId,
       Names: entry.namesByLocale,
+      ...(entry.icon
+        ? {
+            IconPath: entry.icon.iconPath,
+            IconPathOffset: entry.icon.iconPathOffset,
+            IconPathSource: "ItemTable",
+            ItemTableSourceOffset: entry.icon.sourceOffset
+          }
+        : {}),
       SourceOffset: entry.offset
     }));
 }

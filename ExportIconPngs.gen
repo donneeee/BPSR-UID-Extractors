@@ -1,6 +1,8 @@
 #!/usr/bin/env node
-const { spawnSync } = require("node:child_process");
+const fs = require("node:fs");
+const os = require("node:os");
 const path = require("node:path");
+const { spawnSync } = require("node:child_process");
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -9,22 +11,28 @@ main().catch((error) => {
 
 async function main() {
   const {
+    displayPath,
+    loadMetaEntries,
     parseArgs,
     printHelp,
-    resolvePaths
+    readJson,
+    readPkgEntry,
+    resolvePaths,
+    writeJson
   } = await import("./generator-common.mjs");
 
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
     printHelp(
-      "ExportIconPngs.gen - export PNG files from extracted icon asset bundles.",
+      "ExportIconPngs.gen - export icon PNG files from game assets.",
       `
 PNG-specific options:
-  --icons-dir <path>         Icon bundle directory. Default: <output-dir>/icons.
+  --icons-dir <path>         Icon manifest directory. Default: <output-dir>/icons.
 
 Notes:
-  This command expects ExtractIcons.gen to have already written asset bundles.
-  It uses local Python decoder packages from .pydeps when available.
+  This command reads IconManifest.json, copies the required game bundles into a
+  temporary work directory, decodes sprites or textures to PNG, then removes the
+  temporary bundle files before it exits.
 `
     );
     process.exit(0);
@@ -32,12 +40,104 @@ Notes:
 
   const paths = resolvePaths(args, "icons/IconManifest.json");
   const iconsDir = path.resolve(args.iconsDir ? args.iconsDir : path.join(paths.outputDir, "icons"));
-  const scriptPath = path.join(__dirname, "export_icon_pngs.py");
-  const pythonArgs = [scriptPath, "--icons-dir", iconsDir];
-  if (args.dryRun) {
-    pythonArgs.push("--dry-run");
+  const manifestPath = path.join(iconsDir, "IconManifest.json");
+  if (!fs.existsSync(manifestPath)) {
+    throw new Error(`Missing icon manifest: ${manifestPath}. Run ExtractIcons.gen first.`);
   }
 
+  const manifest = readJson(manifestPath);
+  const groups = loadGroupManifests(iconsDir, manifest, readJson);
+  const assets = groups.flatMap((group) => group.manifest.Assets || []);
+  if (args.dryRun) {
+    console.log(`Dry run: would decode ${assets.length.toLocaleString()} icon assets from game packages.`);
+    console.log(`Dry run: would update ${displayPath(manifestPath)}`);
+    return;
+  }
+
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const tempDir = createTempDir(iconsDir);
+  const failures = [];
+
+  try {
+    const bundleFiles = new Map();
+    const planItems = [];
+    for (const asset of assets) {
+      const bundleHash = Number(asset.BundleHash);
+      const entry = metaEntries.get(bundleHash);
+      if (!entry) {
+        failures.push(minimalFailure(asset, `Missing package entry for bundle hash ${asset.BundleHash}`));
+        continue;
+      }
+
+      let bundleFile = bundleFiles.get(bundleHash);
+      if (!bundleFile) {
+        bundleFile = path.join(tempDir, `${bundleHash}.bundle`);
+        fs.writeFileSync(bundleFile, readPkgEntry(containerDir, entry));
+        bundleFiles.set(bundleHash, bundleFile);
+      }
+
+      planItems.push({
+        AssetId: asset.AssetId,
+        BundleFile: bundleFile,
+        PngFile: path.join(iconsDir, asset.PngFile),
+        ResourceType: asset.ResourceType,
+        SpriteName: asset.SpriteName || "",
+        TextureName: asset.TextureName || "",
+        ProbeFile: resolveManifestPath(asset.ProbeFile || ""),
+        RequiresProbePixelMatch: Boolean(asset.RequiresProbePixelMatch)
+      });
+    }
+
+    const planPath = path.join(tempDir, "icon-export-plan.json");
+    const resultPath = path.join(tempDir, "icon-export-result.json");
+    writeJson(planPath, { Items: planItems });
+    runPythonDecoder(planPath, resultPath);
+
+    const result = readJson(resultPath, { Exported: [], Failed: [] });
+    failures.push(...(result.Failed || []));
+    mergeExportResults(groups, result, failures);
+
+    for (const group of groups) {
+      group.manifest.PngExportedAt = currentTimestamp();
+      group.manifest.PngAssetCount = (group.manifest.Assets || []).filter((asset) => asset.PngExported).length;
+      group.manifest.PngFailedCount = (group.manifest.Assets || []).filter((asset) => asset.PngError).length;
+      group.manifest.PngVerifiedCount = (group.manifest.Assets || []).filter((asset) => asset.ProbePixelMatch === true).length;
+      writeJson(group.path, group.manifest);
+    }
+
+    manifest.PngExportedAt = currentTimestamp();
+    manifest.PngAssetCount = groups.reduce((sum, group) => sum + (group.manifest.PngAssetCount || 0), 0);
+    manifest.PngFailedCount = failures.length;
+    manifest.PngVerifiedCount = groups.reduce((sum, group) => sum + (group.manifest.PngVerifiedCount || 0), 0);
+    manifest.PngFailures = failures.map((failure) => normalizeFailurePath(failure, iconsDir));
+    writeJson(manifestPath, manifest);
+
+    console.log(`PNG assets exported: ${manifest.PngAssetCount.toLocaleString()}`);
+    console.log(`PNG assets pixel-verified from probes: ${manifest.PngVerifiedCount.toLocaleString()}`);
+    console.log(`PNG export failures: ${manifest.PngFailedCount.toLocaleString()}`);
+  } finally {
+    removeTempDir(tempDir, iconsDir);
+  }
+}
+
+function loadGroupManifests(iconsDir, manifest, readJson) {
+  const groups = manifest.GroupManifests || manifest.JsonManifests || [];
+  return groups.map((group) => {
+    const manifestPath = path.join(iconsDir, group.Manifest);
+    if (!fs.existsSync(manifestPath)) {
+      throw new Error(`Missing group manifest: ${manifestPath}`);
+    }
+    return {
+      path: manifestPath,
+      manifest: readJson(manifestPath)
+    };
+  });
+}
+
+function runPythonDecoder(planPath, resultPath) {
+  const scriptPath = path.join(__dirname, "export_icon_pngs.py");
+  const pythonArgs = [scriptPath, "--plan", planPath, "--result", resultPath];
   const result = spawnSync("python", pythonArgs, {
     cwd: __dirname,
     stdio: "inherit"
@@ -45,5 +145,97 @@ Notes:
   if (result.error) {
     throw result.error;
   }
-  process.exit(result.status || 0);
+  if (result.status !== 0) {
+    throw new Error(`Python icon decoder exited with status ${result.status}`);
+  }
+}
+
+function mergeExportResults(groups, result, failures) {
+  const exportedById = new Map((result.Exported || []).map((item) => [item.AssetId, item]));
+  const failedById = new Map(failures.map((item) => [item.AssetId, item]));
+  for (const group of groups) {
+    for (const asset of group.manifest.Assets || []) {
+      delete asset.PngError;
+      const exported = exportedById.get(asset.AssetId);
+      if (exported) {
+        Object.assign(asset, {
+          PngExported: true,
+          PngWidth: exported.PngWidth,
+          PngHeight: exported.PngHeight,
+          PngMode: exported.PngMode,
+          PixelSha256: exported.PixelSha256,
+          ProbePixelSha256: exported.ProbePixelSha256,
+          ProbePixelMatch: exported.ProbePixelMatch
+        });
+        continue;
+      }
+
+      const failed = failedById.get(asset.AssetId);
+      if (failed) {
+        Object.assign(asset, {
+          PngExported: false,
+          ProbePixelSha256: failed.ProbePixelSha256,
+          ProbePixelMatch: failed.ProbePixelMatch,
+          PngError: failed.Error || "PNG export failed"
+        });
+      }
+    }
+  }
+}
+
+function minimalFailure(asset, error) {
+  return {
+    AssetId: asset.AssetId,
+    PngFile: asset.PngFile,
+    Address: asset.Address,
+    BundleHash: asset.BundleHash,
+    ResourceType: asset.ResourceType,
+    SpriteName: asset.SpriteName || "",
+    TextureName: asset.TextureName || "",
+    Error: error
+  };
+}
+
+function normalizeFailurePath(failure, iconsDir) {
+  const out = { ...failure };
+  if (out.PngFile && path.isAbsolute(out.PngFile)) {
+    out.PngFile = path.relative(iconsDir, out.PngFile).replace(/\\/g, "/");
+  }
+  return out;
+}
+
+function resolveManifestPath(value) {
+  if (!value) {
+    return "";
+  }
+  return path.isAbsolute(value) ? value : path.join(__dirname, value);
+}
+
+function createTempDir(iconsDir) {
+  try {
+    return fs.mkdtempSync(path.join(os.tmpdir(), "bpsr-icons-"));
+  } catch {
+    const fallbackBase = path.join(iconsDir, ".tmp-icon-export-");
+    fs.mkdirSync(iconsDir, { recursive: true });
+    return fs.mkdtempSync(fallbackBase);
+  }
+}
+
+function removeTempDir(tempDir, iconsDir) {
+  if (!tempDir || !fs.existsSync(tempDir)) {
+    return;
+  }
+  const realTemp = fs.realpathSync(tempDir);
+  const allowedRoots = [os.tmpdir(), iconsDir]
+    .filter(Boolean)
+    .map((root) => fs.existsSync(root) ? fs.realpathSync(root) : path.resolve(root));
+  const allowed = allowedRoots.some((root) => realTemp === root || realTemp.startsWith(`${root}${path.sep}`));
+  if (!allowed) {
+    throw new Error(`Refusing to remove unexpected temp directory: ${realTemp}`);
+  }
+  fs.rmSync(realTemp, { recursive: true, force: true });
+}
+
+function currentTimestamp() {
+  return new Date().toISOString();
 }

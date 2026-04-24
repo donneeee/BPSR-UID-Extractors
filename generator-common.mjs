@@ -29,17 +29,43 @@ export function resolveNearGenerator(maybeRelative) {
     : path.resolve(generatorDir, maybeRelative);
 }
 
+export function displayPath(filePath) {
+  const resolved = path.resolve(String(filePath || ""));
+  const relative = path.relative(generatorDir, resolved);
+  if (!relative || relative === "") {
+    return ".";
+  }
+  if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+    return relative.replace(/\\/g, "/");
+  }
+  return path.basename(resolved);
+}
+
 export function loadGeneratorConfig() {
   const configPath = path.join(generatorDir, "gamepath.json");
-  const config = readJson(configPath, {});
+  const localConfigPath = path.join(generatorDir, "gamepath.local.json");
+  const config = {
+    ...readJson(configPath, {}),
+    ...readJson(localConfigPath, {})
+  };
   const outputDir = resolveNearGenerator(config.outputDir || "./output");
   const probingSourcesDir = resolveNearGenerator(config.probingSourcesDir || "./Probing Sources");
+  const probeImageDirs = resolveConfiguredPathList(config.probeImageDirs);
+  const probeTextDirs = resolveConfiguredPathList(config.probeTextDirs);
   return {
     configPath,
-    gamePath: config.gamePath || "",
+    localConfigPath,
+    gamePath: config.gamePath || "steam",
     outputDir,
-    probingSourcesDir
+    probingSourcesDir,
+    probeImageDirs,
+    probeTextDirs
   };
+}
+
+function resolveConfiguredPathList(value) {
+  const values = Array.isArray(value) ? value : value ? [value] : [];
+  return values.map(resolveNearGenerator).filter(Boolean);
 }
 
 export function parseArgs(argv, defaults = {}) {
@@ -77,7 +103,7 @@ export function printHelp(title, options) {
   console.log(title);
   console.log("");
   console.log("Common options:");
-  console.log("  --game <path>             Game folder, bpsr folder, container folder, or m0.pkg path.");
+  console.log("  --game <path|preset>      Game path or launcher preset: steam, epic, standalone, auto.");
   console.log("  --out <path>              Output JSON file path.");
   console.log("  --output-dir <path>       Output directory override.");
   console.log("  --dry-run                 Scan and report without writing.");
@@ -93,6 +119,8 @@ export function resolvePaths(args, defaultOutName) {
   const probingSourcesDir = path.resolve(
     args.probingSourcesDir ? args.probingSourcesDir : config.probingSourcesDir
   );
+  const probeImageDirs = resolveArgPathList(args.probeImageDir, config.probeImageDirs);
+  const probeTextDirs = resolveArgPathList(args.probeTextDir, config.probeTextDirs);
   const out = path.resolve(args.out ? args.out : path.join(outputDir, defaultOutName));
   const gameRoot = args.game || config.gamePath;
   const m0Path = resolveM0Package(gameRoot);
@@ -100,31 +128,34 @@ export function resolvePaths(args, defaultOutName) {
     ...config,
     outputDir,
     probingSourcesDir,
+    probeImageDirs,
+    probeTextDirs,
     out,
     gameRoot,
     m0Path
   };
 }
 
+function resolveArgPathList(value, fallback) {
+  if (!value) {
+    return Array.isArray(fallback) ? fallback : [];
+  }
+  const values = Array.isArray(value) ? value : [value];
+  return values.map((entry) => path.resolve(entry)).filter(Boolean);
+}
+
 export function resolveM0Package(gamePath) {
   const candidates = [];
+  const gamePathText = String(gamePath || "steam").trim();
+  const preset = normalizeGamePathPreset(gamePathText);
+  const explicitGamePath = gamePathText && !preset;
 
-  if (gamePath) {
-    const resolved = path.resolve(gamePath);
-    candidates.push(resolved);
-    candidates.push(path.join(resolved, "m0.pkg"));
-    candidates.push(path.join(resolved, "container", "m0.pkg"));
-    candidates.push(path.join(resolved, "BPSR_STEAM_Data", "StreamingAssets", "container", "m0.pkg"));
-    candidates.push(path.join(resolved, "bpsr", "BPSR_STEAM_Data", "StreamingAssets", "container", "m0.pkg"));
-  }
-
-  const commonSteamRoots = [
-    "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Blue Protocol Star Resonance",
-    "C:\\Program Files\\Steam\\steamapps\\common\\Blue Protocol Star Resonance"
-  ];
-
-  for (const root of commonSteamRoots) {
-    candidates.push(path.join(root, "bpsr", "BPSR_STEAM_Data", "StreamingAssets", "container", "m0.pkg"));
+  if (explicitGamePath) {
+    addGameRootCandidates(candidates, path.resolve(gamePathText));
+  } else {
+    for (const root of launcherRootCandidates(preset || "steam")) {
+      addGameRootCandidates(candidates, root);
+    }
   }
 
   for (const candidate of candidates) {
@@ -133,22 +164,78 @@ export function resolveM0Package(gamePath) {
     }
   }
 
-  const configured = gamePath ? ` from ${gamePath}` : "";
   throw new Error(
-    `Could not find m0.pkg${configured}. Set BPSR-UID-Extractors/gamepath.json gamePath or pass --game.`
+    "Could not find m0.pkg. Set BPSR-UID-Extractors/gamepath.json gamePath or pass --game."
   );
+}
+
+function normalizeGamePathPreset(value) {
+  const normalized = String(value || "").trim().toLowerCase();
+  if (!normalized) return "steam";
+  if (["steam", "epic", "standalone", "auto"].includes(normalized)) return normalized;
+  return "";
+}
+
+function launcherRootCandidates(preset) {
+  const roots = [];
+  if (preset === "steam" || preset === "auto") {
+    for (const programRoot of programFileRoots()) {
+      roots.push(path.join(programRoot, "Steam", "steamapps", "common", "Blue Protocol Star Resonance"));
+    }
+  }
+  if (preset === "epic" || preset === "auto") {
+    for (const programRoot of programFileRoots()) {
+      roots.push(path.join(programRoot, "Epic Games", "Blue Protocol Star Resonance"));
+      roots.push(path.join(programRoot, "Epic Games", "BlueProtocolStarResonance"));
+      roots.push(path.join(programRoot, "Epic Games", "Star Resonance"));
+    }
+  }
+  if (preset === "standalone" || preset === "auto") {
+    for (const programRoot of programFileRoots()) {
+      roots.push(path.join(programRoot, "Blue Protocol Star Resonance"));
+      roots.push(path.join(programRoot, "Star Resonance"));
+      roots.push(path.join(programRoot, "BPSR"));
+    }
+  }
+  return uniquePathCandidates(roots);
+}
+
+function programFileRoots() {
+  return uniquePathCandidates([process.env["ProgramFiles(x86)"], process.env.ProgramFiles]);
+}
+
+function addGameRootCandidates(candidates, root) {
+  candidates.push(root);
+  candidates.push(path.join(root, "m0.pkg"));
+  candidates.push(path.join(root, "container", "m0.pkg"));
+  candidates.push(path.join(root, "BPSR_STEAM_Data", "StreamingAssets", "container", "m0.pkg"));
+  candidates.push(path.join(root, "bpsr", "BPSR_STEAM_Data", "StreamingAssets", "container", "m0.pkg"));
+}
+
+function uniquePathCandidates(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values) {
+    if (!value) continue;
+    const normalized = path.normalize(value);
+    const key = normalized.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(normalized);
+  }
+  return out;
 }
 
 export function readPackage(m0Path) {
   const stat = fs.statSync(m0Path);
-  console.log(`Reading ${m0Path}`);
+  console.log("Reading game package m0.pkg");
   console.log(`Package size: ${formatBytes(stat.size)}`);
   return fs.readFileSync(m0Path);
 }
 
 export function validatePackagePath(m0Path) {
   const stat = fs.statSync(m0Path);
-  console.log(`Found ${m0Path}`);
+  console.log("Found game package m0.pkg");
   console.log(`Package size: ${formatBytes(stat.size)}`);
 }
 
@@ -498,6 +585,36 @@ export function readCtbString(table, poolType, offset, options = {}) {
   return normalizeText(bytes.toString("utf8"));
 }
 
+export function nextCtbStringOffset(table, poolType, offset) {
+  const pool = table?.pools?.get(poolType);
+  const numericOffset = Number(offset);
+  if (!pool || !Number.isInteger(numericOffset) || numericOffset < 0 || numericOffset + 2 > pool.length) {
+    return -1;
+  }
+  const len = pool.readUInt16LE(numericOffset);
+  if (!len || numericOffset + 2 + len > pool.length) {
+    return -1;
+  }
+  return numericOffset + 2 + len;
+}
+
+export function looksLikeIconPath(value) {
+  const text = normalizeText(value).replace(/\\/g, "/");
+  if (!text) {
+    return false;
+  }
+  if (/^ui\//i.test(text)) {
+    return true;
+  }
+  if (/\.(png|dds|tga|ktx)$/i.test(text)) {
+    return true;
+  }
+  if (/^skill_aoyi_advanced_texture\d+$/i.test(text)) {
+    return true;
+  }
+  return text.includes("/") && /(icon|texture|sprite|skill|buff|item|weapon|atlas|mainui)/i.test(text);
+}
+
 function readSevenBitEncodedInt(buffer, offset) {
   let count = 0;
   let shift = 0;
@@ -670,9 +787,9 @@ export function uniqueById(rows) {
 
 export function maybeWriteJson(out, value, dryRun) {
   if (dryRun) {
-    console.log(`Dry run: would write ${out}`);
+    console.log(`Dry run: would write ${displayPath(out)}`);
     return;
   }
   writeJson(out, value);
-  console.log(`Wrote ${out}`);
+  console.log(`Wrote ${displayPath(out)}`);
 }

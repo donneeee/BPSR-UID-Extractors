@@ -7,8 +7,8 @@ const args = process.argv.slice(2);
 const scripts = [
   "ItemNames.gen",
   "BuffNames.gen",
-  "RecountTable.gen",
   "DamageAttrIdName.gen",
+  "RecountTable.gen",
   "SkillAoyiIcons.gen",
   "MonsterNames.gen",
   "SceneNames.gen",

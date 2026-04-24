@@ -3,7 +3,20 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const ADDRESS_LINE_PREFIX = Buffer.from("address:");
+const SPRITE_LINE_PREFIX = Buffer.from("spriteAddress:");
 const DEFAULT_MANIFEST_NAME = "icons/IconManifest.json";
+const IMAGE_PROBE_EXTENSIONS = new Set([".png"]);
+const TEXT_PROBE_EXTENSIONS = new Set([".json", ".js", ".ts", ".svelte", ".rs"]);
+const SKIP_DIRS = new Set([
+  ".git",
+  ".svelte-kit",
+  "build",
+  "dist",
+  "node_modules",
+  "output",
+  "target",
+  "__pycache__"
+]);
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -12,6 +25,7 @@ main().catch((error) => {
 
 async function main() {
   const {
+    displayPath,
     hash33,
     loadMetaEntries,
     maybeWriteJson,
@@ -19,22 +33,23 @@ async function main() {
     printHelp,
     readJson,
     readPackage,
-    readPkgEntry,
     resolvePaths
   } = await import("./generator-common.mjs");
 
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
     printHelp(
-      "ExtractIcons.gen - extract icon asset bundles referenced by generated JSON outputs.",
+      "ExtractIcons.gen - resolve icon PNG work from game-file asset catalogs.",
       `
 Icon-specific options:
-  --icons-dir <path>         Output icon directory. Default: <output-dir>/icons.
+  --icons-dir <path>          Output icon directory. Default: <output-dir>/icons.
+  --probe-image-dir <path>    Optional image probe directory override.
+  --probe-text-dir <path>     Optional text probe directory override.
 
 Notes:
-  Game icon addresses resolve to UnityFS asset bundles. This script copies those
-  bundles and writes manifests that preserve the original JSON field, asset
-  address, address hash, and bundle hash.
+  This command writes manifests only. ExportIconPngs.gen reads the manifests,
+  temporarily decodes the required game bundles, writes PNG files, and removes
+  the temporary bundle files.
 `
     );
     process.exit(0);
@@ -42,95 +57,87 @@ Notes:
 
   const paths = resolvePaths(args, DEFAULT_MANIFEST_NAME);
   const iconsDir = path.resolve(args.iconsDir ? args.iconsDir : path.join(paths.outputDir, "icons"));
-  const outputJsonFiles = listOutputJsonFiles(paths.outputDir);
-  const references = [];
-
-  for (const jsonFile of outputJsonFiles) {
+  const generatedFiles = listOutputJsonFiles(paths.outputDir);
+  const generatedReferences = [];
+  for (const jsonFile of generatedFiles) {
     const jsonName = path.basename(jsonFile, ".json");
     const value = readJson(path.join(paths.outputDir, jsonFile));
-    references.push(...collectIconReferences(jsonFile, jsonName, value));
+    generatedReferences.push(...collectGeneratedIconReferences(jsonFile, jsonName, value));
   }
 
-  const uniqueReferences = dedupeReferences(references);
-  const wantedHashes = new Set();
-  for (const ref of uniqueReferences) {
-    for (const address of ref.candidateAddresses) {
-      wantedHashes.add(hash33(address));
-    }
-  }
+  const probeImageDirs = uniquePaths([
+    ...paths.probeImageDirs,
+    path.join(paths.probingSourcesDir, "images")
+  ]);
+  const probeTextDirs = uniquePaths([
+    ...paths.probeTextDirs,
+    path.join(paths.probingSourcesDir, "text")
+  ]);
+  const imageProbe = collectImageProbeReferences(probeImageDirs);
+  const textProbe = collectTextProbeReferences(probeTextDirs, { readJson });
+  const references = dedupeReferences([
+    ...generatedReferences,
+    ...imageProbe.references,
+    ...textProbe.references
+  ]);
 
   const pkg = readPackage(paths.m0Path);
-  const addressMap = readAddressBundleMap(pkg, wantedHashes, { hash33 });
+  const addressCatalog = readAddressCatalog(pkg);
+  const spriteCatalog = readSpriteCatalog(pkg);
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
-  const byJson = new Map();
+  const byGroup = new Map();
   const missing = [];
-  const written = [];
+  const ambiguous = [];
+  const resolvedAssets = [];
+  const resolvedAssetById = new Map();
   const usedOutputNames = new Map();
 
-  for (const ref of uniqueReferences) {
-    const resolved = resolveIconBundle(ref, addressMap, metaEntries, { hash33 });
-    if (!resolved) {
-      missing.push({
-        SourceJson: ref.sourceJson,
-        Field: ref.field,
-        Value: ref.value,
-        CandidateAddresses: ref.candidateAddresses,
-        RefCount: ref.refCount,
-        Rows: ref.rows.slice(0, 20)
+  for (const ref of references) {
+    const resolved = resolveIconAsset(ref, addressCatalog, spriteCatalog, metaEntries, { hash33 });
+    if (resolved.status === "missing") {
+      missing.push(minimalReference(ref, { Reason: resolved.reason || "No game asset bridge found" }));
+      continue;
+    }
+    if (resolved.status === "ambiguous") {
+      ambiguous.push({
+        ...minimalReference(ref, { Reason: "Multiple game asset candidates" }),
+        Candidates: resolved.candidates.slice(0, 20)
       });
       continue;
     }
 
-    const data = readPkgEntry(containerDir, resolved.entry);
-    const format = detectPayloadFormat(data);
-    const jsonDir = path.join(iconsDir, sanitizePathSegment(ref.jsonName));
-    const fileName = chooseUniqueOutputFileName(ref, format.extension, resolved, usedOutputNames);
-    const outputPath = path.join(jsonDir, fileName);
-    const asset = {
-      SourceJson: ref.sourceJson,
-      Field: ref.field,
-      Value: ref.value,
-      Address: resolved.address,
-      AddressHash: resolved.addressHash,
-      BundleHash: resolved.bundleHash,
-      OutputFile: path.relative(iconsDir, outputPath),
-      Format: format.label,
-      Bytes: data.length,
-      RefCount: ref.refCount,
-      Rows: ref.rows.slice(0, 20)
-    };
-
-    if (!args.dryRun) {
-      fs.mkdirSync(jsonDir, { recursive: true });
-      fs.writeFileSync(outputPath, data);
+    const asset = buildAssetRecord(ref, resolved.asset, usedOutputNames);
+    const existingAsset = resolvedAssetById.get(asset.AssetId);
+    if (existingAsset) {
+      mergeAssetRecord(existingAsset, asset);
+      continue;
     }
-
-    const list = byJson.get(ref.jsonName) ?? [];
+    resolvedAssetById.set(asset.AssetId, asset);
+    const list = byGroup.get(ref.groupName) ?? [];
     list.push(asset);
-    byJson.set(ref.jsonName, list);
-    written.push(asset);
+    byGroup.set(ref.groupName, list);
+    resolvedAssets.push(asset);
   }
 
-  const jsonManifests = [];
-  for (const [jsonName, assets] of [...byJson.entries()].sort(([a], [b]) => a.localeCompare(b))) {
-    const sourceJson = `${jsonName}.json`;
-    const folder = path.join(iconsDir, sanitizePathSegment(jsonName));
+  const groupManifests = [];
+  for (const [groupName, assets] of [...byGroup.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+    const folder = path.join(iconsDir, sanitizePathSegment(groupName));
     const manifest = {
       GeneratedAt: new Date().toISOString(),
-      SourceJson: sourceJson,
-      OutputDir: folder,
+      SourceGroup: groupName,
+      OutputDir: portablePath(folder),
       AssetCount: assets.length,
-      Assets: assets.sort((a, b) => a.OutputFile.localeCompare(b.OutputFile))
+      Assets: assets.sort((a, b) => a.PngFile.localeCompare(b.PngFile))
     };
     const manifestPath = path.join(folder, "manifest.json");
-    jsonManifests.push({
-      SourceJson: sourceJson,
-      Manifest: path.relative(iconsDir, manifestPath),
+    groupManifests.push({
+      SourceGroup: groupName,
+      Manifest: path.relative(iconsDir, manifestPath).replace(/\\/g, "/"),
       AssetCount: assets.length
     });
     if (args.dryRun) {
-      console.log(`Dry run: would write ${manifestPath}`);
+      console.log(`Dry run: would write ${displayPath(manifestPath)}`);
     } else {
       fs.mkdirSync(folder, { recursive: true });
       fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
@@ -139,20 +146,34 @@ Notes:
 
   const manifest = {
     GeneratedAt: new Date().toISOString(),
-    OutputDir: iconsDir,
-    JsonFilesScanned: outputJsonFiles.length,
-    ReferencesFound: references.length,
-    UniqueReferences: uniqueReferences.length,
-    ExtractedAssetCount: written.length,
+    OutputDir: portablePath(iconsDir),
+    JsonFilesScanned: generatedFiles.length,
+    ProbeImageDirs: probeImageDirs.map(portablePath),
+    ProbeTextDirs: probeTextDirs.map(portablePath),
+    ProbeImageFilesScanned: imageProbe.filesScanned,
+    ProbeTextFilesScanned: textProbe.filesScanned,
+    GeneratedReferencesFound: generatedReferences.length,
+    ProbeImageReferencesFound: imageProbe.references.length,
+    ProbeTextReferencesFound: textProbe.references.length,
+    UniqueReferences: references.length,
+    AddressCatalogEntries: addressCatalog.entries.length,
+    SpriteCatalogEntries: spriteCatalog.entries.length,
+    ResolvedAssetCount: resolvedAssets.length,
     MissingAssetCount: missing.length,
-    JsonManifests: jsonManifests,
-    MissingAssets: missing
+    AmbiguousAssetCount: ambiguous.length,
+    GroupManifests: groupManifests,
+    MissingAssets: missing,
+    AmbiguousAssets: ambiguous
   };
 
-  console.log(`JSON files scanned: ${outputJsonFiles.length.toLocaleString()}`);
-  console.log(`Icon references found: ${references.length.toLocaleString()}`);
-  console.log(`Unique icon references: ${uniqueReferences.length.toLocaleString()}`);
-  console.log(`Extracted asset bundles: ${written.length.toLocaleString()}`);
+  console.log(`Generated JSON files scanned: ${generatedFiles.length.toLocaleString()}`);
+  console.log(`Probe image files scanned: ${imageProbe.filesScanned.toLocaleString()}`);
+  console.log(`Probe text files scanned: ${textProbe.filesScanned.toLocaleString()}`);
+  console.log(`Unique icon references: ${references.length.toLocaleString()}`);
+  console.log(`Game address catalog entries: ${addressCatalog.entries.length.toLocaleString()}`);
+  console.log(`Game sprite catalog entries: ${spriteCatalog.entries.length.toLocaleString()}`);
+  console.log(`Resolved icon assets: ${resolvedAssets.length.toLocaleString()}`);
+  console.log(`Ambiguous icon assets: ${ambiguous.length.toLocaleString()}`);
   console.log(`Missing icon assets: ${missing.length.toLocaleString()}`);
   maybeWriteJson(paths.out, manifest, Boolean(args.dryRun));
 }
@@ -169,7 +190,7 @@ function listOutputJsonFiles(outputDir) {
     .sort((a, b) => a.localeCompare(b));
 }
 
-function collectIconReferences(sourceJson, jsonName, value) {
+function collectGeneratedIconReferences(sourceJson, jsonName, value) {
   const rows = Array.isArray(value)
     ? value.map((row, index) => ({ key: String(index), row }))
     : value && typeof value === "object"
@@ -183,33 +204,171 @@ function collectIconReferences(sourceJson, jsonName, value) {
     }
     const rowId = row.Id ?? row.id ?? key;
     const preferredFile = typeof row.Icon === "string" ? row.Icon : "";
-    const hasExplicitIconAddress = typeof row.IconPath === "string" || typeof row.IconTexture === "string";
+    const hasExplicitIconAddress =
+      typeof row.IconPath === "string" ||
+      typeof row.IconTexture === "string" ||
+      (Array.isArray(row.IconPaths) && row.IconPaths.some((item) => typeof item === "string" && item.trim()));
+    const explicitIconValues = new Set([row.IconPath, row.IconTexture]
+      .map((item) => String(item || "").trim())
+      .filter(Boolean));
 
     for (const [field, rawValue] of Object.entries(row)) {
-      if (!isIconReferenceField(field, rawValue, { hasExplicitIconAddress })) {
-        continue;
+      const values = Array.isArray(rawValue)
+        ? rawValue.map((item, index) => ({ field: `${field}[${index}]`, value: item }))
+        : [{ field, value: rawValue }];
+      for (const item of values) {
+        if (Array.isArray(rawValue) && explicitIconValues.has(String(item.value || "").trim())) {
+          continue;
+        }
+        if (!isGeneratedIconField(item.field, item.value, { hasExplicitIconAddress })) {
+          continue;
+        }
+        refs.push(makeReference({
+          sourceKind: "generated-json",
+          sourceFile: sourceJson,
+          groupName: jsonName,
+          field: item.field,
+          value: String(item.value),
+          preferredFile,
+          rows: [{ Id: rowId, Name: row.Name || row.NameDesign || "" }]
+        }));
       }
-      const valueText = normalizeAssetAddress(rawValue);
-      if (!valueText) {
-        continue;
-      }
-      refs.push({
-        sourceJson,
-        jsonName,
-        field,
-        value: String(rawValue),
-        preferredFile,
-        candidateAddresses: buildCandidateAddresses(valueText),
-        rows: [{ Id: rowId, Name: row.Name || row.NameDesign || "" }],
-        refCount: 1
-      });
     }
   }
 
   return refs;
 }
 
-function isIconReferenceField(field, value, context) {
+function collectImageProbeReferences(dirs) {
+  const references = [];
+  let filesScanned = 0;
+  for (const dir of dirs || []) {
+    if (!dir || !fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
+      continue;
+    }
+    for (const filePath of walkFiles(dir, IMAGE_PROBE_EXTENSIONS)) {
+      filesScanned += 1;
+      const relativeFile = path.relative(dir, filePath);
+      const key = stripProbeHashSuffix(path.basename(filePath, path.extname(filePath)));
+      references.push(makeReference({
+        sourceKind: "probe-image",
+        sourceFile: filePath,
+        groupName: "source_images",
+        field: "file",
+        value: key,
+        preferredFile: `${key}.png`,
+        probeFile: filePath,
+        probeRelativeFile: relativeFile,
+        rows: [{ File: relativeFile }]
+      }));
+    }
+  }
+  return { references, filesScanned };
+}
+
+function collectTextProbeReferences(dirs, { readJson }) {
+  const references = [];
+  let filesScanned = 0;
+  for (const dir of dirs || []) {
+    if (!dir || !fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
+      continue;
+    }
+    for (const filePath of walkFiles(dir, TEXT_PROBE_EXTENSIONS)) {
+      filesScanned += 1;
+      const ext = path.extname(filePath).toLowerCase();
+      const relativeFile = path.relative(dir, filePath);
+      if (ext === ".json") {
+        try {
+          collectJsonTextProbeReferences(readJson(filePath), {
+            references,
+            sourceFile: filePath,
+            relativeFile
+          });
+        } catch {
+          collectRegexTextProbeReferences(fs.readFileSync(filePath, "utf8"), {
+            references,
+            sourceFile: filePath,
+            relativeFile
+          });
+        }
+      } else {
+        collectRegexTextProbeReferences(fs.readFileSync(filePath, "utf8"), {
+          references,
+          sourceFile: filePath,
+          relativeFile
+        });
+      }
+    }
+  }
+  return { references, filesScanned };
+}
+
+function collectJsonTextProbeReferences(value, context, stack = []) {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => collectJsonTextProbeReferences(item, context, [...stack, String(index)]));
+    return;
+  }
+  if (!value || typeof value !== "object") {
+    return;
+  }
+  for (const [field, rawValue] of Object.entries(value)) {
+    const fieldPath = [...stack, field].join(".");
+    if (isProbeIconField(field, rawValue)) {
+      context.references.push(makeReference({
+        sourceKind: "probe-text",
+        sourceFile: context.sourceFile,
+        groupName: "source_text",
+        field,
+        value: String(rawValue),
+        preferredFile: String(rawValue),
+        rows: [{ File: context.relativeFile, Field: fieldPath }]
+      }));
+    }
+    collectJsonTextProbeReferences(rawValue, context, [...stack, field]);
+  }
+}
+
+function collectRegexTextProbeReferences(text, context) {
+  const re = /\b(iconKey|spriteFile|IconPath|IconTexture|AttrIcon|iconPath|spriteName|sprite)\b\s*[:=]\s*["']([^"']+)["']/gi;
+  let match;
+  while ((match = re.exec(text)) !== null) {
+    const field = match[1];
+    const value = match[2];
+    if (!isProbeIconField(field, value)) {
+      continue;
+    }
+    context.references.push(makeReference({
+      sourceKind: "probe-text",
+      sourceFile: context.sourceFile,
+      groupName: "source_text",
+      field,
+      value,
+      preferredFile: value,
+      rows: [{ File: context.relativeFile, Offset: match.index }]
+    }));
+  }
+}
+
+function makeReference(input) {
+  const info = buildCandidateInfo(input.value);
+  return {
+    sourceKind: input.sourceKind,
+    sourceFile: input.sourceFile,
+    groupName: input.groupName,
+    field: input.field,
+    value: String(input.value),
+    preferredFile: input.preferredFile || "",
+    probeFile: input.probeFile || "",
+    probeRelativeFile: input.probeRelativeFile || "",
+    candidateAddresses: info.addresses,
+    candidateNames: info.names,
+    atlasSpriteCandidates: info.atlasSprites,
+    rows: input.rows || [],
+    refCount: 1
+  };
+}
+
+function isGeneratedIconField(field, value, context) {
   if (typeof value !== "string" || !value.trim()) {
     return false;
   }
@@ -233,28 +392,80 @@ function isIconReferenceField(field, value, context) {
   return key.includes("sprite") && looksLikeIconTexture(text);
 }
 
+function isProbeIconField(field, value) {
+  if (typeof value !== "string" || !value.trim()) {
+    return false;
+  }
+  const key = field.toLowerCase();
+  if (key.includes("offset") || key.includes("position")) {
+    return false;
+  }
+  if (!/(icon|sprite|texture)/i.test(key)) {
+    return false;
+  }
+  return looksLikeProbeValue(value);
+}
+
 function looksLikeAssetReference(value) {
-  return /(^|\/)ui\/textures\//i.test(value) || /icon/i.test(value) || /\.(png|dds|tga|ktx|bundle)$/i.test(value);
+  return /(^|\/)(ui\/textures|ui\/atlas)\//i.test(value) || /icon/i.test(value) || /\.(png|dds|tga|ktx|bundle)$/i.test(value);
 }
 
 function looksLikeIconTexture(value) {
-  return /icon/i.test(value) || /^skill_aoyi_advanced_texture\d+$/i.test(value) || /(^|\/)ui\/textures\//i.test(value);
+  return /icon/i.test(value) || /^skill_aoyi_advanced_texture\d+$/i.test(value) || /(^|\/)(ui\/textures|ui\/atlas)\//i.test(value);
 }
 
-function buildCandidateAddresses(value) {
-  const normalized = normalizeAssetAddress(value);
-  const candidates = [normalized];
-  const withoutExtension = normalized.replace(/\.(png|dds|tga|ktx|bundle)$/i, "");
-  if (withoutExtension && withoutExtension !== normalized) {
-    candidates.push(withoutExtension);
+function looksLikeProbeValue(value) {
+  const text = String(value || "").trim();
+  if (!text || text.length > 240 || /^https?:\/\//i.test(text)) {
+    return false;
   }
-  return [...new Set(candidates.filter(Boolean))];
+  if (!/^[A-Za-z0-9_./\\:-]+$/.test(text)) {
+    return false;
+  }
+  return /(^|\/)(ui\/textures|ui\/atlas)\//i.test(text) ||
+    /\.(png|dds|tga|ktx)$/i.test(text) ||
+    /icon|sprite|texture|buff_|skill_|weapon_|talent_|class_|resonance_/i.test(text);
+}
+
+function buildCandidateInfo(value) {
+  const normalized = normalizeAssetAddress(value);
+  const withoutExtension = normalized.replace(/\.(png|dds|tga|ktx|bundle)$/i, "");
+  const strippedAddress = stripProbeHashSuffixInPath(withoutExtension);
+  const addresses = uniqueStrings([normalized, withoutExtension, strippedAddress].filter(Boolean));
+  const basename = path.posix.basename(withoutExtension);
+  const strippedName = stripProbeHashSuffix(basename);
+  const names = uniqueStrings([basename, strippedName, path.posix.basename(strippedAddress)].filter(Boolean));
+  const atlasSprites = [];
+
+  for (const address of addresses) {
+    const parts = address.split("/").filter(Boolean);
+    const uiIndex = parts.findIndex((part, index) => index + 1 < parts.length && part.toLowerCase() === "ui" && parts[index + 1].toLowerCase() === "atlas");
+    if (uiIndex !== -1 && parts.length - uiIndex >= 4) {
+      atlasSprites.push({
+        atlasAddress: parts.slice(uiIndex, parts.length - 1).join("/"),
+        spriteName: parts[parts.length - 1]
+      });
+    }
+  }
+
+  return {
+    addresses,
+    names,
+    atlasSprites: dedupeAtlasSpriteCandidates(atlasSprites)
+  };
 }
 
 function dedupeReferences(references) {
   const byKey = new Map();
   for (const ref of references) {
-    const key = `${ref.sourceJson}:${ref.field}:${ref.candidateAddresses.join("|")}`;
+    const key = [
+      ref.sourceKind === "probe-text" ? "source_text" : ref.sourceFile,
+      ref.groupName,
+      ref.field,
+      ref.candidateAddresses.join("|"),
+      ref.candidateNames.join("|"),
+      ref.atlasSpriteCandidates.map((item) => `${item.atlasAddress}/${item.spriteName}`).join("|")
+    ].join("::");
     const existing = byKey.get(key);
     if (!existing) {
       byKey.set(key, { ...ref, rows: [...ref.rows] });
@@ -262,37 +473,72 @@ function dedupeReferences(references) {
     }
     existing.refCount += 1;
     if (existing.rows.length < 50) {
-      existing.rows.push(...ref.rows);
+      existing.rows.push(...ref.rows.slice(0, 50 - existing.rows.length));
     }
   }
   return [...byKey.values()];
 }
 
-function readAddressBundleMap(pkg, wantedHashes, { hash33 }) {
-  const out = new Map();
+function readAddressCatalog(pkg) {
+  const entries = [];
+  const byHash = new Map();
+  const byAddress = new Map();
+  const byBase = new Map();
   let offset = 0;
   while (offset < pkg.length) {
     const found = pkg.indexOf(ADDRESS_LINE_PREFIX, offset);
     if (found < 0) {
       break;
     }
-    const lineEnd = findAddressLineEnd(pkg, found);
+    const lineEnd = findCatalogLineEnd(pkg, found);
     const line = pkg.subarray(found, lineEnd).toString("utf8");
     const match = /^address:(.*?) ->>>> hash:(\d+) ->>>> bundleHash:(\d+)/.exec(line);
     if (match) {
       const address = normalizeAssetAddress(match[1]);
-      const addressHash = Number(match[2]);
-      const bundleHash = Number(match[3]);
-      if (wantedHashes.has(addressHash) || wantedHashes.has(hash33(address))) {
-        out.set(addressHash, { address, addressHash, bundleHash });
-      }
+      const entry = {
+        address,
+        addressHash: Number(match[2]),
+        bundleHash: Number(match[3])
+      };
+      entries.push(entry);
+      byHash.set(entry.addressHash, entry);
+      byAddress.set(address.toLowerCase(), entry);
+      addMapArray(byBase, path.posix.basename(address).toLowerCase(), entry);
     }
     offset = Math.max(lineEnd + 1, found + ADDRESS_LINE_PREFIX.length);
   }
-  return out;
+  return { entries, byHash, byAddress, byBase };
 }
 
-function findAddressLineEnd(buffer, start) {
+function readSpriteCatalog(pkg) {
+  const entries = [];
+  const byName = new Map();
+  const byNameAtlas = new Map();
+  let offset = 0;
+  while (offset < pkg.length) {
+    const found = pkg.indexOf(SPRITE_LINE_PREFIX, offset);
+    if (found < 0) {
+      break;
+    }
+    const lineEnd = findCatalogLineEnd(pkg, found);
+    const line = pkg.subarray(found, lineEnd).toString("utf8");
+    const match = /^spriteAddress:(\d+)-->spriteName:(.*?)--->atlasAddress:(\d+)/.exec(line);
+    if (match) {
+      const entry = {
+        spriteAddress: Number(match[1]),
+        spriteName: match[2],
+        atlasAddress: Number(match[3])
+      };
+      entries.push(entry);
+      addMapArray(byName, entry.spriteName.toLowerCase(), entry);
+      addMapArray(byNameAtlas, `${entry.spriteName.toLowerCase()}:${entry.atlasAddress}`, entry);
+    }
+    offset = Math.max(lineEnd + 1, found + SPRITE_LINE_PREFIX.length);
+  }
+  return { entries, byName, byNameAtlas };
+}
+
+function findCatalogLineEnd(buffer, start) {
   const max = Math.min(buffer.length, start + 2048);
   for (let index = start; index < max; index += 1) {
     const byte = buffer[index];
@@ -303,64 +549,342 @@ function findAddressLineEnd(buffer, start) {
   return max;
 }
 
-function resolveIconBundle(ref, addressMap, metaEntries, { hash33 }) {
+function resolveIconAsset(ref, addressCatalog, spriteCatalog, metaEntries, { hash33 }) {
+  const candidates = [];
+  for (const atlasSprite of ref.atlasSpriteCandidates) {
+    const atlas = findAddressEntry(atlasSprite.atlasAddress, addressCatalog, hash33);
+    if (!atlas) {
+      continue;
+    }
+    const spriteEntries = spriteCatalog.byNameAtlas.get(`${atlasSprite.spriteName.toLowerCase()}:${atlas.addressHash}`) || [];
+    for (const spriteEntry of spriteEntries) {
+      addSpriteCandidate(candidates, ref, spriteEntry, atlas, metaEntries, "atlas-sprite-address");
+    }
+  }
+
   for (const address of ref.candidateAddresses) {
-    const addressHash = hash33(address);
-    const mapped = addressMap.get(addressHash);
-    if (mapped) {
-      const entry = metaEntries.get(mapped.bundleHash);
-      if (entry) {
-        return { ...mapped, entry };
+    const exact = findAddressEntry(address, addressCatalog, hash33);
+    if (exact) {
+      addTextureCandidate(candidates, ref, exact, metaEntries, "exact-address");
+    }
+  }
+
+  for (const name of ref.candidateNames) {
+    const spriteEntries = spriteCatalog.byName.get(name.toLowerCase()) || [];
+    for (const spriteEntry of spriteEntries) {
+      const atlas = addressCatalog.byHash.get(spriteEntry.atlasAddress);
+      if (atlas) {
+        addSpriteCandidate(candidates, ref, spriteEntry, atlas, metaEntries, "sprite-name");
       }
     }
 
-    const directEntry = metaEntries.get(addressHash);
-    if (directEntry) {
-      return {
-        address,
-        addressHash,
-        bundleHash: addressHash,
-        entry: directEntry
-      };
+    const textureEntries = addressCatalog.byBase.get(name.toLowerCase()) || [];
+    for (const textureEntry of textureEntries) {
+      addTextureCandidate(candidates, ref, textureEntry, metaEntries, "basename-address");
     }
   }
-  return null;
+
+  const uniqueCandidates = dedupeCandidates(candidates);
+  if (!uniqueCandidates.length) {
+    return { status: "missing", reason: "No address or sprite catalog entry" };
+  }
+
+  const strongCandidates = uniqueCandidates.filter((candidate) =>
+    candidate.MatchKind === "exact-address" || candidate.MatchKind === "atlas-sprite-address"
+  );
+  if (strongCandidates.length === 1) {
+    return { status: "resolved", asset: strongCandidates[0] };
+  }
+  if (uniqueCandidates.length === 1) {
+    return { status: "resolved", asset: uniqueCandidates[0] };
+  }
+
+  return {
+    status: "ambiguous",
+    candidates: uniqueCandidates.map(summarizeCandidate)
+  };
 }
 
-function detectPayloadFormat(buffer) {
-  if (buffer.subarray(0, 4).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47]))) {
-    return { label: "PNG", extension: ".png" };
+function findAddressEntry(address, addressCatalog, hash33) {
+  const normalized = normalizeAssetAddress(address);
+  if (!normalized) {
+    return null;
   }
-  if (buffer.subarray(0, 4).toString("latin1") === "DDS ") {
-    return { label: "DDS", extension: ".dds" };
-  }
-  if (buffer.subarray(0, 7).toString("latin1") === "UnityFS") {
-    return { label: "UnityFS", extension: ".bundle" };
-  }
-  return { label: "Binary", extension: ".bin" };
+  return addressCatalog.byAddress.get(normalized.toLowerCase()) ||
+    addressCatalog.byHash.get(hash33(normalized)) ||
+    null;
 }
 
-function chooseUniqueOutputFileName(ref, extension, resolved, usedOutputNames) {
-  const baseName = chooseOutputFileName(ref, extension, resolved.bundleHash);
-  const folderKey = sanitizePathSegment(ref.jsonName).toLowerCase();
-  const identity = `${resolved.addressHash}:${resolved.bundleHash}`;
-  const nameKey = `${folderKey}:${baseName.toLowerCase()}`;
-  const existing = usedOutputNames.get(nameKey);
+function addTextureCandidate(candidates, ref, addressEntry, metaEntries, matchKind) {
+  const entry = metaEntries.get(addressEntry.bundleHash);
+  if (!entry) {
+    return;
+  }
+  candidates.push({
+    SourceKind: ref.sourceKind,
+    ResourceType: "Texture2D",
+    MatchKind: matchKind,
+    Address: addressEntry.address,
+    AddressHash: addressEntry.addressHash,
+    BundleHash: addressEntry.bundleHash,
+    TextureName: path.posix.basename(addressEntry.address),
+    PackageIndex: entry.index,
+    PackageOffset: entry.offset,
+    PackageLength: entry.length,
+    RequiresProbePixelMatch: Boolean(ref.probeFile)
+  });
+}
+
+function addSpriteCandidate(candidates, ref, spriteEntry, atlasEntry, metaEntries, matchKind) {
+  const entry = metaEntries.get(atlasEntry.bundleHash);
+  if (!entry) {
+    return;
+  }
+  candidates.push({
+    SourceKind: ref.sourceKind,
+    ResourceType: "Sprite",
+    MatchKind: matchKind,
+    Address: `${atlasEntry.address}/${spriteEntry.spriteName}`,
+    AddressHash: atlasEntry.addressHash,
+    BundleHash: atlasEntry.bundleHash,
+    AtlasAddress: atlasEntry.address,
+    AtlasHash: atlasEntry.addressHash,
+    SpriteName: spriteEntry.spriteName,
+    SpriteAddress: spriteEntry.spriteAddress,
+    PackageIndex: entry.index,
+    PackageOffset: entry.offset,
+    PackageLength: entry.length,
+    RequiresProbePixelMatch: Boolean(ref.probeFile)
+  });
+}
+
+function dedupeCandidates(candidates) {
+  const byKey = new Map();
+  for (const candidate of candidates) {
+    const key = [
+      candidate.ResourceType,
+      candidate.BundleHash,
+      candidate.SpriteName || candidate.TextureName || "",
+      candidate.Address
+    ].join(":");
+    if (!byKey.has(key)) {
+      byKey.set(key, candidate);
+    }
+  }
+  return [...byKey.values()];
+}
+
+function summarizeCandidate(candidate) {
+  return {
+    ResourceType: candidate.ResourceType,
+    MatchKind: candidate.MatchKind,
+    Address: candidate.Address,
+    BundleHash: candidate.BundleHash,
+    SpriteName: candidate.SpriteName || undefined,
+    TextureName: candidate.TextureName || undefined
+  };
+}
+
+function buildAssetRecord(ref, resolved, usedOutputNames) {
+  const pngFile = chooseUniquePngRelativePath(ref, resolved, usedOutputNames);
+  const asset = {
+    AssetId: makeAssetId(ref, resolved, pngFile),
+    SourceKind: ref.sourceKind,
+    SourceFile: ref.sourceFile,
+    SourceGroup: ref.groupName,
+    Field: ref.field,
+    Value: ref.value,
+    Address: resolved.Address,
+    AddressHash: resolved.AddressHash,
+    BundleHash: resolved.BundleHash,
+    ResourceType: resolved.ResourceType,
+    MatchKind: resolved.MatchKind,
+    PngFile: pngFile,
+    RequiresProbePixelMatch: resolved.RequiresProbePixelMatch,
+    RefCount: ref.refCount,
+    Rows: ref.rows.slice(0, 50)
+  };
+
+  if (resolved.ResourceType === "Sprite") {
+    asset.AtlasAddress = resolved.AtlasAddress;
+    asset.AtlasHash = resolved.AtlasHash;
+    asset.SpriteName = resolved.SpriteName;
+    asset.SpriteAddress = resolved.SpriteAddress;
+  } else {
+    asset.TextureName = resolved.TextureName;
+  }
+
+  if (ref.probeFile) {
+    asset.ProbeFile = portablePath(ref.probeFile);
+    asset.ProbeRelativeFile = ref.probeRelativeFile;
+  }
+
+  return asset;
+}
+
+function mergeAssetRecord(target, incoming) {
+  target.RefCount += incoming.RefCount;
+  target.Rows = [...target.Rows, ...incoming.Rows].slice(0, 100);
+  target.Fields = uniqueStrings([...(target.Fields || [target.Field]), incoming.Field]);
+  target.Values = uniqueStrings([...(target.Values || [target.Value]), incoming.Value]);
+  target.SourceFiles = uniqueStrings([...(target.SourceFiles || [target.SourceFile]), incoming.SourceFile]);
+}
+
+function chooseUniquePngRelativePath(ref, resolved, usedOutputNames) {
+  const group = sanitizePathSegment(ref.groupName);
+  const baseRel = ref.sourceKind === "probe-image"
+    ? chooseProbeImagePngPath(ref, group)
+    : path.posix.join(group, `${chooseOutputBaseName(ref, resolved)}.png`);
+  const normalizedRel = baseRel.replace(/\\/g, "/");
+  const identity = `${resolved.ResourceType}:${resolved.BundleHash}:${resolved.SpriteName || resolved.TextureName || resolved.Address}`;
+  const key = normalizedRel.toLowerCase();
+  const existing = usedOutputNames.get(key);
   if (!existing || existing === identity) {
-    usedOutputNames.set(nameKey, identity);
-    return baseName;
+    usedOutputNames.set(key, identity);
+    return normalizedRel;
   }
 
-  const parsed = path.parse(baseName);
-  const withHash = `${parsed.name}_${resolved.bundleHash}${parsed.ext}`;
-  usedOutputNames.set(`${folderKey}:${withHash.toLowerCase()}`, identity);
+  const parsed = path.posix.parse(normalizedRel);
+  const withHash = path.posix.join(parsed.dir, `${parsed.name}_${resolved.BundleHash}${parsed.ext}`);
+  usedOutputNames.set(withHash.toLowerCase(), identity);
   return withHash;
 }
 
-function chooseOutputFileName(ref, extension, bundleHash) {
-  const preferred = ref.preferredFile || ref.value || ref.candidateAddresses[0] || String(bundleHash);
-  const base = sanitizePathSegment(path.basename(preferred.replace(/\\/g, "/")).replace(/\.[^.]+$/, ""));
-  return `${base || bundleHash}${extension}`;
+function chooseProbeImagePngPath(ref, group) {
+  const relative = String(ref.probeRelativeFile || ref.preferredFile || ref.value).replace(/\\/g, "/");
+  const parts = relative.split("/").filter(Boolean);
+  const fileName = `${sanitizePathSegment(stripProbeHashSuffix(path.posix.basename(parts.pop() || ref.value, ".png")))}.png`;
+  const dirs = parts.map(sanitizePathSegment).filter(Boolean);
+  return path.posix.join(group, ...dirs, fileName);
+}
+
+function chooseOutputBaseName(ref, resolved) {
+  const preferred = ref.preferredFile || resolved.SpriteName || resolved.TextureName || resolved.Address || String(resolved.BundleHash);
+  const base = stripProbeHashSuffix(path.posix.basename(String(preferred).replace(/\\/g, "/")).replace(/\.[^.]+$/, ""));
+  return sanitizePathSegment(base || resolved.SpriteName || resolved.TextureName || String(resolved.BundleHash));
+}
+
+function makeAssetId(ref, resolved, pngFile) {
+  return [
+    ref.groupName,
+    resolved.ResourceType,
+    resolved.BundleHash,
+    resolved.SpriteName || resolved.TextureName || resolved.Address,
+    pngFile
+  ].join("|");
+}
+
+function minimalReference(ref, extra = {}) {
+  return {
+    SourceKind: ref.sourceKind,
+    SourceFile: ref.sourceFile,
+    SourceGroup: ref.groupName,
+    Field: ref.field,
+    Value: ref.value,
+    CandidateAddresses: ref.candidateAddresses,
+    CandidateNames: ref.candidateNames,
+    AtlasSpriteCandidates: ref.atlasSpriteCandidates,
+    RefCount: ref.refCount,
+    Rows: ref.rows.slice(0, 20),
+    ...extra
+  };
+}
+
+function walkFiles(root, extensions) {
+  const files = [];
+  walk(root);
+  return files;
+
+  function walk(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        if (!SKIP_DIRS.has(entry.name)) {
+          walk(path.join(dir, entry.name));
+        }
+        continue;
+      }
+      if (entry.isFile() && extensions.has(path.extname(entry.name).toLowerCase())) {
+        files.push(path.join(dir, entry.name));
+      }
+    }
+  }
+}
+
+function addMapArray(map, key, value) {
+  if (!key) {
+    return;
+  }
+  const list = map.get(key) ?? [];
+  list.push(value);
+  map.set(key, list);
+}
+
+function dedupeAtlasSpriteCandidates(candidates) {
+  const byKey = new Map();
+  for (const candidate of candidates) {
+    byKey.set(`${candidate.atlasAddress.toLowerCase()}:${candidate.spriteName.toLowerCase()}`, candidate);
+  }
+  return [...byKey.values()];
+}
+
+function uniqueStrings(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values) {
+    const text = normalizeAssetAddress(value);
+    if (!text) {
+      continue;
+    }
+    const key = text.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(text);
+  }
+  return out;
+}
+
+function uniquePaths(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    if (!value) {
+      continue;
+    }
+    const resolved = path.resolve(value);
+    const key = resolved.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(resolved);
+  }
+  return out;
+}
+
+function portablePath(value) {
+  const resolved = path.resolve(String(value || ""));
+  const relative = path.relative(__dirname, resolved);
+  if (!relative || relative === "") {
+    return ".";
+  }
+  if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+    return relative.replace(/\\/g, "/");
+  }
+  return path.basename(resolved);
+}
+
+function stripProbeHashSuffixInPath(value) {
+  const normalized = normalizeAssetAddress(value);
+  const dir = path.posix.dirname(normalized);
+  const base = path.posix.basename(normalized);
+  const stripped = stripProbeHashSuffix(base);
+  return dir && dir !== "." ? path.posix.join(dir, stripped) : stripped;
+}
+
+function stripProbeHashSuffix(value) {
+  return String(value || "").replace(/_-?\d{8,}$/, "");
 }
 
 function normalizeAssetAddress(value) {

@@ -12,6 +12,7 @@ async function main() {
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    displayPath,
     loadLocalizationTables,
     loadMetaEntries,
     maybeWriteJson,
@@ -74,7 +75,7 @@ Notes:
   console.log(`MonsterTable row start: ${rowStart}`);
   console.log(`MonsterTable rows scanned: ${rawRows.length}`);
   console.log(`Monster name entries: ${Object.keys(sorted).length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
 

@@ -1,5 +1,7 @@
 {
-  "gamePath": "",
+  "gamePath": "steam",
   "outputDir": "./output",
-  "probingSourcesDir": "./Probing Sources"
+  "probingSourcesDir": "./Probing Sources",
+  "probeImageDirs": [],
+  "probeTextDirs": []
 }

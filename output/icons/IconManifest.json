@@ -1,21 +1,4735 @@
 {
-  "GeneratedAt": "2026-04-24T15:47:48.071Z",
-  "OutputDir": "C:\\Users\\dbcas\\Desktop\\resonancelogs-cn-gh\\BETA\\BPSR-UID-Extractors\\output\\icons",
+  "GeneratedAt": "2026-04-24T17:06:37.066Z",
+  "OutputDir": "output/icons",
   "JsonFilesScanned": 8,
-  "ReferencesFound": 102,
-  "UniqueReferences": 101,
-  "ExtractedAssetCount": 101,
-  "MissingAssetCount": 0,
-  "JsonManifests": [
+  "ProbeImageDirs": [
+    "Probing Sources/images"
+  ],
+  "ProbeTextDirs": [
+    "Probing Sources/text"
+  ],
+  "ProbeImageFilesScanned": 0,
+  "ProbeTextFilesScanned": 0,
+  "GeneratedReferencesFound": 11491,
+  "ProbeImageReferencesFound": 0,
+  "ProbeTextReferencesFound": 0,
+  "UniqueReferences": 5523,
+  "AddressCatalogEntries": 193085,
+  "SpriteCatalogEntries": 8388,
+  "ResolvedAssetCount": 5103,
+  "MissingAssetCount": 192,
+  "AmbiguousAssetCount": 4,
+  "GroupManifests": [
     {
-      "SourceJson": "skill_aoyi_icons.json",
-      "Manifest": "skill_aoyi_icons\\manifest.json",
+      "SourceGroup": "BuffName",
+      "Manifest": "BuffName/manifest.json",
+      "AssetCount": 759
+    },
+    {
+      "SourceGroup": "DamageAttrIdName",
+      "Manifest": "DamageAttrIdName/manifest.json",
+      "AssetCount": 188
+    },
+    {
+      "SourceGroup": "itemnames",
+      "Manifest": "itemnames/manifest.json",
+      "AssetCount": 3553
+    },
+    {
+      "SourceGroup": "RecountTable",
+      "Manifest": "RecountTable/manifest.json",
+      "AssetCount": 114
+    },
+    {
+      "SourceGroup": "skill_aoyi_icons",
+      "Manifest": "skill_aoyi_icons/manifest.json",
       "AssetCount": 101
+    },
+    {
+      "SourceGroup": "skillnames",
+      "Manifest": "skillnames/manifest.json",
+      "AssetCount": 388
     }
   ],
-  "MissingAssets": [],
-  "PngExportedAt": "2026-04-24T15:54:23.181292Z",
-  "PngAssetCount": 101,
+  "MissingAssets": [
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3310100,
+          "Name": "鬼人化效果生效Buff"
+        },
+        {
+          "Id": 216108213,
+          "Name": "崩裂词缀自爆虚拟体"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310100,
+          "Name": "鬼人化效果生效Buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310201"
+      ],
+      "CandidateNames": [
+        "talent_skill_310201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310200,
+          "Name": "生存小招-生命护盾"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310201"
+      ],
+      "CandidateNames": [
+        "talent_skill_310201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310200,
+          "Name": "生存小招-生命护盾"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310301"
+      ],
+      "CandidateNames": [
+        "talent_skill_310301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310300,
+          "Name": "假人！现！"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310301"
+      ],
+      "CandidateNames": [
+        "talent_skill_310301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310300,
+          "Name": "假人！现！"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310401"
+      ],
+      "CandidateNames": [
+        "talent_skill_310401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310400,
+          "Name": "战争怒吼"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310401"
+      ],
+      "CandidateNames": [
+        "talent_skill_310401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310400,
+          "Name": "战争怒吼"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330201"
+      ],
+      "CandidateNames": [
+        "talent_skill_330201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330200,
+          "Name": "奥义！引力奇点"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330201"
+      ],
+      "CandidateNames": [
+        "talent_skill_330201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330200,
+          "Name": "奥义！引力奇点"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330301"
+      ],
+      "CandidateNames": [
+        "talent_skill_330301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330301"
+      ],
+      "CandidateNames": [
+        "talent_skill_330301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340100,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340101,
+          "Name": "光龙-净化之光扩散"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340100,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340101,
+          "Name": "光龙-净化之光扩散"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340201"
+      ],
+      "CandidateNames": [
+        "talent_skill_340201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340201,
+          "Name": "光龙-净化之光收缩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340201"
+      ],
+      "CandidateNames": [
+        "talent_skill_340201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340201,
+          "Name": "光龙-净化之光收缩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340301"
+      ],
+      "CandidateNames": [
+        "talent_skill_340301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3340300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340301"
+      ],
+      "CandidateNames": [
+        "talent_skill_340301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3340300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3360100,
+          "Name": "鬼人QTE特效"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3360100,
+          "Name": "鬼人QTE特效"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360102",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360102"
+      ],
+      "CandidateNames": [
+        "talent_skill_360102"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3360200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3360201,
+          "Name": "虚蚀-环形子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360102",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360102"
+      ],
+      "CandidateNames": [
+        "talent_skill_360102"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3360200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3360201,
+          "Name": "虚蚀-环形子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360103",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360103"
+      ],
+      "CandidateNames": [
+        "talent_skill_360103"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3360300,
+          "Name": "蓄气"
+        },
+        {
+          "Id": 3360400,
+          "Name": "破"
+        },
+        {
+          "Id": 136040101,
+          "Name": "破"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360103",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360103"
+      ],
+      "CandidateNames": [
+        "talent_skill_360103"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3360300,
+          "Name": "蓄气"
+        },
+        {
+          "Id": 3360400,
+          "Name": "破"
+        },
+        {
+          "Id": 136040101,
+          "Name": "破"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3370100,
+          "Name": "鬼人化关闭标记buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3370100,
+          "Name": "鬼人化关闭标记buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11"
+      ],
+      "CandidateNames": [
+        "weapon_fh_skill_atk11"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 115080102,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 2918075509,
+          "Name": "艾露娜召唤兽ULT_L"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11"
+      ],
+      "CandidateNames": [
+        "weapon_fh_skill_atk11"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 115080102,
+          "Name": "艾露娜SKILL_04"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz-12_skill_atk",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz-12_skill_atk"
+      ],
+      "CandidateNames": [
+        "weapon_fz-12_skill_atk"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 115100102,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 115100103,
+          "Name": "艾露娜AIRATK"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_fz-12_skill_atk",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz-12_skill_atk"
+      ],
+      "CandidateNames": [
+        "weapon_fz-12_skill_atk"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 115100102,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 115100103,
+          "Name": "艾露娜AIRATK"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2"
+      ],
+      "CandidateNames": [
+        "weapon_tdl-01_skill_101_2"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 117110102,
+          "Name": "奥尔维拉SKILL_01-后撤"
+        },
+        {
+          "Id": 117110103,
+          "Name": "奥尔维拉SKILL_01-JR"
+        },
+        {
+          "Id": 117110105,
+          "Name": "奥尔维拉SKILL_01-非JR"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2"
+      ],
+      "CandidateNames": [
+        "weapon_tdl-01_skill_101_2"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 117110102,
+          "Name": "奥尔维拉SKILL_01-后撤"
+        },
+        {
+          "Id": 117110103,
+          "Name": "奥尔维拉SKILL_01-JR"
+        },
+        {
+          "Id": 117110105,
+          "Name": "奥尔维拉SKILL_01-非JR"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 130010101,
+          "Name": "BK!破！"
+        },
+        {
+          "Id": 330010100,
+          "Name": "蒂娜分身时间结束销毁子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 130010101,
+          "Name": "BK!破！"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310501"
+      ],
+      "CandidateNames": [
+        "talent_skill_310501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 131050101,
+          "Name": "猛击"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310501"
+      ],
+      "CandidateNames": [
+        "talent_skill_310501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 131050101,
+          "Name": "猛击"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370201"
+      ],
+      "CandidateNames": [
+        "talent_skill_370201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137020106,
+          "Name": "灌篮高手"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370201"
+      ],
+      "CandidateNames": [
+        "talent_skill_370201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137020106,
+          "Name": "灌篮高手"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370401"
+      ],
+      "CandidateNames": [
+        "talent_skill_370401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137040102,
+          "Name": "天赋小招-爆燃鲜口"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370401"
+      ],
+      "CandidateNames": [
+        "talent_skill_370401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137040102,
+          "Name": "天赋小招-爆燃鲜口"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 216108213,
+          "Name": "崩裂词缀自爆虚拟体"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 330010100,
+          "Name": "蒂娜分身时间结束销毁子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300201"
+      ],
+      "CandidateNames": [
+        "talent_skill_300201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 330020100,
+          "Name": "聚怪嘲讽"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300201"
+      ],
+      "CandidateNames": [
+        "talent_skill_300201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 330020100,
+          "Name": "聚怪嘲讽"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/mainui/attack",
+      "CandidateAddresses": [
+        "ui/textures/mainui/attack"
+      ],
+      "CandidateNames": [
+        "attack"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 936239028,
+          "Name": "棒槌哥布林投掷"
+        },
+        {
+          "Id": 2411075510,
+          "Name": "棒槌哥布林上撩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/mainui/attack",
+      "CandidateAddresses": [
+        "ui/textures/mainui/attack"
+      ],
+      "CandidateNames": [
+        "attack"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 936239028,
+          "Name": "棒槌哥布林投掷"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/mainui/attack",
+      "CandidateAddresses": [
+        "ui/textures/mainui/attack"
+      ],
+      "CandidateNames": [
+        "attack"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2411075510,
+          "Name": "棒槌哥布林上撩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_guardblade_ult",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_guardblade_ult"
+      ],
+      "CandidateNames": [
+        "weapon_guardblade_ult"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2415675509,
+          "Name": "火焰兽人吐息"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_guardblade_ult",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_guardblade_ult"
+      ],
+      "CandidateNames": [
+        "weapon_guardblade_ult"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2415675509,
+          "Name": "火焰兽人吐息"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl-01_skill_05",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl-01_skill_05"
+      ],
+      "CandidateNames": [
+        "skill_weapon_tdl-01_skill_05"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2516305510,
+          "Name": "战斗机像03型-旋风斩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_tdl-01_skill_05",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl-01_skill_05"
+      ],
+      "CandidateNames": [
+        "skill_weapon_tdl-01_skill_05"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2516305510,
+          "Name": "战斗机像03型-旋风斩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11"
+      ],
+      "CandidateNames": [
+        "weapon_fh_skill_atk11"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2918075509,
+          "Name": "艾露娜召唤兽ULT_L"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_ex",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_ex"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_ex"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4176138213,
+          "Name": "机甲A变身三技能-蓄能回血"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_ex",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_ex"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_ex"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4176138213,
+          "Name": "机甲A变身三技能-蓄能回血"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01"
+      ],
+      "CandidateNames": [
+        "weapon_wr_skill_atk01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4177148213,
+          "Name": "机甲B变身四技能-冲锋"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01"
+      ],
+      "CandidateNames": [
+        "weapon_wr_skill_atk01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4177148213,
+          "Name": "机甲B变身四技能-冲锋"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_02",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_02"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4178138213,
+          "Name": "机甲C变身三技能-激光"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_02",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_02"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4178138213,
+          "Name": "机甲C变身三技能-激光"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_03",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_03"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_03"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_03"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1,
+          "Name": "Judgment Blade - Reaper Scythe"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_05",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_05"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_05"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_05"
+        }
+      ],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 2,
+          "Name": "Frostjade Staff - Magic Wand"
+        },
+        {
+          "Id": 12,
+          "Name": "Frostjade Staff - Magic Wand"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_01",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_01"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_01"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_01"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3,
+          "Name": "Scourgefire Axe - Battle Axe"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_02",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_02"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_02"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_02"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4,
+          "Name": "Justice Lance - Lance"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_04",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_04"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_04"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_04"
+        }
+      ],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 5,
+          "Name": "Fatewood Ring - Magic Ring"
+        },
+        {
+          "Id": 10,
+          "Name": "(Temporary) Rorola"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_07",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_07"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_07"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_07"
+        }
+      ],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 8,
+          "Name": "Thunder Flash - Hand Cannon"
+        },
+        {
+          "Id": 11,
+          "Name": "Bow"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_06",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_06"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_06"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_06"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9,
+          "Name": "Sandward - Blade"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "item_icon_bloodvial",
+      "CandidateAddresses": [
+        "item_icon_bloodvial"
+      ],
+      "CandidateNames": [
+        "item_icon_bloodvial"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 20001,
+          "Name": "Energy Points"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "item_icons_drawing166",
+      "CandidateAddresses": [
+        "item_icons_drawing166"
+      ],
+      "CandidateNames": [
+        "item_icons_drawing166"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1076046,
+          "Name": "Skin: Ode to Spring - Past Set"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "item_icons_drawing168",
+      "CandidateAddresses": [
+        "item_icons_drawing168"
+      ],
+      "CandidateNames": [
+        "item_icons_drawing168"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1076047,
+          "Name": "Skin: Ode to Spring - Past Gauntlets"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "item_icons_drawing170",
+      "CandidateAddresses": [
+        "item_icons_drawing170"
+      ],
+      "CandidateNames": [
+        "item_icons_drawing170"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1076048,
+          "Name": "Skin: Ode to Spring - Past Boots"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "item_icons_fish27",
+      "CandidateAddresses": [
+        "item_icons_fish27"
+      ],
+      "CandidateNames": [
+        "item_icons_fish27"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1094015,
+          "Name": "Ocean Stingray"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_m_dressmaker01",
+      "CandidateAddresses": [
+        "clothes_icon_m_dressmaker01"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015093,
+          "Name": "Life Skill 1"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_f_dressmaker01",
+      "CandidateAddresses": [
+        "clothes_icon_f_dressmaker01"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015094,
+          "Name": "Life Skill 1"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_m_dressmaker06",
+      "CandidateAddresses": [
+        "clothes_icon_m_dressmaker06"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015095,
+          "Name": "Life Skill 2"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_f_dressmaker06",
+      "CandidateAddresses": [
+        "clothes_icon_f_dressmaker06"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015096,
+          "Name": "Life Skill 2"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_m_armourpower03",
+      "CandidateAddresses": [
+        "clothes_icon_m_armourpower03"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015113,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_f_armourpower03",
+      "CandidateAddresses": [
+        "clothes_icon_f_armourpower03"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015114,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_m_armourmagic03",
+      "CandidateAddresses": [
+        "clothes_icon_m_armourmagic03"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015115,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_f_armourmagic03",
+      "CandidateAddresses": [
+        "clothes_icon_f_armourmagic03"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015116,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_m_armouragile03",
+      "CandidateAddresses": [
+        "clothes_icon_m_armouragile03"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015117,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_f_armouragile03",
+      "CandidateAddresses": [
+        "clothes_icon_f_armouragile03"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015118,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_m_christmas02",
+      "CandidateAddresses": [
+        "clothes_icon_m_christmas02"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015121,
+          "Name": "Xmas Tree"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "clothes_icon_f_christmas02",
+      "CandidateAddresses": [
+        "clothes_icon_f_christmas02"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015122,
+          "Name": "Xmas Tree"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "simplesuit_icon_m_flower01",
+      "CandidateAddresses": [
+        "simplesuit_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "simplesuit_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015135,
+          "Name": "Ode to Spring - Set"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "simplesuit_icon_f_flower01",
+      "CandidateAddresses": [
+        "simplesuit_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "simplesuit_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7015136,
+          "Name": "Ode to Spring - Set"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_dressmaker01",
+      "CandidateAddresses": [
+        "gloves_icon_m_dressmaker01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115093,
+          "Name": "Life Skill 1"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_dressmaker01",
+      "CandidateAddresses": [
+        "gloves_icon_f_dressmaker01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115094,
+          "Name": "Life Skill 1"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_dressmaker06",
+      "CandidateAddresses": [
+        "gloves_icon_m_dressmaker06"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115095,
+          "Name": "Life Skill 2"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_dressmaker06",
+      "CandidateAddresses": [
+        "gloves_icon_f_dressmaker06"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115096,
+          "Name": "Life Skill 2"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_armourpower03",
+      "CandidateAddresses": [
+        "gloves_icon_m_armourpower03"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115113,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_armourpower03",
+      "CandidateAddresses": [
+        "gloves_icon_f_armourpower03"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115114,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_armourmagic03",
+      "CandidateAddresses": [
+        "gloves_icon_m_armourmagic03"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115115,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_armourmagic03",
+      "CandidateAddresses": [
+        "gloves_icon_f_armourmagic03"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115116,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_armouragile03",
+      "CandidateAddresses": [
+        "gloves_icon_m_armouragile03"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115117,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_armouragile03",
+      "CandidateAddresses": [
+        "gloves_icon_f_armouragile03"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115118,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_christmas02",
+      "CandidateAddresses": [
+        "gloves_icon_m_christmas02"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115121,
+          "Name": "Xmas Tree"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_christmas02",
+      "CandidateAddresses": [
+        "gloves_icon_f_christmas02"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115122,
+          "Name": "Xmas Tree"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_m_flower01",
+      "CandidateAddresses": [
+        "gloves_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115135,
+          "Name": "Ode to Spring - Gauntlets"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "gloves_icon_f_flower01",
+      "CandidateAddresses": [
+        "gloves_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7115136,
+          "Name": "Ode to Spring - Gauntlets"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_dressmaker01",
+      "CandidateAddresses": [
+        "shoes_icon_m_dressmaker01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125093,
+          "Name": "Life Skill 1"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_dressmaker01",
+      "CandidateAddresses": [
+        "shoes_icon_f_dressmaker01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125094,
+          "Name": "Life Skill 1"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_dressmaker06",
+      "CandidateAddresses": [
+        "shoes_icon_m_dressmaker06"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125095,
+          "Name": "Life Skill 2"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_dressmaker06",
+      "CandidateAddresses": [
+        "shoes_icon_f_dressmaker06"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125096,
+          "Name": "Life Skill 2"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_armourpower03",
+      "CandidateAddresses": [
+        "shoes_icon_m_armourpower03"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125113,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_armourpower03",
+      "CandidateAddresses": [
+        "shoes_icon_f_armourpower03"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125114,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_armourmagic03",
+      "CandidateAddresses": [
+        "shoes_icon_m_armourmagic03"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125115,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_armourmagic03",
+      "CandidateAddresses": [
+        "shoes_icon_f_armourmagic03"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125116,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_armouragile03",
+      "CandidateAddresses": [
+        "shoes_icon_m_armouragile03"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125117,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_armouragile03",
+      "CandidateAddresses": [
+        "shoes_icon_f_armouragile03"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125118,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_christmas02",
+      "CandidateAddresses": [
+        "shoes_icon_m_christmas02"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125121,
+          "Name": "Xmas Tree"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_christmas02",
+      "CandidateAddresses": [
+        "shoes_icon_f_christmas02"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125122,
+          "Name": "Xmas Tree"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_m_flower01",
+      "CandidateAddresses": [
+        "shoes_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125135,
+          "Name": "Ode to Spring - Boots"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "shoes_icon_f_flower01",
+      "CandidateAddresses": [
+        "shoes_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7125136,
+          "Name": "Ode to Spring - Boots"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_c_armourpower03",
+      "CandidateAddresses": [
+        "headwear_icon_c_armourpower03"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_armourpower03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130307,
+          "Name": "Lv.160 Gear - Strength"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_c_armourmagic03",
+      "CandidateAddresses": [
+        "headwear_icon_c_armourmagic03"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_armourmagic03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130308,
+          "Name": "Lv.160 Gear - Intellect"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_c_armouragile03",
+      "CandidateAddresses": [
+        "headwear_icon_c_armouragile03"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_armouragile03"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130309,
+          "Name": "Lv.160 Gear - Agility"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_c_mahjong01",
+      "CandidateAddresses": [
+        "headwear_icon_c_mahjong01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_mahjong01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130327,
+          "Name": "Three Dragons - Headwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_m_flower01",
+      "CandidateAddresses": [
+        "headwear_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130336,
+          "Name": "Ode to Spring - Headwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_f_flower01",
+      "CandidateAddresses": [
+        "headwear_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130337,
+          "Name": "Ode to Spring - Headwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_m_flower01up01",
+      "CandidateAddresses": [
+        "headwear_icon_m_flower01up01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_m_flower01up01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130338,
+          "Name": "Ode to Spring - Past"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_f_flower01up01",
+      "CandidateAddresses": [
+        "headwear_icon_f_flower01up01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_f_flower01up01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130339,
+          "Name": "Ode to Spring - Past"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_c_olvera01",
+      "CandidateAddresses": [
+        "headwear_icon_c_olvera01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_olvera01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130340,
+          "Name": "Olvera Doll - Headwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "headwear_icon_c_jerrad01",
+      "CandidateAddresses": [
+        "headwear_icon_c_jerrad01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_jerrad01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7130341,
+          "Name": "Jerrad Doll - Headwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "mouthwear_icon_c_television01",
+      "CandidateAddresses": [
+        "mouthwear_icon_c_television01"
+      ],
+      "CandidateNames": [
+        "mouthwear_icon_c_television01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7150021,
+          "Name": "Mini TV Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "back_icon_c_wings01",
+      "CandidateAddresses": [
+        "back_icon_c_wings01"
+      ],
+      "CandidateNames": [
+        "back_icon_c_wings01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7170001,
+          "Name": "Pink Wings"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "back_icon_c_flower01",
+      "CandidateAddresses": [
+        "back_icon_c_flower01"
+      ],
+      "CandidateNames": [
+        "back_icon_c_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7170033,
+          "Name": "Wreath - Backwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "back_icon_c_flower02",
+      "CandidateAddresses": [
+        "back_icon_c_flower02"
+      ],
+      "CandidateNames": [
+        "back_icon_c_flower02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7170034,
+          "Name": "Wreath - Backwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ears_icon_c_earring04",
+      "CandidateAddresses": [
+        "ears_icon_c_earring04"
+      ],
+      "CandidateNames": [
+        "ears_icon_c_earring04"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7210028,
+          "Name": "Earwear 4"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ears_icon_c_tassels010",
+      "CandidateAddresses": [
+        "ears_icon_c_tassels010"
+      ],
+      "CandidateNames": [
+        "ears_icon_c_tassels010"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7210031,
+          "Name": "Earwear 7"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ears_icon_c_flower01",
+      "CandidateAddresses": [
+        "ears_icon_c_flower01"
+      ],
+      "CandidateNames": [
+        "ears_icon_c_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7210039,
+          "Name": "Ode to Spring - Earwear"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "neck_icon_m_flower01",
+      "CandidateAddresses": [
+        "neck_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "neck_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7220041,
+          "Name": "Ode to Spring - Necklace"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "neck_icon_f_flower01",
+      "CandidateAddresses": [
+        "neck_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "neck_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7220042,
+          "Name": "Ode to Spring - Necklace"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ring_icon_m_flower01",
+      "CandidateAddresses": [
+        "ring_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "ring_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7230047,
+          "Name": "Ode to Spring - Ring"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ring_icon_f_flower01",
+      "CandidateAddresses": [
+        "ring_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "ring_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 7230048,
+          "Name": "Ode to Spring - Ring"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "personalzone_medal_icon_01_120",
+      "CandidateAddresses": [
+        "personalzone_medal_icon_01_120"
+      ],
+      "CandidateNames": [
+        "personalzone_medal_icon_01_120"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9040117,
+          "Name": "Spring Dawn"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "ui/atlas/personalzone_medal/personalzone_medal_icon_03_01",
+      "CandidateAddresses": [
+        "ui/atlas/personalzone_medal/personalzone_medal_icon_03_01"
+      ],
+      "CandidateNames": [
+        "personalzone_medal_icon_03_01"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/personalzone_medal",
+          "spriteName": "personalzone_medal_icon_03_01"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9050001,
+          "Name": "Background"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_12",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_12"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_12"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070011,
+          "Name": "Jul. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_13",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_13"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_13"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070012,
+          "Name": "Aug. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_14",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_14"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_14"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070013,
+          "Name": "Sep. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_15",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_15"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_15"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070014,
+          "Name": "Oct. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_16",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_16"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_16"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070015,
+          "Name": "Nov. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_17",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_17"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_17"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070016,
+          "Name": "Dec. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_18",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_18"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_18"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070017,
+          "Name": "Jan. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_19",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_19"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_19"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070018,
+          "Name": "Nov. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_20",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_20"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_20"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070019,
+          "Name": "Dec. 2026 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_21",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_21"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_21"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070020,
+          "Name": "Jan. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_22",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_22"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_22"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070021,
+          "Name": "Feb. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_23",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_23"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_23"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070022,
+          "Name": "Mar. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_24",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_24"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_24"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070023,
+          "Name": "Apr. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_25",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_25"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_25"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070024,
+          "Name": "May 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_26",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_26"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_26"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070025,
+          "Name": "Jun. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_27",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_27"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_27"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070026,
+          "Name": "Jul. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_28",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_28"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_28"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070027,
+          "Name": "Aug. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_29",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_29"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_29"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070028,
+          "Name": "Sept. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_30",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_30"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_30"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070029,
+          "Name": "Oct. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_31",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_31"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_31"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070030,
+          "Name": "Nov. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "itemnames.json",
+      "SourceGroup": "itemnames",
+      "Field": "IconPath",
+      "Value": "monthly_reward_card_item_icon_32",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_32"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_32"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 9070031,
+          "Name": "Dec. 2027 Collection Card"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz-01_skill_02_end",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz-01_skill_02_end"
+      ],
+      "CandidateNames": [
+        "weapon_fz-01_skill_02_end"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1297,
+          "Name": "冰水法杖SKILL_02_REAL_废弃"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11"
+      ],
+      "CandidateNames": [
+        "weapon_fh_skill_atk11"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 1508,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 115080102,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 2918075509,
+          "Name": "艾露娜召唤兽ULT_L"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz-12_skill_atk",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz-12_skill_atk"
+      ],
+      "CandidateNames": [
+        "weapon_fz-12_skill_atk"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 1510,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 115100102,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 115100103,
+          "Name": "艾露娜AIRATK"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2"
+      ],
+      "CandidateNames": [
+        "weapon_tdl-01_skill_101_2"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": 1711,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 117110102,
+          "Name": "奥尔维拉SKILL_01-后撤"
+        },
+        {
+          "Id": 117110103,
+          "Name": "奥尔维拉SKILL_01-JR"
+        },
+        {
+          "Id": 117110105,
+          "Name": "奥尔维拉SKILL_01-非JR"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3001,
+          "Name": "奥义！超能冲击"
+        },
+        {
+          "Id": 130010101,
+          "Name": "BK!破！"
+        },
+        {
+          "Id": 330010100,
+          "Name": "蒂娜分身时间结束销毁子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300201"
+      ],
+      "CandidateNames": [
+        "talent_skill_300201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3002,
+          "Name": "奥义！强力之握"
+        },
+        {
+          "Id": 330020100,
+          "Name": "聚怪嘲讽"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3101,
+          "Name": "守护 · 危机抵挡"
+        },
+        {
+          "Id": 3310100,
+          "Name": "鬼人化效果生效Buff"
+        },
+        {
+          "Id": 216108213,
+          "Name": "崩裂词缀自爆虚拟体"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310201"
+      ],
+      "CandidateNames": [
+        "talent_skill_310201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3102,
+          "Name": "守护 · 护体屏障"
+        },
+        {
+          "Id": 3310200,
+          "Name": "生存小招-生命护盾"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310301"
+      ],
+      "CandidateNames": [
+        "talent_skill_310301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3103,
+          "Name": "守护 · 嘲讽假体"
+        },
+        {
+          "Id": 3310300,
+          "Name": "假人！现！"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310401"
+      ],
+      "CandidateNames": [
+        "talent_skill_310401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3104,
+          "Name": "守护 · 战斗怒吼"
+        },
+        {
+          "Id": 3310400,
+          "Name": "战争怒吼"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310501"
+      ],
+      "CandidateNames": [
+        "talent_skill_310501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3105,
+          "Name": "守护 · 审判"
+        },
+        {
+          "Id": 131050101,
+          "Name": "猛击"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310601",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310601"
+      ],
+      "CandidateNames": [
+        "talent_skill_310601"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3106,
+          "Name": "守护 · 壁垒"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330201"
+      ],
+      "CandidateNames": [
+        "talent_skill_330201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3302,
+          "Name": "奥义！引力奇点"
+        },
+        {
+          "Id": 3330200,
+          "Name": "奥义！引力奇点"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330301"
+      ],
+      "CandidateNames": [
+        "talent_skill_330301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3303,
+          "Name": "奥义！鏖战光环"
+        },
+        {
+          "Id": 3330300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3401,
+          "Name": "辅助 · 赐福"
+        },
+        {
+          "Id": 3340100,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340101,
+          "Name": "Plague Nappo - Katana Frenzy"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340201"
+      ],
+      "CandidateNames": [
+        "talent_skill_340201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3402,
+          "Name": "辅助 · 治疗之环"
+        },
+        {
+          "Id": 3340200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340201,
+          "Name": "光龙-净化之光收缩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340301"
+      ],
+      "CandidateNames": [
+        "talent_skill_340301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3403,
+          "Name": "辅助 · 瀑流"
+        },
+        {
+          "Id": 3340300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340501"
+      ],
+      "CandidateNames": [
+        "talent_skill_340501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3405,
+          "Name": "辅助 · 危机抵挡"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340601",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340601"
+      ],
+      "CandidateNames": [
+        "talent_skill_340601"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3406,
+          "Name": "辅助 · 虚弱压制"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3601,
+          "Name": "奥义！碎星陨落"
+        },
+        {
+          "Id": 3360100,
+          "Name": "鬼人QTE特效"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360102",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360102"
+      ],
+      "CandidateNames": [
+        "talent_skill_360102"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3602,
+          "Name": "奥义！心眼"
+        },
+        {
+          "Id": 3360200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3360201,
+          "Name": "虚蚀-环形子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360103",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360103"
+      ],
+      "CandidateNames": [
+        "talent_skill_360103"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 5,
+      "Rows": [
+        {
+          "Id": 3603,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 3604,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 3360300,
+          "Name": "蓄气"
+        },
+        {
+          "Id": 3360400,
+          "Name": "破"
+        },
+        {
+          "Id": 136040101,
+          "Name": "破"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3701,
+          "Name": "攻击 · 凝滞"
+        },
+        {
+          "Id": 3370100,
+          "Name": "鬼人化关闭标记buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370201"
+      ],
+      "CandidateNames": [
+        "talent_skill_370201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3702,
+          "Name": "攻击 · 暴击连弹"
+        },
+        {
+          "Id": 137020106,
+          "Name": "灌篮高手"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370301"
+      ],
+      "CandidateNames": [
+        "talent_skill_370301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3703,
+          "Name": "攻击 · 弱点激发"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370401"
+      ],
+      "CandidateNames": [
+        "talent_skill_370401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3704,
+          "Name": "攻击 · 爆燃冲击"
+        },
+        {
+          "Id": 137040102,
+          "Name": "天赋小招-爆燃鲜口"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370501"
+      ],
+      "CandidateNames": [
+        "talent_skill_370501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3705,
+          "Name": "攻击 · 危机抵挡"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_relax/skill_icons_relax_5624",
+      "CandidateAddresses": [
+        "ui/textures/skill_relax/skill_icons_relax_5624"
+      ],
+      "CandidateNames": [
+        "skill_icons_relax_5624"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 5620,
+          "Name": "Summon Festive Lantern"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_relax/skill_icons_relax_5621",
+      "CandidateAddresses": [
+        "ui/textures/skill_relax/skill_icons_relax_5621"
+      ],
+      "CandidateNames": [
+        "skill_icons_relax_5621"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 5621,
+          "Name": "Firecracker Attack"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/mainui/attack",
+      "CandidateAddresses": [
+        "ui/textures/mainui/attack"
+      ],
+      "CandidateNames": [
+        "attack"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 100101,
+          "Name": "棒槌哥布林上撩"
+        },
+        {
+          "Id": 936239028,
+          "Name": "棒槌哥布林投掷"
+        },
+        {
+          "Id": 2411075510,
+          "Name": "棒槌哥布林上撩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_guardblade_ult",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_guardblade_ult"
+      ],
+      "CandidateNames": [
+        "weapon_guardblade_ult"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 100561,
+          "Name": "甬道火焰机关-英雄本"
+        },
+        {
+          "Id": 2415675509,
+          "Name": "火焰兽人吐息"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl-01_skill_05",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl-01_skill_05"
+      ],
+      "CandidateNames": [
+        "skill_weapon_tdl-01_skill_05"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 110624,
+          "Name": "战斗机像03型-旋风斩"
+        },
+        {
+          "Id": 2516305510,
+          "Name": "战斗机像03型-旋风斩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_ex",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_ex"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_ex"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 706104,
+          "Name": "机甲A变身三技能-蓄能回血"
+        },
+        {
+          "Id": 4176138213,
+          "Name": "机甲A变身三技能-蓄能回血"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01"
+      ],
+      "CandidateNames": [
+        "weapon_wr_skill_atk01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 706205,
+          "Name": "机甲B变身四技能-冲锋"
+        },
+        {
+          "Id": 4177148213,
+          "Name": "机甲B变身四技能-冲锋"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_02",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_02"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 706304,
+          "Name": "机甲C变身三技能-激光"
+        },
+        {
+          "Id": 4178138213,
+          "Name": "机甲C变身三技能-激光"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_ult",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_ult"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_ult"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 706403,
+          "Name": "机甲D变身二技能-强化屏障"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    }
+  ],
+  "AmbiguousAssets": [
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz_flow",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz_flow"
+      ],
+      "CandidateNames": [
+        "weapon_fz_flow"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2916075509,
+          "Name": "艾露娜召唤兽ULT"
+        }
+      ],
+      "Reason": "Multiple game asset candidates",
+      "Candidates": [
+        {
+          "ResourceType": "Sprite",
+          "MatchKind": "sprite-name",
+          "Address": "ui/atlas/mainui/weapon_fz_flow",
+          "BundleHash": 2826037989,
+          "SpriteName": "weapon_fz_flow"
+        },
+        {
+          "ResourceType": "Texture2D",
+          "MatchKind": "basename-address",
+          "Address": "ui/textures/mainui/skill/weapon_fz_flow",
+          "BundleHash": 3132148897,
+          "TextureName": "weapon_fz_flow"
+        }
+      ]
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/skill/weapon_fz_flow",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz_flow"
+      ],
+      "CandidateNames": [
+        "weapon_fz_flow"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2916075509,
+          "Name": "艾露娜召唤兽ULT"
+        }
+      ],
+      "Reason": "Multiple game asset candidates",
+      "Candidates": [
+        {
+          "ResourceType": "Sprite",
+          "MatchKind": "sprite-name",
+          "Address": "ui/atlas/mainui/weapon_fz_flow",
+          "BundleHash": 2826037989,
+          "SpriteName": "weapon_fz_flow"
+        },
+        {
+          "ResourceType": "Texture2D",
+          "MatchKind": "basename-address",
+          "Address": "ui/textures/mainui/skill/weapon_fz_flow",
+          "BundleHash": 3132148897,
+          "TextureName": "weapon_fz_flow"
+        }
+      ]
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz_flow",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz_flow"
+      ],
+      "CandidateNames": [
+        "weapon_fz_flow"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 1506,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 2916075509,
+          "Name": "艾露娜召唤兽ULT"
+        }
+      ],
+      "Reason": "Multiple game asset candidates",
+      "Candidates": [
+        {
+          "ResourceType": "Sprite",
+          "MatchKind": "sprite-name",
+          "Address": "ui/atlas/mainui/weapon_fz_flow",
+          "BundleHash": 2826037989,
+          "SpriteName": "weapon_fz_flow"
+        },
+        {
+          "ResourceType": "Texture2D",
+          "MatchKind": "basename-address",
+          "Address": "ui/textures/mainui/skill/weapon_fz_flow",
+          "BundleHash": 3132148897,
+          "TextureName": "weapon_fz_flow"
+        }
+      ]
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "skillnames.json",
+      "SourceGroup": "skillnames",
+      "Field": "IconPath",
+      "Value": "ui/textures/hud/npc/map_icon_boss",
+      "CandidateAddresses": [
+        "ui/textures/hud/npc/map_icon_boss"
+      ],
+      "CandidateNames": [
+        "map_icon_boss"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 4016,
+          "Name": "星元射线"
+        }
+      ],
+      "Reason": "Multiple game asset candidates",
+      "Candidates": [
+        {
+          "ResourceType": "Sprite",
+          "MatchKind": "sprite-name",
+          "Address": "ui/atlas/map/map_icon_boss",
+          "BundleHash": 4195352672,
+          "SpriteName": "map_icon_boss"
+        },
+        {
+          "ResourceType": "Sprite",
+          "MatchKind": "sprite-name",
+          "Address": "ui/atlas/hud/map_icon_boss",
+          "BundleHash": 2990205475,
+          "SpriteName": "map_icon_boss"
+        }
+      ]
+    }
+  ],
+  "PngExportedAt": "2026-04-24T17:07:42.215Z",
+  "PngAssetCount": 5103,
   "PngFailedCount": 0,
+  "PngVerifiedCount": 0,
   "PngFailures": []
 }

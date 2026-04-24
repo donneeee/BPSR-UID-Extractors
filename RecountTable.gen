@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const fs = require("node:fs");
 const path = require("node:path");
 
 const RECOUNT_ROW_SIZE = 12;
@@ -14,6 +15,7 @@ async function main() {
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    displayPath,
     findFirstPattern,
     loadLocalizationTables,
     loadMetaEntries,
@@ -47,6 +49,7 @@ Notes:
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const damageIconLookup = loadDamageIconLookup(paths.outputDir);
   const rowStart = findRecountRowStart(pkg, localizationTables, {
     findFirstPattern,
     makeU32Pattern,
@@ -66,13 +69,22 @@ Notes:
     if (!id || !preferredName) {
       continue;
     }
+    const damageIds = readDamageIdList(pkg, payloadBase, damageOffset, { readU16, readU32 });
+    const iconPaths = collectDamageIconPaths(damageIds, damageIconLookup);
     out[String(id)] = {
       Id: id,
       Name: preferredName,
       RecountName: preferredName,
       NameId: nameId,
       Names: names,
-      DamageId: readDamageIdList(pkg, payloadBase, damageOffset, { readU16, readU32 }),
+      DamageId: damageIds,
+      ...(iconPaths.length
+        ? {
+            IconPath: iconPaths[0],
+            ...(iconPaths.length > 1 ? { IconPaths: iconPaths } : {}),
+            IconSource: "DamageAttrIdName.DamageId"
+          }
+        : {}),
       DamageListOffset: damageOffset,
       Source: "RecountTable",
       SourceOffset: offset
@@ -86,8 +98,38 @@ Notes:
   console.log(`Recount row start: ${rowStart}`);
   console.log(`Recount rows scanned: ${RECOUNT_ROW_COUNT}`);
   console.log(`Recount entries: ${Object.keys(sorted).length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
+}
+
+function loadDamageIconLookup(outputDir) {
+  const filePath = path.join(outputDir, "DamageAttrIdName.json");
+  if (!fs.existsSync(filePath)) {
+    return new Map();
+  }
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const out = new Map();
+  for (const [id, row] of Object.entries(rows || {})) {
+    const iconPaths = uniqueStrings([
+      row?.IconPath,
+      ...(Array.isArray(row?.IconPaths) ? row.IconPaths : [])
+    ]);
+    if (iconPaths.length) {
+      out.set(String(id), iconPaths);
+    }
+  }
+  return out;
+}
+
+function collectDamageIconPaths(damageIds, lookup) {
+  const paths = [];
+  for (const id of damageIds || []) {
+    const iconPaths = lookup.get(String(id));
+    if (Array.isArray(iconPaths)) {
+      paths.push(...iconPaths);
+    }
+  }
+  return uniqueStrings(paths);
 }
 
 function findRecountRowStart(buffer, localizationTables, helpers) {
@@ -162,4 +204,9 @@ function compareNumericStrings(left, right) {
   } catch {
     return String(left).localeCompare(String(right));
   }
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
 }

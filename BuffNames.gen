@@ -73,6 +73,7 @@ async function main() {
     localeIdFromGameLanguage
   } = common);
   const {
+    displayPath,
     findFirstPattern,
     makeU32Pattern,
     maybeWriteJson,
@@ -196,6 +197,7 @@ Notes:
     const linkedPreferredName = linkedName
       ? linkedName.nameIds.map((id) => localizedNamesById.get(id)?.preferredLabel).find(Boolean) ?? ""
       : "";
+    const linkedIconPaths = linkedName ? uniqueIconPaths(linkedName.iconPaths) : [];
     const localizedNames = sortLabels([...directLocalizedNames, ...linkedLocalizedNames]);
     const names = buildLocaleTextObject([...directLocaleEntries, ...linkedLocaleEntries], {
       designText: row.designName
@@ -216,6 +218,13 @@ Notes:
       NameOffset: row.nameOffset,
       DesignName: row.designName,
       Names: names,
+      ...(linkedIconPaths.length
+        ? {
+            IconPath: linkedIconPaths[0],
+            ...(linkedIconPaths.length > 1 ? { IconPaths: linkedIconPaths } : {}),
+            IconPathSource: linkedName.source
+          }
+        : {}),
       SourceOffset: row.sourceOffset,
       NameSourceOffset: stringBase + row.nameOffset,
       ...(linkedName
@@ -248,7 +257,7 @@ Notes:
   console.log(`Secondary table direct buff-name links: ${baseLinkedNames.size}`);
   console.log(`Secondary table links after adjacent buff inheritance: ${linkedBuffNames.size}`);
   console.log(`Generated entries: ${entries.length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, entries, Boolean(args.dryRun));
 }
 
@@ -475,6 +484,7 @@ function chooseBestSecondaryBuffNames(rawRows, candidatesByBuffId) {
       tableHash: chosen.tableHash,
       nameField: chosen.nameField,
       ...(chosen.effectIds?.length ? { effectIds: uniqueSortedNumbers(chosen.effectIds) } : {}),
+      iconPaths: uniqueIconPaths(chosen.rowIconPaths),
       nameIds: uniqueSortedNumbers(chosen.nameIds),
       rows: uniqueRows(chosen.rows)
     });
@@ -831,6 +841,12 @@ function isLikelyStatLabel(value) {
 
 function isGenericIconPath(value) {
   return /common_icon|talent_passive_icon_sup_|new\/common_icon/i.test(String(value || ""));
+}
+
+function uniqueIconPaths(values) {
+  return sortLabels((values || [])
+    .map((value) => String(value || "").trim())
+    .filter((value) => value && looksLikeIconPath(value) && !isGenericIconPath(value)));
 }
 
 function readMetaEntries(metaPath) {

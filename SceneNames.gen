@@ -12,6 +12,7 @@ async function main() {
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    displayPath,
     loadLocalizationTables,
     loadMetaEntries,
     maybeWriteJson,
@@ -73,7 +74,7 @@ Notes:
   console.log(`SceneTable row start: ${rowStart}`);
   console.log(`SceneTable rows scanned: ${rawRows.length}`);
   console.log(`Scene name entries: ${Object.keys(sorted).length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
 

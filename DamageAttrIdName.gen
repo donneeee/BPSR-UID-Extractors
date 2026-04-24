@@ -13,9 +13,12 @@ async function main() {
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    displayPath,
     loadLocalizationTables,
     loadMetaEntries,
+    looksLikeIconPath,
     maybeWriteJson,
+    nextCtbStringOffset,
     parseArgs,
     printHelp,
     readCtbString,
@@ -48,6 +51,8 @@ Notes:
   const skillLookup = buildSkillEffectLookup(containerDir, metaEntries, { readCtbString, readCtbTable, readU32 });
   const skillTableLookup = buildSkillTableLookup(containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
+    looksLikeIconPath,
+    nextCtbStringOffset,
     readCtbString,
     readCtbTable,
     readU32
@@ -90,6 +95,28 @@ Notes:
     const linkedSkill = skillLookup.bySkillId.get(String(linkedId)) ?? skillLookup.byEffectId.get(String(linkedId)) ?? null;
     const linkedSkillTable = skillTableLookup.get(String(linkedId)) ?? null;
     const linkedSkillFight = skillFightLookup.get(String(linkedId)) ?? null;
+    const linkedSkillTableFromEffect = linkedSkill?.skillId
+      ? skillTableLookup.get(String(linkedSkill.skillId)) ?? null
+      : null;
+    const linkedSkillTableFromFight = linkedSkillFight?.skillId
+      ? skillTableLookup.get(String(linkedSkillFight.skillId)) ?? null
+      : null;
+    const iconLinks = collectIconLinks([
+      { path: linkedBuff?.IconPath, source: "BuffName" },
+      { path: linkedSkillTable?.iconPath, source: "SkillTable", offset: linkedSkillTable?.iconPathOffset },
+      {
+        path: linkedSkillTableFromEffect?.iconPath,
+        source: "SkillEffectTableSkillIdToSkillTable",
+        offset: linkedSkillTableFromEffect?.iconPathOffset
+      },
+      {
+        path: linkedSkillTableFromFight?.iconPath,
+        source: "SkillFightLevelTableSkillIdToSkillTable",
+        offset: linkedSkillTableFromFight?.iconPathOffset
+      }
+    ]);
+    const iconPath = iconLinks[0]?.path || "";
+    const iconPaths = uniqueStrings(iconLinks.map((link) => link.path));
     const names = directName
       ? buildLocaleTextObject([{ localeId: "design", text: directName }], { includeDesign: false })
       : linkedBuff?.Names && Object.keys(linkedBuff.Names).length
@@ -127,13 +154,22 @@ Notes:
       ...(directName ? { NameDesign: directName, NameOffset: directNameOffset } : {}),
       ...(damageKind ? { DamageKind: damageKind, DamageKindOffset: damageKindOffset } : {}),
       ...(detailKind ? { DetailKind: detailKind, DetailKindOffset: detailKindOffset } : {}),
+      ...(iconPath
+        ? {
+            IconPath: iconPath,
+            IconSource: iconLinks[0].source,
+            ...(Number.isFinite(Number(iconLinks[0].offset)) ? { IconPathOffset: Number(iconLinks[0].offset) } : {})
+          }
+        : {}),
+      ...(iconPaths.length > 1 ? { IconPaths: iconPaths } : {}),
       LinkedId: linkedId,
       ...(linkedBuff
         ? {
             LinkedSource: "BuffName",
             LinkedBuffId: linkedId,
             LinkedBuffName: linkedBuff.Name,
-            LinkedBuffNames: linkedBuff.Names
+            LinkedBuffNames: linkedBuff.Names,
+            ...(linkedBuff.IconPath ? { LinkedBuffIconPath: linkedBuff.IconPath } : {})
           }
         : {}),
       ...(linkedSkill
@@ -150,7 +186,13 @@ Notes:
             LinkedSkillTableName: linkedSkillTable.name,
             LinkedSkillTableNameId: linkedSkillTable.nameId,
             LinkedSkillTableNames: linkedSkillTable.names,
-            LinkedSkillTableSourceOffset: linkedSkillTable.sourceOffset
+            LinkedSkillTableSourceOffset: linkedSkillTable.sourceOffset,
+            ...(linkedSkillTable.iconPath
+              ? {
+                  LinkedSkillTableIconPath: linkedSkillTable.iconPath,
+                  LinkedSkillTableIconPathOffset: linkedSkillTable.iconPathOffset
+                }
+              : {})
           }
         : {}),
       ...(linkedSkillFight
@@ -159,7 +201,13 @@ Notes:
             LinkedSkillFightName: linkedSkillFight.name,
             LinkedSkillFightSkillId: linkedSkillFight.skillId,
             LinkedSkillFightEffectId: linkedSkillFight.effectId,
-            LinkedSkillFightSourceOffset: linkedSkillFight.sourceOffset
+            LinkedSkillFightSourceOffset: linkedSkillFight.sourceOffset,
+            ...(linkedSkillTableFromFight?.iconPath
+              ? {
+                  LinkedSkillFightSkillIconPath: linkedSkillTableFromFight.iconPath,
+                  LinkedSkillFightSkillIconPathOffset: linkedSkillTableFromFight.iconPathOffset
+                }
+              : {})
           }
         : {}),
       Source: "DamageAttrTable",
@@ -178,7 +226,7 @@ Notes:
   console.log(`Rows linked to direct SkillTable rows: ${linkedSkillTableCount}`);
   console.log(`Rows linked to direct SkillFightLevel rows: ${linkedSkillFightCount}`);
   console.log(`DamageAttr entries written: ${Object.keys(sorted).length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
 
@@ -216,7 +264,7 @@ function buildSkillEffectLookup(containerDir, metaEntries, helpers) {
 }
 
 function buildSkillTableLookup(containerDir, metaEntries, localizationTables, helpers) {
-  const { buildLocaleTextObject, readCtbString, readCtbTable, readU32 } = helpers;
+  const { buildLocaleTextObject, looksLikeIconPath, nextCtbStringOffset, readCtbString, readCtbTable, readU32 } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
   const bySkillId = new Map();
 
@@ -226,6 +274,8 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
     const nameOffset = readU32(table.data, rowOffset + 4);
     const nameId = readU32(table.data, rowOffset + 12);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
+    const iconPathOffset = nextCtbStringOffset(table, STRING_POOL, nameOffset);
+    const iconPath = readCtbString(table, STRING_POOL, iconPathOffset, { allowZero: false });
     if (!skillId || !name) {
       continue;
     }
@@ -241,6 +291,8 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
         ? names
         : buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false }),
       nameOffset,
+      iconPath: looksLikeIconPath(iconPath) ? iconPath : "",
+      iconPathOffset,
       sourceOffset: table.entry.offset + rowOffset
     });
   }
@@ -310,10 +362,34 @@ function loadGeneratedBuffLookup(outputDir) {
     }
     out.set(String(id), {
       Name: String(row.Name ?? row.NameDesign ?? row.DesignName ?? "").trim(),
-      Names: row.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {}
+      Names: row.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {},
+      IconPath: String(row.IconPath || "").trim()
     });
   }
   return out;
+}
+
+function collectIconLinks(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values) {
+    const iconPath = String(value?.path || "").trim();
+    if (!iconPath || seen.has(iconPath)) {
+      continue;
+    }
+    seen.add(iconPath);
+    out.push({
+      path: iconPath,
+      source: String(value?.source || "").trim(),
+      offset: value?.offset
+    });
+  }
+  return out;
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
 }
 
 function compareNumericStrings(left, right) {

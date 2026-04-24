@@ -13,9 +13,12 @@ async function main() {
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    displayPath,
     loadLocalizationTables,
     loadMetaEntries,
+    looksLikeIconPath,
     maybeWriteJson,
+    nextCtbStringOffset,
     parseArgs,
     printHelp,
     readCtbString,
@@ -65,6 +68,8 @@ Notes:
   collectDamageAttrEntries(out, paths.outputDir, stats);
   collectSkillTableEntries(out, containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
+    looksLikeIconPath,
+    nextCtbStringOffset,
     readCtbString,
     readCtbTable,
     readU32
@@ -102,6 +107,10 @@ Notes:
       Name: preferredName,
       Names: names,
       ...(entry.nameDesign ? { NameDesign: entry.nameDesign } : {}),
+      ...(entry.iconPath ? { IconPath: entry.iconPath } : {}),
+      ...(entry.iconPaths.length ? { IconPaths: uniqueSortedStrings(entry.iconPaths) } : {}),
+      ...(entry.iconPathOffsets.length ? { IconPathOffsets: uniqueSortedNumbers(entry.iconPathOffsets) } : {}),
+      ...(entry.iconSources.size ? { IconSources: [...entry.iconSources].sort() } : {}),
       Sources: [...entry.sources].sort(),
       ...(entry.sourceOffsets.length ? { SourceOffsets: uniqueSortedNumbers(entry.sourceOffsets) } : {}),
       ...(entry.recountIds.length ? { RecountIds: uniqueSortedNumbers(entry.recountIds) } : {}),
@@ -119,12 +128,12 @@ Notes:
   console.log(`SkillFight named rows: ${stats.skillFight}`);
   console.log(`TempAttr rows: ${stats.tempAttr}`);
   console.log(`Skill-name entries written: ${Object.keys(rows).length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, rows, Boolean(args.dryRun));
 }
 
 function collectSkillTableEntries(target, containerDir, metaEntries, localizationTables, helpers, stats) {
-  const { buildLocaleTextObject, readCtbString, readCtbTable, readU32 } = helpers;
+  const { buildLocaleTextObject, looksLikeIconPath, nextCtbStringOffset, readCtbString, readCtbTable, readU32 } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
 
   for (let index = 0; index < table.rowCount; index += 1) {
@@ -133,6 +142,8 @@ function collectSkillTableEntries(target, containerDir, metaEntries, localizatio
     const nameOffset = readU32(table.data, rowOffset + 4);
     const nameId = readU32(table.data, rowOffset + 12);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
+    const iconPathOffset = nextCtbStringOffset(table, STRING_POOL, nameOffset);
+    const iconPath = readCtbString(table, STRING_POOL, iconPathOffset, { allowZero: false });
     if (!id || !name) {
       continue;
     }
@@ -147,7 +158,14 @@ function collectSkillTableEntries(target, containerDir, metaEntries, localizatio
       nameDesign: name,
       source: "SkillTable",
       priority: 60,
-      sourceOffset: table.entry.offset + rowOffset
+      sourceOffset: table.entry.offset + rowOffset,
+      ...(looksLikeIconPath(iconPath)
+        ? {
+            iconPath,
+            iconPathOffset: iconPathOffset,
+            iconSource: "SkillTable"
+          }
+        : {})
     });
     stats.skillTable += 1;
   }
@@ -214,7 +232,9 @@ function collectDamageAttrEntries(target, outputDir, stats) {
       source: "DamageAttrIdName",
       priority: 80,
       sourceOffset: row?.SourceOffset,
-      linkedId: row?.LinkedId
+      linkedId: row?.LinkedId,
+      ...(row?.IconPath ? { iconPath: row.IconPath, iconSource: row?.IconSource || "DamageAttrIdName" } : {}),
+      ...(Array.isArray(row?.IconPaths) ? { iconPaths: row.IconPaths } : {})
     });
     stats.damageAttr += 1;
   }
@@ -333,6 +353,10 @@ function putEntry(target, id, update) {
     priority: -Infinity,
     sources: new Set(),
     sourceOffsets: [],
+    iconPath: "",
+    iconPaths: [],
+    iconPathOffsets: [],
+    iconSources: new Set(),
     recountIds: [],
     skillEffectIds: [],
     linkedIds: []
@@ -353,6 +377,19 @@ function putEntry(target, id, update) {
 
   if (update.source) current.sources.add(update.source);
   if (Number.isFinite(Number(update.sourceOffset))) current.sourceOffsets.push(Number(update.sourceOffset));
+  if (update.iconPath) {
+    current.iconPaths.push(String(update.iconPath));
+    if (!current.iconPath) {
+      current.iconPath = String(update.iconPath);
+    }
+  }
+  if (Array.isArray(update.iconPaths)) {
+    for (const iconPath of update.iconPaths) {
+      if (iconPath) current.iconPaths.push(String(iconPath));
+    }
+  }
+  if (Number.isFinite(Number(update.iconPathOffset))) current.iconPathOffsets.push(Number(update.iconPathOffset));
+  if (update.iconSource) current.iconSources.add(String(update.iconSource));
   if (Number.isFinite(Number(update.recountId))) current.recountIds.push(Number(update.recountId));
   if (Number.isFinite(Number(update.skillEffectId))) current.skillEffectIds.push(Number(update.skillEffectId));
   if (Number.isFinite(Number(update.linkedId))) current.linkedIds.push(Number(update.linkedId));
@@ -411,6 +448,11 @@ function chooseFirstText(names) {
 function uniqueSortedNumbers(values) {
   return [...new Set(values.map((value) => Number(value)).filter((value) => Number.isFinite(value)))]
     .sort((a, b) => a - b);
+}
+
+function uniqueSortedStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
 }
 
 function numberOrString(value) {

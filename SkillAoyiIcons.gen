@@ -12,6 +12,7 @@ async function main() {
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    displayPath,
     loadLocalizationTables,
     loadMetaEntries,
     maybeWriteJson,
@@ -136,7 +137,7 @@ Notes:
   console.log(`SkillAoyiTable rows scanned: ${aoyiTable.rowCount}`);
   console.log(`SkillTable fallback Aoyi-icon rows added: ${skillTableFallbackCount}`);
   console.log(`Aoyi icon entries written: ${rows.length}`);
-  console.log(`Output: ${paths.out}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, rows, Boolean(args.dryRun));
 }
 

@@ -113,8 +113,8 @@ Notes:
 
   const report = {
     GeneratedAt: new Date().toISOString(),
-    ProbingSourcesDir: probingSourcesDir,
-    OutputDir: outputDir,
+    ProbingSourcesDir: portablePath(probingSourcesDir),
+    OutputDir: portablePath(outputDir),
     MatchedFileCount: reports.length,
     UnmatchedFileCount: unmatchedFiles.length,
     Files: reports.sort((a, b) => a.SourceFile.localeCompare(b.SourceFile)),
@@ -127,6 +127,18 @@ Notes:
     console.log(`Unmatched ${unmatchedFiles.length.toLocaleString()} file(s).`);
   }
   maybeWriteJson(out, report, Boolean(args.dryRun));
+}
+
+function portablePath(value) {
+  const resolved = path.resolve(String(value || ""));
+  const relative = path.relative(__dirname, resolved);
+  if (!relative || relative === "") {
+    return ".";
+  }
+  if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+    return relative.replace(/\\/g, "/");
+  }
+  return path.basename(resolved);
 }
 
 function buildTargetMap(targets) {
