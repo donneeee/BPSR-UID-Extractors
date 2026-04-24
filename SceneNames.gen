@@ -1,0 +1,160 @@
+#!/usr/bin/env node
+const path = require("node:path");
+
+const DEFAULT_SCENE_ROW_SIZE = 135;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readPackage,
+    readU32,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "SceneNames.gen - generate scenenames.json from the game's scene table.",
+      `
+Notes:
+  This script scans the game's SceneTable row block in m0.pkg, reads the row's
+  scene id and mlstring name key, and resolves all names through meta.pkg
+  language-byte files.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "scenenames.json");
+  const pkg = readPackage(paths.m0Path);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const rowSize = Number(args.rowSize || DEFAULT_SCENE_ROW_SIZE);
+
+  const rowStart = findSceneTableRowStart(pkg, localizationTables, rowSize, readU32);
+  const rawRows = collectSceneRows(pkg, rowStart, rowSize, readU32);
+  const out = {};
+
+  for (const row of rawRows) {
+    const localeEntries = collectLocalizedSceneNameEntries(row.nameId, localizationTables);
+    const names = buildLocaleTextObject(localeEntries, { includeDesign: false });
+    const preferredName = choosePreferredLocaleText(names);
+    if (!preferredName) {
+      continue;
+    }
+    out[String(row.id)] = {
+      Id: row.id,
+      Name: preferredName,
+      NameDesign: preferredName,
+      NameId: row.nameId,
+      Names: names,
+      Source: "SceneTable",
+      SourceOffset: row.offset
+    };
+  }
+
+  const sorted = Object.fromEntries(
+    Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
+  );
+
+  console.log(`SceneTable row start: ${rowStart}`);
+  console.log(`SceneTable rows scanned: ${rawRows.length}`);
+  console.log(`Scene name entries: ${Object.keys(sorted).length}`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
+}
+
+function findSceneTableRowStart(buffer, localizationTables, rowSize, readU32) {
+  const anchorIds = [7, 8, 9, 10, 11, 71, 72, 73];
+  for (let offset = 0; offset + rowSize * anchorIds.length < buffer.length; offset += 1) {
+    let score = 0;
+    for (let index = 0; index < anchorIds.length; index += 1) {
+      const rowOffset = offset + index * rowSize;
+      const id = readU32(buffer, rowOffset);
+      const nameId = readU32(buffer, rowOffset + 4);
+      const type = readU32(buffer, rowOffset + 8);
+      if (id !== anchorIds[index] || !nameId || type > 32) {
+        break;
+      }
+      if (!collectLocalizedSceneNameEntries(nameId, localizationTables).length) {
+        break;
+      }
+      score += 1;
+    }
+
+    if (score === anchorIds.length) {
+      return offset - rowSize >= 0 && readU32(buffer, offset - rowSize) === 1 ? offset - rowSize : offset;
+    }
+  }
+
+  throw new Error("Could not locate the SceneTable row block in m0.pkg.");
+}
+
+function collectSceneRows(buffer, rowStart, rowSize, readU32) {
+  const rows = [];
+  let previousId = 0;
+  for (let index = 0; index < 20000; index += 1) {
+    const offset = rowStart + index * rowSize;
+    if (offset + rowSize > buffer.length) {
+      break;
+    }
+    const id = readU32(buffer, offset);
+    const nameId = readU32(buffer, offset + 4);
+    const type = readU32(buffer, offset + 8);
+    if (!id || id >= 10000000 || type > 32) {
+      break;
+    }
+    if (index > 0 && id <= previousId) {
+      break;
+    }
+    previousId = id;
+    rows.push({ index, id, nameId, type, offset });
+  }
+  return rows;
+}
+
+function collectLocalizedSceneNameEntries(nameId, localizationTables) {
+  if (!nameId) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables) {
+    const stringIndex = table.index.get(nameId);
+    if (stringIndex === undefined) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").trim();
+    if (!text || looksLikeSceneDescription(text)) {
+      continue;
+    }
+    entries.push({ language: table.language, stringIndex, text });
+  }
+  return entries;
+}
+
+function looksLikeSceneDescription(text) {
+  return text.length > 120 || /<br>|<style=|\{\*/i.test(text);
+}
+
+function compareNumericStrings(left, right) {
+  try {
+    const a = BigInt(left);
+    const b = BigInt(right);
+    return a < b ? -1 : a > b ? 1 : 0;
+  } catch {
+    return String(left).localeCompare(String(right));
+  }
+}

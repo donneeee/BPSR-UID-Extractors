@@ -1,0 +1,606 @@
+#!/usr/bin/env node
+const path = require("node:path");
+let buildLocaleTextObject;
+let loadLocalizationTables;
+let localeIdFromGameLanguage;
+let readU16;
+let readU32;
+
+const IDENTITY_REGION_START = 660000000;
+const IDENTITY_REGION_END = 670000000;
+const MIN_ITEM_ID = 1;
+const MAX_ITEM_ID = 10000000;
+const MIN_NAME_ID = 1000000;
+const MAX_NAME_ID = 2000000000;
+const MAX_LABEL_BYTES = 160;
+
+const GEAR_WORDS = [
+  "armor",
+  "belt",
+  "blade",
+  "boots",
+  "bow",
+  "bracer",
+  "bracelet",
+  "charm",
+  "cloak",
+  "clothes",
+  "crossbow",
+  "earring",
+  "garb",
+  "gloves",
+  "helm",
+  "helmet",
+  "longbow",
+  "necklace",
+  "ring",
+  "robe",
+  "spear",
+  "staff",
+  "suit",
+  "talisman",
+  "weapon"
+];
+
+const ENGLISH_ITEM_WORDS = [
+  "agile",
+  "breaker",
+  "deadly",
+  "dominion",
+  "dragonbreath",
+  "fate",
+  "flux",
+  "fortune",
+  "glazed",
+  "highland",
+  "jade",
+  "jadeite",
+  "jasper",
+  "lethal",
+  "mastery",
+  "peerless",
+  "plateau",
+  "reign",
+  "rupture",
+  "shadowcloak",
+  "stealth",
+  "ultimate",
+  "wane"
+];
+
+const NON_ENGLISH_HINTS = [
+  "amuleto",
+  "arc long",
+  "atuendo",
+  "botas",
+  "bottes",
+  "bracelete",
+  "capasombra",
+  "de jaspe",
+  "de la",
+  "der herrschaft",
+  "dominante",
+  "esmaltado",
+  "fugaz",
+  "hautes terres",
+  "jaspis",
+  "letal",
+  "souffledragon",
+  "talisman de",
+  "terras altas",
+  "yelmo"
+];
+
+const DESCRIPTION_HINTS = [
+  "class",
+  "contient",
+  "contains",
+  "damage",
+  "effect",
+  "equipment for",
+  "grants",
+  "increase",
+  "item for",
+  "material",
+  "obtained",
+  "quest",
+  "reward",
+  "skill",
+  "used",
+  "weapon epic"
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  ({
+    buildLocaleTextObject,
+    loadLocalizationTables,
+    localeIdFromGameLanguage,
+    readU16: readU16,
+    readU32: readU32
+  } = common);
+  const {
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readPackage,
+    resolvePaths
+  } = common;
+
+  const args = parseArgs(process.argv.slice(2), {
+    regionStart: String(IDENTITY_REGION_START),
+    regionEnd: String(IDENTITY_REGION_END)
+  });
+
+  if (args.help) {
+    printHelp(
+      "ItemNames.gen - rebuild src/lib/config/itemnames.json from the game's m0.pkg.",
+      `
+Item-specific options:
+  --region-start <offset>    Start of the item identity scan region. Default: ${IDENTITY_REGION_START}.
+  --region-end <offset>      End of the item identity scan region. Default: ${IDENTITY_REGION_END}.
+
+Output shape:
+  Id, NameDesign, NameId, Names, SourceOffset.
+  Names is now a locale-keyed object such as { en, fr, de, es, pt-BR, ja, ko-KR, zh-CN, zh-TW, th, id }.
+  If a name id has no direct locale-table hit, fallback-only output uses Names.und.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "itemnames.json");
+  const buffer = readPackage(paths.m0Path);
+  const containerDir = path.dirname(paths.m0Path);
+  const localizationTables = loadLocalizationTables(containerDir);
+  const { candidates, wantedNameIds } = collectIdentityCandidates(
+    buffer,
+    args.regionStart,
+    args.regionEnd
+  );
+
+  console.log(`Candidate rows: ${candidates.length.toLocaleString()}`);
+  console.log(`Referenced name ids: ${wantedNameIds.size.toLocaleString()}`);
+  console.log(`Loaded localization files: ${localizationTables.length.toLocaleString()}`);
+  console.log("Resolving locale-keyed names");
+
+  const localizedNamesById = collectLocalizedNamesForNameIds(wantedNameIds, localizationTables);
+  const fallbackLabelsById = collectStructuredLabelsForNameIds(buffer, wantedNameIds);
+  console.log(`Resolved localized name ids: ${localizedNamesById.size.toLocaleString()}`);
+  console.log(`Resolved fallback name ids: ${fallbackLabelsById.size.toLocaleString()}`);
+
+  const entries = buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabelsById);
+  console.log(`Generated ${entries.length.toLocaleString()} item name entries.`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, entries, Boolean(args.dryRun));
+}
+
+function normalizeLabel(value) {
+  return String(value ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function hasControlCharacters(value) {
+  for (const char of value) {
+    const code = char.codePointAt(0) ?? 0;
+    if (code < 0x20 || code === 0x7f) return true;
+  }
+  return false;
+}
+
+function isReadableLabel(label) {
+  if (label.length < 3 || label.length > MAX_LABEL_BYTES) return false;
+  if (label.includes("\uFFFD") || label.includes("Ã¯Â¿Â½")) return false;
+  if (!/\p{L}/u.test(label)) return false;
+
+  const letterCount = [...label.matchAll(/\p{L}/gu)].length;
+  if (letterCount < 2) return false;
+  if (isAscii(label) && label.length <= 4 && !/[aeiou]/i.test(label)) return false;
+  if (isAscii(label) && label.length <= 4 && /[^A-Za-z0-9]/.test(label)) return false;
+
+  const suspiciousCount =
+    label.match(/[^\p{L}\p{N}\s[\]\-:!'()./,&+]/gu)?.length ?? 0;
+  return suspiciousCount <= Math.max(1, Math.floor(label.length * 0.08));
+}
+
+function isAscii(value) {
+  return /^[\x20-\x7e]+$/.test(value);
+}
+
+function isLikelyDescription(label) {
+  const lowered = label.toLowerCase();
+  if (label.length > 92) return true;
+  if (/[.!?]$/.test(label) && label.split(/\s+/).length > 3) return true;
+  return DESCRIPTION_HINTS.some((hint) => lowered.includes(hint));
+}
+
+function wordHit(label, words) {
+  const lowered = label.toLowerCase();
+  return words.some((word) => new RegExp(`\\b${word}\\b`, "i").test(lowered));
+}
+
+function isLikelyNonEnglish(label) {
+  const lowered = label.toLowerCase();
+  return NON_ENGLISH_HINTS.some((hint) => lowered.includes(hint));
+}
+
+function labelScore(label, index) {
+  if (!label || label.length < 3 || !/[A-Za-z]/.test(label)) return -100;
+
+  let score = 0;
+  if (isAscii(label)) score += 8;
+  if (/^[A-Za-z0-9][A-Za-z0-9' /[\]\-:!().]+$/.test(label)) score += 3;
+  if (wordHit(label, GEAR_WORDS)) score += 9;
+  if (wordHit(label, ENGLISH_ITEM_WORDS)) score += 5;
+  if (/\b(R|L)\)$/.test(label)) score += 1;
+  if (/\bRupture\b/i.test(label)) score += 3;
+  if (/\bWane\b/i.test(label)) score += 2;
+  if (/\bDominion\b/i.test(label)) score += 2;
+  if (/^\[[^\]]+\]\s/.test(label)) score -= 4;
+  if (isLikelyNonEnglish(label)) score -= 18;
+  if (isLikelyDescription(label)) score -= 80;
+
+  return score + index / 1000;
+}
+
+function choosePreferredLabel(labels) {
+  const scored = labels.map((label, index) => ({
+    label,
+    score: labelScore(label, index)
+  }));
+  scored.sort((a, b) => b.score - a.score || a.label.localeCompare(b.label));
+  return scored[0]?.score > -20 ? scored[0].label : labels[0] ?? "";
+}
+
+function isThinEnglishLabel(label) {
+  if (/^[A-Z0-9]{2,5}$/.test(label)) return false;
+  return (
+    isAscii(label) &&
+    label.length <= 8 &&
+    !/\d/.test(label) &&
+    !/[-()]/.test(label) &&
+    !/\s/.test(label)
+  );
+}
+
+function normalizePreferredLocalizedLabel(label) {
+  let normalized = normalizeLabel(label);
+  normalized = normalized.replace(/^Avatar-(?=\S)/, "Avatar - ");
+  normalized = normalized.replace(/^Frame - Eksklusif\s+/i, "Frame - ");
+  normalized = normalized.replace(/^Badge - Eksklusif\s+/i, "Badge - ");
+  return normalized;
+}
+
+function isMonthlyCardPlaceholderItem(localeEntries) {
+  return localeEntries.some((entry) => {
+    const text = normalizeLabel(entry.text);
+    return (
+      /collection card/i.test(text) &&
+      /currently unused/i.test(text) &&
+      /monthly card/i.test(text)
+    );
+  });
+}
+
+function hasRicherAsciiStructure(label) {
+  return (
+    isAscii(label) &&
+    (/\s-\s/.test(label) ||
+      /[()]/.test(label) ||
+      label.split(/\s+/).length >= 2)
+  );
+}
+
+function richerLocalizedLabelScore(localeEntry, englishLabel) {
+  const label = normalizePreferredLocalizedLabel(localeEntry.text);
+  let score = labelScore(label, 0);
+  if (localeEntry.localeId === "id") score += 16;
+  if (localeEntry.localeId === "th") score += 14;
+  if (localeEntry.localeId === "fr") score += 8;
+  if (localeEntry.localeId === "de") score += 7;
+  if (localeEntry.localeId === "es") score += 7;
+  if (localeEntry.localeId === "pt-BR") score += 7;
+  if (/\s-\s/.test(label)) score += 12;
+  if (
+    /\b(avatar|badge|frame|headwear|mouthwear|backwear|top|bottom|boots|shoes|box|gift box)\b/i.test(
+      label
+    )
+  ) {
+    score += 14;
+  }
+  if (englishLabel && label.toLowerCase().includes(englishLabel.toLowerCase())) score += 6;
+  score += Math.min(label.length, 40) / 10;
+  return score;
+}
+
+function choosePreferredLocalizedLabel(localeEntries) {
+  const labels = localeEntries
+    .map((entry) => normalizePreferredLocalizedLabel(entry.text))
+    .filter(Boolean);
+  const englishEntry = localeEntries.find((entry) => entry.localeId === "en");
+  const englishLabel = normalizePreferredLocalizedLabel(englishEntry?.text ?? "");
+  if (!englishLabel) return choosePreferredLabel(labels);
+  if (!isThinEnglishLabel(englishLabel)) return englishLabel;
+
+  const richerAlternatives = localeEntries.filter(
+    (entry) =>
+      entry.localeId !== "en" &&
+      hasRicherAsciiStructure(normalizePreferredLocalizedLabel(entry.text))
+  );
+  if (!richerAlternatives.length) return englishLabel;
+
+  richerAlternatives.sort(
+    (a, b) =>
+      richerLocalizedLabelScore(b, englishLabel) -
+        richerLocalizedLabelScore(a, englishLabel) ||
+      normalizePreferredLocalizedLabel(a.text).localeCompare(
+        normalizePreferredLocalizedLabel(b.text)
+      )
+  );
+  return normalizePreferredLocalizedLabel(richerAlternatives[0]?.text) || englishLabel;
+}
+
+function readStructuredStringRecord(buffer, offset, wantedIds) {
+  if (offset < 0 || offset + 6 > buffer.length) return null;
+  const id = readU32(buffer, offset);
+  if (!wantedIds.has(id)) return null;
+  const length = readU16(buffer, offset + 4);
+  if (length < 2 || length > MAX_LABEL_BYTES || offset + 6 + length > buffer.length) {
+    return null;
+  }
+
+  const bytes = buffer.subarray(offset + 6, offset + 6 + length);
+  const label = normalizeLabel(bytes.toString("utf8"));
+  if (!label || hasControlCharacters(label) || !isReadableLabel(label)) return null;
+  return { offset, id, label };
+}
+
+function addMapSet(map, key, value) {
+  let values = map.get(key);
+  if (!values) {
+    values = new Set();
+    map.set(key, values);
+  }
+  values.add(value);
+}
+
+function collectIdentityCandidates(buffer, regionStart, regionEnd) {
+  const candidates = [];
+  const wantedNameIds = new Set();
+  const start = Math.max(0, Number(regionStart) || IDENTITY_REGION_START);
+  const end = Math.min(buffer.length - 8, Number(regionEnd) || IDENTITY_REGION_END);
+
+  for (let offset = start; offset <= end; offset += 1) {
+    const itemId = readU32(buffer, offset);
+    if (itemId < MIN_ITEM_ID || itemId > MAX_ITEM_ID) continue;
+
+    const nameId = readU32(buffer, offset + 4);
+    if (nameId < MIN_NAME_ID || nameId > MAX_NAME_ID) continue;
+
+    candidates.push({ offset, itemId, nameId });
+    wantedNameIds.add(nameId);
+  }
+
+  return { candidates, wantedNameIds };
+}
+
+function collectLocalizedNamesForNameIds(wantedNameIds, localizationTables) {
+  const localizedById = new Map();
+  for (const id of wantedNameIds) {
+    const labels = [];
+    const localeEntries = [];
+    for (const table of localizationTables) {
+      const stringIndex = table.index.get(id);
+      if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+        continue;
+      }
+      const label = normalizeLabel(table.strings[stringIndex]);
+      if (!label || hasControlCharacters(label) || !isReadableLabel(label)) {
+        continue;
+      }
+      labels.push(label);
+      const localeId = localeIdFromGameLanguage(table.language);
+      localeEntries.push({ language: table.language, localeId, stringIndex, text: label });
+    }
+    if (localeEntries.length) {
+      localizedById.set(id, {
+        labels: sortLabels(labels),
+        localeEntries,
+        names: buildLocaleTextObject(localeEntries, { includeDesign: false }),
+        preferredLabel: choosePreferredLocalizedLabel(localeEntries)
+      });
+    }
+  }
+  return localizedById;
+}
+
+function collectStructuredLabelsForNameIds(buffer, wantedNameIds) {
+  const labelsById = new Map();
+  if (!wantedNameIds.size) return labelsById;
+
+  for (let offset = 0; offset + 6 <= buffer.length; offset += 1) {
+    const record = readStructuredStringRecord(buffer, offset, wantedNameIds);
+    if (!record) continue;
+    addMapSet(labelsById, record.id, record.label);
+  }
+
+  return labelsById;
+}
+
+function sortLabels(labels) {
+  return [...new Set(labels.map(normalizeLabel).filter(Boolean))].sort((a, b) =>
+    a.localeCompare(b)
+  );
+}
+
+function isPlausibleIdentityRow(buffer, offset) {
+  if (offset < 0 || offset + 8 > buffer.length) return false;
+  const itemId = readU32(buffer, offset);
+  if (itemId < MIN_ITEM_ID || itemId > MAX_ITEM_ID) return false;
+  const nameId = readU32(buffer, offset + 4);
+  return nameId >= MIN_NAME_ID && nameId <= MAX_NAME_ID;
+}
+
+function countStrideNeighbors(buffer, offset, stride) {
+  let count = 0;
+  if (isPlausibleIdentityRow(buffer, offset - stride)) count += 1;
+  if (isPlausibleIdentityRow(buffer, offset + stride)) count += 1;
+  return count;
+}
+
+function readCandidateFields(buffer, offset) {
+  if (offset < 0 || offset + 32 > buffer.length) return null;
+  return {
+    f8: readU32(buffer, offset + 8),
+    f12: readU32(buffer, offset + 12),
+    f16: readU32(buffer, offset + 16),
+    f20: readU32(buffer, offset + 20),
+    f24: readU32(buffer, offset + 24),
+    f28: readU32(buffer, offset + 28)
+  };
+}
+
+function isKnownBadStatusFamily(fields) {
+  return fields.f12 === 2 && fields.f16 === 1004;
+}
+
+function isKnownBadZeroFamily(fields) {
+  return (
+    fields.f8 === 16 &&
+    fields.f12 === 0 &&
+    fields.f16 === 0 &&
+    fields.f20 === 0 &&
+    fields.f24 === 0 &&
+    fields.f28 === 0
+  );
+}
+
+function isKnownBadActionFamily(fields) {
+  return (
+    fields.f8 === 28 &&
+    fields.f12 === 0 &&
+    fields.f16 === 0 &&
+    fields.f20 === 0 &&
+    fields.f24 === 1 &&
+    fields.f28 === 0
+  );
+}
+
+function isMainItemFamily(fields, itemId) {
+  return (
+    fields.f20 === 0 &&
+    (fields.f12 === 41 || (fields.f24 > 0 && fields.f24 <= 10) || fields.f28 === itemId)
+  );
+}
+
+function isCosmeticItemFamily(fields) {
+  return fields.f8 === 10 && fields.f12 === fields.f16 && fields.f24 >= 1000000000 && fields.f28 <= 5000;
+}
+
+function scoreItemStructure(buffer, candidate) {
+  const fields = readCandidateFields(buffer, candidate.offset);
+  if (!fields) return -1000;
+  if (isKnownBadStatusFamily(fields)) return -1000;
+  if (isKnownBadZeroFamily(fields)) return -1000;
+  if (isKnownBadActionFamily(fields)) return -1000;
+
+  const neighbors93 = countStrideNeighbors(buffer, candidate.offset, 93);
+  const neighbors80 = countStrideNeighbors(buffer, candidate.offset, 80);
+  const mainFamily = isMainItemFamily(fields, candidate.itemId);
+  const cosmeticFamily = isCosmeticItemFamily(fields);
+
+  let score = 0;
+  if (mainFamily) {
+    score += 12;
+    score += neighbors93 * 18;
+    if (fields.f12 === 41) score += 6;
+    if (fields.f24 <= 10) score += 4;
+    if (fields.f28 === candidate.itemId) score += 6;
+  }
+
+  if (cosmeticFamily) {
+    score += 12;
+    score += neighbors80 * 18;
+  }
+
+  if (!mainFamily && !cosmeticFamily && !neighbors93 && !neighbors80) {
+    return -200;
+  }
+
+  return score;
+}
+
+function scoreCandidate(buffer, candidate) {
+  const labels = candidate.names ?? [];
+  if (!labels.length) return -100;
+  const structureScore = scoreItemStructure(buffer, candidate);
+  if (structureScore <= 0) return structureScore;
+  const bestLabelScore = Math.max(...labels.map((label, index) => labelScore(label, index)));
+  return structureScore * 100 + bestLabelScore;
+}
+
+function buildItemEntries(buffer, candidates, localizedNamesById, fallbackLabelsById) {
+  const byItem = new Map();
+
+  for (const candidate of candidates) {
+    const localized = localizedNamesById.get(candidate.nameId) ?? null;
+    const usesLocalizedNames = Boolean(localized?.localeEntries?.length);
+    if (localized?.localeEntries?.length && isMonthlyCardPlaceholderItem(localized.localeEntries)) {
+      continue;
+    }
+    const rawLabels = fallbackLabelsById.get(candidate.nameId);
+    const fallbackNames = sortLabels([...(rawLabels ? [...rawLabels] : [])]).filter(
+      (label) => !isLikelyDescription(label)
+    );
+    const names = localized?.labels?.length ? localized.labels : fallbackNames;
+    if (!names.length) continue;
+
+    const namesByLocale =
+      localized?.localeEntries?.length
+        ? buildLocaleTextObject(localized.localeEntries, { includeDesign: false })
+        : buildLocaleTextObject(
+            [{ localeId: "und", text: choosePreferredLabel(fallbackNames) || fallbackNames[0] || "" }],
+            { includeDesign: false }
+          );
+    if (!Object.keys(namesByLocale).length) continue;
+
+    const entry = {
+      offset: candidate.offset,
+      itemId: candidate.itemId,
+      nameId: candidate.nameId,
+      names,
+      namesByLocale,
+      preferredName: localized?.preferredLabel || choosePreferredLabel(names)
+    };
+    if (!usesLocalizedNames && entry.preferredName.length <= 4) {
+      continue;
+    }
+    const score = scoreCandidate(buffer, entry);
+    if (score <= 0) continue;
+
+    const existing = byItem.get(candidate.itemId);
+    if (
+      !existing ||
+      score > existing.score ||
+      (score === existing.score && candidate.offset < existing.offset)
+    ) {
+      byItem.set(candidate.itemId, { ...entry, score });
+    }
+  }
+
+  return [...byItem.values()]
+    .sort((a, b) => a.itemId - b.itemId)
+    .map((entry) => ({
+      Id: entry.itemId,
+      NameDesign: entry.preferredName,
+      NameId: entry.nameId,
+      Names: entry.namesByLocale,
+      SourceOffset: entry.offset
+    }));
+}

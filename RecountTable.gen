@@ -1,0 +1,165 @@
+#!/usr/bin/env node
+const path = require("node:path");
+
+const RECOUNT_ROW_SIZE = 12;
+const RECOUNT_ROW_COUNT = 294;
+const RECOUNT_DAMAGE_PAYLOAD_HEADER_BYTES = 16;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    findFirstPattern,
+    loadLocalizationTables,
+    loadMetaEntries,
+    makeU32Pattern,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readPackage,
+    readU16,
+    readU32,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "RecountTable.gen - generate RecountTable.json directly from the game's Recount row block.",
+      `
+Notes:
+  This script reads the game row block whose rows are:
+    u32 recount id, u32 mlstring name key, u32 damage-list offset
+  Damage ids are read from the packed payload after the row block.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "RecountTable.json");
+  const pkg = readPackage(paths.m0Path);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const rowStart = findRecountRowStart(pkg, localizationTables, {
+    findFirstPattern,
+    makeU32Pattern,
+    readU32
+  });
+  const payloadBase = rowStart + RECOUNT_ROW_COUNT * RECOUNT_ROW_SIZE;
+  const out = {};
+
+  for (let index = 0; index < RECOUNT_ROW_COUNT; index += 1) {
+    const offset = rowStart + index * RECOUNT_ROW_SIZE;
+    const id = readU32(pkg, offset);
+    const nameId = readU32(pkg, offset + 4);
+    const damageOffset = readU32(pkg, offset + 8);
+    const localeEntries = collectLocalizedRecountNameEntries(nameId, localizationTables);
+    const names = buildLocaleTextObject(localeEntries, { includeDesign: false });
+    const preferredName = choosePreferredLocaleText(names);
+    if (!id || !preferredName) {
+      continue;
+    }
+    out[String(id)] = {
+      Id: id,
+      Name: preferredName,
+      RecountName: preferredName,
+      NameId: nameId,
+      Names: names,
+      DamageId: readDamageIdList(pkg, payloadBase, damageOffset, { readU16, readU32 }),
+      DamageListOffset: damageOffset,
+      Source: "RecountTable",
+      SourceOffset: offset
+    };
+  }
+
+  const sorted = Object.fromEntries(
+    Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
+  );
+
+  console.log(`Recount row start: ${rowStart}`);
+  console.log(`Recount rows scanned: ${RECOUNT_ROW_COUNT}`);
+  console.log(`Recount entries: ${Object.keys(sorted).length}`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
+}
+
+function findRecountRowStart(buffer, localizationTables, helpers) {
+  const { findFirstPattern, makeU32Pattern, readU32 } = helpers;
+  const anchor = makeU32Pattern([1, 1408752861, 0, 2, 1408752862], 4);
+  const offset = findFirstPattern(buffer, anchor);
+  if (offset >= 0 && validateRecountRows(buffer, offset, localizationTables, readU32)) {
+    return offset;
+  }
+  throw new Error("Could not locate the RecountTable row block in m0.pkg.");
+}
+
+function validateRecountRows(buffer, offset, localizationTables, readU32) {
+  for (let index = 0; index < 16; index += 1) {
+    const rowOffset = offset + index * RECOUNT_ROW_SIZE;
+    const id = readU32(buffer, rowOffset);
+    const nameId = readU32(buffer, rowOffset + 4);
+    if (id !== index + 1 || !collectLocalizedRecountNameEntries(nameId, localizationTables).length) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function readDamageIdList(buffer, payloadBase, damageOffset, helpers) {
+  const { readU16, readU32 } = helpers;
+  const start = payloadBase + RECOUNT_DAMAGE_PAYLOAD_HEADER_BYTES + Number(damageOffset || 0);
+  const count = readU16(buffer, start);
+  if (!Number.isFinite(count) || count <= 0 || count > 512) {
+    return [];
+  }
+
+  const ids = [];
+  for (let index = 0; index < count; index += 1) {
+    const offset = start + 2 + index * 8;
+    const id = readU32(buffer, offset);
+    if (id) {
+      ids.push(id);
+    }
+  }
+  return ids;
+}
+
+function collectLocalizedRecountNameEntries(nameId, localizationTables) {
+  if (!nameId) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables) {
+    const stringIndex = table.index.get(nameId);
+    if (stringIndex === undefined) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").trim();
+    if (!text || looksLikeDescription(text)) {
+      continue;
+    }
+    entries.push({ language: table.language, stringIndex, text });
+  }
+  return entries;
+}
+
+function looksLikeDescription(text) {
+  return text.length > 160 || /<br>|<style=|\{\*/i.test(text);
+}
+
+function compareNumericStrings(left, right) {
+  try {
+    const a = BigInt(left);
+    const b = BigInt(right);
+    return a < b ? -1 : a > b ? 1 : 0;
+  } catch {
+    return String(left).localeCompare(String(right));
+  }
+}

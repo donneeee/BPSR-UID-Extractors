@@ -1,0 +1,244 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const TARGETS = [
+  { keys: ["buffname", "buffnames"], output: "BuffName.json", generator: "BuffNames.gen" },
+  { keys: ["damageattridname", "damageattridnames"], output: "DamageAttrIdName.json", generator: "DamageAttrIdName.gen" },
+  { keys: ["itemname", "itemnames"], output: "itemnames.json", generator: "ItemNames.gen" },
+  { keys: ["monstername", "monsternames"], output: "monsternames.json", generator: "MonsterNames.gen" },
+  { keys: ["recounttable"], output: "RecountTable.json", generator: "RecountTable.gen" },
+  { keys: ["scenename", "scenenames"], output: "scenenames.json", generator: "SceneNames.gen" },
+  { keys: ["skillaoyiicon", "skillaoyiicons"], output: "skill_aoyi_icons.json", generator: "SkillAoyiIcons.gen" },
+  { keys: ["skillname", "skillnames"], output: "skillnames.json", generator: "SkillNames.gen" }
+];
+
+const ID_FIELDS = [
+  "Id",
+  "id",
+  "ID",
+  "BuffId",
+  "buffId",
+  "DamageAttrId",
+  "damageAttrId",
+  "DamageId",
+  "damageId",
+  "ItemId",
+  "itemId",
+  "MonsterId",
+  "monsterId",
+  "RecountId",
+  "recountId",
+  "SceneId",
+  "sceneId",
+  "SkillId",
+  "skillId"
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    loadGeneratorConfig,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readJson
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp(
+      "ProbeSources.gen - compare external JSON samples against current generated outputs.",
+      `
+Probe-specific options:
+  --probing-sources-dir <path>  Folder containing JSON samples to audit.
+
+Notes:
+  This command writes a coverage report only. Normal generators do not read
+  files from the probing source folder.
+`
+    );
+    process.exit(0);
+  }
+
+  const config = loadGeneratorConfig();
+  const outputDir = path.resolve(args.outputDir ? args.outputDir : config.outputDir);
+  const probingSourcesDir = path.resolve(
+    args.probingSourcesDir ? args.probingSourcesDir : config.probingSourcesDir
+  );
+  const out = path.resolve(
+    args.out ? args.out : path.join(outputDir, "probing-reports", "ProbeSourcesReport.json")
+  );
+  const targetByKey = buildTargetMap(TARGETS);
+  const sourceFiles = listJsonFiles(probingSourcesDir);
+  const reports = [];
+  const unmatchedFiles = [];
+
+  for (const sourceFile of sourceFiles) {
+    const sourceKey = normalizeTargetKey(path.basename(sourceFile, ".json"));
+    const target = targetByKey.get(sourceKey);
+    if (!target) {
+      unmatchedFiles.push(path.relative(probingSourcesDir, sourceFile));
+      continue;
+    }
+
+    const sourceJson = readJson(sourceFile);
+    const sourceIds = collectIds(sourceJson);
+    const generatedPath = path.join(outputDir, target.output);
+    const generatedExists = fs.existsSync(generatedPath);
+    const generatedIds = generatedExists ? collectIds(readJson(generatedPath)) : new Set();
+    const overlap = intersection(sourceIds, generatedIds);
+    const sourceOnly = difference(sourceIds, generatedIds);
+    const generatedOnly = difference(generatedIds, sourceIds);
+
+    reports.push({
+      SourceFile: path.relative(probingSourcesDir, sourceFile),
+      MatchedOutput: target.output,
+      Generator: target.generator,
+      SourceShape: describeJsonShape(sourceJson),
+      GeneratedExists: generatedExists,
+      SourceIdCount: sourceIds.size,
+      GeneratedIdCount: generatedIds.size,
+      OverlapIdCount: overlap.length,
+      SourceOnlyIdCount: sourceOnly.length,
+      GeneratedOnlyIdCount: generatedOnly.length,
+      SourceOnlySample: sourceOnly.slice(0, 50),
+      GeneratedOnlySample: generatedOnly.slice(0, 50)
+    });
+  }
+
+  const report = {
+    GeneratedAt: new Date().toISOString(),
+    ProbingSourcesDir: probingSourcesDir,
+    OutputDir: outputDir,
+    MatchedFileCount: reports.length,
+    UnmatchedFileCount: unmatchedFiles.length,
+    Files: reports.sort((a, b) => a.SourceFile.localeCompare(b.SourceFile)),
+    UnmatchedFiles: unmatchedFiles.sort((a, b) => a.localeCompare(b))
+  };
+
+  console.log(`Scanned ${sourceFiles.length.toLocaleString()} JSON source file(s).`);
+  console.log(`Matched ${reports.length.toLocaleString()} file(s).`);
+  if (unmatchedFiles.length) {
+    console.log(`Unmatched ${unmatchedFiles.length.toLocaleString()} file(s).`);
+  }
+  maybeWriteJson(out, report, Boolean(args.dryRun));
+}
+
+function buildTargetMap(targets) {
+  const out = new Map();
+  for (const target of targets) {
+    for (const key of target.keys) {
+      out.set(normalizeTargetKey(key), target);
+    }
+  }
+  return out;
+}
+
+function normalizeTargetKey(value) {
+  return String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function listJsonFiles(root) {
+  if (!root || !fs.existsSync(root)) {
+    return [];
+  }
+  const out = [];
+  const stack = [root];
+  while (stack.length) {
+    const current = stack.pop();
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const fullPath = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(fullPath);
+      } else if (entry.isFile() && entry.name.toLowerCase().endsWith(".json")) {
+        out.push(fullPath);
+      }
+    }
+  }
+  return out.sort((a, b) => a.localeCompare(b));
+}
+
+function collectIds(value) {
+  const ids = new Set();
+  if (Array.isArray(value)) {
+    for (const row of value) {
+      addIdFromValue(ids, row);
+    }
+    return ids;
+  }
+
+  if (value && typeof value === "object") {
+    for (const [key, row] of Object.entries(value)) {
+      const keyId = normalizeId(key);
+      if (keyId !== null) {
+        ids.add(keyId);
+        continue;
+      }
+      addIdFromValue(ids, row);
+    }
+  }
+  return ids;
+}
+
+function addIdFromValue(ids, value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return;
+  }
+  for (const field of ID_FIELDS) {
+    const id = normalizeId(value[field]);
+    if (id !== null) {
+      ids.add(id);
+      return;
+    }
+  }
+}
+
+function normalizeId(value) {
+  if (typeof value === "number" && Number.isInteger(value)) {
+    return String(value);
+  }
+  const text = String(value ?? "").trim();
+  if (/^-?\d+$/.test(text)) {
+    return String(Number(text));
+  }
+  return null;
+}
+
+function describeJsonShape(value) {
+  const rows = Array.isArray(value)
+    ? value
+    : value && typeof value === "object"
+      ? Object.values(value)
+      : [];
+  const fields = new Set();
+  for (const row of rows.slice(0, 25)) {
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      continue;
+    }
+    for (const key of Object.keys(row)) {
+      fields.add(key);
+    }
+  }
+  return {
+    TopLevel: Array.isArray(value) ? "array" : value && typeof value === "object" ? "object" : typeof value,
+    RowSampleCount: Math.min(rows.length, 25),
+    Fields: [...fields].sort((a, b) => a.localeCompare(b))
+  };
+}
+
+function intersection(left, right) {
+  return [...left].filter((value) => right.has(value)).sort(compareIds);
+}
+
+function difference(left, right) {
+  return [...left].filter((value) => !right.has(value)).sort(compareIds);
+}
+
+function compareIds(left, right) {
+  return Number(left) - Number(right) || left.localeCompare(right);
+}

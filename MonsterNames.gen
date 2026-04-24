@@ -1,0 +1,162 @@
+#!/usr/bin/env node
+const path = require("node:path");
+
+const DEFAULT_MONSTER_ROW_SIZE = 240;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readPackage,
+    readU32,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "MonsterNames.gen - generate monsternames.json from the game's monster table.",
+      `
+Notes:
+  This script scans the game's monster row block in m0.pkg, reads monster id,
+  mlstring name key, and monster type, then resolves all names through meta.pkg
+  language-byte files.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "monsternames.json");
+  const pkg = readPackage(paths.m0Path);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const rowSize = Number(args.rowSize || DEFAULT_MONSTER_ROW_SIZE);
+
+  const rowStart = findMonsterTableRowStart(pkg, localizationTables, rowSize, readU32);
+  const rawRows = collectMonsterRows(pkg, rowStart, rowSize, localizationTables, readU32);
+  const out = {};
+
+  for (const row of rawRows) {
+    const localeEntries = collectLocalizedMonsterNameEntries(row.nameId, localizationTables);
+    const names = buildLocaleTextObject(localeEntries, { includeDesign: false });
+    const preferredName = choosePreferredLocaleText(names);
+    if (!preferredName) {
+      continue;
+    }
+    out[String(row.id)] = {
+      Id: row.id,
+      Name: preferredName,
+      NameDesign: preferredName,
+      NameId: row.nameId,
+      Names: names,
+      MonsterType: row.monsterType,
+      Source: "MonsterTable",
+      SourceOffset: row.offset
+    };
+  }
+
+  const sorted = Object.fromEntries(
+    Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
+  );
+
+  console.log(`MonsterTable row start: ${rowStart}`);
+  console.log(`MonsterTable rows scanned: ${rawRows.length}`);
+  console.log(`Monster name entries: ${Object.keys(sorted).length}`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
+}
+
+function findMonsterTableRowStart(buffer, localizationTables, rowSize, readU32) {
+  const anchorIds = [101, 102, 103, 104, 105, 106, 107, 108];
+  for (let offset = 0; offset + rowSize * anchorIds.length < buffer.length; offset += 1) {
+    let score = 0;
+    for (let index = 0; index < anchorIds.length; index += 1) {
+      const rowOffset = offset + index * rowSize;
+      const id = readU32(buffer, rowOffset);
+      const nameId = readU32(buffer, rowOffset + 4);
+      if (id !== anchorIds[index] || !collectLocalizedMonsterNameEntries(nameId, localizationTables).length) {
+        break;
+      }
+      score += 1;
+    }
+
+    if (score === anchorIds.length) {
+      return offset;
+    }
+  }
+
+  throw new Error("Could not locate the MonsterTable row block in m0.pkg.");
+}
+
+function collectMonsterRows(buffer, rowStart, rowSize, localizationTables, readU32) {
+  const rows = [];
+  let misses = 0;
+  for (let index = 0; index < 20000; index += 1) {
+    const offset = rowStart + index * rowSize;
+    if (offset + rowSize > buffer.length) {
+      break;
+    }
+    const id = readU32(buffer, offset);
+    const nameId = readU32(buffer, offset + 4);
+    const monsterType = readU32(buffer, offset + 12);
+    const valid =
+      id >= 100 &&
+      id < 10000000 &&
+      collectLocalizedMonsterNameEntries(nameId, localizationTables).length > 0;
+    if (!valid) {
+      misses += 1;
+      if (misses >= 8) {
+        break;
+      }
+      continue;
+    }
+    misses = 0;
+    rows.push({ index, id, nameId, monsterType, offset });
+  }
+  return rows;
+}
+
+function collectLocalizedMonsterNameEntries(nameId, localizationTables) {
+  if (!nameId) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables) {
+    const stringIndex = table.index.get(nameId);
+    if (stringIndex === undefined) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").trim();
+    if (!text || looksLikeMonsterDescription(text)) {
+      continue;
+    }
+    entries.push({ language: table.language, stringIndex, text });
+  }
+  return entries;
+}
+
+function looksLikeMonsterDescription(text) {
+  return text.length > 120 || /<br>|<style=|\{\*/i.test(text);
+}
+
+function compareNumericStrings(left, right) {
+  try {
+    const a = BigInt(left);
+    const b = BigInt(right);
+    return a < b ? -1 : a > b ? 1 : 0;
+  } catch {
+    return String(left).localeCompare(String(right));
+  }
+}

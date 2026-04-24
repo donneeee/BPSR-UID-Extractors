@@ -1,0 +1,49 @@
+#!/usr/bin/env node
+const { spawnSync } = require("node:child_process");
+const path = require("node:path");
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    parseArgs,
+    printHelp,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp(
+      "ExportIconPngs.gen - export PNG files from extracted icon asset bundles.",
+      `
+PNG-specific options:
+  --icons-dir <path>         Icon bundle directory. Default: <output-dir>/icons.
+
+Notes:
+  This command expects ExtractIcons.gen to have already written asset bundles.
+  It uses local Python decoder packages from .pydeps when available.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "icons/IconManifest.json");
+  const iconsDir = path.resolve(args.iconsDir ? args.iconsDir : path.join(paths.outputDir, "icons"));
+  const scriptPath = path.join(__dirname, "export_icon_pngs.py");
+  const pythonArgs = [scriptPath, "--icons-dir", iconsDir];
+  if (args.dryRun) {
+    pythonArgs.push("--dry-run");
+  }
+
+  const result = spawnSync("python", pythonArgs, {
+    cwd: __dirname,
+    stdio: "inherit"
+  });
+  if (result.error) {
+    throw result.error;
+  }
+  process.exit(result.status || 0);
+}

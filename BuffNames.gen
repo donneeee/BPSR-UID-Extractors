@@ -1,0 +1,1010 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+let buildLocaleTextObject;
+let localeIdFromGameLanguage;
+
+const BUFF_ID_PATTERN = [201, 301, 401, 501, 601];
+const DEFAULT_ROW_SIZE = 95;
+const FIRST_BUFF_NAME_HEX = "e6b094e58883e7aa81e588bae8aea1e695b0";
+const LOCALIZATION_LANGUAGES = [
+  "english",
+  "chinese",
+  "traditionalchinese",
+  "japanese",
+  "korean",
+  "french",
+  "german",
+  "spanish",
+  "portuguese",
+  "thai",
+  "indonesian"
+];
+const SECONDARY_NAME_TABLES = [
+  {
+    hash: 983121143,
+    source: "CTB:983121143",
+    nameField: 16,
+    directBuffField: 0
+  },
+  {
+    hash: hash33("ModEffectTable.ctb"),
+    source: "ModEffectTable",
+    nameField: 8,
+    effectField: 4
+  },
+  {
+    hash: 4038258408,
+    source: "CTB:4038258408",
+    nameField: 4,
+    directBuffField: 8
+  },
+  {
+    hash: 3345237628,
+    source: "CTB:3345237628",
+    nameField: 8
+  },
+  {
+    hash: 3259439677,
+    source: "CTB:3259439677",
+    nameField: 12
+  },
+  {
+    hash: 155301122,
+    source: "CTB:155301122",
+    nameField: 4
+  },
+  {
+    hash: 164473594,
+    source: "CTB:164473594",
+    nameField: 4
+  }
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  ({
+    buildLocaleTextObject,
+    localeIdFromGameLanguage
+  } = common);
+  const {
+    findFirstPattern,
+    makeU32Pattern,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readPackage,
+    readU16,
+    readU32,
+    resolvePaths
+  } = common;
+
+  const args = parseArgs(process.argv.slice(2), {
+    rowSize: String(DEFAULT_ROW_SIZE)
+  });
+
+  if (args.help) {
+    printHelp(
+      "BuffNames.gen - generate BuffName.json directly from the game's BuffTable rows.",
+      `
+Buff-specific options:
+  --row-size <bytes>         BuffTable fixed row size. Default: ${DEFAULT_ROW_SIZE}.
+
+Output shape:
+  Id, Level, NameDesign, NameId, NameOffset, DesignName, Names, SourceOffset, NameSourceOffset.
+  NameId is the BuffTable mlstring id when present. NameOffset is the row's design-name string offset.
+  Names is a locale-keyed object such as { en, fr, de, es, pt-BR, ja, ko-KR, zh-CN, zh-TW, th, id, design }.
+
+Notes:
+  Locale strings are read from the game's <language>.bytes entries through meta.pkg,
+  matching the same ids used by BuffTable rows. Rows with NameId 0 can also inherit
+  an unambiguous ModEffectTable name when the module-effect payload points back to the buff id.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "BuffName.json");
+  const pkg = readPackage(paths.m0Path);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, metaEntries);
+
+  const idRunOffset = findFirstPattern(pkg, makeU32Pattern(BUFF_ID_PATTERN, 8));
+  if (idRunOffset < 0) {
+    throw new Error("Could not locate the BuffTable id run in m0.pkg.");
+  }
+
+  const rowCount = readU32(pkg, idRunOffset - 12);
+  const rowDataBytes = readU32(pkg, idRunOffset - 4);
+  const rowSize = Number(args.rowSize || DEFAULT_ROW_SIZE);
+  if (!rowCount || rowCount > 100000) {
+    throw new Error(`Suspicious BuffTable row count near id run: ${rowCount}`);
+  }
+  if (rowDataBytes && rowDataBytes !== rowCount * rowSize) {
+    throw new Error(
+      `BuffTable row byte count mismatch: count=${rowCount} rowSize=${rowSize} bytes=${rowDataBytes}`
+    );
+  }
+
+  const rowStart = idRunOffset + rowCount * 8;
+  const stringBase = findBuffStringBase(pkg, rowStart + rowCount * rowSize, findFirstPattern);
+  const rawRows = [];
+  const buffIds = new Set();
+  const wantedNameIds = new Set();
+
+  for (let index = 0; index < rowCount; index += 1) {
+    const sourceOffset = rowStart + index * rowSize;
+    const id = readU32(pkg, sourceOffset);
+    const level = readU32(pkg, sourceOffset + 4);
+    const nameOffset = readU32(pkg, sourceOffset + 8);
+    const nameMlStringId = readU32(pkg, sourceOffset + 16);
+    const designName = readStringAtOffset(pkg, stringBase, nameOffset, readU16);
+
+    if (nameMlStringId) {
+      wantedNameIds.add(nameMlStringId);
+    }
+    if (id) {
+      buffIds.add(id);
+    }
+
+    rawRows.push({
+      index,
+      id,
+      level,
+      nameOffset,
+      nameMlStringId,
+      designName,
+      sourceOffset
+    });
+  }
+
+  const baseLinkedNames = collectSecondaryBuffNames(
+    containerDir,
+    metaEntries,
+    buffIds,
+    rawRows,
+    localizationTables
+  );
+  const linkedBuffNames = collectAdjacentEffectBuffNames(rawRows, baseLinkedNames);
+  for (const link of linkedBuffNames.values()) {
+    for (const nameId of link.nameIds) {
+      wantedNameIds.add(nameId);
+    }
+  }
+
+  const localizedNamesById = collectLocalizedNamesById(wantedNameIds, localizationTables);
+  const entries = [];
+
+  for (const row of rawRows) {
+    const directLocalized = row.nameMlStringId ? localizedNamesById.get(row.nameMlStringId) ?? null : null;
+    const directLocalizedNames = directLocalized ? sortLabels(directLocalized.labels ?? []) : [];
+    const directLocaleEntries = directLocalized?.localeEntries ?? [];
+    const directPreferredName = directLocalized?.preferredLabel ?? "";
+    const linkedName = row.nameMlStringId ? null : linkedBuffNames.get(row.id);
+    const linkedLocalizedNames = linkedName
+      ? sortLabels(linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.labels ?? []))
+      : [];
+    const linkedLocaleEntries = linkedName
+      ? linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.localeEntries ?? [])
+      : [];
+    const linkedPreferredName = linkedName
+      ? linkedName.nameIds.map((id) => localizedNamesById.get(id)?.preferredLabel).find(Boolean) ?? ""
+      : "";
+    const localizedNames = sortLabels([...directLocalizedNames, ...linkedLocalizedNames]);
+    const names = buildLocaleTextObject([...directLocaleEntries, ...linkedLocaleEntries], {
+      designText: row.designName
+    });
+    const preferredName =
+      directPreferredName || linkedPreferredName || choosePreferredLabel(localizedNames) || row.designName;
+
+    if (!row.id || !preferredName) {
+      continue;
+    }
+
+    entries.push({
+      Id: row.id,
+      Level: row.level ?? 0,
+      NameDesign: preferredName,
+      NameId: row.nameMlStringId || linkedName?.nameIds[0] || null,
+      NameIdSource: row.nameMlStringId ? "BuffTable" : linkedName?.source ?? null,
+      NameOffset: row.nameOffset,
+      DesignName: row.designName,
+      Names: names,
+      SourceOffset: row.sourceOffset,
+      NameSourceOffset: stringBase + row.nameOffset,
+      ...(linkedName
+        ? {
+            ...(linkedName.effectIds?.length ? { LinkedEffectIds: linkedName.effectIds } : {}),
+            LinkedNameIds: linkedName.nameIds,
+            LinkedSourceRows: linkedName.rows,
+            ...(linkedName.source?.startsWith("ModEffectTable")
+              ? { LinkedModEffectRows: linkedName.rows }
+              : {}),
+            ...(linkedName.tableHash ? { LinkedTableHash: linkedName.tableHash } : {}),
+            ...(typeof linkedName.nameField === "number"
+              ? { LinkedNameField: linkedName.nameField }
+              : {}),
+            ...(linkedName.adjacentFrom ? { LinkedAdjacentFromBuffId: linkedName.adjacentFrom } : {})
+          }
+        : {})
+    });
+  }
+
+  entries.sort((a, b) => Number(a.Id) - Number(b.Id) || Number(a.Level) - Number(b.Level));
+
+  console.log(`BuffTable id run offset: ${idRunOffset}`);
+  console.log(`BuffTable rows: ${rowCount}`);
+  console.log(`BuffTable row data offset: ${rowStart}`);
+  console.log(`BuffTable string base: ${stringBase}`);
+  console.log(`BuffTable mlstring ids: ${wantedNameIds.size}`);
+  console.log(`Loaded localization files: ${localizationTables.length}`);
+  console.log(`Resolved mlstring ids: ${localizedNamesById.size}`);
+  console.log(`Secondary table direct buff-name links: ${baseLinkedNames.size}`);
+  console.log(`Secondary table links after adjacent buff inheritance: ${linkedBuffNames.size}`);
+  console.log(`Generated entries: ${entries.length}`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, entries, Boolean(args.dryRun));
+}
+
+function loadMetaEntries(containerDir) {
+  const metaPath = path.join(containerDir, "meta.pkg");
+  if (!fs.existsSync(metaPath)) {
+    return new Map();
+  }
+  return readMetaEntries(metaPath);
+}
+
+function loadLocalizationTables(containerDir, metaEntries = loadMetaEntries(containerDir)) {
+  if (!metaEntries.size) {
+    return [];
+  }
+
+  const tables = [];
+
+  for (const language of LOCALIZATION_LANGUAGES) {
+    const entry = metaEntries.get(hash33(`${language}.bytes`));
+    if (!entry) {
+      continue;
+    }
+
+    const data = readPkgEntry(containerDir, entry);
+    const table = parseLocalizationBytes(data);
+    tables.push({ language, ...table });
+  }
+
+  return tables;
+}
+
+function collectLocalizedNamesById(wantedNameIds, localizationTables) {
+  const out = new Map();
+  for (const id of wantedNameIds) {
+    const labels = [];
+    const sources = [];
+    const localeEntries = [];
+    let preferredLabel = "";
+    for (const table of localizationTables) {
+      const stringIndex = table.index.get(id);
+      if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+        continue;
+      }
+      const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+      if (!isLikelyBuffName(text)) {
+        continue;
+      }
+      labels.push(text);
+      const localeId = localeIdFromGameLanguage(table.language);
+      localeEntries.push({ language: table.language, localeId, stringIndex, text });
+      sources.push({ language: table.language, localeId, stringIndex });
+      if (table.language === "english" && !preferredLabel) {
+        preferredLabel = text;
+      }
+    }
+    if (labels.length) {
+      out.set(id, {
+        labels: sortLabels(labels),
+        localeEntries,
+        names: buildLocaleTextObject(localeEntries, { includeDesign: false }),
+        sources,
+        preferredLabel: preferredLabel || labels[0]
+      });
+    }
+  }
+  return out;
+}
+
+function collectSecondaryBuffNames(
+  containerDir,
+  metaEntries,
+  buffIds,
+  rawRows,
+  localizationTables
+) {
+  const englishTable =
+    localizationTables.find((table) => table.language === "english") ?? localizationTables[0] ?? null;
+  const candidatesByBuffId = new Map();
+
+  for (const spec of SECONDARY_NAME_TABLES) {
+    const tableCandidates = collectNamedBuffLinkCandidatesFromTable(
+      containerDir,
+      metaEntries,
+      buffIds,
+      spec,
+      englishTable,
+      localizationTables
+    );
+    for (const [buffId, candidates] of tableCandidates.entries()) {
+      const existing = candidatesByBuffId.get(buffId) ?? [];
+      existing.push(...candidates);
+      candidatesByBuffId.set(buffId, existing);
+    }
+  }
+
+  return chooseBestSecondaryBuffNames(rawRows, candidatesByBuffId);
+}
+
+function collectNamedBuffLinkCandidatesFromTable(
+  containerDir,
+  metaEntries,
+  buffIds,
+  spec,
+  englishTable,
+  localizationTables
+) {
+  const entry = metaEntries.get(spec.hash);
+  if (!entry || !buffIds.size) {
+    return new Map();
+  }
+
+  const table = parseCtb(readPkgEntry(containerDir, entry));
+  const intPool = table.pools.get(1);
+  const stringPool = table.pools.get(6);
+  const rawLinks = new Map();
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const rowId = readU32Local(table.data, rowOffset);
+    const nameId = readU32Local(table.data, rowOffset + spec.nameField);
+    if (!nameId) {
+      continue;
+    }
+
+    const linkedBuffIds = new Map();
+    for (let fieldOffset = 0; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
+      const value = readU32Local(table.data, rowOffset + fieldOffset);
+      if (!value) {
+        continue;
+      }
+      if (typeof spec.directBuffField === "number" && fieldOffset === spec.directBuffField && buffIds.has(value)) {
+        mergeBuffIdMatch(linkedBuffIds, value, 0, true);
+        continue;
+      }
+      if (fieldOffset === 0) {
+        continue;
+      }
+      const pooledInts = intPool && value > 20 && value < intPool.length ? readIntArrayFromPool(intPool, value) : [];
+      if ((lookupLocalizedText(englishTable, value) || readStringAtPool(stringPool, value)) && !pooledInts.length) {
+        continue;
+      }
+      collectBuffIdMatchesFromValue(value, intPool, buffIds, linkedBuffIds);
+    }
+    if (!linkedBuffIds.size) {
+      continue;
+    }
+
+    const rowHints = collectTableRowHints(table, rowOffset, englishTable, stringPool);
+    const effectId =
+      typeof spec.effectField === "number" ? readU32Local(table.data, rowOffset + spec.effectField) : 0;
+    const preferredLabel = lookupLocalizedText(englishTable, nameId);
+    const localizedLabels = collectLocalizedLabelsForIds([nameId], localizationTables);
+    const baseCandidate = {
+      source: spec.source,
+      tableHash: spec.hash,
+      nameField: spec.nameField,
+      nameIds: [nameId],
+      effectIds: effectId ? [effectId] : [],
+      preferredLabel,
+      localizedLabels,
+      rowTextFields: rowHints.textFields,
+      rowTextValues: rowHints.textValues,
+      rowIconPaths: rowHints.iconPaths
+    };
+
+    for (const [buffId, match] of linkedBuffIds.entries()) {
+      const candidates = rawLinks.get(buffId) ?? [];
+      candidates.push({
+        ...baseCandidate,
+        rows: [
+          {
+            rowId,
+            rowIndex: index,
+            nameId,
+            nameField: spec.nameField,
+            tableHash: spec.hash,
+            linkedBuffCount: linkedBuffIds.size,
+            minPathDepth: match.minPathDepth,
+            hasDirectBuffField: match.hasDirectBuffField,
+            ...(effectId ? { effectId } : {})
+          }
+        ],
+        linkedBuffCount: linkedBuffIds.size,
+        minPathDepth: match.minPathDepth,
+        hasDirectBuffField: match.hasDirectBuffField
+      });
+      rawLinks.set(buffId, candidates);
+    }
+  }
+
+  return rawLinks;
+}
+
+function chooseBestSecondaryBuffNames(rawRows, candidatesByBuffId) {
+  const out = new Map();
+  const rawRowsById = new Map(rawRows.map((row) => [Number(row.id), row]));
+
+  for (const [buffId, candidates] of candidatesByBuffId.entries()) {
+    if (!Array.isArray(candidates) || !candidates.length) {
+      continue;
+    }
+    const rawRow = rawRowsById.get(Number(buffId)) ?? null;
+    const scored = candidates
+      .map((candidate) => ({
+        candidate,
+        score: scoreSecondaryCandidate(candidate, rawRow)
+      }))
+      .sort(
+        (a, b) =>
+          b.score - a.score ||
+          Number(Boolean(b.candidate.hasDirectBuffField)) - Number(Boolean(a.candidate.hasDirectBuffField)) ||
+          (a.candidate.minPathDepth ?? 99) - (b.candidate.minPathDepth ?? 99) ||
+          (a.candidate.linkedBuffCount ?? 99) - (b.candidate.linkedBuffCount ?? 99) ||
+          (a.candidate.rows[0]?.rowIndex ?? 0) - (b.candidate.rows[0]?.rowIndex ?? 0)
+      );
+    const best = scored[0];
+    if (!best || best.score < 40) {
+      continue;
+    }
+    const chosen = best.candidate;
+    out.set(buffId, {
+      source: chosen.source,
+      tableHash: chosen.tableHash,
+      nameField: chosen.nameField,
+      ...(chosen.effectIds?.length ? { effectIds: uniqueSortedNumbers(chosen.effectIds) } : {}),
+      nameIds: uniqueSortedNumbers(chosen.nameIds),
+      rows: uniqueRows(chosen.rows)
+    });
+  }
+
+  return out;
+}
+
+function scoreSecondaryCandidate(candidate, rawRow) {
+  let score = 0;
+  if (candidate.hasDirectBuffField) {
+    score += 65;
+  } else {
+    score += Math.max(0, 28 - Number(candidate.minPathDepth ?? 99) * 6);
+  }
+
+  score += candidate.linkedBuffCount === 1 ? 12 : Math.max(-20, 16 - candidate.linkedBuffCount * 5);
+
+  const rowName = normalizeCompareText(rawRow?.designName || "");
+  const textValues = [
+    ...(Array.isArray(candidate.rowTextValues) ? candidate.rowTextValues : []),
+    ...(Array.isArray(candidate.localizedLabels) ? candidate.localizedLabels : [])
+  ];
+  const normalizedTexts = sortLabels(textValues).map(normalizeCompareText).filter(Boolean);
+
+  if (rowName && normalizedTexts.some((value) => value === rowName)) {
+    score += 38;
+  } else if (rowName && normalizedTexts.some((value) => containsComparableText(rowName, value))) {
+    score += 22;
+  }
+
+  const preferredLabel = normalizeCompareText(candidate.preferredLabel || "");
+  if (preferredLabel && rowName && preferredLabel === rowName) {
+    score += 16;
+  }
+
+  if (normalizedTexts.some(isLikelyStatLabel)) {
+    score -= 18;
+  }
+  if (
+    Array.isArray(candidate.rowIconPaths) &&
+    candidate.rowIconPaths.length &&
+    candidate.rowIconPaths.every(isGenericIconPath)
+  ) {
+    score -= 12;
+  }
+
+  return score;
+}
+
+function collectAdjacentEffectBuffNames(rawRows, directLinks) {
+  const out = new Map(directLinks);
+  for (let index = 1; index < rawRows.length; index += 1) {
+    const row = rawRows[index];
+    if (!row.id || row.nameMlStringId || out.has(row.id) || !isAdjacentInheritedDesign(row.designName)) {
+      continue;
+    }
+
+    const previous = rawRows[index - 1];
+    const previousLink = directLinks.get(previous?.id);
+    if (!previousLink) {
+      continue;
+    }
+
+    out.set(row.id, {
+      ...previousLink,
+      source: adjacentInheritedSource(previousLink.source, row.designName),
+      adjacentFrom: previous.id,
+      rows: previousLink.rows.map((linkedRow) => ({ ...linkedRow }))
+    });
+  }
+  return out;
+}
+
+function parseCtb(data) {
+  const rowCount = data.readInt32LE(8);
+  const poolCount = data.readInt32LE(12);
+  const rowDataBytes = data.readInt32LE(16);
+  if (rowCount <= 0 || poolCount < 0 || rowDataBytes <= 0 || rowDataBytes % rowCount !== 0) {
+    throw new Error("Invalid CTB header.");
+  }
+
+  const rowSize = rowDataBytes / rowCount;
+  const indexStart = 20;
+  const rowStart = indexStart + rowCount * 8;
+  let offset = rowStart + rowDataBytes;
+  const pools = new Map();
+
+  for (let index = 0; index < poolCount; index += 1) {
+    if (offset + 8 > data.length) {
+      break;
+    }
+    const type = data.readInt32LE(offset);
+    const length = data.readInt32LE(offset + 4);
+    offset += 8;
+    if (length < 0 || offset + length > data.length) {
+      break;
+    }
+    pools.set(type, data.subarray(offset, offset + length));
+    offset += length;
+  }
+
+  return { data, rowCount, rowSize, indexStart, rowStart, pools };
+}
+
+function collectBuffIdMatchesFromValue(value, intPool, buffIds, out, seen = new Set(), depth = 0) {
+  if (!intPool || depth > 5 || value <= 20 || value >= intPool.length || seen.has(value)) {
+    return;
+  }
+  seen.add(value);
+
+  const values = readIntArrayFromPool(intPool, value);
+  for (const nested of values) {
+    if (buffIds.has(nested)) {
+      mergeBuffIdMatch(out, nested, depth + 1, false);
+    } else if (nested > 20 && nested < intPool.length) {
+      collectBuffIdMatchesFromValue(nested, intPool, buffIds, out, new Set(seen), depth + 1);
+    }
+  }
+}
+
+function mergeBuffIdMatch(out, buffId, minPathDepth, hasDirectBuffField) {
+  const existing = out.get(buffId);
+  if (!existing) {
+    out.set(buffId, { minPathDepth, hasDirectBuffField: Boolean(hasDirectBuffField) });
+    return;
+  }
+  existing.minPathDepth = Math.min(existing.minPathDepth, minPathDepth);
+  existing.hasDirectBuffField = existing.hasDirectBuffField || Boolean(hasDirectBuffField);
+}
+
+function collectTableRowHints(table, rowOffset, englishTable, stringPool) {
+  const textFields = [];
+  const textValues = [];
+  const iconPaths = [];
+  const iconTokens = new Set();
+
+  for (let fieldOffset = 4; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
+    const value = readU32Local(table.data, rowOffset + fieldOffset);
+    const localized = sanitizeFieldText(lookupLocalizedText(englishTable, value));
+    if (localized && isLikelyBuffName(localized)) {
+      textFields.push({ fieldOffset, value, kind: "loc", text: localized });
+      textValues.push(localized);
+    }
+
+    const pooled = sanitizeFieldText(readStringAtPool(stringPool, value));
+    if (!pooled) {
+      continue;
+    }
+    textFields.push({ fieldOffset, value, kind: "str", text: pooled });
+    textValues.push(pooled);
+
+    if (looksLikeIconPath(pooled)) {
+      iconPaths.push(pooled);
+      for (const token of extractPathTokens(pooled)) {
+        iconTokens.add(token);
+      }
+    }
+  }
+
+  return {
+    textFields,
+    textValues: sortLabels(textValues),
+    iconPaths: sortLabels(iconPaths),
+    iconTokens: [...iconTokens].sort((a, b) => a.localeCompare(b))
+  };
+}
+
+function collectBuffIdsFromIntPool(value, intPool, buffIds, out, seen = new Set(), depth = 0) {
+  if (buffIds.has(value)) {
+    out.add(value);
+    return;
+  }
+  if (depth > 5 || value <= 20 || value >= intPool.length || seen.has(value)) {
+    return;
+  }
+  seen.add(value);
+
+  const values = readIntArrayFromPool(intPool, value);
+  for (const nested of values) {
+    if (buffIds.has(nested)) {
+      out.add(nested);
+    } else if (nested > 20 && nested < intPool.length) {
+      collectBuffIdsFromIntPool(nested, intPool, buffIds, out, seen, depth + 1);
+    }
+  }
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 128 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function lookupLocalizedText(table, id) {
+  if (!table || !id) {
+    return "";
+  }
+  const stringIndex = table.index.get(Number(id));
+  if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+    return "";
+  }
+  return String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+}
+
+function readStringAtPool(pool, index) {
+  if (!pool || index <= 0 || index + 2 > pool.length) {
+    return "";
+  }
+  const len = pool.readUInt16LE(index);
+  if (!len || len > 512 || index + 2 + len > pool.length) {
+    return "";
+  }
+  const bytes = pool.subarray(index + 2, index + 2 + len);
+  if (bytes.includes(0)) {
+    return "";
+  }
+  return bytes.toString("utf8").replace(/\s+/g, " ").trim();
+}
+
+function readU32Local(buffer, offset) {
+  if (offset < 0 || offset + 4 > buffer.length) {
+    return 0;
+  }
+  return buffer.readUInt32LE(offset);
+}
+
+function isAdjacentInheritedDesign(value) {
+  return (
+    /effect\s*buff/i.test(value) ||
+    /\u6548\u679c\s*buff/i.test(value) ||
+    /stack/i.test(value) ||
+    /\u53e0\u5c42/i.test(value)
+  );
+}
+
+function adjacentInheritedSource(previousSource, designName) {
+  if (/effect\s*buff/i.test(designName) || /\u6548\u679c\s*buff/i.test(designName)) {
+    return previousSource === "ModEffectTable"
+      ? "ModEffectTableAdjacentEffectBuff"
+      : `${previousSource}AdjacentEffectBuff`;
+  }
+  if (/stack/i.test(designName) || /\u53e0\u5c42/i.test(designName)) {
+    return previousSource === "ModEffectTable"
+      ? "ModEffectTableAdjacentStackBuff"
+      : `${previousSource}AdjacentStackBuff`;
+  }
+  return `${previousSource}AdjacentBuff`;
+}
+
+function uniqueSortedNumbers(values) {
+  return [...new Set(values.map((value) => Number(value)).filter((value) => Number.isFinite(value)))]
+    .sort((a, b) => a - b);
+}
+
+function uniqueRows(rows) {
+  const seen = new Set();
+  const out = [];
+  for (const row of rows) {
+    const key = `${row.tableHash ?? 0}:${row.rowId ?? 0}:${row.effectId ?? 0}:${row.level ?? 0}:${row.nameField ?? 0}:${row.nameId ?? 0}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(row);
+  }
+  return out.sort(
+    (a, b) =>
+      (a.tableHash ?? 0) - (b.tableHash ?? 0) ||
+      (a.effectId ?? 0) - (b.effectId ?? 0) ||
+      (a.level ?? 0) - (b.level ?? 0) ||
+      (a.rowId ?? 0) - (b.rowId ?? 0) ||
+      (a.rowIndex ?? 0) - (b.rowIndex ?? 0)
+  );
+}
+
+function collectLocalizedLabelsForIds(nameIds, localizationTables) {
+  const labels = [];
+  for (const id of nameIds) {
+    if (!id) {
+      continue;
+    }
+    for (const table of localizationTables) {
+      const text = lookupLocalizedText(table, id);
+      if (text && isLikelyBuffName(text)) {
+        labels.push(text);
+      }
+    }
+  }
+  return sortLabels(labels);
+}
+
+function sanitizeFieldText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function looksLikeIconPath(value) {
+  return /^ui\//i.test(value) || /icon/i.test(value) || /\.(png|dds|tga)$/i.test(value);
+}
+
+function extractPathTokens(value) {
+  const text = String(value || "").trim().replace(/\\/g, "/");
+  if (!text) {
+    return [];
+  }
+  const base = text.slice(text.lastIndexOf("/") + 1).replace(/\.[^.]+$/, "");
+  const normalizedBase = base.replace(/_[+-]?\d+$/g, "");
+  const normalizedText = text.replace(/\.[^.]+$/, "");
+  return [...new Set([normalizedBase, normalizedText.slice(normalizedText.lastIndexOf("/") + 1), base])]
+    .map((token) => token.toLowerCase())
+    .filter(Boolean);
+}
+
+function normalizeCompareText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[\s_\-–—:!.,/()[\]{}"'`]+/g, "")
+    .trim();
+}
+
+function containsComparableText(left, right) {
+  if (!left || !right) {
+    return false;
+  }
+  return left.includes(right) || right.includes(left);
+}
+
+function isLikelyStatLabel(value) {
+  const normalized = normalizeCompareText(value);
+  return new Set([
+    "agility",
+    "crit",
+    "luck",
+    "versatility",
+    "attackspeed",
+    "skillcooldown",
+    "skillcd",
+    "castingspd",
+    "vulnerabilityfactor",
+    "inspiringeffect"
+  ]).has(normalized);
+}
+
+function isGenericIconPath(value) {
+  return /common_icon|talent_passive_icon_sup_|new\/common_icon/i.test(String(value || ""));
+}
+
+function readMetaEntries(metaPath) {
+  const buffer = fs.readFileSync(metaPath);
+  let offset = 0;
+  const readI32 = () => {
+    const value = buffer.readInt32LE(offset);
+    offset += 4;
+    return value;
+  };
+  const readU32 = () => {
+    const value = buffer.readUInt32LE(offset);
+    offset += 4;
+    return value;
+  };
+  const readU16 = () => {
+    const value = buffer.readUInt16LE(offset);
+    offset += 2;
+    return value;
+  };
+
+  readI32();
+  readI32();
+  readI32();
+  offset += 8;
+  readU32();
+  const headerCount = readU16();
+  offset += 16 * headerCount;
+
+  const entries = new Map();
+  readEntrySection(readI32());
+  readEntrySection(readI32());
+
+  return entries;
+
+  function readEntrySection(count) {
+    for (let i = 0; i < count; i += 1) {
+      const key = readU32();
+      const type = buffer[offset];
+      offset += 1;
+      const index = readU16();
+      const entryOffset = readI32();
+      const length = readI32();
+      entries.set(key, { key, type, index, offset: entryOffset, length });
+    }
+  }
+}
+
+function readPkgEntry(containerDir, entry) {
+  const pkgPath = path.join(containerDir, `m${entry.index}.pkg`);
+  const fd = fs.openSync(pkgPath, "r");
+  try {
+    const buffer = Buffer.alloc(entry.length);
+    fs.readSync(fd, buffer, 0, entry.length, entry.offset);
+    return buffer;
+  } finally {
+    fs.closeSync(fd);
+  }
+}
+
+function parseLocalizationBytes(buffer) {
+  let offset = 0;
+  const readI32 = () => {
+    const value = buffer.readInt32LE(offset);
+    offset += 4;
+    return value;
+  };
+  const indexCount = readI32();
+  const index = new Map();
+  for (let i = 0; i < indexCount; i += 1) {
+    const key = readI32();
+    const value = readI32();
+    index.set(key, value);
+  }
+
+  const stringCount = readI32();
+  const strings = [];
+  for (let i = 0; i < stringCount; i += 1) {
+    const [len, nextOffset] = readSevenBitEncodedInt(buffer, offset);
+    offset = nextOffset;
+    strings.push(buffer.subarray(offset, offset + len).toString("utf8"));
+    offset += len;
+  }
+
+  return { index, strings };
+}
+
+function readSevenBitEncodedInt(buffer, offset) {
+  let count = 0;
+  let shift = 0;
+  let current = 0;
+  do {
+    current = buffer[offset];
+    offset += 1;
+    count |= (current & 0x7f) << shift;
+    shift += 7;
+    if (shift > 35) {
+      throw new Error("Invalid 7-bit encoded integer in localization bytes.");
+    }
+  } while ((current & 0x80) !== 0);
+  return [count, offset];
+}
+
+function hash33(value) {
+  let hash = 5381 >>> 0;
+  for (const char of value) {
+    hash = (Math.imul(hash, 33) + char.charCodeAt(0)) >>> 0;
+  }
+  return hash >>> 0;
+}
+
+function findBuffStringBase(buffer, rowDataEnd, findFirstPattern) {
+  const firstNameBytes = Buffer.from(FIRST_BUFF_NAME_HEX, "hex");
+  const firstNameTextOffset = findFirstPattern(buffer, firstNameBytes, rowDataEnd);
+  if (firstNameTextOffset >= 6) {
+    return firstNameTextOffset - 2;
+  }
+
+  const searchEnd = Math.min(buffer.length - 2, rowDataEnd + 2 * 1024 * 1024);
+  for (let offset = rowDataEnd; offset < searchEnd; offset += 1) {
+    const len = buffer.readUInt16LE(offset);
+    if (len < 2 || len > 160 || offset + 2 + len > buffer.length) {
+      continue;
+    }
+    const text = buffer.subarray(offset + 2, offset + 2 + len).toString("utf8").trim();
+    if (isLikelyBuffName(text)) {
+      return offset;
+    }
+  }
+
+  throw new Error("Could not locate the BuffTable string blob.");
+}
+
+function readStringAtOffset(buffer, stringBase, offset, readU16) {
+  const absolute = stringBase + Number(offset || 0);
+  const len = readU16(buffer, absolute);
+  if (!len || len > 512 || absolute + 2 + len > buffer.length) {
+    return "";
+  }
+  const bytes = buffer.subarray(absolute + 2, absolute + 2 + len);
+  if (bytes.includes(0)) {
+    return "";
+  }
+  const text = bytes.toString("utf8").replace(/\s+/g, " ").trim();
+  return isLikelyBuffName(text) ? text : "";
+}
+
+function sortLabels(labels) {
+  return [...new Set(labels.map((label) => String(label || "").trim()).filter(Boolean))].sort(
+    (a, b) => a.localeCompare(b)
+  );
+}
+
+function choosePreferredLabel(labels) {
+  const preferred = labels
+    .filter((label) => /[A-Za-z]/.test(label))
+    .filter((label) => !/^\d+$/.test(label))
+    .sort((a, b) => scorePreferredLabel(b) - scorePreferredLabel(a) || a.localeCompare(b))[0];
+  return preferred || labels[0] || "";
+}
+
+function scorePreferredLabel(label) {
+  let score = 0;
+  if (/^[\x20-\x7e]+$/.test(label)) score += 8;
+  if (/^[A-Za-z0-9][A-Za-z0-9' /[\]\-:!().%]+$/.test(label)) score += 3;
+  if (label.length <= 36) score += 2;
+  if (/[A-Za-z]/.test(label)) score += 2;
+  return score;
+}
+
+function isLikelyBuffName(text) {
+  if (!text || text.length > 160) return false;
+  if (text.includes("\uFFFD")) return false;
+  if (/[\x00-\x08\x0e-\x1f]/.test(text)) return false;
+  if (/\.(png|jpg|jpeg|dds|tga|prefab|asset|wav|ogg|bnk)$/i.test(text)) return false;
+  return true;
+}

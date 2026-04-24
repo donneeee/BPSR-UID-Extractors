@@ -1,0 +1,4713 @@
+{
+  "1": {
+    "Id": 1,
+    "RecountName": "红光反制攻击",
+    "DamageId": [],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "2": {
+    "Id": 2,
+    "RecountName": "幸运一击",
+    "DamageId": [
+      2203110403,
+      2203110404
+    ],
+    "Name": "Lucky Strike",
+    "Names": {
+      "en": "Lucky Strike",
+      "zh-CN": "幸运一击",
+      "ko-KR": "Lucky Strike"
+    }
+  },
+  "3": {
+    "Id": 3,
+    "RecountName": "风华翔舞",
+    "DamageId": [
+      114010101,
+      114010104,
+      114010105,
+      114020101,
+      114020103,
+      114030101,
+      114030102,
+      114030103,
+      114040101
+    ],
+    "Name": "Wind Dance",
+    "Names": {
+      "en": "Wind Dance",
+      "zh-CN": "风华翔舞",
+      "ko-KR": "Wind Dance"
+    }
+  },
+  "4": {
+    "Id": 4,
+    "RecountName": "疾风刺",
+    "DamageId": [
+      114180101,
+      114180102,
+      114180103,
+      114180106,
+      114180107,
+      114180108,
+      114180109
+    ],
+    "Name": "Swift Wind Thrust",
+    "Names": {
+      "en": "Swift Wind Thrust",
+      "zh-CN": "疾风刺",
+      "ko-KR": "Swift Wind Thrust"
+    }
+  },
+  "5": {
+    "Id": 5,
+    "RecountName": "翔返",
+    "DamageId": [
+      114190102
+    ],
+    "Name": "Soaring Return",
+    "Names": {
+      "en": "Soaring Return",
+      "zh-CN": "翔返",
+      "ko-KR": "Soaring Return"
+    }
+  },
+  "6": {
+    "Id": 6,
+    "RecountName": "风神·破阵之风",
+    "DamageId": [
+      114260104,
+      114090104
+    ],
+    "Name": "Wind God: Formation Breaker",
+    "Names": {
+      "en": "Wind God: Formation Breaker",
+      "zh-CN": "风神·破阵之风",
+      "ko-KR": "Wind God: Formation Breaker"
+    }
+  },
+  "7": {
+    "Id": 7,
+    "RecountName": "风姿卓绝",
+    "DamageId": [
+      114200103,
+      114200106
+    ],
+    "Name": "Unparalleled Grace",
+    "Names": {
+      "en": "Unparalleled Grace",
+      "zh-CN": "风姿卓绝",
+      "ko-KR": "Unparalleled Grace"
+    }
+  },
+  "8": {
+    "Id": 8,
+    "RecountName": "螺旋击刺",
+    "DamageId": [
+      114210102,
+      114210103
+    ],
+    "Name": "Spiral Thrust",
+    "Names": {
+      "en": "Spiral Thrust",
+      "zh-CN": "螺旋击刺",
+      "ko-KR": "Spiral Thrust"
+    }
+  },
+  "9": {
+    "Id": 9,
+    "RecountName": "破追",
+    "DamageId": [
+      114220103,
+      114270104
+    ],
+    "Name": "Pursuit Break",
+    "Names": {
+      "en": "Pursuit Break",
+      "zh-CN": "破追",
+      "ko-KR": "Pursuit Break"
+    }
+  },
+  "10": {
+    "Id": 10,
+    "RecountName": "飞鸟投",
+    "DamageId": [
+      114250107,
+      11499050101
+    ],
+    "Name": "Flying Bird Throw",
+    "Names": {
+      "en": "Flying Bird Throw",
+      "zh-CN": "飞鸟投",
+      "ko-KR": "Flying Bird Throw"
+    }
+  },
+  "11": {
+    "Id": 11,
+    "RecountName": "刹那",
+    "DamageId": [
+      114240101,
+      114240102,
+      11499040101
+    ],
+    "Name": "Instant",
+    "Names": {
+      "en": "Instant",
+      "zh-CN": "刹那",
+      "ko-KR": "Instant"
+    }
+  },
+  "12": {
+    "Id": 12,
+    "RecountName": "勇气风环",
+    "DamageId": [
+      114320101,
+      23190103,
+      23190105,
+      2220545004
+    ],
+    "Name": "Courage Wind Ring",
+    "Names": {
+      "en": "Courage Wind Ring",
+      "zh-CN": "勇气风环",
+      "ko-KR": "Courage Wind Ring"
+    }
+  },
+  "13": {
+    "Id": 13,
+    "RecountName": "锐利冲击",
+    "DamageId": [
+      114310106,
+      114310108,
+      11499070101
+    ],
+    "Name": "Sharp Impact",
+    "Names": {
+      "en": "Sharp Impact",
+      "zh-CN": "锐利冲击",
+      "ko-KR": "Sharp Impact"
+    }
+  },
+  "14": {
+    "Id": 14,
+    "RecountName": "护佑之风",
+    "DamageId": [
+      114230101,
+      114370101
+    ],
+    "Name": "Guiding Wind",
+    "Names": {
+      "en": "Guiding Wind",
+      "zh-CN": "护佑之风",
+      "ko-KR": "Guiding Wind"
+    }
+  },
+  "15": {
+    "Id": 15,
+    "RecountName": "龙击炮",
+    "DamageId": [
+      114350101,
+      314040100
+    ],
+    "Name": "Dragon Cannon",
+    "Names": {
+      "en": "Dragon Cannon",
+      "zh-CN": "龙击炮",
+      "ko-KR": "Dragon Cannon"
+    }
+  },
+  "16": {
+    "Id": 16,
+    "RecountName": "神影螺旋",
+    "DamageId": [
+      114340102,
+      314030100
+    ],
+    "Name": "Shadow Spiral",
+    "Names": {
+      "en": "Shadow Spiral",
+      "zh-CN": "神影螺旋",
+      "ko-KR": "Shadow Spiral"
+    }
+  },
+  "17": {
+    "Id": 17,
+    "RecountName": "极·岚切",
+    "DamageId": [
+      114330107,
+      11499060101
+    ],
+    "Name": "Supreme: Tempest Slash",
+    "Names": {
+      "en": "Supreme: Tempest Slash",
+      "zh-CN": "极·岚切",
+      "ko-KR": "Supreme: Tempest Slash"
+    }
+  },
+  "18": {
+    "Id": 18,
+    "RecountName": "疾驰锋刃",
+    "DamageId": [
+      114110101,
+      114110102
+    ],
+    "Name": "Rushing Blade",
+    "Names": {
+      "en": "Rushing Blade",
+      "zh-CN": "疾驰锋刃",
+      "ko-KR": "Rushing Blade"
+    }
+  },
+  "19": {
+    "Id": 19,
+    "RecountName": "长矛贯穿",
+    "DamageId": [
+      11499020101
+    ],
+    "Name": "Spear Penetration",
+    "Names": {
+      "en": "Spear Penetration",
+      "zh-CN": "长矛贯穿",
+      "ko-KR": "Spear Penetration"
+    }
+  },
+  "20": {
+    "Id": 20,
+    "RecountName": "龙卷风",
+    "DamageId": [
+      11499030102,
+      314050100
+    ],
+    "Name": "Tornado",
+    "Names": {
+      "en": "Tornado",
+      "zh-CN": "龙卷风",
+      "ko-KR": "Tornado"
+    }
+  },
+  "21": {
+    "Id": 21,
+    "RecountName": "风螺旋",
+    "DamageId": [
+      11499010101
+    ],
+    "Name": "Wind Spiral",
+    "Names": {
+      "en": "Wind Spiral",
+      "zh-CN": "风螺旋",
+      "ko-KR": "Wind Spiral"
+    }
+  },
+  "22": {
+    "Id": 22,
+    "RecountName": "撕裂",
+    "DamageId": [
+      2220507103
+    ],
+    "Name": "Rend",
+    "Names": {
+      "en": "Rend",
+      "zh-CN": "撕裂",
+      "ko-KR": "Rend"
+    }
+  },
+  "23": {
+    "Id": 23,
+    "RecountName": "风裂扩散",
+    "DamageId": [
+      2220506003
+    ],
+    "Name": "Wind Rift Spread",
+    "Names": {
+      "en": "Wind Rift Spread",
+      "zh-CN": "风裂扩散",
+      "ko-KR": "Wind Rift Spread"
+    }
+  },
+  "24": {
+    "Id": 24,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      112940102
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "25": {
+    "Id": 25,
+    "RecountName": "幸运一击",
+    "DamageId": [
+      2203110203,
+      2203110204
+    ],
+    "Name": "Lucky Strike",
+    "Names": {
+      "en": "Lucky Strike",
+      "zh-CN": "幸运一击",
+      "ko-KR": "Lucky Strike"
+    }
+  },
+  "26": {
+    "Id": 26,
+    "RecountName": "雨打潮生",
+    "DamageId": [
+      312040100,
+      112030101,
+      312050100,
+      312020100,
+      312030100
+    ],
+    "Name": "Rain Tides Rising",
+    "Names": {
+      "en": "Rain Tides Rising",
+      "zh-CN": "雨打潮生",
+      "ko-KR": "Rain Tides Rising"
+    }
+  },
+  "27": {
+    "Id": 27,
+    "RecountName": "冰霜之矛",
+    "DamageId": [
+      312090200
+    ],
+    "Name": "Frost Spear",
+    "Names": {
+      "en": "Frost Spear",
+      "zh-CN": "冰霜之矛",
+      "ko-KR": "Frost Spear"
+    }
+  },
+  "28": {
+    "Id": 28,
+    "RecountName": "寒冰射线",
+    "DamageId": [
+      112410104
+    ],
+    "Name": "Ice Ray",
+    "Names": {
+      "en": "Ice Ray",
+      "zh-CN": "寒冰射线",
+      "ko-KR": "Ice Ray"
+    }
+  },
+  "29": {
+    "Id": 29,
+    "RecountName": "极寒·冰雪颂歌",
+    "DamageId": [
+      112480102,
+      112630101
+    ],
+    "Name": "Extreme Cold: Ice and Snow Hymn",
+    "Names": {
+      "en": "Extreme Cold: Ice and Snow Hymn",
+      "zh-CN": "极寒·冰雪颂歌",
+      "ko-KR": "Extreme Cold: Ice and Snow Hymn"
+    }
+  },
+  "30": {
+    "Id": 30,
+    "RecountName": "陨星风暴",
+    "DamageId": [
+      112600101,
+      112600102,
+      112600103,
+      112620101,
+      112620103,
+      112620104,
+      112620105
+    ],
+    "Name": "Meteor Storm",
+    "Names": {
+      "en": "Meteor Storm",
+      "zh-CN": "陨星风暴",
+      "ko-KR": "Meteor Storm"
+    }
+  },
+  "31": {
+    "Id": 31,
+    "RecountName": "清滝绕珠",
+    "DamageId": [
+      312150100,
+      112160101
+    ],
+    "Name": "Clear Stream Pearl Spiral",
+    "Names": {
+      "en": "Clear Stream Pearl Spiral",
+      "zh-CN": "清滝绕珠",
+      "ko-KR": "Clear Stream Pearl Spiral"
+    }
+  },
+  "32": {
+    "Id": 32,
+    "RecountName": "寒冰风暴",
+    "DamageId": [
+      112570101,
+      112610101
+    ],
+    "Name": "Blizzard",
+    "Names": {
+      "en": "Blizzard",
+      "zh-CN": "寒冰风暴",
+      "ko-KR": "Blizzard"
+    }
+  },
+  "33": {
+    "Id": 33,
+    "RecountName": "水之涡流",
+    "DamageId": [
+      112500101,
+      112500104
+    ],
+    "Name": "Water Vortex",
+    "Names": {
+      "en": "Water Vortex",
+      "zh-CN": "水之涡流",
+      "ko-KR": "Water Vortex"
+    }
+  },
+  "34": {
+    "Id": 34,
+    "RecountName": "冻结寒风",
+    "DamageId": [
+      112400101,
+      112400102
+    ],
+    "Name": "Freezing Cold Wind",
+    "Names": {
+      "en": "Freezing Cold Wind",
+      "zh-CN": "冻结寒风",
+      "ko-KR": "Freezing Cold Wind"
+    }
+  },
+  "35": {
+    "Id": 35,
+    "RecountName": "冰之灌注",
+    "DamageId": [],
+    "Name": "Ice Infusion",
+    "Names": {
+      "en": "Ice Infusion",
+      "zh-CN": "冰之灌注",
+      "ko-KR": "Ice Infusion"
+    }
+  },
+  "36": {
+    "Id": 36,
+    "RecountName": "浪潮汇聚",
+    "DamageId": [
+      112560101,
+      112560102
+    ],
+    "Name": "Wave Convergence",
+    "Names": {
+      "en": "Wave Convergence",
+      "zh-CN": "浪潮汇聚",
+      "ko-KR": "Wave Convergence"
+    }
+  },
+  "37": {
+    "Id": 37,
+    "RecountName": "寒冰庇护",
+    "DamageId": [
+      112450105,
+      22700903
+    ],
+    "Name": "Ice Shelter",
+    "Names": {
+      "en": "Ice Shelter",
+      "zh-CN": "寒冰庇护",
+      "ko-KR": "Ice Shelter"
+    }
+  },
+  "38": {
+    "Id": 38,
+    "RecountName": "冰晶坠落",
+    "DamageId": [
+      112580101
+    ],
+    "Name": "Ice Crystal Fall",
+    "Names": {
+      "en": "Ice Crystal Fall",
+      "zh-CN": "冰晶坠落",
+      "ko-KR": "Ice Crystal Fall"
+    }
+  },
+  "39": {
+    "Id": 39,
+    "RecountName": "冰霜彗星",
+    "DamageId": [
+      112590101
+    ],
+    "Name": "Frost Comet",
+    "Names": {
+      "en": "Frost Comet",
+      "zh-CN": "冰霜彗星",
+      "ko-KR": "Frost Comet"
+    }
+  },
+  "40": {
+    "Id": 40,
+    "RecountName": "霜爆",
+    "DamageId": [
+      2220408101
+    ],
+    "Name": "Frost Burst",
+    "Names": {
+      "en": "Frost Burst",
+      "zh-CN": "霜爆",
+      "ko-KR": "Frost Burst"
+    }
+  },
+  "41": {
+    "Id": 41,
+    "RecountName": "冰霜冲击",
+    "DamageId": [
+      2220424101
+    ],
+    "Name": "Frost Impact",
+    "Names": {
+      "en": "Frost Impact",
+      "zh-CN": "冰霜冲击",
+      "ko-KR": "Frost Impact"
+    }
+  },
+  "42": {
+    "Id": 42,
+    "RecountName": "冰冷脉冲",
+    "DamageId": [
+      2220432004
+    ],
+    "Name": "Ice Pulse",
+    "Names": {
+      "en": "Ice Pulse",
+      "zh-CN": "冰冷脉冲",
+      "ko-KR": "Ice Pulse"
+    }
+  },
+  "43": {
+    "Id": 43,
+    "RecountName": "冰箭",
+    "DamageId": [
+      312130100,
+      312130200
+    ],
+    "Name": "Ice Arrow",
+    "Names": {
+      "en": "Ice Arrow",
+      "zh-CN": "冰箭",
+      "ko-KR": "Ice Arrow"
+    }
+  },
+  "44": {
+    "Id": 44,
+    "RecountName": "贯穿冰矛",
+    "DamageId": [
+      312090100,
+      312090103
+    ],
+    "Name": "Piercing Ice Spear",
+    "Names": {
+      "en": "Piercing Ice Spear",
+      "zh-CN": "贯穿冰矛",
+      "ko-KR": "Piercing Ice Spear"
+    }
+  },
+  "45": {
+    "Id": 45,
+    "RecountName": "冰魔G11-寒冰风暴",
+    "DamageId": [
+      2305211201
+    ],
+    "Name": "Ice Mage G11: Blizzard",
+    "Names": {
+      "en": "Ice Mage G11: Blizzard",
+      "zh-CN": "冰魔G11-寒冰风暴",
+      "ko-KR": "Ice Mage G11: Blizzard"
+    }
+  },
+  "46": {
+    "Id": 46,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      117950102
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "47": {
+    "Id": 47,
+    "RecountName": "幸运一击",
+    "DamageId": [
+      2203110103,
+      2203110104
+    ],
+    "Name": "Lucky Strike",
+    "Names": {
+      "en": "Lucky Strike",
+      "zh-CN": "幸运一击",
+      "ko-KR": "Lucky Strike"
+    }
+  },
+  "48": {
+    "Id": 48,
+    "RecountName": "我流刀法·诛恶",
+    "DamageId": [
+      117010101,
+      117020101,
+      117020103,
+      117030101,
+      117030103,
+      117030104,
+      117040102
+    ],
+    "Name": "My Style Swordsmanship: Evil Slaying",
+    "Names": {
+      "en": "My Style Swordsmanship: Evil Slaying",
+      "zh-CN": "我流刀法·诛恶",
+      "ko-KR": "My Style Swordsmanship: Evil Slaying"
+    }
+  },
+  "49": {
+    "Id": 49,
+    "RecountName": "居合斩",
+    "DamageId": [
+      117140101,
+      117140102,
+      117140105,
+      117140106,
+      117140107,
+      117140111
+    ],
+    "Name": "Iaijutsu Slash",
+    "Names": {
+      "en": "Iaijutsu Slash",
+      "zh-CN": "居合斩",
+      "ko-KR": "Iaijutsu Slash"
+    }
+  },
+  "50": {
+    "Id": 50,
+    "RecountName": "月影",
+    "DamageId": [
+      117150102,
+      117150103,
+      117150105,
+      117150110,
+      117150112,
+      117150107,
+      117150109,
+      117150115
+    ],
+    "Name": "Moon Shadow",
+    "Names": {
+      "en": "Moon Shadow",
+      "zh-CN": "月影",
+      "ko-KR": "Moon Shadow"
+    }
+  },
+  "51": {
+    "Id": 51,
+    "RecountName": "极诣·大破灭连斩",
+    "DamageId": [
+      117130102,
+      117130108,
+      117280102,
+      117280108
+    ],
+    "Name": "Mastery: Destruction Chain Slash",
+    "Names": {
+      "en": "Mastery: Destruction Chain Slash",
+      "zh-CN": "极诣·大破灭连斩",
+      "ko-KR": "Mastery: Destruction Chain Slash"
+    }
+  },
+  "52": {
+    "Id": 52,
+    "RecountName": "超高出力",
+    "DamageId": [
+      117050101,
+      117050103,
+      117050104,
+      117050105,
+      117050106,
+      117050108
+    ],
+    "Name": "Ultra High Output",
+    "Names": {
+      "en": "Ultra High Output",
+      "zh-CN": "超高出力",
+      "ko-KR": "Ultra High Output"
+    }
+  },
+  "53": {
+    "Id": 53,
+    "RecountName": "一闪",
+    "DamageId": [
+      117170101
+    ],
+    "Name": "Flash",
+    "Names": {
+      "en": "Flash",
+      "zh-CN": "一闪",
+      "ko-KR": "Flash"
+    }
+  },
+  "54": {
+    "Id": 54,
+    "RecountName": "飞雷神",
+    "DamageId": [
+      117180102
+    ],
+    "Name": "Flying Thunder God",
+    "Names": {
+      "en": "Flying Thunder God",
+      "zh-CN": "飞雷神",
+      "ko-KR": "Flying Thunder God"
+    }
+  },
+  "55": {
+    "Id": 55,
+    "RecountName": "镰车",
+    "DamageId": [
+      117190104,
+      117190105
+    ],
+    "Name": "Scythe Wheel",
+    "Names": {
+      "en": "Scythe Wheel",
+      "zh-CN": "镰车",
+      "ko-KR": "Scythe Wheel"
+    }
+  },
+  "56": {
+    "Id": 56,
+    "RecountName": "月影",
+    "DamageId": [
+      24460103,
+      24470103
+    ],
+    "Name": "Moon Shadow",
+    "Names": {
+      "en": "Moon Shadow",
+      "zh-CN": "月影",
+      "ko-KR": "Moon Shadow"
+    }
+  },
+  "57": {
+    "Id": 57,
+    "RecountName": "月刃回旋",
+    "DamageId": [
+      11799060101
+    ],
+    "Name": "Moonblade Spin",
+    "Names": {
+      "en": "Moonblade Spin",
+      "zh-CN": "月刃回旋",
+      "ko-KR": "Moonblade Spin"
+    }
+  },
+  "58": {
+    "Id": 58,
+    "RecountName": "霹雳连斩",
+    "DamageId": [
+      117240103,
+      117240104,
+      117240106,
+      117240107,
+      117240108,
+      117240120,
+      117240121,
+      117240126,
+      117240127,
+      117240128,
+      117240129,
+      117240130,
+      117240131,
+      117240132,
+      117240133,
+      117240134,
+      117240135,
+      117240136,
+      117240137,
+      117240138,
+      117240139,
+      117240140,
+      117240141,
+      117240142,
+      117240143
+    ],
+    "Name": "Thunder Chain Slash",
+    "Names": {
+      "en": "Thunder Chain Slash",
+      "zh-CN": "霹雳连斩",
+      "ko-KR": "Thunder Chain Slash"
+    }
+  },
+  "59": {
+    "Id": 59,
+    "RecountName": "无穷雷霆之力",
+    "DamageId": [],
+    "Name": "Infinite Thunder Power",
+    "Names": {
+      "en": "Infinite Thunder Power",
+      "zh-CN": "无穷雷霆之力",
+      "ko-KR": "Infinite Thunder Power"
+    }
+  },
+  "60": {
+    "Id": 60,
+    "RecountName": "千雷闪影之意",
+    "DamageId": [
+      117320101
+    ],
+    "Name": "Thousand Thunders Flash Shadow Intent",
+    "Names": {
+      "en": "Thousand Thunders Flash Shadow Intent",
+      "zh-CN": "千雷闪影之意",
+      "ko-KR": "Thousand Thunders Flash Shadow Intent"
+    }
+  },
+  "61": {
+    "Id": 61,
+    "RecountName": "心眼",
+    "DamageId": [
+      117200103,
+      117200105,
+      117440103,
+      117440105
+    ],
+    "Name": "Mind's Eye",
+    "Names": {
+      "en": "Mind's Eye",
+      "zh-CN": "心眼",
+      "ko-KR": "Mind's Eye"
+    }
+  },
+  "62": {
+    "Id": 62,
+    "RecountName": "雷切",
+    "DamageId": [
+      315510100,
+      315510200
+    ],
+    "Name": "Thunder Cut",
+    "Names": {
+      "en": "Thunder Cut",
+      "zh-CN": "雷切",
+      "ko-KR": "Thunder Cut"
+    }
+  },
+  "63": {
+    "Id": 63,
+    "RecountName": "坠龙闪",
+    "DamageId": [
+      117350103,
+      117350105,
+      117350106
+    ],
+    "Name": "Dragon Fall Flash",
+    "Names": {
+      "en": "Dragon Fall Flash",
+      "zh-CN": "坠龙闪",
+      "ko-KR": "Dragon Fall Flash"
+    }
+  },
+  "64": {
+    "Id": 64,
+    "RecountName": "神影斩",
+    "DamageId": [
+      117360102,
+      11799040101
+    ],
+    "Name": "Divine Shadow Slash",
+    "Names": {
+      "en": "Divine Shadow Slash",
+      "zh-CN": "神影斩",
+      "ko-KR": "Divine Shadow Slash"
+    }
+  },
+  "65": {
+    "Id": 65,
+    "RecountName": "神罚之镰",
+    "DamageId": [
+      117370101,
+      117370112,
+      11799110101,
+      117370106
+    ],
+    "Name": "Divine Punishment Scythe",
+    "Names": {
+      "en": "Divine Punishment Scythe",
+      "zh-CN": "神罚之镰",
+      "ko-KR": "Divine Punishment Scythe"
+    }
+  },
+  "66": {
+    "Id": 66,
+    "RecountName": "雷霆之镰",
+    "DamageId": [
+      117330104,
+      117330106,
+      117400101,
+      117410101
+    ],
+    "Name": "Thunder Scythe",
+    "Names": {
+      "en": "Thunder Scythe",
+      "zh-CN": "雷霆之镰",
+      "ko-KR": "Thunder Scythe"
+    }
+  },
+  "67": {
+    "Id": 67,
+    "RecountName": "霹雳升龙斩",
+    "DamageId": [
+      117420101,
+      117420102,
+      117420103,
+      117420108
+    ],
+    "Name": "Thunder Rising Dragon Slash",
+    "Names": {
+      "en": "Thunder Rising Dragon Slash",
+      "zh-CN": "霹雳升龙斩",
+      "ko-KR": "Thunder Rising Dragon Slash"
+    }
+  },
+  "68": {
+    "Id": 68,
+    "RecountName": "缭乱兜割",
+    "DamageId": [
+      117380101,
+      117380105
+    ],
+    "Name": "Chaotic Helmet Slash",
+    "Names": {
+      "en": "Chaotic Helmet Slash",
+      "zh-CN": "缭乱兜割",
+      "ko-KR": "Chaotic Helmet Slash"
+    }
+  },
+  "69": {
+    "Id": 69,
+    "RecountName": "看破斩",
+    "DamageId": [
+      11799020101,
+      117390101
+    ],
+    "Name": "See-Through Slash",
+    "Names": {
+      "en": "See-Through Slash",
+      "zh-CN": "看破斩",
+      "ko-KR": "See-Through Slash"
+    }
+  },
+  "70": {
+    "Id": 70,
+    "RecountName": "刃风界域",
+    "DamageId": [
+      11799070101,
+      11799070102,
+      11799070103,
+      11799070104
+    ],
+    "Name": "Blade Wind Domain",
+    "Names": {
+      "en": "Blade Wind Domain",
+      "zh-CN": "刃风界域",
+      "ko-KR": "Blade Wind Domain"
+    }
+  },
+  "71": {
+    "Id": 71,
+    "RecountName": "雷击",
+    "DamageId": [
+      11799080101
+    ],
+    "Name": "Thunder Strike",
+    "Names": {
+      "en": "Thunder Strike",
+      "zh-CN": "雷击",
+      "ko-KR": "Thunder Strike"
+    }
+  },
+  "72": {
+    "Id": 72,
+    "RecountName": "雷爆",
+    "DamageId": [
+      11799100101
+    ],
+    "Name": "Thunder Explosion",
+    "Names": {
+      "en": "Thunder Explosion",
+      "zh-CN": "雷爆",
+      "ko-KR": "Thunder Explosion"
+    }
+  },
+  "73": {
+    "Id": 73,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      122110102
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "74": {
+    "Id": 74,
+    "RecountName": "幸运一击(弓箭）",
+    "DamageId": [
+      2203110903,
+      2203110904
+    ],
+    "Name": "Lucky Strike (Bow)",
+    "Names": {
+      "en": "Lucky Strike (Bow)",
+      "zh-CN": "幸运一击(弓箭）",
+      "ko-KR": "Lucky Strike (Bow)"
+    }
+  },
+  "75": {
+    "Id": 75,
+    "RecountName": "弹无虚发",
+    "DamageId": [
+      322010100,
+      322010300
+    ],
+    "Name": "Every Shot Counts",
+    "Names": {
+      "en": "Every Shot Counts",
+      "zh-CN": "弹无虚发",
+      "ko-KR": "Every Shot Counts"
+    }
+  },
+  "76": {
+    "Id": 76,
+    "RecountName": "暴风箭矢",
+    "DamageId": [
+      322010400
+    ],
+    "Name": "Storm Arrow",
+    "Names": {
+      "en": "Storm Arrow",
+      "zh-CN": "暴风箭矢",
+      "ko-KR": "Storm Arrow"
+    }
+  },
+  "77": {
+    "Id": 77,
+    "RecountName": "二连矢",
+    "DamageId": [
+      322010600
+    ],
+    "Name": "Double Arrow",
+    "Names": {
+      "en": "Double Arrow",
+      "zh-CN": "二连矢",
+      "ko-KR": "Double Arrow"
+    }
+  },
+  "78": {
+    "Id": 78,
+    "RecountName": "​光意·四连矢​",
+    "DamageId": [
+      322011100,
+      322020300,
+      122940101,
+      25523501
+    ],
+    "Name": "Light Intent: Quadruple Arrow",
+    "Names": {
+      "en": "Light Intent: Quadruple Arrow",
+      "zh-CN": "​光意·四连矢​",
+      "ko-KR": "Light Intent: Quadruple Arrow"
+    }
+  },
+  "79": {
+    "Id": 79,
+    "RecountName": "锐眼·光能巨箭",
+    "DamageId": [
+      322030100,
+      322030200,
+      122950102
+    ],
+    "Name": "Sharp Eye: Light Giant Arrow",
+    "Names": {
+      "en": "Sharp Eye: Light Giant Arrow",
+      "zh-CN": "锐眼·光能巨箭",
+      "ko-KR": "Sharp Eye: Light Giant Arrow"
+    }
+  },
+  "80": {
+    "Id": 80,
+    "RecountName": "光能爆炸",
+    "DamageId": [
+      122910101
+    ],
+    "Name": "Light Energy Explosion",
+    "Names": {
+      "en": "Light Energy Explosion",
+      "zh-CN": "光能爆炸",
+      "ko-KR": "Light Energy Explosion"
+    }
+  },
+  "81": {
+    "Id": 81,
+    "RecountName": "怒涛射击",
+    "DamageId": [
+      322010200
+    ],
+    "Name": "Raging Tide Shot",
+    "Names": {
+      "en": "Raging Tide Shot",
+      "zh-CN": "怒涛射击",
+      "ko-KR": "Raging Tide Shot"
+    }
+  },
+  "82": {
+    "Id": 82,
+    "RecountName": "光意·怒涛射击",
+    "DamageId": [
+      122400103
+    ],
+    "Name": "Light Intent: Raging Tide Shot",
+    "Names": {
+      "en": "Light Intent: Raging Tide Shot",
+      "zh-CN": "光意·怒涛射击",
+      "ko-KR": "Light Intent: Raging Tide Shot"
+    }
+  },
+  "83": {
+    "Id": 83,
+    "RecountName": "箭雨",
+    "DamageId": [
+      122890101
+    ],
+    "Name": "Arrow Rain",
+    "Names": {
+      "en": "Arrow Rain",
+      "zh-CN": "箭雨",
+      "ko-KR": "Arrow Rain"
+    }
+  },
+  "84": {
+    "Id": 84,
+    "RecountName": "聚能射击",
+    "DamageId": [
+      122330103
+    ],
+    "Name": "Concentrated Shot",
+    "Names": {
+      "en": "Concentrated Shot",
+      "zh-CN": "聚能射击",
+      "ko-KR": "Concentrated Shot"
+    }
+  },
+  "85": {
+    "Id": 85,
+    "RecountName": "光能轰炸",
+    "DamageId": [
+      25524003,
+      25524004
+    ],
+    "Name": "Light Energy Bombardment",
+    "Names": {
+      "en": "Light Energy Bombardment",
+      "zh-CN": "光能轰炸",
+      "ko-KR": "Light Energy Bombardment"
+    }
+  },
+  "86": {
+    "Id": 86,
+    "RecountName": "精神凝聚",
+    "DamageId": [],
+    "Name": "Mental Focus",
+    "Names": {
+      "en": "Mental Focus",
+      "zh-CN": "精神凝聚",
+      "ko-KR": "Mental Focus"
+    }
+  },
+  "87": {
+    "Id": 87,
+    "RecountName": "爆炸射击",
+    "DamageId": [
+      322011000,
+      25523102
+    ],
+    "Name": "Explosive Shot",
+    "Names": {
+      "en": "Explosive Shot",
+      "zh-CN": "爆炸射击",
+      "ko-KR": "Explosive Shot"
+    }
+  },
+  "88": {
+    "Id": 88,
+    "RecountName": "威慑射击",
+    "DamageId": [
+      322010900
+    ],
+    "Name": "Deterrent Shot",
+    "Names": {
+      "en": "Deterrent Shot",
+      "zh-CN": "威慑射击",
+      "ko-KR": "Deterrent Shot"
+    }
+  },
+  "89": {
+    "Id": 89,
+    "RecountName": "野狼普通攻击",
+    "DamageId": [
+      117008270101
+    ],
+    "Name": "Wolf Basic Attack",
+    "Names": {
+      "en": "Wolf Basic Attack",
+      "zh-CN": "野狼普通攻击",
+      "ko-KR": "Wolf Basic Attack"
+    }
+  },
+  "90": {
+    "Id": 90,
+    "RecountName": "野狼协同攻击",
+    "DamageId": [
+      117008200102
+    ],
+    "Name": "Wolf Coordinated Attack",
+    "Names": {
+      "en": "Wolf Coordinated Attack",
+      "zh-CN": "野狼协同攻击",
+      "ko-KR": "Wolf Coordinated Attack"
+    }
+  },
+  "91": {
+    "Id": 91,
+    "RecountName": "野狼扫尾",
+    "DamageId": [
+      117008240102
+    ],
+    "Name": "Wolf Tail Swipe",
+    "Names": {
+      "en": "Wolf Tail Swipe",
+      "zh-CN": "野狼扫尾",
+      "ko-KR": "Wolf Tail Swipe"
+    }
+  },
+  "92": {
+    "Id": 92,
+    "RecountName": "野狼飞扑",
+    "DamageId": [
+      117008250102,
+      117008260102
+    ],
+    "Name": "Wolf Pounce",
+    "Names": {
+      "en": "Wolf Pounce",
+      "zh-CN": "野狼飞扑",
+      "ko-KR": "Wolf Pounce"
+    }
+  },
+  "93": {
+    "Id": 93,
+    "RecountName": "猎鹰俯冲攻击",
+    "DamageId": [
+      11011120101
+    ],
+    "Name": "Falcon Dive Attack",
+    "Names": {
+      "en": "Falcon Dive Attack",
+      "zh-CN": "猎鹰俯冲攻击",
+      "ko-KR": "Falcon Dive Attack"
+    }
+  },
+  "94": {
+    "Id": 94,
+    "RecountName": "猎鹰出击",
+    "DamageId": [
+      2220329107
+    ],
+    "Name": "Falcon Strike",
+    "Names": {
+      "en": "Falcon Strike",
+      "zh-CN": "猎鹰出击",
+      "ko-KR": "Falcon Strike"
+    }
+  },
+  "95": {
+    "Id": 95,
+    "RecountName": "猎鹰闪电冲击",
+    "DamageId": [
+      2220329109
+    ],
+    "Name": "Falcon Lightning Impact",
+    "Names": {
+      "en": "Falcon Lightning Impact",
+      "zh-CN": "猎鹰闪电冲击",
+      "ko-KR": "Falcon Lightning Impact"
+    }
+  },
+  "96": {
+    "Id": 96,
+    "RecountName": "幻影猎鹰",
+    "DamageId": [
+      122960102,
+      322011300
+    ],
+    "Name": "Phantom Falcon",
+    "Names": {
+      "en": "Phantom Falcon",
+      "zh-CN": "幻影猎鹰",
+      "ko-KR": "Phantom Falcon"
+    }
+  },
+  "97": {
+    "Id": 97,
+    "RecountName": "天界雄鹰",
+    "DamageId": [
+      123520101,
+      123520103
+    ],
+    "Name": "Celestial Eagle",
+    "Names": {
+      "en": "Celestial Eagle",
+      "zh-CN": "天界雄鹰",
+      "ko-KR": "Celestial Eagle"
+    }
+  },
+  "98": {
+    "Id": 98,
+    "RecountName": "幻影魔狼",
+    "DamageId": [
+      122920102
+    ],
+    "Name": "Phantom Wolf",
+    "Names": {
+      "en": "Phantom Wolf",
+      "zh-CN": "幻影魔狼",
+      "ko-KR": "Phantom Wolf"
+    }
+  },
+  "99": {
+    "Id": 99,
+    "RecountName": "生命流失",
+    "DamageId": [
+      2220309102,
+      2220310102,
+      2220310202,
+      2220314102,
+      2220330202
+    ],
+    "Name": "Life Drain",
+    "Names": {
+      "en": "Life Drain",
+      "zh-CN": "生命流失",
+      "ko-KR": "Life Drain"
+    }
+  },
+  "100": {
+    "Id": 100,
+    "RecountName": "践踏",
+    "DamageId": [
+      2220351201
+    ],
+    "Name": "Trample",
+    "Names": {
+      "en": "Trample",
+      "zh-CN": "践踏",
+      "ko-KR": "Trample"
+    }
+  },
+  "101": {
+    "Id": 101,
+    "RecountName": "内爆",
+    "DamageId": [
+      2220352105
+    ],
+    "Name": "Implosion",
+    "Names": {
+      "en": "Implosion",
+      "zh-CN": "内爆",
+      "ko-KR": "Implosion"
+    }
+  },
+  "102": {
+    "Id": 102,
+    "RecountName": "光棱",
+    "DamageId": [
+      2220362101,
+      2220362105,
+      2220362204,
+      2220362207
+    ],
+    "Name": "Light Prism",
+    "Names": {
+      "en": "Light Prism",
+      "zh-CN": "光棱",
+      "ko-KR": "Light Prism"
+    }
+  },
+  "103": {
+    "Id": 103,
+    "RecountName": "光追箭矢",
+    "DamageId": [
+      322010500
+    ],
+    "Name": "Light-Chasing Arrow",
+    "Names": {
+      "en": "Light-Chasing Arrow",
+      "zh-CN": "光追箭矢",
+      "ko-KR": "Light-Chasing Arrow"
+    }
+  },
+  "104": {
+    "Id": 104,
+    "RecountName": "光能箭矢",
+    "DamageId": [
+      322011200
+    ],
+    "Name": "Light Energy Arrow",
+    "Names": {
+      "en": "Light Energy Arrow",
+      "zh-CN": "光能箭矢",
+      "ko-KR": "Light Energy Arrow"
+    }
+  },
+  "105": {
+    "Id": 105,
+    "RecountName": "魔法箭矢",
+    "DamageId": [
+      322010700
+    ],
+    "Name": "Magic Arrow",
+    "Names": {
+      "en": "Magic Arrow",
+      "zh-CN": "魔法箭矢",
+      "ko-KR": "Magic Arrow"
+    }
+  },
+  "106": {
+    "Id": 106,
+    "RecountName": "爆炸箭矢",
+    "DamageId": [
+      322010800,
+      2220331101
+    ],
+    "Name": "Explosive Arrow",
+    "Names": {
+      "en": "Explosive Arrow",
+      "zh-CN": "爆炸箭矢",
+      "ko-KR": "Explosive Arrow"
+    }
+  },
+  "107": {
+    "Id": 107,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      119120102
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "108": {
+    "Id": 108,
+    "RecountName": "幸运一击(巨刃)",
+    "DamageId": [
+      2203110703,
+      2203110704
+    ],
+    "Name": "Lucky Strike (Greatsword)",
+    "Names": {
+      "en": "Lucky Strike (Greatsword)",
+      "zh-CN": "幸运一击(巨刃)",
+      "ko-KR": "Lucky Strike (Greatsword)"
+    }
+  },
+  "109": {
+    "Id": 109,
+    "RecountName": "止战之锋",
+    "DamageId": [
+      119010102,
+      119020102,
+      119030102,
+      119030103,
+      119040102,
+      119330102
+    ],
+    "Name": "Blade of Ceasefire",
+    "Names": {
+      "en": "Blade of Ceasefire",
+      "zh-CN": "止战之锋",
+      "ko-KR": "Blade of Ceasefire"
+    }
+  },
+  "110": {
+    "Id": 110,
+    "RecountName": "护盾猛击",
+    "DamageId": [
+      119220102
+    ],
+    "Name": "Shield Smash",
+    "Names": {
+      "en": "Shield Smash",
+      "zh-CN": "护盾猛击",
+      "ko-KR": "Shield Smash"
+    }
+  },
+  "111": {
+    "Id": 111,
+    "RecountName": "护盾连击",
+    "DamageId": [
+      119320102,
+      119320103
+    ],
+    "Name": "Shield Combo",
+    "Names": {
+      "en": "Shield Combo",
+      "zh-CN": "护盾连击",
+      "ko-KR": "Shield Combo"
+    }
+  },
+  "112": {
+    "Id": 112,
+    "RecountName": "格挡反击",
+    "DamageId": [
+      119300101,
+      119300104,
+      119300107,
+      119300108,
+      119300109,
+      119300110
+    ],
+    "Name": "Parry Counterattack",
+    "Names": {
+      "en": "Parry Counterattack",
+      "zh-CN": "格挡反击",
+      "ko-KR": "Parry Counterattack"
+    }
+  },
+  "113": {
+    "Id": 113,
+    "RecountName": "岩御·崩裂回环",
+    "DamageId": [
+      119070103
+    ],
+    "Name": "Earth Shield: Shattering Loop",
+    "Names": {
+      "en": "Earth Shield: Shattering Loop",
+      "zh-CN": "岩御·崩裂回环",
+      "ko-KR": "Earth Shield: Shattering Loop"
+    }
+  },
+  "114": {
+    "Id": 114,
+    "RecountName": "碎星冲",
+    "DamageId": [
+      119240102
+    ],
+    "Name": "Star Shattering Charge",
+    "Names": {
+      "en": "Star Shattering Charge",
+      "zh-CN": "碎星冲",
+      "ko-KR": "Star Shattering Charge"
+    }
+  },
+  "115": {
+    "Id": 115,
+    "RecountName": "砂石斗篷",
+    "DamageId": [
+      119270102,
+      25004904
+    ],
+    "Name": "Sandy Cloak",
+    "Names": {
+      "en": "Sandy Cloak",
+      "zh-CN": "砂石斗篷",
+      "ko-KR": "Sandy Cloak"
+    }
+  },
+  "116": {
+    "Id": 116,
+    "RecountName": "巨岩躯体",
+    "DamageId": [],
+    "Name": "Boulder Body",
+    "Names": {
+      "en": "Boulder Body",
+      "zh-CN": "巨岩躯体",
+      "ko-KR": "Boulder Body"
+    }
+  },
+  "117": {
+    "Id": 117,
+    "RecountName": "砂岩之握",
+    "DamageId": [
+      25003301
+    ],
+    "Name": "Sandstone Grip",
+    "Names": {
+      "en": "Sandstone Grip",
+      "zh-CN": "砂岩之握",
+      "ko-KR": "Sandstone Grip"
+    }
+  },
+  "118": {
+    "Id": 118,
+    "RecountName": "岩怒之击",
+    "DamageId": [
+      119370102,
+      119390102
+    ],
+    "Name": "Rock Fury Strike",
+    "Names": {
+      "en": "Rock Fury Strike",
+      "zh-CN": "岩怒之击",
+      "ko-KR": "Rock Fury Strike"
+    }
+  },
+  "119": {
+    "Id": 119,
+    "RecountName": "怒爆",
+    "DamageId": [
+      119250101,
+      119400101
+    ],
+    "Name": "Fury Burst",
+    "Names": {
+      "en": "Fury Burst",
+      "zh-CN": "怒爆",
+      "ko-KR": "Fury Burst"
+    }
+  },
+  "120": {
+    "Id": 120,
+    "RecountName": "勇者壁垒",
+    "DamageId": [],
+    "Name": "Brave Bulwark",
+    "Names": {
+      "en": "Brave Bulwark",
+      "zh-CN": "勇者壁垒",
+      "ko-KR": "Brave Bulwark"
+    }
+  },
+  "121": {
+    "Id": 121,
+    "RecountName": "砂岩守护",
+    "DamageId": [
+      119230112,
+      119230113
+    ],
+    "Name": "Sandstone Guardian",
+    "Names": {
+      "en": "Sandstone Guardian",
+      "zh-CN": "砂岩守护",
+      "ko-KR": "Sandstone Guardian"
+    }
+  },
+  "122": {
+    "Id": 122,
+    "RecountName": "怒击",
+    "DamageId": [
+      119350101
+    ],
+    "Name": "Fury Strike",
+    "Names": {
+      "en": "Fury Strike",
+      "zh-CN": "怒击",
+      "ko-KR": "Fury Strike"
+    }
+  },
+  "123": {
+    "Id": 123,
+    "RecountName": "碎星崩裂",
+    "DamageId": [
+      119410102
+    ],
+    "Name": "Star Fragment Shatter",
+    "Names": {
+      "en": "Star Fragment Shatter",
+      "zh-CN": "碎星崩裂",
+      "ko-KR": "Star Fragment Shatter"
+    }
+  },
+  "124": {
+    "Id": 124,
+    "RecountName": "崩裂",
+    "DamageId": [
+      119420102
+    ],
+    "Name": "Shatter",
+    "Names": {
+      "en": "Shatter",
+      "zh-CN": "崩裂",
+      "ko-KR": "Shatter"
+    }
+  },
+  "125": {
+    "Id": 125,
+    "RecountName": "地崩山摧",
+    "DamageId": [
+      11999020101,
+      11999020102,
+      2220157003
+    ],
+    "Name": "Earthcrush",
+    "Names": {
+      "en": "Earthcrush",
+      "zh-CN": "地崩山摧",
+      "ko-KR": "Earthcrush"
+    }
+  },
+  "126": {
+    "Id": 126,
+    "RecountName": "巨岩轰击",
+    "DamageId": [
+      11999030101
+    ],
+    "Name": "Boulder Bombardment",
+    "Names": {
+      "en": "Boulder Bombardment",
+      "zh-CN": "巨岩轰击",
+      "ko-KR": "Boulder Bombardment"
+    }
+  },
+  "127": {
+    "Id": 127,
+    "RecountName": "弱点打击",
+    "DamageId": [
+      25003601
+    ],
+    "Name": "Weak Point Strike",
+    "Names": {
+      "en": "Weak Point Strike",
+      "zh-CN": "弱点打击",
+      "ko-KR": "Weak Point Strike"
+    }
+  },
+  "128": {
+    "Id": 128,
+    "RecountName": "格挡回复",
+    "DamageId": [
+      2220108003
+    ],
+    "Name": "Parry Recovery",
+    "Names": {
+      "en": "Parry Recovery",
+      "zh-CN": "格挡回复",
+      "ko-KR": "Parry Recovery"
+    }
+  },
+  "129": {
+    "Id": 129,
+    "RecountName": "格挡反击",
+    "DamageId": [
+      25003703,
+      25006703,
+      25006704,
+      25006803,
+      25006804,
+      25006805
+    ],
+    "Name": "Parry Counterattack",
+    "Names": {
+      "en": "Parry Counterattack",
+      "zh-CN": "格挡反击",
+      "ko-KR": "Parry Counterattack"
+    }
+  },
+  "130": {
+    "Id": 130,
+    "RecountName": "护盾回声",
+    "DamageId": [
+      2220124003,
+      2220124004,
+      2220124005
+    ],
+    "Name": "Shield Echo",
+    "Names": {
+      "en": "Shield Echo",
+      "zh-CN": "护盾回声",
+      "ko-KR": "Shield Echo"
+    }
+  },
+  "131": {
+    "Id": 131,
+    "RecountName": "砂石复苏",
+    "DamageId": [
+      2220141005
+    ],
+    "Name": "Sandy Revival",
+    "Names": {
+      "en": "Sandy Revival",
+      "zh-CN": "砂石复苏",
+      "ko-KR": "Sandy Revival"
+    }
+  },
+  "132": {
+    "Id": 132,
+    "RecountName": "回复",
+    "DamageId": [
+      2220149103
+    ],
+    "Name": "Recovery",
+    "Names": {
+      "en": "Recovery",
+      "zh-CN": "回复",
+      "ko-KR": "Recovery"
+    }
+  },
+  "133": {
+    "Id": 133,
+    "RecountName": "岩拳回复",
+    "DamageId": [
+      2220164103,
+      2220164104
+    ],
+    "Name": "Rock Fist Recovery",
+    "Names": {
+      "en": "Rock Fist Recovery",
+      "zh-CN": "岩拳回复",
+      "ko-KR": "Rock Fist Recovery"
+    }
+  },
+  "134": {
+    "Id": 134,
+    "RecountName": "砂晶石震荡",
+    "DamageId": [
+      2220136203
+    ],
+    "Name": "Crystal Tremor",
+    "Names": {
+      "en": "Crystal Tremor",
+      "zh-CN": "砂晶石震荡",
+      "ko-KR": "Crystal Tremor"
+    }
+  },
+  "135": {
+    "Id": 135,
+    "RecountName": "岩弹",
+    "DamageId": [
+      3190100,
+      3190200
+    ],
+    "Name": "Rock Bullet",
+    "Names": {
+      "en": "Rock Bullet",
+      "zh-CN": "岩弹",
+      "ko-KR": "Rock Bullet"
+    }
+  },
+  "136": {
+    "Id": 136,
+    "RecountName": "坚毅之息",
+    "DamageId": [
+      119090102,
+      2220117203
+    ],
+    "Name": "Steadfast Breath",
+    "Names": {
+      "en": "Steadfast Breath",
+      "zh-CN": "坚毅之息",
+      "ko-KR": "Steadfast Breath"
+    }
+  },
+  "137": {
+    "Id": 137,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      124240102
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "138": {
+    "Id": 138,
+    "RecountName": "幸运一击",
+    "DamageId": [
+      2203111003,
+      2203111004
+    ],
+    "Name": "Lucky Strike",
+    "Names": {
+      "en": "Lucky Strike",
+      "zh-CN": "幸运一击",
+      "ko-KR": "Lucky Strike"
+    }
+  },
+  "139": {
+    "Id": 139,
+    "RecountName": "公正之剑",
+    "DamageId": [
+      124010102,
+      124020102,
+      124030102,
+      124040102
+    ],
+    "Name": "Sword of Justice",
+    "Names": {
+      "en": "Sword of Justice",
+      "zh-CN": "公正之剑",
+      "ko-KR": "Sword of Justice"
+    }
+  },
+  "140": {
+    "Id": 140,
+    "RecountName": "英勇盾击",
+    "DamageId": [
+      124050104,
+      124050107,
+      124050108
+    ],
+    "Name": "Heroic Shield Bash",
+    "Names": {
+      "en": "Heroic Shield Bash",
+      "zh-CN": "英勇盾击",
+      "ko-KR": "Heroic Shield Bash"
+    }
+  },
+  "141": {
+    "Id": 141,
+    "RecountName": "先锋打击",
+    "DamageId": [
+      124060101
+    ],
+    "Name": "Vanguard Strike",
+    "Names": {
+      "en": "Vanguard Strike",
+      "zh-CN": "先锋打击",
+      "ko-KR": "Vanguard Strike"
+    }
+  },
+  "142": {
+    "Id": 142,
+    "RecountName": "先锋追击",
+    "DamageId": [
+      124060104,
+      124060105,
+      124060108,
+      2220654103,
+      2220656103
+    ],
+    "Name": "Vanguard Pursuit",
+    "Names": {
+      "en": "Vanguard Pursuit",
+      "zh-CN": "先锋追击",
+      "ko-KR": "Vanguard Pursuit"
+    }
+  },
+  "143": {
+    "Id": 143,
+    "RecountName": "凛威·圣光灌注",
+    "DamageId": [
+      124070103
+    ],
+    "Name": "Majesty: Holy Light Infusion",
+    "Names": {
+      "en": "Majesty: Holy Light Infusion",
+      "zh-CN": "凛威·圣光灌注",
+      "ko-KR": "Majesty: Holy Light Infusion"
+    }
+  },
+  "144": {
+    "Id": 144,
+    "RecountName": "裁决",
+    "DamageId": [
+      124100101,
+      124100104,
+      25542103
+    ],
+    "Name": "Judgment",
+    "Names": {
+      "en": "Judgment",
+      "zh-CN": "裁决",
+      "ko-KR": "Judgment"
+    }
+  },
+  "145": {
+    "Id": 145,
+    "RecountName": "灼热裁决",
+    "DamageId": [
+      124520101,
+      124520102,
+      124520103
+    ],
+    "Name": "Blazing Judgment",
+    "Names": {
+      "en": "Blazing Judgment",
+      "zh-CN": "灼热裁决",
+      "ko-KR": "Blazing Judgment"
+    }
+  },
+  "146": {
+    "Id": 146,
+    "RecountName": "自动裁决",
+    "DamageId": [
+      124510101
+    ],
+    "Name": "Auto Judgment",
+    "Names": {
+      "en": "Auto Judgment",
+      "zh-CN": "自动裁决",
+      "ko-KR": "Auto Judgment"
+    }
+  },
+  "147": {
+    "Id": 147,
+    "RecountName": "清算",
+    "DamageId": [
+      124120102,
+      124120103,
+      124120104
+    ],
+    "Name": "Reckoning",
+    "Names": {
+      "en": "Reckoning",
+      "zh-CN": "清算",
+      "ko-KR": "Reckoning"
+    }
+  },
+  "148": {
+    "Id": 148,
+    "RecountName": "投掷盾牌",
+    "DamageId": [
+      324010100
+    ],
+    "Name": "Shield Throw",
+    "Names": {
+      "en": "Shield Throw",
+      "zh-CN": "投掷盾牌",
+      "ko-KR": "Shield Throw"
+    }
+  },
+  "149": {
+    "Id": 149,
+    "RecountName": "圣剑",
+    "DamageId": [
+      124210101
+    ],
+    "Name": "Holy Sword",
+    "Names": {
+      "en": "Holy Sword",
+      "zh-CN": "圣剑",
+      "ko-KR": "Holy Sword"
+    }
+  },
+  "150": {
+    "Id": 150,
+    "RecountName": "光明决心",
+    "DamageId": [
+      324010200
+    ],
+    "Name": "Light Resolve",
+    "Names": {
+      "en": "Light Resolve",
+      "zh-CN": "光明决心",
+      "ko-KR": "Light Resolve"
+    }
+  },
+  "151": {
+    "Id": 151,
+    "RecountName": "圣光守卫",
+    "DamageId": [
+      25540502,
+      25540504
+    ],
+    "Name": "Holy Light Guard",
+    "Names": {
+      "en": "Holy Light Guard",
+      "zh-CN": "圣光守卫",
+      "ko-KR": "Holy Light Guard"
+    }
+  },
+  "152": {
+    "Id": 152,
+    "RecountName": "冷酷征伐",
+    "DamageId": [
+      25541203,
+      25541205,
+      25541206,
+      25541703,
+      25541705,
+      25541706,
+      25541209,
+      25541709,
+      25543201,
+      25543101
+    ],
+    "Name": "Ruthless Crusade",
+    "Names": {
+      "en": "Ruthless Crusade",
+      "zh-CN": "冷酷征伐",
+      "ko-KR": "Ruthless Crusade"
+    }
+  },
+  "153": {
+    "Id": 153,
+    "RecountName": "圣环",
+    "DamageId": [
+      25540404,
+      25540403
+    ],
+    "Name": "Holy Ring",
+    "Names": {
+      "en": "Holy Ring",
+      "zh-CN": "圣环",
+      "ko-KR": "Holy Ring"
+    }
+  },
+  "154": {
+    "Id": 154,
+    "RecountName": "断罪",
+    "DamageId": [
+      124160102
+    ],
+    "Name": "Condemnation",
+    "Names": {
+      "en": "Condemnation",
+      "zh-CN": "断罪",
+      "ko-KR": "Condemnation"
+    }
+  },
+  "155": {
+    "Id": 155,
+    "RecountName": "强化断罪",
+    "DamageId": [
+      124170102
+    ],
+    "Name": "Enhanced Condemnation",
+    "Names": {
+      "en": "Enhanced Condemnation",
+      "zh-CN": "强化断罪",
+      "ko-KR": "Enhanced Condemnation"
+    }
+  },
+  "156": {
+    "Id": 156,
+    "RecountName": "炽热清算",
+    "DamageId": [
+      124130102,
+      124130103,
+      124130104,
+      124130105
+    ],
+    "Name": "Blazing Reckoning",
+    "Names": {
+      "en": "Blazing Reckoning",
+      "zh-CN": "炽热清算",
+      "ko-KR": "Blazing Reckoning"
+    }
+  },
+  "157": {
+    "Id": 157,
+    "RecountName": "光明冲击",
+    "DamageId": [
+      124500101
+    ],
+    "Name": "Light Impact",
+    "Names": {
+      "en": "Light Impact",
+      "zh-CN": "光明冲击",
+      "ko-KR": "Light Impact"
+    }
+  },
+  "158": {
+    "Id": 158,
+    "RecountName": "神圣印记",
+    "DamageId": [
+      2220624103,
+      2220624105,
+      2220625006,
+      2220624301
+    ],
+    "Name": "Sacred Seal",
+    "Names": {
+      "en": "Sacred Seal",
+      "zh-CN": "神圣印记",
+      "ko-KR": "Sacred Seal"
+    }
+  },
+  "159": {
+    "Id": 159,
+    "RecountName": "神圣之击",
+    "DamageId": [
+      2220640103
+    ],
+    "Name": "Sacred Strike",
+    "Names": {
+      "en": "Sacred Strike",
+      "zh-CN": "神圣之击",
+      "ko-KR": "Sacred Strike"
+    }
+  },
+  "160": {
+    "Id": 160,
+    "RecountName": "盾击守护",
+    "DamageId": [
+      2220646003
+    ],
+    "Name": "Shield Guard",
+    "Names": {
+      "en": "Shield Guard",
+      "zh-CN": "盾击守护",
+      "ko-KR": "Shield Guard"
+    }
+  },
+  "161": {
+    "Id": 161,
+    "RecountName": "光芒核心",
+    "DamageId": [
+      2220655203,
+      2220655204
+    ],
+    "Name": "Radiant Core",
+    "Names": {
+      "en": "Radiant Core",
+      "zh-CN": "光芒核心",
+      "ko-KR": "Radiant Core"
+    }
+  },
+  "162": {
+    "Id": 162,
+    "RecountName": "回复",
+    "DamageId": [
+      2220149303
+    ],
+    "Name": "Recovery",
+    "Names": {
+      "en": "Recovery",
+      "zh-CN": "回复",
+      "ko-KR": "Recovery"
+    }
+  },
+  "163": {
+    "Id": 163,
+    "RecountName": "神圣光辉",
+    "DamageId": [
+      2220624004
+    ],
+    "Name": "Divine Radiance",
+    "Names": {
+      "en": "Divine Radiance",
+      "zh-CN": "神圣光辉",
+      "ko-KR": "Divine Radiance"
+    }
+  },
+  "164": {
+    "Id": 164,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      115170102
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "165": {
+    "Id": 165,
+    "RecountName": "幸运一击",
+    "DamageId": [
+      2203110503,
+      2203110504
+    ],
+    "Name": "Lucky Strike",
+    "Names": {
+      "en": "Lucky Strike",
+      "zh-CN": "幸运一击",
+      "ko-KR": "Lucky Strike"
+    }
+  },
+  "166": {
+    "Id": 166,
+    "RecountName": "掌控藤蔓",
+    "DamageId": [
+      115010102,
+      115020102,
+      115020103,
+      115030102,
+      115030103,
+      115030104,
+      115040102,
+      115040104
+    ],
+    "Name": "Vine Control",
+    "Names": {
+      "en": "Vine Control",
+      "zh-CN": "掌控藤蔓",
+      "ko-KR": "Vine Control"
+    }
+  },
+  "167": {
+    "Id": 167,
+    "RecountName": "狂野绽放",
+    "DamageId": [
+      115180102,
+      115410102,
+      115300102,
+      22140201,
+      22140203
+    ],
+    "Name": "Wild Bloom",
+    "Names": {
+      "en": "Wild Bloom",
+      "zh-CN": "狂野绽放",
+      "ko-KR": "Wild Bloom"
+    }
+  },
+  "168": {
+    "Id": 168,
+    "RecountName": "生命绽放",
+    "DamageId": [
+      22030104,
+      22110101
+    ],
+    "Name": "Life Bloom",
+    "Names": {
+      "en": "Life Bloom",
+      "zh-CN": "生命绽放",
+      "ko-KR": "Life Bloom"
+    }
+  },
+  "169": {
+    "Id": 169,
+    "RecountName": "繁盛·希望结界",
+    "DamageId": [
+      115090101,
+      22141404,
+      22141405
+    ],
+    "Name": "Flourish: Barrier of Hope",
+    "Names": {
+      "en": "Flourish: Barrier of Hope",
+      "zh-CN": "繁盛·希望结界",
+      "ko-KR": "Flourish: Barrier of Hope"
+    }
+  },
+  "170": {
+    "Id": 170,
+    "RecountName": "花语回升",
+    "DamageId": [
+      115270106,
+      115270108,
+      115560101
+    ],
+    "Name": "Flower Restore",
+    "Names": {
+      "en": "Flower Restore",
+      "zh-CN": "花语回升",
+      "ko-KR": "Flower Restore"
+    }
+  },
+  "171": {
+    "Id": 171,
+    "RecountName": "生机涌动",
+    "DamageId": [],
+    "Name": "Flower Restore",
+    "Names": {
+      "en": "Flower Restore",
+      "zh-CN": "生机涌动",
+      "ko-KR": "Flower Restore"
+    }
+  },
+  "172": {
+    "Id": 172,
+    "RecountName": "不羁之种",
+    "DamageId": [
+      315010300,
+      315010400,
+      115500101
+    ],
+    "Name": "Wild Seed",
+    "Names": {
+      "en": "Wild Seed",
+      "zh-CN": "不羁之种",
+      "ko-KR": "Wild Seed"
+    }
+  },
+  "173": {
+    "Id": 173,
+    "RecountName": "滋养",
+    "DamageId": [
+      22140403
+    ],
+    "Name": "Nurture",
+    "Names": {
+      "en": "Nurture",
+      "zh-CN": "滋养",
+      "ko-KR": "Nurture"
+    }
+  },
+  "174": {
+    "Id": 174,
+    "RecountName": "再生脉冲",
+    "DamageId": [
+      22142501,
+      115600101,
+      115600102,
+      115600103,
+      115610101,
+      115610102,
+      115610103,
+      115610105,
+      115610106,
+      115610107,
+      115610108,
+      115610109,
+      115610110,
+      115610111,
+      115610112,
+      115610113,
+      315011200
+    ],
+    "Name": "Regeneration Pulse",
+    "Names": {
+      "en": "Regeneration Pulse",
+      "zh-CN": "再生脉冲",
+      "ko-KR": "Regeneration Pulse"
+    }
+  },
+  "175": {
+    "Id": 175,
+    "RecountName": "灌注",
+    "DamageId": [
+      315010500,
+      315010600,
+      315010700,
+      315011000
+    ],
+    "Name": "Infusion",
+    "Names": {
+      "en": "Infusion",
+      "zh-CN": "灌注",
+      "ko-KR": "Infusion"
+    }
+  },
+  "176": {
+    "Id": 176,
+    "RecountName": "森之祈愿",
+    "DamageId": [
+      22140601
+    ],
+    "Name": "Forest Voice G10: Forest Prayer",
+    "Names": {
+      "en": "Forest Voice G10: Forest Prayer",
+      "zh-CN": "森之祈愿",
+      "ko-KR": "Forest Voice G10: Forest Prayer"
+    }
+  },
+  "177": {
+    "Id": 177,
+    "RecountName": "森语G10-森之祈愿",
+    "DamageId": [
+      22140604
+    ],
+    "Name": "Forest Voice G10: Forest Prayer",
+    "Names": {
+      "en": "Forest Voice G10: Forest Prayer",
+      "zh-CN": "森语G10-森之祈愿",
+      "ko-KR": "Forest Voice G10: Forest Prayer"
+    }
+  },
+  "178": {
+    "Id": 178,
+    "RecountName": "自然庇护",
+    "DamageId": [],
+    "Name": "Nature's Shelter",
+    "Names": {
+      "en": "Nature's Shelter",
+      "zh-CN": "自然庇护",
+      "ko-KR": "Nature's Shelter"
+    }
+  },
+  "179": {
+    "Id": 179,
+    "RecountName": "盛放注能",
+    "DamageId": [
+      115290101,
+      115290102,
+      2220258103,
+      2220258104,
+      2220258203,
+      2220258204
+    ],
+    "Name": "Bloom Charge",
+    "Names": {
+      "en": "Bloom Charge",
+      "zh-CN": "盛放注能",
+      "ko-KR": "Bloom Charge"
+    }
+  },
+  "180": {
+    "Id": 180,
+    "RecountName": "加速生长",
+    "DamageId": [],
+    "Name": "Accelerated Growth",
+    "Names": {
+      "en": "Accelerated Growth",
+      "zh-CN": "加速生长",
+      "ko-KR": "Accelerated Growth"
+    }
+  },
+  "181": {
+    "Id": 181,
+    "RecountName": "鹿之奔袭",
+    "DamageId": [
+      315010100,
+      22141804
+    ],
+    "Name": "Deer Dash",
+    "Names": {
+      "en": "Deer Dash",
+      "zh-CN": "鹿之奔袭",
+      "ko-KR": "Deer Dash"
+    }
+  },
+  "182": {
+    "Id": 182,
+    "RecountName": "狂野之种",
+    "DamageId": [
+      115510101
+    ],
+    "Name": "Feral Seed",
+    "Names": {
+      "en": "Feral Seed",
+      "zh-CN": "狂野之种",
+      "ko-KR": "Feral Seed"
+    }
+  },
+  "183": {
+    "Id": 183,
+    "RecountName": "共生印记",
+    "DamageId": [
+      22142303
+    ],
+    "Name": "Symbiosis Mark",
+    "Names": {
+      "en": "Symbiosis Mark",
+      "zh-CN": "共生印记",
+      "ko-KR": "Symbiosis Mark"
+    }
+  },
+  "184": {
+    "Id": 184,
+    "RecountName": "滋养之种",
+    "DamageId": [
+      2220231103,
+      2220231104
+    ],
+    "Name": "Nourishing Seed",
+    "Names": {
+      "en": "Nourishing Seed",
+      "zh-CN": "滋养之种",
+      "ko-KR": "Nourishing Seed"
+    }
+  },
+  "185": {
+    "Id": 185,
+    "RecountName": "自然护盾",
+    "DamageId": [
+      2220212004
+    ],
+    "Name": "Nature Shield",
+    "Names": {
+      "en": "Nature Shield",
+      "zh-CN": "自然护盾",
+      "ko-KR": "Nature Shield"
+    }
+  },
+  "186": {
+    "Id": 186,
+    "RecountName": "治疗链接",
+    "DamageId": [
+      2220209101
+    ],
+    "Name": "Heal Link",
+    "Names": {
+      "en": "Heal Link",
+      "zh-CN": "治疗链接",
+      "ko-KR": "Heal Link"
+    }
+  },
+  "187": {
+    "Id": 187,
+    "RecountName": "复苏",
+    "DamageId": [
+      2220226203
+    ],
+    "Name": "Revival",
+    "Names": {
+      "en": "Revival",
+      "zh-CN": "复苏",
+      "ko-KR": "Revival"
+    }
+  },
+  "188": {
+    "Id": 188,
+    "RecountName": "自然绽放",
+    "DamageId": [
+      2220227101
+    ],
+    "Name": "Nature Bloom",
+    "Names": {
+      "en": "Nature Bloom",
+      "zh-CN": "自然绽放",
+      "ko-KR": "Nature Bloom"
+    }
+  },
+  "189": {
+    "Id": 189,
+    "RecountName": "治疗脉冲",
+    "DamageId": [
+      315010200,
+      315010201
+    ],
+    "Name": "Heal Pulse",
+    "Names": {
+      "en": "Heal Pulse",
+      "zh-CN": "治疗脉冲",
+      "ko-KR": "Heal Pulse"
+    }
+  },
+  "190": {
+    "Id": 190,
+    "RecountName": "治疗球",
+    "DamageId": [
+      2220229101
+    ],
+    "Name": "Heal Orb",
+    "Names": {
+      "en": "Heal Orb",
+      "zh-CN": "治疗球",
+      "ko-KR": "Heal Orb"
+    }
+  },
+  "191": {
+    "Id": 191,
+    "RecountName": "荆棘",
+    "DamageId": [
+      22142403
+    ],
+    "Name": "Thorns",
+    "Names": {
+      "en": "Thorns",
+      "zh-CN": "荆棘",
+      "ko-KR": "Thorns"
+    }
+  },
+  "192": {
+    "Id": 192,
+    "RecountName": "休止的治愈",
+    "DamageId": [
+      25535501,
+      25535601,
+      25535701
+    ],
+    "Name": "Rest Healing",
+    "Names": {
+      "en": "Rest Healing",
+      "zh-CN": "休止的治愈",
+      "ko-KR": "Rest Healing"
+    }
+  },
+  "193": {
+    "Id": 193,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      123370101
+    ],
+    "Name": "Red Light Counter Attack",
+    "Names": {
+      "en": "Red Light Counter Attack",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Red Light Counter Attack"
+    }
+  },
+  "194": {
+    "Id": 194,
+    "RecountName": "幸运一击(吉他）",
+    "DamageId": [
+      2203111103,
+      2203111104
+    ],
+    "Name": "Lucky Strike (Guitar)",
+    "Names": {
+      "en": "Lucky Strike (Guitar)",
+      "zh-CN": "幸运一击(吉他）",
+      "ko-KR": "Lucky Strike (Guitar)"
+    }
+  },
+  "195": {
+    "Id": 195,
+    "RecountName": "琴弦叩击",
+    "DamageId": [
+      123210102,
+      123210103,
+      123220102,
+      123220103,
+      123230102,
+      123230103,
+      123240102,
+      123240103
+    ],
+    "Name": "String Strike",
+    "Names": {
+      "en": "String Strike",
+      "zh-CN": "琴弦叩击",
+      "ko-KR": "String Strike"
+    }
+  },
+  "196": {
+    "Id": 196,
+    "RecountName": "琴弦撩拨",
+    "DamageId": [
+      123010102,
+      123020102,
+      123030102,
+      123040102
+    ],
+    "Name": "String Pluck",
+    "Names": {
+      "en": "String Pluck",
+      "zh-CN": "琴弦撩拨",
+      "ko-KR": "String Pluck"
+    }
+  },
+  "197": {
+    "Id": 197,
+    "RecountName": "增幅节拍",
+    "DamageId": [
+      123060101,
+      123060103,
+      123060104
+    ],
+    "Name": "Amplify Beat",
+    "Names": {
+      "en": "Amplify Beat",
+      "zh-CN": "增幅节拍",
+      "ko-KR": "Amplify Beat"
+    }
+  },
+  "198": {
+    "Id": 198,
+    "RecountName": "愈合节拍",
+    "DamageId": [
+      25530201,
+      25530203,
+      25530204
+    ],
+    "Name": "Healing Beat",
+    "Names": {
+      "en": "Healing Beat",
+      "zh-CN": "愈合节拍",
+      "ko-KR": "Healing Beat"
+    }
+  },
+  "199": {
+    "Id": 199,
+    "RecountName": "升格·劲爆全场/升格·无限狂想",
+    "DamageId": [
+      123140106,
+      123140107,
+      123140108,
+      123350102,
+      25534401,
+      25534601,
+      123640104,
+      123640105,
+      123640106,
+      123650102
+    ],
+    "Name": "Ascend: Full Blast / Ascend: Infinite Fantasy",
+    "Names": {
+      "en": "Ascend: Full Blast / Ascend: Infinite Fantasy",
+      "zh-CN": "升格·劲爆全场/升格·无限狂想",
+      "ko-KR": "Ascend: Full Blast / Ascend: Infinite Fantasy"
+    }
+  },
+  "200": {
+    "Id": 200,
+    "RecountName": "升格·巡演曲",
+    "DamageId": [
+      123360101,
+      25533901,
+      123660102
+    ],
+    "Name": "Ascend: Tour Song",
+    "Names": {
+      "en": "Ascend: Tour Song",
+      "zh-CN": "升格·巡演曲",
+      "ko-KR": "Ascend: Tour Song"
+    }
+  },
+  "201": {
+    "Id": 201,
+    "RecountName": "聚合乐章",
+    "DamageId": [
+      12301010101,
+      12301020101,
+      12301020102,
+      12301030101,
+      12301030102,
+      12301030103,
+      12301040101,
+      12301040102,
+      12301040103,
+      12301040104,
+      323010100
+    ],
+    "Name": "Convergence Symphony",
+    "Names": {
+      "en": "Convergence Symphony",
+      "zh-CN": "聚合乐章",
+      "ko-KR": "Convergence Symphony"
+    }
+  },
+  "202": {
+    "Id": 202,
+    "RecountName": "烈焰狂想",
+    "DamageId": [
+      323080100,
+      323090100,
+      323100100,
+      25530101,
+      25530103
+    ],
+    "Name": "Flame Fantasy",
+    "Names": {
+      "en": "Flame Fantasy",
+      "zh-CN": "烈焰狂想",
+      "ko-KR": "Flame Fantasy"
+    }
+  },
+  "203": {
+    "Id": 203,
+    "RecountName": "炎律狂踏",
+    "DamageId": [
+      12301050101,
+      2220743103
+    ],
+    "Name": "Fire Rhythm Stomp",
+    "Names": {
+      "en": "Fire Rhythm Stomp",
+      "zh-CN": "炎律狂踏",
+      "ko-KR": "Fire Rhythm Stomp"
+    }
+  },
+  "204": {
+    "Id": 204,
+    "RecountName": "烈焰音符",
+    "DamageId": [
+      12301060101
+    ],
+    "Name": "Flame Note",
+    "Names": {
+      "en": "Flame Note",
+      "zh-CN": "烈焰音符",
+      "ko-KR": "Flame Note"
+    }
+  },
+  "205": {
+    "Id": 205,
+    "RecountName": "鸣奏·英勇乐章",
+    "DamageId": [
+      25534101
+    ],
+    "Name": "Sonata: Brave Symphony",
+    "Names": {
+      "en": "Sonata: Brave Symphony",
+      "zh-CN": "鸣奏·英勇乐章",
+      "ko-KR": "Sonata: Brave Symphony"
+    }
+  },
+  "206": {
+    "Id": 206,
+    "RecountName": "猛烈挥击",
+    "DamageId": [
+      123170104
+    ],
+    "Name": "Fierce Swing",
+    "Names": {
+      "en": "Fierce Swing",
+      "zh-CN": "猛烈挥击",
+      "ko-KR": "Fierce Swing"
+    }
+  },
+  "207": {
+    "Id": 207,
+    "RecountName": "鸣奏·愈合乐章",
+    "DamageId": [
+      25534201
+    ],
+    "Name": "Sonata: Healing Symphony",
+    "Names": {
+      "en": "Sonata: Healing Symphony",
+      "zh-CN": "鸣奏·愈合乐章",
+      "ko-KR": "Sonata: Healing Symphony"
+    }
+  },
+  "208": {
+    "Id": 208,
+    "RecountName": "激涌五重奏",
+    "DamageId": [
+      123120123,
+      123120124,
+      123120125,
+      123120126,
+      123120127,
+      25530401,
+      25530403,
+      123620111,
+      123620112,
+      123620113,
+      123620114,
+      123620115
+    ],
+    "Name": "Surge Quintet",
+    "Names": {
+      "en": "Surge Quintet",
+      "zh-CN": "激涌五重奏",
+      "ko-KR": "Surge Quintet"
+    }
+  },
+  "209": {
+    "Id": 209,
+    "RecountName": "热情挥洒",
+    "DamageId": [
+      123130106,
+      123130107,
+      123130108
+    ],
+    "Name": "Passionate Swing",
+    "Names": {
+      "en": "Passionate Swing",
+      "zh-CN": "热情挥洒",
+      "ko-KR": "Passionate Swing"
+    }
+  },
+  "210": {
+    "Id": 210,
+    "RecountName": "激昂·热情挥洒",
+    "DamageId": [
+      123320102,
+      123320103
+    ],
+    "Name": "Fervent: Passionate Swing",
+    "Names": {
+      "en": "Fervent: Passionate Swing",
+      "zh-CN": "激昂·热情挥洒",
+      "ko-KR": "Fervent: Passionate Swing"
+    }
+  },
+  "211": {
+    "Id": 211,
+    "RecountName": "安可",
+    "DamageId": [
+      323040100,
+      323050100,
+      25531401,
+      25531403
+    ],
+    "Name": "Encore",
+    "Names": {
+      "en": "Encore",
+      "zh-CN": "安可",
+      "ko-KR": "Encore"
+    }
+  },
+  "212": {
+    "Id": 212,
+    "RecountName": "万众瞩目",
+    "DamageId": [],
+    "Name": "Center of Attention",
+    "Names": {
+      "en": "Center of Attention",
+      "zh-CN": "万众瞩目",
+      "ko-KR": "Center of Attention"
+    }
+  },
+  "213": {
+    "Id": 213,
+    "RecountName": "安和曲",
+    "DamageId": [
+      25531105
+    ],
+    "Name": "Peaceful Melody",
+    "Names": {
+      "en": "Peaceful Melody",
+      "zh-CN": "安和曲",
+      "ko-KR": "Peaceful Melody"
+    }
+  },
+  "214": {
+    "Id": 214,
+    "RecountName": "活力解放",
+    "DamageId": [
+      2220762007,
+      2220762008
+    ],
+    "Name": "Vitality Release",
+    "Names": {
+      "en": "Vitality Release",
+      "zh-CN": "活力解放",
+      "ko-KR": "Vitality Release"
+    }
+  },
+  "215": {
+    "Id": 215,
+    "RecountName": "炽焰治愈",
+    "DamageId": [
+      2220715103
+    ],
+    "Name": "Blazing Flame Healing",
+    "Names": {
+      "en": "Blazing Flame Healing",
+      "zh-CN": "炽焰治愈",
+      "ko-KR": "Blazing Flame Healing"
+    }
+  },
+  "216": {
+    "Id": 216,
+    "RecountName": "火柱冲击",
+    "DamageId": [
+      123290101,
+      123300101,
+      123300102
+    ],
+    "Name": "Fire Pillar Impact",
+    "Names": {
+      "en": "Fire Pillar Impact",
+      "zh-CN": "火柱冲击",
+      "ko-KR": "Fire Pillar Impact"
+    }
+  },
+  "217": {
+    "Id": 217,
+    "RecountName": "烈火冲击",
+    "DamageId": [
+      123310102
+    ],
+    "Name": "Blazing Fire Impact",
+    "Names": {
+      "en": "Blazing Fire Impact",
+      "zh-CN": "烈火冲击",
+      "ko-KR": "Blazing Fire Impact"
+    }
+  },
+  "218": {
+    "Id": 218,
+    "RecountName": "音符",
+    "DamageId": [
+      2220741101,
+      2220714102,
+      2220714103
+    ],
+    "Name": "Note",
+    "Names": {
+      "en": "Note",
+      "zh-CN": "音符",
+      "ko-KR": "Note"
+    }
+  },
+  "219": {
+    "Id": 219,
+    "RecountName": "火焰震击",
+    "DamageId": [
+      123200101
+    ],
+    "Name": "Flame Shockwave",
+    "Names": {
+      "en": "Flame Shockwave",
+      "zh-CN": "火焰震击",
+      "ko-KR": "Flame Shockwave"
+    }
+  },
+  "220": {
+    "Id": 220,
+    "RecountName": "音符热浪",
+    "DamageId": [
+      2220768103
+    ],
+    "Name": "Note Heat Wave",
+    "Names": {
+      "en": "Note Heat Wave",
+      "zh-CN": "音符热浪",
+      "ko-KR": "Note Heat Wave"
+    }
+  },
+  "221": {
+    "Id": 221,
+    "RecountName": "休止的治愈",
+    "DamageId": [
+      22142701,
+      22142801,
+      22142901,
+      22143001
+    ],
+    "Name": "Rest Healing",
+    "Names": {
+      "en": "Rest Healing",
+      "zh-CN": "休止的治愈",
+      "ko-KR": "Rest Healing"
+    }
+  },
+  "222": {
+    "Id": 222,
+    "RecountName": "红光反制攻击",
+    "DamageId": [
+      116240101
+    ],
+    "Name": "Ultimate! Roar Command",
+    "Names": {
+      "en": "Ultimate! Roar Command",
+      "zh-CN": "红光反制攻击",
+      "ko-KR": "Ultimate! Roar Command"
+    }
+  },
+  "223": {
+    "Id": 223,
+    "RecountName": "战斧-幸运",
+    "DamageId": [
+      2203110303,
+      2203110304
+    ],
+    "Name": "Ultimate! Star Fragment Fall",
+    "Names": {
+      "en": "Ultimate! Star Fragment Fall",
+      "zh-CN": "战斧-幸运",
+      "ko-KR": "Ultimate! Star Fragment Fall"
+    }
+  },
+  "224": {
+    "Id": 224,
+    "RecountName": "炽热挥击",
+    "DamageId": [
+      116010101,
+      116020101,
+      116020102,
+      116030101,
+      116030102,
+      116040101
+    ],
+    "Name": "Ultimate! Flash Step Ambush",
+    "Names": {
+      "en": "Ultimate! Flash Step Ambush",
+      "zh-CN": "炽热挥击",
+      "ko-KR": "Ultimate! Flash Step Ambush"
+    }
+  },
+  "225": {
+    "Id": 225,
+    "RecountName": "炽热升腾",
+    "DamageId": [
+      116050102,
+      116050103,
+      116190102,
+      116190103
+    ],
+    "Name": "Ultimate! Hunt Slash",
+    "Names": {
+      "en": "Ultimate! Hunt Slash",
+      "zh-CN": "炽热升腾",
+      "ko-KR": "Ultimate! Hunt Slash"
+    }
+  },
+  "226": {
+    "Id": 226,
+    "RecountName": "飞腾炎华二段",
+    "DamageId": [
+      116200103
+    ],
+    "Name": "Secret Art! Blazing Axe",
+    "Names": {
+      "en": "Secret Art! Blazing Axe",
+      "zh-CN": "飞腾炎华二段",
+      "ko-KR": "Secret Art! Blazing Axe"
+    }
+  },
+  "227": {
+    "Id": 227,
+    "RecountName": "狂热斩击",
+    "DamageId": [
+      116060102
+    ],
+    "Name": "Secret Art! Poison Burst",
+    "Names": {
+      "en": "Secret Art! Poison Burst",
+      "zh-CN": "狂热斩击",
+      "ko-KR": "Secret Art! Poison Burst"
+    }
+  },
+  "228": {
+    "Id": 228,
+    "RecountName": "狂热斩击回血",
+    "DamageId": [
+      23510401
+    ],
+    "Name": "Ultimate! Super Critical",
+    "Names": {
+      "en": "Ultimate! Super Critical",
+      "zh-CN": "狂热斩击回血",
+      "ko-KR": "Ultimate! Super Critical"
+    }
+  },
+  "229": {
+    "Id": 229,
+    "RecountName": "烬灭！狱炎不知火",
+    "DamageId": [
+      116180104,
+      116180105,
+      116180106,
+      116180107
+    ],
+    "Name": "Ultimate! Rapid Fire",
+    "Names": {
+      "en": "Ultimate! Rapid Fire",
+      "zh-CN": "烬灭！狱炎不知火",
+      "ko-KR": "Ultimate! Rapid Fire"
+    }
+  },
+  "230": {
+    "Id": 230,
+    "RecountName": "炽焰突袭",
+    "DamageId": [
+      116070102,
+      116070103,
+      116070105,
+      116070106
+    ],
+    "Name": "Ultimate! Overwhelming Thunder",
+    "Names": {
+      "en": "Ultimate! Overwhelming Thunder",
+      "zh-CN": "炽焰突袭",
+      "ko-KR": "Ultimate! Overwhelming Thunder"
+    }
+  },
+  "231": {
+    "Id": 231,
+    "RecountName": "暴怒劈斩",
+    "DamageId": [
+      116080101,
+      116080102,
+      116090101,
+      116090102,
+      116100101,
+      116110101
+    ],
+    "Name": "Secret Art! Heavy Hammer Frenzy",
+    "Names": {
+      "en": "Secret Art! Heavy Hammer Frenzy",
+      "zh-CN": "暴怒劈斩",
+      "ko-KR": "Secret Art! Heavy Hammer Frenzy"
+    }
+  },
+  "232": {
+    "Id": 232,
+    "RecountName": "斧风",
+    "DamageId": [
+      116120101
+    ],
+    "Name": "Secret Art! Meteor Fall",
+    "Names": {
+      "en": "Secret Art! Meteor Fall",
+      "zh-CN": "斧风",
+      "ko-KR": "Secret Art! Meteor Fall"
+    }
+  },
+  "233": {
+    "Id": 233,
+    "RecountName": "迷狂炎舞",
+    "DamageId": [
+      116130101,
+      116130103
+    ],
+    "Name": "Secret Art! Azure Wave Howl",
+    "Names": {
+      "en": "Secret Art! Azure Wave Howl",
+      "zh-CN": "迷狂炎舞",
+      "ko-KR": "Secret Art! Azure Wave Howl"
+    }
+  },
+  "234": {
+    "Id": 234,
+    "RecountName": "无羁坠星",
+    "DamageId": [
+      116140103,
+      11601010101
+    ],
+    "Name": "Secret Art! Cocoon Art",
+    "Names": {
+      "en": "Secret Art! Cocoon Art",
+      "zh-CN": "无羁坠星",
+      "ko-KR": "Secret Art! Cocoon Art"
+    }
+  },
+  "235": {
+    "Id": 235,
+    "RecountName": "荒火星流",
+    "DamageId": [],
+    "Name": "Ultimate! Silent Water",
+    "Names": {
+      "en": "Ultimate! Silent Water",
+      "zh-CN": "荒火星流",
+      "ko-KR": "Ultimate! Silent Water"
+    }
+  },
+  "236": {
+    "Id": 236,
+    "RecountName": "如川流华斩",
+    "DamageId": [
+      116160102
+    ],
+    "Name": "Ultimate! Lightning Ball",
+    "Names": {
+      "en": "Ultimate! Lightning Ball",
+      "zh-CN": "如川流华斩",
+      "ko-KR": "Ultimate! Lightning Ball"
+    }
+  },
+  "237": {
+    "Id": 237,
+    "RecountName": "如川流华斩- 技能本体吸血",
+    "DamageId": [
+      23510503
+    ],
+    "Name": "Ultimate! Whirlwind Slash",
+    "Names": {
+      "en": "Ultimate! Whirlwind Slash",
+      "zh-CN": "如川流华斩- 技能本体吸血",
+      "ko-KR": "Ultimate! Whirlwind Slash"
+    }
+  },
+  "238": {
+    "Id": 238,
+    "RecountName": "爆裂之怒",
+    "DamageId": [],
+    "Name": "Ultimate! Spiral Rift",
+    "Names": {
+      "en": "Ultimate! Spiral Rift",
+      "zh-CN": "爆裂之怒",
+      "ko-KR": "Ultimate! Spiral Rift"
+    }
+  },
+  "239": {
+    "Id": 239,
+    "RecountName": "迷炎狂舞·终式",
+    "DamageId": [
+      116220101
+    ],
+    "Name": "Ultimate! Reckless Charge",
+    "Names": {
+      "en": "Ultimate! Reckless Charge",
+      "zh-CN": "迷炎狂舞·终式",
+      "ko-KR": "Ultimate! Reckless Charge"
+    }
+  },
+  "240": {
+    "Id": 240,
+    "RecountName": "炎魔天落杀",
+    "DamageId": [
+      116210103,
+      116210105,
+      116210106,
+      116210107,
+      11601030101,
+      11601030102,
+      11601030103
+    ],
+    "Name": "Ultimate! EM Bomb",
+    "Names": {
+      "en": "Ultimate! EM Bomb",
+      "zh-CN": "炎魔天落杀",
+      "ko-KR": "Ultimate! EM Bomb"
+    }
+  },
+  "241": {
+    "Id": 241,
+    "RecountName": "地火流星",
+    "DamageId": [
+      11601020101
+    ],
+    "Name": "Ultimate! Chaotic Missile",
+    "Names": {
+      "en": "Ultimate! Chaotic Missile",
+      "zh-CN": "地火流星",
+      "ko-KR": "Ultimate! Chaotic Missile"
+    }
+  },
+  "242": {
+    "Id": 242,
+    "RecountName": "燃烧",
+    "DamageId": [
+      2220817203,
+      2220817204
+    ],
+    "Name": "Ultimate! Blade Sweep",
+    "Names": {
+      "en": "Ultimate! Blade Sweep",
+      "zh-CN": "燃烧",
+      "ko-KR": "Ultimate! Blade Sweep"
+    }
+  },
+  "243": {
+    "Id": 243,
+    "RecountName": "炎爆",
+    "DamageId": [
+      2220818103
+    ],
+    "Name": "Ultimate! Shell Defense",
+    "Names": {
+      "en": "Ultimate! Shell Defense",
+      "zh-CN": "炎爆",
+      "ko-KR": "Ultimate! Shell Defense"
+    }
+  },
+  "244": {
+    "Id": 244,
+    "RecountName": "大红莲丸",
+    "DamageId": [
+      116230101
+    ],
+    "Name": "Ultimate! Earth Shield",
+    "Names": {
+      "en": "Ultimate! Earth Shield",
+      "zh-CN": "大红莲丸",
+      "ko-KR": "Ultimate! Earth Shield"
+    }
+  },
+  "245": {
+    "Id": 245,
+    "RecountName": "无相火斩",
+    "DamageId": [
+      23510703,
+      23510803,
+      23510903
+    ],
+    "Name": "Secret Art! Thunder Roar",
+    "Names": {
+      "en": "Secret Art! Thunder Roar",
+      "zh-CN": "无相火斩",
+      "ko-KR": "Secret Art! Thunder Roar"
+    }
+  },
+  "246": {
+    "Id": 246,
+    "RecountName": "绝技！怒吼指令",
+    "DamageId": [
+      2211006203
+    ],
+    "Name": "Secret Art! Pulse Prayer",
+    "Names": {
+      "en": "Secret Art! Pulse Prayer",
+      "zh-CN": "绝技！怒吼指令",
+      "ko-KR": "Secret Art! Pulse Prayer"
+    }
+  },
+  "247": {
+    "Id": 247,
+    "RecountName": "绝技！碎星坠落",
+    "DamageId": [
+      120028530101
+    ],
+    "Name": "Secret Art! Thunder Sky Pull",
+    "Names": {
+      "en": "Secret Art! Thunder Sky Pull",
+      "zh-CN": "绝技！碎星坠落",
+      "ko-KR": "Secret Art! Thunder Sky Pull"
+    }
+  },
+  "248": {
+    "Id": 248,
+    "RecountName": "绝技！瞬步奇袭",
+    "DamageId": [
+      120017400103,
+      120017400104,
+      120017400105
+    ],
+    "Name": "Secret Art! Hell Thrust",
+    "Names": {
+      "en": "Secret Art! Hell Thrust",
+      "zh-CN": "绝技！瞬步奇袭",
+      "ko-KR": "Secret Art! Hell Thrust"
+    }
+  },
+  "249": {
+    "Id": 249,
+    "RecountName": "绝技！追猎猛斩",
+    "DamageId": [
+      110052400101,
+      110052400102,
+      110052400105,
+      110052400106
+    ],
+    "Name": "Secret Art! Glass Flame Roar",
+    "Names": {
+      "en": "Secret Art! Glass Flame Roar",
+      "zh-CN": "绝技！追猎猛斩",
+      "ko-KR": "Secret Art! Glass Flame Roar"
+    }
+  },
+  "250": {
+    "Id": 250,
+    "RecountName": "奥义！炽炎战斧",
+    "DamageId": [
+      2321005102
+    ],
+    "Name": "Ultimate! Ultra Heavy Slash",
+    "Names": {
+      "en": "Ultimate! Ultra Heavy Slash",
+      "zh-CN": "奥义！炽炎战斧",
+      "ko-KR": "Ultimate! Ultra Heavy Slash"
+    }
+  },
+  "251": {
+    "Id": 251,
+    "RecountName": "奥义！毒爆",
+    "DamageId": [
+      110077410101,
+      2211009903
+    ],
+    "Name": "Ultimate! Invisible Impact",
+    "Names": {
+      "en": "Ultimate! Invisible Impact",
+      "zh-CN": "奥义！毒爆",
+      "ko-KR": "Ultimate! Invisible Impact"
+    }
+  },
+  "252": {
+    "Id": 252,
+    "RecountName": "绝技！超会心",
+    "DamageId": [
+      110024400103,
+      2321006101
+    ],
+    "Name": "Ultimate! Transform Bee",
+    "Names": {
+      "en": "Ultimate! Transform Bee",
+      "zh-CN": "绝技！超会心",
+      "ko-KR": "Ultimate! Transform Bee"
+    }
+  },
+  "253": {
+    "Id": 253,
+    "RecountName": "绝技! 乱射",
+    "DamageId": [
+      11007300102,
+      11007300104,
+      31007080100,
+      339100700
+    ],
+    "Name": "Secret Art! Silent Tide",
+    "Names": {
+      "en": "Secret Art! Silent Tide",
+      "zh-CN": "绝技! 乱射",
+      "ko-KR": "Secret Art! Silent Tide"
+    }
+  },
+  "254": {
+    "Id": 254,
+    "RecountName": "绝技！强压之雷",
+    "DamageId": [
+      110104400101,
+      110104400102,
+      2321008101
+    ],
+    "Name": "Secret Art! Frost Tremor",
+    "Names": {
+      "en": "Secret Art! Frost Tremor",
+      "zh-CN": "绝技！强压之雷",
+      "ko-KR": "Secret Art! Frost Tremor"
+    }
+  },
+  "255": {
+    "Id": 255,
+    "RecountName": "奥义! 重锤狂袭",
+    "DamageId": [
+      117004400103,
+      117004400105
+    ],
+    "Name": "Secret Art! Instant Slash",
+    "Names": {
+      "en": "Secret Art! Instant Slash",
+      "zh-CN": "奥义! 重锤狂袭",
+      "ko-KR": "Secret Art! Instant Slash"
+    }
+  },
+  "256": {
+    "Id": 256,
+    "RecountName": "奥义! 流星陨落",
+    "DamageId": [
+      136990101,
+      136980101,
+      2321002103,
+      2321002203
+    ],
+    "Name": "Secret Art! Heart of Flames",
+    "Names": {
+      "en": "Secret Art! Heart of Flames",
+      "zh-CN": "奥义! 流星陨落",
+      "ko-KR": "Secret Art! Heart of Flames"
+    }
+  },
+  "257": {
+    "Id": 257,
+    "RecountName": "奥义！沧澜风啸",
+    "DamageId": [
+      110084400101
+    ],
+    "Name": "Secret Art! Life Wish",
+    "Names": {
+      "en": "Secret Art! Life Wish",
+      "zh-CN": "奥义！沧澜风啸",
+      "ko-KR": "Secret Art! Life Wish"
+    }
+  },
+  "258": {
+    "Id": 258,
+    "RecountName": "奥义！茧房术",
+    "DamageId": [
+      110069400101
+    ],
+    "Name": "Secret Art! Time Decree",
+    "Names": {
+      "en": "Secret Art! Time Decree",
+      "zh-CN": "奥义！茧房术",
+      "ko-KR": "Secret Art! Time Decree"
+    }
+  },
+  "259": {
+    "Id": 259,
+    "RecountName": "绝技！静默之水",
+    "DamageId": [
+      139360010101
+    ],
+    "Name": "Secret Art! Goblin Grand March",
+    "Names": {
+      "en": "Secret Art! Goblin Grand March",
+      "zh-CN": "绝技！静默之水",
+      "ko-KR": "Secret Art! Goblin Grand March"
+    }
+  },
+  "260": {
+    "Id": 260,
+    "RecountName": "绝技！雷光球",
+    "DamageId": [
+      31000200,
+      31000201
+    ],
+    "Name": "Secret Art! Divine Possession",
+    "Names": {
+      "en": "Secret Art! Divine Possession",
+      "zh-CN": "绝技！雷光球",
+      "ko-KR": "Secret Art! Divine Possession"
+    }
+  },
+  "261": {
+    "Id": 261,
+    "RecountName": "绝技! 旋风斩",
+    "DamageId": [
+      110086410103
+    ],
+    "Name": "Secret Art! All Things Ascend",
+    "Names": {
+      "en": "Secret Art! All Things Ascend",
+      "zh-CN": "绝技! 旋风斩",
+      "ko-KR": "Secret Art! All Things Ascend"
+    }
+  },
+  "262": {
+    "Id": 262,
+    "RecountName": "绝技！螺旋断界",
+    "DamageId": [
+      110059400101
+    ],
+    "Name": "Secret Art! World Boundary",
+    "Names": {
+      "en": "Secret Art! World Boundary",
+      "zh-CN": "绝技！螺旋断界",
+      "ko-KR": "Secret Art! World Boundary"
+    }
+  },
+  "263": {
+    "Id": 263,
+    "RecountName": "绝技！猪突猛进",
+    "DamageId": [
+      11026400101,
+      11026400108
+    ],
+    "Name": "Secret Art! Phantom Resonance",
+    "Names": {
+      "en": "Secret Art! Phantom Resonance",
+      "zh-CN": "绝技！猪突猛进",
+      "ko-KR": "Secret Art! Phantom Resonance"
+    }
+  },
+  "264": {
+    "Id": 264,
+    "RecountName": "绝技！电磁爆弹",
+    "DamageId": [
+      139130010101,
+      339130100
+    ],
+    "Name": "Secret Art! Raging Flames",
+    "Names": {
+      "en": "Secret Art! Raging Flames",
+      "zh-CN": "绝技！电磁爆弹",
+      "ko-KR": "Secret Art! Raging Flames"
+    }
+  },
+  "265": {
+    "Id": 265,
+    "RecountName": "绝技！缭乱飞弹",
+    "DamageId": [
+      339100100,
+      339100200,
+      339100300,
+      339100400,
+      339100500,
+      339100600,
+      2211009003,
+      2211009103
+    ],
+    "Name": "Secret Art! Peerless Thrust",
+    "Names": {
+      "en": "Secret Art! Peerless Thrust",
+      "zh-CN": "绝技！缭乱飞弹",
+      "ko-KR": "Secret Art! Peerless Thrust"
+    }
+  },
+  "266": {
+    "Id": 266,
+    "RecountName": "绝技！剑刃横扫",
+    "DamageId": [
+      139140102,
+      139140103,
+      31004010200
+    ],
+    "Name": "Secret Art! Phantom Ambush",
+    "Names": {
+      "en": "Secret Art! Phantom Ambush",
+      "zh-CN": "绝技！剑刃横扫",
+      "ko-KR": "Secret Art! Phantom Ambush"
+    }
+  },
+  "267": {
+    "Id": 267,
+    "RecountName": "绝技！缩壳防御",
+    "DamageId": [],
+    "Name": "Secret Art! Cabbage Heavy Hammer",
+    "Names": {
+      "en": "Secret Art! Cabbage Heavy Hammer",
+      "zh-CN": "绝技！缩壳防御",
+      "ko-KR": "Secret Art! Cabbage Heavy Hammer"
+    }
+  },
+  "268": {
+    "Id": 268,
+    "RecountName": "绝技！大地之盾",
+    "DamageId": [
+      2211006603
+    ],
+    "Name": "Secret Art! Flame Spirit Fortune",
+    "Names": {
+      "en": "Secret Art! Flame Spirit Fortune",
+      "zh-CN": "绝技！大地之盾",
+      "ko-KR": "Secret Art! Flame Spirit Fortune"
+    }
+  },
+  "269": {
+    "Id": 269,
+    "RecountName": "奥义！雷霆咆哮",
+    "DamageId": [
+      2211009601,
+      2211009604
+    ],
+    "Name": "Secret Art! Fatal Spiral",
+    "Names": {
+      "en": "Secret Art! Fatal Spiral",
+      "zh-CN": "奥义！雷霆咆哮",
+      "ko-KR": "Secret Art! Fatal Spiral"
+    }
+  },
+  "270": {
+    "Id": 270,
+    "RecountName": "奥义！脉冲祝祷",
+    "DamageId": [
+      2211001203,
+      2321010102
+    ],
+    "Name": "Ultimate! Frost Breath",
+    "Names": {
+      "en": "Ultimate! Frost Breath",
+      "zh-CN": "奥义！脉冲祝祷",
+      "ko-KR": "Ultimate! Frost Breath"
+    }
+  },
+  "271": {
+    "Id": 271,
+    "RecountName": "奥义！雷霆天引",
+    "DamageId": [
+      120024400102,
+      2321003101
+    ],
+    "Name": "Ultimate! Thunder Punishment",
+    "Names": {
+      "en": "Ultimate! Thunder Punishment",
+      "zh-CN": "奥义！雷霆天引",
+      "ko-KR": "Ultimate! Thunder Punishment"
+    }
+  },
+  "272": {
+    "Id": 272,
+    "RecountName": "奥义！地狱突刺",
+    "DamageId": [
+      110081400101
+    ],
+    "Name": "Ultimate! Blade Storm",
+    "Names": {
+      "en": "Ultimate! Blade Storm",
+      "zh-CN": "奥义！地狱突刺",
+      "ko-KR": "Ultimate! Blade Storm"
+    }
+  },
+  "273": {
+    "Id": 273,
+    "RecountName": "奥义！琉火咆哮",
+    "DamageId": [
+      139010101,
+      2211008304
+    ],
+    "Name": "Ultimate! Healing Bomb",
+    "Names": {
+      "en": "Ultimate! Healing Bomb",
+      "zh-CN": "奥义！琉火咆哮",
+      "ko-KR": "Ultimate! Healing Bomb"
+    }
+  },
+  "274": {
+    "Id": 274,
+    "RecountName": "绝技！超重斩",
+    "DamageId": [
+      130810230101,
+      130810230102,
+      130810230103
+    ],
+    "Name": "Ultimate! Full Bombardment",
+    "Names": {
+      "en": "Ultimate! Full Bombardment",
+      "zh-CN": "绝技！超重斩",
+      "ko-KR": "Ultimate! Full Bombardment"
+    }
+  },
+  "275": {
+    "Id": 275,
+    "RecountName": "绝技！无形冲击",
+    "DamageId": [
+      139250102
+    ],
+    "Name": "Ultimate! Nimble Strike",
+    "Names": {
+      "en": "Ultimate! Nimble Strike",
+      "zh-CN": "绝技！无形冲击",
+      "ko-KR": "Ultimate! Nimble Strike"
+    }
+  },
+  "276": {
+    "Id": 276,
+    "RecountName": "绝技！变身蜜蜂",
+    "DamageId": [
+      11411040101,
+      339100800,
+      3100760100,
+      110076020101
+    ],
+    "Name": "Ultimate! Cabbage Spinning Blade",
+    "Names": {
+      "en": "Ultimate! Cabbage Spinning Blade",
+      "zh-CN": "绝技！变身蜜蜂",
+      "ko-KR": "Ultimate! Cabbage Spinning Blade"
+    }
+  },
+  "277": {
+    "Id": 277,
+    "RecountName": "奥义！静默潮汐",
+    "DamageId": [
+      110085400101,
+      2321009201
+    ],
+    "Name": "Ultimate! Cabbage Thunder Flash",
+    "Names": {
+      "en": "Ultimate! Cabbage Thunder Flash",
+      "zh-CN": "奥义！静默潮汐",
+      "ko-KR": "Ultimate! Cabbage Thunder Flash"
+    }
+  },
+  "278": {
+    "Id": 278,
+    "RecountName": "奥义！冰霜震荡",
+    "DamageId": [
+      110028300103,
+      110028300104
+    ],
+    "Name": "Ultimate! Double Fang",
+    "Names": {
+      "en": "Ultimate! Double Fang",
+      "zh-CN": "奥义！冰霜震荡",
+      "ko-KR": "Ultimate! Double Fang"
+    }
+  },
+  "279": {
+    "Id": 279,
+    "RecountName": "奥义！瞬即斩",
+    "DamageId": [
+      129005400101,
+      129005400102,
+      129005400103,
+      129005400104,
+      129005400105,
+      129005400106,
+      2211008503
+    ],
+    "Name": "Supreme: Emergency Aid",
+    "Names": {
+      "en": "Supreme: Emergency Aid",
+      "zh-CN": "奥义！瞬即斩",
+      "ko-KR": "Supreme: Emergency Aid"
+    }
+  },
+  "280": {
+    "Id": 280,
+    "RecountName": "奥义！烈焰之心",
+    "DamageId": [],
+    "Name": "Supreme: Life Drain",
+    "Names": {
+      "en": "Supreme: Life Drain",
+      "zh-CN": "奥义！烈焰之心",
+      "ko-KR": "Supreme: Life Drain"
+    }
+  },
+  "281": {
+    "Id": 281,
+    "RecountName": "奥义！生命祈愿",
+    "DamageId": [],
+    "Name": "Void Corrosion Burst",
+    "Names": {
+      "en": "Void Corrosion Burst",
+      "zh-CN": "奥义！生命祈愿",
+      "ko-KR": "Void Corrosion Burst"
+    }
+  },
+  "282": {
+    "Id": 282,
+    "RecountName": "奥义！时间法令",
+    "DamageId": [],
+    "Name": "Void Corrosion Pulse (fmr. Void Focus)",
+    "Names": {
+      "en": "Void Corrosion Pulse (fmr. Void Focus)",
+      "zh-CN": "奥义！时间法令",
+      "ko-KR": "Void Corrosion Pulse (fmr. Void Focus)"
+    }
+  },
+  "283": {
+    "Id": 283,
+    "RecountName": "奥义！哥布林大行军",
+    "DamageId": [],
+    "Name": "Void Corrosion Wave",
+    "Names": {
+      "en": "Void Corrosion Wave",
+      "zh-CN": "奥义！哥布林大行军",
+      "ko-KR": "Void Corrosion Wave"
+    }
+  },
+  "284": {
+    "Id": 284,
+    "RecountName": "奥义！神灵凭依",
+    "DamageId": [
+      129008400103,
+      129008400105,
+      129008400107,
+      129008400108,
+      129008400109,
+      2211011104
+    ],
+    "Name": "Void Corrosion Aura",
+    "Names": {
+      "en": "Void Corrosion Aura",
+      "zh-CN": "奥义！神灵凭依",
+      "ko-KR": "Void Corrosion Aura"
+    }
+  },
+  "285": {
+    "Id": 285,
+    "RecountName": "奥义！万象升华",
+    "DamageId": [
+      129007400101
+    ],
+    "Name": "Dream Execution",
+    "Names": {
+      "en": "Dream Execution",
+      "zh-CN": "奥义！万象升华",
+      "ko-KR": "Dream Execution"
+    }
+  },
+  "286": {
+    "Id": 286,
+    "RecountName": "奥义！佑世边界",
+    "DamageId": [
+      2211011803
+    ],
+    "Name": "Dream State: Undying Battle Stance",
+    "Names": {
+      "en": "Dream State: Undying Battle Stance",
+      "zh-CN": "奥义！佑世边界",
+      "ko-KR": "Dream State: Undying Battle Stance"
+    }
+  },
+  "287": {
+    "Id": 287,
+    "RecountName": "奥义！幻象共鸣",
+    "DamageId": [
+      24530001,
+      24530005,
+      318030100,
+      318050100,
+      129004410109,
+      129004410110,
+      129004410111,
+      318010100,
+      118510101,
+      339100900,
+      339101000,
+      318060100,
+      118500101
+    ],
+    "Name": "Dream of Extinction: Blood Limit Domain",
+    "Names": {
+      "en": "Dream of Extinction: Blood Limit Domain",
+      "zh-CN": "奥义！幻象共鸣",
+      "ko-KR": "Dream of Extinction: Blood Limit Domain"
+    }
+  },
+  "288": {
+    "Id": 288,
+    "RecountName": "奥义！熊熊烈焰",
+    "DamageId": [
+      110119060102
+    ],
+    "Name": "Illusion Verdict",
+    "Names": {
+      "en": "Illusion Verdict",
+      "zh-CN": "奥义！熊熊烈焰",
+      "ko-KR": "Illusion Verdict"
+    }
+  },
+  "289": {
+    "Id": 289,
+    "RecountName": "奥义！无双突刺",
+    "DamageId": [
+      111014400101
+    ],
+    "Name": "Illusion Verdict: Healing Verdict",
+    "Names": {
+      "en": "Illusion Verdict: Healing Verdict",
+      "zh-CN": "奥义！无双突刺",
+      "ko-KR": "Illusion Verdict: Healing Verdict"
+    }
+  },
+  "290": {
+    "Id": 290,
+    "RecountName": "奥义！魅影奇袭",
+    "DamageId": [
+      117008290102
+    ],
+    "Name": "Dream Arrow",
+    "Names": {
+      "en": "Dream Arrow",
+      "zh-CN": "奥义！魅影奇袭",
+      "ko-KR": "Dream Arrow"
+    }
+  },
+  "291": {
+    "Id": 291,
+    "RecountName": "奥义！卷心菜重锤",
+    "DamageId": [
+      110118060101
+    ],
+    "Name": "Stable State G8",
+    "Names": {
+      "en": "Stable State G8",
+      "zh-CN": "奥义！卷心菜重锤",
+      "ko-KR": "Stable State G8"
+    }
+  },
+  "292": {
+    "Id": 292,
+    "RecountName": "奥义！炎灵之幸",
+    "DamageId": [
+      111023060101,
+      111023060102,
+      111023060103
+    ],
+    "Name": "Thunder Shadow Stable State G1",
+    "Names": {
+      "en": "Thunder Shadow Stable State G1",
+      "zh-CN": "奥义！炎灵之幸",
+      "ko-KR": "Thunder Shadow Stable State G1"
+    }
+  },
+  "293": {
+    "Id": 293,
+    "RecountName": "奥义！绝命螺旋",
+    "DamageId": [
+      111007400103
+    ],
+    "Name": "Greatsword Stable State G2",
+    "Names": {
+      "en": "Greatsword Stable State G2",
+      "zh-CN": "奥义！绝命螺旋",
+      "ko-KR": "Greatsword Stable State G2"
+    }
+  },
+  "294": {
+    "Id": 294,
+    "RecountName": "绝技！寒霜喷吐",
+    "DamageId": [
+      111005040101
+    ],
+    "Name": "Others",
+    "Names": {
+      "en": "Others",
+      "zh-CN": "绝技！寒霜喷吐",
+      "ko-KR": "Others"
+    }
+  },
+  "295": {
+    "Id": 295,
+    "RecountName": "绝技！落雷惩戒",
+    "DamageId": [
+      110110110101,
+      2211013003
+    ],
+    "Name": "Stunt! Lightning Smite",
+    "Names": {
+      "en": "Stunt! Lightning Smite",
+      "zh-CN": "绝技！落雷惩戒",
+      "ko-KR": "Stunt! Lightning Smite"
+    }
+  },
+  "296": {
+    "Id": 296,
+    "RecountName": "绝技! 剑刃风暴",
+    "DamageId": [
+      139600101
+    ],
+    "Name": "Stunt! Blade Storm",
+    "Names": {
+      "en": "Stunt! Blade Storm",
+      "zh-CN": "绝技! 剑刃风暴",
+      "ko-KR": "Stunt! Blade Storm"
+    }
+  },
+  "297": {
+    "Id": 297,
+    "RecountName": "绝技！治疗爆弹",
+    "DamageId": [
+      111013040101,
+      111013040102,
+      2320003403,
+      2211013103
+    ],
+    "Name": "Stunt! Healing Bomb",
+    "Names": {
+      "en": "Stunt! Healing Bomb",
+      "zh-CN": "绝技！治疗爆弹",
+      "ko-KR": "Stunt! Healing Bomb"
+    }
+  },
+  "298": {
+    "Id": 298,
+    "RecountName": "绝技！全场轰炸",
+    "DamageId": [
+      111012040101,
+      111012040102,
+      2321016101
+    ],
+    "Name": "Stunt! Carpet Bombing",
+    "Names": {
+      "en": "Stunt! Carpet Bombing",
+      "zh-CN": "绝技！全场轰炸",
+      "ko-KR": "Stunt! Carpet Bombing"
+    }
+  },
+  "299": {
+    "Id": 299,
+    "RecountName": "绝技！灵动出击",
+    "DamageId": [
+      117007180101,
+      117007180102
+    ],
+    "Name": "Stunt! Kinetic Strike",
+    "Names": {
+      "en": "Stunt! Kinetic Strike",
+      "zh-CN": "绝技！灵动出击",
+      "ko-KR": "Stunt! Kinetic Strike"
+    }
+  },
+  "300": {
+    "Id": 300,
+    "RecountName": "绝技！卷心菜回旋刃",
+    "DamageId": [
+      110113120103
+    ],
+    "Name": "Stunt! Cabbage Boomerang",
+    "Names": {
+      "en": "Stunt! Cabbage Boomerang",
+      "zh-CN": "绝技！卷心菜回旋刃",
+      "ko-KR": "Stunt! Cabbage Boomerang"
+    }
+  },
+  "301": {
+    "Id": 301,
+    "RecountName": "绝技！卷心菜霹雳闪",
+    "DamageId": [
+      110112150101,
+      110112150102,
+      110112150103,
+      110112160101,
+      110112160102,
+      110112170102,
+      2321017103
+    ],
+    "Name": "Stunt! Cabbage Blitz",
+    "Names": {
+      "en": "Stunt! Cabbage Blitz",
+      "zh-CN": "绝技！卷心菜霹雳闪",
+      "ko-KR": "Stunt! Cabbage Blitz"
+    }
+  },
+  "302": {
+    "Id": 302,
+    "RecountName": "绝技！双重牙",
+    "DamageId": [
+      111022050102
+    ],
+    "Name": "Stunt! Twin Fangs",
+    "Names": {
+      "en": "Stunt! Twin Fangs",
+      "zh-CN": "绝技！双重牙",
+      "ko-KR": "Stunt! Twin Fangs"
+    }
+  },
+  "303": {
+    "Id": 303,
+    "RecountName": "奥义！虚蚀劫刃",
+    "DamageId": [
+      11701120104
+    ],
+    "Name": "Void Corruption: Cleave!",
+    "Names": {
+      "en": "Void Corruption: Cleave!",
+      "zh-CN": "奥义！虚蚀劫刃",
+      "ko-KR": "Void Corruption: Cleave!"
+    }
+  },
+  "304": {
+    "Id": 304,
+    "RecountName": "奥义！裂空反冲",
+    "DamageId": [
+      11401450102
+    ],
+    "Name": "World Collapse",
+    "Names": {
+      "en": "World Collapse",
+      "zh-CN": "奥义！裂空反冲",
+      "ko-KR": "World Collapse"
+    }
+  },
+  "305": {
+    "Id": 305,
+    "RecountName": "奥义！指令象限",
+    "DamageId": [
+      133401900101,
+      133401900102,
+      3321000,
+      133401150101,
+      133401150102,
+      133401150103,
+      133401150106,
+      133401160101,
+      133401160102,
+      133401160103
+    ],
+    "Name": "Blade Rift",
+    "Names": {
+      "en": "Blade Rift",
+      "zh-CN": "奥义！指令象限",
+      "ko-KR": "Blade Rift"
+    }
+  },
+  "306": {
+    "Id": 306,
+    "RecountName": "奥义！超导波动",
+    "DamageId": [
+      11110690101
+    ],
+    "Name": "Superconductive Wave",
+    "Names": {
+      "en": "Superconductive Wave",
+      "zh-CN": "奥义！超导波动",
+      "ko-KR": "Superconductive Wave"
+    }
+  },
+  "307": {
+    "Id": 307,
+    "RecountName": "奥义！梭行毒牙",
+    "DamageId": [
+      111203100101,
+      111203100103
+    ],
+    "Name": "奥义！梭行毒牙",
+    "Names": {
+      "zh-CN": "奥义！梭行毒牙"
+    }
+  },
+  "308": {
+    "Id": 308,
+    "RecountName": "奥义！瞬空践踏",
+    "DamageId": [
+      117010400102
+    ],
+    "Name": "奥义！瞬空践踏",
+    "Names": {
+      "zh-CN": "奥义！瞬空践踏"
+    }
+  },
+  "309": {
+    "Id": 309,
+    "RecountName": "奥义！精准点射",
+    "DamageId": [
+      110097020102,
+      110097030102,
+      3100970300,
+      2321021003
+    ],
+    "Name": "Normal Attack",
+    "Names": {
+      "en": "Normal Attack",
+      "zh-CN": "奥义！精准点射",
+      "ko-KR": "Normal Attack"
+    }
+  },
+  "310": {
+    "Id": 310,
+    "RecountName": "奥义！穿透怒吼",
+    "DamageId": [
+      111211050102
+    ],
+    "Name": "Iron Fang - Enrage",
+    "Names": {
+      "en": "Iron Fang - Enrage",
+      "zh-CN": "奥义！穿透怒吼",
+      "ko-KR": "Iron Fang - Enrage"
+    }
+  },
+  "311": {
+    "Id": 311,
+    "RecountName": "奥义！疾风连喰",
+    "DamageId": [
+      111215080107,
+      111215080108,
+      111215080109,
+      111215080110,
+      2321023101
+    ],
+    "Name": "Rift Leap",
+    "Names": {
+      "en": "Rift Leap",
+      "zh-CN": "奥义！疾风连喰",
+      "ko-KR": "Rift Leap"
+    }
+  },
+  "312": {
+    "Id": 312,
+    "RecountName": "绝技！隐匿藏击",
+    "DamageId": [
+      111202200103,
+      3190300,
+      3190400
+    ],
+    "Name": "绝技！隐匿藏击",
+    "Names": {
+      "zh-CN": "绝技！隐匿藏击"
+    }
+  },
+  "313": {
+    "Id": 313,
+    "RecountName": "绝技！绝对零度",
+    "DamageId": [
+      11026640101
+    ],
+    "Name": "绝技！绝对零度",
+    "Names": {
+      "zh-CN": "绝技！绝对零度"
+    }
+  },
+  "314": {
+    "Id": 314,
+    "RecountName": "绝技！深渊吐息",
+    "DamageId": [
+      111214060102,
+      111214060103,
+      111214060104
+    ],
+    "Name": "绝技！深渊吐息",
+    "Names": {
+      "zh-CN": "绝技！深渊吐息"
+    }
+  },
+  "315": {
+    "Id": 315,
+    "RecountName": "绝技！捶地猛击",
+    "DamageId": [
+      111206100101,
+      111206100102,
+      111206100103
+    ],
+    "Name": "绝技！捶地猛击",
+    "Names": {
+      "zh-CN": "绝技！捶地猛击"
+    }
+  },
+  "316": {
+    "Id": 316,
+    "RecountName": "绝技！锁定射击",
+    "DamageId": [
+      111218100101,
+      111218100102
+    ],
+    "Name": "绝技！锁定射击",
+    "Names": {
+      "zh-CN": "绝技！锁定射击"
+    }
+  },
+  "317": {
+    "Id": 317,
+    "RecountName": "极·急救措施",
+    "DamageId": [
+      2230232103
+    ],
+    "Name": "极·急救措施",
+    "Names": {
+      "zh-CN": "极·急救措施"
+    }
+  },
+  "318": {
+    "Id": 318,
+    "RecountName": "极·生命吸取",
+    "DamageId": [
+      2230008003
+    ],
+    "Name": "极·生命吸取",
+    "Names": {
+      "zh-CN": "极·生命吸取"
+    }
+  },
+  "319": {
+    "Id": 319,
+    "RecountName": "虚蚀爆裂",
+    "DamageId": [
+      17010010101
+    ],
+    "Name": "虚蚀爆裂",
+    "Names": {
+      "zh-CN": "虚蚀爆裂"
+    }
+  },
+  "320": {
+    "Id": 320,
+    "RecountName": "虚蚀脉冲（原虚蚀凝神）",
+    "DamageId": [
+      339140100
+    ],
+    "Name": "Stunt! Blade Sweep",
+    "Names": {
+      "en": "Stunt! Blade Sweep",
+      "zh-CN": "虚蚀脉冲（原虚蚀凝神）",
+      "ko-KR": "Stunt! Blade Sweep"
+    }
+  },
+  "321": {
+    "Id": 321,
+    "RecountName": "虚蚀波动",
+    "DamageId": [
+      17010020101,
+      2300117006
+    ],
+    "Name": "虚蚀波动",
+    "Names": {
+      "zh-CN": "虚蚀波动"
+    }
+  },
+  "322": {
+    "Id": 322,
+    "RecountName": "虚蚀光环",
+    "DamageId": [
+      2300103103,
+      2300103104
+    ],
+    "Name": "虚蚀光环",
+    "Names": {
+      "zh-CN": "虚蚀光环"
+    }
+  },
+  "323": {
+    "Id": 323,
+    "RecountName": "幻梦处决",
+    "DamageId": [
+      2300221501,
+      2300221503
+    ],
+    "Name": "幻梦处决",
+    "Names": {
+      "zh-CN": "幻梦处决"
+    }
+  },
+  "324": {
+    "Id": 324,
+    "RecountName": "迷幻梦境-不灭战姿",
+    "DamageId": [
+      2300267103
+    ],
+    "Name": "迷幻梦境-不灭战姿",
+    "Names": {
+      "zh-CN": "迷幻梦境-不灭战姿"
+    }
+  },
+  "325": {
+    "Id": 325,
+    "RecountName": "寂灭之梦-血限冲域",
+    "DamageId": [
+      2300302301,
+      2300302501
+    ],
+    "Name": "寂灭之梦-血限冲域",
+    "Names": {
+      "zh-CN": "寂灭之梦-血限冲域"
+    }
+  },
+  "326": {
+    "Id": 326,
+    "RecountName": "虚妄裁定",
+    "DamageId": [
+      2300325003,
+      2300321301
+    ],
+    "Name": "虚妄裁定",
+    "Names": {
+      "zh-CN": "虚妄裁定"
+    }
+  },
+  "327": {
+    "Id": 327,
+    "RecountName": "虚妄裁定-裁定·愈",
+    "DamageId": [
+      2300326003
+    ],
+    "Name": "虚妄裁定-裁定·愈",
+    "Names": {
+      "zh-CN": "虚妄裁定-裁定·愈"
+    }
+  },
+  "328": {
+    "Id": 328,
+    "RecountName": "梦幻之箭",
+    "DamageId": [
+      179970101,
+      179970102,
+      179970103,
+      179970104,
+      179970105,
+      179970106,
+      179970107,
+      179970108,
+      179970109,
+      179970110
+    ],
+    "Name": "Phantom Arrow",
+    "Names": {
+      "en": "Phantom Arrow",
+      "zh-CN": "梦幻之箭",
+      "ko-KR": "Phantom Arrow"
+    }
+  },
+  "329": {
+    "Id": 329,
+    "RecountName": "稳态G8",
+    "DamageId": [
+      2305908003
+    ],
+    "Name": "稳态G8",
+    "Names": {
+      "zh-CN": "稳态G8"
+    }
+  },
+  "330": {
+    "Id": 330,
+    "RecountName": "雷影稳态G1",
+    "DamageId": [
+      2305910103
+    ],
+    "Name": "雷影稳态G1",
+    "Names": {
+      "zh-CN": "雷影稳态G1"
+    }
+  },
+  "331": {
+    "Id": 331,
+    "RecountName": "巨刃稳态G2",
+    "DamageId": [
+      2305921003
+    ],
+    "Name": "巨刃稳态G2",
+    "Names": {
+      "zh-CN": "巨刃稳态G2"
+    }
+  },
+  "333": {
+    "Id": 333,
+    "RecountName": "神盾真实因子X5",
+    "DamageId": [
+      2305444006
+    ],
+    "Name": "Illusion Verdict",
+    "Names": {
+      "en": "Illusion Verdict",
+      "zh-CN": "神盾真实因子X5",
+      "ko-KR": "Illusion Verdict"
+    }
+  }
+}

@@ -1,0 +1,249 @@
+#!/usr/bin/env node
+const path = require("node:path");
+
+const STRING_POOL = 6;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTable,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "SkillAoyiIcons.gen - generate skill_aoyi_icons.json directly from SkillAoyiTable.ctb.",
+      `
+Notes:
+  SkillAoyiTable.ctb supplies the aoyi skill id and icon texture token. Skill
+  names are bridged by matching that skill id to direct SkillTable.ctb and
+  SkillEffectTable.ctb rows. SkillTable.ctb rows with an adjacent
+  ui/textures/skill_aoyi icon path are also emitted as direct fallback rows.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "skill_aoyi_icons.json");
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const aoyiTable = readCtbTable(containerDir, metaEntries, "SkillAoyiTable.ctb");
+  const skillTable = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
+  const skillLookup = buildSkillEffectLookup(containerDir, metaEntries, { readCtbString, readCtbTable, readU32 });
+  const skillDisplayLookup = buildSkillDisplayLookup(skillTable, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readU32
+  });
+  const rowsById = new Map();
+
+  for (let index = 0; index < aoyiTable.rowCount; index += 1) {
+    const rowOffset = aoyiTable.rowStart + index * aoyiTable.rowSize;
+    const id = readU32(aoyiTable.data, rowOffset);
+    const iconTextureOffset = readU32(aoyiTable.data, rowOffset + 28);
+    const spriteOffset = readU32(aoyiTable.data, rowOffset + 44);
+    const monsterNameId = readU32(aoyiTable.data, rowOffset + 48);
+    const quoteId = readU32(aoyiTable.data, rowOffset + 52);
+    const iconTexture = readCtbString(aoyiTable, STRING_POOL, iconTextureOffset, { allowZero: true });
+    const sprite = readCtbString(aoyiTable, STRING_POOL, spriteOffset, { allowZero: true });
+    const skill = skillLookup.bySkillId.get(String(id)) ?? null;
+    const skillDisplay = skillDisplayLookup.get(String(id)) ?? null;
+    const names = skillDisplay?.Names && Object.keys(skillDisplay.Names).length
+      ? skillDisplay.Names
+      : skill?.name
+        ? buildLocaleTextObject([{ localeId: "design", text: skill.name }], { includeDesign: false })
+        : {};
+    const monsterNames = buildLocaleTextObject(collectLocalizedTextEntries(monsterNameId, localizationTables), {
+      includeDesign: false
+    });
+    const quoteTexts = buildLocaleTextObject(collectLocalizedTextEntries(quoteId, localizationTables), {
+      includeDesign: false
+    });
+    const preferredName = choosePreferredLocaleText(names);
+    if (!id || !iconTexture) {
+      continue;
+    }
+
+    rowsById.set(String(id), {
+      id,
+      Id: id,
+      Name: preferredName || `Skill ${id}`,
+      Names: names,
+      ...(skillDisplay?.NameDesign || preferredName ? { NameDesign: skillDisplay?.NameDesign || preferredName } : {}),
+      ...(skillDisplay?.NameId ? { NameId: skillDisplay.NameId } : {}),
+      Icon: deriveIconFileName(iconTexture),
+      IconTexture: iconTexture,
+      IconTextureOffset: iconTextureOffset,
+      Sprite: sprite,
+      SpriteOffset: spriteOffset,
+      ...(skill
+        ? {
+            SkillEffectId: skill.effectId,
+            SkillEffectSourceOffset: skill.sourceOffset
+          }
+        : {}),
+      MonsterNameId: monsterNameId,
+      ...(Object.keys(monsterNames).length ? { MonsterNames: monsterNames } : {}),
+      QuoteId: quoteId,
+      ...(Object.keys(quoteTexts).length ? { QuoteTexts: quoteTexts } : {}),
+      Source: "SkillAoyiTable",
+      SourceOffset: aoyiTable.entry.offset + rowOffset,
+      ...(skillDisplay ? { SkillTableSourceOffset: skillDisplay.SourceOffset } : {})
+    });
+  }
+
+  let skillTableFallbackCount = 0;
+  for (const skillDisplay of skillDisplayLookup.values()) {
+    if (!skillDisplay.IconPath || rowsById.has(String(skillDisplay.Id))) {
+      continue;
+    }
+    rowsById.set(String(skillDisplay.Id), {
+      id: skillDisplay.Id,
+      Id: skillDisplay.Id,
+      Name: choosePreferredLocaleText(skillDisplay.Names, skillDisplay.NameDesign),
+      Names: skillDisplay.Names,
+      NameDesign: skillDisplay.NameDesign,
+      NameId: skillDisplay.NameId,
+      Icon: deriveIconFileName(skillDisplay.IconPath),
+      IconPath: skillDisplay.IconPath,
+      IconPathOffset: skillDisplay.IconPathOffset,
+      Source: "SkillTableAdjacentAoyiIcon",
+      SourceOffset: skillDisplay.SourceOffset
+    });
+    skillTableFallbackCount += 1;
+  }
+
+  const rows = [...rowsById.values()];
+  rows.sort((left, right) => Number(left.id) - Number(right.id));
+
+  console.log(`SkillAoyiTable rows scanned: ${aoyiTable.rowCount}`);
+  console.log(`SkillTable fallback Aoyi-icon rows added: ${skillTableFallbackCount}`);
+  console.log(`Aoyi icon entries written: ${rows.length}`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, rows, Boolean(args.dryRun));
+}
+
+function buildSkillDisplayLookup(skillTable, localizationTables, helpers) {
+  const { buildLocaleTextObject, readCtbString, readU32 } = helpers;
+  const out = new Map();
+
+  for (let index = 0; index < skillTable.rowCount; index += 1) {
+    const rowOffset = skillTable.rowStart + index * skillTable.rowSize;
+    const id = readU32(skillTable.data, rowOffset);
+    const nameOffset = readU32(skillTable.data, rowOffset + 4);
+    const nameId = readU32(skillTable.data, rowOffset + 12);
+    const nameDesign = readCtbString(skillTable, STRING_POOL, nameOffset, { allowZero: false });
+    if (!id || !nameDesign) {
+      continue;
+    }
+    const iconPathOffset = nextStringOffset(skillTable, STRING_POOL, nameOffset);
+    const iconPath = readCtbString(skillTable, STRING_POOL, iconPathOffset, { allowZero: false });
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      designText: nameDesign
+    });
+    out.set(String(id), {
+      Id: id,
+      NameDesign: nameDesign,
+      NameId: nameId,
+      Names: Object.keys(names).length
+        ? names
+        : buildLocaleTextObject([{ localeId: "design", text: nameDesign }], { includeDesign: false }),
+      IconPath: /^ui\/textures\/skill_aoyi\/skill_aoyi_skill_icon_\d+$/i.test(iconPath) ? iconPath : "",
+      IconPathOffset: iconPathOffset,
+      SourceOffset: skillTable.entry.offset + rowOffset
+    });
+  }
+
+  return out;
+}
+
+function buildSkillEffectLookup(containerDir, metaEntries, helpers) {
+  const { readCtbString, readCtbTable, readU32 } = helpers;
+  const table = readCtbTable(containerDir, metaEntries, "SkillEffectTable.ctb");
+  const bySkillId = new Map();
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const effectId = readU32(table.data, rowOffset);
+    const level = readU32(table.data, rowOffset + 4);
+    const nameOffset = readU32(table.data, rowOffset + 8);
+    const skillId = readU32(table.data, rowOffset + 12);
+    const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: true });
+    if (!effectId || !skillId || !name) {
+      continue;
+    }
+    const entry = {
+      effectId,
+      level,
+      name,
+      nameOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    };
+    if (!bySkillId.has(String(skillId)) || level <= (bySkillId.get(String(skillId))?.level ?? Infinity)) {
+      bySkillId.set(String(skillId), entry);
+    }
+  }
+
+  return { bySkillId };
+}
+
+function nextStringOffset(table, poolType, offset) {
+  const pool = table?.pools?.get(poolType);
+  const numericOffset = Number(offset);
+  if (!pool || !Number.isInteger(numericOffset) || numericOffset < 0 || numericOffset + 2 > pool.length) {
+    return -1;
+  }
+  const len = pool.readUInt16LE(numericOffset);
+  if (!len || numericOffset + 2 + len > pool.length) {
+    return -1;
+  }
+  return numericOffset + 2 + len;
+}
+
+function collectLocalizedTextEntries(nameId, localizationTables) {
+  if (!nameId) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables) {
+    const stringIndex = table.index.get(nameId);
+    if (stringIndex === undefined) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function deriveIconFileName(iconTexture) {
+  const text = String(iconTexture || "").trim();
+  const match = /^skill_aoyi_advanced_texture(\d+)$/i.exec(text);
+  if (match) {
+    return `skill_aoyi_skill_icon_${match[1]}.png`;
+  }
+  const pathMatch = /(?:^|\/)(skill_aoyi_skill_icon_\d+)$/i.exec(text.replace(/\\/g, "/"));
+  if (pathMatch) {
+    return `${pathMatch[1]}.png`;
+  }
+  return text ? `${text}.png` : "";
+}

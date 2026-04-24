@@ -1,0 +1,2237 @@
+{
+  "GeneratedAt": "2026-04-24T15:47:48.069Z",
+  "SourceJson": "skill_aoyi_icons.json",
+  "OutputDir": "C:\\Users\\dbcas\\Desktop\\resonancelogs-cn-gh\\BETA\\BPSR-UID-Extractors\\output\\icons\\skill_aoyi_icons",
+  "AssetCount": 101,
+  "Assets": [
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture001",
+      "Address": "skill_aoyi_advanced_texture001",
+      "AddressHash": 1811572715,
+      "BundleHash": 1263459137,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_001_1263459137.bundle",
+      "Format": "UnityFS",
+      "Bytes": 149959,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3905,
+          "Name": "Stunt! Boarrier Rush"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_001_1263459137.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_001",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_001",
+      "AddressHash": 3660535818,
+      "BundleHash": 1851940191,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_001.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14146,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2350,
+          "Name": "Legendary Boarrier - Howl"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_001.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
+      "AddressHash": 3660535822,
+      "BundleHash": 1856683875,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_005_1856683875.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13523,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1700440,
+          "Name": "Arcane! Furious Hammer"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_005_1856683875.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture005",
+      "Address": "skill_aoyi_advanced_texture005",
+      "AddressHash": 1811572719,
+      "BundleHash": 1268202821,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_005.bundle",
+      "Format": "UnityFS",
+      "Bytes": 160319,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3923,
+          "Name": "Arcane! Furious Hammer"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_005.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_008",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_008",
+      "AddressHash": 3660535825,
+      "BundleHash": 1860241638,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_008_1860241638.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14400,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1008640,
+          "Name": "Stunt! Falling Star"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_008_1860241638.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture008",
+      "Address": "skill_aoyi_advanced_texture008",
+      "AddressHash": 1811572722,
+      "BundleHash": 1271760584,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_008.bundle",
+      "Format": "UnityFS",
+      "Bytes": 166260,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3907,
+          "Name": "Stunt! Falling Star"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_008.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
+      "AddressHash": 3660535826,
+      "BundleHash": 1861427559,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_009_1861427559.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14010,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 420140,
+          "Name": "Stunt! Chaotic Barrage"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_009_1861427559.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture009",
+      "Address": "skill_aoyi_advanced_texture009",
+      "AddressHash": 1811572723,
+      "BundleHash": 1272946505,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_009.bundle",
+      "Format": "UnityFS",
+      "Bytes": 177765,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3910,
+          "Name": "Stunt! Chaotic Barrage"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_009.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture010",
+      "Address": "skill_aoyi_advanced_texture010",
+      "AddressHash": 1811572747,
+      "BundleHash": 1301408609,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_010.bundle",
+      "Format": "UnityFS",
+      "Bytes": 159116,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3913,
+          "Name": "Stunt! Electro Bomb"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_010.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_011",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_011",
+      "AddressHash": 3660535851,
+      "BundleHash": 1891075584,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_011.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13745,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3909,
+          "Name": "Stunt! Fox Assault"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_011.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture012",
+      "Address": "skill_aoyi_advanced_texture012",
+      "AddressHash": 1811572749,
+      "BundleHash": 1303780451,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_012.bundle",
+      "Format": "UnityFS",
+      "Bytes": 163155,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3908,
+          "Name": "Arcane! Pulse Benediction"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_012.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_013",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_013",
+      "AddressHash": 3660535853,
+      "BundleHash": 1893447426,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_013_1893447426.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12982,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2900240,
+          "Name": "Arcane! Blessing of Life"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_013_1893447426.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture013",
+      "Address": "skill_aoyi_advanced_texture013",
+      "AddressHash": 1811572750,
+      "BundleHash": 1304966372,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_013.bundle",
+      "Format": "UnityFS",
+      "Bytes": 151191,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3920,
+          "Name": "Arcane! Blessing of Life"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_013.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
+      "AddressHash": 3660535854,
+      "BundleHash": 1894633347,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_014_1894633347.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14416,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2002440,
+          "Name": "Arcane! Thunderfall Grasp"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_014_1894633347.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture014",
+      "Address": "skill_aoyi_advanced_texture014",
+      "AddressHash": 1811572751,
+      "BundleHash": 1306152293,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_014.bundle",
+      "Format": "UnityFS",
+      "Bytes": 180811,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3902,
+          "Name": "Arcane! Thunderfall Grasp"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_014.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
+      "AddressHash": 3660535855,
+      "BundleHash": 1895819268,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_015_1895819268.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14129,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1002830,
+          "Name": "Arcane! Frostquake"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_015_1895819268.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture015",
+      "Address": "skill_aoyi_advanced_texture015",
+      "AddressHash": 1811572752,
+      "BundleHash": 1307338214,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_015.bundle",
+      "Format": "UnityFS",
+      "Bytes": 168142,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3906,
+          "Name": "Arcane! Frostquake"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_015.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_016",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_016",
+      "AddressHash": 3660535856,
+      "BundleHash": 1897005189,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_016_1897005189.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12831,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2900340,
+          "Name": "Arcane! Time Decree"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_016_1897005189.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture016",
+      "Address": "skill_aoyi_advanced_texture016",
+      "AddressHash": 1811572753,
+      "BundleHash": 1308524135,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_016.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157600,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3921,
+          "Name": "Arcane! Time Decree"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_016.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture017",
+      "Address": "skill_aoyi_advanced_texture017",
+      "AddressHash": 1811572754,
+      "BundleHash": 1309710056,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_017.bundle",
+      "Format": "UnityFS",
+      "Bytes": 170035,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3901,
+          "Name": "Arcane! Flame Roar"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_017.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture018",
+      "Address": "skill_aoyi_advanced_texture018",
+      "AddressHash": 1811572755,
+      "BundleHash": 1310895977,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_018.bundle",
+      "Format": "UnityFS",
+      "Bytes": 155645,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3903,
+          "Name": "Arcane! Blazing Axe"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_018.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture019",
+      "Address": "skill_aoyi_advanced_texture019",
+      "AddressHash": 1811572756,
+      "BundleHash": 1312081898,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_019.bundle",
+      "Format": "UnityFS",
+      "Bytes": 162831,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3914,
+          "Name": "Stunt! Blade Sweep"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_019.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture020",
+      "Address": "skill_aoyi_advanced_texture020",
+      "AddressHash": 1811572780,
+      "BundleHash": 1340544002,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_020.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157426,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3915,
+          "Name": "Stunt! Frenzied Shot"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_020.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_021",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_021",
+      "AddressHash": 3660535884,
+      "BundleHash": 1930210977,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_021.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13318,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3916,
+          "Name": "Stunt! Piercing Arrow"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_021.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture022",
+      "Address": "skill_aoyi_advanced_texture022",
+      "AddressHash": 1811572782,
+      "BundleHash": 1342915844,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_022.bundle",
+      "Format": "UnityFS",
+      "Bytes": 158447,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3917,
+          "Name": "Stunt! Heavy Slash"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_022.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_023",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_023",
+      "AddressHash": 3660535886,
+      "BundleHash": 1932582819,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_023.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12117,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3918,
+          "Name": "Arcane! Shadow of the Fox"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_023.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_024",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_024",
+      "AddressHash": 3660535887,
+      "BundleHash": 1933768740,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_024.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13939,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3919,
+          "Name": "Arcane! Assault Turret"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_024.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
+      "AddressHash": 3660535888,
+      "BundleHash": 1934954661,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_025_1934954661.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12682,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2900540,
+          "Name": "Arcane! Flash Execution"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_025_1934954661.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture025",
+      "Address": "skill_aoyi_advanced_texture025",
+      "AddressHash": 1811572785,
+      "BundleHash": 1346473607,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_025.bundle",
+      "Format": "UnityFS",
+      "Bytes": 171268,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3922,
+          "Name": "Arcane! Flash Execution"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_025.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
+      "AddressHash": 3660535889,
+      "BundleHash": 1936140582,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_026_1936140582.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14143,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1002440,
+          "Name": "Stunt! Super Critical"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_026_1936140582.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture026",
+      "Address": "skill_aoyi_advanced_texture026",
+      "AddressHash": 1811572786,
+      "BundleHash": 1347659528,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_026.bundle",
+      "Format": "UnityFS",
+      "Bytes": 167972,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3904,
+          "Name": "Stunt! Super Critical"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_026.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_027",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_027",
+      "AddressHash": 3660535890,
+      "BundleHash": 1937326503,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_027.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13895,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3924,
+          "Name": "Stunt! Gale of Silence"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_027.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture029",
+      "Address": "skill_aoyi_advanced_texture029",
+      "AddressHash": 1811572789,
+      "BundleHash": 1351217291,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_029.bundle",
+      "Format": "UnityFS",
+      "Bytes": 175701,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3926,
+          "Name": "Arcane! Meteor Shower"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_029.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture030",
+      "Address": "skill_aoyi_advanced_texture030",
+      "AddressHash": 1811572813,
+      "BundleHash": 1379679395,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_030.bundle",
+      "Format": "UnityFS",
+      "Bytes": 164065,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3927,
+          "Name": "Stunt! Roar Command"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_030.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
+      "AddressHash": 3660535917,
+      "BundleHash": 1969346370,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_031_1969346370.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13901,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1005240,
+          "Name": "Stunt! Predator Slash"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_031_1969346370.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture031",
+      "Address": "skill_aoyi_advanced_texture031",
+      "AddressHash": 1811572814,
+      "BundleHash": 1380865316,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_031.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157855,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3928,
+          "Name": "Stunt! Predator Slash"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_031.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture032",
+      "Address": "skill_aoyi_advanced_texture032",
+      "AddressHash": 1811572815,
+      "BundleHash": 1382051237,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_032.bundle",
+      "Format": "UnityFS",
+      "Bytes": 158817,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3929,
+          "Name": "Stunt! Shell Defense"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_032.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture033",
+      "Address": "skill_aoyi_advanced_texture033",
+      "AddressHash": 1811572816,
+      "BundleHash": 1383237158,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_033.bundle",
+      "Format": "UnityFS",
+      "Bytes": 158553,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3930,
+          "Name": "Stunt! Earth Shield"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_033.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_034",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_034",
+      "AddressHash": 3660535920,
+      "BundleHash": 1972904133,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_034_1972904133.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12919,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3931,
+          "Name": "Arcane! Shrine Field"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_034_1972904133.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture034",
+      "Address": "skill_aoyi_advanced_texture034",
+      "AddressHash": 1811572817,
+      "BundleHash": 1384423079,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_034.bundle",
+      "Format": "UnityFS",
+      "Bytes": 148320,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3925,
+          "Name": "Stunt! Invisible Impact"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_034.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_035",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_035",
+      "AddressHash": 3660535921,
+      "BundleHash": 1974090054,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_035.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14100,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3932,
+          "Name": "Stunt! Flamewheel Dance"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_035.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_036",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_036",
+      "AddressHash": 3660535922,
+      "BundleHash": 1975275975,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_036.bundle",
+      "Format": "UnityFS",
+      "Bytes": 11683,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3933,
+          "Name": "Stunt! Intimidating Roar"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_036.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
+      "AddressHash": 3660535923,
+      "BundleHash": 1976461896,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_037_1976461896.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12077,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2001740,
+          "Name": "Stunt! Blink Ambush"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_037_1976461896.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture037",
+      "Address": "skill_aoyi_advanced_texture037",
+      "AddressHash": 1811572820,
+      "BundleHash": 1387980842,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_037.bundle",
+      "Format": "UnityFS",
+      "Bytes": 159608,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3934,
+          "Name": "Stunt! Blink Ambush"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_037.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture038",
+      "Address": "skill_aoyi_advanced_texture038",
+      "AddressHash": 1811572821,
+      "BundleHash": 1389166763,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_038.bundle",
+      "Format": "UnityFS",
+      "Bytes": 174457,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3935,
+          "Name": "Arcane! Thunder Roar"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_038.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_039",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_039",
+      "AddressHash": 3660535925,
+      "BundleHash": 1978833738,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_039_1978833738.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14151,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1010540,
+          "Name": "Stunt! Water of Silence"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_039_1978833738.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture039",
+      "Address": "skill_aoyi_advanced_texture039",
+      "AddressHash": 1811572822,
+      "BundleHash": 1390352684,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_039.bundle",
+      "Format": "UnityFS",
+      "Bytes": 163334,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3936,
+          "Name": "Stunt! Water of Silence"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_039.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
+      "AddressHash": 3660535949,
+      "BundleHash": 2007295842,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_040_2007295842.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14062,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1010440,
+          "Name": "Stunt! Thunder Suppress"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_040_2007295842.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture040",
+      "Address": "skill_aoyi_advanced_texture040",
+      "AddressHash": 1811572846,
+      "BundleHash": 1418814788,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_040.bundle",
+      "Format": "UnityFS",
+      "Bytes": 168795,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3937,
+          "Name": "Stunt! Thunder Suppress"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_040.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
+      "AddressHash": 3660535950,
+      "BundleHash": 2008481763,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_041_2008481763.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14510,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1006940,
+          "Name": "Arcane! Cocoon Tech"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_041_2008481763.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture041",
+      "Address": "skill_aoyi_advanced_texture041",
+      "AddressHash": 1811572847,
+      "BundleHash": 1420000709,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_041.bundle",
+      "Format": "UnityFS",
+      "Bytes": 158879,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3938,
+          "Name": "Arcane! Cocoon Tech"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_041.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_042",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_042",
+      "AddressHash": 3660535951,
+      "BundleHash": 2009667684,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_042_2009667684.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13213,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2900640,
+          "Name": "Arcane! Heart of Flame"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_042_2009667684.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture042",
+      "Address": "skill_aoyi_advanced_texture042",
+      "AddressHash": 1811572848,
+      "BundleHash": 1421186630,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_042.bundle",
+      "Format": "UnityFS",
+      "Bytes": 165060,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3911,
+          "Name": "Arcane! Heart of Flame"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_042.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture043",
+      "Address": "skill_aoyi_advanced_texture043",
+      "AddressHash": 1811572849,
+      "BundleHash": 1422372551,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_043.bundle",
+      "Format": "UnityFS",
+      "Bytes": 153500,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3939,
+          "Name": "Stunt! Lightning Orb"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_043.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
+      "AddressHash": 3660535953,
+      "BundleHash": 2012039526,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_044_2012039526.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14306,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1008641,
+          "Name": "Stunt! Whirlwind Strike"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_044_2012039526.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture044",
+      "Address": "skill_aoyi_advanced_texture044",
+      "AddressHash": 1811572850,
+      "BundleHash": 1423558472,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_044.bundle",
+      "Format": "UnityFS",
+      "Bytes": 151523,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3940,
+          "Name": "Stunt! Whirlwind Strike"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_044.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture045",
+      "Address": "skill_aoyi_advanced_texture045",
+      "AddressHash": 1811572851,
+      "BundleHash": 1424744393,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_045.bundle",
+      "Format": "UnityFS",
+      "Bytes": 155521,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3941,
+          "Name": "Stunt! Transform into Bee"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_045.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture046",
+      "Address": "skill_aoyi_advanced_texture046",
+      "AddressHash": 1811572852,
+      "BundleHash": 1425930314,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_046.bundle",
+      "Format": "UnityFS",
+      "Bytes": 150207,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3942,
+          "Name": "Arcane! Poison Explosion"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_046.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture047",
+      "Address": "skill_aoyi_advanced_texture047",
+      "AddressHash": 1811572853,
+      "BundleHash": 1427116235,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_047.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157228,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3943,
+          "Name": "Arcane! Infernal Thrust"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_047.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
+      "AddressHash": 3660535957,
+      "BundleHash": 2016783210,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_048_2016783210.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14266,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1008440,
+          "Name": "Arcane! Azure Gale"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_048_2016783210.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture048",
+      "Address": "skill_aoyi_advanced_texture048",
+      "AddressHash": 1811572854,
+      "BundleHash": 1428302156,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_048.bundle",
+      "Format": "UnityFS",
+      "Bytes": 167804,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3944,
+          "Name": "Arcane! Azure Gale"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_048.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
+      "AddressHash": 3660535958,
+      "BundleHash": 2017969131,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_049_2017969131.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13712,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1008540,
+          "Name": "Arcane! Silent Tide"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_049_2017969131.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture049",
+      "Address": "skill_aoyi_advanced_texture049",
+      "AddressHash": 1811572855,
+      "BundleHash": 1429488077,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_049.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157158,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3945,
+          "Name": "Arcane! Silent Tide"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_049.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture050",
+      "Address": "skill_aoyi_advanced_texture050",
+      "AddressHash": 1811572879,
+      "BundleHash": 1457950181,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_050.bundle",
+      "Format": "UnityFS",
+      "Bytes": 148073,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3946,
+          "Name": "Arcane! Goblin March"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_050.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture051",
+      "Address": "skill_aoyi_advanced_texture051",
+      "AddressHash": 1811572880,
+      "BundleHash": 1459136102,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_051.bundle",
+      "Format": "UnityFS",
+      "Bytes": 143763,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3947,
+          "Name": "Stunt! Spiral Severance"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_051.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture052",
+      "Address": "skill_aoyi_advanced_texture052",
+      "AddressHash": 1811572881,
+      "BundleHash": 1460322023,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_052.bundle",
+      "Format": "UnityFS",
+      "Bytes": 153993,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3948,
+          "Name": "Arcane! Divine Reliance"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_052.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture053",
+      "Address": "skill_aoyi_advanced_texture053",
+      "AddressHash": 1811572882,
+      "BundleHash": 1461507944,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_053.bundle",
+      "Format": "UnityFS",
+      "Bytes": 153505,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3949,
+          "Name": "Arcane! Illusion Resonance"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_053.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_054",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_054",
+      "AddressHash": 3660535986,
+      "BundleHash": 2051174919,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_054_2051174919.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13583,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 2900940,
+          "Name": "Arcane! Guardian's Boundary"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_054_2051174919.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture054",
+      "Address": "skill_aoyi_advanced_texture054",
+      "AddressHash": 1811572883,
+      "BundleHash": 1462693865,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_054.bundle",
+      "Format": "UnityFS",
+      "Bytes": 145859,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3951,
+          "Name": "Arcane! Guardian's Boundary"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_054.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
+      "AddressHash": 3660535987,
+      "BundleHash": 2052360840,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_055_2052360840.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13553,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 2900715,
+          "Name": "Arcane! Allscape Sublimation"
+        },
+        {
+          "Id": 2900740,
+          "Name": "Arcane! Allscape Sublimation"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_055_2052360840.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture055",
+      "Address": "skill_aoyi_advanced_texture055",
+      "AddressHash": 1811572884,
+      "BundleHash": 1463879786,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_055.bundle",
+      "Format": "UnityFS",
+      "Bytes": 148393,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3950,
+          "Name": "Arcane! Allscape Sublimation"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_055.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
+      "AddressHash": 3660535988,
+      "BundleHash": 2053546761,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_056_2053546761.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13491,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1100504,
+          "Name": "Stunt! Frost Breath"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_056_2053546761.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture056",
+      "Address": "skill_aoyi_advanced_texture056",
+      "AddressHash": 1811572885,
+      "BundleHash": 1465065707,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_056.bundle",
+      "Format": "UnityFS",
+      "Bytes": 145049,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3958,
+          "Name": "Stunt! Frost Breath"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_056.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_057",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_057",
+      "AddressHash": 3660535989,
+      "BundleHash": 2054732682,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_057_2054732682.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14111,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1100740,
+          "Name": "Arcane! Fatal Spiral"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_057_2054732682.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture057",
+      "Address": "skill_aoyi_advanced_texture057",
+      "AddressHash": 1811572886,
+      "BundleHash": 1466251628,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_057.bundle",
+      "Format": "UnityFS",
+      "Bytes": 143488,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3957,
+          "Name": "Arcane! Fatal Spiral"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_057.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
+      "AddressHash": 3660535990,
+      "BundleHash": 2055918603,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_058_2055918603.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12761,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1011906,
+          "Name": "Arcane! Blazing Flames"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_058_2055918603.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture058",
+      "Address": "skill_aoyi_advanced_texture058",
+      "AddressHash": 1811572887,
+      "BundleHash": 1467437549,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_058.bundle",
+      "Format": "UnityFS",
+      "Bytes": 142399,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3959,
+          "Name": "Stunt! Lightning Smite"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_058.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
+      "AddressHash": 3660535991,
+      "BundleHash": 2057104524,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_059_2057104524.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13960,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1011104,
+          "Name": "Stunt! Blade Storm"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_059_2057104524.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture059",
+      "Address": "skill_aoyi_advanced_texture059",
+      "AddressHash": 1811572888,
+      "BundleHash": 1468623470,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_059.bundle",
+      "Format": "UnityFS",
+      "Bytes": 137656,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3960,
+          "Name": "Stunt! Blade Storm"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_059.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_060",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_060",
+      "AddressHash": 3660536015,
+      "BundleHash": 2085566628,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_060_2085566628.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12250,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1011010,
+          "Name": "Stunt! Lightning Smite"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_060_2085566628.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture060",
+      "Address": "skill_aoyi_advanced_texture060",
+      "AddressHash": 1811572912,
+      "BundleHash": 1497085574,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_060.bundle",
+      "Format": "UnityFS",
+      "Bytes": 140174,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3952,
+          "Name": "Arcane! Blazing Flames"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_060.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
+      "AddressHash": 3660536016,
+      "BundleHash": 2086752549,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_061_2086752549.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14183,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1101204,
+          "Name": "Stunt! Carpet Bombing"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_061_2086752549.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture061",
+      "Address": "skill_aoyi_advanced_texture061",
+      "AddressHash": 1811572913,
+      "BundleHash": 1498271495,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_061.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157404,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3961,
+          "Name": "Stunt! Carpet Bombing"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_061.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
+      "AddressHash": 3660536017,
+      "BundleHash": 2087938470,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_062_2087938470.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14315,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1101304,
+          "Name": "Stunt! Healing Bomb"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_062_2087938470.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture062",
+      "Address": "skill_aoyi_advanced_texture062",
+      "AddressHash": 1811572914,
+      "BundleHash": 1499457416,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_062.bundle",
+      "Format": "UnityFS",
+      "Bytes": 152382,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3962,
+          "Name": "Stunt! Healing Bomb"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_062.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
+      "AddressHash": 3660536018,
+      "BundleHash": 2089124391,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_063_2089124391.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13529,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1101440,
+          "Name": "Arcane! Peerless Thrust"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_063_2089124391.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture063",
+      "Address": "skill_aoyi_advanced_texture063",
+      "AddressHash": 1811572915,
+      "BundleHash": 1500643337,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_063.bundle",
+      "Format": "UnityFS",
+      "Bytes": 165253,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3953,
+          "Name": "Arcane! Peerless Thrust"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_063.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
+      "AddressHash": 3660536019,
+      "BundleHash": 2090310312,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_064_2090310312.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13675,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1011312,
+          "Name": "Stunt! Cabbage Boomerang"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_064_2090310312.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture064",
+      "Address": "skill_aoyi_advanced_texture064",
+      "AddressHash": 1811572916,
+      "BundleHash": 1501829258,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_064.bundle",
+      "Format": "UnityFS",
+      "Bytes": 150023,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3964,
+          "Name": "Stunt! Cabbage Boomerang"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_064.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_065",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_065",
+      "AddressHash": 3660536020,
+      "BundleHash": 2091496233,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_065_2091496233.bundle",
+      "Format": "UnityFS",
+      "Bytes": 12693,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1011214,
+          "Name": "Stunt! Cabbage Blitz"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_065_2091496233.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture065",
+      "Address": "skill_aoyi_advanced_texture065",
+      "AddressHash": 1811572917,
+      "BundleHash": 1503015179,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_065.bundle",
+      "Format": "UnityFS",
+      "Bytes": 148008,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3965,
+          "Name": "Stunt! Cabbage Blitz"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_065.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
+      "AddressHash": 3660536021,
+      "BundleHash": 2092682154,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_066_2092682154.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13945,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1011806,
+          "Name": "Arcane! Cabbage Hammer"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_066_2092682154.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture066",
+      "Address": "skill_aoyi_advanced_texture066",
+      "AddressHash": 1811572918,
+      "BundleHash": 1504201100,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_066.bundle",
+      "Format": "UnityFS",
+      "Bytes": 152924,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3955,
+          "Name": "Arcane! Cabbage Hammer"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_066.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
+      "AddressHash": 3660536022,
+      "BundleHash": 2093868075,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_067_2093868075.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13148,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1700718,
+          "Name": "Stunt! Kinetic Strike"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_067_2093868075.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture067",
+      "Address": "skill_aoyi_advanced_texture067",
+      "AddressHash": 1811572919,
+      "BundleHash": 1505387021,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_067.bundle",
+      "Format": "UnityFS",
+      "Bytes": 131378,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3963,
+          "Name": "Stunt! Kinetic Strike"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_067.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
+      "AddressHash": 3660536023,
+      "BundleHash": 2095053996,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_068_2095053996.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13525,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1700829,
+          "Name": "Arcane! Phantom Ambush"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_068_2095053996.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture068",
+      "Address": "skill_aoyi_advanced_texture068",
+      "AddressHash": 1811572920,
+      "BundleHash": 1506572942,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_068.bundle",
+      "Format": "UnityFS",
+      "Bytes": 151772,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3954,
+          "Name": "Arcane! Phantom Ambush"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_068.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
+      "AddressHash": 3660536024,
+      "BundleHash": 2096239917,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_069_2096239917.bundle",
+      "Format": "UnityFS",
+      "Bytes": 13949,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1102205,
+          "Name": "Stunt! Twin Fangs"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_069_2096239917.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture069",
+      "Address": "skill_aoyi_advanced_texture069",
+      "AddressHash": 1811572921,
+      "BundleHash": 1507758863,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_069.bundle",
+      "Format": "UnityFS",
+      "Bytes": 167639,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3966,
+          "Name": "Stunt! Twin Fangs"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_069.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
+      "AddressHash": 3660536048,
+      "BundleHash": 2124702021,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_070_2124702021.bundle",
+      "Format": "UnityFS",
+      "Bytes": 14211,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 1102306,
+          "Name": "Arcane! Flame Spirit's Fortune"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_070_2124702021.png",
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA"
+    },
+    {
+      "SourceJson": "skill_aoyi_icons.json",
+      "Field": "IconTexture",
+      "Value": "skill_aoyi_advanced_texture070",
+      "Address": "skill_aoyi_advanced_texture070",
+      "AddressHash": 1811572945,
+      "BundleHash": 1536220967,
+      "OutputFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_070.bundle",
+      "Format": "UnityFS",
+      "Bytes": 157338,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3956,
+          "Name": "Arcane! Flame Spirit's Fortune"
+        }
+      ],
+      "PngFile": "skill_aoyi_icons\\skill_aoyi_skill_icon_070.png",
+      "PngWidth": 512,
+      "PngHeight": 512,
+      "PngMode": "RGBA"
+    }
+  ],
+  "PngExportedAt": "2026-04-24T15:54:23.179291Z",
+  "PngAssetCount": 101,
+  "PngFailedCount": 0
+}

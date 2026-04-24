@@ -1,0 +1,327 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const STRING_POOL = 6;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTable,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "DamageAttrIdName.gen - generate DamageAttrIdName.json directly from DamageAttrTable.ctb.",
+      `
+Notes:
+  This script reads DamageAttrTable.ctb from meta.pkg/m*.pkg. When a row has
+  no direct design name, the row's linked skill/buff id is resolved through
+  direct game-derived SkillEffectTable, SkillTable, SkillFightLevelTable, and
+  BuffName output when available.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "DamageAttrIdName.json");
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const damageTable = readCtbTable(containerDir, metaEntries, "DamageAttrTable.ctb");
+  const skillLookup = buildSkillEffectLookup(containerDir, metaEntries, { readCtbString, readCtbTable, readU32 });
+  const skillTableLookup = buildSkillTableLookup(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    readCtbString,
+    readCtbTable,
+    readU32
+  });
+  const skillFightLookup = buildSkillFightLookup(containerDir, metaEntries, {
+    buildLocaleTextObject,
+    readCtbString,
+    readCtbTable,
+    readU32
+  });
+  const buffLookup = loadGeneratedBuffLookup(paths.outputDir);
+  const rows = {};
+  let directNameCount = 0;
+  let linkedBuffCount = 0;
+  let linkedSkillCount = 0;
+  let linkedSkillTableCount = 0;
+  let linkedSkillFightCount = 0;
+
+  for (let index = 0; index < damageTable.rowCount; index += 1) {
+    const rowOffset = damageTable.rowStart + index * damageTable.rowSize;
+    const id = readU32(damageTable.data, rowOffset);
+    const directNameOffset = readU32(damageTable.data, rowOffset + 12);
+    const damageKindOffset = readU32(damageTable.data, rowOffset + 24);
+    const detailKindOffset = readU32(damageTable.data, rowOffset + 28);
+    const linkedId = readU32(damageTable.data, rowOffset + 20);
+    if (!id) {
+      continue;
+    }
+
+    const directName = readCtbString(damageTable, STRING_POOL, directNameOffset, {
+      allowZero: false
+    });
+    const damageKind = readCtbString(damageTable, STRING_POOL, damageKindOffset, {
+      allowZero: false
+    });
+    const detailKind = readCtbString(damageTable, STRING_POOL, detailKindOffset, {
+      allowZero: false
+    });
+    const linkedBuff = buffLookup.get(String(linkedId)) ?? null;
+    const linkedSkill = skillLookup.bySkillId.get(String(linkedId)) ?? skillLookup.byEffectId.get(String(linkedId)) ?? null;
+    const linkedSkillTable = skillTableLookup.get(String(linkedId)) ?? null;
+    const linkedSkillFight = skillFightLookup.get(String(linkedId)) ?? null;
+    const names = directName
+      ? buildLocaleTextObject([{ localeId: "design", text: directName }], { includeDesign: false })
+      : linkedBuff?.Names && Object.keys(linkedBuff.Names).length
+        ? linkedBuff.Names
+        : linkedSkill?.name
+          ? buildLocaleTextObject([{ localeId: "design", text: linkedSkill.name }], { includeDesign: false })
+          : linkedSkillTable?.names && Object.keys(linkedSkillTable.names).length
+            ? linkedSkillTable.names
+            : linkedSkillFight?.names && Object.keys(linkedSkillFight.names).length
+              ? linkedSkillFight.names
+          : {};
+    const preferredName =
+      choosePreferredLocaleText(names) ||
+      directName ||
+      linkedBuff?.Name ||
+      linkedSkill?.name ||
+      linkedSkillTable?.name ||
+      linkedSkillFight?.name ||
+      damageKind ||
+      detailKind;
+
+    if (!preferredName) {
+      continue;
+    }
+    if (directName) directNameCount += 1;
+    if (linkedBuff) linkedBuffCount += 1;
+    if (linkedSkill) linkedSkillCount += 1;
+    if (!directName && !linkedBuff && !linkedSkill && linkedSkillTable) linkedSkillTableCount += 1;
+    if (!directName && !linkedBuff && !linkedSkill && !linkedSkillTable && linkedSkillFight) linkedSkillFightCount += 1;
+
+    rows[String(id)] = {
+      Id: id,
+      Name: preferredName,
+      Names: names,
+      ...(directName ? { NameDesign: directName, NameOffset: directNameOffset } : {}),
+      ...(damageKind ? { DamageKind: damageKind, DamageKindOffset: damageKindOffset } : {}),
+      ...(detailKind ? { DetailKind: detailKind, DetailKindOffset: detailKindOffset } : {}),
+      LinkedId: linkedId,
+      ...(linkedBuff
+        ? {
+            LinkedSource: "BuffName",
+            LinkedBuffId: linkedId,
+            LinkedBuffName: linkedBuff.Name,
+            LinkedBuffNames: linkedBuff.Names
+          }
+        : {}),
+      ...(linkedSkill
+        ? {
+            LinkedSkillId: linkedId,
+            LinkedSkillEffectId: linkedSkill.effectId,
+            LinkedSkillName: linkedSkill.name,
+            LinkedSkillSourceOffset: linkedSkill.sourceOffset
+          }
+        : {}),
+      ...(linkedSkillTable
+        ? {
+            LinkedSkillTableId: linkedId,
+            LinkedSkillTableName: linkedSkillTable.name,
+            LinkedSkillTableNameId: linkedSkillTable.nameId,
+            LinkedSkillTableNames: linkedSkillTable.names,
+            LinkedSkillTableSourceOffset: linkedSkillTable.sourceOffset
+          }
+        : {}),
+      ...(linkedSkillFight
+        ? {
+            LinkedSkillFightId: linkedId,
+            LinkedSkillFightName: linkedSkillFight.name,
+            LinkedSkillFightSkillId: linkedSkillFight.skillId,
+            LinkedSkillFightEffectId: linkedSkillFight.effectId,
+            LinkedSkillFightSourceOffset: linkedSkillFight.sourceOffset
+          }
+        : {}),
+      Source: "DamageAttrTable",
+      SourceOffset: damageTable.entry.offset + rowOffset
+    };
+  }
+
+  const sorted = Object.fromEntries(
+    Object.entries(rows).sort(([left], [right]) => compareNumericStrings(left, right))
+  );
+
+  console.log(`DamageAttrTable rows scanned: ${damageTable.rowCount}`);
+  console.log(`Direct DamageAttr design names: ${directNameCount}`);
+  console.log(`Rows linked to generated BuffName rows: ${linkedBuffCount}`);
+  console.log(`Rows linked to direct SkillEffect rows: ${linkedSkillCount}`);
+  console.log(`Rows linked to direct SkillTable rows: ${linkedSkillTableCount}`);
+  console.log(`Rows linked to direct SkillFightLevel rows: ${linkedSkillFightCount}`);
+  console.log(`DamageAttr entries written: ${Object.keys(sorted).length}`);
+  console.log(`Output: ${paths.out}`);
+  maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
+}
+
+function buildSkillEffectLookup(containerDir, metaEntries, helpers) {
+  const { readCtbString, readCtbTable, readU32 } = helpers;
+  const table = readCtbTable(containerDir, metaEntries, "SkillEffectTable.ctb");
+  const bySkillId = new Map();
+  const byEffectId = new Map();
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const effectId = readU32(table.data, rowOffset);
+    const level = readU32(table.data, rowOffset + 4);
+    const nameOffset = readU32(table.data, rowOffset + 8);
+    const skillId = readU32(table.data, rowOffset + 12);
+    const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: true });
+    if (!effectId || !name) {
+      continue;
+    }
+    const entry = {
+      effectId,
+      skillId,
+      level,
+      name,
+      nameOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    };
+    byEffectId.set(String(effectId), entry);
+    if (!bySkillId.has(String(skillId)) || level <= (bySkillId.get(String(skillId))?.level ?? Infinity)) {
+      bySkillId.set(String(skillId), entry);
+    }
+  }
+
+  return { bySkillId, byEffectId };
+}
+
+function buildSkillTableLookup(containerDir, metaEntries, localizationTables, helpers) {
+  const { buildLocaleTextObject, readCtbString, readCtbTable, readU32 } = helpers;
+  const table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
+  const bySkillId = new Map();
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const skillId = readU32(table.data, rowOffset);
+    const nameOffset = readU32(table.data, rowOffset + 4);
+    const nameId = readU32(table.data, rowOffset + 12);
+    const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
+    if (!skillId || !name) {
+      continue;
+    }
+
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      designText: name
+    });
+    bySkillId.set(String(skillId), {
+      skillId,
+      name,
+      nameId,
+      names: Object.keys(names).length
+        ? names
+        : buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false }),
+      nameOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    });
+  }
+
+  return bySkillId;
+}
+
+function buildSkillFightLookup(containerDir, metaEntries, helpers) {
+  const { buildLocaleTextObject, readCtbString, readCtbTable, readU32 } = helpers;
+  const table = readCtbTable(containerDir, metaEntries, "SkillFightLevelTable.ctb");
+  const byFightId = new Map();
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const fightId = readU32(table.data, rowOffset);
+    const skillId = readU32(table.data, rowOffset + 4);
+    const effectId = readU32(table.data, rowOffset + 12);
+    const nameOffset = readU32(table.data, rowOffset + 16);
+    const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
+    if (!fightId || !name) {
+      continue;
+    }
+    byFightId.set(String(fightId), {
+      fightId,
+      skillId,
+      effectId,
+      name,
+      names: buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false }),
+      nameOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    });
+  }
+
+  return byFightId;
+}
+
+function collectLocalizedTextEntries(nameId, localizationTables) {
+  if (!nameId) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables) {
+    const stringIndex = table.index.get(nameId);
+    if (stringIndex === undefined) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function loadGeneratedBuffLookup(outputDir) {
+  const filePath = path.join(outputDir, "BuffName.json");
+  if (!fs.existsSync(filePath)) {
+    return new Map();
+  }
+  const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const rows = Array.isArray(data) ? data : Object.values(data || {});
+  const out = new Map();
+  for (const row of rows) {
+    const id = row?.Id ?? row?.id;
+    if (id === undefined || id === null) {
+      continue;
+    }
+    out.set(String(id), {
+      Name: String(row.Name ?? row.NameDesign ?? row.DesignName ?? "").trim(),
+      Names: row.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {}
+    });
+  }
+  return out;
+}
+
+function compareNumericStrings(left, right) {
+  try {
+    const a = BigInt(left);
+    const b = BigInt(right);
+    return a < b ? -1 : a > b ? 1 : 0;
+  } catch {
+    return String(left).localeCompare(String(right));
+  }
+}

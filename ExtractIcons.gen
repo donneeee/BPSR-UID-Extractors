@@ -1,0 +1,381 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const ADDRESS_LINE_PREFIX = Buffer.from("address:");
+const DEFAULT_MANIFEST_NAME = "icons/IconManifest.json";
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    hash33,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readJson,
+    readPackage,
+    readPkgEntry,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp(
+      "ExtractIcons.gen - extract icon asset bundles referenced by generated JSON outputs.",
+      `
+Icon-specific options:
+  --icons-dir <path>         Output icon directory. Default: <output-dir>/icons.
+
+Notes:
+  Game icon addresses resolve to UnityFS asset bundles. This script copies those
+  bundles and writes manifests that preserve the original JSON field, asset
+  address, address hash, and bundle hash.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, DEFAULT_MANIFEST_NAME);
+  const iconsDir = path.resolve(args.iconsDir ? args.iconsDir : path.join(paths.outputDir, "icons"));
+  const outputJsonFiles = listOutputJsonFiles(paths.outputDir);
+  const references = [];
+
+  for (const jsonFile of outputJsonFiles) {
+    const jsonName = path.basename(jsonFile, ".json");
+    const value = readJson(path.join(paths.outputDir, jsonFile));
+    references.push(...collectIconReferences(jsonFile, jsonName, value));
+  }
+
+  const uniqueReferences = dedupeReferences(references);
+  const wantedHashes = new Set();
+  for (const ref of uniqueReferences) {
+    for (const address of ref.candidateAddresses) {
+      wantedHashes.add(hash33(address));
+    }
+  }
+
+  const pkg = readPackage(paths.m0Path);
+  const addressMap = readAddressBundleMap(pkg, wantedHashes, { hash33 });
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const byJson = new Map();
+  const missing = [];
+  const written = [];
+  const usedOutputNames = new Map();
+
+  for (const ref of uniqueReferences) {
+    const resolved = resolveIconBundle(ref, addressMap, metaEntries, { hash33 });
+    if (!resolved) {
+      missing.push({
+        SourceJson: ref.sourceJson,
+        Field: ref.field,
+        Value: ref.value,
+        CandidateAddresses: ref.candidateAddresses,
+        RefCount: ref.refCount,
+        Rows: ref.rows.slice(0, 20)
+      });
+      continue;
+    }
+
+    const data = readPkgEntry(containerDir, resolved.entry);
+    const format = detectPayloadFormat(data);
+    const jsonDir = path.join(iconsDir, sanitizePathSegment(ref.jsonName));
+    const fileName = chooseUniqueOutputFileName(ref, format.extension, resolved, usedOutputNames);
+    const outputPath = path.join(jsonDir, fileName);
+    const asset = {
+      SourceJson: ref.sourceJson,
+      Field: ref.field,
+      Value: ref.value,
+      Address: resolved.address,
+      AddressHash: resolved.addressHash,
+      BundleHash: resolved.bundleHash,
+      OutputFile: path.relative(iconsDir, outputPath),
+      Format: format.label,
+      Bytes: data.length,
+      RefCount: ref.refCount,
+      Rows: ref.rows.slice(0, 20)
+    };
+
+    if (!args.dryRun) {
+      fs.mkdirSync(jsonDir, { recursive: true });
+      fs.writeFileSync(outputPath, data);
+    }
+
+    const list = byJson.get(ref.jsonName) ?? [];
+    list.push(asset);
+    byJson.set(ref.jsonName, list);
+    written.push(asset);
+  }
+
+  const jsonManifests = [];
+  for (const [jsonName, assets] of [...byJson.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+    const sourceJson = `${jsonName}.json`;
+    const folder = path.join(iconsDir, sanitizePathSegment(jsonName));
+    const manifest = {
+      GeneratedAt: new Date().toISOString(),
+      SourceJson: sourceJson,
+      OutputDir: folder,
+      AssetCount: assets.length,
+      Assets: assets.sort((a, b) => a.OutputFile.localeCompare(b.OutputFile))
+    };
+    const manifestPath = path.join(folder, "manifest.json");
+    jsonManifests.push({
+      SourceJson: sourceJson,
+      Manifest: path.relative(iconsDir, manifestPath),
+      AssetCount: assets.length
+    });
+    if (args.dryRun) {
+      console.log(`Dry run: would write ${manifestPath}`);
+    } else {
+      fs.mkdirSync(folder, { recursive: true });
+      fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+    }
+  }
+
+  const manifest = {
+    GeneratedAt: new Date().toISOString(),
+    OutputDir: iconsDir,
+    JsonFilesScanned: outputJsonFiles.length,
+    ReferencesFound: references.length,
+    UniqueReferences: uniqueReferences.length,
+    ExtractedAssetCount: written.length,
+    MissingAssetCount: missing.length,
+    JsonManifests: jsonManifests,
+    MissingAssets: missing
+  };
+
+  console.log(`JSON files scanned: ${outputJsonFiles.length.toLocaleString()}`);
+  console.log(`Icon references found: ${references.length.toLocaleString()}`);
+  console.log(`Unique icon references: ${uniqueReferences.length.toLocaleString()}`);
+  console.log(`Extracted asset bundles: ${written.length.toLocaleString()}`);
+  console.log(`Missing icon assets: ${missing.length.toLocaleString()}`);
+  maybeWriteJson(paths.out, manifest, Boolean(args.dryRun));
+}
+
+function listOutputJsonFiles(outputDir) {
+  if (!fs.existsSync(outputDir)) {
+    return [];
+  }
+  return fs
+    .readdirSync(outputDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith(".json"))
+    .map((entry) => entry.name)
+    .filter((name) => !/^icons?manifest\.json$/i.test(name))
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function collectIconReferences(sourceJson, jsonName, value) {
+  const rows = Array.isArray(value)
+    ? value.map((row, index) => ({ key: String(index), row }))
+    : value && typeof value === "object"
+      ? Object.entries(value).map(([key, row]) => ({ key, row }))
+      : [];
+  const refs = [];
+
+  for (const { key, row } of rows) {
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      continue;
+    }
+    const rowId = row.Id ?? row.id ?? key;
+    const preferredFile = typeof row.Icon === "string" ? row.Icon : "";
+    const hasExplicitIconAddress = typeof row.IconPath === "string" || typeof row.IconTexture === "string";
+
+    for (const [field, rawValue] of Object.entries(row)) {
+      if (!isIconReferenceField(field, rawValue, { hasExplicitIconAddress })) {
+        continue;
+      }
+      const valueText = normalizeAssetAddress(rawValue);
+      if (!valueText) {
+        continue;
+      }
+      refs.push({
+        sourceJson,
+        jsonName,
+        field,
+        value: String(rawValue),
+        preferredFile,
+        candidateAddresses: buildCandidateAddresses(valueText),
+        rows: [{ Id: rowId, Name: row.Name || row.NameDesign || "" }],
+        refCount: 1
+      });
+    }
+  }
+
+  return refs;
+}
+
+function isIconReferenceField(field, value, context) {
+  if (typeof value !== "string" || !value.trim()) {
+    return false;
+  }
+  const key = field.toLowerCase();
+  const text = value.trim();
+  if (key.includes("offset")) {
+    return false;
+  }
+  if (key === "icon" && context.hasExplicitIconAddress) {
+    return false;
+  }
+  if (key === "iconpath" || key === "icontexture") {
+    return true;
+  }
+  if (key.includes("icon") && looksLikeAssetReference(text)) {
+    return true;
+  }
+  if (key.includes("texture") && looksLikeIconTexture(text)) {
+    return true;
+  }
+  return key.includes("sprite") && looksLikeIconTexture(text);
+}
+
+function looksLikeAssetReference(value) {
+  return /(^|\/)ui\/textures\//i.test(value) || /icon/i.test(value) || /\.(png|dds|tga|ktx|bundle)$/i.test(value);
+}
+
+function looksLikeIconTexture(value) {
+  return /icon/i.test(value) || /^skill_aoyi_advanced_texture\d+$/i.test(value) || /(^|\/)ui\/textures\//i.test(value);
+}
+
+function buildCandidateAddresses(value) {
+  const normalized = normalizeAssetAddress(value);
+  const candidates = [normalized];
+  const withoutExtension = normalized.replace(/\.(png|dds|tga|ktx|bundle)$/i, "");
+  if (withoutExtension && withoutExtension !== normalized) {
+    candidates.push(withoutExtension);
+  }
+  return [...new Set(candidates.filter(Boolean))];
+}
+
+function dedupeReferences(references) {
+  const byKey = new Map();
+  for (const ref of references) {
+    const key = `${ref.sourceJson}:${ref.field}:${ref.candidateAddresses.join("|")}`;
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, { ...ref, rows: [...ref.rows] });
+      continue;
+    }
+    existing.refCount += 1;
+    if (existing.rows.length < 50) {
+      existing.rows.push(...ref.rows);
+    }
+  }
+  return [...byKey.values()];
+}
+
+function readAddressBundleMap(pkg, wantedHashes, { hash33 }) {
+  const out = new Map();
+  let offset = 0;
+  while (offset < pkg.length) {
+    const found = pkg.indexOf(ADDRESS_LINE_PREFIX, offset);
+    if (found < 0) {
+      break;
+    }
+    const lineEnd = findAddressLineEnd(pkg, found);
+    const line = pkg.subarray(found, lineEnd).toString("utf8");
+    const match = /^address:(.*?) ->>>> hash:(\d+) ->>>> bundleHash:(\d+)/.exec(line);
+    if (match) {
+      const address = normalizeAssetAddress(match[1]);
+      const addressHash = Number(match[2]);
+      const bundleHash = Number(match[3]);
+      if (wantedHashes.has(addressHash) || wantedHashes.has(hash33(address))) {
+        out.set(addressHash, { address, addressHash, bundleHash });
+      }
+    }
+    offset = Math.max(lineEnd + 1, found + ADDRESS_LINE_PREFIX.length);
+  }
+  return out;
+}
+
+function findAddressLineEnd(buffer, start) {
+  const max = Math.min(buffer.length, start + 2048);
+  for (let index = start; index < max; index += 1) {
+    const byte = buffer[index];
+    if (byte === 0 || byte === 10 || byte === 13) {
+      return index;
+    }
+  }
+  return max;
+}
+
+function resolveIconBundle(ref, addressMap, metaEntries, { hash33 }) {
+  for (const address of ref.candidateAddresses) {
+    const addressHash = hash33(address);
+    const mapped = addressMap.get(addressHash);
+    if (mapped) {
+      const entry = metaEntries.get(mapped.bundleHash);
+      if (entry) {
+        return { ...mapped, entry };
+      }
+    }
+
+    const directEntry = metaEntries.get(addressHash);
+    if (directEntry) {
+      return {
+        address,
+        addressHash,
+        bundleHash: addressHash,
+        entry: directEntry
+      };
+    }
+  }
+  return null;
+}
+
+function detectPayloadFormat(buffer) {
+  if (buffer.subarray(0, 4).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47]))) {
+    return { label: "PNG", extension: ".png" };
+  }
+  if (buffer.subarray(0, 4).toString("latin1") === "DDS ") {
+    return { label: "DDS", extension: ".dds" };
+  }
+  if (buffer.subarray(0, 7).toString("latin1") === "UnityFS") {
+    return { label: "UnityFS", extension: ".bundle" };
+  }
+  return { label: "Binary", extension: ".bin" };
+}
+
+function chooseUniqueOutputFileName(ref, extension, resolved, usedOutputNames) {
+  const baseName = chooseOutputFileName(ref, extension, resolved.bundleHash);
+  const folderKey = sanitizePathSegment(ref.jsonName).toLowerCase();
+  const identity = `${resolved.addressHash}:${resolved.bundleHash}`;
+  const nameKey = `${folderKey}:${baseName.toLowerCase()}`;
+  const existing = usedOutputNames.get(nameKey);
+  if (!existing || existing === identity) {
+    usedOutputNames.set(nameKey, identity);
+    return baseName;
+  }
+
+  const parsed = path.parse(baseName);
+  const withHash = `${parsed.name}_${resolved.bundleHash}${parsed.ext}`;
+  usedOutputNames.set(`${folderKey}:${withHash.toLowerCase()}`, identity);
+  return withHash;
+}
+
+function chooseOutputFileName(ref, extension, bundleHash) {
+  const preferred = ref.preferredFile || ref.value || ref.candidateAddresses[0] || String(bundleHash);
+  const base = sanitizePathSegment(path.basename(preferred.replace(/\\/g, "/")).replace(/\.[^.]+$/, ""));
+  return `${base || bundleHash}${extension}`;
+}
+
+function normalizeAssetAddress(value) {
+  return String(value || "")
+    .trim()
+    .replace(/\\/g, "/")
+    .replace(/^\/+/, "")
+    .replace(/\/+/g, "/");
+}
+
+function sanitizePathSegment(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[<>:"/\\|?*\u0000-\u001f]+/g, "_")
+    .replace(/\s+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 120);
+}
