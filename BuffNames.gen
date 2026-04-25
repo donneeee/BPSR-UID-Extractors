@@ -20,6 +20,12 @@ const LOCALIZATION_LANGUAGES = [
   "thai",
   "indonesian"
 ];
+const LOCALIZED_TERM_IDS = {
+  brigand: 805545164,
+  buff: 590395546,
+  dmgReduction: 1103839493,
+  inspiration: 1051082739
+};
 const SECONDARY_NAME_TABLES = [
   {
     hash: 983121143,
@@ -31,7 +37,9 @@ const SECONDARY_NAME_TABLES = [
     hash: hash33("ModEffectTable.ctb"),
     source: "ModEffectTable",
     nameField: 8,
-    effectField: 4
+    effectField: 4,
+    levelField: 12,
+    skipTextFieldIntPoolLinks: true
   },
   {
     hash: 4038258408,
@@ -42,7 +50,8 @@ const SECONDARY_NAME_TABLES = [
   {
     hash: 3345237628,
     source: "CTB:3345237628",
-    nameField: 8
+    nameField: 8,
+    skipTextFieldIntPoolLinks: true
   },
   {
     hash: 3259439677,
@@ -187,17 +196,28 @@ Notes:
     const directLocalizedNames = directLocalized ? sortLabels(directLocalized.labels ?? []) : [];
     const directLocaleEntries = directLocalized?.localeEntries ?? [];
     const directPreferredName = directLocalized?.preferredLabel ?? "";
-    const linkedName = row.nameMlStringId ? null : linkedBuffNames.get(row.id);
+    const secondaryLink = linkedBuffNames.get(row.id);
+    const linkedName = row.nameMlStringId ? null : secondaryLink;
+    const composedLocaleEntries = linkedName?.composeParts
+      ? composeLocalizedNameEntries(linkedName.composeParts, localizedNamesById)
+      : [];
     const linkedLocalizedNames = linkedName
-      ? sortLabels(linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.labels ?? []))
+      ? composedLocaleEntries.length
+        ? sortLabels(composedLocaleEntries.map((entry) => entry.text))
+        : sortLabels(linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.labels ?? []))
       : [];
     const linkedLocaleEntries = linkedName
-      ? linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.localeEntries ?? [])
+      ? composedLocaleEntries.length
+        ? composedLocaleEntries
+        : linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.localeEntries ?? [])
       : [];
     const linkedPreferredName = linkedName
-      ? linkedName.nameIds.map((id) => localizedNamesById.get(id)?.preferredLabel).find(Boolean) ?? ""
+      ? composedLocaleEntries.find((entry) => entry.localeId === "en")?.text ||
+        linkedName.nameIds.map((id) => localizedNamesById.get(id)?.preferredLabel).find(Boolean) ||
+        ""
       : "";
-    const linkedIconPaths = linkedName ? uniqueIconPaths(linkedName.iconPaths) : [];
+    const iconLink = secondaryLink?.iconPaths?.length ? secondaryLink : linkedName;
+    const linkedIconPaths = iconLink ? uniqueIconPaths(iconLink.iconPaths) : [];
     const localizedNames = sortLabels([...directLocalizedNames, ...linkedLocalizedNames]);
     const names = buildLocaleTextObject([...directLocaleEntries, ...linkedLocaleEntries], {
       designText: row.designName
@@ -213,7 +233,7 @@ Notes:
       Id: row.id,
       Level: row.level ?? 0,
       NameDesign: preferredName,
-      NameId: row.nameMlStringId || linkedName?.nameIds[0] || null,
+      NameId: row.nameMlStringId || (linkedName?.composeParts ? null : linkedName?.nameIds[0]) || null,
       NameIdSource: row.nameMlStringId ? "BuffTable" : linkedName?.source ?? null,
       NameOffset: row.nameOffset,
       DesignName: row.designName,
@@ -222,7 +242,7 @@ Notes:
         ? {
             IconPath: linkedIconPaths[0],
             ...(linkedIconPaths.length > 1 ? { IconPaths: linkedIconPaths } : {}),
-            IconPathSource: linkedName.source
+            IconPathSource: iconLink.source
           }
         : {}),
       SourceOffset: row.sourceOffset,
@@ -239,7 +259,8 @@ Notes:
             ...(typeof linkedName.nameField === "number"
               ? { LinkedNameField: linkedName.nameField }
               : {}),
-            ...(linkedName.adjacentFrom ? { LinkedAdjacentFromBuffId: linkedName.adjacentFrom } : {})
+            ...(linkedName.adjacentFrom ? { LinkedAdjacentFromBuffId: linkedName.adjacentFrom } : {}),
+            ...(linkedName.composeParts ? { LinkedNameComposition: linkedName.composeParts } : {})
           }
         : {})
     });
@@ -327,6 +348,50 @@ function collectLocalizedNamesById(wantedNameIds, localizationTables) {
   return out;
 }
 
+function composeLocalizedNameEntries(parts, localizedNamesById) {
+  const partMaps = [];
+  for (const part of parts || []) {
+    const localized = localizedNamesById.get(Number(part.nameId));
+    if (!localized?.localeEntries?.length) {
+      return [];
+    }
+    const byLocale = new Map();
+    for (const entry of localized.localeEntries) {
+      if (entry?.localeId && entry.text && !byLocale.has(entry.localeId)) {
+        byLocale.set(entry.localeId, entry);
+      }
+    }
+    partMaps.push(byLocale);
+  }
+
+  if (!partMaps.length) {
+    return [];
+  }
+
+  const localeIds = [...partMaps[0].keys()].filter((localeId) =>
+    partMaps.every((partMap) => partMap.has(localeId))
+  );
+  const entries = [];
+  for (const localeId of localeIds) {
+    const sourceEntries = partMaps.map((partMap) => partMap.get(localeId));
+    entries.push({
+      language: sourceEntries[0].language,
+      localeId,
+      stringIndex: sourceEntries.map((entry) => entry.stringIndex).join("+"),
+      text: joinLocalizedNameParts(localeId, sourceEntries.map((entry) => entry.text))
+    });
+  }
+  return entries;
+}
+
+function joinLocalizedNameParts(localeId, parts) {
+  const cleaned = parts.map((part) => String(part || "").trim()).filter(Boolean);
+  if (["zh-CN", "zh-TW", "ja"].includes(localeId)) {
+    return cleaned.join("");
+  }
+  return cleaned.join(" ");
+}
+
 function collectSecondaryBuffNames(
   containerDir,
   metaEntries,
@@ -396,8 +461,10 @@ function collectNamedBuffLinkCandidatesFromTable(
       if (fieldOffset === 0) {
         continue;
       }
+      const localizedText = lookupLocalizedText(englishTable, value);
+      const pooledText = readStringAtPool(stringPool, value);
       const pooledInts = intPool && value > 20 && value < intPool.length ? readIntArrayFromPool(intPool, value) : [];
-      if ((lookupLocalizedText(englishTable, value) || readStringAtPool(stringPool, value)) && !pooledInts.length) {
+      if ((localizedText || pooledText) && (spec.skipTextFieldIntPoolLinks || !pooledInts.length)) {
         continue;
       }
       collectBuffIdMatchesFromValue(value, intPool, buffIds, linkedBuffIds);
@@ -409,6 +476,8 @@ function collectNamedBuffLinkCandidatesFromTable(
     const rowHints = collectTableRowHints(table, rowOffset, englishTable, stringPool);
     const effectId =
       typeof spec.effectField === "number" ? readU32Local(table.data, rowOffset + spec.effectField) : 0;
+    const level =
+      typeof spec.levelField === "number" ? readU32Local(table.data, rowOffset + spec.levelField) : null;
     const preferredLabel = lookupLocalizedText(englishTable, nameId);
     const localizedLabels = collectLocalizedLabelsForIds([nameId], localizationTables);
     const baseCandidate = {
@@ -438,6 +507,7 @@ function collectNamedBuffLinkCandidatesFromTable(
             linkedBuffCount: linkedBuffIds.size,
             minPathDepth: match.minPathDepth,
             hasDirectBuffField: match.hasDirectBuffField,
+            ...(Number.isFinite(level) ? { level } : {}),
             ...(effectId ? { effectId } : {})
           }
         ],
@@ -510,7 +580,8 @@ function scoreSecondaryCandidate(candidate, rawRow) {
   ];
   const normalizedTexts = sortLabels(textValues).map(normalizeCompareText).filter(Boolean);
 
-  if (rowName && normalizedTexts.some((value) => value === rowName)) {
+  const hasExactTextMatch = rowName && normalizedTexts.some((value) => value === rowName);
+  if (hasExactTextMatch) {
     score += 38;
   } else if (rowName && normalizedTexts.some((value) => containsComparableText(rowName, value))) {
     score += 22;
@@ -531,21 +602,74 @@ function scoreSecondaryCandidate(candidate, rawRow) {
   ) {
     score -= 12;
   }
+  if (
+    hasExactTextMatch &&
+    Array.isArray(candidate.rowIconPaths) &&
+    candidate.rowIconPaths.some((iconPath) => !isGenericIconPath(iconPath))
+  ) {
+    score += 12;
+  }
+  if (
+    candidate.source === "CTB:155301122" &&
+    !hasExactTextMatch &&
+    rowName &&
+    normalizedTexts.some((value) => containsComparableText(rowName, value)) &&
+    Array.isArray(candidate.rowIconPaths) &&
+    candidate.rowIconPaths.some((iconPath) => !isGenericIconPath(iconPath))
+  ) {
+    score += 8;
+  }
+  if (
+    candidate.source === "ModEffectTable" &&
+    candidate.linkedBuffCount === 1 &&
+    Number(candidate.minPathDepth ?? 99) <= 2 &&
+    Array.isArray(candidate.rowIconPaths) &&
+    candidate.rowIconPaths.some((iconPath) => !isGenericIconPath(iconPath)) &&
+    (candidate.preferredLabel || (Array.isArray(candidate.localizedLabels) && candidate.localizedLabels.length))
+  ) {
+    score += 16;
+  }
+  if (
+    isAlignedTalentBuffCandidate(candidate, rawRow) &&
+    candidate.linkedBuffCount === 1 &&
+    Number(candidate.minPathDepth ?? 99) <= 2 &&
+    Array.isArray(candidate.rowIconPaths) &&
+    candidate.rowIconPaths.some((iconPath) => !isGenericIconPath(iconPath)) &&
+    (candidate.preferredLabel || (Array.isArray(candidate.localizedLabels) && candidate.localizedLabels.length))
+  ) {
+    score += 36;
+  }
 
   return score;
+}
+
+function isAlignedTalentBuffCandidate(candidate, rawRow) {
+  if (candidate.source !== "CTB:3345237628") {
+    return false;
+  }
+  const buffId = Number(rawRow?.id);
+  const rowId = Number(candidate.rows?.[0]?.rowId);
+  if (!Number.isInteger(buffId) || !Number.isInteger(rowId)) {
+    return false;
+  }
+  const suffix = buffId % 10000;
+  if (suffix % 10 !== 0) {
+    return false;
+  }
+  return rowId === Math.floor(suffix / 10) - 501;
 }
 
 function collectAdjacentEffectBuffNames(rawRows, directLinks) {
   const out = new Map(directLinks);
   for (let index = 1; index < rawRows.length; index += 1) {
     const row = rawRows[index];
-    if (!row.id || row.nameMlStringId || out.has(row.id) || !isAdjacentInheritedDesign(row.designName)) {
+    if (!row.id || row.nameMlStringId || out.has(row.id)) {
       continue;
     }
 
     const previous = rawRows[index - 1];
     const previousLink = directLinks.get(previous?.id);
-    if (!previousLink) {
+    if (!previousLink || !isAdjacentInheritedDesign(row.designName, previous?.designName)) {
       continue;
     }
 
@@ -556,7 +680,61 @@ function collectAdjacentEffectBuffNames(rawRows, directLinks) {
       rows: previousLink.rows.map((linkedRow) => ({ ...linkedRow }))
     });
   }
+  collectComposedDesignBuffNames(rawRows, out);
   return out;
+}
+
+function collectComposedDesignBuffNames(rawRows, out) {
+  for (let index = 0; index < rawRows.length; index += 1) {
+    const row = rawRows[index];
+    if (!row.id || row.nameMlStringId || out.has(row.id)) {
+      continue;
+    }
+
+    if (isInspirationDamageReductionDesign(row.designName)) {
+      const parent = findPriorLinkedRowByNameId(rawRows, out, index, LOCALIZED_TERM_IDS.inspiration, 2);
+      if (parent) {
+        out.set(row.id, {
+          ...parent.link,
+          source: `${parent.link.source}ComposedDamageReductionBuff`,
+          nameIds: uniqueSortedNumbers([LOCALIZED_TERM_IDS.inspiration, LOCALIZED_TERM_IDS.dmgReduction]),
+          composeParts: [
+            { kind: "localizedTerm", nameId: LOCALIZED_TERM_IDS.inspiration, role: "base" },
+            { kind: "localizedTerm", nameId: LOCALIZED_TERM_IDS.dmgReduction, role: "suffix" }
+          ],
+          adjacentFrom: parent.row.id,
+          rows: parent.link.rows.map((linkedRow) => ({ ...linkedRow }))
+        });
+      }
+      continue;
+    }
+
+    if (isBrigandInspirationBuffDesign(row.designName)) {
+      out.set(row.id, {
+        source: "BuffTableDesignComponents",
+        tableHash: 983121143,
+        nameIds: uniqueSortedNumbers([
+          LOCALIZED_TERM_IDS.brigand,
+          LOCALIZED_TERM_IDS.inspiration,
+          LOCALIZED_TERM_IDS.buff
+        ]),
+        composeParts: [
+          { kind: "localizedTerm", nameId: LOCALIZED_TERM_IDS.brigand, role: "prefix" },
+          { kind: "localizedTerm", nameId: LOCALIZED_TERM_IDS.inspiration, role: "base" },
+          { kind: "localizedTerm", nameId: LOCALIZED_TERM_IDS.buff, role: "suffix" }
+        ],
+        iconPaths: [],
+        rows: [
+          {
+            rowId: row.id,
+            rowIndex: row.index,
+            tableHash: 983121143,
+            designName: row.designName
+          }
+        ]
+      });
+    }
+  }
 }
 
 function parseCtb(data) {
@@ -648,7 +826,7 @@ function collectTableRowHints(table, rowOffset, englishTable, stringPool) {
   return {
     textFields,
     textValues: sortLabels(textValues),
-    iconPaths: sortLabels(iconPaths),
+    iconPaths: uniqueIconPaths(iconPaths),
     iconTokens: [...iconTokens].sort((a, b) => a.localeCompare(b))
   };
 }
@@ -722,13 +900,39 @@ function readU32Local(buffer, offset) {
   return buffer.readUInt32LE(offset);
 }
 
-function isAdjacentInheritedDesign(value) {
+function isAdjacentInheritedDesign(value, previousDesignName = "") {
+  const text = String(value || "");
+  const previousStem = String(previousDesignName || "").trim();
   return (
-    /effect\s*buff/i.test(value) ||
-    /\u6548\u679c\s*buff/i.test(value) ||
-    /stack/i.test(value) ||
-    /\u53e0\u5c42/i.test(value)
+    /effect\s*buff/i.test(text) ||
+    /\u6548\u679c\s*buff/i.test(text) ||
+    /stack/i.test(text) ||
+    /\u53e0\u5c42/i.test(text) ||
+    (previousStem && text.startsWith(`${previousStem}_`) && /\u52a0\u5c5e\u6027/i.test(text))
   );
+}
+
+function isInspirationDamageReductionDesign(value) {
+  return String(value || "").trim() === "\u9f13\u821e\u51cf\u4f24";
+}
+
+function isBrigandInspirationBuffDesign(value) {
+  return /^\u5c71\u8d3c\u9f13\u821ebuff$/i.test(String(value || "").trim());
+}
+
+function findPriorLinkedRowByNameId(rawRows, linksById, startIndex, nameId, maxDistance) {
+  let fallback = null;
+  for (let index = startIndex - 1; index >= 0 && startIndex - index <= maxDistance; index -= 1) {
+    const row = rawRows[index];
+    const link = linksById.get(row?.id);
+    if (link?.nameIds?.some((id) => Number(id) === Number(nameId))) {
+      if (!link.adjacentFrom) {
+        return { row, link };
+      }
+      fallback ??= { row, link };
+    }
+  }
+  return fallback;
 }
 
 function adjacentInheritedSource(previousSource, designName) {
@@ -741,6 +945,9 @@ function adjacentInheritedSource(previousSource, designName) {
     return previousSource === "ModEffectTable"
       ? "ModEffectTableAdjacentStackBuff"
       : `${previousSource}AdjacentStackBuff`;
+  }
+  if (/\u52a0\u5c5e\u6027/i.test(designName)) {
+    return `${previousSource}AdjacentAttributeBuff`;
   }
   return `${previousSource}AdjacentBuff`;
 }
@@ -844,9 +1051,21 @@ function isGenericIconPath(value) {
 }
 
 function uniqueIconPaths(values) {
-  return sortLabels((values || [])
-    .map((value) => String(value || "").trim())
-    .filter((value) => value && looksLikeIconPath(value) && !isGenericIconPath(value)));
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    const iconPath = String(value || "").trim();
+    if (!iconPath || !looksLikeIconPath(iconPath) || isGenericIconPath(iconPath)) {
+      continue;
+    }
+    const key = iconPath.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(iconPath);
+  }
+  return out;
 }
 
 function readMetaEntries(metaPath) {

@@ -46,11 +46,22 @@ Notes:
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const skillTableLookup = buildSkillTableLookup(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    looksLikeIconPath,
+    nextCtbStringOffset,
+    readCtbString,
+    readCtbTable,
+    readU32
+  });
+  const rawSkillIds = buildRawSkillIdSet(containerDir, metaEntries, { readCtbTable, readU32 });
   const out = new Map();
   const stats = {
     recount: 0,
     recountDamage: 0,
     damageAttr: 0,
+    damageAttrLinkedRawSkill: 0,
+    damageAttrFormulaSkill: 0,
     skillTable: 0,
     skillEffect: 0,
     skillEffectSkillId: 0,
@@ -66,21 +77,14 @@ Notes:
     readU32
   }, stats);
   collectDamageAttrEntries(out, paths.outputDir, stats);
-  collectSkillTableEntries(out, containerDir, metaEntries, localizationTables, {
-    buildLocaleTextObject,
-    looksLikeIconPath,
-    nextCtbStringOffset,
-    readCtbString,
-    readCtbTable,
-    readU32
-  }, stats);
-  collectSkillEffectEntries(out, containerDir, metaEntries, {
+  collectSkillTableEntries(out, skillTableLookup, stats);
+  collectSkillEffectEntries(out, containerDir, metaEntries, skillTableLookup, {
     buildLocaleTextObject,
     readCtbString,
     readCtbTable,
     readU32
   }, stats);
-  collectSkillFightEntries(out, containerDir, metaEntries, {
+  collectSkillFightEntries(out, containerDir, metaEntries, skillTableLookup, {
     buildLocaleTextObject,
     readCtbString,
     readCtbTable,
@@ -89,6 +93,11 @@ Notes:
   collectTempAttrEntries(out, containerDir, metaEntries, {
     buildLocaleTextObject,
     readCtbString,
+    readCtbTable,
+    readU32
+  }, stats);
+  collectDamageAttrLinkedRawSkillEntries(out, paths.outputDir, rawSkillIds, stats);
+  collectDamageAttrFormulaSkillEntries(out, containerDir, metaEntries, paths.outputDir, {
     readCtbTable,
     readU32
   }, stats);
@@ -122,6 +131,8 @@ Notes:
   console.log(`Recount skill ids: ${stats.recount}`);
   console.log(`Recount damage ids: ${stats.recountDamage}`);
   console.log(`DamageAttr ids: ${stats.damageAttr}`);
+  console.log(`DamageAttr linked raw skill ids: ${stats.damageAttrLinkedRawSkill}`);
+  console.log(`DamageAttr formula skill ids: ${stats.damageAttrFormulaSkill}`);
   console.log(`SkillTable row ids: ${stats.skillTable}`);
   console.log(`SkillEffect row ids: ${stats.skillEffect}`);
   console.log(`SkillEffect SkillId bridges: ${stats.skillEffectSkillId}`);
@@ -132,9 +143,10 @@ Notes:
   maybeWriteJson(paths.out, rows, Boolean(args.dryRun));
 }
 
-function collectSkillTableEntries(target, containerDir, metaEntries, localizationTables, helpers, stats) {
+function buildSkillTableLookup(containerDir, metaEntries, localizationTables, helpers) {
   const { buildLocaleTextObject, looksLikeIconPath, nextCtbStringOffset, readCtbString, readCtbTable, readU32 } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
+  const out = new Map();
 
   for (let index = 0; index < table.rowCount; index += 1) {
     const rowOffset = table.rowStart + index * table.rowSize;
@@ -150,19 +162,58 @@ function collectSkillTableEntries(target, containerDir, metaEntries, localizatio
     const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
       designText: name
     });
-    putEntry(target, id, {
+    out.set(String(id), {
+      id,
       name,
       names: Object.keys(names).length
         ? names
         : buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false }),
       nameDesign: name,
+      sourceOffset: table.entry.offset + rowOffset,
+      iconPath: looksLikeIconPath(iconPath) ? iconPath : "",
+      iconPathOffset
+    });
+  }
+
+  return out;
+}
+
+function buildRawSkillIdSet(containerDir, metaEntries, helpers) {
+  const { readCtbTable, readU32 } = helpers;
+  const out = new Set();
+
+  collectTableIds(readCtbTable(containerDir, metaEntries, "SkillTable.ctb"), [0]);
+  collectTableIds(readCtbTable(containerDir, metaEntries, "SkillEffectTable.ctb"), [0, 12]);
+  collectTableIds(readCtbTable(containerDir, metaEntries, "SkillFightLevelTable.ctb"), [0, 4, 12]);
+
+  return out;
+
+  function collectTableIds(table, fieldOffsets) {
+    for (let index = 0; index < table.rowCount; index += 1) {
+      const rowOffset = table.rowStart + index * table.rowSize;
+      for (const fieldOffset of fieldOffsets) {
+        const id = readU32(table.data, rowOffset + fieldOffset);
+        if (id) {
+          out.add(String(id));
+        }
+      }
+    }
+  }
+}
+
+function collectSkillTableEntries(target, skillTableLookup, stats) {
+  for (const row of skillTableLookup.values()) {
+    putEntry(target, row.id, {
+      name: row.name,
+      names: row.names,
+      nameDesign: row.nameDesign,
       source: "SkillTable",
       priority: 60,
-      sourceOffset: table.entry.offset + rowOffset,
-      ...(looksLikeIconPath(iconPath)
+      sourceOffset: row.sourceOffset,
+      ...(row.iconPath
         ? {
-            iconPath,
-            iconPathOffset: iconPathOffset,
+            iconPath: row.iconPath,
+            iconPathOffset: row.iconPathOffset,
             iconSource: "SkillTable"
           }
         : {})
@@ -220,16 +271,19 @@ function collectDamageAttrEntries(target, outputDir, stats) {
   }
   const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
   for (const [id, row] of Object.entries(rows || {})) {
-    const name = String(row?.Name ?? row?.NameDesign ?? "").trim();
-    const names = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
+    const directName = String(row?.Name ?? row?.NameDesign ?? "").trim();
+    const directNames = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
+    const linkedNameSet = chooseLinkedDamageNameSet(row);
+    const names = !hasRealLocale(directNames) && linkedNameSet?.names ? linkedNameSet.names : directNames;
+    const name = !hasRealLocale(directNames) && linkedNameSet?.name ? linkedNameSet.name : directName;
     if (!name && !Object.keys(names).length) {
       continue;
     }
     putEntry(target, id, {
       name,
       names,
-      nameDesign: row?.NameDesign,
-      source: "DamageAttrIdName",
+      nameDesign: directName || row?.NameDesign,
+      source: linkedNameSet?.source || "DamageAttrIdName",
       priority: 80,
       sourceOffset: row?.SourceOffset,
       linkedId: row?.LinkedId,
@@ -240,7 +294,180 @@ function collectDamageAttrEntries(target, outputDir, stats) {
   }
 }
 
-function collectSkillEffectEntries(target, containerDir, metaEntries, helpers, stats) {
+function collectDamageAttrLinkedRawSkillEntries(target, outputDir, rawSkillIds, stats) {
+  const filePath = path.join(outputDir, "DamageAttrIdName.json");
+  if (!fs.existsSync(filePath)) {
+    return;
+  }
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const addedKeys = new Set();
+
+  for (const [damageId, row] of Object.entries(rows || {})) {
+    const linkedId = row?.LinkedId;
+    const key = linkedId === undefined || linkedId === null ? "" : String(linkedId);
+    const directName = String(row?.NameDesign ?? "").trim();
+    if (!key || !directName || !rawSkillIds.has(key)) {
+      continue;
+    }
+
+    const existing = target.get(key);
+    const existingIsDamageAlias = existing?.sources?.has("DamageAttrLinkedRawSkillId") ?? false;
+    const existingName = String(existing?.name ?? "").trim() || chooseFirstText(existing?.names || {});
+    if (existingName && !existingIsDamageAlias) {
+      continue;
+    }
+
+    const names = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
+    putEntry(target, linkedId, {
+      name: directName,
+      names,
+      nameDesign: directName,
+      source: "DamageAttrLinkedRawSkillId",
+      priority: 42,
+      sourceOffset: row?.SourceOffset,
+      linkedId: damageId,
+      ...(row?.IconPath ? { iconPath: row.IconPath, iconSource: row?.IconSource || "DamageAttrIdName" } : {}),
+      ...(Array.isArray(row?.IconPaths) ? { iconPaths: row.IconPaths } : {})
+    });
+    if (!addedKeys.has(key)) {
+      addedKeys.add(key);
+      stats.damageAttrLinkedRawSkill += 1;
+    }
+  }
+}
+
+function collectDamageAttrFormulaSkillEntries(target, containerDir, metaEntries, outputDir, helpers, stats) {
+  const { readCtbTable, readU32 } = helpers;
+  const filePath = path.join(outputDir, "DamageAttrIdName.json");
+  if (!fs.existsSync(filePath)) {
+    return;
+  }
+
+  const formulaTargets = new Map();
+  const table = readCtbTable(containerDir, metaEntries, "SkillFightLevelTable.ctb");
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const skillId = readU32(table.data, rowOffset + 4);
+    const skillEffectId = readU32(table.data, rowOffset + 12);
+    if (skillEffectId) {
+      addFormulaTarget("1", skillEffectId, skillEffectId, "DamageAttrFormulaSkillEffectId");
+    }
+    if (skillId) {
+      addFormulaTarget("2", skillId, skillId, "DamageAttrFormulaOwnerSkillId");
+      addFormulaTarget("3", skillId, skillId, "DamageAttrFormulaOwnerSkillId");
+    }
+  }
+
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const addedKeys = new Set();
+  for (const [damageId, row] of Object.entries(rows || {})) {
+    const directName = usefulDamageFormulaName(row);
+    if (!directName) {
+      continue;
+    }
+    for (const match of damageFormulaMatches(String(damageId), formulaTargets)) {
+      const existing = target.get(match.targetId);
+      const existingIsFormulaAlias = existing?.sources?.has(match.source) ?? false;
+      const existingName = String(existing?.name ?? "").trim() || chooseFirstText(existing?.names || {});
+      if (existingName && !existingIsFormulaAlias) {
+        continue;
+      }
+
+      const names = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names)
+        ? row.Names
+        : {};
+      putEntry(target, match.targetId, {
+        name: directName,
+        names,
+        nameDesign: directName,
+        source: match.source,
+        priority: 41,
+        sourceOffset: row?.SourceOffset,
+        linkedId: damageId,
+        ...(row?.IconPath ? { iconPath: row.IconPath, iconSource: row?.IconSource || "DamageAttrIdName" } : {}),
+        ...(Array.isArray(row?.IconPaths) ? { iconPaths: row.IconPaths } : {})
+      });
+      if (!addedKeys.has(match.targetId)) {
+        addedKeys.add(match.targetId);
+        stats.damageAttrFormulaSkill += 1;
+      }
+    }
+  }
+
+  function addFormulaTarget(damageType, formulaId, targetId, source) {
+    const key = `${damageType}|${formulaId}`;
+    const entries = formulaTargets.get(key) ?? [];
+    const target = {
+      targetId: String(targetId),
+      source
+    };
+    if (!entries.some((entry) => entry.targetId === target.targetId && entry.source === target.source)) {
+      entries.push(target);
+    }
+    formulaTargets.set(key, entries);
+  }
+}
+
+function chooseLinkedDamageNameSet(row) {
+  for (const [nameKey, namesKey, source] of [
+    ["LinkedSkillTableName", "LinkedSkillTableNames", "DamageAttrLinkedSkillTable"],
+    ["LinkedSkillEffectSkillTableName", "LinkedSkillEffectSkillTableNames", "DamageAttrLinkedSkillEffectSkillTable"],
+    ["LinkedSkillFightSkillTableName", "LinkedSkillFightSkillTableNames", "DamageAttrLinkedSkillFightSkillTable"],
+    ["LinkedSkillFightName", "LinkedSkillFightNames", "DamageAttrLinkedSkillFight"],
+    ["LinkedBuffName", "LinkedBuffNames", "DamageAttrLinkedBuff"],
+    ["LinkedSkillName", "LinkedSkillNames", "DamageAttrLinkedSkill"]
+  ]) {
+    const names = row?.[namesKey];
+    if (!names || typeof names !== "object" || Array.isArray(names) || !hasRealLocale(names)) {
+      continue;
+    }
+    return {
+      name: chooseFirstRealLocaleText(names) || String(row?.[nameKey] ?? "").trim(),
+      names,
+      source
+    };
+  }
+  return null;
+}
+
+function usefulDamageFormulaName(row) {
+  const name = String(row?.NameDesign ?? "").trim();
+  if (!name) {
+    return "";
+  }
+  return new Set(["Attack", "MstSpSkillAttack", "MstSpSkillAttackShare", "Heal", "Buff", "Damage", "None"]).has(name)
+    ? ""
+    : name;
+}
+
+function damageFormulaMatches(damageId, formulaTargets) {
+  const id = String(damageId || "");
+  const out = [];
+  for (const damageType of ["1", "2", "3"]) {
+    if (!id.startsWith(damageType)) {
+      continue;
+    }
+    const rest = id.slice(1);
+    for (let cut = 1; cut <= rest.length - 2; cut += 1) {
+      const formulaId = rest.slice(0, cut);
+      const suffix = rest.slice(cut);
+      if (!isValidDamageFormulaSuffix(suffix)) {
+        continue;
+      }
+      const matches = formulaTargets.get(`${damageType}|${formulaId}`);
+      if (matches) {
+        out.push(...matches);
+      }
+    }
+  }
+  return out;
+}
+
+function isValidDamageFormulaSuffix(suffix) {
+  return /^\d{2}$/.test(suffix) || /^[1-9]\d{2,}$/.test(suffix);
+}
+
+function collectSkillEffectEntries(target, containerDir, metaEntries, skillTableLookup, helpers, stats) {
   const { buildLocaleTextObject, readCtbString, readCtbTable, readU32 } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillEffectTable.ctb");
 
@@ -251,38 +478,62 @@ function collectSkillEffectEntries(target, containerDir, metaEntries, helpers, s
     const nameOffset = readU32(table.data, rowOffset + 8);
     const skillId = readU32(table.data, rowOffset + 12);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: true });
-    if (!id || !name) {
+    if (!id) {
       continue;
     }
-    const names = buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false });
+    const linkedSkillTable = skillTableLookup.get(String(skillId)) ?? null;
+    const directNames = name
+      ? buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false })
+      : {};
+    const useLinkedSkillNames = shouldUseLinkedSkillTableNames(name, linkedSkillTable);
+    const names = useLinkedSkillNames
+      ? linkedSkillTable.names
+      : Object.keys(directNames).length
+        ? directNames
+        : linkedSkillTable?.names && Object.keys(linkedSkillTable.names).length
+          ? linkedSkillTable.names
+          : {};
+    const entryName = name || chooseFirstText(names) || linkedSkillTable?.name || "";
+    if (!entryName) {
+      continue;
+    }
+    const iconFields = linkedSkillTable?.iconPath
+      ? {
+          iconPath: linkedSkillTable.iconPath,
+          iconPathOffset: linkedSkillTable.iconPathOffset,
+          iconSource: "SkillEffectTableSkillIdToSkillTable"
+        }
+      : {};
     putEntry(target, id, {
-      name,
+      name: entryName,
       names,
-      nameDesign: name,
-      source: "SkillEffectTable",
-      priority: 50,
+      nameDesign: name || linkedSkillTable?.name,
+      source: useLinkedSkillNames ? "SkillEffectTableSkillTable" : "SkillEffectTable",
+      priority: useLinkedSkillNames ? 47 : 50,
       sourceOffset: table.entry.offset + rowOffset,
-      skillEffectId: id
+      skillEffectId: id,
+      ...iconFields
     });
     stats.skillEffect += 1;
 
     if (skillId) {
       putEntry(target, skillId, {
-        name,
+        name: entryName,
         names,
-        nameDesign: name,
-        source: "SkillEffectTableSkillId",
-        priority: level <= 1 ? 48 : 45,
+        nameDesign: name || linkedSkillTable?.name,
+        source: useLinkedSkillNames ? "SkillEffectTableSkillIdToSkillTable" : "SkillEffectTableSkillId",
+        priority: useLinkedSkillNames ? 44 : (level <= 1 ? 48 : 45),
         sourceOffset: table.entry.offset + rowOffset,
         skillEffectId: id,
-        linkedId: id
+        linkedId: id,
+        ...iconFields
       });
       stats.skillEffectSkillId += 1;
     }
   }
 }
 
-function collectSkillFightEntries(target, containerDir, metaEntries, helpers, stats) {
+function collectSkillFightEntries(target, containerDir, metaEntries, skillTableLookup, helpers, stats) {
   const { buildLocaleTextObject, readCtbString, readCtbTable, readU32 } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillFightLevelTable.ctb");
 
@@ -293,24 +544,47 @@ function collectSkillFightEntries(target, containerDir, metaEntries, helpers, st
     const skillEffectId = readU32(table.data, rowOffset + 12);
     const nameOffset = readU32(table.data, rowOffset + 16);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
-    if (!id || !name) {
+    if (!id) {
       continue;
     }
-    const names = buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false });
+    const linkedSkillTable = skillTableLookup.get(String(skillId)) ?? null;
+    const directNames = name
+      ? buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false })
+      : {};
+    const useLinkedSkillNames = shouldUseLinkedSkillTableNames(name, linkedSkillTable);
+    const names = useLinkedSkillNames
+      ? linkedSkillTable.names
+      : Object.keys(directNames).length
+        ? directNames
+        : linkedSkillTable?.names && Object.keys(linkedSkillTable.names).length
+          ? linkedSkillTable.names
+          : {};
+    const entryName = name || chooseFirstText(names) || linkedSkillTable?.name || "";
+    if (!entryName) {
+      continue;
+    }
+    const iconFields = linkedSkillTable?.iconPath
+      ? {
+          iconPath: linkedSkillTable.iconPath,
+          iconPathOffset: linkedSkillTable.iconPathOffset,
+          iconSource: "SkillFightLevelTableSkillIdToSkillTable"
+        }
+      : {};
     for (const [value, source] of [
-      [id, "SkillFightLevelTable"],
-      [skillId, "SkillFightLevelTableSkillId"],
-      [skillEffectId, "SkillFightLevelTableEffectId"]
+      [id, useLinkedSkillNames ? "SkillFightLevelTableSkillTable" : "SkillFightLevelTable"],
+      [skillId, useLinkedSkillNames ? "SkillFightLevelTableSkillIdToSkillTable" : "SkillFightLevelTableSkillId"],
+      [skillEffectId, useLinkedSkillNames ? "SkillFightLevelTableEffectIdToSkillTable" : "SkillFightLevelTableEffectId"]
     ]) {
       putEntry(target, value, {
-        name,
+        name: entryName,
         names,
-        nameDesign: name,
+        nameDesign: name || linkedSkillTable?.name,
         source,
-        priority: 46,
+        priority: useLinkedSkillNames ? 43 : 46,
         sourceOffset: table.entry.offset + rowOffset,
         skillEffectId,
-        linkedId: id
+        linkedId: id,
+        ...iconFields
       });
     }
     stats.skillFight += 1;
@@ -425,7 +699,7 @@ function readDamageIds(pool, offset, helpers) {
   }
   const ids = [];
   for (let index = 0; index < count; index += 1) {
-    const id = readU32(pool, offset + 2 + index * 8);
+    const id = readU64Id(pool, offset + 2 + index * 8, readU32);
     if (id) {
       ids.push(id);
     }
@@ -435,6 +709,28 @@ function readDamageIds(pool, offset, helpers) {
 
 function hasRealLocale(names) {
   return Object.keys(names || {}).some((localeId) => localeId !== "design" && localeId !== "und");
+}
+
+function shouldUseLinkedSkillTableNames(name, linkedSkillTable) {
+  if (!linkedSkillTable?.names || !hasRealLocale(linkedSkillTable.names)) {
+    return false;
+  }
+  const directName = String(name || "").trim();
+  if (!directName) {
+    return true;
+  }
+  return directName === String(linkedSkillTable.name || "").trim();
+}
+
+function chooseFirstRealLocaleText(names) {
+  for (const [localeId, value] of Object.entries(names || {})) {
+    if (localeId === "design" || localeId === "und") {
+      continue;
+    }
+    const text = String(value || "").trim();
+    if (text) return text;
+  }
+  return "";
 }
 
 function chooseFirstText(names) {
@@ -453,6 +749,15 @@ function uniqueSortedNumbers(values) {
 function uniqueSortedStrings(values) {
   return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b));
+}
+
+function readU64Id(buffer, offset, readU32) {
+  const low = readU32(buffer, offset);
+  const high = readU32(buffer, offset + 4);
+  if (!low && !high) {
+    return "";
+  }
+  return ((BigInt(high) << 32n) | BigInt(low)).toString();
 }
 
 function numberOrString(value) {

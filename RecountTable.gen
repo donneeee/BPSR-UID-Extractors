@@ -38,7 +38,7 @@ async function main() {
 Notes:
   This script reads the game row block whose rows are:
     u32 recount id, u32 mlstring name key, u32 damage-list offset
-  Damage ids are read from the packed payload after the row block.
+  Damage ids are read as u64 ids from the packed payload after the row block.
 `
     );
     process.exit(0);
@@ -165,9 +165,9 @@ function readDamageIdList(buffer, payloadBase, damageOffset, helpers) {
   const ids = [];
   for (let index = 0; index < count; index += 1) {
     const offset = start + 2 + index * 8;
-    const id = readU32(buffer, offset);
+    const id = readU64Id(buffer, offset, readU32);
     if (id) {
-      ids.push(id);
+      ids.push(numberOrString(id));
     }
   }
   return ids;
@@ -209,4 +209,19 @@ function compareNumericStrings(left, right) {
 function uniqueStrings(values) {
   return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b));
+}
+
+function readU64Id(buffer, offset, readU32) {
+  const low = readU32(buffer, offset);
+  const high = readU32(buffer, offset + 4);
+  if (!low && !high) {
+    return "";
+  }
+  return ((BigInt(high) << 32n) | BigInt(low)).toString();
+}
+
+function numberOrString(value) {
+  const text = String(value);
+  const numeric = Number(text);
+  return Number.isSafeInteger(numeric) && String(numeric) === text ? numeric : text;
 }

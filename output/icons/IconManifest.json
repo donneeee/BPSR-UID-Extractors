@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-04-24T17:06:37.066Z",
+  "GeneratedAt": "2026-04-24T22:48:46.594Z",
   "OutputDir": "output/icons",
   "JsonFilesScanned": 8,
   "ProbeImageDirs": [
@@ -10,25 +10,25 @@
   ],
   "ProbeImageFilesScanned": 0,
   "ProbeTextFilesScanned": 0,
-  "GeneratedReferencesFound": 11491,
+  "GeneratedReferencesFound": 18392,
   "ProbeImageReferencesFound": 0,
   "ProbeTextReferencesFound": 0,
-  "UniqueReferences": 5523,
+  "UniqueReferences": 6111,
   "AddressCatalogEntries": 193085,
   "SpriteCatalogEntries": 8388,
-  "ResolvedAssetCount": 5103,
-  "MissingAssetCount": 192,
+  "ResolvedAssetCount": 5465,
+  "MissingAssetCount": 219,
   "AmbiguousAssetCount": 4,
   "GroupManifests": [
     {
       "SourceGroup": "BuffName",
       "Manifest": "BuffName/manifest.json",
-      "AssetCount": 759
+      "AssetCount": 1005
     },
     {
       "SourceGroup": "DamageAttrIdName",
       "Manifest": "DamageAttrIdName/manifest.json",
-      "AssetCount": 188
+      "AssetCount": 240
     },
     {
       "SourceGroup": "itemnames",
@@ -38,7 +38,7 @@
     {
       "SourceGroup": "RecountTable",
       "Manifest": "RecountTable/manifest.json",
-      "AssetCount": 114
+      "AssetCount": 129
     },
     {
       "SourceGroup": "skill_aoyi_icons",
@@ -48,7 +48,7 @@
     {
       "SourceGroup": "skillnames",
       "Manifest": "skillnames/manifest.json",
-      "AssetCount": 388
+      "AssetCount": 437
     }
   ],
   "MissingAssets": [
@@ -72,8 +72,30 @@
           "Name": "鬼人化效果生效Buff"
         },
         {
-          "Id": 216108213,
+          "Id": 13101010101,
           "Name": "崩裂词缀自爆虚拟体"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310100,
+          "Name": "鬼人化效果生效Buff"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -126,6 +148,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310201"
+      ],
+      "CandidateNames": [
+        "talent_skill_310201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310200,
+          "Name": "生存小招-生命护盾"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_310201",
       "CandidateAddresses": [
@@ -170,6 +214,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310301"
+      ],
+      "CandidateNames": [
+        "talent_skill_310301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310300,
+          "Name": "假人！现！"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_310301",
       "CandidateAddresses": [
@@ -214,6 +280,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310401"
+      ],
+      "CandidateNames": [
+        "talent_skill_310401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310400,
+          "Name": "战争怒吼"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_310401",
       "CandidateAddresses": [
@@ -258,6 +346,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330201"
+      ],
+      "CandidateNames": [
+        "talent_skill_330201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330200,
+          "Name": "奥义！引力奇点"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_330201",
       "CandidateAddresses": [
@@ -302,6 +412,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330301"
+      ],
+      "CandidateNames": [
+        "talent_skill_330301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_330301",
       "CandidateAddresses": [
@@ -350,6 +482,32 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340100,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340101,
+          "Name": "光龙-净化之光扩散"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_340101",
       "CandidateAddresses": [
@@ -402,6 +560,32 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340201"
+      ],
+      "CandidateNames": [
+        "talent_skill_340201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3340201,
+          "Name": "光龙-净化之光收缩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_340201",
       "CandidateAddresses": [
@@ -450,6 +634,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340301"
+      ],
+      "CandidateNames": [
+        "talent_skill_340301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3340300,
+          "Name": "跳圈烟圈"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_340301",
       "CandidateAddresses": [
@@ -494,6 +700,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3360100,
+          "Name": "鬼人QTE特效"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_360101",
       "CandidateAddresses": [
@@ -542,6 +770,32 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360102",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360102"
+      ],
+      "CandidateNames": [
+        "talent_skill_360102"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3360200,
+          "Name": "跳圈烟圈"
+        },
+        {
+          "Id": 3360201,
+          "Name": "虚蚀-环形子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_360102",
       "CandidateAddresses": [
@@ -598,6 +852,36 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360103",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360103"
+      ],
+      "CandidateNames": [
+        "talent_skill_360103"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3360300,
+          "Name": "蓄气"
+        },
+        {
+          "Id": 3360400,
+          "Name": "破"
+        },
+        {
+          "Id": 136040101,
+          "Name": "破"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_360103",
       "CandidateAddresses": [
@@ -650,6 +934,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3370100,
+          "Name": "鬼人化关闭标记buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_370101",
       "CandidateAddresses": [
@@ -688,8 +994,30 @@
           "Name": "艾露娜SKILL_04"
         },
         {
-          "Id": 2918075509,
+          "Id": 11508010101,
           "Name": "艾露娜召唤兽ULT_L"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11"
+      ],
+      "CandidateNames": [
+        "weapon_fh_skill_atk11"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 115080102,
+          "Name": "艾露娜SKILL_04"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -746,6 +1074,32 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_fz-12_skill_atk",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz-12_skill_atk"
+      ],
+      "CandidateNames": [
+        "weapon_fz-12_skill_atk"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 115100102,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 115100103,
+          "Name": "艾露娜AIRATK"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/skill/weapon_fz-12_skill_atk",
       "CandidateAddresses": [
@@ -802,6 +1156,36 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2"
+      ],
+      "CandidateNames": [
+        "weapon_tdl-01_skill_101_2"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 117110102,
+          "Name": "奥尔维拉SKILL_01-后撤"
+        },
+        {
+          "Id": 117110103,
+          "Name": "奥尔维拉SKILL_01-JR"
+        },
+        {
+          "Id": 117110105,
+          "Name": "奥尔维拉SKILL_01-非JR"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2",
       "CandidateAddresses": [
@@ -858,6 +1242,32 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 130010101,
+          "Name": "BK!破！"
+        },
+        {
+          "Id": 330010100,
+          "Name": "蒂娜分身时间结束销毁子弹"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_300101",
       "CandidateAddresses": [
@@ -902,6 +1312,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310501"
+      ],
+      "CandidateNames": [
+        "talent_skill_310501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 131050101,
+          "Name": "猛击"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_310501",
       "CandidateAddresses": [
@@ -946,6 +1378,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370201"
+      ],
+      "CandidateNames": [
+        "talent_skill_370201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137020106,
+          "Name": "灌篮高手"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "LinkedSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_370201",
       "CandidateAddresses": [
@@ -990,7 +1444,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
-      "Field": "LinkedSkillTableIconPath",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_370401",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_370401"
@@ -1012,20 +1466,20 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
-      "Field": "LinkedSkillFightSkillIconPath",
-      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "Field": "LinkedSkillTableIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370401",
       "CandidateAddresses": [
-        "ui/textures/talent_passive/talent_skill_310101"
+        "ui/textures/talent_passive/talent_skill_370401"
       ],
       "CandidateNames": [
-        "talent_skill_310101"
+        "talent_skill_370401"
       ],
       "AtlasSpriteCandidates": [],
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 216108213,
-          "Name": "崩裂词缀自爆虚拟体"
+          "Id": 137040102,
+          "Name": "天赋小招-爆燃鲜口"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -1057,6 +1511,28 @@
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
       "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300201"
+      ],
+      "CandidateNames": [
+        "talent_skill_300201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 330020100,
+          "Name": "聚怪嘲讽"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
       "Value": "ui/textures/talent_passive/talent_skill_300201",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_300201"
@@ -1112,12 +1588,12 @@
       "RefCount": 2,
       "Rows": [
         {
-          "Id": 936239028,
-          "Name": "棒槌哥布林投掷"
+          "Id": 11001010102,
+          "Name": "棒槌哥布林上撩"
         },
         {
-          "Id": 2411075510,
-          "Name": "棒槌哥布林上撩"
+          "Id": 31001010100,
+          "Name": "棒槌哥布林投掷"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -1126,7 +1602,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
-      "Field": "LinkedSkillFightSkillIconPath",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
       "Value": "ui/textures/mainui/attack",
       "CandidateAddresses": [
         "ui/textures/mainui/attack"
@@ -1135,10 +1611,14 @@
         "attack"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
-          "Id": 936239028,
+          "Id": 11001010102,
+          "Name": "棒槌哥布林上撩"
+        },
+        {
+          "Id": 31001010100,
           "Name": "棒槌哥布林投掷"
         }
       ],
@@ -1160,7 +1640,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2411075510,
+          "Id": 11001010102,
           "Name": "棒槌哥布林上撩"
         }
       ],
@@ -1182,7 +1662,29 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2415675509,
+          "Id": 11005610101,
+          "Name": "火焰兽人吐息"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_guardblade_ult",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_guardblade_ult"
+      ],
+      "CandidateNames": [
+        "weapon_guardblade_ult"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 11005610101,
           "Name": "火焰兽人吐息"
         }
       ],
@@ -1204,7 +1706,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2415675509,
+          "Id": 11005610101,
           "Name": "火焰兽人吐息"
         }
       ],
@@ -1226,7 +1728,29 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2516305510,
+          "Id": 11106240102,
+          "Name": "战斗机像03型-旋风斩"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_tdl-01_skill_05",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl-01_skill_05"
+      ],
+      "CandidateNames": [
+        "skill_weapon_tdl-01_skill_05"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 11106240102,
           "Name": "战斗机像03型-旋风斩"
         }
       ],
@@ -1248,7 +1772,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2516305510,
+          "Id": 11106240102,
           "Name": "战斗机像03型-旋风斩"
         }
       ],
@@ -1270,7 +1794,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2918075509,
+          "Id": 11508010101,
           "Name": "艾露娜召唤兽ULT_L"
         }
       ],
@@ -1280,6 +1804,28 @@
       "SourceKind": "generated-json",
       "SourceFile": "DamageAttrIdName.json",
       "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 13101010101,
+          "Name": "崩裂词缀自爆虚拟体"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
       "Field": "IconPath",
       "Value": "ui/textures/skill/weapon_iruna_skill_ex",
       "CandidateAddresses": [
@@ -1292,7 +1838,29 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 4176138213,
+          "Id": 17061040101,
+          "Name": "机甲A变身三技能-蓄能回血"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_ex",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_ex"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_ex"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17061040101,
           "Name": "机甲A变身三技能-蓄能回血"
         }
       ],
@@ -1314,7 +1882,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 4176138213,
+          "Id": 17061040101,
           "Name": "机甲A变身三技能-蓄能回血"
         }
       ],
@@ -1336,7 +1904,29 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 4177148213,
+          "Id": 17062050101,
+          "Name": "机甲B变身四技能-冲锋"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01"
+      ],
+      "CandidateNames": [
+        "weapon_wr_skill_atk01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17062050101,
           "Name": "机甲B变身四技能-冲锋"
         }
       ],
@@ -1358,7 +1948,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 4177148213,
+          "Id": 17062050101,
           "Name": "机甲B变身四技能-冲锋"
         }
       ],
@@ -1380,7 +1970,29 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 4178138213,
+          "Id": 17063040101,
+          "Name": "机甲C变身三技能-激光"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillEffectSkillTableIconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_02",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_02"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17063040101,
           "Name": "机甲C变身三技能-激光"
         }
       ],
@@ -1402,8 +2014,30 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 4178138213,
+          "Id": 17063040101,
           "Name": "机甲C变身三技能-激光"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "DamageAttrIdName.json",
+      "SourceGroup": "DamageAttrIdName",
+      "Field": "LinkedSkillFightSkillIconPath",
+      "Value": "ui/textures/mainui/attack",
+      "CandidateAddresses": [
+        "ui/textures/mainui/attack"
+      ],
+      "CandidateNames": [
+        "attack"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 31001010100,
+          "Name": "棒槌哥布林投掷"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -3629,11 +4263,87 @@
         "weapon_fz-01_skill_02_end"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 31,
       "Rows": [
         {
           "Id": 1297,
           "Name": "冰水法杖SKILL_02_REAL_废弃"
+        },
+        {
+          "Id": 129701,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129702,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129703,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129704,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129705,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129706,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129707,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129708,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129709,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129710,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129711,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129712,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129713,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129714,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129715,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129716,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129717,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129718,
+          "Name": "冰水法杖SKILL_02_REAL"
+        },
+        {
+          "Id": 129719,
+          "Name": "冰水法杖SKILL_02_REAL"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -3651,19 +4361,87 @@
         "weapon_fh_skill_atk11"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 33,
       "Rows": [
         {
           "Id": 1508,
           "Name": "艾露娜SKILL_04"
         },
         {
-          "Id": 115080102,
+          "Id": 150801,
+          "Name": "艾露娜召唤兽ULT_L"
+        },
+        {
+          "Id": 150802,
           "Name": "艾露娜SKILL_04"
         },
         {
-          "Id": 2918075509,
-          "Name": "艾露娜召唤兽ULT_L"
+          "Id": 150803,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150804,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150805,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150806,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150807,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150808,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150809,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150810,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150811,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150812,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150813,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150814,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150815,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150816,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150817,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150818,
+          "Name": "艾露娜SKILL_04"
+        },
+        {
+          "Id": 150819,
+          "Name": "艾露娜SKILL_04"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -3681,18 +4459,86 @@
         "weapon_fz-12_skill_atk"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 33,
       "Rows": [
         {
           "Id": 1510,
           "Name": "艾露娜AIRATK"
         },
         {
-          "Id": 115100102,
+          "Id": 151001,
           "Name": "艾露娜AIRATK"
         },
         {
-          "Id": 115100103,
+          "Id": 151002,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151003,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151004,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151005,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151006,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151007,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151008,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151009,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151010,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151011,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151012,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151013,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151014,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151015,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151016,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151017,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151018,
+          "Name": "艾露娜AIRATK"
+        },
+        {
+          "Id": 151019,
           "Name": "艾露娜AIRATK"
         }
       ],
@@ -3711,23 +4557,87 @@
         "weapon_tdl-01_skill_101_2"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 4,
+      "RefCount": 34,
       "Rows": [
         {
           "Id": 1711,
           "Name": "Blade Technique"
         },
         {
-          "Id": 117110102,
-          "Name": "奥尔维拉SKILL_01-后撤"
+          "Id": 171101,
+          "Name": "Blade Technique"
         },
         {
-          "Id": 117110103,
-          "Name": "奥尔维拉SKILL_01-JR"
+          "Id": 171102,
+          "Name": "Blade Technique"
         },
         {
-          "Id": 117110105,
-          "Name": "奥尔维拉SKILL_01-非JR"
+          "Id": 171103,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171104,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171105,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171106,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171107,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171108,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171109,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171110,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171111,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171112,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171113,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171114,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171115,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171116,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171117,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171118,
+          "Name": "Blade Technique"
+        },
+        {
+          "Id": 171119,
+          "Name": "Blade Technique"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -3745,11 +4655,51 @@
         "talent_skill_300101"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 13,
       "Rows": [
         {
           "Id": 3001,
           "Name": "奥义！超能冲击"
+        },
+        {
+          "Id": 300101,
+          "Name": "BK!破！"
+        },
+        {
+          "Id": 300102,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300103,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300104,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300105,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300106,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300107,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300108,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300109,
+          "Name": "破霸体"
+        },
+        {
+          "Id": 300110,
+          "Name": "破霸体"
         },
         {
           "Id": 130010101,
@@ -3775,11 +4725,51 @@
         "talent_skill_300201"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3002,
           "Name": "奥义！强力之握"
+        },
+        {
+          "Id": 300201,
+          "Name": "聚怪嘲讽"
+        },
+        {
+          "Id": 300202,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300203,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300204,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300205,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300206,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300207,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300208,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300209,
+          "Name": "反击流"
+        },
+        {
+          "Id": 300210,
+          "Name": "反击流"
         },
         {
           "Id": 330020100,
@@ -3801,18 +4791,58 @@
         "talent_skill_310101"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 13,
       "Rows": [
         {
           "Id": 3101,
           "Name": "守护 · 危机抵挡"
         },
         {
+          "Id": 310101,
+          "Name": "崩裂词缀自爆虚拟体"
+        },
+        {
+          "Id": 310102,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310103,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310104,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310105,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310106,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310107,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310108,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310109,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 310110,
+          "Name": "格挡护盾"
+        },
+        {
           "Id": 3310100,
           "Name": "鬼人化效果生效Buff"
         },
         {
-          "Id": 216108213,
+          "Id": 13101010101,
           "Name": "崩裂词缀自爆虚拟体"
         }
       ],
@@ -3831,11 +4861,51 @@
         "talent_skill_310201"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3102,
           "Name": "守护 · 护体屏障"
+        },
+        {
+          "Id": 310201,
+          "Name": "生存小招-生命护盾"
+        },
+        {
+          "Id": 310202,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310203,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310204,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310205,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310206,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310207,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310208,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310209,
+          "Name": "治疗"
+        },
+        {
+          "Id": 310210,
+          "Name": "治疗"
         },
         {
           "Id": 3310200,
@@ -3857,11 +4927,51 @@
         "talent_skill_310301"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3103,
           "Name": "守护 · 嘲讽假体"
+        },
+        {
+          "Id": 310301,
+          "Name": "假人！现！"
+        },
+        {
+          "Id": 310302,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310303,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310304,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310305,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310306,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310307,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310308,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310309,
+          "Name": "召唤假人"
+        },
+        {
+          "Id": 310310,
+          "Name": "召唤假人"
         },
         {
           "Id": 3310300,
@@ -3883,11 +4993,51 @@
         "talent_skill_310401"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3104,
           "Name": "守护 · 战斗怒吼"
+        },
+        {
+          "Id": 310401,
+          "Name": "战争怒吼"
+        },
+        {
+          "Id": 310402,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310403,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310404,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310405,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310406,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310407,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310408,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310409,
+          "Name": "战吼标记"
+        },
+        {
+          "Id": 310410,
+          "Name": "战吼标记"
         },
         {
           "Id": 3310400,
@@ -3909,11 +5059,51 @@
         "talent_skill_310501"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3105,
           "Name": "守护 · 审判"
+        },
+        {
+          "Id": 310501,
+          "Name": "天神下凡！"
+        },
+        {
+          "Id": 310502,
+          "Name": "控制"
+        },
+        {
+          "Id": 310503,
+          "Name": "控制"
+        },
+        {
+          "Id": 310504,
+          "Name": "控制"
+        },
+        {
+          "Id": 310505,
+          "Name": "控制"
+        },
+        {
+          "Id": 310506,
+          "Name": "控制"
+        },
+        {
+          "Id": 310507,
+          "Name": "控制"
+        },
+        {
+          "Id": 310508,
+          "Name": "控制"
+        },
+        {
+          "Id": 310509,
+          "Name": "控制"
+        },
+        {
+          "Id": 310510,
+          "Name": "控制"
         },
         {
           "Id": 131050101,
@@ -3935,11 +5125,51 @@
         "talent_skill_310601"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 11,
       "Rows": [
         {
           "Id": 3106,
           "Name": "守护 · 壁垒"
+        },
+        {
+          "Id": 310601,
+          "Name": "别怕！我有风墙！"
+        },
+        {
+          "Id": 310602,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310603,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310604,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310605,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310606,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310607,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310608,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310609,
+          "Name": "风墙"
+        },
+        {
+          "Id": 310610,
+          "Name": "风墙"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -3957,11 +5187,51 @@
         "talent_skill_330201"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3302,
           "Name": "奥义！引力奇点"
+        },
+        {
+          "Id": 330201,
+          "Name": "奥义！引力奇点"
+        },
+        {
+          "Id": 330202,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330203,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330204,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330205,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330206,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330207,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330208,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330209,
+          "Name": "控制流"
+        },
+        {
+          "Id": 330210,
+          "Name": "控制流"
         },
         {
           "Id": 3330200,
@@ -3983,11 +5253,51 @@
         "talent_skill_330301"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3303,
           "Name": "奥义！鏖战光环"
+        },
+        {
+          "Id": 330301,
+          "Name": "辅助大招-全队贴脸"
+        },
+        {
+          "Id": 330302,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330303,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330304,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330305,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330306,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330307,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330308,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330309,
+          "Name": "近战辅"
+        },
+        {
+          "Id": 330310,
+          "Name": "近战辅"
         },
         {
           "Id": 3330300,
@@ -4009,11 +5319,51 @@
         "talent_skill_340101"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 13,
       "Rows": [
         {
           "Id": 3401,
           "Name": "辅助 · 赐福"
+        },
+        {
+          "Id": 340101,
+          "Name": "伤害加深"
+        },
+        {
+          "Id": 340102,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340103,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340104,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340105,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340106,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340107,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340108,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340109,
+          "Name": "增伤"
+        },
+        {
+          "Id": 340110,
+          "Name": "增伤"
         },
         {
           "Id": 3340100,
@@ -4039,11 +5389,51 @@
         "talent_skill_340201"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 13,
       "Rows": [
         {
           "Id": 3402,
           "Name": "辅助 · 治疗之环"
+        },
+        {
+          "Id": 340201,
+          "Name": "治愈术"
+        },
+        {
+          "Id": 340202,
+          "Name": "回复"
+        },
+        {
+          "Id": 340203,
+          "Name": "回复"
+        },
+        {
+          "Id": 340204,
+          "Name": "回复"
+        },
+        {
+          "Id": 340205,
+          "Name": "回复"
+        },
+        {
+          "Id": 340206,
+          "Name": "回复"
+        },
+        {
+          "Id": 340207,
+          "Name": "回复"
+        },
+        {
+          "Id": 340208,
+          "Name": "回复"
+        },
+        {
+          "Id": 340209,
+          "Name": "回复"
+        },
+        {
+          "Id": 340210,
+          "Name": "回复"
         },
         {
           "Id": 3340200,
@@ -4069,11 +5459,51 @@
         "talent_skill_340301"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3403,
           "Name": "辅助 · 瀑流"
+        },
+        {
+          "Id": 340301,
+          "Name": "愈合法阵"
+        },
+        {
+          "Id": 340302,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340303,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340304,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340305,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340306,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340307,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340308,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340309,
+          "Name": "治疗喷泉"
+        },
+        {
+          "Id": 340310,
+          "Name": "治疗喷泉"
         },
         {
           "Id": 3340300,
@@ -4095,11 +5525,51 @@
         "talent_skill_340501"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 11,
       "Rows": [
         {
           "Id": 3405,
           "Name": "辅助 · 危机抵挡"
+        },
+        {
+          "Id": 340501,
+          "Name": "辅助 · 危机抵挡"
+        },
+        {
+          "Id": 340502,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340503,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340504,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340505,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340506,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340507,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340508,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340509,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 340510,
+          "Name": "格挡护盾"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -4117,11 +5587,51 @@
         "talent_skill_340601"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 11,
       "Rows": [
         {
           "Id": 3406,
           "Name": "辅助 · 虚弱压制"
+        },
+        {
+          "Id": 340601,
+          "Name": "土遁！地缚术！"
+        },
+        {
+          "Id": 340602,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340603,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340604,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340605,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340606,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340607,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340608,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340609,
+          "Name": "地缚"
+        },
+        {
+          "Id": 340610,
+          "Name": "地缚"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -4139,11 +5649,51 @@
         "talent_skill_360101"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3601,
           "Name": "奥义！碎星陨落"
+        },
+        {
+          "Id": 360101,
+          "Name": "幸运陨石"
+        },
+        {
+          "Id": 360102,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360103,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360104,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360105,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360106,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360107,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360108,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360109,
+          "Name": "幸运流大技能"
+        },
+        {
+          "Id": 360110,
+          "Name": "幸运流大技能"
         },
         {
           "Id": 3360100,
@@ -4165,11 +5715,51 @@
         "talent_skill_360102"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 13,
       "Rows": [
         {
           "Id": 3602,
           "Name": "奥义！心眼"
+        },
+        {
+          "Id": 360201,
+          "Name": "无尽时刻"
+        },
+        {
+          "Id": 360202,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360203,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360204,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360205,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360206,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360207,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360208,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360209,
+          "Name": "暴击流大技能"
+        },
+        {
+          "Id": 360210,
+          "Name": "暴击流大技能"
         },
         {
           "Id": 3360200,
@@ -4195,7 +5785,7 @@
         "talent_skill_360103"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 5,
+      "RefCount": 25,
       "Rows": [
         {
           "Id": 3603,
@@ -4206,16 +5796,76 @@
           "Name": "奥义！蓄势解放"
         },
         {
-          "Id": 3360300,
+          "Id": 360301,
           "Name": "蓄气"
         },
         {
-          "Id": 3360400,
+          "Id": 360302,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360303,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360304,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360305,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360306,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360307,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360308,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360309,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360310,
+          "Name": "连击流大技能"
+        },
+        {
+          "Id": 360401,
           "Name": "破"
         },
         {
-          "Id": 136040101,
-          "Name": "破"
+          "Id": 360402,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 360403,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 360404,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 360405,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 360406,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 360407,
+          "Name": "奥义！蓄势解放"
+        },
+        {
+          "Id": 360408,
+          "Name": "奥义！蓄势解放"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -4233,11 +5883,51 @@
         "talent_skill_370101"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3701,
           "Name": "攻击 · 凝滞"
+        },
+        {
+          "Id": 370101,
+          "Name": "攻击 · 凝滞"
+        },
+        {
+          "Id": 370102,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370103,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370104,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370105,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370106,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370107,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370108,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370109,
+          "Name": "冰箱"
+        },
+        {
+          "Id": 370110,
+          "Name": "冰箱"
         },
         {
           "Id": 3370100,
@@ -4259,11 +5949,51 @@
         "talent_skill_370201"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3702,
           "Name": "攻击 · 暴击连弹"
+        },
+        {
+          "Id": 370201,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370202,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370203,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370204,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370205,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370206,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370207,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370208,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370209,
+          "Name": "灌篮高手"
+        },
+        {
+          "Id": 370210,
+          "Name": "灌篮高手"
         },
         {
           "Id": 137020106,
@@ -4285,11 +6015,51 @@
         "talent_skill_370301"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 11,
       "Rows": [
         {
           "Id": 3703,
           "Name": "攻击 · 弱点激发"
+        },
+        {
+          "Id": 370301,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370302,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370303,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370304,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370305,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370306,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370307,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370308,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370309,
+          "Name": "彩虹桥"
+        },
+        {
+          "Id": 370310,
+          "Name": "彩虹桥"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -4307,11 +6077,51 @@
         "talent_skill_370401"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 12,
       "Rows": [
         {
           "Id": 3704,
           "Name": "攻击 · 爆燃冲击"
+        },
+        {
+          "Id": 370401,
+          "Name": "输出小招-沸腾鲜口"
+        },
+        {
+          "Id": 370402,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370403,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370404,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370405,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370406,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370407,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370408,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370409,
+          "Name": "沸腾鲜血"
+        },
+        {
+          "Id": 370410,
+          "Name": "沸腾鲜血"
         },
         {
           "Id": 137040102,
@@ -4333,11 +6143,51 @@
         "talent_skill_370501"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 11,
       "Rows": [
         {
           "Id": 3705,
           "Name": "攻击 · 危机抵挡"
+        },
+        {
+          "Id": 370501,
+          "Name": "格挡护盾-输出"
+        },
+        {
+          "Id": 370502,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370503,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370504,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370505,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370506,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370507,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370508,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370509,
+          "Name": "格挡护盾"
+        },
+        {
+          "Id": 370510,
+          "Name": "格挡护盾"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -4355,10 +6205,14 @@
         "skill_icons_relax_5624"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 5620,
+          "Name": "Summon Festive Lantern"
+        },
+        {
+          "Id": 562001,
           "Name": "Summon Festive Lantern"
         }
       ],
@@ -4377,10 +6231,14 @@
         "skill_icons_relax_5621"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 5621,
+          "Name": "Firecracker Attack"
+        },
+        {
+          "Id": 562101,
           "Name": "Firecracker Attack"
         }
       ],
@@ -4399,19 +6257,23 @@
         "attack"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 3,
+      "RefCount": 4,
       "Rows": [
         {
           "Id": 100101,
           "Name": "棒槌哥布林上撩"
         },
         {
-          "Id": 936239028,
-          "Name": "棒槌哥布林投掷"
+          "Id": 10010101,
+          "Name": "棒槌哥布林上撩"
         },
         {
-          "Id": 2411075510,
+          "Id": 11001010102,
           "Name": "棒槌哥布林上撩"
+        },
+        {
+          "Id": 31001010100,
+          "Name": "棒槌哥布林投掷"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -4429,14 +6291,18 @@
         "weapon_guardblade_ult"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 100561,
           "Name": "甬道火焰机关-英雄本"
         },
         {
-          "Id": 2415675509,
+          "Id": 10056101,
+          "Name": "火焰兽人吐息"
+        },
+        {
+          "Id": 11005610101,
           "Name": "火焰兽人吐息"
         }
       ],
@@ -4455,14 +6321,18 @@
         "skill_weapon_tdl-01_skill_05"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 110624,
           "Name": "战斗机像03型-旋风斩"
         },
         {
-          "Id": 2516305510,
+          "Id": 11062401,
+          "Name": "战斗机像03型-旋风斩"
+        },
+        {
+          "Id": 11106240102,
           "Name": "战斗机像03型-旋风斩"
         }
       ],
@@ -4481,14 +6351,18 @@
         "weapon_iruna_skill_ex"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 706104,
           "Name": "机甲A变身三技能-蓄能回血"
         },
         {
-          "Id": 4176138213,
+          "Id": 70610401,
+          "Name": "机甲A变身三技能-蓄能回血"
+        },
+        {
+          "Id": 17061040101,
           "Name": "机甲A变身三技能-蓄能回血"
         }
       ],
@@ -4507,14 +6381,18 @@
         "weapon_wr_skill_atk01"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 706205,
           "Name": "机甲B变身四技能-冲锋"
         },
         {
-          "Id": 4177148213,
+          "Id": 70620501,
+          "Name": "机甲B变身四技能-冲锋"
+        },
+        {
+          "Id": 17062050101,
           "Name": "机甲B变身四技能-冲锋"
         }
       ],
@@ -4533,14 +6411,18 @@
         "weapon_iruna_skill_02"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 706304,
           "Name": "机甲C变身三技能-激光"
         },
         {
-          "Id": 4178138213,
+          "Id": 70630401,
+          "Name": "机甲C变身三技能-激光"
+        },
+        {
+          "Id": 17063040101,
           "Name": "机甲C变身三技能-激光"
         }
       ],
@@ -4559,10 +6441,14 @@
         "weapon_iruna_skill_ult"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 706403,
+          "Name": "机甲D变身二技能-强化屏障"
+        },
+        {
+          "Id": 70640301,
           "Name": "机甲D变身二技能-强化屏障"
         }
       ],
@@ -4586,7 +6472,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2916075509,
+          "Id": 11506010101,
           "Name": "艾露娜召唤兽ULT"
         }
       ],
@@ -4624,7 +6510,7 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": 2916075509,
+          "Id": 11506010101,
           "Name": "艾露娜召唤兽ULT"
         }
       ],
@@ -4659,15 +6545,87 @@
         "weapon_fz_flow"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 2,
+      "RefCount": 32,
       "Rows": [
         {
           "Id": 1506,
           "Name": "Bloom"
         },
         {
-          "Id": 2916075509,
+          "Id": 150601,
           "Name": "艾露娜召唤兽ULT"
+        },
+        {
+          "Id": 150602,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150603,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150604,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150605,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150606,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150607,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150608,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150609,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150610,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150611,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150612,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150613,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150614,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150615,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150616,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150617,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150618,
+          "Name": "Bloom"
+        },
+        {
+          "Id": 150619,
+          "Name": "Bloom"
         }
       ],
       "Reason": "Multiple game asset candidates",
@@ -4701,10 +6659,14 @@
         "map_icon_boss"
       ],
       "AtlasSpriteCandidates": [],
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 4016,
+          "Name": "星元射线"
+        },
+        {
+          "Id": 401601,
           "Name": "星元射线"
         }
       ],
@@ -4727,8 +6689,8 @@
       ]
     }
   ],
-  "PngExportedAt": "2026-04-24T17:07:42.215Z",
-  "PngAssetCount": 5103,
+  "PngExportedAt": "2026-04-24T22:50:13.856Z",
+  "PngAssetCount": 5465,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0,
   "PngFailures": []

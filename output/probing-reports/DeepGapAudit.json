@@ -1,0 +1,4375 @@
+{
+  "GeneratedAt": "2026-04-24T19:54:56.563Z",
+  "Note": "Audit only. External files are probes; current generators remain game-file derived.",
+  "OutputCounts": {
+    "BuffName": 8567,
+    "DamageAttrIdName": 4764,
+    "itemnames": 9163,
+    "monsternames": 2619,
+    "scenenames": 486,
+    "RecountTable": 294,
+    "skill_aoyi_icons": 102,
+    "skillnames": 24774
+  },
+  "DirectGameEvidenceCounts": {
+    "BuffName": {
+      "RawIdCount": 8612,
+      "RawOnlyMissingFromGeneratedCount": 45,
+      "RawOnlyMissingFromGeneratedSample": [
+        {
+          "Id": "55409",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500102",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500104",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500111",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500112",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "681908",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682201",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "700206",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "827190",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "880623",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "880624",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881526",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881530",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881671",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881802",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "900119",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2201513",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2201643",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202165",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202167",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202641",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208010",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208020",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208080",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208120",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ]
+    },
+    "DamageAttrIdName": {
+      "RawIdCount": 4819,
+      "RawOnlyMissingFromGeneratedCount": 55,
+      "RawOnlyMissingFromGeneratedSample": [
+        {
+          "Id": "3323100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3323200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3335000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3335100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3335300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3335400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350800",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350900",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3360700",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3700200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3700400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3705400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3705700",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "34040000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "34040200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "34040300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "296060201",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "310000100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "330440100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3100000600",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        }
+      ]
+    },
+    "itemnames": {
+      "RawIdCount": 9163,
+      "RawOnlyMissingFromGeneratedCount": 0,
+      "RawOnlyMissingFromGeneratedSample": []
+    },
+    "monsternames": {
+      "RawIdCount": 2619,
+      "RawOnlyMissingFromGeneratedCount": 0,
+      "RawOnlyMissingFromGeneratedSample": []
+    },
+    "scenenames": {
+      "RawIdCount": 487,
+      "RawOnlyMissingFromGeneratedCount": 1,
+      "RawOnlyMissingFromGeneratedSample": [
+        {
+          "Id": "1",
+          "CurrentGameSources": [
+            "SceneTableRawRow"
+          ]
+        }
+      ]
+    },
+    "RecountTable": {
+      "RawIdCount": 294,
+      "RawOnlyMissingFromGeneratedCount": 0,
+      "RawOnlyMissingFromGeneratedSample": []
+    },
+    "skill_aoyi_icons": {
+      "RawIdCount": 102,
+      "RawOnlyMissingFromGeneratedCount": 0,
+      "RawOnlyMissingFromGeneratedSample": []
+    },
+    "skillnames": {
+      "RawIdCount": 25258,
+      "RawOnlyMissingFromGeneratedCount": 484,
+      "RawOnlyMissingFromGeneratedSample": [
+        {
+          "Id": "0",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.effectId"
+          ]
+        },
+        {
+          "Id": "1631",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "1632",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "1633",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "1634",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "1723",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "1897",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "2297",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "3912",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "3999",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4025",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4026",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4027",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4503",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4506",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4507",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4556",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4557",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4573",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "4633",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "5133",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "5545",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "6009",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "6051",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        },
+        {
+          "Id": "9201",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId"
+          ]
+        }
+      ]
+    }
+  },
+  "ConfigComparisons": [
+    {
+      "Target": "BuffName",
+      "Source": "config/BuffName.json",
+      "SourceIdCount": 9354,
+      "GeneratedIdCount": 8567,
+      "DirectGameRawIdCount": 8612,
+      "OverlapIdCount": 8564,
+      "SourceOnlyIdCount": 790,
+      "GeneratedOnlyIdCount": 3,
+      "SourceOnlyPresentInCurrentGameCount": 45,
+      "SourceOnlyNotInCurrentGameCount": 745,
+      "SourceOnlyPresentInCurrentGameSample": [
+        {
+          "Id": "55409",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500102",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500104",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500111",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "500112",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "681908",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682201",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "700206",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "827190",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "880623",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "880624",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881526",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881530",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881671",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "881802",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "900119",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2201513",
+          "ProbeName": "岩之主",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2201643",
+          "ProbeName": "岩拳回复",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202165",
+          "ProbeName": "翠绿根基",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202167",
+          "ProbeName": "翠绿根基",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202641",
+          "ProbeName": "盛放精进",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208010",
+          "ProbeName": "(走配表这里没逻辑)",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208020",
+          "ProbeName": "(走配表这里没逻辑)",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208080",
+          "ProbeName": "炎魂刻印",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208120",
+          "ProbeName": "绯炎追命飞腾",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208160",
+          "ProbeName": "无相减少指定技能组CD最长的技能CD-时轮回溯",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208440",
+          "ProbeName": "魂焰",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208450",
+          "ProbeName": "怒焰狂锐之一",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208460",
+          "ProbeName": "赤红之地·炎魂",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208470",
+          "ProbeName": "赤红之地·迅捷",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208490",
+          "ProbeName": "怒焰狂锐之二",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208500",
+          "ProbeName": "赤红之地的坠星二式",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208530",
+          "ProbeName": "炎魔显现",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208580",
+          "ProbeName": "赤红暴击",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208610",
+          "ProbeName": "猩红之悟",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208650",
+          "ProbeName": "大红莲丸触发逻辑-炎舞的血脉奥义",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208670",
+          "ProbeName": "怒焰奥义",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5000101",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5003202",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5009001",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5009002",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5009003",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5009004",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5009005",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "5009006",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "9901",
+          "ProbeName": "单手s3因子通用触发特效buff"
+        },
+        {
+          "Id": "9902",
+          "ProbeName": "双手s3因子通用触发特效buff"
+        },
+        {
+          "Id": "9903",
+          "ProbeName": "左手s3因子通用触发特效buff"
+        },
+        {
+          "Id": "35111",
+          "ProbeName": "斧风开始停止体力恢复"
+        },
+        {
+          "Id": "35112",
+          "ProbeName": "塔塔天生buff"
+        },
+        {
+          "Id": "55360",
+          "ProbeName": "吉他触发延后删除BUFF"
+        },
+        {
+          "Id": "55361",
+          "ProbeName": "激涌五重奏加生命波动效果"
+        },
+        {
+          "Id": "510544",
+          "ProbeName": "D类-定身-巨塔boss用"
+        },
+        {
+          "Id": "683853",
+          "ProbeName": "行李箱-2技能后1技能强化"
+        },
+        {
+          "Id": "683854",
+          "ProbeName": "行李箱-命中qte表现"
+        },
+        {
+          "Id": "702001",
+          "ProbeName": "S3幻境之种"
+        },
+        {
+          "Id": "702002",
+          "ProbeName": "S3幻境之种强化（怪物）"
+        },
+        {
+          "Id": "702003",
+          "ProbeName": "S3乐章增益（一档）"
+        },
+        {
+          "Id": "702004",
+          "ProbeName": "S3乐章增益（二档）"
+        },
+        {
+          "Id": "702005",
+          "ProbeName": "S3乐章增益（三档）"
+        },
+        {
+          "Id": "702006",
+          "ProbeName": "奇幻音符-音符场查找怪物"
+        },
+        {
+          "Id": "702007",
+          "ProbeName": "奇幻音符-怪物死亡掉落球"
+        },
+        {
+          "Id": "702008",
+          "ProbeName": "奇幻音符-跟随玩家移动"
+        },
+        {
+          "Id": "702009",
+          "ProbeName": "S3副本开关打开后 给玩家上的buff"
+        },
+        {
+          "Id": "702010",
+          "ProbeName": "S3副本开关打开后 召唤跳舞娜宝"
+        },
+        {
+          "Id": "702011",
+          "ProbeName": "S3宝藏娜宝召唤buff"
+        },
+        {
+          "Id": "702012",
+          "ProbeName": "S3宝藏娜宝触发器"
+        },
+        {
+          "Id": "702013",
+          "ProbeName": "S3宝藏娜宝出生buff"
+        },
+        {
+          "Id": "702014",
+          "ProbeName": "S3宝藏娜宝材质"
+        },
+        {
+          "Id": "702015",
+          "ProbeName": "S3宝藏战利品buff"
+        },
+        {
+          "Id": "702016",
+          "ProbeName": "S3宝藏小猪创建虚拟体"
+        },
+        {
+          "Id": "702017",
+          "ProbeName": "S3宝藏小猪aoe"
+        },
+        {
+          "Id": "702018",
+          "ProbeName": "S3词缀-可以交互音响"
+        },
+        {
+          "Id": "702019",
+          "ProbeName": "S3词缀-音响释放技能"
+        },
+        {
+          "Id": "702020",
+          "ProbeName": "S3词缀-音响天生buff"
+        },
+        {
+          "Id": "705104",
+          "ProbeName": "毛球威慑怒吼"
+        },
+        {
+          "Id": "705105",
+          "ProbeName": "毛球威慑怒吼增伤"
+        },
+        {
+          "Id": "821053",
+          "ProbeName": "去二次元"
+        },
+        {
+          "Id": "821054",
+          "ProbeName": "回一次元"
+        },
+        {
+          "Id": "821055",
+          "ProbeName": "隐身-切次元用"
+        },
+        {
+          "Id": "821056",
+          "ProbeName": "标记-小幻幻花"
+        },
+        {
+          "Id": "821057",
+          "ProbeName": "S3巨塔初始buff-外（故障表现）"
+        },
+        {
+          "Id": "821058",
+          "ProbeName": "幻幻花为boss连线充能"
+        },
+        {
+          "Id": "821059",
+          "ProbeName": "S3巨塔初始buff-内"
+        },
+        {
+          "Id": "821060",
+          "ProbeName": "幻幻花的庇护"
+        },
+        {
+          "Id": "821061",
+          "ProbeName": "幻幻花初始buff"
+        },
+        {
+          "Id": "821062",
+          "ProbeName": "跳转旋转激光"
+        },
+        {
+          "Id": "821063",
+          "ProbeName": "幻幻花阻挡者"
+        },
+        {
+          "Id": "821064",
+          "ProbeName": "是否被打断监控"
+        },
+        {
+          "Id": "821065",
+          "ProbeName": "小怪阶段跳转"
+        },
+        {
+          "Id": "821066",
+          "ProbeName": "友方机器人初始buff"
+        },
+        {
+          "Id": "821067",
+          "ProbeName": "传送门特效·幻"
+        },
+        {
+          "Id": "821068",
+          "ProbeName": "开门跳转"
+        },
+        {
+          "Id": "821069",
+          "ProbeName": "回0阶段"
+        },
+        {
+          "Id": "821070"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "35701",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "35801",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208282",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "DamageAttrIdName",
+      "Source": "config/DamageAttrIdName.json",
+      "SourceIdCount": 5014,
+      "GeneratedIdCount": 4764,
+      "DirectGameRawIdCount": 4819,
+      "OverlapIdCount": 4519,
+      "SourceOnlyIdCount": 495,
+      "GeneratedOnlyIdCount": 245,
+      "SourceOnlyPresentInCurrentGameCount": 0,
+      "SourceOnlyNotInCurrentGameCount": 495,
+      "SourceOnlyPresentInCurrentGameSample": [],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "3390100",
+          "ProbeName": "恶火后裔切换标记Buff"
+        },
+        {
+          "Id": "23510603",
+          "ProbeName": "如花流月斩 - 持续生命吸取"
+        },
+        {
+          "Id": "116230101",
+          "ProbeName": "大红莲丸"
+        },
+        {
+          "Id": "143100101",
+          "ProbeName": "捕食"
+        },
+        {
+          "Id": "270201201",
+          "ProbeName": "S3宝藏娜宝触发器"
+        },
+        {
+          "Id": "270201703",
+          "ProbeName": "S3宝藏小猪aoe"
+        },
+        {
+          "Id": "282106303",
+          "ProbeName": "幻幻花阻挡者"
+        },
+        {
+          "Id": "282107603",
+          "ProbeName": "粘着弹"
+        },
+        {
+          "Id": "282107803",
+          "ProbeName": "幻觉侵蚀"
+        },
+        {
+          "Id": "288336903",
+          "ProbeName": "可牵引炮台标记-血量低于10移动"
+        },
+        {
+          "Id": "288336904",
+          "ProbeName": "可牵引炮台标记-血量低于10移动"
+        },
+        {
+          "Id": "288362104",
+          "ProbeName": "玩家-点名召唤冰球水泡（伤害）"
+        },
+        {
+          "Id": "288362803",
+          "ProbeName": "玩家-转阶段秒杀判定"
+        },
+        {
+          "Id": "288363203",
+          "ProbeName": "娜宝-摇滚阶段管理（伤害）"
+        },
+        {
+          "Id": "288363204",
+          "ProbeName": "娜宝-摇滚阶段管理（伤害）"
+        },
+        {
+          "Id": "288364604",
+          "ProbeName": "Rock玩家-点名召唤冰球水泡（伤害）"
+        },
+        {
+          "Id": "288380303",
+          "ProbeName": "创口撕裂"
+        },
+        {
+          "Id": "288383103",
+          "ProbeName": "创口撕裂"
+        },
+        {
+          "Id": "288410105",
+          "ProbeName": "蓝塔（激活中）"
+        },
+        {
+          "Id": "288410604",
+          "ProbeName": "蓝塔进度条（激活中）"
+        },
+        {
+          "Id": "288411103",
+          "ProbeName": "场域湮灭（玩家）"
+        },
+        {
+          "Id": "288412204",
+          "ProbeName": "生成棋子"
+        },
+        {
+          "Id": "288414004",
+          "ProbeName": "易伤烙印"
+        },
+        {
+          "Id": "299011303",
+          "ProbeName": "山怪首领-散落子弹"
+        },
+        {
+          "Id": "299051603",
+          "ProbeName": "掠食蟹蛛-全体预警"
+        },
+        {
+          "Id": "370001500",
+          "ProbeName": "跳圈烟圈"
+        },
+        {
+          "Id": "370001501",
+          "ProbeName": "光龙-净化之光扩散"
+        },
+        {
+          "Id": "370001600",
+          "ProbeName": "交互装置虚蚀特效"
+        },
+        {
+          "Id": "370001601",
+          "ProbeName": "电磁球（煌墓）"
+        },
+        {
+          "Id": "370001700",
+          "ProbeName": "跳圈烟圈"
+        },
+        {
+          "Id": "370001701",
+          "ProbeName": "光龙-净化之光扩散"
+        },
+        {
+          "Id": "2211013704",
+          "ProbeName": "虚蚀之力"
+        },
+        {
+          "Id": "2211015001",
+          "ProbeName": "防护之力"
+        },
+        {
+          "Id": "2305441201",
+          "ProbeName": "奶最大生命百分比"
+        },
+        {
+          "Id": "2305444006",
+          "ProbeName": "S3-下次造成伤害时，触发圣剑；圣剑附加生命百分比伤害"
+        },
+        {
+          "Id": "2305444106",
+          "ProbeName": "触发圣剑；圣剑附加生命百分比伤害"
+        },
+        {
+          "Id": "2305743101",
+          "ProbeName": "S3因子激涌治疗"
+        },
+        {
+          "Id": "2321021003",
+          "ProbeName": "眼球王-被动"
+        },
+        {
+          "Id": "2321022203",
+          "ProbeName": "绝境逢生"
+        },
+        {
+          "Id": "2321023101",
+          "ProbeName": "毛球王-AOE"
+        },
+        {
+          "Id": "2321024101",
+          "ProbeName": "蜘蛛精英-AOE"
+        },
+        {
+          "Id": "11001110102",
+          "ProbeName": "棒槌哥布林上撩"
+        },
+        {
+          "Id": "11001120102",
+          "ProbeName": "砸死你"
+        },
+        {
+          "Id": "11002060101",
+          "ProbeName": "棒槌哥布林（虚蚀）三连击"
+        },
+        {
+          "Id": "11002060102",
+          "ProbeName": "棒槌哥布林（虚蚀）三连击"
+        },
+        {
+          "Id": "11002060104",
+          "ProbeName": "棒槌哥布林（虚蚀）三连击"
+        },
+        {
+          "Id": "11003300102",
+          "ProbeName": "小刀哥布林跳劈"
+        },
+        {
+          "Id": "11004400103",
+          "ProbeName": "剑盾哥布林戳刺"
+        },
+        {
+          "Id": "11008650102",
+          "ProbeName": "巨斧哥布林横扫"
+        },
+        {
+          "Id": "11008660102",
+          "ProbeName": "巨斧哥布林回旋斩"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "3190200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3190300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3190400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3310000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3310200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3310300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3310400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3319900",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3320000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3322000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3323000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330500",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330600",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330700",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330800",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3330900",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3331000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3331100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3331200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3335200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3340000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350500",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350600",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3350700",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3360000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3360300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3360400",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3360500",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3360600",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3375000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3375100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3380000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450500",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450700",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450800",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3450900",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3451000",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3451100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3451200",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3700300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3705100",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3705300",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3705500",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        },
+        {
+          "Id": "3705600",
+          "CurrentGameSources": [
+            "DamageAttrTable.ctb"
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "itemnames",
+      "Source": "config/itemnames.json",
+      "SourceIdCount": 9163,
+      "GeneratedIdCount": 9163,
+      "DirectGameRawIdCount": 9163,
+      "OverlapIdCount": 9163,
+      "SourceOnlyIdCount": 0,
+      "GeneratedOnlyIdCount": 0,
+      "SourceOnlyPresentInCurrentGameCount": 0,
+      "SourceOnlyNotInCurrentGameCount": 0,
+      "SourceOnlyPresentInCurrentGameSample": [],
+      "SourceOnlyNotInCurrentGameSample": [],
+      "GeneratedOnlySample": []
+    },
+    {
+      "Target": "RecountTable",
+      "Source": "config/RecountTable.json",
+      "SourceIdCount": 332,
+      "GeneratedIdCount": 294,
+      "DirectGameRawIdCount": 294,
+      "OverlapIdCount": 294,
+      "SourceOnlyIdCount": 38,
+      "GeneratedOnlyIdCount": 0,
+      "SourceOnlyPresentInCurrentGameCount": 0,
+      "SourceOnlyNotInCurrentGameCount": 38,
+      "SourceOnlyPresentInCurrentGameSample": [],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "295",
+          "ProbeName": "绝技！落雷惩戒"
+        },
+        {
+          "Id": "296",
+          "ProbeName": "绝技! 剑刃风暴"
+        },
+        {
+          "Id": "297",
+          "ProbeName": "绝技！治疗爆弹"
+        },
+        {
+          "Id": "298",
+          "ProbeName": "绝技！全场轰炸"
+        },
+        {
+          "Id": "299",
+          "ProbeName": "绝技！灵动出击"
+        },
+        {
+          "Id": "300",
+          "ProbeName": "绝技！卷心菜回旋刃"
+        },
+        {
+          "Id": "301",
+          "ProbeName": "绝技！卷心菜霹雳闪"
+        },
+        {
+          "Id": "302",
+          "ProbeName": "绝技！双重牙"
+        },
+        {
+          "Id": "303",
+          "ProbeName": "奥义！虚蚀劫刃"
+        },
+        {
+          "Id": "304",
+          "ProbeName": "奥义！裂空反冲"
+        },
+        {
+          "Id": "305",
+          "ProbeName": "奥义！指令象限"
+        },
+        {
+          "Id": "306",
+          "ProbeName": "奥义！超导波动"
+        },
+        {
+          "Id": "307",
+          "ProbeName": "奥义！梭行毒牙"
+        },
+        {
+          "Id": "308",
+          "ProbeName": "奥义！瞬空践踏"
+        },
+        {
+          "Id": "309",
+          "ProbeName": "奥义！精准点射"
+        },
+        {
+          "Id": "310",
+          "ProbeName": "奥义！穿透怒吼"
+        },
+        {
+          "Id": "311",
+          "ProbeName": "奥义！疾风连喰"
+        },
+        {
+          "Id": "312",
+          "ProbeName": "绝技！隐匿藏击"
+        },
+        {
+          "Id": "313",
+          "ProbeName": "绝技！绝对零度"
+        },
+        {
+          "Id": "314",
+          "ProbeName": "绝技！深渊吐息"
+        },
+        {
+          "Id": "315",
+          "ProbeName": "绝技！捶地猛击"
+        },
+        {
+          "Id": "316",
+          "ProbeName": "绝技！锁定射击"
+        },
+        {
+          "Id": "317",
+          "ProbeName": "极·急救措施"
+        },
+        {
+          "Id": "318",
+          "ProbeName": "极·生命吸取"
+        },
+        {
+          "Id": "319",
+          "ProbeName": "虚蚀爆裂"
+        },
+        {
+          "Id": "320",
+          "ProbeName": "虚蚀脉冲（原虚蚀凝神）"
+        },
+        {
+          "Id": "321",
+          "ProbeName": "虚蚀波动"
+        },
+        {
+          "Id": "322",
+          "ProbeName": "虚蚀光环"
+        },
+        {
+          "Id": "323",
+          "ProbeName": "幻梦处决"
+        },
+        {
+          "Id": "324",
+          "ProbeName": "迷幻梦境-不灭战姿"
+        },
+        {
+          "Id": "325",
+          "ProbeName": "寂灭之梦-血限冲域"
+        },
+        {
+          "Id": "326",
+          "ProbeName": "虚妄裁定"
+        },
+        {
+          "Id": "327",
+          "ProbeName": "虚妄裁定-裁定·愈"
+        },
+        {
+          "Id": "328",
+          "ProbeName": "梦幻之箭"
+        },
+        {
+          "Id": "329",
+          "ProbeName": "稳态G8"
+        },
+        {
+          "Id": "330",
+          "ProbeName": "雷影稳态G1"
+        },
+        {
+          "Id": "331",
+          "ProbeName": "巨刃稳态G2"
+        },
+        {
+          "Id": "333",
+          "ProbeName": "神盾真实因子X5"
+        }
+      ],
+      "GeneratedOnlySample": []
+    },
+    {
+      "Target": "skill_aoyi_icons",
+      "Source": "config/skill_aoyi_icons.json",
+      "SourceIdCount": 82,
+      "GeneratedIdCount": 102,
+      "DirectGameRawIdCount": 102,
+      "OverlapIdCount": 66,
+      "SourceOnlyIdCount": 16,
+      "GeneratedOnlyIdCount": 36,
+      "SourceOnlyPresentInCurrentGameCount": 0,
+      "SourceOnlyNotInCurrentGameCount": 16,
+      "SourceOnlyPresentInCurrentGameSample": [],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "2351",
+          "ProbeName": "传奇雄鹰-嚎叫"
+        },
+        {
+          "Id": "3967",
+          "ProbeName": "退出陶洛斯变身"
+        },
+        {
+          "Id": "3968",
+          "ProbeName": "奥义！虚蚀劫刄"
+        },
+        {
+          "Id": "3969",
+          "ProbeName": "奥义！裂爪反冲"
+        },
+        {
+          "Id": "3970",
+          "ProbeName": "奥义！指令象限"
+        },
+        {
+          "Id": "3971",
+          "ProbeName": "奥义！超导波动"
+        },
+        {
+          "Id": "3972",
+          "ProbeName": "奥义！梭行毒牙"
+        },
+        {
+          "Id": "3973",
+          "ProbeName": "奥义！瞬空践踏"
+        },
+        {
+          "Id": "3974",
+          "ProbeName": "奥义！精准点射"
+        },
+        {
+          "Id": "3975",
+          "ProbeName": "奥义！穿透怒吼"
+        },
+        {
+          "Id": "3976",
+          "ProbeName": "奥义！疾风连喰"
+        },
+        {
+          "Id": "3977",
+          "ProbeName": "绝技！隐匿藏击"
+        },
+        {
+          "Id": "3978",
+          "ProbeName": "绝技！绝对零度"
+        },
+        {
+          "Id": "3979",
+          "ProbeName": "绝技！深渊吐息"
+        },
+        {
+          "Id": "3980",
+          "ProbeName": "绝技！捶地猛击"
+        },
+        {
+          "Id": "3981",
+          "ProbeName": "绝技！锁定射击"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "420140",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1002440",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1002830",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1005240",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1006940",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1008440",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1008540",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1008640",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1008641",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1010440",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1010540",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1011010",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1011104",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1011214",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1011312",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1011806",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1011906",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1100504",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1100740",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1101204",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1101304",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1101440",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1102205",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1102306",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1700440",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1700718",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "1700829",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2001740",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2002440",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900240",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900340",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900540",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900640",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900715",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900740",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        },
+        {
+          "Id": "2900940",
+          "CurrentGameSources": [
+            "SkillTableAdjacentAoyiIcon"
+          ]
+        }
+      ]
+    }
+  ],
+  "LocaleComparisons": [
+    {
+      "Target": "BuffName",
+      "Source": "locales/*/parser/BuffName.json",
+      "SourceIdCount": 9317,
+      "GeneratedIdCount": 8567,
+      "DirectGameRawIdCount": 8612,
+      "OverlapIdCount": 8555,
+      "SourceOnlyIdCount": 762,
+      "GeneratedOnlyIdCount": 12,
+      "SourceOnlyPresentInCurrentGameCount": 21,
+      "SourceOnlyNotInCurrentGameCount": 741,
+      "SourceOnlyPresentInCurrentGameSample": [
+        {
+          "Id": "2201513",
+          "ProbeName": "Rock Master: Basic Attack Evoles",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2201643",
+          "ProbeName": "Rock Heal",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202165",
+          "ProbeName": "翠绿根基",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202167",
+          "ProbeName": "翠绿根基",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202641",
+          "ProbeName": "盛放精进",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208010",
+          "ProbeName": "(走配表这里没逻辑)",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208020",
+          "ProbeName": "(走配表这里没逻辑)",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208080",
+          "ProbeName": "炎魂刻印",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208120",
+          "ProbeName": "绯炎追命飞腾",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208160",
+          "ProbeName": "无相减少指定Skill组CD最长的SkillCD-时轮回溯",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208440",
+          "ProbeName": "魂焰",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208450",
+          "ProbeName": "怒焰狂锐之一",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208460",
+          "ProbeName": "赤红之地·炎魂",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208470",
+          "ProbeName": "赤红之地·迅捷",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208490",
+          "ProbeName": "怒焰狂锐之二",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208500",
+          "ProbeName": "赤红之地的坠星二式",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208530",
+          "ProbeName": "炎魔显现",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208580",
+          "ProbeName": "赤红Critical",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208610",
+          "ProbeName": "猩红之悟",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208650",
+          "ProbeName": "大红莲丸Trigger逻辑-炎舞的血脉Resonance",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208670",
+          "ProbeName": "怒焰Resonance",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "9901",
+          "ProbeName": "单手s3因子通用Trigger特效buff"
+        },
+        {
+          "Id": "9902",
+          "ProbeName": "双手s3因子通用Trigger特效buff"
+        },
+        {
+          "Id": "9903",
+          "ProbeName": "左手s3因子通用Trigger特效buff"
+        },
+        {
+          "Id": "35111",
+          "ProbeName": "斧Wind开始停止StaminaRecovery"
+        },
+        {
+          "Id": "35112",
+          "ProbeName": "塔塔天生buff"
+        },
+        {
+          "Id": "55360",
+          "ProbeName": "GuitarTrigger延后删除BUFF"
+        },
+        {
+          "Id": "55361",
+          "ProbeName": "激涌五重奏加HP波动Effect"
+        },
+        {
+          "Id": "510544",
+          "ProbeName": "D类-定身-巨塔boss用"
+        },
+        {
+          "Id": "683853",
+          "ProbeName": "Xing Li Xiang - 2 Ji Neng Hou 1 Ji Neng Qiang Hua"
+        },
+        {
+          "Id": "683854",
+          "ProbeName": "Xing Li Xiang - Ming Zhongqte Visual"
+        },
+        {
+          "Id": "702001",
+          "ProbeName": "S3幻境之种"
+        },
+        {
+          "Id": "702002",
+          "ProbeName": "S3幻境之种Enhancement(怪物)"
+        },
+        {
+          "Id": "702003",
+          "ProbeName": "S3乐章Buff(一档)"
+        },
+        {
+          "Id": "702004",
+          "ProbeName": "S3乐章Buff(二档)"
+        },
+        {
+          "Id": "702005",
+          "ProbeName": "S3乐章Buff(三档)"
+        },
+        {
+          "Id": "702006",
+          "ProbeName": "奇幻音符-音符场查找怪物"
+        },
+        {
+          "Id": "702007",
+          "ProbeName": "奇幻音符-怪物死亡掉落球"
+        },
+        {
+          "Id": "702008",
+          "ProbeName": "奇幻音符-跟随玩家移动"
+        },
+        {
+          "Id": "702009",
+          "ProbeName": "S3Dungeon开关打开后 给玩家上的buff"
+        },
+        {
+          "Id": "702010",
+          "ProbeName": "S3Dungeon开关打开后 召唤跳舞娜宝"
+        },
+        {
+          "Id": "702011",
+          "ProbeName": "S 3 Bao Cang Nuo Bao Summonbuff"
+        },
+        {
+          "Id": "702012",
+          "ProbeName": "S 3 Bao Cang Nuo Bao Trigger Qi"
+        },
+        {
+          "Id": "702013",
+          "ProbeName": "S 3 Bao Cang Nuo Bao Spawnbuff"
+        },
+        {
+          "Id": "702014",
+          "ProbeName": "S 3 Bao Cang Nuo Bao Material"
+        },
+        {
+          "Id": "702015",
+          "ProbeName": "S 3 Bao Cang Lootbuff"
+        },
+        {
+          "Id": "702016",
+          "ProbeName": "S 3 Bao Cang Xiao Zhu Create Avatar"
+        },
+        {
+          "Id": "702017",
+          "ProbeName": "S 3 Bao Cang Xiao Zhuaoe"
+        },
+        {
+          "Id": "702018",
+          "ProbeName": "S 3 Ci Zhui - Interactable Speaker"
+        },
+        {
+          "Id": "702019",
+          "ProbeName": "S 3 Ci Zhui - Speaker Release Ji Neng"
+        },
+        {
+          "Id": "702020",
+          "ProbeName": "S 3 Ci Zhui - Speaker Innatebuff"
+        },
+        {
+          "Id": "705104",
+          "ProbeName": "毛球威慑怒吼"
+        },
+        {
+          "Id": "705105",
+          "ProbeName": "毛球威慑怒吼增伤"
+        },
+        {
+          "Id": "821053",
+          "ProbeName": "去二次元"
+        },
+        {
+          "Id": "821054",
+          "ProbeName": "回一次元"
+        },
+        {
+          "Id": "821055",
+          "ProbeName": "隐身-切次元用"
+        },
+        {
+          "Id": "821056",
+          "ProbeName": "标记-小幻幻花"
+        },
+        {
+          "Id": "821057",
+          "ProbeName": "S3巨塔初始buff-外(故障表现)"
+        },
+        {
+          "Id": "821058",
+          "ProbeName": "幻幻花为boss连线充能"
+        },
+        {
+          "Id": "821059",
+          "ProbeName": "S3巨塔初始buff-内"
+        },
+        {
+          "Id": "821060",
+          "ProbeName": "幻幻花的庇护"
+        },
+        {
+          "Id": "821061",
+          "ProbeName": "幻幻花初始buff"
+        },
+        {
+          "Id": "821062",
+          "ProbeName": "跳转旋转激Light"
+        },
+        {
+          "Id": "821063",
+          "ProbeName": "幻幻花阻挡者"
+        },
+        {
+          "Id": "821064",
+          "ProbeName": "是否被打断监控"
+        },
+        {
+          "Id": "821065",
+          "ProbeName": "Mob阶段跳转"
+        },
+        {
+          "Id": "821066",
+          "ProbeName": "友方机器人初始buff"
+        },
+        {
+          "Id": "821067",
+          "ProbeName": "传送门特效·幻"
+        },
+        {
+          "Id": "821068",
+          "ProbeName": "开门跳转"
+        },
+        {
+          "Id": "821069",
+          "ProbeName": "回0阶段"
+        },
+        {
+          "Id": "821071",
+          "ProbeName": "禁锢之花初始buff"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "35701",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "35801",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682501",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682503",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682505",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033171",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033172",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033173",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033181",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033182",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033183",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208282",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "monsternames",
+      "Source": "locales/*/parser/MonsterName.json",
+      "SourceIdCount": 2891,
+      "GeneratedIdCount": 2619,
+      "DirectGameRawIdCount": 2619,
+      "OverlapIdCount": 2617,
+      "SourceOnlyIdCount": 274,
+      "GeneratedOnlyIdCount": 2,
+      "SourceOnlyPresentInCurrentGameCount": 0,
+      "SourceOnlyNotInCurrentGameCount": 274,
+      "SourceOnlyPresentInCurrentGameSample": [],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "1151",
+          "ProbeName": "Kartgriff"
+        },
+        {
+          "Id": "1152",
+          "ProbeName": "Kartgriff"
+        },
+        {
+          "Id": "1153",
+          "ProbeName": "Illusory Bloom"
+        },
+        {
+          "Id": "1154",
+          "ProbeName": "Phantaflower Mirage"
+        },
+        {
+          "Id": "1155",
+          "ProbeName": "Dimensional Ruins"
+        },
+        {
+          "Id": "1156",
+          "ProbeName": "Battle Mech 03"
+        },
+        {
+          "Id": "4601",
+          "ProbeName": "Deepsea Napo"
+        },
+        {
+          "Id": "4602",
+          "ProbeName": "Deepsea Speaker"
+        },
+        {
+          "Id": "4603",
+          "ProbeName": "Invisible Speaker"
+        },
+        {
+          "Id": "4604",
+          "ProbeName": "Ice Sphere"
+        },
+        {
+          "Id": "4605",
+          "ProbeName": "Bubble"
+        },
+        {
+          "Id": "4606",
+          "ProbeName": "Deepsea Speaker"
+        },
+        {
+          "Id": "4607",
+          "ProbeName": "Deepsea Napo"
+        },
+        {
+          "Id": "4608",
+          "ProbeName": "Carnival Illusion - Passion"
+        },
+        {
+          "Id": "4609",
+          "ProbeName": "Carnival Illusion - Dynamism"
+        },
+        {
+          "Id": "4610",
+          "ProbeName": "Ice Sphere"
+        },
+        {
+          "Id": "4611",
+          "ProbeName": "Bubble"
+        },
+        {
+          "Id": "4612",
+          "ProbeName": "Deepsea Napo"
+        },
+        {
+          "Id": "4613",
+          "ProbeName": "Deepsea Napo"
+        },
+        {
+          "Id": "4614",
+          "ProbeName": "Deepsea Napo"
+        },
+        {
+          "Id": "4615",
+          "ProbeName": "Deepsea Napo"
+        },
+        {
+          "Id": "4631",
+          "ProbeName": "Lizardfolk Tidecaller"
+        },
+        {
+          "Id": "4632",
+          "ProbeName": "Lizardfolk Raider"
+        },
+        {
+          "Id": "4633",
+          "ProbeName": "Reef Flying Fish"
+        },
+        {
+          "Id": "4634",
+          "ProbeName": "Deepsea Watcher"
+        },
+        {
+          "Id": "4635",
+          "ProbeName": "Lizardman Mage"
+        },
+        {
+          "Id": "4636",
+          "ProbeName": "Lizardfolk Soldier"
+        },
+        {
+          "Id": "4637",
+          "ProbeName": "Reef Predator"
+        },
+        {
+          "Id": "4638",
+          "ProbeName": "Small Arachnocrab"
+        },
+        {
+          "Id": "4691",
+          "ProbeName": "Speaker"
+        },
+        {
+          "Id": "4692",
+          "ProbeName": "Nappo"
+        },
+        {
+          "Id": "4693",
+          "ProbeName": "Speaker"
+        },
+        {
+          "Id": "8040",
+          "ProbeName": "Duff"
+        },
+        {
+          "Id": "8081",
+          "ProbeName": "Goblin Chief"
+        },
+        {
+          "Id": "8082",
+          "ProbeName": "Cabbage Kingpin"
+        },
+        {
+          "Id": "8648",
+          "ProbeName": "Winton"
+        },
+        {
+          "Id": "8649",
+          "ProbeName": "Little Caprahorn"
+        },
+        {
+          "Id": "8650",
+          "ProbeName": "Herman"
+        },
+        {
+          "Id": "8724",
+          "ProbeName": "Cabbage Mission Member"
+        },
+        {
+          "Id": "8725",
+          "ProbeName": "Cabbage Mission Member"
+        },
+        {
+          "Id": "8726",
+          "ProbeName": "Cabbage Mission Member"
+        },
+        {
+          "Id": "8727",
+          "ProbeName": "Hawks"
+        },
+        {
+          "Id": "8728",
+          "ProbeName": "Brigand Leader"
+        },
+        {
+          "Id": "11200",
+          "ProbeName": "Flame Crabspider"
+        },
+        {
+          "Id": "11201",
+          "ProbeName": "Wasteland Crabspider"
+        },
+        {
+          "Id": "11202",
+          "ProbeName": "Killer Crabspider"
+        },
+        {
+          "Id": "11203",
+          "ProbeName": "Predatory Crabspider"
+        },
+        {
+          "Id": "11204",
+          "ProbeName": "Sandstone Fleshmass"
+        },
+        {
+          "Id": "11205",
+          "ProbeName": "Ashen Fleshmass"
+        },
+        {
+          "Id": "11206",
+          "ProbeName": "Dogorman"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "35215",
+          "CurrentGameSources": [
+            "MonsterTableRawRow"
+          ]
+        },
+        {
+          "Id": "35216",
+          "CurrentGameSources": [
+            "MonsterTableRawRow"
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "scenenames",
+      "Source": "locales/*/parser/SceneName.json",
+      "SourceIdCount": 582,
+      "GeneratedIdCount": 486,
+      "DirectGameRawIdCount": 487,
+      "OverlapIdCount": 486,
+      "SourceOnlyIdCount": 96,
+      "GeneratedOnlyIdCount": 0,
+      "SourceOnlyPresentInCurrentGameCount": 1,
+      "SourceOnlyNotInCurrentGameCount": 95,
+      "SourceOnlyPresentInCurrentGameSample": [
+        {
+          "Id": "1",
+          "ProbeName": "login",
+          "CurrentGameSources": [
+            "SceneTableRawRow"
+          ]
+        }
+      ],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "1150",
+          "ProbeName": "Unstable - Eclipsed Towering Ruin"
+        },
+        {
+          "Id": "1151",
+          "ProbeName": "Unstable - Eclipsed Towering Ruin"
+        },
+        {
+          "Id": "1152",
+          "ProbeName": "Normal - Eclipsed Towering Ruin"
+        },
+        {
+          "Id": "1153",
+          "ProbeName": "Hard - Eclipsed Towering Ruin"
+        },
+        {
+          "Id": "1154",
+          "ProbeName": "Master - Eclipsed Towering Ruin"
+        },
+        {
+          "Id": "1611",
+          "ProbeName": "Unstable - Eclipsed Tina's Mindrealm"
+        },
+        {
+          "Id": "1621",
+          "ProbeName": "Unstable - Eclipsed Tina's Mindrealm"
+        },
+        {
+          "Id": "1631",
+          "ProbeName": "Normal - Eclipsed Tina's Mindrealm"
+        },
+        {
+          "Id": "1632",
+          "ProbeName": "Hard - Eclipsed Tina's Mindrealm"
+        },
+        {
+          "Id": "1633",
+          "ProbeName": "Master - Eclipsed Tina's Mindrealm"
+        },
+        {
+          "Id": "5604",
+          "ProbeName": "Fafara's House"
+        },
+        {
+          "Id": "6511",
+          "ProbeName": "Unstable - Cursed Radiant Tomb"
+        },
+        {
+          "Id": "6512",
+          "ProbeName": "Unstable - Cursed Radiant Tomb"
+        },
+        {
+          "Id": "6513",
+          "ProbeName": "Normal - Cursed Radiant Tomb"
+        },
+        {
+          "Id": "6514",
+          "ProbeName": "Hard - Cursed Radiant Tomb"
+        },
+        {
+          "Id": "6515",
+          "ProbeName": "Master - Cursed Radiant Tomb"
+        },
+        {
+          "Id": "6521",
+          "ProbeName": "Extreme - Mechanization Processing Facility"
+        },
+        {
+          "Id": "6522",
+          "ProbeName": "Extreme - Mechanization Processing Facility"
+        },
+        {
+          "Id": "6523",
+          "ProbeName": "Extreme - Mechanization Processing Facility"
+        },
+        {
+          "Id": "6524",
+          "ProbeName": "Extreme - Mechanization Processing Facility"
+        },
+        {
+          "Id": "6525",
+          "ProbeName": "Extreme - Mechanization Processing Facility"
+        },
+        {
+          "Id": "6541",
+          "ProbeName": "Unstable - Mist-Hidden Hunting Grounds"
+        },
+        {
+          "Id": "6542",
+          "ProbeName": "Unstable - Mist-Hidden Hunting Grounds"
+        },
+        {
+          "Id": "6543",
+          "ProbeName": "Extreme - Mist-Hidden Hunting Grounds"
+        },
+        {
+          "Id": "6544",
+          "ProbeName": "Extreme - Mist-Hidden Hunting Grounds"
+        },
+        {
+          "Id": "6545",
+          "ProbeName": "Extreme - Mist-Hidden Hunting Grounds"
+        },
+        {
+          "Id": "6561",
+          "ProbeName": "Unstable - Ringsea Reef"
+        },
+        {
+          "Id": "6562",
+          "ProbeName": "Unstable - Ringsea Reef"
+        },
+        {
+          "Id": "6563",
+          "ProbeName": "Normal - Ringsea Reef"
+        },
+        {
+          "Id": "6564",
+          "ProbeName": "Hard - Ringsea Reef"
+        },
+        {
+          "Id": "6565",
+          "ProbeName": "Master - Ringsea Reef"
+        },
+        {
+          "Id": "7152",
+          "ProbeName": "World Overlord"
+        },
+        {
+          "Id": "12022",
+          "ProbeName": "Association Hunt - Normal"
+        },
+        {
+          "Id": "12023",
+          "ProbeName": "Association Hunt - Hard"
+        },
+        {
+          "Id": "12052",
+          "ProbeName": "Giant Automaton Subjugation Battle"
+        },
+        {
+          "Id": "32101",
+          "ProbeName": "Sidimen Ruins Floor 1"
+        },
+        {
+          "Id": "32102",
+          "ProbeName": "Sidimen Ruins Floor 2"
+        },
+        {
+          "Id": "32103",
+          "ProbeName": "Sidimen Ruins Floor 3"
+        },
+        {
+          "Id": "32104",
+          "ProbeName": "Sidimen Ruins Floor 4"
+        },
+        {
+          "Id": "32105",
+          "ProbeName": "Sidimen Ruins Floor 5"
+        },
+        {
+          "Id": "32106",
+          "ProbeName": "Sidimen Ruins Floor 6"
+        },
+        {
+          "Id": "32107",
+          "ProbeName": "Sidimen Ruins Floor 7"
+        },
+        {
+          "Id": "32108",
+          "ProbeName": "Sidimen Ruins Floor 8"
+        },
+        {
+          "Id": "32109",
+          "ProbeName": "Sidimen Ruins Floor 9"
+        },
+        {
+          "Id": "32110",
+          "ProbeName": "Sidimen Ruins Floor 10"
+        },
+        {
+          "Id": "32111",
+          "ProbeName": "Sidimen Ruins Floor 11"
+        },
+        {
+          "Id": "32112",
+          "ProbeName": "Sidimen Ruins Floor 12"
+        },
+        {
+          "Id": "32113",
+          "ProbeName": "Sidimen Ruins Floor 13"
+        },
+        {
+          "Id": "32114",
+          "ProbeName": "Sidimen Ruins Floor 14"
+        },
+        {
+          "Id": "32115",
+          "ProbeName": "Sidimen Ruins Floor 15"
+        }
+      ],
+      "GeneratedOnlySample": []
+    },
+    {
+      "Target": "skillnames",
+      "Source": "locales/*/parser/skillnames.json",
+      "SourceIdCount": 13309,
+      "GeneratedIdCount": 24774,
+      "DirectGameRawIdCount": 25258,
+      "OverlapIdCount": 12600,
+      "SourceOnlyIdCount": 709,
+      "GeneratedOnlyIdCount": 12174,
+      "SourceOnlyPresentInCurrentGameCount": 1,
+      "SourceOnlyNotInCurrentGameCount": 708,
+      "SourceOnlyPresentInCurrentGameSample": [
+        {
+          "Id": "14014501",
+          "ProbeName": "奥义！裂空反冲",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.effectId",
+            "SkillFightLevelTable.ctb.id"
+          ]
+        }
+      ],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "295",
+          "ProbeName": "Stunt! Lightning Smite"
+        },
+        {
+          "Id": "296",
+          "ProbeName": "Stunt! Blade Storm"
+        },
+        {
+          "Id": "297",
+          "ProbeName": "Stunt! Healing Bomb"
+        },
+        {
+          "Id": "298",
+          "ProbeName": "Stunt! Carpet Bombing"
+        },
+        {
+          "Id": "299",
+          "ProbeName": "Stunt! Kinetic Strike"
+        },
+        {
+          "Id": "300",
+          "ProbeName": "Stunt! Cabbage Boomerang"
+        },
+        {
+          "Id": "301",
+          "ProbeName": "Stunt! Cabbage Blitz"
+        },
+        {
+          "Id": "302",
+          "ProbeName": "Stunt! Twin Fangs"
+        },
+        {
+          "Id": "303",
+          "ProbeName": "Void Corruption: Cleave!"
+        },
+        {
+          "Id": "304",
+          "ProbeName": "World Collapse"
+        },
+        {
+          "Id": "305",
+          "ProbeName": "Blade Rift"
+        },
+        {
+          "Id": "306",
+          "ProbeName": "Superconductive Wave"
+        },
+        {
+          "Id": "307",
+          "ProbeName": "奥义！梭行毒牙"
+        },
+        {
+          "Id": "308",
+          "ProbeName": "奥义！瞬空践踏"
+        },
+        {
+          "Id": "309",
+          "ProbeName": "Normal Attack"
+        },
+        {
+          "Id": "310",
+          "ProbeName": "Iron Fang - Enrage"
+        },
+        {
+          "Id": "311",
+          "ProbeName": "Rift Leap"
+        },
+        {
+          "Id": "312",
+          "ProbeName": "绝技！隐匿藏击"
+        },
+        {
+          "Id": "313",
+          "ProbeName": "绝技！绝对零度"
+        },
+        {
+          "Id": "314",
+          "ProbeName": "绝技！深渊吐息"
+        },
+        {
+          "Id": "315",
+          "ProbeName": "绝技！捶地猛击"
+        },
+        {
+          "Id": "316",
+          "ProbeName": "绝技！锁定射击"
+        },
+        {
+          "Id": "317",
+          "ProbeName": "极·急救措施"
+        },
+        {
+          "Id": "318",
+          "ProbeName": "极·生命吸取"
+        },
+        {
+          "Id": "319",
+          "ProbeName": "虚蚀爆裂"
+        },
+        {
+          "Id": "320",
+          "ProbeName": "Stunt! Blade Sweep"
+        },
+        {
+          "Id": "321",
+          "ProbeName": "虚蚀波动"
+        },
+        {
+          "Id": "322",
+          "ProbeName": "虚蚀光环"
+        },
+        {
+          "Id": "323",
+          "ProbeName": "幻梦处决"
+        },
+        {
+          "Id": "324",
+          "ProbeName": "迷幻梦境-不灭战姿"
+        },
+        {
+          "Id": "325",
+          "ProbeName": "寂灭之梦-血限冲域"
+        },
+        {
+          "Id": "326",
+          "ProbeName": "虚妄裁定"
+        },
+        {
+          "Id": "327",
+          "ProbeName": "虚妄裁定-裁定·愈"
+        },
+        {
+          "Id": "328",
+          "ProbeName": "Phantom Arrow"
+        },
+        {
+          "Id": "329",
+          "ProbeName": "稳态G8"
+        },
+        {
+          "Id": "330",
+          "ProbeName": "雷影稳态G1"
+        },
+        {
+          "Id": "331",
+          "ProbeName": "巨刃稳态G2"
+        },
+        {
+          "Id": "333",
+          "ProbeName": "Illusion Verdict"
+        },
+        {
+          "Id": "90317",
+          "ProbeName": "炽焰突袭/暴怒劈斩/旋风斩CD"
+        },
+        {
+          "Id": "90318",
+          "ProbeName": "血槽消耗减少"
+        },
+        {
+          "Id": "90319",
+          "ProbeName": "如川流华斩充能层数"
+        },
+        {
+          "Id": "90320",
+          "ProbeName": "赤红积攒效率"
+        },
+        {
+          "Id": "92005",
+          "ProbeName": "职业技能冷却加速"
+        },
+        {
+          "Id": "93001",
+          "ProbeName": "【隐雾猎场】禁止释放治疗技能"
+        },
+        {
+          "Id": "98981",
+          "ProbeName": "S1赛季强度"
+        },
+        {
+          "Id": "98982",
+          "ProbeName": "S2赛季强度-幻梦强度"
+        },
+        {
+          "Id": "98983",
+          "ProbeName": "S3赛季强度"
+        },
+        {
+          "Id": "98984",
+          "ProbeName": "S4赛季强度"
+        },
+        {
+          "Id": "98985",
+          "ProbeName": "S5赛季强度"
+        },
+        {
+          "Id": "98986",
+          "ProbeName": "S6赛季强度"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "1101",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1102",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1103",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1104",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1105",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1106",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1214",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1216",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1219",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1221",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1222",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1223",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1230",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1231",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1237",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1238",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1239",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1240",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1241",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1242",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1243",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1244",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1245",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1246",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1247",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1248",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1249",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1250",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1251",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1252",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1253",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1254",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1255",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1256",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1257",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1258",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1259",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1260",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1261",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1262",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1263",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1264",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1416",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1418",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1419",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1420",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1421",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1422",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1423",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        },
+        {
+          "Id": "1424",
+          "CurrentGameSources": [
+            "SkillEffectTable.ctb.skillId",
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillTable.ctb"
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "BuffName",
+      "Source": "locales/*/search/BuffNameSearch.json",
+      "SourceIdCount": 9317,
+      "GeneratedIdCount": 8567,
+      "DirectGameRawIdCount": 8612,
+      "OverlapIdCount": 8555,
+      "SourceOnlyIdCount": 762,
+      "GeneratedOnlyIdCount": 12,
+      "SourceOnlyPresentInCurrentGameCount": 21,
+      "SourceOnlyNotInCurrentGameCount": 741,
+      "SourceOnlyPresentInCurrentGameSample": [
+        {
+          "Id": "2201513",
+          "ProbeName": "Rock Master: Basic Attack Evoles",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2201643",
+          "ProbeName": "Rock Heal",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202165",
+          "ProbeName": "Cui Lu Gen Ji",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202167",
+          "ProbeName": "Cui Lu Gen Ji",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2202641",
+          "ProbeName": "Sheng Fang Jing Jin",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208010",
+          "ProbeName": "(Zou Pei Biao Zhe Li Mei Luo Ji)",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208020",
+          "ProbeName": "(Zou Pei Biao Zhe Li Mei Luo Ji)",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208080",
+          "ProbeName": "Yan Hun Ke Sigil",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208120",
+          "ProbeName": "Fei Yan Zhui Ming Fei Teng",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208160",
+          "ProbeName": "Wu Xiang Jian Shao Zhi Ding Skill Zu CD Zui Chang De Skill CD - When Lun Hui Su",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208440",
+          "ProbeName": "Hun Yan",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208450",
+          "ProbeName": "Nu Yan Kuang Rui Zhi Yi",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208460",
+          "ProbeName": "Chi Hong Zhi Di·Yan Hun",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208470",
+          "ProbeName": "Chi Hong Zhi Di·Xun Jie",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208490",
+          "ProbeName": "Nu Yan Kuang Rui Zhi Er",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208500",
+          "ProbeName": "Chi Hong Zhi Di De Zhui Xing Er Shi",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208530",
+          "ProbeName": "Yan Mo Xian Xian",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208580",
+          "ProbeName": "Chi Hong Critical",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208610",
+          "ProbeName": "Xing Hong Zhi Wu",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208650",
+          "ProbeName": "Da Hong Lian Wan Trigger Luo Ji - Yan Wu De Xie Mai Resonance",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208670",
+          "ProbeName": "Nu Yan Resonance",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "9901",
+          "ProbeName": "Dan Shous 3 Yin Zi Tong Use Trigger Effectbuff"
+        },
+        {
+          "Id": "9902",
+          "ProbeName": "Shuang Shous 3 Yin Zi Tong Use Trigger Effectbuff"
+        },
+        {
+          "Id": "9903",
+          "ProbeName": "Zuo Shous 3 Yin Zi Tong Use Trigger Effectbuff"
+        },
+        {
+          "Id": "35111",
+          "ProbeName": "Fu Wind Start Stop Stamina Recovery"
+        },
+        {
+          "Id": "35112",
+          "ProbeName": "Tata Innatebuff"
+        },
+        {
+          "Id": "55360",
+          "ProbeName": "Guitar Trigger Yan Hou Remove Buff"
+        },
+        {
+          "Id": "55361",
+          "ProbeName": "Ji Yong Wu Zhong Zou Jia HP Bo Dong Effect"
+        },
+        {
+          "Id": "510544",
+          "ProbeName": "D Lei - Ding Shen - Ju Taboss Use"
+        },
+        {
+          "Id": "683853",
+          "ProbeName": "Xing Li Xiang - 2 Skill Hou 1 Skill Enhanced"
+        },
+        {
+          "Id": "683854",
+          "ProbeName": "Xing Li Xiang - Ming Midqte VFX"
+        },
+        {
+          "Id": "702001",
+          "ProbeName": "S 3 Huan Jing Zhi Chong"
+        },
+        {
+          "Id": "702002",
+          "ProbeName": "S 3 Huan Jing Zhi Chong Enhancement(Monster)"
+        },
+        {
+          "Id": "702003",
+          "ProbeName": "S 3 Le Zhang Buff(Yi Dang)"
+        },
+        {
+          "Id": "702004",
+          "ProbeName": "S 3 Le Zhang Buff(Er Dang)"
+        },
+        {
+          "Id": "702005",
+          "ProbeName": "S 3 Le Zhang Buff(San Dang)"
+        },
+        {
+          "Id": "702006",
+          "ProbeName": "Qi Huan Yin Fu - Yin Fu Chang Cha Zhao Monster"
+        },
+        {
+          "Id": "702007",
+          "ProbeName": "Qi Huan Yin Fu - Monster Death Diao Luo Orb"
+        },
+        {
+          "Id": "702008",
+          "ProbeName": "Qi Huan Yin Fu - Gen Sui Player Move"
+        },
+        {
+          "Id": "702009",
+          "ProbeName": "S 3 Dungeon Kai Guan Da Kai Hou Gei Player Shang Debuff"
+        },
+        {
+          "Id": "702010",
+          "ProbeName": "S 3 Dungeon Kai Guan Da Kai Hou Summon Tiao Wu Nuo Bao"
+        },
+        {
+          "Id": "702011",
+          "ProbeName": "S 3 Bao Cang Nabao Summon Buff"
+        },
+        {
+          "Id": "702012",
+          "ProbeName": "S 3 Bao Cang Nabao Trigger Device"
+        },
+        {
+          "Id": "702013",
+          "ProbeName": "S 3 Bao Cang Nabao Spawn Buff"
+        },
+        {
+          "Id": "702014",
+          "ProbeName": "S 3 Bao Cang Nabao Cai Zhi"
+        },
+        {
+          "Id": "702015",
+          "ProbeName": "S 3 Bao Cang Zhan Li Pin Buff"
+        },
+        {
+          "Id": "702016",
+          "ProbeName": "S 3 Bao Cang Small Pig Chuang Jian Avatar"
+        },
+        {
+          "Id": "702017",
+          "ProbeName": "S 3 Bao Cang Small Pig AOE"
+        },
+        {
+          "Id": "702018",
+          "ProbeName": "S 3 Ci Zhui - Ke Yi Jiao Hu Speaker"
+        },
+        {
+          "Id": "702019",
+          "ProbeName": "S 3 Ci Zhui - Speaker Release Skill"
+        },
+        {
+          "Id": "702020",
+          "ProbeName": "S 3 Ci Zhui - Speaker Passive Buff"
+        },
+        {
+          "Id": "705104",
+          "ProbeName": "Mao Orb Wei She Nu Hou"
+        },
+        {
+          "Id": "705105",
+          "ProbeName": "Mao Orb Wei She Nu Hou Damage Boost"
+        },
+        {
+          "Id": "821053",
+          "ProbeName": "Qu Er Ci Yuan"
+        },
+        {
+          "Id": "821054",
+          "ProbeName": "Hui Yi Ci Yuan"
+        },
+        {
+          "Id": "821055",
+          "ProbeName": "Yin Shen - Qie Ci Yuan Use"
+        },
+        {
+          "Id": "821056",
+          "ProbeName": "Mark - Xiao Huan Huan Flower"
+        },
+        {
+          "Id": "821057",
+          "ProbeName": "S 3 Ju Ta Initialbuff - Wai(Gu Zhang Visual)"
+        },
+        {
+          "Id": "821058",
+          "ProbeName": "Huan Huan Flower Weiboss Lian Xian Chong Neng"
+        },
+        {
+          "Id": "821059",
+          "ProbeName": "S 3 Ju Ta Initialbuff - Nei"
+        },
+        {
+          "Id": "821060",
+          "ProbeName": "Huan Huan Flower De Bi Hu"
+        },
+        {
+          "Id": "821061",
+          "ProbeName": "Huan Huan Flower Initialbuff"
+        },
+        {
+          "Id": "821062",
+          "ProbeName": "Tiao Zhuan Xuan Zhuan Ji Light"
+        },
+        {
+          "Id": "821063",
+          "ProbeName": "Huan Huan Flower Zu Dang Zhe"
+        },
+        {
+          "Id": "821064",
+          "ProbeName": "Shi Fou Bei Da Duan Monitor"
+        },
+        {
+          "Id": "821065",
+          "ProbeName": "Mob Jie Duan Tiao Zhuan"
+        },
+        {
+          "Id": "821066",
+          "ProbeName": "You Fang Ji Qi Ren Initialbuff"
+        },
+        {
+          "Id": "821067",
+          "ProbeName": "Chuan Song Men Effect·Huan"
+        },
+        {
+          "Id": "821068",
+          "ProbeName": "Kai Men Tiao Zhuan"
+        },
+        {
+          "Id": "821069",
+          "ProbeName": "Hui 0 Jie Duan"
+        },
+        {
+          "Id": "821071",
+          "ProbeName": "Jin Gu Zhi Flower Initialbuff"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "35701",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "35801",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682501",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682503",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "682505",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033171",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033172",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033173",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033181",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033182",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2033183",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        },
+        {
+          "Id": "2208282",
+          "CurrentGameSources": [
+            "BuffTableRawRow"
+          ]
+        }
+      ]
+    },
+    {
+      "Target": "skillnames",
+      "Source": "locales/*/search/resonance-skill-search.json",
+      "SourceIdCount": 82,
+      "GeneratedIdCount": 24774,
+      "DirectGameRawIdCount": 25258,
+      "OverlapIdCount": 68,
+      "SourceOnlyIdCount": 14,
+      "GeneratedOnlyIdCount": 24706,
+      "SourceOnlyPresentInCurrentGameCount": 0,
+      "SourceOnlyNotInCurrentGameCount": 14,
+      "SourceOnlyPresentInCurrentGameSample": [],
+      "SourceOnlyNotInCurrentGameSample": [
+        {
+          "Id": "3968",
+          "ProbeName": "Ultimate! Voidblight Calamity Blade"
+        },
+        {
+          "Id": "3969",
+          "ProbeName": "Ultimate! Rending Claw Recoil"
+        },
+        {
+          "Id": "3970",
+          "ProbeName": "Ultimate! Command Quadrant"
+        },
+        {
+          "Id": "3971",
+          "ProbeName": "Ultimate! Superconductive Wave"
+        },
+        {
+          "Id": "3972",
+          "ProbeName": "Ultimate! Darting Venom Fang"
+        },
+        {
+          "Id": "3973",
+          "ProbeName": "Ultimate! Skyflash Stomp"
+        },
+        {
+          "Id": "3974",
+          "ProbeName": "Ultimate! Precision Burst Fire"
+        },
+        {
+          "Id": "3975",
+          "ProbeName": "Ultimate! Piercing Roar"
+        },
+        {
+          "Id": "3976",
+          "ProbeName": "Ultimate! Gale Chain Bite"
+        },
+        {
+          "Id": "3977",
+          "ProbeName": "Technique! Hidden Strike"
+        },
+        {
+          "Id": "3978",
+          "ProbeName": "Technique! Absolute Zero"
+        },
+        {
+          "Id": "3979",
+          "ProbeName": "Technique! Abyssal Breath"
+        },
+        {
+          "Id": "3980",
+          "ProbeName": "Technique! Ground Pound"
+        },
+        {
+          "Id": "3981",
+          "ProbeName": "Technique! Lock-on Shot"
+        }
+      ],
+      "GeneratedOnlySample": [
+        {
+          "Id": "1",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "2",
+          "CurrentGameSources": [
+            "SkillFightLevelTable.ctb.skillId",
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "3",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "4",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "5",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "6",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "7",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "8",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "9",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "10",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "11",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "12",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "13",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "14",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "15",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "16",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "17",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "18",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "19",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "20",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "21",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "22",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "23",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "24",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "25",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "26",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "27",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "28",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "29",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "30",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "31",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "32",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "33",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "34",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "35",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "36",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "37",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "38",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "39",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "40",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "41",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "42",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "43",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "44",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "45",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "46",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "47",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "48",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "49",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        },
+        {
+          "Id": "50",
+          "CurrentGameSources": [
+            "SkillNames/RecountTable.ctb"
+          ]
+        }
+      ]
+    }
+  ],
+  "ParserLogicNotes": [
+    "src-tauri/src/translation_runtime.rs builds old parser BuffName from src/lib/config/BuffName.json.",
+    "src-tauri/src/translation_runtime.rs builds old skillnames from config RecountTable/DamageAttrIdName plus bundled meter-data SkillEffectTable/SkillFightLevelTable/TempAttrTable.",
+    "Those paths are probe clues only here; this audit classifies whether their ids still have direct current game-file evidence."
+  ]
+}

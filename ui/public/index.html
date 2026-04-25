@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BPSR UID Extractors</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="header-mark" aria-hidden="true">UID</div>
+        <div class="header-copy">
+          <h1>BPSR UID Extractors</h1>
+          <p>Generate parser data, locale data, and icon PNGs from the current game files.</p>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="summary-grid" aria-label="Extractor status">
+          <div class="summary-item">
+            <span class="summary-label">Game Path</span>
+            <strong id="game-path">Loading</strong>
+            <span id="game-path-source" class="summary-note"></span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Output Files</span>
+            <strong id="output-count">0</strong>
+            <span class="summary-note">generated JSON targets</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Icon Groups</span>
+            <strong id="icon-groups">0</strong>
+            <span class="summary-note">folders under output/icons</span>
+          </div>
+        </section>
+
+        <section class="action-bar" aria-label="Generator actions">
+          <button id="refresh" class="button secondary" type="button">Refresh</button>
+          <button id="dry-run-all" class="button secondary" type="button">Dry Run All</button>
+          <button id="run-all" class="button primary" type="button">Run All</button>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel generator-panel">
+            <div class="panel-heading">
+              <h2>Generators</h2>
+              <p>Run one generator or the full dependency chain.</p>
+            </div>
+            <div id="script-list" class="script-list" aria-live="polite"></div>
+          </div>
+
+          <aside class="panel output-panel">
+            <div class="panel-heading">
+              <h2>Outputs</h2>
+              <p>Current files under output.</p>
+            </div>
+            <div id="output-list" class="output-list" aria-live="polite"></div>
+          </aside>
+        </section>
+
+        <section class="panel console-panel">
+          <div class="panel-heading console-heading">
+            <div>
+              <h2>Run Log</h2>
+              <p id="run-status">Idle</p>
+            </div>
+            <button id="clear-log" class="button compact secondary" type="button">Clear</button>
+          </div>
+          <pre id="run-log" class="run-log" aria-live="polite"></pre>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

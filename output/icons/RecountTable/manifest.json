@@ -1,9 +1,385 @@
 {
-  "GeneratedAt": "2026-04-24T17:06:37.059Z",
+  "GeneratedAt": "2026-04-24T22:48:46.580Z",
   "SourceGroup": "RecountTable",
   "OutputDir": "output/icons/RecountTable",
-  "AssetCount": 114,
+  "AssetCount": 129,
   "Assets": [
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_abnormal_green_icon|RecountTable/buff_abnormal_green_icon.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_abnormal_green_icon",
+      "Address": "ui/atlas/buff/buff_abnormal_green_icon",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_abnormal_green_icon.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 173,
+          "Name": "Nourish"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_abnormal_green_icon",
+      "SpriteAddress": 1758435438,
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "ae38de1dcf6e2a0b3b41c9525fae1806951fe7432e0ef09601727fbbb4d520f1"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|2990205475|buff_blue_atk|RecountTable/buff_blue_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/hud/buff/buff_blue_atk",
+      "Address": "ui/atlas/hud/buff_blue_atk",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "RecountTable/buff_blue_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 222,
+          "Name": "Stunt! Roar Command"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "buff_blue_atk",
+      "SpriteAddress": 1737416673,
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "d2ec7eeaa190eb325ad858c9dd849850ee4d5f0852f3d412070246f299c63f4b"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|2990205475|buff_blue_def|RecountTable/buff_blue_def.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/hud/buff/buff_blue_def",
+      "Address": "ui/atlas/hud/buff_blue_def",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "RecountTable/buff_blue_def.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 151,
+          "Name": "Aegis Ward"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "buff_blue_def",
+      "SpriteAddress": 1737419440,
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "a3d34a0d5a3a6dec44003d480d81a479c8804a3a442b49ce461c86889d54e380"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|2990205475|buff_blue_heal|RecountTable/buff_blue_heal.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/hud/buff/buff_blue_heal",
+      "Address": "ui/atlas/hud/buff_blue_heal",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "RecountTable/buff_blue_heal.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 284,
+          "Name": "Void Aura"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "buff_blue_heal",
+      "SpriteAddress": 1500410363,
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "6ac22d04fb7343c8a54b52aca3b0233df0f0307bdf7954ac21395758c0507763"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_icon09|RecountTable/buff_icon09.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_icon09",
+      "Address": "ui/atlas/buff/buff_icon09",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_icon09.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 245,
+          "Name": "Arcane! Thunder Roar"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon09",
+      "SpriteAddress": 3368385660,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "95bea8af4e96ecbed6793058a38b3e43f267547bd1010a94430628dcadd26b0d"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_icon133|RecountTable/buff_icon133.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_icon133",
+      "Address": "ui/atlas/buff/buff_icon133",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_icon133.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 246,
+          "Name": "Arcane! Pulse Benediction"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon133",
+      "SpriteAddress": 3782545322,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "df25166d5db97156a3a77557bd1c59072a333556f58d04f1a1b9c817c7449eff"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_icon155|RecountTable/buff_icon155.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_icon155",
+      "Address": "ui/atlas/buff/buff_icon155",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_icon155.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 273,
+          "Name": "Stunt! Healing Bomb"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon155",
+      "SpriteAddress": 3782545390,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "34b7db31909eb9938f9e94bfcc762ce4e2d314699a054a75462ab43e42e14891"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_icon60|RecountTable/buff_icon60.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_icon60",
+      "Address": "ui/atlas/buff/buff_icon60",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_icon60.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 132,
+          "Name": "Recovery"
+        },
+        {
+          "Id": 162,
+          "Name": "Recovery"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon60",
+      "SpriteAddress": 3368385849,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "1c5ec556c5e8df96288cd2e2b0e5a809f3dcd6a95547a5a4fa70b872d4ea425c"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_icon70|RecountTable/buff_icon70.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_icon70",
+      "Address": "ui/atlas/buff/buff_icon70",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_icon70.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 152,
+          "Name": "Zeal Crusade"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon70",
+      "SpriteAddress": 3368385882,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "e1e8967f8ffb72f3e4b9871f0d45c3468bdc73c399ff081edce655b96ddc8adf"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|RecountTable/buff_passive_icon_general_sup_inspireex.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_passive_icon_general_sup_inspireex",
+      "Address": "ui/atlas/buff/buff_passive_icon_general_sup_inspireex",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_passive_icon_general_sup_inspireex.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 262,
+          "Name": "Arcane! Guardian's Boundary"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_passive_icon_general_sup_inspireex",
+      "SpriteAddress": 648508215,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "8c6c29015259d5a7bd79cac70799978a94038d09a5c9c07c0ab7c387cc5d83b6"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|buff_passive_icon_tank_violent01|RecountTable/buff_passive_icon_tank_violent01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/buff_passive_icon_tank_violent01",
+      "Address": "ui/atlas/buff/buff_passive_icon_tank_violent01",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/buff_passive_icon_tank_violent01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 183,
+          "Name": "Symbiotic Mark"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_passive_icon_tank_violent01",
+      "SpriteAddress": 194745083,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "7d17ea65828c864bc34447e8e66f786594ebc24f6579baee16dfcbb259097df0"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|2990205475|buff_red_def|RecountTable/buff_red_def.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/hud/debuff/buff_red_def",
+      "Address": "ui/atlas/hud/buff_red_def",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "RecountTable/buff_red_def.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 260,
+          "Name": "Arcane! Divine Reliance"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "buff_red_def",
+      "SpriteAddress": 2814350636,
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "0334368dcfac45c5d50cdeeed955553cb1258a2b2ce36efc89d72040875dc719"
+    },
     {
       "AssetId": "RecountTable|Sprite|841625591|changqiang447|RecountTable/changqiang447.png",
       "SourceKind": "generated-json",
@@ -34,68 +410,6 @@
       "PngHeight": 147,
       "PngMode": "RGBA",
       "PixelSha256": "85997005abe70d8e049041e59931631c750296ec1b6e5d99d3fe5cd183666381"
-    },
-    {
-      "AssetId": "RecountTable|Sprite|2255238245|gongjian1152|RecountTable/gongjian1152.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "RecountTable.json",
-      "SourceGroup": "RecountTable",
-      "Field": "IconPath",
-      "Value": "ui/atlas/talent_passive_11/gongjian1152",
-      "Address": "ui/atlas/talent_passive_11/gongjian1152",
-      "AddressHash": 3287586233,
-      "BundleHash": 2255238245,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "RecountTable/gongjian1152.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 101,
-          "Name": "Implosion"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_11",
-      "AtlasHash": 3287586233,
-      "SpriteName": "gongjian1152",
-      "SpriteAddress": 3315583134,
-      "PngExported": true,
-      "PngWidth": 147,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "004e786473cf2ed9b4f1f1692a425eaecd6a8fc9df752dabc48592b46acea1c4"
-    },
-    {
-      "AssetId": "RecountTable|Sprite|3586866662|jiandun1223|RecountTable/jiandun1223.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "RecountTable.json",
-      "SourceGroup": "RecountTable",
-      "Field": "IconPath",
-      "Value": "ui/atlas/talent_passive_12/jiandun1223",
-      "Address": "ui/atlas/talent_passive_12/jiandun1223",
-      "AddressHash": 3287586234,
-      "BundleHash": 3586866662,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "RecountTable/jiandun1223.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 163,
-          "Name": "Holy Radiance"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_12",
-      "AtlasHash": 3287586234,
-      "SpriteName": "jiandun1223",
-      "SpriteAddress": 4243426650,
-      "PngExported": true,
-      "PngWidth": 138,
-      "PngHeight": 143,
-      "PngMode": "RGBA",
-      "PixelSha256": "7488dec8ab4ca1ac39f31f1dc59ae05f66f7e95b8ecf9989969fcbe7a6cd63e2"
     },
     {
       "AssetId": "RecountTable|Sprite|3586866662|jiandun1224|RecountTable/jiandun1224.png",
@@ -158,6 +472,37 @@
       "PngHeight": 136,
       "PngMode": "RGBA",
       "PixelSha256": "181848c4c798df7cf3db87033fe9c32121260424b5fdd3d17fb46cbaf3e1e061"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1300425262|mod_effect_icon_035|RecountTable/mod_effect_icon_035.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/mod_effect/mod_effect_icon_035",
+      "Address": "ui/atlas/mod_effect/mod_effect_icon_035",
+      "AddressHash": 3564913090,
+      "BundleHash": 1300425262,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/mod_effect_icon_035.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 280,
+          "Name": "Life Steal"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/mod_effect",
+      "AtlasHash": 3564913090,
+      "SpriteName": "mod_effect_icon_035",
+      "SpriteAddress": 430986492,
+      "PngExported": true,
+      "PngWidth": 80,
+      "PngHeight": 80,
+      "PngMode": "RGBA",
+      "PixelSha256": "bc22be54e575901626c28707ce2b872d42056fd47cf2f9cf3d1dcda1886048a5"
     },
     {
       "AssetId": "RecountTable|Sprite|4119821754|s2talent01_04|RecountTable/s2talent01_04.png",
@@ -819,7 +1164,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "IconPaths[1]",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
       "AddressHash": 3660536017,
@@ -1039,6 +1384,68 @@
       "PixelSha256": "f5dc71ec93649667aadf38897cf6f027bd9a0a641a96d4fc9520aa352f576d7e"
     },
     {
+      "AssetId": "RecountTable|Sprite|2473336053|talent_passive_icon_general_dps_icepulse|RecountTable/talent_passive_icon_general_dps_icepulse.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icepulse",
+      "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icepulse",
+      "AddressHash": 359924873,
+      "BundleHash": 2473336053,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_general_dps_icepulse.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 42,
+          "Name": "Cold Pulse"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_2",
+      "AtlasHash": 359924873,
+      "SpriteName": "talent_passive_icon_general_dps_icepulse",
+      "SpriteAddress": 1800185918,
+      "PngExported": true,
+      "PngWidth": 146,
+      "PngHeight": 147,
+      "PngMode": "RGBA",
+      "PixelSha256": "66c5402111cd472b10c52f89fd1e0f83b187a6c62332dcbcb8b17406c85928e4"
+    },
+    {
+      "AssetId": "RecountTable|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|RecountTable/talent_passive_icon_general_sup_grassarea.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
+      "Address": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_general_sup_grassarea.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 115,
+          "Name": "Sandshroud"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "talent_passive_icon_general_sup_grassarea",
+      "SpriteAddress": 4290866526,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "48d9f37196bcab9c192875ec3253a77c02012c2cbe663af7c23c92395711c6e3"
+    },
+    {
       "AssetId": "RecountTable|Sprite|2173254008|talent_passive_icon_general_sup_healshield|RecountTable/talent_passive_icon_general_sup_healshield.png",
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
@@ -1191,11 +1598,39 @@
       "PixelSha256": "1102a872121e580863191db4ec3130f1f099bd66e40ba81766945cc95964d9be"
     },
     {
-      "AssetId": "RecountTable|Texture2D|782473215|weapon_cannongun_skill_passive|RecountTable/weapon_cannongun_skill_passive.png",
+      "AssetId": "RecountTable|Texture2D|3826681028|weapon_cannongun_skill_atk|RecountTable/weapon_cannongun_skill_atk.png",
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
       "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_atk",
+      "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_atk",
+      "AddressHash": 4258676143,
+      "BundleHash": 3826681028,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_cannongun_skill_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 263,
+          "Name": "Arcane! Illusion Resonance"
+        }
+      ],
+      "TextureName": "weapon_cannongun_skill_atk",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "d8a3bf9e63ea7984a5f2fdcf54d25f7cdfbabd4989860165c6ab048fd5bcce11"
+    },
+    {
+      "AssetId": "RecountTable|Texture2D|782473215|weapon_cannongun_skill_passive|RecountTable/weapon_cannongun_skill_passive.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[2]",
       "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_passive",
       "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_passive",
       "AddressHash": 2889132650,
@@ -1940,7 +2375,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jd-01_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 139,
@@ -1949,6 +2384,10 @@
         {
           "Id": 148,
           "Name": "Shield Toss"
+        },
+        {
+          "Id": 150,
+          "Name": "Radiance"
         }
       ],
       "TextureName": "weapon_jd-01_atk",
@@ -2172,11 +2611,23 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jt-01_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 4,
       "Rows": [
         {
           "Id": 196,
           "Name": "Resonant Strings"
+        },
+        {
+          "Id": 201,
+          "Name": "Harmonic Anthem"
+        },
+        {
+          "Id": 203,
+          "Name": "Flame's Rampage"
+        },
+        {
+          "Id": 204,
+          "Name": "Flame Note"
         }
       ],
       "TextureName": "weapon_jt-01_atk",
@@ -3067,6 +3518,48 @@
       "PixelSha256": "76ecd91c1a22a83c2fe5a401d56306d7bccec830bd66dda19b937b846cd97179"
     },
     {
+      "AssetId": "RecountTable|Texture2D|3552355683|weapon_wr_skill_passive|RecountTable/weapon_wr_skill_passive.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPaths[1]",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_passive",
+      "Address": "ui/textures/skill_weapon_wr/weapon_wr_skill_passive",
+      "AddressHash": 1336176462,
+      "BundleHash": 3552355683,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_wr_skill_passive.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 125,
+          "Name": "Terra Sunder"
+        },
+        {
+          "Id": 126,
+          "Name": "Stone Fist"
+        }
+      ],
+      "TextureName": "weapon_wr_skill_passive",
+      "Fields": [
+        "IconPaths[1]",
+        "IconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_wr/weapon_wr_skill_passive"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "b8da612b3b76dd5f0e0bd88f835386e1f22525589f999ce18a8dbb51d6035095"
+    },
+    {
       "AssetId": "RecountTable|Texture2D|901278620|weapon_wr-01_kx01_01|RecountTable/weapon_wr-01_kx01_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
@@ -3127,7 +3620,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "IconPaths[1]",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx02",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx02",
       "AddressHash": 4081270952,
@@ -3353,8 +3846,8 @@
       "PixelSha256": "264341a78f05cc1d073a5952f15eba3fb11c00b38f40153a6ae078786dc81bad"
     }
   ],
-  "PngExportedAt": "2026-04-24T17:07:42.209Z",
-  "PngAssetCount": 114,
+  "PngExportedAt": "2026-04-24T22:50:13.844Z",
+  "PngAssetCount": 129,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

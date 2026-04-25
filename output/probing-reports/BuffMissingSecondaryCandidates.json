@@ -1,0 +1,1275 @@
+{
+  "GeneratedAt": "2026-04-24T22:49:27.864Z",
+  "TargetCount": 45,
+  "CandidateTargetCount": 14,
+  "Rows": [
+    {
+      "Id": "55409",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "500102",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "500104",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "500111",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "500112",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "681908",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "682201",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "700206",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "827190",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "880623",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "880624",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "881526",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "881530",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "881671",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "881802",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "900119",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2201513",
+      "ProbeName": "岩之主",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2201643",
+      "ProbeName": "岩拳回复",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2202165",
+      "ProbeName": "翠绿根基",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2202167",
+      "ProbeName": "翠绿根基",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2202641",
+      "ProbeName": "盛放精进",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2208010",
+      "ProbeName": "(走配表这里没逻辑)",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2208020",
+      "ProbeName": "(走配表这里没逻辑)",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "2208080",
+      "ProbeName": "炎魂刻印",
+      "CandidateCount": 3,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 82,
+          "RowId": 151,
+          "NameField": 8,
+          "NameId": 1051078547,
+          "NameTexts": [
+            "english:Break Slash",
+            "chinese:破斩",
+            "traditionalchinese:破斬",
+            "japanese:破斬",
+            "korean:파참",
+            "french:Taillade Brisegarde",
+            "german:Bruchhieb",
+            "spanish:Corte Rompedor"
+          ],
+          "LinkedBuffCount": 2,
+          "MinPathDepth": 1,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "破斩",
+            "Break Slash",
+            "力量+10",
+            "ui/atlas/talent_passive_1/taidao151"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/taidao151"
+          ],
+          "ProbeName": "炎魂刻印"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 1,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "炎魂刻印"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 179,
+          "RowId": 307,
+          "NameField": 8,
+          "NameId": 1051080566,
+          "NameTexts": [
+            "english:Flame Soul Seal",
+            "chinese:炎魂刻印",
+            "traditionalchinese:炎魂刻印",
+            "japanese:炎魂の刻印",
+            "korean:염혼 각인",
+            "french:Sceau d'âme de flamme",
+            "german:Flammenseelensiegel",
+            "spanish:Sello de alma ígnea"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "炎魂刻印",
+            "Flame Soul Seal",
+            "Flame Soul cap +50. <br>Grants Infernal Combo when Flame Soul increases.",
+            "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_winddancecount",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_winddancecount"
+          ],
+          "ProbeName": "炎魂刻印"
+        }
+      ]
+    },
+    {
+      "Id": "2208120",
+      "ProbeName": "绯炎追命飞腾",
+      "CandidateCount": 3,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 82,
+          "RowId": 151,
+          "NameField": 8,
+          "NameId": 1051078547,
+          "NameTexts": [
+            "english:Break Slash",
+            "chinese:破斩",
+            "traditionalchinese:破斬",
+            "japanese:破斬",
+            "korean:파참",
+            "french:Taillade Brisegarde",
+            "german:Bruchhieb",
+            "spanish:Corte Rompedor"
+          ],
+          "LinkedBuffCount": 2,
+          "MinPathDepth": 1,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "破斩",
+            "Break Slash",
+            "力量+10",
+            "ui/atlas/talent_passive_1/taidao151"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/taidao151"
+          ],
+          "ProbeName": "绯炎追命飞腾"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 1,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "绯炎追命飞腾"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 183,
+          "RowId": 311,
+          "NameField": 8,
+          "NameId": 1051080593,
+          "NameTexts": [
+            "english:Soaring Crimson Flame Pursuit",
+            "chinese:绯炎追命飞腾",
+            "traditionalchinese:緋炎追命飛騰",
+            "japanese:緋炎追命飛翔",
+            "korean:적염 추격 비상",
+            "french:Poursuite de flamme pourpre en plein essor",
+            "german:Aufsteigende Karmesinflammen-Verfolgung",
+            "spanish:Persecución de Llama Carmesí Ascendente"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "That must be a wig!",
+            "绯炎追命飞腾",
+            "Soaring Crimson Flame Pursuit",
+            "Enhances Crimson Flame Pursuit based on the target's lost HP:<br><br>When the target's HP is below 80%, enhances the base effect by 30%.<br>The lower the target's HP, the higher the bonus, up to a maximum enhancement of 100% when the target's HP drops to 30%.",
+            "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_sharpspeed",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_sharpspeed"
+          ],
+          "ProbeName": "绯炎追命飞腾"
+        }
+      ]
+    },
+    {
+      "Id": "2208160",
+      "ProbeName": "无相减少指定技能组CD最长的技能CD-时轮回溯",
+      "CandidateCount": 3,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 86,
+          "RowId": 155,
+          "NameField": 8,
+          "NameId": 1051078551,
+          "NameTexts": [
+            "english:Thunder Scythe",
+            "chinese:雷霆之镰精进",
+            "traditionalchinese:雷霆之鐮精進",
+            "japanese:雷霆鎌［強化］",
+            "korean:뇌전의 낫 정진",
+            "french:Faux de foudre",
+            "german:Donnersense",
+            "spanish:Avance de Guadaña Tormenta"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 1,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "雷霆之镰精进",
+            "Thunder Scythe",
+            "力量+10",
+            "ui/atlas/talent_passive_1/taidao155",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/taidao155"
+          ],
+          "ProbeName": "无相减少指定技能组CD最长的技能CD-时轮回溯"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 1,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "无相减少指定技能组CD最长的技能CD-时轮回溯"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 187,
+          "RowId": 315,
+          "NameField": 8,
+          "NameId": 1051080597,
+          "NameTexts": [
+            "english:Time Wheel Rewind",
+            "chinese:时轮回溯",
+            "traditionalchinese:時輪回溯",
+            "japanese:時輪回溯",
+            "korean:시간 환원",
+            "french:Rembobinage de la Roue du temps",
+            "german:Zeitrad-Rücklauf",
+            "spanish:Rebobinado de la rueda del tiempo"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "时轮回溯",
+            "Time Wheel Rewind",
+            "When Formless is obtained, it reduces the CD of the skill with the longest remaining CD among Blazing Assault, Rage Cleave, and Whirlwind Slash by 2s.",
+            "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tyrannical",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tyrannical"
+          ],
+          "ProbeName": "无相减少指定技能组CD最长的技能CD-时轮回溯"
+        }
+      ]
+    },
+    {
+      "Id": "2208440",
+      "ProbeName": "魂焰",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 215,
+          "RowId": 343,
+          "NameField": 8,
+          "NameId": 1051080694,
+          "NameTexts": [
+            "english:Soul Flame",
+            "chinese:魂焰",
+            "traditionalchinese:魂焰",
+            "japanese:魂炎",
+            "korean:혼의 화염",
+            "french:Flamme d'âme",
+            "german:Seelenflamme",
+            "spanish:Llama del alma"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "魂焰",
+            "Soul Flame",
+            "For every 10% Crimson Soul Gauge charged, immediately gains a buff: Increases ATK bonuses from all sources by 3% for 5s. Stacks up to 3 times.",
+            "ui/atlas/talent_passive_4/changqiang446",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang446"
+          ],
+          "ProbeName": "魂焰"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "魂焰"
+        }
+      ]
+    },
+    {
+      "Id": "2208450",
+      "ProbeName": "怒焰狂锐之一",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 216,
+          "RowId": 344,
+          "NameField": 8,
+          "NameId": 1051080695,
+          "NameTexts": [
+            "english:Raging Flame Sharpness I",
+            "chinese:怒焰狂锐之一",
+            "traditionalchinese:怒焰狂銳之一",
+            "japanese:怒炎狂鋭・一",
+            "korean:예리한 분노의 화염・1",
+            "french:Tranchant de flamme de rage I",
+            "german:Wutflammenschärfe I",
+            "spanish:Afilado de llama furiosa I"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "怒焰狂锐之一",
+            "Raging Flame Sharpness I",
+            "For every 10% Max HP or Crimson Soul Gauge lost, immediately gains a buff: Increases Crit Rate bonuses from all sources by 1% for 5s. Stacks up to 3 times.",
+            "ui/atlas/talent_passive_4/changqiang447",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang447"
+          ],
+          "ProbeName": "怒焰狂锐之一"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "怒焰狂锐之一"
+        }
+      ]
+    },
+    {
+      "Id": "2208460",
+      "ProbeName": "赤红之地·炎魂",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 217,
+          "RowId": 345,
+          "NameField": 8,
+          "NameId": 1051080696,
+          "NameTexts": [
+            "english:Crimson Earth - Flame Soul",
+            "chinese:赤红之地·炎魂",
+            "traditionalchinese:赤紅之地·炎魂",
+            "japanese:赤紅の地・炎魂",
+            "korean:적홍의 땅・염혼",
+            "french:Terre pourpre - Âme de flamme",
+            "german:Karmesinerde – Flammenseele",
+            "spanish:Tierra carmesí: Alma ígnea"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "赤红之地·炎魂",
+            "Crimson Earth - Flame Soul",
+            "Flame Soul recovery efficiency +30% while within Crimson Earth.<br>Wildfire Dance DMG +20% while within Crimson Earth.",
+            "ui/atlas/talent_passive_4/changqiang448",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang448"
+          ],
+          "ProbeName": "赤红之地·炎魂"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "赤红之地·炎魂"
+        }
+      ]
+    },
+    {
+      "Id": "2208470",
+      "ProbeName": "赤红之地·迅捷",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 218,
+          "RowId": 346,
+          "NameField": 8,
+          "NameId": 1051080697,
+          "NameTexts": [
+            "english:Crimson Earth - Swift",
+            "chinese:赤红之地·迅捷",
+            "traditionalchinese:赤紅之地·迅捷",
+            "japanese:赤紅の地・迅速",
+            "korean:적홍의 땅・신속",
+            "french:Terre pourpre - Vivacité",
+            "german:Karmesinerde – Flink",
+            "spanish:Tierra carmesí: Presteza"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "赤红之地·迅捷",
+            "Crimson Earth - Swift",
+            "Every 1% Attack SPD increases the Crimson Recovery effect by 1% while within Crimson Earth.",
+            "ui/atlas/talent_passive_4/changqiang449",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang449"
+          ],
+          "ProbeName": "赤红之地·迅捷"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "赤红之地·迅捷"
+        }
+      ]
+    },
+    {
+      "Id": "2208490",
+      "ProbeName": "怒焰狂锐之二",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 220,
+          "RowId": 348,
+          "NameField": 8,
+          "NameId": 1051080699,
+          "NameTexts": [
+            "english:Raging Flame Sharpness II",
+            "chinese:怒焰狂锐之二",
+            "traditionalchinese:怒焰狂銳之二",
+            "japanese:怒炎狂鋭・二",
+            "korean:예리한 분노의 화염・2",
+            "french:Tranchant de flamme de rage II",
+            "german:Wutflammenschärfe II",
+            "spanish:Afilado de llama furiosa II"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "怒焰狂锐之二",
+            "Raging Flame Sharpness II",
+            "Every 1% Crimson Soul Gauge provides 0.2% Crit Rate.",
+            "ui/atlas/talent_passive_4/changqiang451",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang451"
+          ],
+          "ProbeName": "怒焰狂锐之二"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "怒焰狂锐之二"
+        }
+      ]
+    },
+    {
+      "Id": "2208500",
+      "ProbeName": "赤红之地的坠星二式",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 221,
+          "RowId": 349,
+          "NameField": 8,
+          "NameId": 1051080700,
+          "NameTexts": [
+            "english:Crimson Earth Meteor II",
+            "chinese:赤红之地的坠星二式",
+            "traditionalchinese:赤紅之地的墜星二式",
+            "japanese:赤紅の地の墜星・二式",
+            "korean:적홍의 땅의 유성・2식",
+            "french:Météore de Terre pourpre II",
+            "german:Karmesinerde-Meteor II",
+            "spanish:Meteoro de tierra carmesí II"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "赤红之地的坠星二式",
+            "Crimson Earth Meteor II",
+            "Unbound Meteor and its enhanced skill (Falling Hellfire) gain 5% Fire Bonus. This is increased by an additional 5% within Crimson Earth.",
+            "ui/atlas/talent_passive_4/changqiang452",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang452"
+          ],
+          "ProbeName": "赤红之地的坠星二式"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "赤红之地的坠星二式"
+        }
+      ]
+    },
+    {
+      "Id": "2208530",
+      "ProbeName": "炎魔显现",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 224,
+          "RowId": 352,
+          "NameField": 8,
+          "NameId": 1051080726,
+          "NameTexts": [
+            "english:Hellfire Manifestation",
+            "chinese:炎魔显现",
+            "traditionalchinese:炎魔顯現",
+            "japanese:炎魔顕現",
+            "korean:염마 출현",
+            "french:Manifestation de feu infernal",
+            "german:Höllenfeuer-Manifestation",
+            "spanish:Manifestación de fuego infernal"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "炎魔显现",
+            "Hellfire Manifestation",
+            "During Endless Hellfire, the Crimson Recovery effect and Crimson Soul Gauge cap are doubled.",
+            "ui/atlas/talent_passive_4/changqiang455",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang455"
+          ],
+          "ProbeName": "炎魔显现"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "炎魔显现"
+        }
+      ]
+    },
+    {
+      "Id": "2208580",
+      "ProbeName": "赤红暴击",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 229,
+          "RowId": 357,
+          "NameField": 8,
+          "NameId": 1051080731,
+          "NameTexts": [
+            "english:Crimson Crit",
+            "chinese:赤红暴击",
+            "traditionalchinese:赤紅暴擊",
+            "japanese:赤紅の会心",
+            "korean:적홍 치명타",
+            "french:Critique pourpre",
+            "german:Karmesin-Krit",
+            "spanish:Crítico carmesí"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "赤红暴击",
+            "Crimson Crit",
+            "When Crimson Soul Gauge is charged above 50%, Fire ATK +50%.",
+            "ui/atlas/talent_passive_4/changqiang460",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang460"
+          ],
+          "ProbeName": "赤红暴击"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "赤红暴击"
+        }
+      ]
+    },
+    {
+      "Id": "2208610",
+      "ProbeName": "猩红之悟",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 232,
+          "RowId": 360,
+          "NameField": 8,
+          "NameId": 1051080757,
+          "NameTexts": [
+            "english:Crimson Epiphany",
+            "chinese:猩红之悟",
+            "traditionalchinese:猩紅之悟",
+            "japanese:猩紅の悟り",
+            "korean:진홍의 깨달음",
+            "french:Épiphanie pourpre",
+            "german:Karmesin-Erleuchtung",
+            "spanish:Epifanía carmesí"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "猩红之悟",
+            "Crimson Epiphany",
+            "Every 1% Mastery grants 2% Crimson Recovery final effect.",
+            "ui/atlas/talent_passive_4/changqiang463",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang463"
+          ],
+          "ProbeName": "猩红之悟"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "猩红之悟"
+        }
+      ]
+    },
+    {
+      "Id": "2208650",
+      "ProbeName": "大红莲丸触发逻辑-炎舞的血脉奥义",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 236,
+          "RowId": 364,
+          "NameField": 8,
+          "NameId": 1051080761,
+          "NameTexts": [
+            "english:Arcane Wildfire Bloodline",
+            "chinese:炎舞的血脉奥义",
+            "traditionalchinese:炎舞的血脈奧義",
+            "japanese:炎舞の血脈奥義",
+            "korean:염무의 혈맥 오의",
+            "french:Lignée incendiaire arcanique",
+            "german:Arkane Wildfeuer-Blutlinie",
+            "spanish:Linaje de fuego salvaje arcano"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "炎舞的血脉奥义",
+            "Arcane Wildfire Bloodline",
+            "When Wildfire Dance deals Crit DMG, there is a 20% fixed chance to accumulate 1 stack of Crimson Bloodline on the target that lasts for 5s. When Crimson Bloodline reaches 8 stacks, it triggers Hellfire Meteor and clears the Crimson Bloodline stacks.",
+            "ui/atlas/talent_passive_4/changqiang467",
+            "力量+10"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang467"
+          ],
+          "ProbeName": "大红莲丸触发逻辑-炎舞的血脉奥义"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "大红莲丸触发逻辑-炎舞的血脉奥义"
+        }
+      ]
+    },
+    {
+      "Id": "2208670",
+      "ProbeName": "怒焰奥义",
+      "CandidateCount": 2,
+      "Candidates": [
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 238,
+          "RowId": 366,
+          "NameField": 8,
+          "NameId": 1051080763,
+          "NameTexts": [
+            "english:Arcane Raging Flame",
+            "chinese:怒焰奥义",
+            "traditionalchinese:怒焰奧義",
+            "japanese:怒炎奥義",
+            "korean:분노의 화염 오의",
+            "french:Flamme de rage arcanique",
+            "german:Arkane Wutflamme",
+            "spanish:Llama furiosa arcana"
+          ],
+          "LinkedBuffCount": 1,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "怒焰奥义",
+            "Arcane Raging Flame",
+            "Every 20% Crimson Soul Gauge charged reduces the remaining CD of Endless Hellfire by 1s.",
+            "ui/atlas/talent_passive_4/changqiang469",
+            "力量+10",
+            "幸运几率+2%"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_4/changqiang469"
+          ],
+          "ProbeName": "怒焰奥义"
+        },
+        {
+          "Source": "CTB:3345237628",
+          "TableHash": 3345237628,
+          "RowIndex": 42,
+          "RowId": 107,
+          "NameField": 8,
+          "NameId": 1051078388,
+          "NameTexts": [
+            "english:Zen Moment",
+            "chinese:禅瞬之机",
+            "traditionalchinese:禪瞬之機",
+            "japanese:無心の好機",
+            "korean:순간적인 빈틈",
+            "french:Moment zen",
+            "german:Zen-Moment",
+            "spanish:Momento Zen"
+          ],
+          "LinkedBuffCount": 14,
+          "MinPathDepth": 2,
+          "HasDirectBuffField": false,
+          "RowTextValues": [
+            "禅瞬之机",
+            "Zen Moment",
+            "力量+10",
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "IconPaths": [
+            "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_instant"
+          ],
+          "ProbeName": "怒焰奥义"
+        }
+      ]
+    },
+    {
+      "Id": "5000101",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5003202",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5009001",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5009002",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5009003",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5009004",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5009005",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    },
+    {
+      "Id": "5009006",
+      "ProbeName": "",
+      "CandidateCount": 0,
+      "Candidates": []
+    }
+  ]
+}

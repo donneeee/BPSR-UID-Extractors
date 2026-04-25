@@ -1,0 +1,129 @@
+{
+  "generatedAt": "2026-04-25T00:04:12.419Z",
+  "note": "Candidates from parser compute_damage_id formula with exact decimal suffix formatting; current DamageAttrIdName direct NameDesign labels only. Parser files are clues only.",
+  "missingCount": 425,
+  "formulaHitIds": 3,
+  "totalHits": 5,
+  "rows": [
+    {
+      "id": "11190101",
+      "category": "bare_skillfight_only",
+      "probeName": "",
+      "sourceRows": [
+        {
+          "source": "SkillFightLevelTable.ctb.id",
+          "rowId": 11190101,
+          "skillId": 111901,
+          "effectId": 11190101,
+          "level": 1,
+          "name": ""
+        },
+        {
+          "source": "SkillFightLevelTable.ctb.effectId",
+          "rowId": 11190101,
+          "skillId": 111901,
+          "effectId": 11190101,
+          "level": 1,
+          "name": ""
+        }
+      ],
+      "hits": [
+        {
+          "formula": "1|11190101",
+          "damageId": "11119010101",
+          "suffix": "01",
+          "name": "飓风幻影",
+          "damageKind": "Attack",
+          "linkedId": 111901,
+          "sourceOffset": 304884392
+        },
+        {
+          "formula": "1|11190101",
+          "damageId": "11119010102",
+          "suffix": "02",
+          "name": "飓风幻影-炸",
+          "damageKind": "Attack",
+          "linkedId": 111901,
+          "sourceOffset": 304884466
+        }
+      ]
+    },
+    {
+      "id": "70300101",
+      "category": "bare_skillfight_only",
+      "probeName": "",
+      "sourceRows": [
+        {
+          "source": "SkillFightLevelTable.ctb.id",
+          "rowId": 70300101,
+          "skillId": 703001,
+          "effectId": 70300101,
+          "level": 1,
+          "name": ""
+        },
+        {
+          "source": "SkillFightLevelTable.ctb.effectId",
+          "rowId": 70300101,
+          "skillId": 703001,
+          "effectId": 70300101,
+          "level": 1,
+          "name": ""
+        }
+      ],
+      "hits": [
+        {
+          "formula": "1|70300101",
+          "damageId": "17030010110",
+          "suffix": "10",
+          "name": "梦幻之箭",
+          "damageKind": "Attack",
+          "linkedId": 703001,
+          "sourceOffset": 304926942
+        }
+      ]
+    },
+    {
+      "id": "200222501",
+      "category": "bare_skillfight_only",
+      "probeName": "",
+      "sourceRows": [
+        {
+          "source": "SkillFightLevelTable.ctb.id",
+          "rowId": 200222501,
+          "skillId": 2002225,
+          "effectId": 200222501,
+          "level": 1,
+          "name": ""
+        },
+        {
+          "source": "SkillFightLevelTable.ctb.effectId",
+          "rowId": 200222501,
+          "skillId": 2002225,
+          "effectId": 200222501,
+          "level": 1,
+          "name": ""
+        }
+      ],
+      "hits": [
+        {
+          "formula": "1|200222501",
+          "damageId": "120022250101",
+          "suffix": "01",
+          "name": "卡尼曼亡灵自爆",
+          "damageKind": "Attack",
+          "linkedId": 2002225,
+          "sourceOffset": 305000054
+        },
+        {
+          "formula": "1|200222501",
+          "damageId": "120022250102",
+          "suffix": "02",
+          "name": "卡尼曼亡灵自爆",
+          "damageKind": "MstSpSkillAttack",
+          "linkedId": 2002225,
+          "sourceOffset": 305000128
+        }
+      ]
+    }
+  ]
+}

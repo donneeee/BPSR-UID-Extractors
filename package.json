@@ -1,0 +1,9 @@
+{
+  "name": "bpsr-uid-extractors",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "ui": "node ./ui/server.mjs",
+    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js"
+  }
+}

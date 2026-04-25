@@ -1,0 +1,173 @@
+{
+  "generatedAt": "2026-04-25T00:05:58.173Z",
+  "note": "Post parser damage_id formula bridge audit. Parser code used as formula clue; generator rows are still current-game-derived from SkillFightLevelTable and DamageAttrTable.",
+  "rawMissingBaseline": 428,
+  "recoveredCount": 6,
+  "recovered": [
+    {
+      "id": "111901",
+      "category": "bare_skillfight_skillid_only",
+      "entry": {
+        "Id": 111901,
+        "Name": "飓风幻影",
+        "Names": {
+          "design": "飓风幻影"
+        },
+        "NameDesign": "飓风幻影",
+        "Sources": [
+          "DamageAttrLinkedRawSkillId"
+        ],
+        "SourceOffsets": [
+          304884392,
+          304884466
+        ],
+        "LinkedIds": [
+          11119010101,
+          11119010102
+        ]
+      }
+    },
+    {
+      "id": "703001",
+      "category": "bare_skillfight_skillid_only",
+      "entry": {
+        "Id": 703001,
+        "Name": "梦幻之箭",
+        "Names": {
+          "design": "梦幻之箭"
+        },
+        "NameDesign": "梦幻之箭",
+        "Sources": [
+          "DamageAttrLinkedRawSkillId"
+        ],
+        "SourceOffsets": [
+          304926942
+        ],
+        "LinkedIds": [
+          17030010110
+        ]
+      }
+    },
+    {
+      "id": "2002225",
+      "category": "bare_skillfight_skillid_only",
+      "entry": {
+        "Id": 2002225,
+        "Name": "卡尼曼亡灵自爆",
+        "Names": {
+          "design": "卡尼曼亡灵自爆"
+        },
+        "NameDesign": "卡尼曼亡灵自爆",
+        "Sources": [
+          "DamageAttrLinkedRawSkillId"
+        ],
+        "SourceOffsets": [
+          305000054,
+          305000128
+        ],
+        "LinkedIds": [
+          120022250101,
+          120022250102
+        ]
+      }
+    },
+    {
+      "id": "11190101",
+      "category": "bare_skillfight_only",
+      "entry": {
+        "Id": 11190101,
+        "Name": "飓风幻影",
+        "Names": {
+          "design": "飓风幻影"
+        },
+        "NameDesign": "飓风幻影",
+        "Sources": [
+          "DamageAttrFormulaSkillEffectId"
+        ],
+        "SourceOffsets": [
+          304884392,
+          304884466
+        ],
+        "LinkedIds": [
+          11119010101,
+          11119010102
+        ]
+      }
+    },
+    {
+      "id": "70300101",
+      "category": "bare_skillfight_only",
+      "entry": {
+        "Id": 70300101,
+        "Name": "梦幻之箭",
+        "Names": {
+          "design": "梦幻之箭"
+        },
+        "NameDesign": "梦幻之箭",
+        "Sources": [
+          "DamageAttrFormulaSkillEffectId"
+        ],
+        "SourceOffsets": [
+          304926942
+        ],
+        "LinkedIds": [
+          17030010110
+        ]
+      }
+    },
+    {
+      "id": "200222501",
+      "category": "bare_skillfight_only",
+      "entry": {
+        "Id": 200222501,
+        "Name": "卡尼曼亡灵自爆",
+        "Names": {
+          "design": "卡尼曼亡灵自爆"
+        },
+        "NameDesign": "卡尼曼亡灵自爆",
+        "Sources": [
+          "DamageAttrFormulaSkillEffectId"
+        ],
+        "SourceOffsets": [
+          305000054,
+          305000128
+        ],
+        "LinkedIds": [
+          120022250101,
+          120022250102
+        ]
+      }
+    }
+  ],
+  "remainingCount": 422,
+  "remainingCategoryCounts": {
+    "bare_skillfight_skillid_only": 154,
+    "other_raw_reference_without_name_evidence": 25,
+    "bare_skillfight_only": 243
+  },
+  "remainingProbeNamedMissing": [
+    {
+      "id": "140145",
+      "category": "bare_skillfight_skillid_only",
+      "probeName": "奥义！裂空反冲",
+      "sources": [
+        "SkillFightLevelTable.ctb.skillId"
+      ],
+      "rowCount": 1,
+      "rows": [
+        {
+          "source": "SkillFightLevelTable.ctb.skillId",
+          "table": "SkillFightLevelTable.ctb",
+          "rowIndex": 12194,
+          "rowId": 14014501,
+          "level": 1,
+          "skillId": 140145,
+          "effectId": 14014501,
+          "nameOffset": 0,
+          "name": "",
+          "linkedSkillTable": null
+        }
+      ]
+    }
+  ]
+}

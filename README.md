@@ -55,12 +55,13 @@ Probe samples never become output data. If a probe exposes a useful missing id o
 
 - `ItemNames.gen`: rebuilds `itemnames.json` by scanning item table families, resolving game name ids through the language-byte localization tables, using package string fallback when the game lacks a localization hit, and attaching direct `ItemTable.ctb` icon paths when present.
 - `BuffNames.gen`: rebuilds `BuffName.json` from BuffTable rows and BuffTable name ids. It can also recover unambiguous secondary names and non-generic icon paths through direct module-effect table bridges.
-- `RecountTable.gen`: rebuilds `RecountTable.json` from `RecountTable.ctb`, including localized recount labels, packed damage-id lists, and icon paths inherited from generated DamageAttr rows.
-- `DamageAttrIdName.gen`: rebuilds `DamageAttrIdName.json` from `DamageAttrTable.ctb`. It prefers direct DamageAttr design names, then direct linked bridges through BuffName, SkillEffect, SkillTable, and SkillFightLevel data, carrying linked skill/buff icon paths where proven.
+- `RecountTable.gen`: rebuilds `RecountTable.json` from the direct Recount row block, including localized recount labels, packed damage-id lists, and icon paths inherited from generated DamageAttr rows.
+- `DamageAttrIdName.gen`: rebuilds `DamageAttrIdName.json` from `DamageAttrTable.ctb`. It prefers direct DamageAttr design names, then direct linked bridges through BuffName, SkillEffect, SkillTable, and SkillFightLevel data, carrying linked skill/buff names and icon paths where proven.
+- `SkillBreakdownDetails.gen`: rebuilds `SkillBreakdownDetails.json` from generated direct-game `DamageAttrIdName.json` and `RecountTable.json`, classifying runtime damage rows as base skill hits, procs, talents, buffs, Lucky Strike, set effects, or Imagine/Arcane rows with the direct source evidence used for each label.
 - `SkillAoyiIcons.gen`: rebuilds `skill_aoyi_icons.json` from `SkillAoyiTable.ctb` and proven `SkillTable.ctb` adjacent Aoyi icon paths.
 - `MonsterNames.gen`: rebuilds `monsternames.json` from the monster table and game localization files.
 - `SceneNames.gen`: rebuilds `scenenames.json` from the scene table and game localization files.
-- `SkillNames.gen`: rebuilds `skillnames.json` from direct game-derived skill, recount, DamageAttr, SkillEffect, SkillFightLevel, SkillTable, and TempAttr bridges, including adjacent `SkillTable.ctb` icon paths.
+- `SkillNames.gen`: rebuilds `skillnames.json` from direct game-derived skill, recount, DamageAttr, SkillEffect, SkillFightLevel, SkillTable, and TempAttr bridges. SkillEffect and SkillFightLevel rows can inherit localized names and icons from their proven parent `SkillTable.ctb` row.
 - `ExtractIcons.gen`: scans generated JSON files plus configured probe folders for icon-like references, resolves texture and sprite-atlas bridges through the game catalogs, and writes manifests under `output/icons`.
 - `ExportIconPngs.gen`: reads icon manifests, temporarily loads the required game bundles, exports PNG files under `output/icons/<group>/`, verifies probe-image pixel matches when available, and removes the temporary bundle files.
 - `GenerateAll.gen`: runs the generator set in dependency order.
@@ -74,6 +75,14 @@ From this folder:
 node .\GenerateAll.gen --dry-run
 node .\GenerateAll.gen
 ```
+
+Run the standalone generator UI:
+
+```powershell
+npm run ui
+```
+
+The UI starts a local server at `http://127.0.0.1:8735/`. It runs the same `.gen` files from this folder and shows current output status without requiring the parser app.
 
 Run one generator when you are working on a single table:
 

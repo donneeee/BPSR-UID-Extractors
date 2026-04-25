@@ -73,7 +73,7 @@ Notes:
 
   for (let index = 0; index < damageTable.rowCount; index += 1) {
     const rowOffset = damageTable.rowStart + index * damageTable.rowSize;
-    const id = readU32(damageTable.data, rowOffset);
+    const id = readU64Id(damageTable.data, rowOffset, readU32);
     const directNameOffset = readU32(damageTable.data, rowOffset + 12);
     const damageKindOffset = readU32(damageTable.data, rowOffset + 24);
     const detailKindOffset = readU32(damageTable.data, rowOffset + 28);
@@ -125,16 +125,22 @@ Notes:
           ? buildLocaleTextObject([{ localeId: "design", text: linkedSkill.name }], { includeDesign: false })
           : linkedSkillTable?.names && Object.keys(linkedSkillTable.names).length
             ? linkedSkillTable.names
-            : linkedSkillFight?.names && Object.keys(linkedSkillFight.names).length
-              ? linkedSkillFight.names
-          : {};
+            : linkedSkillTableFromEffect?.names && Object.keys(linkedSkillTableFromEffect.names).length
+              ? linkedSkillTableFromEffect.names
+              : linkedSkillFight?.names && Object.keys(linkedSkillFight.names).length
+                ? linkedSkillFight.names
+                : linkedSkillTableFromFight?.names && Object.keys(linkedSkillTableFromFight.names).length
+                  ? linkedSkillTableFromFight.names
+                  : {};
     const preferredName =
       choosePreferredLocaleText(names) ||
       directName ||
       linkedBuff?.Name ||
       linkedSkill?.name ||
       linkedSkillTable?.name ||
+      linkedSkillTableFromEffect?.name ||
       linkedSkillFight?.name ||
+      linkedSkillTableFromFight?.name ||
       damageKind ||
       detailKind;
 
@@ -148,7 +154,7 @@ Notes:
     if (!directName && !linkedBuff && !linkedSkill && !linkedSkillTable && linkedSkillFight) linkedSkillFightCount += 1;
 
     rows[String(id)] = {
-      Id: id,
+      Id: numberOrString(id),
       Name: preferredName,
       Names: names,
       ...(directName ? { NameDesign: directName, NameOffset: directNameOffset } : {}),
@@ -176,8 +182,23 @@ Notes:
         ? {
             LinkedSkillId: linkedId,
             LinkedSkillEffectId: linkedSkill.effectId,
-            LinkedSkillName: linkedSkill.name,
+            ...(linkedSkill.name ? { LinkedSkillName: linkedSkill.name } : {}),
             LinkedSkillSourceOffset: linkedSkill.sourceOffset
+          }
+        : {}),
+      ...(linkedSkillTableFromEffect
+        ? {
+            LinkedSkillEffectSkillTableId: linkedSkill.skillId,
+            LinkedSkillEffectSkillTableName: linkedSkillTableFromEffect.name,
+            LinkedSkillEffectSkillTableNameId: linkedSkillTableFromEffect.nameId,
+            LinkedSkillEffectSkillTableNames: linkedSkillTableFromEffect.names,
+            LinkedSkillEffectSkillTableSourceOffset: linkedSkillTableFromEffect.sourceOffset,
+            ...(linkedSkillTableFromEffect.iconPath
+              ? {
+                  LinkedSkillEffectSkillTableIconPath: linkedSkillTableFromEffect.iconPath,
+                  LinkedSkillEffectSkillTableIconPathOffset: linkedSkillTableFromEffect.iconPathOffset
+                }
+              : {})
           }
         : {}),
       ...(linkedSkillTable
@@ -202,6 +223,14 @@ Notes:
             LinkedSkillFightSkillId: linkedSkillFight.skillId,
             LinkedSkillFightEffectId: linkedSkillFight.effectId,
             LinkedSkillFightSourceOffset: linkedSkillFight.sourceOffset,
+            ...(linkedSkillTableFromFight
+              ? {
+                  LinkedSkillFightSkillTableName: linkedSkillTableFromFight.name,
+                  LinkedSkillFightSkillTableNameId: linkedSkillTableFromFight.nameId,
+                  LinkedSkillFightSkillTableNames: linkedSkillTableFromFight.names,
+                  LinkedSkillFightSkillTableSourceOffset: linkedSkillTableFromFight.sourceOffset
+                }
+              : {}),
             ...(linkedSkillTableFromFight?.iconPath
               ? {
                   LinkedSkillFightSkillIconPath: linkedSkillTableFromFight.iconPath,
@@ -243,7 +272,7 @@ function buildSkillEffectLookup(containerDir, metaEntries, helpers) {
     const nameOffset = readU32(table.data, rowOffset + 8);
     const skillId = readU32(table.data, rowOffset + 12);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: true });
-    if (!effectId || !name) {
+    if (!effectId) {
       continue;
     }
     const entry = {
@@ -312,7 +341,7 @@ function buildSkillFightLookup(containerDir, metaEntries, helpers) {
     const effectId = readU32(table.data, rowOffset + 12);
     const nameOffset = readU32(table.data, rowOffset + 16);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
-    if (!fightId || !name) {
+    if (!fightId) {
       continue;
     }
     byFightId.set(String(fightId), {
@@ -390,6 +419,21 @@ function collectIconLinks(values) {
 function uniqueStrings(values) {
   return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b));
+}
+
+function readU64Id(buffer, offset, readU32) {
+  const low = readU32(buffer, offset);
+  const high = readU32(buffer, offset + 4);
+  if (!low && !high) {
+    return "";
+  }
+  return ((BigInt(high) << 32n) | BigInt(low)).toString();
+}
+
+function numberOrString(value) {
+  const text = String(value);
+  const numeric = Number(text);
+  return Number.isSafeInteger(numeric) && String(numeric) === text ? numeric : text;
 }
 
 function compareNumericStrings(left, right) {

@@ -1,0 +1,384 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    choosePreferredLocaleText,
+    displayPath,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "SkillBreakdownDetails.gen - generate runtime damage-row detail metadata for DPS breakdowns.",
+      `
+Notes:
+  Reads generated DamageAttrIdName.json and RecountTable.json outputs. Those
+  files are direct current-game extracts from DamageAttrTable.ctb and
+  RecountTable.ctb. This generator does not read parser files, probe samples, or
+  old JSONs.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "SkillBreakdownDetails.json");
+  const damageRows = readRequiredJson(path.join(paths.outputDir, "DamageAttrIdName.json"));
+  const recountRows = readRequiredJson(path.join(paths.outputDir, "RecountTable.json"));
+  const damageToRecount = buildDamageToRecount(recountRows);
+  const out = {};
+  const stats = new Map();
+
+  for (const [id, rawRow] of Object.entries(damageRows || {})) {
+    const row = rawRow && typeof rawRow === "object" ? rawRow : {};
+    const recount = damageToRecount.get(String(id)) ?? null;
+    const category = classifyBreakdownRow(row, recount);
+    const directNames = normalizeNames(row.Names, row.NameDesign || row.Name);
+    const linked = resolveLinkedDisplay(row, category);
+    const displayNames = chooseDisplayNames({ row, recount, category, linked, directNames });
+    const displayName =
+      choosePreferredLocaleText(displayNames) ||
+      choosePreferredLocaleText(directNames) ||
+      linked.name ||
+      recount?.Name ||
+      String(row.Name || row.NameDesign || id);
+    const reasons = buildReasons(row, recount, category);
+    const sourceFiles = buildSourceFiles(row, recount);
+
+    out[String(id)] = stripEmpty({
+      Id: numberOrString(id),
+      DisplayName: displayName,
+      DisplayNames: displayNames,
+      Category: category.key,
+      CategoryLabel: category.label,
+      Badge: category.badge,
+      Confidence: category.confidence,
+      Reason: category.reason,
+      Reasons: reasons,
+      DamageName: row.Name || row.NameDesign || "",
+      DamageNames: directNames,
+      DamageKind: row.DamageKind || "",
+      DetailKind: row.DetailKind || "",
+      ParentRecountId: recount?.Id,
+      ParentRecountName: recount?.Name || recount?.RecountName,
+      ParentRecountNames: normalizeNames(recount?.Names, recount?.Name || recount?.RecountName),
+      LinkedSource: row.LinkedSource || linked.source || "",
+      LinkedId: row.LinkedId,
+      LinkedName: linked.name,
+      LinkedNames: linked.names,
+      LinkedSkillId: firstDefined(row.LinkedSkillTableId, row.LinkedSkillEffectSkillTableId, row.LinkedSkillFightSkillId),
+      LinkedSkillEffectId: row.LinkedSkillEffectId,
+      LinkedBuffId: row.LinkedBuffId,
+      IconPath: row.IconPath || linked.iconPath || "",
+      IconPaths: uniqueStrings([row.IconPath, ...(Array.isArray(row.IconPaths) ? row.IconPaths : []), linked.iconPath]),
+      IconSource: row.IconSource || linked.iconSource || "",
+      SourceFiles: sourceFiles,
+      SourceOffsets: uniqueNumbers([row.SourceOffset, ...(Array.isArray(row.SourceOffsets) ? row.SourceOffsets : []), recount?.SourceOffset])
+    });
+    stats.set(category.key, (stats.get(category.key) ?? 0) + 1);
+  }
+
+  const sorted = Object.fromEntries(
+    Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
+  );
+
+  console.log(`DamageAttr rows scanned: ${Object.keys(damageRows || {}).length}`);
+  console.log(`Breakdown detail entries written: ${Object.keys(sorted).length}`);
+  for (const [category, count] of [...stats.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
+    console.log(`${category}: ${count}`);
+  }
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
+}
+
+function readRequiredJson(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Missing required generated input: ${displayRelative(filePath)}`);
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function displayRelative(filePath) {
+  return path.relative(__dirname, filePath).replace(/\\/g, "/") || path.basename(filePath);
+}
+
+function buildDamageToRecount(recountRows) {
+  const out = new Map();
+  for (const row of Object.values(recountRows || {})) {
+    if (!row || typeof row !== "object") continue;
+    for (const damageId of Array.isArray(row.DamageId) ? row.DamageId : []) {
+      out.set(String(damageId), row);
+    }
+  }
+  return out;
+}
+
+function classifyBreakdownRow(row, recount) {
+  const text = searchableText(row, recount);
+  const damageKind = String(row.DamageKind || "");
+  const parentName = `${recount?.Name || ""} ${recount?.RecountName || ""}`;
+  const iconText = String(row.IconPath || row.LinkedBuffIconPath || "").toLowerCase();
+  const linkedSource = String(row.LinkedSource || "");
+
+  if (/lucky/i.test(damageKind) || /幸运|lucky/i.test(text) || /Lucky Strike/i.test(parentName)) {
+    return category("lucky-strike", "Lucky Strike", "Lucky", "DamageKind/name marks lucky-hit damage.", 95);
+  }
+  if (/套装|set effect|set-effect|\bset\b/i.test(text)) {
+    return category("set-effect", "Set effect", "Set", "Damage/name marks a set effect.", 92);
+  }
+  if (/talent|天赋/i.test(text) || iconText.includes("talent")) {
+    return category("talent-skill", "Talent", "Talent", "Name/icon path marks a talent-linked row.", 90);
+  }
+  if (/Arcane!|Secret Art!|奥义|奧義|Imagine/i.test(parentName) || /Arcane!|Secret Art!|奥义|奧義|Imagine/i.test(text)) {
+    return category("imagine", "Imagine/Arcane", "Imagine", "Parent or linked row is an Arcane/Imagine entry.", 88);
+  }
+  if (/被动|passive/i.test(text)) {
+    return category("passive-proc", "Passive proc", "Passive", "Name marks a passive-triggered row.", 86);
+  }
+  if (/触发|trigger|proc/i.test(text)) {
+    return category("skill-proc", "Skill proc", "Proc", "Name marks a triggered skill row.", 82);
+  }
+  if (/BuffName/i.test(linkedSource)) {
+    return category("buff-proc", "Buff proc", "Buff", "DamageAttr row links directly to BuffName.", 80);
+  }
+  if (row.LinkedSkillId || row.LinkedSkillTableId || row.LinkedSkillEffectSkillTableId || row.LinkedSkillFightSkillId) {
+    return category("base-skill", "Base skill hit", "Base", "DamageAttr row links to a SkillTable/SkillEffect row.", 74);
+  }
+  if (recount) {
+    return category("mechanic", "Recount mechanic", "Mechanic", "Row is grouped by RecountTable but has no deeper linked source.", 65);
+  }
+  return category("unknown", "Unknown", "Unknown", "No direct linked source was found.", 30);
+}
+
+function category(key, label, badge, reason, confidence) {
+  return { key, label, badge, reason, confidence };
+}
+
+function searchableText(row, recount) {
+  return [
+    row.Name,
+    row.NameDesign,
+    row.DamageKind,
+    row.DetailKind,
+    row.LinkedSource,
+    row.LinkedBuffName,
+    namesText(row.LinkedBuffNames),
+    row.LinkedSkillName,
+    row.LinkedSkillTableName,
+    namesText(row.LinkedSkillTableNames),
+    row.LinkedSkillEffectSkillTableName,
+    namesText(row.LinkedSkillEffectSkillTableNames),
+    row.LinkedSkillFightName,
+    row.LinkedSkillFightSkillTableName,
+    namesText(row.LinkedSkillFightSkillTableNames),
+    row.IconPath,
+    row.LinkedBuffIconPath,
+    recount?.Name,
+    recount?.RecountName,
+    namesText(recount?.Names)
+  ].filter(Boolean).join(" ");
+}
+
+function namesText(names) {
+  if (!names || typeof names !== "object" || Array.isArray(names)) return "";
+  return Object.values(names).filter(Boolean).join(" ");
+}
+
+function resolveLinkedDisplay(row, category) {
+  const candidates = [];
+  if (row.LinkedSource === "BuffName" || category.key === "buff-proc" || category.key === "lucky-strike") {
+    candidates.push({
+      source: "BuffName",
+      name: row.LinkedBuffName,
+      names: normalizeNames(row.LinkedBuffNames, row.LinkedBuffName),
+      iconPath: row.LinkedBuffIconPath,
+      iconSource: "BuffName"
+    });
+  }
+  candidates.push(
+    {
+      source: "SkillFightLevelTable.SkillTable",
+      name: row.LinkedSkillFightSkillTableName,
+      names: normalizeNames(row.LinkedSkillFightSkillTableNames, row.LinkedSkillFightSkillTableName),
+      iconPath: row.LinkedSkillFightSkillIconPath,
+      iconSource: "SkillFightLevelTableSkillIdToSkillTable"
+    },
+    {
+      source: "SkillEffectTable.SkillTable",
+      name: row.LinkedSkillEffectSkillTableName,
+      names: normalizeNames(row.LinkedSkillEffectSkillTableNames, row.LinkedSkillEffectSkillTableName),
+      iconPath: row.LinkedSkillEffectSkillTableIconPath,
+      iconSource: "SkillEffectTableSkillIdToSkillTable"
+    },
+    {
+      source: "SkillTable",
+      name: row.LinkedSkillTableName,
+      names: normalizeNames(row.LinkedSkillTableNames, row.LinkedSkillTableName),
+      iconPath: row.LinkedSkillTableIconPath,
+      iconSource: "SkillTable"
+    },
+    {
+      source: "SkillEffectTable",
+      name: row.LinkedSkillName,
+      names: normalizeNames(null, row.LinkedSkillName),
+      iconPath: "",
+      iconSource: ""
+    },
+    {
+      source: "BuffName",
+      name: row.LinkedBuffName,
+      names: normalizeNames(row.LinkedBuffNames, row.LinkedBuffName),
+      iconPath: row.LinkedBuffIconPath,
+      iconSource: "BuffName"
+    }
+  );
+
+  for (const candidate of candidates) {
+    if (candidate.name || Object.keys(candidate.names || {}).length) {
+      return {
+        ...candidate,
+        name: candidate.name || chooseAnyName(candidate.names)
+      };
+    }
+  }
+  return { source: "", name: "", names: {}, iconPath: "", iconSource: "" };
+}
+
+function chooseDisplayNames({ row, recount, category, linked, directNames }) {
+  if (category.key === "base-skill") {
+    const skillNames = firstNonEmptyObject(
+      row.LinkedSkillEffectSkillTableNames,
+      row.LinkedSkillTableNames,
+      row.LinkedSkillFightSkillTableNames
+    );
+    return normalizeNames(skillNames, row.LinkedSkillEffectSkillTableName || row.LinkedSkillTableName || recount?.Name || row.Name);
+  }
+
+  if (["talent-skill", "passive-proc", "set-effect", "skill-proc"].includes(category.key)) {
+    const linkedNames = firstNonEmptyObject(
+      row.LinkedSkillFightSkillTableNames,
+      row.LinkedSkillTableNames,
+      row.LinkedSkillEffectSkillTableNames,
+      linked.names
+    );
+    return normalizeNames(linkedNames, row.LinkedSkillFightSkillTableName || row.LinkedSkillTableName || row.LinkedSkillEffectSkillTableName || row.Name || row.NameDesign);
+  }
+
+  if (["buff-proc", "lucky-strike", "imagine"].includes(category.key)) {
+    const buffNames = firstNonEmptyObject(row.LinkedBuffNames, linked.names);
+    return normalizeNames(buffNames, row.LinkedBuffName || row.Name || row.NameDesign);
+  }
+
+  return Object.keys(directNames || {}).length
+    ? directNames
+    : normalizeNames(recount?.Names, recount?.Name || row.Name || row.NameDesign);
+}
+
+function buildReasons(row, recount, category) {
+  const reasons = [category.reason];
+  if (row.DamageKind) reasons.push(`DamageKind=${row.DamageKind}`);
+  if (row.LinkedSource) reasons.push(`LinkedSource=${row.LinkedSource}`);
+  if (row.LinkedId !== undefined) reasons.push(`LinkedId=${row.LinkedId}`);
+  if (recount?.Id !== undefined) reasons.push(`RecountId=${recount.Id}`);
+  if (row.IconPath) reasons.push(`IconPath=${row.IconPath}`);
+  return uniqueStrings(reasons);
+}
+
+function buildSourceFiles(row, recount) {
+  const sources = ["DamageAttrTable.ctb"];
+  if (row.LinkedSource === "BuffName" || row.LinkedBuffId !== undefined) sources.push("BuffTable.ctb");
+  if (row.LinkedSkillId !== undefined || row.LinkedSkillEffectId !== undefined || row.LinkedSkillEffectSkillTableId !== undefined) {
+    sources.push("SkillEffectTable.ctb");
+  }
+  if (row.LinkedSkillTableId !== undefined || row.LinkedSkillEffectSkillTableId !== undefined || row.LinkedSkillFightSkillId !== undefined) {
+    sources.push("SkillTable.ctb");
+  }
+  if (row.LinkedSkillFightId !== undefined) sources.push("SkillFightLevelTable.ctb");
+  if (recount) sources.push("RecountTable.ctb");
+  return uniqueStrings(sources);
+}
+
+function normalizeNames(names, fallback) {
+  if (names && typeof names === "object" && !Array.isArray(names)) {
+    const out = {};
+    for (const [locale, value] of Object.entries(names)) {
+      const text = String(value || "").trim();
+      if (text) out[locale] = text;
+    }
+    if (Object.keys(out).length) return out;
+  }
+  const text = String(fallback || "").trim();
+  return text ? { design: text } : {};
+}
+
+function firstNonEmptyObject(...values) {
+  for (const value of values) {
+    if (value && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length) {
+      return value;
+    }
+  }
+  return {};
+}
+
+function chooseAnyName(names) {
+  for (const key of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id", "design"]) {
+    const text = String(names?.[key] || "").trim();
+    if (text) return text;
+  }
+  return "";
+}
+
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && value !== "") return value;
+  }
+  return undefined;
+}
+
+function stripEmpty(value) {
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    if (entry === undefined || entry === null || entry === "") continue;
+    if (Array.isArray(entry) && !entry.length) continue;
+    if (entry && typeof entry === "object" && !Array.isArray(entry) && !Object.keys(entry).length) continue;
+    out[key] = entry;
+  }
+  return out;
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(Number).filter((value) => Number.isFinite(value)))]
+    .sort((a, b) => a - b);
+}
+
+function numberOrString(value) {
+  const text = String(value);
+  const numeric = Number(text);
+  return Number.isSafeInteger(numeric) && String(numeric) === text ? numeric : text;
+}
+
+function compareNumericStrings(left, right) {
+  try {
+    const a = BigInt(left);
+    const b = BigInt(right);
+    return a < b ? -1 : a > b ? 1 : 0;
+  } catch {
+    return String(left).localeCompare(String(right));
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "generatedAt": "2026-04-24T23:58:12.903Z",
+  "note": "Post SkillNames.gen DamageAttrLinkedRawSkillId bridge audit. Probe source labels are not used as generator data.",
+  "previousMissingCount": 428,
+  "recoveredCount": 3,
+  "recovered": [
+    {
+      "id": "111901",
+      "category": "bare_skillfight_skillid_only",
+      "entry": {
+        "Id": 111901,
+        "Name": "飓风幻影",
+        "Names": {
+          "design": "飓风幻影"
+        },
+        "NameDesign": "飓风幻影",
+        "Sources": [
+          "DamageAttrLinkedRawSkillId"
+        ],
+        "SourceOffsets": [
+          304884392,
+          304884466
+        ],
+        "LinkedIds": [
+          11119010101,
+          11119010102
+        ]
+      }
+    },
+    {
+      "id": "703001",
+      "category": "bare_skillfight_skillid_only",
+      "entry": {
+        "Id": 703001,
+        "Name": "梦幻之箭",
+        "Names": {
+          "design": "梦幻之箭"
+        },
+        "NameDesign": "梦幻之箭",
+        "Sources": [
+          "DamageAttrLinkedRawSkillId"
+        ],
+        "SourceOffsets": [
+          304926942
+        ],
+        "LinkedIds": [
+          17030010110
+        ]
+      }
+    },
+    {
+      "id": "2002225",
+      "category": "bare_skillfight_skillid_only",
+      "entry": {
+        "Id": 2002225,
+        "Name": "卡尼曼亡灵自爆",
+        "Names": {
+          "design": "卡尼曼亡灵自爆"
+        },
+        "NameDesign": "卡尼曼亡灵自爆",
+        "Sources": [
+          "DamageAttrLinkedRawSkillId"
+        ],
+        "SourceOffsets": [
+          305000054,
+          305000128
+        ],
+        "LinkedIds": [
+          120022250101,
+          120022250102
+        ]
+      }
+    }
+  ],
+  "remainingCount": 425,
+  "remainingCategoryCounts": {
+    "bare_skillfight_skillid_only": 154,
+    "other_raw_reference_without_name_evidence": 25,
+    "bare_skillfight_only": 246
+  },
+  "remainingSourceComboCounts": {
+    "SkillFightLevelTable.ctb.skillId": 154,
+    "SkillEffectTable.ctb.skillId + SkillFightLevelTable.ctb.skillId + SkillTable.ctb.id": 12,
+    "SkillFightLevelTable.ctb.effectId + SkillFightLevelTable.ctb.id": 157,
+    "SkillFightLevelTable.ctb.id": 87,
+    "SkillFightLevelTable.ctb.effectId + SkillFightLevelTable.ctb.id + SkillFightLevelTable.ctb.skillId": 2,
+    "SkillEffectTable.ctb.id + SkillFightLevelTable.ctb.effectId + SkillFightLevelTable.ctb.id": 13
+  },
+  "remainingProbeNamedMissing": [
+    {
+      "id": "140145",
+      "category": "bare_skillfight_skillid_only",
+      "probeName": "奥义！裂空反冲",
+      "sources": [
+        "SkillFightLevelTable.ctb.skillId"
+      ],
+      "rowCount": 1,
+      "rows": [
+        {
+          "source": "SkillFightLevelTable.ctb.skillId",
+          "table": "SkillFightLevelTable.ctb",
+          "rowIndex": 12194,
+          "rowId": 14014501,
+          "level": 1,
+          "skillId": 140145,
+          "effectId": 14014501,
+          "nameOffset": 0,
+          "name": "",
+          "linkedSkillTable": null
+        }
+      ]
+    }
+  ],
+  "remainingSkillishCandidateCount": 8,
+  "remainingSkillishCandidates": [
+    {
+      "id": "1634",
+      "tableHash": 2915274344,
+      "rowId": 143101,
+      "rowIdIsTarget": false,
+      "score": 48,
+      "hitFields": [
+        {
+          "fieldOffset": 32,
+          "value": "1634",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "Orbit Crash",
+        "A vaulting lance lifts the night. On impact, it rends the sky, with black light flooding earth as feathers erupt in praise."
+      ],
+      "icons": [
+        "ui/atlas/weapon_effects/weapon_skill_skin_cq_heiyu02",
+        "weapon/cq/cq_inkwash_skin02"
+      ]
+    },
+    {
+      "id": "4026",
+      "tableHash": 511235909,
+      "rowId": 3965,
+      "rowIdIsTarget": false,
+      "score": 48,
+      "hitFields": [
+        {
+          "fieldOffset": 12,
+          "value": "4026",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "as_mon_solider-sword_idle",
+        "Ruthless Cabbage",
+        "Heed the law of this magic! —Achoo!"
+      ],
+      "icons": [
+        "skill_aoyi_advanced_texture065"
+      ]
+    },
+    {
+      "id": "4026",
+      "tableHash": 2902992223,
+      "rowId": 48,
+      "rowIdIsTarget": false,
+      "score": 33,
+      "hitFields": [
+        {
+          "fieldOffset": 36,
+          "value": "4026",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "Modification 3",
+        "Skill Effect Boost, Stage 3",
+        "attrPer"
+      ],
+      "icons": []
+    },
+    {
+      "id": "4026",
+      "tableHash": 4052750840,
+      "rowId": 93,
+      "rowIdIsTarget": false,
+      "score": 33,
+      "hitFields": [
+        {
+          "fieldOffset": 40,
+          "value": "4026",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "Tier 3",
+        "Skill Effect Enhancement, Tier 3",
+        "attrPer"
+      ],
+      "icons": []
+    },
+    {
+      "id": "4026",
+      "tableHash": 242707969,
+      "rowId": 4026,
+      "rowIdIsTarget": true,
+      "score": 27,
+      "hitFields": [
+        {
+          "fieldOffset": 0,
+          "value": "4026",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "ch_vehicle_ride_dihu_skill",
+        "animtpl/ch_vehicle_ride_car01_01"
+      ],
+      "icons": []
+    },
+    {
+      "id": "10106",
+      "tableHash": 1708172942,
+      "rowId": 299740401,
+      "rowIdIsTarget": false,
+      "score": 33,
+      "hitFields": [
+        {
+          "fieldOffset": 12,
+          "value": "10106",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "暴击风暴——aoe伤害",
+        "MstSpSkillAttack",
+        "Attack"
+      ],
+      "icons": []
+    },
+    {
+      "id": "101604",
+      "tableHash": 242707969,
+      "rowId": 101604,
+      "rowIdIsTarget": true,
+      "score": 27,
+      "hitFields": [
+        {
+          "fieldOffset": 0,
+          "value": "101604",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "animtpl/ch_vehicle_ride_motorcycle01_01_delta01",
+        "ch_vehicle_ride_monsterfish_skill"
+      ],
+      "icons": []
+    },
+    {
+      "id": "3010011",
+      "tableHash": 3425461443,
+      "rowId": 3010011,
+      "rowIdIsTarget": true,
+      "score": 64,
+      "hitFields": [
+        {
+          "fieldOffset": 0,
+          "value": "3010011",
+          "kind": "direct_u32"
+        }
+      ],
+      "labels": [
+        "Will - Tina",
+        "But... but I... I didn't know how to face her, and I was afraid she'd find out the truth—that I'm a total failure... So I just kept lying... about everything...",
+        "skill_aoyi_draw_icon_016",
+        "Imprinted with the battle consciousness of Tina, can be used to create Battle Imagine - Tina.",
+        "Battle Imagine is the crystallization of thoughts, consciousness, and Engram combined, possessing supernatural powers."
+      ],
+      "icons": [
+        "ui/atlas/weap_icon/weap_equip_square_03"
+      ]
+    }
+  ]
+}
