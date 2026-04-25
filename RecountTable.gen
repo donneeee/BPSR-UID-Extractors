@@ -5,6 +5,10 @@ const path = require("node:path");
 const RECOUNT_ROW_SIZE = 12;
 const RECOUNT_ROW_COUNT = 294;
 const RECOUNT_DAMAGE_PAYLOAD_HEADER_BYTES = 16;
+const TALENT_PASSIVE_TABLE_HASH = 3345237628;
+const TALENT_NAME_MATCH_MIN_LOCALES = 10;
+const TALENT_FORMULA_MATCH_MIN_LOCALES = 5;
+const BASE_SKILL_NAME_MATCH_MIN_LOCALES = 8;
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -19,10 +23,15 @@ async function main() {
     findFirstPattern,
     loadLocalizationTables,
     loadMetaEntries,
+    looksLikeIconPath,
     makeU32Pattern,
     maybeWriteJson,
+    nextCtbStringOffset,
     parseArgs,
     printHelp,
+    readCtbString,
+    readCtbTable,
+    readCtbTableByHash,
     readPackage,
     readU16,
     readU32,
@@ -50,6 +59,24 @@ Notes:
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
   const damageIconLookup = loadDamageIconLookup(paths.outputDir);
+  const generatedBuffIds = loadGeneratedBuffIds(paths.outputDir);
+  const baseSkillRows = collectBaseSkillRows(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    nextCtbStringOffset,
+    readCtbString,
+    readCtbTable,
+    looksLikeIconPath,
+    readU32
+  });
+  const talentRows = collectTalentPassiveRows(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    generatedBuffIds,
+    readCtbString,
+    readCtbTableByHash,
+    readU32
+  });
   const rowStart = findRecountRowStart(pkg, localizationTables, {
     findFirstPattern,
     makeU32Pattern,
@@ -70,7 +97,11 @@ Notes:
       continue;
     }
     const damageIds = readDamageIdList(pkg, payloadBase, damageOffset, { readU16, readU32 });
-    const iconPaths = collectDamageIconPaths(damageIds, damageIconLookup);
+    const linkedTalent = findTalentBridge(names, talentRows, damageIds);
+    const linkedBaseSkill = findBaseSkillNameBridge(names, baseSkillRows);
+    const damageIconPaths = collectDamageIconPaths(damageIds, damageIconLookup);
+    const iconPaths = uniqueStrings([linkedTalent?.iconPath, linkedBaseSkill?.iconPath, ...damageIconPaths]);
+    const preferredIconPath = linkedTalent?.iconPath || linkedBaseSkill?.iconPath || damageIconPaths[0] || "";
     out[String(id)] = {
       Id: id,
       Name: preferredName,
@@ -78,11 +109,53 @@ Notes:
       NameId: nameId,
       Names: names,
       DamageId: damageIds,
+      ...(linkedTalent
+        ? {
+            LinkedTalentId: linkedTalent.id,
+            LinkedTalentName: linkedTalent.name,
+            LinkedTalentNameId: linkedTalent.nameId,
+            LinkedTalentNames: linkedTalent.names,
+            LinkedTalentIconPath: linkedTalent.iconPath,
+            LinkedTalentTableHash: TALENT_PASSIVE_TABLE_HASH,
+            LinkedTalentSourceOffset: linkedTalent.sourceOffset,
+            TalentBridge: linkedTalent.bridge,
+            ...(linkedTalent.bridge === "CTB:3345237628.LocalizedNameMatch"
+              ? {
+                  TalentNameBridge: linkedTalent.bridge,
+                  TalentNameBridgeLocaleMatches: linkedTalent.matchCount
+                }
+              : {}),
+            ...(linkedTalent.bridge === "CTB:3345237628.BuffFormulaMatch"
+              ? {
+                  TalentFormulaBridge: linkedTalent.bridge,
+                  TalentFormulaBridgeLocaleMatches: linkedTalent.matchCount,
+                  LinkedTalentBuffIds: linkedTalent.matchedBuffIds,
+                  LinkedTalentFormulaIds: linkedTalent.matchedFormulaIds
+                }
+              : {})
+          }
+        : {}),
+      ...(linkedBaseSkill
+        ? {
+            LinkedBaseSkillId: linkedBaseSkill.id,
+            LinkedBaseSkillName: linkedBaseSkill.name,
+            LinkedBaseSkillNameId: linkedBaseSkill.nameId,
+            LinkedBaseSkillNames: linkedBaseSkill.names,
+            LinkedBaseSkillIconPath: linkedBaseSkill.iconPath,
+            LinkedBaseSkillSourceOffset: linkedBaseSkill.sourceOffset,
+            BaseSkillNameBridge: "SkillTable.LocalizedNameMatch",
+            BaseSkillNameBridgeLocaleMatches: linkedBaseSkill.matchCount
+          }
+        : {}),
       ...(iconPaths.length
         ? {
-            IconPath: iconPaths[0],
+            IconPath: preferredIconPath,
             ...(iconPaths.length > 1 ? { IconPaths: iconPaths } : {}),
-            IconSource: "DamageAttrIdName.DamageId"
+            IconSource: linkedTalent?.iconPath
+              ? linkedTalent.bridge || "CTB:3345237628.LocalizedNameMatch"
+              : linkedBaseSkill?.iconPath
+                ? "SkillTable.LocalizedNameMatch"
+              : "DamageAttrIdName.DamageId"
           }
         : {}),
       DamageListOffset: damageOffset,
@@ -98,6 +171,9 @@ Notes:
   console.log(`Recount row start: ${rowStart}`);
   console.log(`Recount rows scanned: ${RECOUNT_ROW_COUNT}`);
   console.log(`Recount entries: ${Object.keys(sorted).length}`);
+  console.log(`Recount talent name bridges: ${Object.values(sorted).filter((row) => row.LinkedTalentId).length}`);
+  console.log(`Recount talent formula bridges: ${Object.values(sorted).filter((row) => row.TalentFormulaBridge).length}`);
+  console.log(`Recount base skill name bridges: ${Object.values(sorted).filter((row) => row.LinkedBaseSkillId).length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
@@ -121,6 +197,20 @@ function loadDamageIconLookup(outputDir) {
   return out;
 }
 
+function loadGeneratedBuffIds(outputDir) {
+  const filePath = path.join(outputDir, "BuffName.json");
+  if (!fs.existsSync(filePath)) {
+    return new Set();
+  }
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const values = Array.isArray(rows) ? rows : Object.values(rows || {});
+  return new Set(
+    values
+      .map((row) => Number(row?.Id))
+      .filter((value) => Number.isFinite(value) && value > 0)
+  );
+}
+
 function collectDamageIconPaths(damageIds, lookup) {
   const paths = [];
   for (const id of damageIds || []) {
@@ -130,6 +220,254 @@ function collectDamageIconPaths(damageIds, lookup) {
     }
   }
   return uniqueStrings(paths);
+}
+
+function collectBaseSkillRows(containerDir, metaEntries, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, looksLikeIconPath, nextCtbStringOffset, readCtbString, readCtbTable, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
+  } catch {
+    return [];
+  }
+
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const nameId = readU32(table.data, rowOffset + 12);
+    const designName = readCtbString(table, 6, designOffset, { allowZero: false });
+    const iconOffset = nextCtbStringOffset(table, 6, designOffset);
+    const iconText = readCtbString(table, 6, iconOffset, { allowZero: false });
+    const iconPath = looksLikeIconPath(iconText) ? iconText : "";
+    const names = buildLocaleTextObject(collectLocalizedRecountNameEntries(nameId, localizationTables), {
+      designText: designName
+    });
+    const name = choosePreferredLocaleText(names, designName);
+    if (!id || !name) {
+      continue;
+    }
+    rows.push({
+      id,
+      name,
+      nameId,
+      names,
+      designName,
+      iconPath,
+      iconPathOffset: iconOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    });
+  }
+  return rows;
+}
+
+function collectTalentPassiveRows(containerDir, metaEntries, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, generatedBuffIds, readCtbString, readCtbTableByHash, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(containerDir, metaEntries, TALENT_PASSIVE_TABLE_HASH, "CTB:3345237628");
+  } catch {
+    return [];
+  }
+
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const nameId = readU32(table.data, rowOffset + 8);
+    const iconOffset = readU32(table.data, rowOffset + 20);
+    const names = buildLocaleTextObject(collectLocalizedRecountNameEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    const name = choosePreferredLocaleText(names);
+    const iconPath = readCtbString(table, 6, iconOffset, { allowZero: false });
+    const linkedBuffIds = collectLinkedBuffIdsFromRow(table, rowOffset, generatedBuffIds, readU32);
+    if (!id || !name || !iconPath) {
+      continue;
+    }
+    rows.push({
+      id,
+      name,
+      nameId,
+      names,
+      designName: readCtbString(table, 6, designOffset, { allowZero: false }),
+      iconPath,
+      iconPathOffset: iconOffset,
+      linkedBuffIds,
+      sourceOffset: table.entry.offset + rowOffset
+    });
+  }
+  return rows;
+}
+
+function collectLinkedBuffIdsFromRow(table, rowOffset, buffIds, readU32) {
+  const intPool = table?.pools?.get(1);
+  if (!intPool || !(buffIds instanceof Set) || !buffIds.size) {
+    return [];
+  }
+  const out = new Set();
+  for (let fieldOffset = 4; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
+    collectBuffIdsFromIntPool(readU32(table.data, rowOffset + fieldOffset), intPool, buffIds, out);
+  }
+  return [...out].sort((left, right) => left - right);
+}
+
+function collectBuffIdsFromIntPool(value, intPool, buffIds, out, seen = new Set(), depth = 0) {
+  if (!intPool || depth > 5 || value <= 20 || value >= intPool.length || seen.has(value)) {
+    return;
+  }
+  seen.add(value);
+  for (const nested of readIntArrayFromPool(intPool, value)) {
+    if (buffIds.has(nested)) {
+      out.add(nested);
+    } else if (nested > 20 && nested < intPool.length) {
+      collectBuffIdsFromIntPool(nested, intPool, buffIds, out, new Set(seen), depth + 1);
+    }
+  }
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (!pool || index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 128 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function findBaseSkillNameBridge(recountNames, skillRows) {
+  return findLocalizedNameBridge(recountNames, skillRows, BASE_SKILL_NAME_MATCH_MIN_LOCALES);
+}
+
+function findTalentBridge(recountNames, talentRows, damageIds) {
+  const nameBridge = findLocalizedNameBridge(recountNames, talentRows, TALENT_NAME_MATCH_MIN_LOCALES);
+  if (nameBridge) {
+    return { ...nameBridge, bridge: "CTB:3345237628.LocalizedNameMatch" };
+  }
+  return findTalentFormulaBridge(recountNames, talentRows, damageIds);
+}
+
+function findLocalizedNameBridge(recountNames, candidateRows, minimumLocaleMatches) {
+  const scored = [];
+  for (const candidate of candidateRows || []) {
+    const englishMatches =
+      normalizeLocaleText(recountNames?.en) &&
+      normalizeLocaleText(recountNames?.en) === normalizeLocaleText(candidate.names?.en);
+    if (!englishMatches) {
+      continue;
+    }
+    const matchCount = matchingLocaleCount(recountNames, candidate.names);
+    if (matchCount < minimumLocaleMatches) {
+      continue;
+    }
+    scored.push({ candidate, matchCount });
+  }
+  scored.sort((left, right) =>
+    right.matchCount - left.matchCount ||
+    Number(left.candidate.id) - Number(right.candidate.id)
+  );
+  if (!scored.length || (scored[1] && scored[1].matchCount === scored[0].matchCount)) {
+    return null;
+  }
+  return { ...scored[0].candidate, matchCount: scored[0].matchCount };
+}
+
+function findTalentFormulaBridge(recountNames, talentRows, damageIds) {
+  const formulaIds = collectDamageFormulaIds(damageIds);
+  if (!formulaIds.length) {
+    return null;
+  }
+  const scored = [];
+  for (const candidate of talentRows || []) {
+    if (!Array.isArray(candidate.linkedBuffIds) || !candidate.linkedBuffIds.length) {
+      continue;
+    }
+    const englishMatches =
+      normalizeLocaleText(recountNames?.en) &&
+      normalizeLocaleText(recountNames?.en) === normalizeLocaleText(candidate.names?.en);
+    const matchCount = matchingLocaleCount(recountNames, candidate.names);
+    if (!englishMatches && matchCount < TALENT_FORMULA_MATCH_MIN_LOCALES) {
+      continue;
+    }
+    const linkedBuffIds = new Set(candidate.linkedBuffIds.map(Number));
+    const matchedFormulaIds = [];
+    const matchedBuffIds = [];
+    for (const formulaId of formulaIds) {
+      const direct = Number(formulaId);
+      const family = buffFamilyRoot(direct);
+      const matchedBuffId = linkedBuffIds.has(direct)
+        ? direct
+        : linkedBuffIds.has(family)
+          ? family
+          : null;
+      if (matchedBuffId !== null) {
+        matchedFormulaIds.push(direct);
+        matchedBuffIds.push(matchedBuffId);
+      }
+    }
+    if (!matchedFormulaIds.length) {
+      continue;
+    }
+    scored.push({
+      candidate,
+      matchCount,
+      matchedFormulaIds: uniqueNumbers(matchedFormulaIds),
+      matchedBuffIds: uniqueNumbers(matchedBuffIds)
+    });
+  }
+  scored.sort((left, right) =>
+    right.matchedFormulaIds.length - left.matchedFormulaIds.length ||
+    right.matchCount - left.matchCount ||
+    left.candidate.linkedBuffIds.length - right.candidate.linkedBuffIds.length ||
+    Number(left.candidate.id) - Number(right.candidate.id)
+  );
+  if (!scored.length || (scored[1] && scored[1].matchedFormulaIds.length === scored[0].matchedFormulaIds.length && scored[1].matchCount === scored[0].matchCount)) {
+    return null;
+  }
+  return {
+    ...scored[0].candidate,
+    bridge: "CTB:3345237628.BuffFormulaMatch",
+    matchCount: scored[0].matchCount,
+    matchedFormulaIds: scored[0].matchedFormulaIds,
+    matchedBuffIds: scored[0].matchedBuffIds
+  };
+}
+
+function collectDamageFormulaIds(damageIds) {
+  const out = new Set();
+  for (const damageId of damageIds || []) {
+    const id = String(damageId || "");
+    for (const damageType of ["1", "2", "3"]) {
+      if (!id.startsWith(damageType)) {
+        continue;
+      }
+      const rest = id.slice(1);
+      for (let cut = 1; cut <= rest.length - 2; cut += 1) {
+        const formulaId = rest.slice(0, cut);
+        const suffix = rest.slice(cut);
+        if (isValidDamageFormulaSuffix(suffix)) {
+          out.add(Number(formulaId));
+        }
+      }
+    }
+  }
+  return [...out].filter((value) => Number.isFinite(value) && value > 0);
+}
+
+function isValidDamageFormulaSuffix(suffix) {
+  return /^\d{2}$/.test(suffix) || /^[1-9]\d{2,}$/.test(suffix);
+}
+
+function buffFamilyRoot(buffId) {
+  return Math.floor(Number(buffId) / 10) * 10;
 }
 
 function findRecountRowStart(buffer, localizationTables, helpers) {
@@ -192,6 +530,24 @@ function collectLocalizedRecountNameEntries(nameId, localizationTables) {
   return entries;
 }
 
+function matchingLocaleCount(left, right) {
+  let count = 0;
+  for (const [localeId, value] of Object.entries(left || {})) {
+    if (localeId === "design") {
+      continue;
+    }
+    const normalized = normalizeLocaleText(value);
+    if (normalized && normalized === normalizeLocaleText(right?.[localeId])) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+function normalizeLocaleText(value) {
+  return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
+}
+
 function looksLikeDescription(text) {
   return text.length > 160 || /<br>|<style=|\{\*/i.test(text);
 }
@@ -209,6 +565,11 @@ function compareNumericStrings(left, right) {
 function uniqueStrings(values) {
   return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b));
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(Number).filter((value) => Number.isFinite(value)))]
+    .sort((a, b) => a - b);
 }
 
 function readU64Id(buffer, offset, readU32) {

@@ -1,0 +1,397 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    audit: "../resonance-logs-global/DEV_exports/history-label-audit.json",
+    limit: "250"
+  });
+
+  if (args.help) {
+    printHelp(
+      "HistoryLabelEvidence.gen - probe saved encounter label misses against game localization text.",
+      `
+Options:
+  --audit <path>             history-label-audit.json to inspect.
+  --limit <count>            Maximum visible-label clusters to probe. Default: 250.
+
+Notes:
+  This writes a probing report only. It does not feed production generator output.
+  The report is intended to identify reusable game-file localization bridges for
+  raw SkillTable/BuffTable/DamageAttr labels observed in saved encounter history.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "HistoryLabelEvidence.json"));
+  const auditPath = path.resolve(args.audit);
+  const limit = Math.max(1, Number.parseInt(String(args.limit || "250"), 10) || 250);
+  const audit = readJson(auditPath);
+  const visibleIssues = Array.isArray(audit.visible_issues) ? audit.visible_issues : [];
+
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const localizationIndex = buildLocalizationSearchIndex(localizationTables, buildLocaleTextObject);
+  const clusters = buildVisibleIssueClusters(visibleIssues)
+    .sort((left, right) => right.totalValue - left.totalValue || right.hits - left.hits)
+    .slice(0, limit)
+    .map((cluster) => attachEvidence(cluster, localizationIndex, choosePreferredLocaleText));
+
+  const summary = {
+    audit: displayRelative(auditPath),
+    gamePathPresetOrRoot: paths.gameRoot,
+    visibleIssueRows: visibleIssues.length,
+    visibleLabelClusters: buildVisibleIssueClusters(visibleIssues).length,
+    probedClusters: clusters.length,
+    clustersWithExactCandidate: clusters.filter((cluster) =>
+      cluster.candidates.some((candidate) => candidate.matchKind === "exact")
+    ).length,
+    clustersWithAnyCandidate: clusters.filter((cluster) => cluster.candidates.length > 0).length
+  };
+
+  const report = {
+    summary,
+    clusters
+  };
+
+  console.log(`Visible issue rows: ${summary.visibleIssueRows}`);
+  console.log(`Visible label clusters: ${summary.visibleLabelClusters}`);
+  console.log(`Probed clusters: ${summary.probedClusters}`);
+  console.log(`Clusters with candidates: ${summary.clustersWithAnyCandidate}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+}
+
+function readJson(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Missing audit input: ${displayRelative(filePath)}`);
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function displayRelative(filePath) {
+  const relative = path.relative(__dirname, path.resolve(filePath));
+  return relative && !relative.startsWith("..") && !path.isAbsolute(relative)
+    ? relative.replace(/\\/g, "/")
+    : path.basename(filePath);
+}
+
+function buildVisibleIssueClusters(issues) {
+  const byLabel = new Map();
+  for (const issue of issues || []) {
+    const label = cleanText(issue?.display_label || issue?.full_label || "");
+    if (!label) {
+      continue;
+    }
+    const key = `${label}\u0000${issue?.category || ""}`;
+    let cluster = byLabel.get(key);
+    if (!cluster) {
+      cluster = {
+        label,
+        category: String(issue?.category || ""),
+        badge: String(issue?.badge || ""),
+        sourceRole: String(issue?.source_role || ""),
+        totalValue: 0,
+        hits: 0,
+        encounterCount: 0,
+        modes: [],
+        skillIds: [],
+        sampleScenes: [],
+        samplePlayers: [],
+        generatorReasons: []
+      };
+      byLabel.set(key, cluster);
+    }
+    cluster.totalValue += Number(issue?.total_value || 0);
+    cluster.hits += Number(issue?.hits || 0);
+    cluster.encounterCount += Number(issue?.encounter_count || 0);
+    addUnique(cluster.modes, issue?.mode);
+    addUnique(cluster.skillIds, issue?.skill_id);
+    for (const scene of issue?.sample_scenes || []) addUnique(cluster.sampleScenes, scene);
+    for (const player of issue?.sample_players || []) addUnique(cluster.samplePlayers, player);
+    addUnique(cluster.generatorReasons, issue?.generator_reason);
+  }
+
+  for (const cluster of byLabel.values()) {
+    cluster.skillIds = cluster.skillIds
+      .map((value) => Number(value))
+      .filter((value) => Number.isFinite(value))
+      .sort((left, right) => left - right);
+    cluster.modes.sort();
+    cluster.sampleScenes = cluster.sampleScenes.slice(0, 8);
+    cluster.samplePlayers = cluster.samplePlayers.slice(0, 8);
+  }
+  return [...byLabel.values()];
+}
+
+function buildLocalizationSearchIndex(localizationTables, buildLocaleTextObject) {
+  const byKey = new Map();
+  const searchable = [];
+  const exactByNormalized = new Map();
+  const cjkFragmentMap = new Map();
+  for (const table of localizationTables || []) {
+    const locale = localeIdFromGameLanguage(table.language);
+    for (const [key, stringIndex] of table.index || []) {
+      const raw = String(table.strings?.[stringIndex] || "");
+      const cleaned = cleanText(raw);
+      if (!cleaned) {
+        continue;
+      }
+      const entry = {
+        key,
+        locale,
+        language: table.language,
+        stringIndex,
+        text: cleaned,
+        raw
+      };
+      searchable.push(entry);
+      const normalized = normalizeLookup(cleaned);
+      if (normalized) {
+        const exactList = exactByNormalized.get(normalized) || [];
+        exactList.push(entry);
+        exactByNormalized.set(normalized, exactList);
+      }
+      if (containsCjk(normalized)) {
+        for (const fragment of cjkLookupFragments(normalized)) {
+          const fragmentList = cjkFragmentMap.get(fragment) || [];
+          fragmentList.push(entry);
+          cjkFragmentMap.set(fragment, fragmentList);
+        }
+      }
+      const list = byKey.get(key) || [];
+      list.push({ locale, language: table.language, stringIndex, text: cleaned, raw });
+      byKey.set(key, list);
+    }
+  }
+
+  const namesByKey = new Map();
+  for (const [key, entries] of byKey) {
+    namesByKey.set(key, buildLocaleTextObject(entries, { includeDesign: false }));
+  }
+
+  return { searchable, namesByKey, exactByNormalized, cjkFragmentMap };
+}
+
+function attachEvidence(cluster, index, choosePreferredLocaleText) {
+  const fragments = deriveSearchFragments(cluster.label);
+  const candidatesByKey = new Map();
+
+  for (const fragment of fragments) {
+    const normalizedFragment = normalizeLookup(fragment);
+    if (!normalizedFragment) {
+      continue;
+    }
+    for (const entry of candidateEntriesForFragment(normalizedFragment, index)) {
+      const normalizedEntry = normalizeLookup(entry.text);
+      if (!normalizedEntry) {
+        continue;
+      }
+      const exact = normalizedEntry === normalizedFragment;
+      const contained = !exact && normalizedEntry.includes(normalizedFragment);
+      const reverseContained = !exact && !contained && normalizedFragment.includes(normalizedEntry);
+      if (!exact && !contained && !reverseContained) {
+        continue;
+      }
+      const score =
+        (exact ? 1000 : contained ? 700 : 480) +
+        Math.min(180, normalizedFragment.length * 8) -
+        Math.min(160, Math.abs(normalizedEntry.length - normalizedFragment.length));
+      const previous = candidatesByKey.get(entry.key);
+      if (!previous || score > previous.score) {
+        const names = index.namesByKey.get(entry.key) || {};
+        candidatesByKey.set(entry.key, {
+          key: entry.key,
+          score,
+          matchKind: exact ? "exact" : contained ? "contains-fragment" : "fragment-contains-entry",
+          fragment,
+          locale: entry.locale,
+          preferred: choosePreferredLocaleText(names, entry.text),
+          names,
+          sample: excerpt(entry.text, fragment)
+        });
+      }
+    }
+  }
+
+  const candidates = [...candidatesByKey.values()]
+    .sort((left, right) => right.score - left.score || String(left.key).localeCompare(String(right.key)))
+    .slice(0, 12);
+
+  return {
+    ...cluster,
+    searchFragments: fragments,
+    candidates
+  };
+}
+
+function candidateEntriesForFragment(normalizedFragment, index) {
+  const out = new Map();
+  for (const entry of index.exactByNormalized?.get(normalizedFragment) || []) {
+    out.set(`${entry.key}:${entry.locale}:${entry.stringIndex}`, entry);
+  }
+  if (!containsCjk(normalizedFragment)) {
+    return [...out.values()];
+  }
+
+  const fragments = cjkLookupFragments(normalizedFragment)
+    .map((fragment) => ({ fragment, count: index.cjkFragmentMap?.get(fragment)?.length ?? 0 }))
+    .filter((entry) => entry.count > 0)
+    .sort((left, right) => left.count - right.count || right.fragment.length - left.fragment.length)
+    .slice(0, 3);
+
+  for (const { fragment } of fragments) {
+    for (const entry of index.cjkFragmentMap?.get(fragment) || []) {
+      out.set(`${entry.key}:${entry.locale}:${entry.stringIndex}`, entry);
+      if (out.size >= 6000) {
+        return [...out.values()];
+      }
+    }
+  }
+  return [...out.values()];
+}
+
+function deriveSearchFragments(label) {
+  const raw = cleanText(label);
+  const noParens = cleanText(raw.replace(/[（(][^）)]*[）)]/g, " "));
+  const noStage = cleanText(noParens.replace(/(?:英雄本|大师|噩梦|困难|普通|S\d|P\d|阶段|计数|检测|buff|BUFF)/gi, " "));
+  const splitParts = raw
+    .split(/[\s_\-–—－·:：,，、/\\]+/g)
+    .map(cleanText)
+    .filter(Boolean);
+  const cjkRuns = raw.match(/[\u3400-\u9fff]{2,}/g) || [];
+  const out = [raw, noParens, noStage, ...splitParts, ...cjkRuns];
+
+  for (const run of cjkRuns) {
+    if (run.length > 4) {
+      out.push(run.slice(0, 4), run.slice(-4));
+    }
+    if (run.length > 6) {
+      out.push(run.slice(0, 6), run.slice(-6));
+    }
+  }
+
+  return uniqueStrings(out)
+    .map((value) => value.replace(/^[的之]+|[的之]+$/g, "").trim())
+    .filter((value) => {
+      if (!value) return false;
+      if (/^\d+$/.test(value)) return false;
+      if (/^(S\d|P\d|E\d|buff|BUFF|aoe|AOE|atk|ATK)$/i.test(value)) return false;
+      return containsCjk(value) ? value.length >= 2 : value.length >= 4;
+    })
+    .slice(0, 24);
+}
+
+function cleanText(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\{[^}]*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeLookup(value) {
+  return cleanText(value)
+    .toLowerCase()
+    .replace(/[【】「」『』"'“”‘’.,，。:：;；!！?？()[\]（）_\-–—－·/\\\s]/g, "");
+}
+
+function cjkLookupFragments(value) {
+  const text = String(value || "");
+  if (!containsCjk(text)) {
+    return [];
+  }
+  const limited = text.length > 1800 ? text.slice(0, 1800) : text;
+  const seen = new Set();
+  const out = [];
+  for (let size = 3; size >= 2; size -= 1) {
+    for (let index = 0; index <= limited.length - size; index += 1) {
+      const fragment = limited.slice(index, index + size);
+      if (!containsCjk(fragment) || seen.has(fragment)) {
+        continue;
+      }
+      seen.add(fragment);
+      out.push(fragment);
+    }
+  }
+  return out;
+}
+
+function excerpt(text, fragment) {
+  const cleaned = cleanText(text);
+  const needle = cleanText(fragment);
+  const index = cleaned.indexOf(needle);
+  if (index === -1) {
+    return cleaned.length > 160 ? `${cleaned.slice(0, 157)}...` : cleaned;
+  }
+  const start = Math.max(0, index - 55);
+  const end = Math.min(cleaned.length, index + needle.length + 85);
+  return `${start > 0 ? "..." : ""}${cleaned.slice(start, end)}${end < cleaned.length ? "..." : ""}`;
+}
+
+function addUnique(target, value) {
+  if (value === undefined || value === null || value === "") {
+    return;
+  }
+  if (!target.includes(value)) {
+    target.push(value);
+  }
+}
+
+function uniqueStrings(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    const text = cleanText(value);
+    if (!text || seen.has(text)) {
+      continue;
+    }
+    seen.add(text);
+    out.push(text);
+  }
+  return out;
+}
+
+function containsCjk(value) {
+  return /[\u3400-\u9fff]/.test(String(value || ""));
+}
+
+function localeIdFromGameLanguage(language) {
+  const normalized = String(language || "").toLowerCase();
+  const map = {
+    english: "en",
+    french: "fr",
+    german: "de",
+    spanish: "es",
+    portuguese: "pt-BR",
+    japanese: "ja",
+    korean: "ko-KR",
+    chinese: "zh-CN",
+    traditionalchinese: "zh-TW",
+    thai: "th",
+    indonesian: "id"
+  };
+  return map[normalized] || normalized;
+}

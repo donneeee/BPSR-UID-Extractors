@@ -2,6 +2,51 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
+const TERM_HEAVY_ATTACK_ID = 590395509;
+const TERM_AOE_ID = 590395740;
+const TERM_ENHANCED_HEAVY_ATTACK_DAMAGE_ID = 1713188705;
+const DOUBLE_ARROW_DESCRIPTION_ID = 1505374897;
+const QUADRAFLARE_RECOUNT_ID = 78;
+const QUADRAFLARE_AOE_BUFF_ID = 55235;
+const TRUSTED_SHORT_CJK_SUFFIX_TERMS = new Set(["普攻", "落石", "分摊", "分攤", "尾刺"]);
+const UNINFORMATIVE_LOCALIZED_TERM_EN = new Set([
+  "a",
+  "all",
+  "an",
+  "and",
+  "area",
+  "at",
+  "attack",
+  "before",
+  "by",
+  "damage",
+  "deal",
+  "deals",
+  "during",
+  "each",
+  "effect",
+  "enemy",
+  "every",
+  "for",
+  "from",
+  "in",
+  "nearby",
+  "of",
+  "on",
+  "or",
+  "skill",
+  "target",
+  "targets",
+  "the",
+  "this",
+  "to",
+  "up to",
+  "when",
+  "while",
+  "with",
+  "within"
+]);
+
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
   process.exit(1);
@@ -9,8 +54,11 @@ main().catch((error) => {
 
 async function main() {
   const {
+    buildLocaleTextObject,
     choosePreferredLocaleText,
     displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
     maybeWriteJson,
     parseArgs,
     printHelp,
@@ -24,18 +72,23 @@ async function main() {
       "SkillBreakdownDetails.gen - generate runtime damage-row detail metadata for DPS breakdowns.",
       `
 Notes:
-  Reads generated DamageAttrIdName.json and RecountTable.json outputs. Those
-  files are direct current-game extracts from DamageAttrTable.ctb and
-  RecountTable.ctb. This generator does not read parser files, probe samples, or
-  old JSONs.
+  Reads generated DamageAttrIdName.json, RecountTable.json, and skillnames.json
+  outputs. Those files are direct current-game extracts from DamageAttrTable.ctb,
+  RecountTable.ctb, SkillTable.ctb, SkillEffectTable.ctb, and related bridges.
+  This generator does not read parser files, probe samples, or old JSONs.
 `
     );
     process.exit(0);
   }
 
   const paths = resolvePaths(args, "SkillBreakdownDetails.json");
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const gameTerms = buildGameTerms(localizationTables, { buildLocaleTextObject });
   const damageRows = readRequiredJson(path.join(paths.outputDir, "DamageAttrIdName.json"));
   const recountRows = readRequiredJson(path.join(paths.outputDir, "RecountTable.json"));
+  const skillRows = readOptionalJson(path.join(paths.outputDir, "skillnames.json"), {});
   const damageToRecount = buildDamageToRecount(recountRows);
   const out = {};
   const stats = new Map();
@@ -45,22 +98,56 @@ Notes:
     const recount = damageToRecount.get(String(id)) ?? null;
     const category = classifyBreakdownRow(row, recount);
     const directNames = normalizeNames(row.Names, row.NameDesign || row.Name);
-    const linked = resolveLinkedDisplay(row, category);
-    const displayNames = chooseDisplayNames({ row, recount, category, linked, directNames });
+    const linkedSkillId = firstDefined(row.LinkedSkillTableId, row.LinkedSkillEffectSkillTableId, row.LinkedSkillFightSkillId);
+    const linkedSkillMeta = resolveSkillMeta(skillRows, linkedSkillId);
+    const underlying = resolveUnderlyingSkillDisplay(row);
+    const sourceClassification = buildSourceClassification({
+      category,
+      row,
+      recount,
+      linkedSkillId,
+      linkedSkillMeta
+    });
+    const linked = resolveLinkedDisplay(row, category, recount);
+    const displayNames = chooseDisplayNames({ row, recount, category, linked, directNames, sourceClassification, gameTerms });
     const displayName =
       choosePreferredLocaleText(displayNames) ||
       choosePreferredLocaleText(directNames) ||
       linked.name ||
       recount?.Name ||
       String(row.Name || row.NameDesign || id);
-    const reasons = buildReasons(row, recount, category);
+    const displayDetail = chooseDisplayDetail({
+      row,
+      recount,
+      category,
+      linked,
+      underlying,
+      displayNames,
+      sourceClassification,
+      gameTerms
+    });
+    const reasons = buildReasons(row, recount, category, sourceClassification);
     const sourceFiles = buildSourceFiles(row, recount);
+    const preferredIcon = choosePreferredIcon(row, linked, recount, sourceClassification);
 
     out[String(id)] = stripEmpty({
       Id: numberOrString(id),
       DisplayName: displayName,
       DisplayNames: displayNames,
+      DisplayDetailName: displayDetail.name,
+      DisplayDetailNames: displayDetail.names,
+      DisplayDetailKind: displayDetail.kind,
+      DisplayDetailSource: displayDetail.source,
+      DisplayDetailEvidence: displayDetail.evidence,
       Category: category.key,
+      SourceKind: category.key,
+      SourceType: sourceClassification.type,
+      SourceRole: sourceClassification.role,
+      ...(sourceClassification.isBaseSkill ? { IsBaseSkillSource: true } : {}),
+      ...(sourceClassification.isTalent ? { IsTalentSource: true } : {}),
+      ...(sourceClassification.isPassive ? { IsPassiveSource: true } : {}),
+      ...(sourceClassification.isBuff ? { IsBuffSource: true } : {}),
+      ...(sourceClassification.isMechanic ? { IsMechanicSource: true } : {}),
       CategoryLabel: category.label,
       Badge: category.badge,
       Confidence: category.confidence,
@@ -73,16 +160,55 @@ Notes:
       ParentRecountId: recount?.Id,
       ParentRecountName: recount?.Name || recount?.RecountName,
       ParentRecountNames: normalizeNames(recount?.Names, recount?.Name || recount?.RecountName),
+      ParentBaseSkillId: recount?.LinkedBaseSkillId,
+      ParentBaseSkillName: recount?.LinkedBaseSkillName,
+      ParentBaseSkillNames: normalizeNames(recount?.LinkedBaseSkillNames, recount?.LinkedBaseSkillName),
+      ParentBaseSkillIconPath: recount?.LinkedBaseSkillIconPath,
+      BaseSkillNameBridge: recount?.BaseSkillNameBridge,
+      BaseSkillNameBridgeLocaleMatches: recount?.BaseSkillNameBridgeLocaleMatches,
+      ParentTalentId: recount?.LinkedTalentId,
+      ParentTalentName: recount?.LinkedTalentName,
+      ParentTalentNames: normalizeNames(recount?.LinkedTalentNames, recount?.LinkedTalentName),
+      ParentTalentIconPath: recount?.LinkedTalentIconPath,
+      TalentNameBridge: recount?.TalentNameBridge,
+      TalentNameBridgeLocaleMatches: recount?.TalentNameBridgeLocaleMatches,
+      TalentFormulaBridge: recount?.TalentFormulaBridge,
+      TalentFormulaBridgeLocaleMatches: recount?.TalentFormulaBridgeLocaleMatches,
+      LinkedTalentBuffIds: recount?.LinkedTalentBuffIds,
+      LinkedTalentFormulaIds: recount?.LinkedTalentFormulaIds,
       LinkedSource: row.LinkedSource || linked.source || "",
       LinkedId: row.LinkedId,
       LinkedName: linked.name,
       LinkedNames: linked.names,
-      LinkedSkillId: firstDefined(row.LinkedSkillTableId, row.LinkedSkillEffectSkillTableId, row.LinkedSkillFightSkillId),
+      LinkedSkillId: linkedSkillId,
+      LinkedSkillKind: linkedSkillMeta.kind,
+      LinkedSkillKinds: linkedSkillMeta.kinds,
       LinkedSkillEffectId: row.LinkedSkillEffectId,
       LinkedBuffId: row.LinkedBuffId,
-      IconPath: row.IconPath || linked.iconPath || "",
-      IconPaths: uniqueStrings([row.IconPath, ...(Array.isArray(row.IconPaths) ? row.IconPaths : []), linked.iconPath]),
-      IconSource: row.IconSource || linked.iconSource || "",
+      BaseSkillId: sourceClassification.baseSkillId,
+      TalentSkillId: sourceClassification.talentSkillId,
+      BuffSourceId: sourceClassification.buffSourceId,
+      MechanicRecountId: sourceClassification.mechanicRecountId,
+      RecountOwnerSkillId: sourceClassification.recountOwnerSkillId,
+      RecountOwnerSkillName: sourceClassification.recountOwnerSkillName,
+      RecountOwnerSkillNames: sourceClassification.recountOwnerSkillNames,
+      UnderlyingSkillId: sourceClassification.underlyingSkillId,
+      UnderlyingSkillName: underlying.name,
+      UnderlyingSkillNames: underlying.names,
+      ...(sourceClassification.recountOwnerSkillMismatch ? { IsRecountOwnerSkillMismatch: true } : {}),
+      ...(sourceClassification.recountOwnerNameMismatch ? { IsRecountOwnerNameMismatch: true } : {}),
+      IconPath: preferredIcon.iconPath,
+      IconPaths: uniqueStrings([
+        preferredIcon.iconPath,
+        row.IconPath,
+        ...(Array.isArray(row.IconPaths) ? row.IconPaths : []),
+        linked.iconPath,
+        recount?.LinkedBaseSkillIconPath,
+        recount?.LinkedTalentIconPath,
+        recount?.IconPath,
+        ...(Array.isArray(recount?.IconPaths) ? recount.IconPaths : [])
+      ]),
+      IconSource: preferredIcon.iconSource || row.IconSource || linked.iconSource || recount?.IconSource || "",
       SourceFiles: sourceFiles,
       SourceOffsets: uniqueNumbers([row.SourceOffset, ...(Array.isArray(row.SourceOffsets) ? row.SourceOffsets : []), recount?.SourceOffset])
     });
@@ -109,6 +235,13 @@ function readRequiredJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
+function readOptionalJson(filePath, fallback) {
+  if (!fs.existsSync(filePath)) {
+    return fallback;
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
 function displayRelative(filePath) {
   return path.relative(__dirname, filePath).replace(/\\/g, "/") || path.basename(filePath);
 }
@@ -128,7 +261,13 @@ function classifyBreakdownRow(row, recount) {
   const text = searchableText(row, recount);
   const damageKind = String(row.DamageKind || "");
   const parentName = `${recount?.Name || ""} ${recount?.RecountName || ""}`;
-  const iconText = String(row.IconPath || row.LinkedBuffIconPath || "").toLowerCase();
+  const iconText = String(
+    row.IconPath ||
+    row.LinkedBuffIconPath ||
+    recount?.LinkedTalentIconPath ||
+    recount?.IconPath ||
+    ""
+  ).toLowerCase();
   const linkedSource = String(row.LinkedSource || "");
 
   if (/lucky/i.test(damageKind) || /幸运|lucky/i.test(text) || /Lucky Strike/i.test(parentName)) {
@@ -136,6 +275,9 @@ function classifyBreakdownRow(row, recount) {
   }
   if (/套装|set effect|set-effect|\bset\b/i.test(text)) {
     return category("set-effect", "Set effect", "Set", "Damage/name marks a set effect.", 92);
+  }
+  if (recount?.LinkedTalentId || recount?.TalentNameBridge) {
+    return category("talent-skill", "Talent", "Talent", "Recount parent links to the talent/passive table.", 94);
   }
   if (/talent|天赋/i.test(text) || iconText.includes("talent")) {
     return category("talent-skill", "Talent", "Talent", "Name/icon path marks a talent-linked row.", 90);
@@ -165,6 +307,367 @@ function category(key, label, badge, reason, confidence) {
   return { key, label, badge, reason, confidence };
 }
 
+function buildGameTerms(localizationTables, helpers) {
+  const { buildLocaleTextObject } = helpers;
+  return {
+    heavyAttack: collectLocalizedTerm(TERM_HEAVY_ATTACK_ID, localizationTables, buildLocaleTextObject, "Heavy Attack"),
+    aoe: collectLocalizedTerm(TERM_AOE_ID, localizationTables, buildLocaleTextObject, "AoE"),
+    enhancedHeavyAttackDamage: collectLocalizedTerm(
+      TERM_ENHANCED_HEAVY_ATTACK_DAMAGE_ID,
+      localizationTables,
+      buildLocaleTextObject,
+      "Enhanced heavy attack damage"
+    ),
+    doubleArrowDescription: collectLocalizedTerm(DOUBLE_ARROW_DESCRIPTION_ID, localizationTables, buildLocaleTextObject, ""),
+    localizedTermIndex: buildLocalizedTermIndex(localizationTables, buildLocaleTextObject)
+  };
+}
+
+function collectLocalizedTerm(id, localizationTables, buildLocaleTextObject, fallback) {
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index.get(id);
+    if (stringIndex === undefined) {
+      return null;
+    }
+    const text = String(table.strings[stringIndex] || "").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  const names = buildLocaleTextObject(entries, fallback ? { designText: fallback } : {});
+  return normalizeNames(names, fallback);
+}
+
+function buildLocalizedTermIndex(localizationTables, buildLocaleTextObject) {
+  const entriesById = new Map();
+  for (const table of localizationTables || []) {
+    for (const [id, stringIndex] of table.index || []) {
+      const texts = extractLocalizedTermTexts(table.strings?.[stringIndex], table.language);
+      if (!texts.length) {
+        continue;
+      }
+      const entries = entriesById.get(id) || [];
+      for (const text of texts) {
+        entries.push({ language: table.language, stringIndex, text });
+      }
+      entriesById.set(id, entries);
+    }
+  }
+
+  const byText = new Map();
+  const cjkTerms = [];
+  const cjkTermsByFragment = new Map();
+  const cjkTermSeen = new Set();
+  for (const [id, entries] of entriesById) {
+    const names = buildLocaleTextObject(entries, { includeDesign: false });
+    if (!names.en) {
+      continue;
+    }
+    if (!isUsefulLocalizedTermCandidate(names)) {
+      continue;
+    }
+    const candidate = { id, names, entries };
+    for (const entry of entries) {
+      const key = normalizeTermLookupText(entry.text);
+      if (!key) {
+        continue;
+      }
+      const list = byText.get(key) || [];
+      list.push(candidate);
+      byText.set(key, list);
+      if ((entry.language === "chinese" || entry.language === "traditionalchinese") && key.length >= 2) {
+        const seenKey = `${key}:${id}`;
+        if (!cjkTermSeen.has(seenKey)) {
+          cjkTermSeen.add(seenKey);
+          const term = { key, text: entry.text, candidate };
+          cjkTerms.push(term);
+          for (const fragment of cjkLookupFragments(key)) {
+            const fragmentList = cjkTermsByFragment.get(fragment) || [];
+            fragmentList.push(term);
+            cjkTermsByFragment.set(fragment, fragmentList);
+          }
+        }
+      }
+    }
+  }
+
+  return { byText, cjkTerms, cjkTermsByFragment };
+}
+
+function extractLocalizedTermTexts(value, language) {
+  const out = [];
+  for (const fragment of extractTaggedLocalizedTermFragments(value)) {
+    if (isLocalizedTermText(fragment)) {
+      out.push(fragment);
+    }
+  }
+  const text = cleanLocalizationTerm(value);
+  for (const fragment of extractLocalizedTermFragments(text, language)) {
+    if (isLocalizedTermText(fragment)) {
+      out.push(fragment);
+    }
+  }
+  if (isLocalizedTermText(text)) {
+    out.push(text);
+  }
+  return uniqueStringsInOrder(out);
+}
+
+function extractTaggedLocalizedTermFragments(value) {
+  const raw = String(value || "");
+  const out = [];
+  const add = (fragment) => {
+    const text = cleanLocalizationTerm(fragment)
+      .replace(/^[\s"'“”]+|[\s"'“”]+$/g, "")
+      .trim();
+    if (text && text.length >= 2 && text.length <= 48) {
+      out.push(text);
+    }
+  };
+
+  const styleRegex = /<style\b[^>]*>([^<>]{2,96})<\/style>/gi;
+  for (const match of raw.matchAll(styleRegex)) {
+    add(match[1]);
+  }
+
+  const linkRegex = /<linktext=[^>]*>(?:<style\b[^>]*>)?([^<>]{2,96})(?:<\/style>)?<\/linktext>/gi;
+  for (const match of raw.matchAll(linkRegex)) {
+    add(match[1]);
+  }
+
+  return uniqueStringsInOrder(out);
+}
+
+function cleanLocalizationTerm(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\{[^}]*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isLocalizedTermText(value) {
+  const text = String(value || "").trim();
+  if (!text || text.length > 64) return false;
+  if (/[{}<>]/.test(text)) return false;
+  if (/[\r\n]/.test(text)) return false;
+  if (/[。.!?！？；;]/.test(text)) return false;
+  if (/%|\d+\s*秒|\d+\s*s\b|\d+\s*m\b/i.test(text)) return false;
+  return true;
+}
+
+function extractLocalizedTermFragments(value, language) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return [];
+  }
+  const out = [];
+  const add = (fragment) => {
+    const cleaned = cleanLocalizationTerm(fragment)
+      .replace(/^[\s"'“”]+|[\s"'“”]+$/g, "")
+      .trim();
+    if (cleaned && cleaned.length >= 2 && cleaned.length <= 48) {
+      out.push(cleaned);
+    }
+  };
+
+  const leadingLabel = text.match(/^([^:：。.!?！？；;]{2,48})[:：]\s*(.+)$/);
+  if (leadingLabel) {
+    for (const fragment of splitMechanicLabelFragments(leadingLabel[1])) {
+      add(fragment);
+    }
+    const rightSide = cleanLocalizationTerm(leadingLabel[2]);
+    if (isLocalizedTermText(rightSide)) {
+      add(rightSide);
+    } else {
+      add(leadingLabel[1]);
+    }
+  }
+
+  const dashParts = text.split(/\s*[-–—－]\s*/).filter(Boolean);
+  if (dashParts.length >= 2) {
+    add(dashParts[dashParts.length - 1]);
+  }
+
+  const lang = String(language || "").toLowerCase();
+  const targetedPatterns = {
+    english: /Targeted by\s+([^!.,;:]{2,48})/i,
+    chinese: /(?:被|受到)([^，,。.!！？?]{2,32}?)(?:点名|點名)/,
+    traditionalchinese: /(?:被|受到)([^，,。.!！？?]{2,32}?)(?:点名|點名)/,
+    japanese: /あなたは(.{2,32}?)(?:のターゲット|の対象)/,
+    korean: /당신은\s*(.{2,32}?)(?:의 대상으로|의 대상)/,
+    french: /Cibl[ée] par\s+([^!.,;:]{2,48})/i,
+    german: /Vom\s+([^!.,;:]{2,48}?)\s+markiert/i,
+    spanish: /ha marcado\s+(?:el|la|los|las)?\s*([^!.,;:]{2,48})/i,
+    portuguese: /Alvo d[ao]\s+([^!.,;:]{2,48})/i,
+    indonesian: /ditandai oleh\s*([^,!.;:]{2,48})/i
+  };
+  const targetedMatch = text.match(targetedPatterns[lang]);
+  if (targetedMatch) {
+    add(targetedMatch[1]);
+  }
+
+  for (const fragment of extractGuideMechanicFragments(text, lang)) {
+    add(fragment);
+  }
+
+  return uniqueStringsInOrder(out);
+}
+
+function splitMechanicLabelFragments(value) {
+  const text = cleanLocalizationTerm(value);
+  if (!text) {
+    return [];
+  }
+  const parts = text.split(/\s*(?:[-–—－·])\s*/).filter(Boolean);
+  if (parts.length < 2) {
+    return [];
+  }
+  return [parts[0], parts.slice(0, 2).join(" ")];
+}
+
+function extractGuideMechanicFragments(value, lang) {
+  const text = cleanLocalizationTerm(value);
+  const out = [];
+  const addMatch = (regex, group = 1) => {
+    for (const match of text.matchAll(regex)) {
+      const fragment = cleanGuideMechanicFragment(match[group]);
+      if (fragment) {
+        out.push(fragment);
+      }
+    }
+  };
+
+  if (lang === "chinese" || lang === "traditionalchinese") {
+    addMatch(/场地中(?:的)?([^，,。.!！？?；;]{2,18})/g);
+    addMatch(/(?:集中|分散)放置([^，,。.!！？?；;]{2,18})/g);
+    addMatch(/消灭(?:场地中(?:的)?)?([^，,。.!！？?；;]{2,18})/g);
+    addMatch(/释放([^，,。.!！？?；;]{2,18}?)(?:攻击|技能|招式|伤害|傷害)/g);
+  } else if (lang === "english") {
+    addMatch(/(?:eliminate|group|spread out)\s+(?:the\s+)?([A-Z][A-Za-z' ]{2,48}?)(?:\s+(?:on the field|together)|[!.,;:]|$)/gi);
+    addMatch(/(?:uses?|casts?|unleashes?)\s+(?:the\s+)?([A-Z][A-Za-z' ]{2,48}?)(?:\s+(?:attack|skill|damage)|[!.,;:]|$)/gi);
+  }
+
+  return uniqueStringsInOrder(out);
+}
+
+function cleanGuideMechanicFragment(value) {
+  return cleanLocalizationTerm(value)
+    .replace(/^(?:the|a|an)\s+/i, "")
+    .replace(/(?:攻击|技能|招式|伤害|傷害|效果|区域|區域)$/i, "")
+    .replace(/\s+(?:attack|skill|damage|effect|zone|area)$/i, "")
+    .trim();
+}
+
+function resolveSkillMeta(skillRows, skillId) {
+  const row = skillId === undefined || skillId === null ? null : skillRows?.[String(skillId)];
+  if (!row || typeof row !== "object") {
+    return { kind: "", kinds: [], isBaseSkill: false, isTalent: false, isPassive: false };
+  }
+  const kinds = uniqueStrings([
+    row.Kind,
+    ...(Array.isArray(row.Kinds) ? row.Kinds : [])
+  ]);
+  return {
+    kind: String(row.Kind || kinds[0] || ""),
+    kinds,
+    isBaseSkill: Boolean(row.IsBaseSkill || row.Kind === "base-skill" || kinds.includes("skill-table")),
+    isTalent: Boolean(row.IsTalent || row.Kind === "talent" || kinds.includes("talent")),
+    isPassive: Boolean(row.IsPassive || row.Kind === "passive" || kinds.includes("passive"))
+  };
+}
+
+function buildSourceClassification({ category, row, recount, linkedSkillId, linkedSkillMeta }) {
+  const key = category.key;
+  const recountTalentId = firstDefined(recount?.LinkedTalentId, recount?.TalentId);
+  const recountBaseSkillId = firstDefined(recount?.LinkedBaseSkillId, recount?.BaseSkillId);
+  const isTalent = key === "talent-skill" || linkedSkillMeta.isTalent || recountTalentId !== undefined;
+  const isPassive = key === "passive-proc" || linkedSkillMeta.isPassive;
+  const isBuff = key === "buff-proc" || row.LinkedSource === "BuffName" || row.LinkedBuffId !== undefined;
+  const isBaseSkill = key === "base-skill" || linkedSkillMeta.isBaseSkill;
+  const isMechanic = ["lucky-strike", "mechanic", "set-effect", "imagine"].includes(key);
+  const recountOwnerSkillMismatch =
+    isBaseSkill &&
+    recountBaseSkillId !== undefined &&
+    linkedSkillId !== undefined &&
+    String(recountBaseSkillId) !== String(linkedSkillId);
+  const recountOwnerNameMismatch =
+    isBaseSkill &&
+    !isTalent &&
+    recount?.Id !== undefined &&
+    recountBaseSkillId === undefined &&
+    linkedSkillId !== undefined &&
+    namesLookDifferent(
+      recount?.Names,
+      recount?.Name || recount?.RecountName,
+      firstNonEmptyObject(
+        row.LinkedSkillEffectSkillTableNames,
+        row.LinkedSkillTableNames,
+        row.LinkedSkillFightSkillTableNames
+      ),
+      row.LinkedSkillEffectSkillTableName || row.LinkedSkillTableName || row.LinkedSkillFightSkillTableName
+    );
+  const type = isTalent
+    ? "talent"
+    : isPassive
+      ? "passive"
+      : isMechanic
+        ? key
+        : isBuff
+          ? "buff"
+          : isBaseSkill
+            ? "base-skill"
+            : "unknown";
+  const role = chooseSourceRole({ key, type, row, linkedSkillMeta, recountOwnerSkillMismatch, recountOwnerNameMismatch });
+  const recountOwnerSkillId = isTalent ? recountTalentId : recountBaseSkillId;
+
+  return {
+    type,
+    role,
+    isTalent,
+    isPassive,
+    isBuff,
+    isBaseSkill,
+    isMechanic,
+    baseSkillId: isBaseSkill && !isTalent ? linkedSkillId : undefined,
+    talentSkillId: isTalent ? firstDefined(recountTalentId, linkedSkillId) : undefined,
+    buffSourceId: isBuff ? row.LinkedBuffId : undefined,
+    mechanicRecountId: isMechanic ? recount?.Id : undefined,
+    recountOwnerSkillId,
+    recountOwnerSkillName: isTalent
+      ? recount?.LinkedTalentName
+      : recount?.LinkedBaseSkillName || (recountOwnerNameMismatch ? recount?.Name || recount?.RecountName : undefined),
+    recountOwnerSkillNames: isTalent
+      ? normalizeNames(recount?.LinkedTalentNames, recount?.LinkedTalentName)
+      : normalizeNames(
+          firstNonEmptyObject(recount?.LinkedBaseSkillNames, recountOwnerNameMismatch ? recount?.Names : null),
+          recount?.LinkedBaseSkillName || (recountOwnerNameMismatch ? recount?.Name || recount?.RecountName : undefined)
+        ),
+    underlyingSkillId: linkedSkillId,
+    recountOwnerSkillMismatch,
+    recountOwnerNameMismatch
+  };
+}
+
+function chooseSourceRole({ key, type, row, linkedSkillMeta, recountOwnerSkillMismatch, recountOwnerNameMismatch }) {
+  if (key === "lucky-strike") return "lucky-strike";
+  if (key === "set-effect") return "set-effect";
+  if (key === "imagine") return "imagine";
+  if (type === "talent") return linkedSkillMeta.isBaseSkill ? "talent-skill" : "talent-proc";
+  if (type === "passive") return "passive-proc";
+  if (type === "buff") return row.LinkedSkillId || row.LinkedSkillEffectId ? "buff-skill-bridge" : "buff-proc";
+  if (type === "base-skill" && (recountOwnerSkillMismatch || recountOwnerNameMismatch)) {
+    return "recount-owned-reused-skill-hit";
+  }
+  if (type === "base-skill") return "base-skill-hit";
+  if (key === "skill-proc") return "skill-proc";
+  if (key === "mechanic") return "recount-mechanic";
+  return "unknown";
+}
+
 function searchableText(row, recount) {
   return [
     row.Name,
@@ -184,6 +687,11 @@ function searchableText(row, recount) {
     namesText(row.LinkedSkillFightSkillTableNames),
     row.IconPath,
     row.LinkedBuffIconPath,
+    recount?.IconPath,
+    recount?.LinkedTalentIconPath,
+    recount?.LinkedTalentName,
+    namesText(recount?.LinkedTalentNames),
+    recount?.TalentNameBridge,
     recount?.Name,
     recount?.RecountName,
     namesText(recount?.Names)
@@ -195,8 +703,20 @@ function namesText(names) {
   return Object.values(names).filter(Boolean).join(" ");
 }
 
-function resolveLinkedDisplay(row, category) {
+function resolveLinkedDisplay(row, category, recount) {
   const candidates = [];
+  if (category.key === "talent-skill" && (recount?.LinkedTalentId || recount?.TalentNameBridge)) {
+    candidates.push({
+      source: "RecountTable.TalentPassiveNameBridge",
+      name: recount?.LinkedTalentName || recount?.Name || recount?.RecountName,
+      names: normalizeNames(
+        recount?.LinkedTalentNames || recount?.Names,
+        recount?.LinkedTalentName || recount?.Name || recount?.RecountName
+      ),
+      iconPath: recount?.LinkedTalentIconPath || recount?.IconPath,
+      iconSource: recount?.IconSource || "CTB:3345237628.LocalizedNameMatch"
+    });
+  }
   if (row.LinkedSource === "BuffName" || category.key === "buff-proc" || category.key === "lucky-strike") {
     candidates.push({
       source: "BuffName",
@@ -255,14 +775,77 @@ function resolveLinkedDisplay(row, category) {
   return { source: "", name: "", names: {}, iconPath: "", iconSource: "" };
 }
 
-function chooseDisplayNames({ row, recount, category, linked, directNames }) {
+function resolveUnderlyingSkillDisplay(row) {
+  const candidates = [
+    {
+      name: row.LinkedSkillFightSkillTableName,
+      names: normalizeNames(row.LinkedSkillFightSkillTableNames, row.LinkedSkillFightSkillTableName)
+    },
+    {
+      name: row.LinkedSkillEffectSkillTableName,
+      names: normalizeNames(row.LinkedSkillEffectSkillTableNames, row.LinkedSkillEffectSkillTableName)
+    },
+    {
+      name: row.LinkedSkillTableName,
+      names: normalizeNames(row.LinkedSkillTableNames, row.LinkedSkillTableName)
+    },
+    {
+      name: row.LinkedSkillName,
+      names: normalizeNames(null, row.LinkedSkillName)
+    }
+  ];
+
+  for (const candidate of candidates) {
+    if (candidate.name || Object.keys(candidate.names || {}).length) {
+      return {
+        name: candidate.name || chooseAnyName(candidate.names),
+        names: candidate.names || {}
+      };
+    }
+  }
+  return { name: "", names: {} };
+}
+
+function chooseDisplayNames({ row, recount, category, linked, directNames, sourceClassification, gameTerms }) {
+  const rawDisplayBridge = chooseLocalizedRawDisplayBridge(row, category, gameTerms);
+
+  if (sourceClassification?.recountOwnerSkillMismatch || sourceClassification?.recountOwnerNameMismatch) {
+    const ownerNames = firstNonEmptyObject(recount?.LinkedBaseSkillNames, recount?.Names);
+    return normalizeNames(
+      ownerNames,
+      recount?.LinkedBaseSkillName || recount?.Name || recount?.RecountName || linked.name || row.Name || row.NameDesign
+    );
+  }
+
+  if (category.key === "talent-skill" && (recount?.LinkedTalentId || recount?.TalentNameBridge)) {
+    const talentNames = firstNonEmptyObject(recount?.LinkedTalentNames, recount?.Names);
+    return normalizeNames(
+      talentNames,
+      recount?.LinkedTalentName || recount?.Name || recount?.RecountName || linked.name || row.Name || row.NameDesign
+    );
+  }
+
+  if (category.key === "talent-skill" && !hasRealLocale(linked?.names) && hasRealLocale(recount?.Names)) {
+    return normalizeNames(recount.Names, recount?.Name || recount?.RecountName || linked.name || row.Name || row.NameDesign);
+  }
+
   if (category.key === "base-skill") {
     const skillNames = firstNonEmptyObject(
       row.LinkedSkillEffectSkillTableNames,
       row.LinkedSkillTableNames,
       row.LinkedSkillFightSkillTableNames
     );
-    return normalizeNames(skillNames, row.LinkedSkillEffectSkillTableName || row.LinkedSkillTableName || recount?.Name || row.Name);
+    const rawSkillName =
+      row.LinkedSkillEffectSkillTableName ||
+      row.LinkedSkillTableName ||
+      row.LinkedSkillFightSkillTableName ||
+      recount?.Name ||
+      row.Name;
+    const friendlySkillNames = friendlyInternalDisplayNames(rawSkillName, gameTerms);
+    return normalizeNames(
+      hasRealLocale(skillNames) ? skillNames : rawDisplayBridge?.names || friendlySkillNames || skillNames,
+      rawDisplayBridge?.name || chooseAnyName(friendlySkillNames) || rawSkillName
+    );
   }
 
   if (["talent-skill", "passive-proc", "set-effect", "skill-proc"].includes(category.key)) {
@@ -270,14 +853,41 @@ function chooseDisplayNames({ row, recount, category, linked, directNames }) {
       row.LinkedSkillFightSkillTableNames,
       row.LinkedSkillTableNames,
       row.LinkedSkillEffectSkillTableNames,
+      recount?.LinkedTalentNames,
+      recount?.Names,
       linked.names
     );
-    return normalizeNames(linkedNames, row.LinkedSkillFightSkillTableName || row.LinkedSkillTableName || row.LinkedSkillEffectSkillTableName || row.Name || row.NameDesign);
+    const rawLinkedName =
+      row.LinkedSkillFightSkillTableName ||
+      row.LinkedSkillTableName ||
+      row.LinkedSkillEffectSkillTableName ||
+      recount?.LinkedTalentName ||
+      recount?.Name ||
+      recount?.RecountName ||
+      row.Name ||
+      row.NameDesign;
+    const friendlyLinkedNames = friendlyInternalDisplayNames(rawLinkedName, gameTerms);
+    return normalizeNames(
+      hasRealLocale(linkedNames) ? linkedNames : rawDisplayBridge?.names || friendlyLinkedNames || linkedNames,
+      rawDisplayBridge?.name ||
+        chooseAnyName(friendlyLinkedNames) ||
+        rawLinkedName
+    );
   }
 
   if (["buff-proc", "lucky-strike", "imagine"].includes(category.key)) {
+    if (recount?.Id !== undefined && !hasRealLocale(row.LinkedBuffNames) && !hasRealLocale(linked.names)) {
+      return normalizeNames(recount?.Names, recount?.Name || recount?.RecountName || row.LinkedBuffName || row.Name || row.NameDesign);
+    }
     const buffNames = firstNonEmptyObject(row.LinkedBuffNames, linked.names);
-    return normalizeNames(buffNames, row.LinkedBuffName || row.Name || row.NameDesign);
+    return normalizeNames(
+      hasRealLocale(buffNames) ? buffNames : rawDisplayBridge?.names || buffNames,
+      rawDisplayBridge?.name || row.LinkedBuffName || row.Name || row.NameDesign
+    );
+  }
+
+  if (!hasRealLocale(directNames) && rawDisplayBridge?.names) {
+    return normalizeNames(rawDisplayBridge.names, rawDisplayBridge.name || row.Name || row.NameDesign);
   }
 
   return Object.keys(directNames || {}).length
@@ -285,12 +895,812 @@ function chooseDisplayNames({ row, recount, category, linked, directNames }) {
     : normalizeNames(recount?.Names, recount?.Name || row.Name || row.NameDesign);
 }
 
-function buildReasons(row, recount, category) {
+function chooseLocalizedRawDisplayBridge(row, category, gameTerms) {
+  const rawValues = rawDisplayValuesForRow(row, category);
+  for (const rawValue of rawValues) {
+    const bridge = resolveLocalizedDesignTerm(rawValue, gameTerms, { composeRoleNames: true });
+    if (isOwnerOnlyInternalDesignBridge(rawValue, bridge)) {
+      continue;
+    }
+    if (bridge?.names && hasRealLocale(bridge.names)) {
+      return {
+        ...bridge,
+        kind: bridge.roles?.isAoe ? "localized-raw-display-aoe" : "localized-raw-display"
+      };
+    }
+  }
+  return null;
+}
+
+function rawDisplayValuesForRow(row, category) {
+  const preferred = [];
+  if (category?.key === "buff-proc" || category?.key === "lucky-strike") {
+    preferred.push(row.LinkedBuffName, row.Name, row.NameDesign);
+    return uniqueStringsInOrder(preferred);
+  }
+
+  preferred.push(
+    row.LinkedSkillFightSkillTableName,
+    row.LinkedSkillEffectSkillTableName,
+    row.LinkedSkillTableName,
+    row.LinkedSkillName,
+    row.LinkedBuffName
+  );
+  const linkedOnly = uniqueStringsInOrder(preferred);
+  if (linkedOnly.length) {
+    return linkedOnly;
+  }
+  return rawDesignValuesForRow(row, category);
+}
+
+function chooseLocalizedRawDesignDetail({ row, recount, category, displayNames, gameTerms }) {
+  const displayCompare = compareNameText(displayNames, recount?.Name || recount?.RecountName || row.Name || row.NameDesign);
+  for (const rawValue of rawDesignValuesForRow(row, category)) {
+    const bridge = resolveLocalizedDesignTerm(rawValue, gameTerms);
+    if (isOwnerOnlyInternalDesignBridge(rawValue, bridge)) {
+      continue;
+    }
+    if (!bridge?.names || !hasRealLocale(bridge.names)) {
+      return null;
+    }
+    if (namesContainLookupText(displayNames, rawValue)) {
+      return null;
+    }
+
+    const bridgeCompare = compareNameText(bridge.names, bridge.name);
+    if (bridgeCompare && bridge.roles?.isAoe && displayCompare.includes(bridgeCompare) && displayLooksLikeAoe(displayNames, bridge.name)) {
+      return null;
+    }
+    if (bridgeCompare && bridgeCompare === displayCompare) {
+      if (bridge.roles?.isAoe && !displayLooksLikeAoe(displayNames, bridge.name)) {
+        const names = normalizeNames(gameTerms?.aoe, "AoE");
+        if (rawValue) names.design = rawValue;
+        return {
+          kind: "localized-area-term",
+          name: chooseAnyName(names),
+          names,
+          source: "DamageAttr/Buff design suffix plus localized game term",
+          evidence: stripEmpty({
+            DamageAttrId: row.Id,
+            BuffId: row.LinkedBuffId,
+            RawDesignName: rawValue,
+            LocalizedTermId: bridge.id,
+            AreaTermId: TERM_AOE_ID
+          })
+        };
+      }
+      return null;
+    }
+
+    const names = normalizeNames(bridge.names, bridge.name);
+    if (rawValue) names.design = rawValue;
+    return {
+      kind: bridge.roles?.isAoe ? "localized-raw-aoe" : "localized-raw-term",
+      name: chooseAnyName(names),
+      names,
+      source: "DamageAttr/Buff design base matched a localized game term",
+      evidence: stripEmpty({
+        DamageAttrId: row.Id,
+        BuffId: row.LinkedBuffId,
+        RawDesignName: rawValue,
+        LocalizedTermId: bridge.id
+      })
+    };
+  }
+  return null;
+}
+
+function rawDesignValuesForRow(row, category) {
+  const preferred = [];
+  if (category?.key === "buff-proc" || category?.key === "lucky-strike") {
+    preferred.push(row.LinkedBuffName, row.Name, row.NameDesign);
+  }
+  preferred.push(
+    row.LinkedSkillFightSkillTableName,
+    row.LinkedSkillEffectSkillTableName,
+    row.LinkedSkillTableName,
+    row.LinkedSkillName,
+    row.LinkedBuffName,
+    row.Name,
+    row.NameDesign
+  );
+  return uniqueStringsInOrder(preferred);
+}
+
+function resolveLocalizedDesignTerm(rawValue, gameTerms, options = {}) {
+  const roles = detectDesignRoles(rawValue);
+  if (roles.isFormula || roles.isLucky) {
+    return null;
+  }
+  const candidates = deriveDesignTermCandidates(rawValue);
+  for (const candidate of candidates) {
+    const compound = resolveCompoundLocalizedTermCandidate(candidate.text, gameTerms, candidate.roles);
+    if (compound) {
+      return {
+        ...compound,
+        raw: rawValue,
+        baseText: candidate.text,
+        roles: candidate.roles
+      };
+    }
+    const match = lookupLocalizedTerm(candidate.text, gameTerms?.localizedTermIndex);
+    if (!match) {
+      continue;
+    }
+    let names = normalizeNames(match.names, candidate.text);
+    if (options.composeRoleNames && candidate.roles.isAoe && Number(match.id) !== TERM_AOE_ID) {
+      names = composeLocaleNames(names, gameTerms?.aoe, candidate.text, "AoE");
+    }
+    return {
+      id: match.id,
+      name: chooseAnyName(names),
+      names,
+      raw: rawValue,
+      baseText: candidate.text,
+      roles: candidate.roles
+    };
+  }
+  return null;
+}
+
+function resolveCompoundLocalizedTermCandidate(text, gameTerms, roles) {
+  const value = normalizeDesignText(text);
+  if (!value || !containsCjk(value)) {
+    return null;
+  }
+
+  const summonMatch = value.match(/^(召唤|召喚)(.{2,24})$/);
+  if (summonMatch) {
+    const prefix = lookupLocalizedTerm(summonMatch[1], gameTerms?.localizedTermIndex);
+    const suffix = lookupLocalizedTerm(summonMatch[2], gameTerms?.localizedTermIndex);
+    if (prefix?.names && suffix?.names && hasRealLocale(suffix.names)) {
+      const names = joinLocaleNames(prefix.names, suffix.names, summonMatch[1], summonMatch[2], " ");
+      names.design = value;
+      return {
+        id: `${prefix.id}+${suffix.id}`,
+        name: chooseAnyName(names),
+        names,
+        roles
+      };
+    }
+  }
+
+  const basicAttackMatch = value.match(/^(普攻|普通攻击|普通攻擊)(.{1,24})$/);
+  if (basicAttackMatch) {
+    const prefix = lookupLocalizedTerm(basicAttackMatch[1], gameTerms?.localizedTermIndex);
+    if (prefix?.names && hasRealLocale(prefix.names)) {
+      const names = normalizeNames(prefix.names, basicAttackMatch[1]);
+      names.design = value;
+      return {
+        id: prefix.id,
+        name: chooseAnyName(names),
+        names,
+        roles
+      };
+    }
+  }
+
+  return null;
+}
+
+function lookupLocalizedTerm(value, index) {
+  const key = normalizeTermLookupText(value);
+  if (!key || !index) return null;
+  const exact = chooseBestLocalizedTerm(index.byText?.get(key), key);
+  if (exact) {
+    return exact;
+  }
+  if (!containsCjk(value) || key.length < 2) {
+    return null;
+  }
+
+  const prefixMatches = [];
+  for (const entry of collectCjkLookupTerms(key, index)) {
+    if (!entry.key || entry.key === key) {
+      continue;
+    }
+    const startsWithQuery = entry.key.startsWith(key);
+    const queryStartsWithTerm = false;
+    const queryEndsWithTerm = key.endsWith(entry.key);
+    const entryEndsWithQuery = entry.key.endsWith(key);
+    const fuzzyDistance =
+      !startsWithQuery && !queryStartsWithTerm && !queryEndsWithTerm && !entryEndsWithQuery
+        ? cjkEditDistanceWithin(key, entry.key, 1)
+        : null;
+    if (!startsWithQuery && !queryStartsWithTerm && !queryEndsWithTerm && !entryEndsWithQuery && fuzzyDistance === null) {
+      continue;
+    }
+    const distance = fuzzyDistance ?? Math.abs(entry.key.length - key.length);
+    const shortSuffixMatch = (queryEndsWithTerm && entry.key.length <= 2) || (entryEndsWithQuery && key.length <= 2);
+    if (shortSuffixMatch && !TRUSTED_SHORT_CJK_SUFFIX_TERMS.has(queryEndsWithTerm ? entry.key : key)) {
+      continue;
+    }
+    if (queryStartsWithTerm && entry.key.length <= 2) {
+      continue;
+    }
+    if (queryEndsWithTerm && (!containsCjk(entry.key) || entry.key.length < 2 || distance > 6)) {
+      continue;
+    }
+    if (entryEndsWithQuery && (!containsCjk(entry.key) || key.length < 2 || distance > 6)) {
+      continue;
+    }
+    if (!queryEndsWithTerm && !entryEndsWithQuery && fuzzyDistance === null && distance > 2) {
+      continue;
+    }
+    prefixMatches.push({ ...entry.candidate, distance, matchedKey: entry.key });
+  }
+  if (isAmbiguousShortCjkFallback(key, prefixMatches)) {
+    return null;
+  }
+  return chooseBestLocalizedTerm(prefixMatches, key);
+}
+
+function isAmbiguousShortCjkFallback(key, candidates) {
+  if (!containsCjk(key) || key.length > 2) {
+    return false;
+  }
+  const englishValues = new Set();
+  for (const candidate of candidates || []) {
+    const english = normalizeTermLookupText(candidate?.names?.en || "");
+    if (english) {
+      englishValues.add(english);
+    }
+    if (englishValues.size > 2) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function collectCjkLookupTerms(key, index) {
+  const out = [];
+  const seen = new Set();
+  for (const fragment of cjkLookupFragments(key)) {
+    for (const entry of index?.cjkTermsByFragment?.get(fragment) || []) {
+      const seenKey = `${entry.key}:${entry.candidate?.id}`;
+      if (seen.has(seenKey)) {
+        continue;
+      }
+      seen.add(seenKey);
+      out.push(entry);
+    }
+  }
+  return out;
+}
+
+function cjkLookupFragments(value) {
+  const text = normalizeTermLookupText(value);
+  if (!containsCjk(text)) {
+    return [];
+  }
+  const chars = [...text];
+  const fragments = new Set();
+  for (const size of [2, 3]) {
+    if (chars.length < size) {
+      continue;
+    }
+    for (let index = 0; index <= chars.length - size; index += 1) {
+      const fragment = chars.slice(index, index + size).join("");
+      if (containsCjk(fragment)) {
+        fragments.add(fragment);
+      }
+    }
+  }
+  return [...fragments];
+}
+
+function cjkEditDistanceWithin(left, right, limit) {
+  if (!containsCjk(left) || !containsCjk(right)) {
+    return null;
+  }
+  if (left.length < 4 || right.length < 4) {
+    return null;
+  }
+  if (left.length > 16 || right.length > 16) {
+    return null;
+  }
+  if (Math.abs(left.length - right.length) > limit) {
+    return null;
+  }
+  if (!hasSharedCjkNgram(left, right, 3)) {
+    return null;
+  }
+  const distance = boundedLevenshtein(left, right, limit);
+  return distance <= limit ? distance : null;
+}
+
+function hasSharedCjkNgram(left, right, size) {
+  const leftChars = [...String(left || "")];
+  const rightText = String(right || "");
+  if (leftChars.length < size) {
+    return false;
+  }
+  for (let index = 0; index <= leftChars.length - size; index += 1) {
+    const fragment = leftChars.slice(index, index + size).join("");
+    if (containsCjk(fragment) && rightText.includes(fragment)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function boundedLevenshtein(left, right, limit) {
+  const a = [...String(left || "")];
+  const b = [...String(right || "")];
+  if (Math.abs(a.length - b.length) > limit) {
+    return limit + 1;
+  }
+  let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= a.length; i += 1) {
+    const current = [i];
+    let rowMin = current[0];
+    for (let j = 1; j <= b.length; j += 1) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      const value = Math.min(
+        previous[j] + 1,
+        current[j - 1] + 1,
+        previous[j - 1] + cost
+      );
+      current[j] = value;
+      rowMin = Math.min(rowMin, value);
+    }
+    if (rowMin > limit) {
+      return limit + 1;
+    }
+    previous = current;
+  }
+  return previous[b.length];
+}
+
+function chooseBestLocalizedTerm(candidates, key) {
+  const list = Array.isArray(candidates) ? candidates.filter(Boolean) : [];
+  if (!list.length) return null;
+  const sorted = [...list].sort((left, right) => {
+    const leftZh = normalizeTermLookupText(left.names?.["zh-CN"] || left.names?.["zh-TW"] || "");
+    const rightZh = normalizeTermLookupText(right.names?.["zh-CN"] || right.names?.["zh-TW"] || "");
+    const leftDistance = left.distance ?? Math.abs(leftZh.length - key.length);
+    const rightDistance = right.distance ?? Math.abs(rightZh.length - key.length);
+    if (leftDistance !== rightDistance) return leftDistance - rightDistance;
+    const leftEn = String(left.names?.en || "");
+    const rightEn = String(right.names?.en || "");
+    if (leftEn.length !== rightEn.length) return leftEn.length - rightEn.length;
+    return Number(left.id) - Number(right.id);
+  });
+  return sorted[0];
+}
+
+function deriveDesignTermCandidates(rawValue) {
+  const original = normalizeDesignText(rawValue);
+  if (!original) {
+    return [];
+  }
+  const roles = detectDesignRoles(original);
+  const values = [];
+  const add = (value) => {
+    const text = normalizeDesignText(value);
+    if (!isUsefulDesignTermCandidate(text)) {
+      return;
+    }
+    values.push(text);
+  };
+
+  const stripped = stripDesignImplementationTokens(original);
+  if (roles.isAoe || roles.isBuff || roles.isStack || roles.isVirtual || roles.isTalent) {
+    add(stripped);
+  } else {
+    add(original);
+  }
+  add(stripped);
+  for (const part of original.split(/[-－—_:：·]/g)) {
+    add(stripDesignImplementationTokens(part));
+  }
+
+  return uniqueStringsInOrder(values).map((text) => ({ text, roles }));
+}
+
+function stripDesignImplementationTokens(value) {
+  let text = normalizeDesignText(value)
+    .replace(/^(?:天赋触发|天賦觸發|天赋|天賦|被动触发|被動觸發|触发|觸發)\s*[-－—_:：]?\s*/i, "")
+    .replace(/[（(][^）)]{1,24}[）)]\s*$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  for (let i = 0; i < 8; i += 1) {
+    const next = text
+      .replace(/\s*(?:[-－—_:：_ ]+)?(?:aoe子buff|子?buff\d*|buff\d*|伤害区域|傷害區域|伤害|傷害|虚拟体|虛擬體|叠层|疊層|计数|計數|检测|檢測|恢复|恢復|治疗|治療|幸运|幸運|lucky|ATK[_-]?(?:EX|\d+)|SPECIAL_SKILL_[A-Z]|\w*UTR_SKILL(?:[_-][^\s\-－—_:：]+)*|\w*SPECIAL_SKILL(?:[_-][^\s\-－—_:：]+)*|SKILL(?:[_-][^\s\-－—_:：]+)*|子弹|子彈|触发|觸發|释放|釋放|aoe)\s*$/i, "")
+      .trim();
+    if (next === text) break;
+    text = next;
+  }
+
+  for (let i = 0; i < 4; i += 1) {
+    const next = text
+      .replace(/\s*(?:[-－—_:：_ ]+)?(?:英雄本S\d+|英雄本|普通本|困难|困難|噩梦|噩夢|大师|大師|大精英|小精英|精英|S\d+|P\d+阶段|P\d+階段|P\d+|E\d+)\s*$/i, "")
+      .trim();
+    if (next === text) break;
+    text = next;
+  }
+
+  for (let i = 0; i < 4; i += 1) {
+    const next = text
+      .replace(/\s*(?:[-－—_:：_ ]+)?(?:普通爆炸|懲罰爆炸|惩罚爆炸|爆炸|延迟出|延遲出|二段|普通|惩罚|懲罰)\s*$/i, "")
+      .trim();
+    if (next === text) break;
+    text = next;
+  }
+
+  return text;
+}
+
+function detectDesignRoles(value) {
+  const text = String(value || "");
+  return {
+    isAoe: /aoe|伤害区域|傷害區域|范围|範圍|区域|區域/i.test(text),
+    isBuff: /buff|子BUFF/i.test(text),
+    isStack: /叠层|疊層|stack/i.test(text),
+    isVirtual: /虚拟体|虛擬體/i.test(text),
+    isTalent: /天赋|天賦|talent/i.test(text),
+    isLucky: /幸运|幸運|lucky/i.test(text),
+    isFormula: isInternalFormulaLabel(text)
+  };
+}
+
+function normalizeDesignText(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeTermLookupText(value) {
+  return cleanLocalizationTerm(value)
+    .replace(/[“”"']/g, "")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function normalizeEnglishTermText(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/[“”"']/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function isUsefulLocalizedTermCandidate(names) {
+  const english = normalizeEnglishTermText(names?.en);
+  if (!english) return false;
+  if (UNINFORMATIVE_LOCALIZED_TERM_EN.has(english)) return false;
+  if (/^[\d\s.,:+%/-]+$/.test(english)) return false;
+  return true;
+}
+
+function isUsefulDesignTermCandidate(value) {
+  const text = String(value || "").trim();
+  if (!text || text.length < 2 || text.length > 32) return false;
+  if (/^(?:buff|aoe|lucky|skill|attack|damage|ATK[_-]?(?:EX|\d+)|SPECIAL_SKILL|UTR_SKILL)$/i.test(text)) return false;
+  if (/^(?:英雄本|普通本|困难|困難|噩梦|噩夢|大师|大師|精英|大精英|小精英|英雄本S\d+|S\d+|P\d+|阶段|階段)$/i.test(text)) return false;
+  if (/^[A-Za-z0-9_ -]+$/.test(text) && !/[A-Za-z]{3}/.test(text)) return false;
+  return true;
+}
+
+function displayLooksLikeAoe(names, fallback) {
+  return /aoe|area|区域|區域|范围|範圍|全场|全場/i.test(namesText(names) || fallback || "");
+}
+
+function uniqueStringsInOrder(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    const text = String(value || "").trim();
+    if (!text || seen.has(text)) {
+      continue;
+    }
+    seen.add(text);
+    out.push(text);
+  }
+  return out;
+}
+
+function chooseDisplayDetail({ row, recount, category, linked, underlying, displayNames, sourceClassification, gameTerms }) {
+  const displayCompare = compareNameText(displayNames, recount?.Name || recount?.RecountName || row.Name || row.NameDesign);
+  const underlyingCompare = compareNameText(underlying?.names, underlying?.name);
+  const gameFileDetail = chooseGameFileDerivedDetail({
+    row,
+    recount,
+    category,
+    underlying,
+    gameTerms
+  });
+  if (gameFileDetail) {
+    return gameFileDetail;
+  }
+
+  const damageTermDetail = chooseDamageDesignTermDetail(row, gameTerms);
+  if (damageTermDetail) {
+    return damageTermDetail;
+  }
+
+  const localizedRawDetail = chooseLocalizedRawDesignDetail({
+    row,
+    recount,
+    category,
+    displayNames,
+    gameTerms
+  });
+  if (localizedRawDetail) {
+    return localizedRawDetail;
+  }
+
+  if (
+    underlyingCompare &&
+    underlyingCompare !== displayCompare &&
+    (sourceClassification?.underlyingSkillId !== undefined || category.key === "base-skill")
+  ) {
+    const friendly = friendlyInternalDetailName(underlying?.name);
+    const hasLocalizedUnderlying = hasRealLocale(underlying?.names);
+    const underlyingLooksInternal =
+      isInternalFormulaLabel(underlying?.name) ||
+      hasImplementationToken(underlying?.name) ||
+      hasImplementationToken(chooseAnyName(underlying?.names)) ||
+      (!hasLocalizedUnderlying && containsCjk(underlying?.name));
+    if (underlyingLooksInternal && hasRealLocale(displayNames)) {
+      return { kind: "", name: "", names: {} };
+    }
+    return {
+      kind: hasLocalizedUnderlying ? "underlying-skill" : "underlying-formula",
+      name: hasLocalizedUnderlying ? chooseAnyName(underlying?.names) : friendly || underlying?.name || chooseAnyName(underlying?.names),
+      names: hasLocalizedUnderlying
+        ? normalizeNames(underlying.names, underlying.name)
+        : normalizeNames({ en: friendly }, underlying?.name)
+    };
+  }
+
+  if (category.key === "buff-proc" || category.key === "lucky-strike") {
+    const rawName = row.LinkedBuffName || linked?.name || row.Name || row.NameDesign;
+    const friendly = friendlyInternalDetailName(rawName);
+    if (!friendly && (hasImplementationToken(rawName) || (containsCjk(rawName) && hasRealLocale(displayNames)))) {
+      return { kind: "", name: "", names: {} };
+    }
+    return {
+      kind: friendly.toLowerCase().includes("aoe") ? "buff-aoe" : "buff",
+      name: friendly || rawName,
+      names: normalizeNames(friendly ? { en: friendly, design: rawName } : row.LinkedBuffNames, rawName)
+    };
+  }
+
+  const rawDamage = row.Name || row.NameDesign;
+  const friendlyDamage = friendlyInternalDetailName(rawDamage);
+  if (friendlyDamage && normalizeCompareText(friendlyDamage) !== displayCompare) {
+    if (
+      isInternalFormulaLabel(friendlyDamage) &&
+      hasRealLocale(
+        firstNonEmptyObject(
+          row.LinkedSkillTableNames,
+          row.LinkedSkillEffectSkillTableNames,
+          row.LinkedSkillFightSkillTableNames,
+          underlying?.names
+        )
+      )
+    ) {
+      return { kind: "", name: "", names: {} };
+    }
+    return {
+      kind: "damage-row",
+      name: friendlyDamage,
+      names: normalizeNames({ en: friendlyDamage, design: rawDamage }, rawDamage)
+    };
+  }
+
+  return { kind: "", name: "", names: {} };
+}
+
+function chooseGameFileDerivedDetail({ row, recount, category, underlying, gameTerms }) {
+  if (isHeavyAttackFormula(row, underlying)) {
+    const parent = resolveSkillTableParent(row);
+    const parentNames = normalizeNames(parent.names, parent.name);
+    const names = composeLocaleNames(parentNames, gameTerms?.heavyAttack, parent.name, "Heavy Attack");
+    if (row.NameDesign || row.Name) {
+      names.design = row.NameDesign || row.Name;
+    }
+
+    return {
+      kind: "underlying-heavy-attack",
+      name: chooseAnyName(names),
+      names,
+      source: "SkillTable parent plus localized combat term",
+      evidence: stripEmpty({
+        DamageAttrId: row.Id,
+        DamageAttrName: row.NameDesign || row.Name,
+        LinkedSkillFightId: row.LinkedSkillFightId,
+        LinkedSkillTableId: parent.childId,
+        ParentSkillTableId: parent.id,
+        ParentSkillTableName: parent.name,
+        HeavyAttackTermId: TERM_HEAVY_ATTACK_ID
+      })
+    };
+  }
+
+  if (isQuadraflareAoeBuff(row, recount, category)) {
+    const parentNames = normalizeNames(recount?.Names, recount?.Name || recount?.RecountName);
+    const names = composeLocaleNames(parentNames, gameTerms?.aoe, recount?.Name || recount?.RecountName, "AoE");
+    names.en = "Empowered Arrow AoE";
+    if (row.NameDesign || row.LinkedBuffName || row.Name) {
+      names.design = row.NameDesign || row.LinkedBuffName || row.Name;
+    }
+
+    return {
+      kind: "quadraflare-empowered-arrow-aoe",
+      name: chooseAnyName(names),
+      names,
+      source: "RecountTable owner plus BuffTable/DamageAttr internal AoE buff and localized skill description",
+      evidence: stripEmpty({
+        DamageAttrId: row.Id,
+        BuffId: row.LinkedBuffId,
+        BuffDesignName: row.LinkedBuffName || row.NameDesign || row.Name,
+        RecountId: recount?.Id,
+        RecountNameId: recount?.NameId,
+        AreaTermId: TERM_AOE_ID,
+        SourceSkillDescriptionNameId: DOUBLE_ARROW_DESCRIPTION_ID
+      })
+    };
+  }
+
+  return null;
+}
+
+function chooseDamageDesignTermDetail(row, gameTerms) {
+  const damageName = `${row.NameDesign || ""} ${row.Name || ""}`;
+  if (/强化重击|強化重擊|\u5f3a\u5316\u91cd\u51fb|\u5f37\u5316\u91cd\u64ca/i.test(damageName)) {
+    const names = normalizeNames(gameTerms?.enhancedHeavyAttackDamage, "Enhanced heavy attack damage");
+    if (row.NameDesign || row.Name) names.design = row.NameDesign || row.Name;
+    return {
+      kind: "localized-damage-term",
+      name: chooseAnyName(names),
+      names,
+      source: "DamageAttr design phrase plus localized game term",
+      evidence: stripEmpty({
+        DamageAttrId: row.Id,
+        DamageAttrName: row.NameDesign || row.Name,
+        LocalizedTermId: TERM_ENHANCED_HEAVY_ATTACK_DAMAGE_ID
+      })
+    };
+  }
+
+  if (/重击|重擊|\u91cd\u51fb|\u91cd\u64ca|heavy attack/i.test(damageName)) {
+    const names = normalizeNames(gameTerms?.heavyAttack, "Heavy Attack");
+    if (row.NameDesign || row.Name) names.design = row.NameDesign || row.Name;
+    return {
+      kind: "localized-damage-term",
+      name: chooseAnyName(names),
+      names,
+      source: "DamageAttr design phrase plus localized game term",
+      evidence: stripEmpty({
+        DamageAttrId: row.Id,
+        DamageAttrName: row.NameDesign || row.Name,
+        LocalizedTermId: TERM_HEAVY_ATTACK_ID
+      })
+    };
+  }
+
+  return null;
+}
+
+function isHeavyAttackFormula(row, underlying) {
+  const damageName = `${row.NameDesign || ""} ${row.Name || ""}`;
+  if (!/重击|重擊|\u91cd\u51fb|\u91cd\u64ca|heavy attack/i.test(damageName)) {
+    return false;
+  }
+  const linkedName = [
+    underlying?.name,
+    row.LinkedSkillFightSkillTableName,
+    row.LinkedSkillEffectSkillTableName,
+    row.LinkedSkillTableName,
+    row.LinkedSkillName
+  ].filter(Boolean).join(" ");
+  return /ATK[_-]?0?2/i.test(linkedName) || Boolean(resolveSkillTableParent(row).id);
+}
+
+function isQuadraflareAoeBuff(row, recount, category) {
+  if (category.key !== "buff-proc") {
+    return false;
+  }
+  const rawName = `${row.LinkedBuffName || ""} ${row.NameDesign || ""} ${row.Name || ""}`;
+  const isTargetBuff = String(row.LinkedBuffId || "") === String(QUADRAFLARE_AOE_BUFF_ID) || /强化特攻小箭AOE/i.test(rawName);
+  const isTargetRecount = String(recount?.Id || "") === String(QUADRAFLARE_RECOUNT_ID) || /Quadraflare|四连矢|四連矢/i.test(namesText(recount?.Names));
+  return isTargetBuff && isTargetRecount;
+}
+
+function resolveSkillTableParent(row) {
+  const candidates = [
+    {
+      childId: row.LinkedSkillFightSkillId,
+      id: row.LinkedSkillFightSkillTableParentId,
+      name: row.LinkedSkillFightSkillTableParentName,
+      names: row.LinkedSkillFightSkillTableParentNames
+    },
+    {
+      childId: row.LinkedSkillEffectSkillTableId,
+      id: row.LinkedSkillEffectSkillTableParentId,
+      name: row.LinkedSkillEffectSkillTableParentName,
+      names: row.LinkedSkillEffectSkillTableParentNames
+    },
+    {
+      childId: row.LinkedSkillTableId,
+      id: row.LinkedSkillTableParentId,
+      name: row.LinkedSkillTableParentName,
+      names: row.LinkedSkillTableParentNames
+    }
+  ];
+
+  for (const candidate of candidates) {
+    if (candidate.id || candidate.name || Object.keys(candidate.names || {}).length) {
+      return {
+        ...candidate,
+        name: candidate.name || chooseAnyName(candidate.names),
+        names: normalizeNames(candidate.names, candidate.name)
+      };
+    }
+  }
+  return { childId: undefined, id: undefined, name: "", names: {} };
+}
+
+function composeLocaleNames(leftNames, rightNames, leftFallback, rightFallback) {
+  return joinLocaleNames(leftNames, rightNames, leftFallback, rightFallback, ": ");
+}
+
+function joinLocaleNames(leftNames, rightNames, leftFallback, rightFallback, separator) {
+  const left = normalizeNames(leftNames, leftFallback);
+  const right = normalizeNames(rightNames, rightFallback);
+  const out = {};
+  const keys = uniqueStrings([
+    ...Object.keys(left),
+    ...Object.keys(right),
+    "en",
+    "zh-CN",
+    "zh-TW",
+    "ja",
+    "ko-KR",
+    "fr",
+    "de",
+    "es",
+    "pt-BR",
+    "th",
+    "id"
+  ]);
+  const leftAny = chooseAnyName(left);
+  const rightAny = chooseAnyName(right);
+  for (const key of keys) {
+    if (key === "design") {
+      continue;
+    }
+    const leftText = left[key] || leftAny;
+    const rightText = right[key] || rightAny;
+    if (leftText && rightText) {
+      out[key] = `${leftText}${separator}${rightText}`;
+    }
+  }
+  return normalizeNames(out, [leftFallback, rightFallback].filter(Boolean).join(separator));
+}
+
+function buildReasons(row, recount, category, sourceClassification) {
   const reasons = [category.reason];
   if (row.DamageKind) reasons.push(`DamageKind=${row.DamageKind}`);
   if (row.LinkedSource) reasons.push(`LinkedSource=${row.LinkedSource}`);
   if (row.LinkedId !== undefined) reasons.push(`LinkedId=${row.LinkedId}`);
   if (recount?.Id !== undefined) reasons.push(`RecountId=${recount.Id}`);
+  if (recount?.LinkedBaseSkillId !== undefined) reasons.push(`ParentBaseSkillId=${recount.LinkedBaseSkillId}`);
+  if (recount?.BaseSkillNameBridge) reasons.push(`BaseSkillNameBridge=${recount.BaseSkillNameBridge}`);
+  if (recount?.LinkedTalentId !== undefined) reasons.push(`TalentId=${recount.LinkedTalentId}`);
+  if (recount?.TalentNameBridge) reasons.push(`TalentNameBridge=${recount.TalentNameBridge}`);
+  if (recount?.TalentFormulaBridge) reasons.push(`TalentFormulaBridge=${recount.TalentFormulaBridge}`);
+  if (Array.isArray(recount?.LinkedTalentBuffIds) && recount.LinkedTalentBuffIds.length) {
+    reasons.push(`LinkedTalentBuffIds=${recount.LinkedTalentBuffIds.join(",")}`);
+  }
+  if (sourceClassification?.underlyingSkillId !== undefined) reasons.push(`UnderlyingSkillId=${sourceClassification.underlyingSkillId}`);
+  if (sourceClassification?.recountOwnerSkillMismatch) reasons.push("Recount owner skill differs from underlying damage skill.");
+  if (sourceClassification?.recountOwnerNameMismatch) reasons.push("Recount owner name differs from underlying damage skill.");
   if (row.IconPath) reasons.push(`IconPath=${row.IconPath}`);
   return uniqueStrings(reasons);
 }
@@ -306,7 +1716,34 @@ function buildSourceFiles(row, recount) {
   }
   if (row.LinkedSkillFightId !== undefined) sources.push("SkillFightLevelTable.ctb");
   if (recount) sources.push("RecountTable.ctb");
+  if (recount?.LinkedBaseSkillId !== undefined) sources.push("SkillTable.ctb");
+  if (recount?.LinkedTalentId !== undefined) sources.push("CTB:3345237628");
   return uniqueStrings(sources);
+}
+
+function choosePreferredIcon(row, linked, recount, sourceClassification) {
+  if (sourceClassification?.isTalent && recount?.LinkedTalentIconPath) {
+    return {
+      iconPath: recount.LinkedTalentIconPath,
+      iconSource: recount.TalentFormulaBridge || recount.TalentNameBridge || "CTB:3345237628"
+    };
+  }
+  if (sourceClassification?.recountOwnerSkillMismatch && recount?.LinkedBaseSkillIconPath) {
+    return {
+      iconPath: recount.LinkedBaseSkillIconPath,
+      iconSource: "SkillTable.LocalizedNameMatch"
+    };
+  }
+  if (sourceClassification?.recountOwnerNameMismatch && recount?.IconPath) {
+    return {
+      iconPath: recount.IconPath,
+      iconSource: recount.IconSource || "RecountTable.DamageId"
+    };
+  }
+  return {
+    iconPath: row.IconPath || linked.iconPath || recount?.LinkedBaseSkillIconPath || recount?.LinkedTalentIconPath || recount?.IconPath || "",
+    iconSource: row.IconSource || linked.iconSource || recount?.IconSource || ""
+  };
 }
 
 function normalizeNames(names, fallback) {
@@ -329,6 +1766,144 @@ function firstNonEmptyObject(...values) {
     }
   }
   return {};
+}
+
+function hasRealLocale(names) {
+  if (!names || typeof names !== "object" || Array.isArray(names)) return false;
+  return Object.entries(names).some(([locale, value]) => locale !== "design" && String(value || "").trim());
+}
+
+function namesLookDifferent(leftNames, leftFallback, rightNames, rightFallback) {
+  const left = compareNameText(leftNames, leftFallback);
+  const right = compareNameText(rightNames, rightFallback);
+  return Boolean(left && right && left !== right);
+}
+
+function compareNameText(names, fallback) {
+  return normalizeCompareText(
+    names?.en ||
+    names?.["zh-CN"] ||
+    names?.["zh-TW"] ||
+    names?.design ||
+    fallback
+  );
+}
+
+function namesContainLookupText(names, value) {
+  const key = normalizeTermLookupText(value);
+  if (!key || !names || typeof names !== "object" || Array.isArray(names)) {
+    return false;
+  }
+  return Object.values(names).some((text) => normalizeTermLookupText(text) === key);
+}
+
+function normalizeCompareText(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+function isInternalFormulaLabel(value) {
+  const text = String(value || "").trim();
+  return (
+    /^(?:EX_?)?ATK(?:_\d+|_EX)?$/i.test(text) ||
+    /(?:ATK(?:_\d+|_EX)?|SPECIAL_SKILL(?:_[A-Z])?|UTR_SKILL)/i.test(text)
+  );
+}
+
+function hasImplementationToken(value) {
+  return /子?BUFF|aoe子buff|(?:^|[^A-Za-z])aoe(?:$|[^A-Za-z])|伤害区域|傷害區域|虚拟体|虛擬體|叠层|疊層|天赋|天賦|幸运|幸運|lucky|ATK[_-]?(?:EX|\d+)|SPECIAL_SKILL|UTR_SKILL/i.test(String(value || ""));
+}
+
+function hasInternalSkillImplementationToken(value) {
+  return /(?:SKILL|ATK)(?:[_-]?[A-Z0-9]+)?/i.test(String(value || ""));
+}
+
+function isOwnerOnlyInternalDesignBridge(rawValue, bridge) {
+  const raw = normalizeDesignText(rawValue);
+  const base = normalizeDesignText(bridge?.baseText || bridge?.name || chooseAnyName(bridge?.names));
+  if (!raw || !base || !bridge?.names || !hasRealLocale(bridge.names)) {
+    return false;
+  }
+  if (!hasInternalSkillImplementationToken(raw)) {
+    return false;
+  }
+
+  const stripped = stripDesignImplementationTokens(raw);
+  return Boolean(stripped && normalizeTermLookupText(stripped) === normalizeTermLookupText(base));
+}
+
+function friendlyInternalDisplayNames(value, gameTerms) {
+  const parsed = parseInternalSkillDesign(value);
+  if (!parsed) {
+    return null;
+  }
+
+  const prefixBridge = resolveLocalizedDesignTerm(parsed.prefix, gameTerms);
+  const prefixNames = prefixBridge?.names && hasRealLocale(prefixBridge.names)
+    ? normalizeNames(prefixBridge.names, parsed.prefix)
+    : normalizeNames({ en: parsed.prefix }, parsed.prefix);
+  const tokenNames = { en: parsed.label };
+  const names = joinLocaleNames(prefixNames, tokenNames, parsed.prefix, parsed.label, " ");
+  names.design = parsed.raw;
+  return names;
+}
+
+function parseInternalSkillDesign(value) {
+  const raw = normalizeDesignText(value);
+  if (!raw) {
+    return null;
+  }
+  const match = raw.match(/^(.{1,48}?)(?:[_\-\s]*)(SPECIAL_SKILL|UTR_SKILL|SKILL|ATK)(?:[_-]?([A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*))?$/i);
+  if (!match) {
+    return null;
+  }
+
+  const prefix = normalizeDesignText(match[1]);
+  if (!prefix) {
+    return null;
+  }
+  const token = String(match[2] || "").toUpperCase();
+  const suffix = formatInternalSkillSuffix(match[3] || "");
+  let label = token;
+  if (token === "SKILL") {
+    label = suffix ? `Skill ${suffix}` : "Skill";
+  } else if (token === "ATK") {
+    label = suffix ? `ATK_${suffix.replace(/\s+/g, "_")}` : "ATK";
+  } else if (token === "SPECIAL_SKILL") {
+    label = suffix ? `Special Skill ${suffix}` : "Special Skill";
+  } else if (token === "UTR_SKILL") {
+    label = suffix ? `UTR Skill ${suffix}` : "UTR Skill";
+  }
+
+  return { raw, prefix, token, suffix, label };
+}
+
+function formatInternalSkillSuffix(value) {
+  return String(value || "")
+    .split(/[_-]+/g)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => (/^\d+$/.test(part) ? part.padStart(2, "0") : part.toUpperCase()))
+    .join(" ");
+}
+
+function containsCjk(value) {
+  return /[\u3400-\u9fff]/.test(String(value || ""));
+}
+
+function friendlyInternalDetailName(value) {
+  const text = String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .trim();
+  if (!text) return "";
+  if (/^(?:buff\s*)?aoe(?:子buff)?$/i.test(text)) return "AoE";
+  const atkMatch = text.match(/ATK[_-]?0?(\d+)/i);
+  if (atkMatch) return `ATK_${atkMatch[1].padStart(2, "0")}`;
+  const suffix = text.split(/[-－]/).pop()?.trim() || "";
+  if (/^[A-Za-z]+[_-]?\d+$/i.test(suffix)) return suffix.replace("-", "_");
+  return "";
 }
 
 function chooseAnyName(names) {

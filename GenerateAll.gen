@@ -9,13 +9,14 @@ const scripts = [
   "BuffNames.gen",
   "DamageAttrIdName.gen",
   "RecountTable.gen",
-  "SkillBreakdownDetails.gen",
   "SkillAoyiIcons.gen",
   "MonsterNames.gen",
   "SceneNames.gen",
   "SkillNames.gen",
+  "SkillBreakdownDetails.gen",
   "ExtractIcons.gen",
-  "ExportIconPngs.gen"
+  "ExportIconPngs.gen",
+  "ExportParserAssets.gen"
 ];
 
 for (const script of scripts) {

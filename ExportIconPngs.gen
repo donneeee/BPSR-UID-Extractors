@@ -164,6 +164,9 @@ function mergeExportResults(groups, result, failures) {
           PngHeight: exported.PngHeight,
           PngMode: exported.PngMode,
           PixelSha256: exported.PixelSha256,
+          ObjectPathId: exported.ObjectPathId,
+          SelectedObjectName: exported.SelectedObjectName,
+          SelectedObjectType: exported.SelectedObjectType,
           ProbePixelSha256: exported.ProbePixelSha256,
           ProbePixelMatch: exported.ProbePixelMatch
         });

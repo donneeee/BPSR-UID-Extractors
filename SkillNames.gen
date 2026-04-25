@@ -3,6 +3,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const STRING_POOL = 6;
+const TALENT_PASSIVE_TABLE_HASH = 3345237628;
+const TALENT_NAME_MATCH_MIN_LOCALES = 10;
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -23,6 +25,7 @@ async function main() {
     printHelp,
     readCtbString,
     readCtbTable,
+    readCtbTableByHash,
     readU16,
     readU32,
     resolvePaths
@@ -66,13 +69,16 @@ Notes:
     skillEffect: 0,
     skillEffectSkillId: 0,
     skillFight: 0,
-    tempAttr: 0
+    tempAttr: 0,
+    recountTalentBridge: 0
   };
 
   collectRecountEntries(out, containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    readCtbString,
     readCtbTable,
+    readCtbTableByHash,
     readU16,
     readU32
   }, stats);
@@ -111,10 +117,17 @@ Notes:
     if (!preferredName) {
       continue;
     }
+    const classification = classifySkillNameEntry(id, entry, names);
     rows[id] = {
       Id: numberOrString(id),
       Name: preferredName,
       Names: names,
+      Kind: classification.kind,
+      Kinds: classification.kinds,
+      ...(classification.isBaseSkill ? { IsBaseSkill: true } : {}),
+      ...(classification.isTalent ? { IsTalent: true } : {}),
+      ...(classification.isPassive ? { IsPassive: true } : {}),
+      ...(classification.isDamageSource ? { IsDamageSource: true } : {}),
       ...(entry.nameDesign ? { NameDesign: entry.nameDesign } : {}),
       ...(entry.iconPath ? { IconPath: entry.iconPath } : {}),
       ...(entry.iconPaths.length ? { IconPaths: uniqueSortedStrings(entry.iconPaths) } : {}),
@@ -123,6 +136,7 @@ Notes:
       Sources: [...entry.sources].sort(),
       ...(entry.sourceOffsets.length ? { SourceOffsets: uniqueSortedNumbers(entry.sourceOffsets) } : {}),
       ...(entry.recountIds.length ? { RecountIds: uniqueSortedNumbers(entry.recountIds) } : {}),
+      ...(entry.talentIds.length ? { TalentIds: uniqueSortedNumbers(entry.talentIds) } : {}),
       ...(entry.skillEffectIds.length ? { SkillEffectIds: uniqueSortedNumbers(entry.skillEffectIds) } : {}),
       ...(entry.linkedIds.length ? { LinkedIds: uniqueSortedNumbers(entry.linkedIds) } : {})
     };
@@ -138,6 +152,7 @@ Notes:
   console.log(`SkillEffect SkillId bridges: ${stats.skillEffectSkillId}`);
   console.log(`SkillFight named rows: ${stats.skillFight}`);
   console.log(`TempAttr rows: ${stats.tempAttr}`);
+  console.log(`Recount talent name bridges: ${stats.recountTalentBridge}`);
   console.log(`Skill-name entries written: ${Object.keys(rows).length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, rows, Boolean(args.dryRun));
@@ -223,9 +238,16 @@ function collectSkillTableEntries(target, skillTableLookup, stats) {
 }
 
 function collectRecountEntries(target, containerDir, metaEntries, localizationTables, helpers, stats) {
-  const { buildLocaleTextObject, choosePreferredLocaleText, readCtbTable, readU16, readU32 } = helpers;
+  const { buildLocaleTextObject, choosePreferredLocaleText, readCtbString, readCtbTable, readCtbTableByHash, readU16, readU32 } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "RecountTable.ctb");
   const damagePool = table.pools.get(2);
+  const talentRows = collectTalentPassiveRows(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readCtbTableByHash,
+    readU32
+  });
 
   for (let index = 0; index < table.rowCount; index += 1) {
     const rowOffset = table.rowStart + index * table.rowSize;
@@ -239,14 +261,26 @@ function collectRecountEntries(target, containerDir, metaEntries, localizationTa
     if (!id || !name) {
       continue;
     }
+    const linkedTalent = findTalentNameBridge(names, talentRows);
     putEntry(target, id, {
       name,
       names,
       source: "RecountTable",
+      sources: linkedTalent ? ["TalentPassiveTableNameBridge"] : [],
       priority: 100,
       sourceOffset: table.entry.offset + rowOffset,
-      recountId: id
+      recountId: id,
+      ...(linkedTalent
+        ? {
+            iconPath: linkedTalent.iconPath,
+            iconPathOffset: linkedTalent.iconPathOffset,
+            iconSource: "CTB:3345237628.LocalizedNameMatch",
+            talentId: linkedTalent.id,
+            linkedIds: [linkedTalent.id]
+          }
+        : {})
     });
+    if (linkedTalent) stats.recountTalentBridge += 1;
     stats.recount += 1;
 
     for (const damageId of readDamageIds(damagePool, damageOffset, { readU16, readU32 })) {
@@ -254,14 +288,85 @@ function collectRecountEntries(target, containerDir, metaEntries, localizationTa
         name,
         names,
         source: "RecountTableDamageId",
+        sources: linkedTalent ? ["TalentPassiveTableNameBridge"] : [],
         priority: 95,
         sourceOffset: table.entry.offset + rowOffset,
         recountId: id,
-        linkedId: id
+        linkedId: id,
+        ...(linkedTalent
+          ? {
+              iconPath: linkedTalent.iconPath,
+              iconPathOffset: linkedTalent.iconPathOffset,
+              iconSource: "CTB:3345237628.LocalizedNameMatch",
+              talentId: linkedTalent.id,
+              linkedIds: [linkedTalent.id]
+            }
+          : {})
       });
       stats.recountDamage += 1;
     }
   }
+}
+
+function collectTalentPassiveRows(containerDir, metaEntries, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readCtbString, readCtbTableByHash, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(containerDir, metaEntries, TALENT_PASSIVE_TABLE_HASH, "CTB:3345237628");
+  } catch {
+    return [];
+  }
+
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const nameId = readU32(table.data, rowOffset + 8);
+    const iconOffset = readU32(table.data, rowOffset + 20);
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    const name = choosePreferredLocaleText(names);
+    const iconPath = readCtbString(table, STRING_POOL, iconOffset, { allowZero: false });
+    if (!id || !name || !iconPath) {
+      continue;
+    }
+    rows.push({
+      id,
+      name,
+      nameId,
+      names,
+      iconPath,
+      iconPathOffset: iconOffset,
+      sourceOffset: table.entry.offset + rowOffset
+    });
+  }
+  return rows;
+}
+
+function findTalentNameBridge(recountNames, talentRows) {
+  const scored = [];
+  for (const talent of talentRows || []) {
+    const englishMatches =
+      normalizeLocaleText(recountNames?.en) &&
+      normalizeLocaleText(recountNames?.en) === normalizeLocaleText(talent.names?.en);
+    if (!englishMatches) {
+      continue;
+    }
+    const matchCount = matchingLocaleCount(recountNames, talent.names);
+    if (matchCount < TALENT_NAME_MATCH_MIN_LOCALES) {
+      continue;
+    }
+    scored.push({ talent, matchCount });
+  }
+  scored.sort((left, right) =>
+    right.matchCount - left.matchCount ||
+    Number(left.talent.id) - Number(right.talent.id)
+  );
+  if (!scored.length || (scored[1] && scored[1].matchCount === scored[0].matchCount)) {
+    return null;
+  }
+  return { ...scored[0].talent, matchCount: scored[0].matchCount };
 }
 
 function collectDamageAttrEntries(target, outputDir, stats) {
@@ -632,6 +737,7 @@ function putEntry(target, id, update) {
     iconPathOffsets: [],
     iconSources: new Set(),
     recountIds: [],
+    talentIds: [],
     skillEffectIds: [],
     linkedIds: []
   };
@@ -650,6 +756,11 @@ function putEntry(target, id, update) {
   }
 
   if (update.source) current.sources.add(update.source);
+  if (Array.isArray(update.sources)) {
+    for (const source of update.sources) {
+      if (source) current.sources.add(String(source));
+    }
+  }
   if (Number.isFinite(Number(update.sourceOffset))) current.sourceOffsets.push(Number(update.sourceOffset));
   if (update.iconPath) {
     current.iconPaths.push(String(update.iconPath));
@@ -665,9 +776,70 @@ function putEntry(target, id, update) {
   if (Number.isFinite(Number(update.iconPathOffset))) current.iconPathOffsets.push(Number(update.iconPathOffset));
   if (update.iconSource) current.iconSources.add(String(update.iconSource));
   if (Number.isFinite(Number(update.recountId))) current.recountIds.push(Number(update.recountId));
+  if (Number.isFinite(Number(update.talentId))) current.talentIds.push(Number(update.talentId));
+  if (Array.isArray(update.talentIds)) {
+    for (const talentId of update.talentIds) {
+      if (Number.isFinite(Number(talentId))) current.talentIds.push(Number(talentId));
+    }
+  }
   if (Number.isFinite(Number(update.skillEffectId))) current.skillEffectIds.push(Number(update.skillEffectId));
   if (Number.isFinite(Number(update.linkedId))) current.linkedIds.push(Number(update.linkedId));
+  if (Array.isArray(update.linkedIds)) {
+    for (const linkedId of update.linkedIds) {
+      if (Number.isFinite(Number(linkedId))) current.linkedIds.push(Number(linkedId));
+    }
+  }
   target.set(key, current);
+}
+
+function classifySkillNameEntry(id, entry, names) {
+  const sources = [...(entry.sources || [])].map(String);
+  const iconText = [entry.iconPath, ...(entry.iconPaths || [])].join(" ").toLowerCase();
+  const nameText = [
+    entry.name,
+    entry.nameDesign,
+    ...Object.values(names || {})
+  ].join(" ").toLowerCase();
+  const sourceText = sources.join(" ");
+  const kinds = new Set();
+
+  if (sources.includes("SkillTable")) kinds.add("skill-table");
+  if (sources.some((source) => source.includes("SkillEffect"))) kinds.add("skill-effect");
+  if (sources.some((source) => source.includes("SkillFight"))) kinds.add("skill-fight");
+  if (sources.some((source) => source.includes("RecountTable"))) kinds.add("recount");
+  if (sources.some((source) => source.includes("DamageAttr"))) kinds.add("damage-attr");
+  if (sources.some((source) => source.includes("TempAttr"))) kinds.add("temp-attr");
+  if (sources.some((source) => source.includes("TalentPassive")) || entry.talentIds?.length) kinds.add("talent");
+  if (/buff|debuff/.test(iconText) || /LinkedBuff/i.test(sourceText)) kinds.add("buff-linked");
+  if (/talent|passive/.test(iconText) || /\btalent\b/.test(nameText)) kinds.add("talent");
+  if (/passive/.test(iconText) || /\bpassive\b/.test(nameText)) kinds.add("passive");
+
+  const isTalent = kinds.has("talent");
+  const isPassive = kinds.has("passive");
+  const isBaseSkill = sources.includes("SkillTable") && !isTalent;
+  const isDamageSource = kinds.has("damage-attr") || kinds.has("recount");
+  const kind = choosePrimarySkillKind({ id, kinds, sources, isTalent, isPassive, isBaseSkill, isDamageSource });
+
+  return {
+    kind,
+    kinds: [...kinds].sort((a, b) => a.localeCompare(b)),
+    isBaseSkill,
+    isTalent,
+    isPassive,
+    isDamageSource
+  };
+}
+
+function choosePrimarySkillKind({ kinds, sources, isTalent, isPassive, isBaseSkill, isDamageSource }) {
+  if (isTalent) return "talent";
+  if (isPassive) return "passive";
+  if (isBaseSkill) return "base-skill";
+  if (sources.some((source) => source.includes("SkillEffect"))) return "skill-effect";
+  if (sources.some((source) => source.includes("SkillFight"))) return "skill-fight";
+  if (kinds.has("buff-linked")) return "buff-linked";
+  if (isDamageSource) return "damage-source";
+  if (kinds.has("temp-attr")) return "temp-attr";
+  return "unknown";
 }
 
 function collectLocalizedTextEntries(nameId, localizationTables) {
@@ -686,6 +858,24 @@ function collectLocalizedTextEntries(nameId, localizationTables) {
     }
   }
   return entries;
+}
+
+function matchingLocaleCount(left, right) {
+  let count = 0;
+  for (const [localeId, value] of Object.entries(left || {})) {
+    if (localeId === "design") {
+      continue;
+    }
+    const normalized = normalizeLocaleText(value);
+    if (normalized && normalized === normalizeLocaleText(right?.[localeId])) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+function normalizeLocaleText(value) {
+  return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
 function readDamageIds(pool, offset, helpers) {

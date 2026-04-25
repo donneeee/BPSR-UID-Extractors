@@ -1,0 +1,1280 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const os = require("node:os");
+const path = require("node:path");
+const crypto = require("node:crypto");
+const { spawnSync } = require("node:child_process");
+
+const ADDRESS_LINE_PREFIX = Buffer.from("address:");
+const SPRITE_LINE_PREFIX = Buffer.from("spriteAddress:");
+const DEFAULT_MANIFEST_NAME = "parser-assets/manifest.json";
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    displayPath,
+    loadMetaEntries,
+    parseArgs,
+    printHelp,
+    readJson,
+    readPackage,
+    readPkgEntry,
+    resolvePaths,
+    writeJson
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp(
+      "ExportParserAssets.gen - stage parser-shaped static image assets from game files.",
+      `
+Parser-asset options:
+  --icons-dir <path>           Icon manifest directory. Default: <output-dir>/icons.
+  --parser-assets-dir <path>   Staged parser asset output. Default: <output-dir>/parser-assets.
+  --compare-static-dir <path>  Optional existing parser static/images folder to compare against.
+  --compare-parser-locale-dir <path>
+                               Optional existing parser locale folder to compare BuffName
+                               row-to-SpriteFile pairings against generated row-linked assets.
+
+Notes:
+  This command never writes to the parser repo. It stages assets under
+  output/parser-assets/static/images and writes asset-path-map.json so parser
+  JSON generators can point at game-file-derived image paths.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, DEFAULT_MANIFEST_NAME);
+  const iconsDir = path.resolve(args.iconsDir ? args.iconsDir : path.join(paths.outputDir, "icons"));
+  const parserAssetsDir = path.resolve(
+    args.parserAssetsDir ? args.parserAssetsDir : path.join(paths.outputDir, "parser-assets")
+  );
+  const manifestPath = path.join(parserAssetsDir, "manifest.json");
+  const assetMapPath = path.join(parserAssetsDir, "asset-path-map.json");
+  const compareDetailsPath = path.join(parserAssetsDir, "compare-details.json");
+  const compareSummaryPath = path.join(parserAssetsDir, "compare-summary.md");
+  const iconManifestPath = path.join(iconsDir, "IconManifest.json");
+
+  if (!fs.existsSync(iconManifestPath)) {
+    throw new Error(`Missing icon manifest: ${iconManifestPath}. Run ExtractIcons.gen first.`);
+  }
+
+  const iconManifest = readJson(iconManifestPath);
+  const iconGroups = loadGroupManifests(iconsDir, iconManifest, readJson);
+  const iconAssets = iconGroups.flatMap((group) =>
+    (group.manifest.Assets || []).map((asset) => ({
+      ...asset,
+      SourceGroup: asset.SourceGroup || group.manifest.SourceGroup
+    }))
+  );
+
+  const pkg = readPackage(paths.m0Path);
+  const addressCatalog = readAddressCatalog(pkg);
+  const spriteCatalog = readSpriteCatalog(pkg);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+
+  const manifestCandidates = collectManifestCandidates(iconAssets, iconsDir);
+  const catalogCandidates = collectCatalogCandidates(addressCatalog, spriteCatalog, metaEntries);
+  const candidates = dedupeCandidates([...manifestCandidates, ...catalogCandidates]);
+  const classified = candidates.filter((candidate) => candidate.bucket);
+  const unclassified = candidates.filter((candidate) => !candidate.bucket);
+  const bucketCounts = countBy(classified, (candidate) => candidate.bucket);
+
+  if (args.dryRun) {
+    console.log(`Dry run: parser asset candidates ${classified.length.toLocaleString()}`);
+    console.log(`Dry run: unclassified game/icon assets ${unclassified.length.toLocaleString()}`);
+    for (const [bucket, count] of [...bucketCounts.entries()].sort(([a], [b]) => a.localeCompare(b))) {
+      console.log(`  ${bucket}: ${count.toLocaleString()}`);
+    }
+    console.log(`Dry run: would stage parser assets under ${displayPath(parserAssetsDir)}`);
+    console.log(`Dry run: would write ${displayPath(manifestPath)}`);
+    console.log(`Dry run: would write ${displayPath(assetMapPath)}`);
+    return;
+  }
+
+  prepareParserAssetsOutput(parserAssetsDir, paths.outputDir);
+  const decoded = decodeCandidates(classified, {
+    containerDir,
+    metaEntries,
+    parserAssetsDir,
+    readPkgEntry,
+    writeJson
+  });
+  const compareReport = args.compareStaticDir
+    ? buildCompareReport({
+        stagedImagesRoot: path.join(parserAssetsDir, "static", "images"),
+        compareImagesRoot: resolveCompareImagesRoot(args.compareStaticDir),
+        parserLocaleDir: args.compareParserLocaleDir ? path.resolve(args.compareParserLocaleDir) : "",
+        assets: decoded.assets
+      })
+    : null;
+  const compare = compareReport?.summary || null;
+
+  const assetMap = {
+    GeneratedAt: currentTimestamp(),
+    OutputDir: portablePath(parserAssetsDir),
+    StaticImagesDir: portablePath(path.join(parserAssetsDir, "static", "images")),
+    SourceIconManifest: portablePath(iconManifestPath),
+    AssetCount: decoded.assets.length,
+    FailureCount: decoded.failures.length,
+    Assets: decoded.assets.sort((a, b) => a.ParserPath.localeCompare(b.ParserPath))
+  };
+  writeJson(assetMapPath, assetMap);
+  if (compareReport) {
+    writeJson(compareDetailsPath, compareReport.details);
+    fs.writeFileSync(compareSummaryPath, renderCompareSummary(compareReport.details), "utf8");
+  }
+
+  const manifest = {
+    GeneratedAt: currentTimestamp(),
+    OutputDir: portablePath(parserAssetsDir),
+    StaticImagesDir: portablePath(path.join(parserAssetsDir, "static", "images")),
+    SourceIconManifest: portablePath(iconManifestPath),
+    AddressCatalogEntries: addressCatalog.entries.length,
+    SpriteCatalogEntries: spriteCatalog.entries.length,
+    ManifestCandidateCount: manifestCandidates.length,
+    CatalogCandidateCount: catalogCandidates.length,
+    ClassifiedCandidateCount: classified.length,
+    UnclassifiedCandidateCount: unclassified.length,
+    AssetCount: decoded.assets.length,
+    FailureCount: decoded.failures.length,
+    BucketCounts: Object.fromEntries(bucketCounts),
+    Compare: compare,
+    Failures: decoded.failures.slice(0, 200),
+    UnclassifiedSamples: unclassified.slice(0, 100).map(summarizeCandidate)
+  };
+  writeJson(manifestPath, manifest);
+
+  console.log(`Parser assets staged: ${decoded.assets.length.toLocaleString()}`);
+  console.log(`Parser asset failures: ${decoded.failures.length.toLocaleString()}`);
+  console.log(`Wrote ${displayPath(manifestPath)}`);
+  console.log(`Wrote ${displayPath(assetMapPath)}`);
+  if (compare) {
+    console.log(`Wrote ${displayPath(compareDetailsPath)}`);
+    console.log(`Wrote ${displayPath(compareSummaryPath)}`);
+    console.log(
+      `Compare: ${compare.ExactMatches.toLocaleString()} exact, ${compare.DifferentFiles.toLocaleString()} different, ${compare.MissingInCompareRoot.toLocaleString()} new/missing`
+    );
+  }
+}
+
+function loadGroupManifests(iconsDir, manifest, readJson) {
+  const groups = manifest.GroupManifests || manifest.JsonManifests || [];
+  return groups.map((group) => {
+    const manifestPath = path.join(iconsDir, group.Manifest);
+    if (!fs.existsSync(manifestPath)) {
+      throw new Error(`Missing group manifest: ${manifestPath}`);
+    }
+    return {
+      path: manifestPath,
+      manifest: readJson(manifestPath)
+    };
+  });
+}
+
+function collectManifestCandidates(iconAssets, iconsDir) {
+  const out = [];
+  for (const asset of iconAssets) {
+    const name = manifestAssetName(asset);
+    const classification = classifyParserBucketForSource(
+      asset.SourceGroup || "",
+      name,
+      asset.Address || asset.Value || "",
+      asset
+    );
+    const candidate = {
+      AssetId: `icon:${asset.AssetId}`,
+      SourceKinds: [asset.SourceKind || "icon-manifest"],
+      SourceGroups: [asset.SourceGroup || ""].filter(Boolean),
+      SourceFiles: [asset.SourceFile || ""].filter(Boolean),
+      SourceAssetIds: [asset.AssetId || ""].filter(Boolean),
+      OriginalPngFiles: [asset.PngFile ? path.join(iconsDir, asset.PngFile) : ""].filter(Boolean),
+      Rows: normalizeRows(asset.Rows),
+      ResourceType: asset.ResourceType,
+      BundleHash: Number(asset.BundleHash),
+      Address: asset.Address || "",
+      Value: asset.Value || "",
+      SpriteName: asset.SpriteName || "",
+      TextureName: asset.TextureName || "",
+      Name: name,
+      bucket: classification?.bucket || "",
+      noSuffix: Boolean(classification?.noSuffix)
+    };
+    out.push(candidate);
+  }
+  return out;
+}
+
+function collectCatalogCandidates(addressCatalog, spriteCatalog, metaEntries) {
+  const out = [];
+
+  for (const sprite of spriteCatalog.entries) {
+    const atlas = addressCatalog.byHash.get(sprite.atlasAddress);
+    if (!atlas || !metaEntries.has(atlas.bundleHash)) {
+      continue;
+    }
+    const address = `${atlas.address}/${sprite.spriteName}`;
+    const classification = classifyParserBucket(sprite.spriteName, address, {
+      ResourceType: "Sprite",
+      AtlasAddress: atlas.address
+    });
+    if (!classification) {
+      continue;
+    }
+    out.push({
+      AssetId: `catalog:sprite:${atlas.bundleHash}:${sprite.spriteName}:${sprite.atlasAddress}`,
+      SourceKinds: ["game-catalog"],
+      SourceGroups: [],
+      SourceFiles: [],
+      SourceAssetIds: [],
+      OriginalPngFiles: [],
+      Rows: [],
+      ResourceType: "Sprite",
+      BundleHash: atlas.bundleHash,
+      Address: address,
+      Value: atlas.address,
+      AtlasAddress: atlas.address,
+      AtlasHash: atlas.addressHash,
+      SpriteName: sprite.spriteName,
+      SpriteAddress: sprite.spriteAddress,
+      TextureName: "",
+      Name: sprite.spriteName,
+      bucket: classification.bucket,
+      noSuffix: Boolean(classification.noSuffix)
+    });
+  }
+
+  for (const entry of addressCatalog.entries) {
+    if (!metaEntries.has(entry.bundleHash)) {
+      continue;
+    }
+    const name = basenameNoExt(entry.address);
+    const classification = classifyParserBucket(name, entry.address, {
+      ResourceType: "Texture2D"
+    });
+    if (!classification) {
+      continue;
+    }
+    out.push({
+      AssetId: `catalog:texture:${entry.bundleHash}:${entry.addressHash}:${name}`,
+      SourceKinds: ["game-catalog"],
+      SourceGroups: [],
+      SourceFiles: [],
+      SourceAssetIds: [],
+      OriginalPngFiles: [],
+      Rows: [],
+      ResourceType: "Texture2D",
+      BundleHash: entry.bundleHash,
+      Address: entry.address,
+      Value: entry.address,
+      AddressHash: entry.addressHash,
+      SpriteName: "",
+      TextureName: name,
+      Name: name,
+      bucket: classification.bucket,
+      noSuffix: Boolean(classification.noSuffix)
+    });
+  }
+
+  return out;
+}
+
+function classifyParserBucket(name, address, asset = {}) {
+  const base = basenameNoExt(name).toLowerCase();
+  const text = `${base} ${String(address || "").toLowerCase()} ${String(asset.AtlasAddress || "").toLowerCase()}`;
+  if (isLikelyNonUiIconAsset(base, text, asset)) {
+    return null;
+  }
+
+  if (/^skill_aoyi_skill_icon_\d+$/i.test(base)) {
+    return { bucket: "resonance_skill", noSuffix: true };
+  }
+
+  const resourceBucket = classifyClassResource(base);
+  if (resourceBucket) {
+    return { bucket: resourceBucket };
+  }
+
+  const skillBucket = classifyClassSkill(base, text);
+  if (skillBucket) {
+    return { bucket: skillBucket };
+  }
+
+  if (
+    /^buff_/i.test(base) ||
+    /^debuff_/i.test(base) ||
+    /^com_affix_/i.test(base) ||
+    /\/(buff|debuff|affix)\b/i.test(text) ||
+    /\/hud\/debuff\b/i.test(text)
+  ) {
+    return { bucket: "buff" };
+  }
+
+  if (
+    /^talent_/i.test(base) ||
+    /^(changqiang|mozhang|taidao|weiren|gongjian|gita|jiandun|fahuan)\d*/i.test(base) ||
+    /^common_(attr|icon)/i.test(base) ||
+    /^s2talent/i.test(base) ||
+    /^mod_effect_/i.test(base) ||
+    /\/talent_(passive|skill)\b/i.test(text)
+  ) {
+    return { bucket: "talent" };
+  }
+
+  return null;
+}
+
+function classifyParserBucketForSource(sourceGroup, name, address, asset = {}) {
+  if (sourceGroup === "skill_aoyi_icons") {
+    return /^skill_aoyi_skill_icon_\d+$/i.test(basenameNoExt(name))
+      ? { bucket: "resonance_skill", noSuffix: true }
+      : null;
+  }
+
+  const base = basenameNoExt(name).toLowerCase();
+  const text = `${base} ${String(address || "").toLowerCase()} ${String(asset.AtlasAddress || "").toLowerCase()}`;
+  if (isLikelyNonUiIconAsset(base, text, asset)) {
+    return null;
+  }
+
+  if (sourceGroup === "BuffName") {
+    return { bucket: "buff" };
+  }
+
+  return classifyParserBucket(name, address, asset);
+}
+
+function isLikelyNonUiIconAsset(base, text, asset = {}) {
+  if (/^(p_fx|fx_|vfx_|sfx_|se_)/i.test(base)) {
+    return true;
+  }
+
+  if (/_tpl$/i.test(base) || base === "main_progress_bar") {
+    return true;
+  }
+
+  if (/^talent_(attr_tpl|award_window|icon_glow|next_station|skill_window|tree_)/i.test(base)) {
+    return true;
+  }
+
+  if (asset.ResourceType === "Texture2D" && !/\bui\//i.test(text)) {
+    return true;
+  }
+
+  return false;
+}
+
+function classifyClassResource(base) {
+  const rules = [
+    ["wind_knight/res", /^(main_lance|fightres_frame)/],
+    ["frost_mage/res", /^main_snow/],
+    ["stormblade/res", /^main_thunder/],
+    ["heavy_guardian/res", /^(main_rock|main_progress|hazard_sign)/],
+    ["marksman/res", /^main_shooter/]
+  ];
+  for (const [bucket, pattern] of rules) {
+    if (pattern.test(base)) {
+      return bucket;
+    }
+  }
+  return "";
+}
+
+function classifyClassSkill(base, text) {
+  const rules = [
+    ["wind_knight/skill", /(^weapon_cq($|[-_])|\/skill_weapon_cq\/)/],
+    ["frost_mage/skill", /(^weapon_mz($|[-_])|\/skill_weapon_mz\/)/],
+    ["stormblade/skill", /(^weapon_tdl($|[-_])|\/skill_weapon_tdl\/)/],
+    ["heavy_guardian/skill", /(^weapon_wr($|[-_])|\/skill_weapon_wr\/)/],
+    ["marksman/skill", /(^weapon_gj($|[-_])|\/skill_weapon_gj\/)/],
+    ["beat_performer/skill", /(^weapon_jt($|[-_])|\/skill_weapon_jt\/)/],
+    ["shield_knight/skill", /(^weapon_jd($|[-_])|\/skill_weapon_jd\/)/],
+    ["verdant_oracle/skill", /(^weapon_fh($|[-_])|\/skill_weapon_fh\/)/]
+  ];
+  for (const [bucket, pattern] of rules) {
+    if (pattern.test(base) || pattern.test(text)) {
+      return bucket;
+    }
+  }
+  return "";
+}
+
+function dedupeCandidates(candidates) {
+  const byKey = new Map();
+  for (const candidate of candidates) {
+    const key = [
+      candidate.ResourceType,
+      candidate.BundleHash,
+      candidate.bucket,
+      candidate.SpriteName || candidate.TextureName || candidate.Name,
+      candidate.Address
+    ].join("|").toLowerCase();
+    const existing = byKey.get(key);
+    if (!existing) {
+      byKey.set(key, candidate);
+      continue;
+    }
+    existing.SourceKinds = uniqueStrings([...existing.SourceKinds, ...candidate.SourceKinds]);
+    existing.SourceGroups = uniqueStrings([...existing.SourceGroups, ...candidate.SourceGroups]);
+    existing.SourceFiles = uniqueStrings([...existing.SourceFiles, ...candidate.SourceFiles]);
+    existing.SourceAssetIds = uniqueStrings([...existing.SourceAssetIds, ...candidate.SourceAssetIds]);
+    existing.OriginalPngFiles = uniqueStrings([...existing.OriginalPngFiles, ...candidate.OriginalPngFiles]);
+    existing.Rows = dedupeRows([...(existing.Rows || []), ...(candidate.Rows || [])]);
+    if (!existing.bucket && candidate.bucket) {
+      existing.bucket = candidate.bucket;
+      existing.noSuffix = candidate.noSuffix;
+    }
+  }
+  return [...byKey.values()].sort((a, b) => (a.bucket || "").localeCompare(b.bucket || "") || a.Name.localeCompare(b.Name));
+}
+
+function decodeCandidates(candidates, options) {
+  const { containerDir, metaEntries, parserAssetsDir, readPkgEntry, writeJson } = options;
+  const tempDir = createTempDir(parserAssetsDir);
+  const failures = [];
+  const assets = [];
+
+  try {
+    const bundleFiles = new Map();
+    const planItems = [];
+    let index = 0;
+    for (const candidate of candidates) {
+      const entry = metaEntries.get(Number(candidate.BundleHash));
+      if (!entry) {
+        failures.push(minimalFailure(candidate, `Missing package entry for bundle hash ${candidate.BundleHash}`));
+        continue;
+      }
+
+      let bundleFile = bundleFiles.get(candidate.BundleHash);
+      if (!bundleFile) {
+        bundleFile = path.join(tempDir, `${candidate.BundleHash}.bundle`);
+        fs.writeFileSync(bundleFile, readPkgEntry(containerDir, entry));
+        bundleFiles.set(candidate.BundleHash, bundleFile);
+      }
+
+      planItems.push({
+        AssetId: candidate.AssetId,
+        BundleFile: bundleFile,
+        PngFile: path.join(tempDir, "png", `${index++}.png`),
+        ResourceType: candidate.ResourceType,
+        SpriteName: candidate.SpriteName || "",
+        TextureName: candidate.TextureName || "",
+        RequiresProbePixelMatch: false
+      });
+    }
+
+    const planPath = path.join(tempDir, "parser-asset-export-plan.json");
+    const resultPath = path.join(tempDir, "parser-asset-export-result.json");
+    writeJson(planPath, { Items: planItems });
+    runPythonDecoder(planPath, resultPath);
+
+    const result = JSON.parse(fs.readFileSync(resultPath, "utf8"));
+    const exportedById = new Map((result.Exported || []).map((item) => [item.AssetId, item]));
+    const failedById = new Map((result.Failed || []).map((item) => [item.AssetId, item]));
+    const targetHashes = new Map();
+
+    for (const candidate of candidates) {
+      const exported = exportedById.get(candidate.AssetId);
+      if (!exported) {
+        const failed = failedById.get(candidate.AssetId);
+        failures.push(minimalFailure(candidate, failed?.Error || "PNG export failed"));
+        continue;
+      }
+
+      const tempPng = exported.PngFile;
+      if (!tempPng || !fs.existsSync(tempPng)) {
+        failures.push(minimalFailure(candidate, `Decoded PNG missing: ${tempPng || "(empty)"}`));
+        continue;
+      }
+
+      const parserPath = chooseParserPath(candidate, exported, targetHashes, tempPng);
+      const absoluteParserPath = path.join(parserAssetsDir, ...parserPath.split("/"));
+      fs.mkdirSync(path.dirname(absoluteParserPath), { recursive: true });
+      fs.copyFileSync(tempPng, absoluteParserPath);
+
+      assets.push({
+        AssetId: candidate.AssetId,
+        ParserPath: parserPath,
+        ParserImagePath: `/${parserPath.replace(/^static\//, "")}`,
+        Bucket: candidate.bucket,
+        Name: candidate.Name,
+        ResourceType: candidate.ResourceType,
+        BundleHash: candidate.BundleHash,
+        ObjectPathId: exported.ObjectPathId,
+        SelectedObjectName: exported.SelectedObjectName,
+        SelectedObjectType: exported.SelectedObjectType,
+        PngWidth: exported.PngWidth,
+        PngHeight: exported.PngHeight,
+        PngMode: exported.PngMode,
+        PixelSha256: exported.PixelSha256,
+        Address: candidate.Address,
+        Value: candidate.Value,
+        SpriteName: candidate.SpriteName || undefined,
+        TextureName: candidate.TextureName || undefined,
+        SourceKinds: candidate.SourceKinds,
+        SourceGroups: candidate.SourceGroups,
+        SourceFiles: candidate.SourceFiles,
+        SourceAssetIds: candidate.SourceAssetIds,
+        Rows: candidate.Rows || []
+      });
+    }
+  } finally {
+    removeTempDir(tempDir, parserAssetsDir);
+  }
+
+  return { assets, failures };
+}
+
+function prepareParserAssetsOutput(parserAssetsDir, outputDir) {
+  const resolvedParserAssetsDir = path.resolve(parserAssetsDir);
+  const resolvedOutputDir = path.resolve(outputDir);
+  const insideOutput =
+    resolvedParserAssetsDir === resolvedOutputDir ||
+    resolvedParserAssetsDir.startsWith(`${resolvedOutputDir}${path.sep}`);
+  if (!insideOutput) {
+    console.warn(`Skipping staged image cleanup outside output dir: ${resolvedParserAssetsDir}`);
+    return;
+  }
+
+  const stagedImagesDir = path.join(resolvedParserAssetsDir, "static", "images");
+  if (fs.existsSync(stagedImagesDir)) {
+    fs.rmSync(stagedImagesDir, { recursive: true, force: true });
+  }
+
+  for (const fileName of ["manifest.json", "asset-path-map.json"]) {
+    const filePath = path.join(resolvedParserAssetsDir, fileName);
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+  }
+}
+
+function chooseParserPath(candidate, exported, targetHashes, tempPng) {
+  const stem = sanitizePathSegment(candidate.Name);
+  const pathId = exported.ObjectPathId;
+  const suffix = candidate.noSuffix || pathId === null || pathId === undefined || pathId === ""
+    ? ""
+    : `_${String(pathId)}`;
+  const fileName = `${stem}${suffix}.png`;
+  let parserPath = path.posix.join("static/images", candidate.bucket, fileName);
+  const hash = sha256File(tempPng);
+  const existingHash = targetHashes.get(parserPath.toLowerCase());
+  if (existingHash && existingHash !== hash) {
+    const fallback = candidate.noSuffix ? `_${candidate.BundleHash}` : `_${candidate.BundleHash}`;
+    parserPath = path.posix.join("static/images", candidate.bucket, `${stem}${suffix}${fallback}.png`);
+  }
+  targetHashes.set(parserPath.toLowerCase(), hash);
+  return parserPath;
+}
+
+function runPythonDecoder(planPath, resultPath) {
+  const scriptPath = path.join(__dirname, "export_icon_pngs.py");
+  const result = spawnSync("python", [scriptPath, "--plan", planPath, "--result", resultPath], {
+    cwd: __dirname,
+    stdio: "inherit"
+  });
+  if (result.error) {
+    throw result.error;
+  }
+  if (result.status !== 0) {
+    throw new Error(`Python icon decoder exited with status ${result.status}`);
+  }
+}
+
+function buildCompareReport({ stagedImagesRoot, compareImagesRoot, parserLocaleDir, assets }) {
+  const staged = scanPngFiles(stagedImagesRoot);
+  const compare = scanPngFiles(compareImagesRoot);
+  const assetsByRel = new Map();
+  for (const asset of assets || []) {
+    assetsByRel.set(relFromParserPath(asset.ParserPath), asset);
+  }
+
+  const exactMatches = [];
+  const differentSamePath = [];
+  const stagedOnly = [];
+  const compareOnly = [];
+
+  for (const [rel, stagedRecord] of staged) {
+    const compareRecord = compare.get(rel);
+    if (!compareRecord) {
+      stagedOnly.push(fileCompareRecord(rel, stagedRecord, assetsByRel.get(rel)));
+      continue;
+    }
+
+    if (compareRecord.hash === stagedRecord.hash) {
+      exactMatches.push(fileCompareRecord(rel, stagedRecord, assetsByRel.get(rel)));
+    } else {
+      differentSamePath.push({
+        ...fileCompareRecord(rel, stagedRecord, assetsByRel.get(rel)),
+        CompareHash: compareRecord.hash,
+        CompareSizeBytes: compareRecord.sizeBytes
+      });
+    }
+  }
+
+  for (const [rel, compareRecord] of compare) {
+    if (!staged.has(rel)) {
+      compareOnly.push(fileCompareRecord(rel, compareRecord, null));
+    }
+  }
+
+  const compareOnlyByBase = groupBy(compareOnly, (record) => record.BaseKey);
+  const compareOnlyByHash = groupBy(compareOnly, (record) => record.Hash);
+  const sameBaseDifferentPath = [];
+  const pixelMatchesDifferentPath = [];
+
+  for (const record of stagedOnly) {
+    const baseMatches = compareOnlyByBase.get(record.BaseKey) || [];
+    for (const match of baseMatches) {
+      sameBaseDifferentPath.push({
+        Staged: record,
+        Compare: match,
+        SamePixels: record.Hash === match.Hash
+      });
+    }
+
+    const hashMatches = compareOnlyByHash.get(record.Hash) || [];
+    for (const match of hashMatches) {
+      pixelMatchesDifferentPath.push({
+        Staged: record,
+        Compare: match,
+        SameBase: record.BaseKey === match.BaseKey
+      });
+    }
+  }
+
+  const rowLinkedAssets = [...assetsByRel.entries()]
+    .map(([rel, asset]) => fileCompareRecord(rel, staged.get(rel), asset))
+    .filter((record) => record.Rows.length > 0);
+  const byBucket = summarizeCompareBuckets({
+    ExactMatches: exactMatches,
+    DifferentSamePath: differentSamePath,
+    StagedOnly: stagedOnly,
+    CompareOnly: compareOnly
+  });
+  const parserPairings = parserLocaleDir
+    ? buildParserPairingReport({
+        parserLocaleDir,
+        staged,
+        compare,
+        assets
+      })
+    : null;
+
+  const summary = {
+    CompareRoot: portablePath(compareImagesRoot),
+    StagedCount: staged.size,
+    CompareRootCount: compare.size,
+    ExactMatches: exactMatches.length,
+    DifferentFiles: differentSamePath.length,
+    MissingInCompareRoot: stagedOnly.length,
+    ExtraInCompareRoot: compareOnly.length,
+    SameBaseDifferentPath: sameBaseDifferentPath.length,
+    PixelMatchesDifferentPath: pixelMatchesDifferentPath.length,
+    RowLinkedAssets: rowLinkedAssets.length,
+    ParserPairings: parserPairings?.Summary || null,
+    DifferentSamples: differentSamePath.slice(0, 50).map((record) => record.Rel),
+    MissingSamples: stagedOnly.slice(0, 50).map((record) => record.Rel),
+    ExtraSamples: compareOnly.slice(0, 50).map((record) => record.Rel)
+  };
+
+  return {
+    summary,
+    details: {
+      GeneratedAt: currentTimestamp(),
+      CompareRoot: portablePath(compareImagesRoot),
+      StagedImagesRoot: portablePath(stagedImagesRoot),
+      ParserLocaleDir: parserPairings ? portablePath(parserLocaleDir) : null,
+      Summary: summary,
+      ByBucket: byBucket,
+      ExactMatches: exactMatches,
+      DifferentSamePath: differentSamePath,
+      StagedOnly: stagedOnly,
+      CompareOnly: compareOnly,
+      SameBaseDifferentPath: sameBaseDifferentPath,
+      PixelMatchesDifferentPath: pixelMatchesDifferentPath,
+      RowLinkedAssets: rowLinkedAssets,
+      ParserPairings: parserPairings
+    }
+  };
+}
+
+function buildParserPairingReport({ parserLocaleDir, staged, compare, assets }) {
+  const parserBuffPath = path.join(parserLocaleDir, "parser", "BuffName.json");
+  const searchBuffPath = path.join(parserLocaleDir, "search", "BuffNameSearch.json");
+  const parserBuff = readJsonIfExists(parserBuffPath, {});
+  const searchBuff = readJsonIfExists(searchBuffPath, {});
+  const generatedById = new Map();
+
+  for (const asset of assets || []) {
+    if (!(asset.SourceGroups || []).includes("BuffName")) {
+      continue;
+    }
+    for (const row of asset.Rows || []) {
+      const id = stringId(row.Id ?? row.id);
+      if (!id) {
+        continue;
+      }
+      const records = generatedById.get(id) || [];
+      records.push(asset);
+      generatedById.set(id, records);
+    }
+  }
+
+  const ids = new Set([...Object.keys(parserBuff), ...Object.keys(searchBuff), ...generatedById.keys()]);
+  const rows = [];
+  const statusCounts = new Map();
+
+  for (const id of [...ids].sort(compareIds)) {
+    const parserEntry = parserBuff[id] && typeof parserBuff[id] === "object" ? parserBuff[id] : {};
+    const searchEntry = searchBuff[id] && typeof searchBuff[id] === "object" ? searchBuff[id] : {};
+    const parserSpriteFile = stringOrNull(parserEntry.SpriteFile ?? parserEntry.spriteFile ?? parserEntry.IconPath);
+    const searchSpriteFile = stringOrNull(searchEntry.spriteFile ?? searchEntry.SpriteFile);
+    const parserFile = parserSpriteFile || searchSpriteFile;
+    const compareRel = parserFile ? `buff/${parserFile}` : null;
+    const compareRecord = compareRel ? compare.get(compareRel) : null;
+    const generatedRecords = (generatedById.get(id) || []).map((asset) => {
+      const rel = relFromParserPath(asset.ParserPath);
+      const stagedRecord = staged.get(rel);
+      const samePathCompare = compare.get(rel);
+      return {
+        Rel: rel,
+        ParserImagePath: asset.ParserImagePath,
+        Name: asset.Name,
+        Address: asset.Address,
+        SpriteName: asset.SpriteName,
+        ResourceType: asset.ResourceType,
+        BundleHash: asset.BundleHash,
+        ObjectPathId: asset.ObjectPathId,
+        StagedHash: stagedRecord?.hash || null,
+        CompareHashAtGeneratedPath: samePathCompare?.hash || null,
+        SamePathPixels: Boolean(stagedRecord && samePathCompare && stagedRecord.hash === samePathCompare.hash)
+      };
+    });
+
+    if (!parserFile && generatedRecords.length === 0) {
+      continue;
+    }
+
+    const status = parserPairingStatus({
+      compareRel,
+      compareRecord,
+      generatedRecords
+    });
+    statusCounts.set(status, (statusCounts.get(status) || 0) + 1);
+    rows.push({
+      Id: Number.isFinite(Number(id)) ? Number(id) : id,
+      ParserName: stringOrNull(parserEntry.NameDesign ?? parserEntry.name) || null,
+      SearchName: stringOrNull(searchEntry.name ?? searchEntry.NameDesign) || null,
+      ParserSpriteFile: parserSpriteFile,
+      SearchSpriteFile: searchSpriteFile,
+      CompareRel: compareRel,
+      CompareHash: compareRecord?.hash || null,
+      Generated: generatedRecords,
+      Status: status
+    });
+  }
+
+  return {
+    ParserBuffName: portablePath(parserBuffPath),
+    ParserBuffNameSearch: portablePath(searchBuffPath),
+    Summary: {
+      RowCount: rows.length,
+      StatusCounts: Object.fromEntries([...statusCounts.entries()].sort(([a], [b]) => a.localeCompare(b)))
+    },
+    Rows: rows
+  };
+}
+
+function parserPairingStatus({ compareRel, compareRecord, generatedRecords }) {
+  if (!compareRel) {
+    return generatedRecords.length ? "generated-only" : "no-icon";
+  }
+  if (!compareRecord) {
+    return generatedRecords.length ? "parser-file-missing-but-generated" : "parser-file-missing";
+  }
+  if (!generatedRecords.length) {
+    return "parser-only";
+  }
+  const samePath = generatedRecords.find((record) => record.Rel === compareRel);
+  if (samePath) {
+    return samePath.StagedHash === compareRecord.hash ? "exact" : "same-path-different-pixels";
+  }
+  if (generatedRecords.some((record) => record.StagedHash && record.StagedHash === compareRecord.hash)) {
+    return "different-path-same-pixels";
+  }
+  return "different-generated-file";
+}
+
+function renderCompareSummary(details) {
+  const lines = [
+    "# Parser Asset Compare Summary",
+    "",
+    `Generated: ${details.GeneratedAt}`,
+    `Compare root: ${details.CompareRoot}`,
+    "",
+    "## Counts",
+    "",
+    "| Category | Count |",
+    "|---|---:|",
+    `| Staged PNGs | ${details.Summary.StagedCount} |`,
+    `| Compare-root PNGs | ${details.Summary.CompareRootCount} |`,
+    `| Exact same path and pixels | ${details.Summary.ExactMatches} |`,
+    `| Same path, different pixels | ${details.Summary.DifferentFiles} |`,
+    `| Staged only | ${details.Summary.MissingInCompareRoot} |`,
+    `| Compare root only | ${details.Summary.ExtraInCompareRoot} |`,
+    `| Same base name, different path | ${details.Summary.SameBaseDifferentPath} |`,
+    `| Same pixels, different path | ${details.Summary.PixelMatchesDifferentPath} |`,
+    `| Assets linked to generated rows | ${details.Summary.RowLinkedAssets} |`,
+    "",
+    "## By Bucket",
+    "",
+    "| Bucket | Exact | Different | Staged Only | Compare Only |",
+    "|---|---:|---:|---:|---:|"
+  ];
+
+  for (const row of details.ByBucket) {
+    lines.push(
+      `| ${row.Bucket} | ${row.ExactMatches || 0} | ${row.DifferentSamePath || 0} | ${row.StagedOnly || 0} | ${row.CompareOnly || 0} |`
+    );
+  }
+
+  if (details.ParserPairings) {
+    lines.push(
+      "",
+      "## Parser Buff Pairings",
+      "",
+      `Locale source: ${details.ParserLocaleDir}`,
+      "",
+      "| Status | Count |",
+      "|---|---:|"
+    );
+    for (const [status, count] of Object.entries(details.ParserPairings.Summary.StatusCounts || {})) {
+      lines.push(`| ${status} | ${count} |`);
+    }
+    appendSampleSection(
+      lines,
+      "Parser Pairing Problem Samples",
+      details.ParserPairings.Rows.filter((record) => record.Status !== "exact"),
+      (record) =>
+        `${record.Id} ${record.ParserName || record.SearchName || ""}: parser=${record.CompareRel || "none"} generated=${record.Generated.map((item) => item.Rel).join(", ") || "none"} status=${record.Status}`
+    );
+  }
+
+  appendSampleSection(lines, "Same Path, Different Pixels", details.DifferentSamePath, (record) =>
+    `${record.Rel} (${record.Asset?.Name || "unknown"})`
+  );
+  appendSampleSection(lines, "Same Base Name, Different Path", details.SameBaseDifferentPath, (record) =>
+    `${record.Staged.Rel} -> ${record.Compare.Rel} (${record.SamePixels ? "same pixels" : "different pixels"})`
+  );
+  appendSampleSection(lines, "Row-Linked Assets", details.RowLinkedAssets, (record) =>
+    `${record.Rel} rows=${record.Rows.map((row) => row.Id ?? row.id ?? row.Name).join(", ")}`
+  );
+
+  return `${lines.join("\n")}\n`;
+}
+
+function appendSampleSection(lines, title, values, render) {
+  lines.push("", `## ${title}`, "");
+  if (!values.length) {
+    lines.push("No entries.");
+    return;
+  }
+  for (const value of values.slice(0, 50)) {
+    lines.push(`- ${render(value)}`);
+  }
+  if (values.length > 50) {
+    lines.push(`- ... ${values.length - 50} more`);
+  }
+}
+
+function fileCompareRecord(rel, fileRecord, asset) {
+  const parsed = parseParserRel(rel);
+  return {
+    Rel: rel,
+    Bucket: parsed.bucket,
+    BaseName: parsed.baseName,
+    BaseKey: parsed.baseKey,
+    Hash: fileRecord?.hash || "",
+    SizeBytes: fileRecord?.sizeBytes ?? null,
+    Asset: summarizeAssetForCompare(asset),
+    Rows: normalizeRows(asset?.Rows)
+  };
+}
+
+function summarizeAssetForCompare(asset) {
+  if (!asset) {
+    return null;
+  }
+  return {
+    AssetId: asset.AssetId,
+    ParserPath: asset.ParserPath,
+    ParserImagePath: asset.ParserImagePath,
+    Bucket: asset.Bucket,
+    Name: asset.Name,
+    ResourceType: asset.ResourceType,
+    BundleHash: asset.BundleHash,
+    ObjectPathId: asset.ObjectPathId,
+    SelectedObjectName: asset.SelectedObjectName,
+    SelectedObjectType: asset.SelectedObjectType,
+    PixelSha256: asset.PixelSha256,
+    Address: asset.Address,
+    SpriteName: asset.SpriteName,
+    TextureName: asset.TextureName,
+    SourceKinds: asset.SourceKinds,
+    SourceGroups: asset.SourceGroups,
+    SourceFiles: asset.SourceFiles,
+    SourceAssetIds: asset.SourceAssetIds
+  };
+}
+
+function summarizeCompareBuckets(groups) {
+  const buckets = new Map();
+  for (const [name, records] of Object.entries(groups)) {
+    for (const record of records) {
+      const bucket = record.Bucket || record.Staged?.Bucket || "unknown";
+      const row = buckets.get(bucket) || { Bucket: bucket };
+      row[name] = (row[name] || 0) + 1;
+      buckets.set(bucket, row);
+    }
+  }
+  return [...buckets.values()].sort((a, b) => a.Bucket.localeCompare(b.Bucket));
+}
+
+function parseParserRel(rel) {
+  const normalized = String(rel || "").replace(/\\/g, "/");
+  const parts = normalized.split("/").filter(Boolean);
+  const fileName = parts.pop() || "";
+  const stem = fileName.replace(/\.png$/i, "");
+  const baseName = stripNumericHashSuffix(stem);
+  const bucket = parts.join("/");
+  return {
+    bucket,
+    fileName,
+    stem,
+    baseName,
+    baseKey: `${bucket}/${baseName}`.toLowerCase()
+  };
+}
+
+function relFromParserPath(parserPath) {
+  return String(parserPath || "")
+    .replace(/\\/g, "/")
+    .replace(/^static\/images\//, "");
+}
+
+function groupBy(values, getKey) {
+  const out = new Map();
+  for (const value of values) {
+    const key = getKey(value);
+    const list = out.get(key) || [];
+    list.push(value);
+    out.set(key, list);
+  }
+  return out;
+}
+
+function resolveCompareImagesRoot(value) {
+  const resolved = path.resolve(value);
+  if (path.basename(resolved).toLowerCase() === "images") {
+    return resolved;
+  }
+  const staticImages = path.join(resolved, "static", "images");
+  if (fs.existsSync(staticImages)) {
+    return staticImages;
+  }
+  const images = path.join(resolved, "images");
+  if (fs.existsSync(images)) {
+    return images;
+  }
+  return resolved;
+}
+
+function scanPngFiles(root) {
+  const out = new Map();
+  if (!root || !fs.existsSync(root)) {
+    return out;
+  }
+  const stack = [root];
+  while (stack.length) {
+    const dir = stack.pop();
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(full);
+      } else if (entry.isFile() && entry.name.toLowerCase().endsWith(".png")) {
+        const rel = path.relative(root, full).replace(/\\/g, "/");
+        out.set(rel, {
+          hash: sha256File(full),
+          sizeBytes: fs.statSync(full).size
+        });
+      }
+    }
+  }
+  return out;
+}
+
+function readAddressCatalog(pkg) {
+  const entries = [];
+  const byHash = new Map();
+  const byAddress = new Map();
+  const byBase = new Map();
+  let offset = 0;
+  while (offset < pkg.length) {
+    const found = pkg.indexOf(ADDRESS_LINE_PREFIX, offset);
+    if (found < 0) break;
+    const lineEnd = findCatalogLineEnd(pkg, found);
+    const line = pkg.subarray(found, lineEnd).toString("utf8");
+    const match = /^address:(.*?) ->>>> hash:(\d+) ->>>> bundleHash:(\d+)/.exec(line);
+    if (match) {
+      const address = normalizeAssetAddress(match[1]);
+      const entry = {
+        address,
+        addressHash: Number(match[2]),
+        bundleHash: Number(match[3])
+      };
+      entries.push(entry);
+      byHash.set(entry.addressHash, entry);
+      byAddress.set(address.toLowerCase(), entry);
+      addMapArray(byBase, path.posix.basename(address).toLowerCase(), entry);
+    }
+    offset = Math.max(lineEnd + 1, found + ADDRESS_LINE_PREFIX.length);
+  }
+  return { entries, byHash, byAddress, byBase };
+}
+
+function readSpriteCatalog(pkg) {
+  const entries = [];
+  const byName = new Map();
+  const byNameAtlas = new Map();
+  let offset = 0;
+  while (offset < pkg.length) {
+    const found = pkg.indexOf(SPRITE_LINE_PREFIX, offset);
+    if (found < 0) break;
+    const lineEnd = findCatalogLineEnd(pkg, found);
+    const line = pkg.subarray(found, lineEnd).toString("utf8");
+    const match = /^spriteAddress:(\d+)-->spriteName:(.*?)--->atlasAddress:(\d+)/.exec(line);
+    if (match) {
+      const entry = {
+        spriteAddress: Number(match[1]),
+        spriteName: match[2],
+        atlasAddress: Number(match[3])
+      };
+      entries.push(entry);
+      addMapArray(byName, entry.spriteName.toLowerCase(), entry);
+      addMapArray(byNameAtlas, `${entry.spriteName.toLowerCase()}:${entry.atlasAddress}`, entry);
+    }
+    offset = Math.max(lineEnd + 1, found + SPRITE_LINE_PREFIX.length);
+  }
+  return { entries, byName, byNameAtlas };
+}
+
+function findCatalogLineEnd(buffer, start) {
+  const max = Math.min(buffer.length, start + 2048);
+  for (let index = start; index < max; index += 1) {
+    const byte = buffer[index];
+    if (byte === 0 || byte === 10 || byte === 13) {
+      return index;
+    }
+  }
+  return max;
+}
+
+function normalizeAssetAddress(value) {
+  return String(value || "").replace(/\\/g, "/").replace(/\.[^.\/]+$/, "").trim();
+}
+
+function assetName(asset) {
+  return basenameNoExt(
+    asset.SpriteName ||
+      asset.TextureName ||
+      asset.Value ||
+      asset.Address ||
+      asset.PngFile ||
+      String(asset.BundleHash || "asset")
+  );
+}
+
+function manifestAssetName(asset) {
+  if (asset.SourceGroup === "skill_aoyi_icons" && asset.PngFile) {
+    const fromPng = stripNumericHashSuffix(basenameNoExt(asset.PngFile));
+    if (/^skill_aoyi_skill_icon_\d+$/i.test(fromPng)) {
+      return fromPng;
+    }
+  }
+
+  return assetName(asset);
+}
+
+function basenameNoExt(value) {
+  return path.posix.basename(String(value || "").replace(/\\/g, "/")).replace(/\.[^.]+$/, "");
+}
+
+function stripNumericHashSuffix(value) {
+  return String(value || "").replace(/_-?\d{6,}$/, "");
+}
+
+function sanitizePathSegment(value) {
+  const cleaned = String(value || "")
+    .replace(/\.[^.]+$/, "")
+    .replace(/[<>:"/\\|?*\u0000-\u001f]/g, "_")
+    .replace(/\s+/g, " ")
+    .trim();
+  return cleaned || "asset";
+}
+
+function addMapArray(map, key, value) {
+  const list = map.get(key) || [];
+  list.push(value);
+  map.set(key, list);
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.filter(Boolean).map(String))].sort((a, b) => a.localeCompare(b));
+}
+
+function readJsonIfExists(filePath, fallback) {
+  if (!fs.existsSync(filePath)) {
+    return fallback;
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function stringId(value) {
+  if (value === undefined || value === null || value === "") {
+    return "";
+  }
+  return String(value);
+}
+
+function stringOrNull(value) {
+  return typeof value === "string" && value.trim() ? value.trim() : null;
+}
+
+function compareIds(a, b) {
+  const left = Number(a);
+  const right = Number(b);
+  if (Number.isFinite(left) && Number.isFinite(right)) {
+    return left - right;
+  }
+  return String(a).localeCompare(String(b));
+}
+
+function normalizeRows(rows) {
+  if (!Array.isArray(rows)) {
+    return [];
+  }
+  return rows
+    .filter((row) => row && typeof row === "object")
+    .map((row) => {
+      const out = {};
+      for (const key of ["Id", "id", "Name", "name"]) {
+        if (row[key] !== undefined && row[key] !== null && row[key] !== "") {
+          out[key] = row[key];
+        }
+      }
+      return Object.keys(out).length ? out : null;
+    })
+    .filter(Boolean);
+}
+
+function dedupeRows(rows) {
+  const byKey = new Map();
+  for (const row of normalizeRows(rows)) {
+    const key = JSON.stringify(row);
+    if (!byKey.has(key)) {
+      byKey.set(key, row);
+    }
+  }
+  return [...byKey.values()].sort((a, b) =>
+    String(a.Id ?? a.id ?? a.Name ?? a.name).localeCompare(String(b.Id ?? b.id ?? b.Name ?? b.name))
+  );
+}
+
+function countBy(values, getKey) {
+  const out = new Map();
+  for (const value of values) {
+    const key = getKey(value);
+    out.set(key, (out.get(key) || 0) + 1);
+  }
+  return out;
+}
+
+function summarizeCandidate(candidate) {
+  return {
+    Name: candidate.Name,
+    ResourceType: candidate.ResourceType,
+    BundleHash: candidate.BundleHash,
+    Address: candidate.Address,
+    SourceKinds: candidate.SourceKinds,
+    SourceGroups: candidate.SourceGroups
+  };
+}
+
+function minimalFailure(candidate, error) {
+  return {
+    AssetId: candidate.AssetId,
+    Name: candidate.Name,
+    Bucket: candidate.bucket,
+    ResourceType: candidate.ResourceType,
+    BundleHash: candidate.BundleHash,
+    SpriteName: candidate.SpriteName || "",
+    TextureName: candidate.TextureName || "",
+    Address: candidate.Address,
+    Error: sanitizeError(error)
+  };
+}
+
+function sanitizeError(error) {
+  let text = String(error || "");
+  const home = os.homedir();
+  if (home) {
+    text = text.replaceAll(home, "%USERPROFILE%");
+    text = text.replaceAll(home.replace(/\\/g, "/"), "%USERPROFILE%");
+  }
+  text = text.replace(/[A-Z]:[\\/]+Users[\\/]+[^\\/]+/gi, "%USERPROFILE%");
+  return text.replace(/%USERPROFILE%[\\/]+AppData[\\/]+Local[\\/]+Temp[\\/]+[^\s"']+/gi, "%TEMP%");
+}
+
+function sha256File(filePath) {
+  return crypto.createHash("sha256").update(fs.readFileSync(filePath)).digest("hex");
+}
+
+function createTempDir(parserAssetsDir) {
+  try {
+    return fs.mkdtempSync(path.join(os.tmpdir(), "bpsr-parser-assets-"));
+  } catch {
+    const fallbackBase = path.join(parserAssetsDir, ".tmp-parser-assets-");
+    fs.mkdirSync(parserAssetsDir, { recursive: true });
+    return fs.mkdtempSync(fallbackBase);
+  }
+}
+
+function removeTempDir(tempDir, parserAssetsDir) {
+  if (!tempDir || !fs.existsSync(tempDir)) {
+    return;
+  }
+  const realTemp = fs.realpathSync(tempDir);
+  const allowedRoots = [os.tmpdir(), parserAssetsDir]
+    .filter(Boolean)
+    .map((root) => fs.existsSync(root) ? fs.realpathSync(root) : path.resolve(root));
+  const allowed = allowedRoots.some((root) => realTemp === root || realTemp.startsWith(`${root}${path.sep}`));
+  if (!allowed) {
+    throw new Error(`Refusing to remove unexpected temp directory: ${realTemp}`);
+  }
+  fs.rmSync(realTemp, { recursive: true, force: true });
+}
+
+function portablePath(filePath) {
+  return path.relative(__dirname, path.resolve(filePath)).replace(/\\/g, "/");
+}
+
+function currentTimestamp() {
+  return new Date().toISOString();
+}

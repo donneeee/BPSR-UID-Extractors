@@ -55,15 +55,16 @@ Probe samples never become output data. If a probe exposes a useful missing id o
 
 - `ItemNames.gen`: rebuilds `itemnames.json` by scanning item table families, resolving game name ids through the language-byte localization tables, using package string fallback when the game lacks a localization hit, and attaching direct `ItemTable.ctb` icon paths when present.
 - `BuffNames.gen`: rebuilds `BuffName.json` from BuffTable rows and BuffTable name ids. It can also recover unambiguous secondary names and non-generic icon paths through direct module-effect table bridges.
-- `RecountTable.gen`: rebuilds `RecountTable.json` from the direct Recount row block, including localized recount labels, packed damage-id lists, and icon paths inherited from generated DamageAttr rows.
+- `RecountTable.gen`: rebuilds `RecountTable.json` from the direct Recount row block, including localized recount labels, packed damage-id lists, icon paths inherited from generated DamageAttr rows, strict current-game talent/passive name bridges from `CTB:3345237628`, direct talent-buff formula bridges when localized names differ, and strict base-skill ownership bridges from `SkillTable.ctb`.
 - `DamageAttrIdName.gen`: rebuilds `DamageAttrIdName.json` from `DamageAttrTable.ctb`. It prefers direct DamageAttr design names, then direct linked bridges through BuffName, SkillEffect, SkillTable, and SkillFightLevel data, carrying linked skill/buff names and icon paths where proven.
-- `SkillBreakdownDetails.gen`: rebuilds `SkillBreakdownDetails.json` from generated direct-game `DamageAttrIdName.json` and `RecountTable.json`, classifying runtime damage rows as base skill hits, procs, talents, buffs, Lucky Strike, set effects, or Imagine/Arcane rows with the direct source evidence used for each label.
+- `SkillBreakdownDetails.gen`: rebuilds `SkillBreakdownDetails.json` from generated direct-game `DamageAttrIdName.json` and `RecountTable.json`, classifying runtime damage rows as base skill hits, procs, talents, buffs, Lucky Strike, set effects, or Imagine/Arcane rows. It preserves both the Recount owner skill/talent and the underlying DamageAttr/SkillFight source, so reused hit rows can be displayed under the correct parent while still keeping the lower-level source evidence. If a Recount-owned damage row reuses another skill's hit formula, the output keeps the Recount owner as the display name and records the reused underlying source separately.
 - `SkillAoyiIcons.gen`: rebuilds `skill_aoyi_icons.json` from `SkillAoyiTable.ctb` and proven `SkillTable.ctb` adjacent Aoyi icon paths.
 - `MonsterNames.gen`: rebuilds `monsternames.json` from the monster table and game localization files.
 - `SceneNames.gen`: rebuilds `scenenames.json` from the scene table and game localization files.
-- `SkillNames.gen`: rebuilds `skillnames.json` from direct game-derived skill, recount, DamageAttr, SkillEffect, SkillFightLevel, SkillTable, and TempAttr bridges. SkillEffect and SkillFightLevel rows can inherit localized names and icons from their proven parent `SkillTable.ctb` row.
+- `SkillNames.gen`: rebuilds `skillnames.json` from direct game-derived skill, recount, DamageAttr, SkillEffect, SkillFightLevel, SkillTable, TempAttr, and talent/passive name bridges. SkillEffect and SkillFightLevel rows can inherit localized names and icons from their proven parent `SkillTable.ctb` row.
 - `ExtractIcons.gen`: scans generated JSON files plus configured probe folders for icon-like references, resolves texture and sprite-atlas bridges through the game catalogs, and writes manifests under `output/icons`.
 - `ExportIconPngs.gen`: reads icon manifests, temporarily loads the required game bundles, exports PNG files under `output/icons/<group>/`, verifies probe-image pixel matches when available, and removes the temporary bundle files.
+- `ExportParserAssets.gen`: stages a parser-shaped image tree under `output/parser-assets/static/images` and writes `asset-path-map.json` with the game-file-derived parser image path for each exported asset.
 - `GenerateAll.gen`: runs the generator set in dependency order.
 - `ProbeSources.gen`: audits external JSON samples against generated outputs.
 
@@ -109,9 +110,13 @@ Extract icons from generated outputs and configured probe folders:
 node .\ExtractIcons.gen --dry-run
 node .\ExtractIcons.gen
 node .\ExportIconPngs.gen
+node .\ExportParserAssets.gen --dry-run
+node .\ExportParserAssets.gen
 ```
 
 Icon extraction writes manifests first, then PNG files. Durable icon output is PNG plus provenance JSON only. The manifests record the original field or probe, game asset address, address hash, bundle hash, sprite or texture name, PNG file, image size, and probe pixel-match status when applicable.
+
+Parser asset staging does not write into the parser repository. It produces `output/parser-assets/static/images`, `output/parser-assets/asset-path-map.json`, and `output/parser-assets/manifest.json` so the staged tree can be compared before anything is copied over parser assets. Use `--compare-static-dir <path>` to compare against an existing parser `static/images` folder.
 
 PNG export uses local Python decoder packages. Install them into the extractor folder when needed:
 

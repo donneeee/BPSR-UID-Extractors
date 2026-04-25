@@ -41,7 +41,8 @@ def main():
 
         for item in bundle_items:
             try:
-                image = select_image(bundle, item)
+                selected = select_image(bundle, item)
+                image = selected["image"]
                 if image.mode != "RGBA":
                     image = image.convert("RGBA")
 
@@ -66,6 +67,9 @@ def main():
                     "PngHeight": image.height,
                     "PngMode": image.mode,
                     "PixelSha256": pixel_hash(image),
+                    "ObjectPathId": str(selected.get("path_id")) if selected.get("path_id") is not None else None,
+                    "SelectedObjectName": selected.get("name", ""),
+                    "SelectedObjectType": selected.get("type", ""),
                     **probe_result
                 })
             except Exception as error:
@@ -98,15 +102,25 @@ def read_bundle(UnityPy, bundle_file):
             data = obj.read()
             name = getattr(data, "m_Name", "") or getattr(data, "name", "")
             if name and name not in sprites:
-                sprites[name] = data.image
+                sprites[name] = {
+                    "image": data.image,
+                    "path_id": obj.path_id,
+                    "name": name,
+                    "type": "Sprite",
+                }
         elif obj.type.name == "Texture2D":
             data = obj.read()
             name = getattr(data, "m_Name", "") or getattr(data, "name", "")
-            image = data.image
+            record = {
+                "image": data.image,
+                "path_id": obj.path_id,
+                "name": name,
+                "type": "Texture2D",
+            }
             if first_texture is None:
-                first_texture = image
+                first_texture = record
             if name and name not in textures:
-                textures[name] = image
+                textures[name] = record
 
     return {
         "sprites": sprites,
@@ -119,10 +133,10 @@ def select_image(bundle, item):
     resource_type = item.get("ResourceType", "")
     if resource_type == "Sprite":
         sprite_name = item.get("SpriteName", "")
-        image = bundle["sprites"].get(sprite_name)
-        if image is None:
+        selected = bundle["sprites"].get(sprite_name)
+        if selected is None:
             raise ValueError(f"Sprite not found in bundle: {sprite_name}")
-        return image
+        return selected
 
     texture_name = item.get("TextureName", "")
     if texture_name and texture_name in bundle["textures"]:

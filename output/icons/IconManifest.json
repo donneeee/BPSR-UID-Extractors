@@ -1,7 +1,7 @@
 {
-  "GeneratedAt": "2026-04-24T22:48:46.594Z",
+  "GeneratedAt": "2026-04-25T06:53:35.040Z",
   "OutputDir": "output/icons",
-  "JsonFilesScanned": 8,
+  "JsonFilesScanned": 9,
   "ProbeImageDirs": [
     "Probing Sources/images"
   ],
@@ -10,15 +10,15 @@
   ],
   "ProbeImageFilesScanned": 0,
   "ProbeTextFilesScanned": 0,
-  "GeneratedReferencesFound": 18392,
+  "GeneratedReferencesFound": 20180,
   "ProbeImageReferencesFound": 0,
   "ProbeTextReferencesFound": 0,
-  "UniqueReferences": 6111,
+  "UniqueReferences": 6933,
   "AddressCatalogEntries": 193085,
   "SpriteCatalogEntries": 8388,
-  "ResolvedAssetCount": 5465,
-  "MissingAssetCount": 219,
-  "AmbiguousAssetCount": 4,
+  "ResolvedAssetCount": 5901,
+  "MissingAssetCount": 260,
+  "AmbiguousAssetCount": 5,
   "GroupManifests": [
     {
       "SourceGroup": "BuffName",
@@ -38,7 +38,7 @@
     {
       "SourceGroup": "RecountTable",
       "Manifest": "RecountTable/manifest.json",
-      "AssetCount": 129
+      "AssetCount": 216
     },
     {
       "SourceGroup": "skill_aoyi_icons",
@@ -46,9 +46,14 @@
       "AssetCount": 101
     },
     {
+      "SourceGroup": "SkillBreakdownDetails",
+      "Manifest": "SkillBreakdownDetails/manifest.json",
+      "AssetCount": 315
+    },
+    {
       "SourceGroup": "skillnames",
       "Manifest": "skillnames/manifest.json",
-      "AssetCount": 437
+      "AssetCount": 471
     }
   ],
   "MissingAssets": [
@@ -4252,6 +4257,1060 @@
     },
     {
       "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "飓风野猪-左右普攻",
+      "CandidateAddresses": [
+        "飓风野猪-左右普攻"
+      ],
+      "CandidateNames": [
+        "飓风野猪-左右普攻"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 20,
+          "Name": "Tornado"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "博伊斯SKILL_02",
+      "CandidateAddresses": [
+        "博伊斯SKILL_02"
+      ],
+      "CandidateNames": [
+        "博伊斯SKILL_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 33,
+          "Name": "Maelstrom"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "天赋触发彗星",
+      "CandidateAddresses": [
+        "天赋触发彗星"
+      ],
+      "CandidateNames": [
+        "天赋触发彗星"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 36,
+          "Name": "Tidepool"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "奥尔维拉ATK_02",
+      "CandidateAddresses": [
+        "奥尔维拉ATK_02"
+      ],
+      "CandidateNames": [
+        "奥尔维拉ATK_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 48,
+          "Name": "Judgment Cut"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "杰拉德复仇KX-05",
+      "CandidateAddresses": [
+        "杰拉德复仇KX-05"
+      ],
+      "CandidateNames": [
+        "杰拉德复仇KX-05"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 116,
+          "Name": "Stoneform"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "灵魂乐手ATK_02a",
+      "CandidateAddresses": [
+        "灵魂乐手ATK_02a"
+      ],
+      "CandidateNames": [
+        "灵魂乐手ATK_02a"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 195,
+          "Name": "String Strike"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "IconPath",
+      "Value": "幻想冲击虚拟体",
+      "CandidateAddresses": [
+        "幻想冲击虚拟体"
+      ],
+      "CandidateNames": [
+        "幻想冲击虚拟体"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 290,
+          "Name": "Phantom Arrow"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3310100,
+          "Name": ""
+        },
+        {
+          "Id": 13101010101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310201"
+      ],
+      "CandidateNames": [
+        "talent_skill_310201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310200,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310301"
+      ],
+      "CandidateNames": [
+        "talent_skill_310301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310300,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310401"
+      ],
+      "CandidateNames": [
+        "talent_skill_310401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3310400,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330201"
+      ],
+      "CandidateNames": [
+        "talent_skill_330201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330200,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_330301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_330301"
+      ],
+      "CandidateNames": [
+        "talent_skill_330301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3330300,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340100,
+          "Name": ""
+        },
+        {
+          "Id": 3340101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340201"
+      ],
+      "CandidateNames": [
+        "talent_skill_340201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3340200,
+          "Name": ""
+        },
+        {
+          "Id": 3340201,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340301",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340301"
+      ],
+      "CandidateNames": [
+        "talent_skill_340301"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3340300,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3360100,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360102",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360102"
+      ],
+      "CandidateNames": [
+        "talent_skill_360102"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 3360200,
+          "Name": ""
+        },
+        {
+          "Id": 3360201,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360103",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360103"
+      ],
+      "CandidateNames": [
+        "talent_skill_360103"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 3360300,
+          "Name": ""
+        },
+        {
+          "Id": 3360400,
+          "Name": ""
+        },
+        {
+          "Id": 136040101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3370100,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "博伊斯SKILL_02",
+      "CandidateAddresses": [
+        "博伊斯SKILL_02"
+      ],
+      "CandidateNames": [
+        "博伊斯SKILL_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 112500101,
+          "Name": ""
+        },
+        {
+          "Id": 112500104,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "天赋触发彗星",
+      "CandidateAddresses": [
+        "天赋触发彗星"
+      ],
+      "CandidateNames": [
+        "天赋触发彗星"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 112560101,
+          "Name": ""
+        },
+        {
+          "Id": 112560102,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_fh/weapon_fh_skill_atk11"
+      ],
+      "CandidateNames": [
+        "weapon_fh_skill_atk11"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 115080102,
+          "Name": ""
+        },
+        {
+          "Id": 11508010101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz-12_skill_atk",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz-12_skill_atk"
+      ],
+      "CandidateNames": [
+        "weapon_fz-12_skill_atk"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 115100102,
+          "Name": ""
+        },
+        {
+          "Id": 115100103,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "奥尔维拉ATK_02",
+      "CandidateAddresses": [
+        "奥尔维拉ATK_02"
+      ],
+      "CandidateNames": [
+        "奥尔维拉ATK_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 7,
+      "Rows": [
+        {
+          "Id": 117010101,
+          "Name": ""
+        },
+        {
+          "Id": 117020101,
+          "Name": ""
+        },
+        {
+          "Id": 117020103,
+          "Name": ""
+        },
+        {
+          "Id": 117030101,
+          "Name": ""
+        },
+        {
+          "Id": 117030103,
+          "Name": ""
+        },
+        {
+          "Id": 117030104,
+          "Name": ""
+        },
+        {
+          "Id": 117040102,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_101_2"
+      ],
+      "CandidateNames": [
+        "weapon_tdl-01_skill_101_2"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": 117110102,
+          "Name": ""
+        },
+        {
+          "Id": 117110103,
+          "Name": ""
+        },
+        {
+          "Id": 117110105,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "灵魂乐手ATK_02a",
+      "CandidateAddresses": [
+        "灵魂乐手ATK_02a"
+      ],
+      "CandidateNames": [
+        "灵魂乐手ATK_02a"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 8,
+      "Rows": [
+        {
+          "Id": 123210102,
+          "Name": ""
+        },
+        {
+          "Id": 123210103,
+          "Name": ""
+        },
+        {
+          "Id": 123220102,
+          "Name": ""
+        },
+        {
+          "Id": 123220103,
+          "Name": ""
+        },
+        {
+          "Id": 123230102,
+          "Name": ""
+        },
+        {
+          "Id": 123230103,
+          "Name": ""
+        },
+        {
+          "Id": 123240102,
+          "Name": ""
+        },
+        {
+          "Id": 123240103,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "驯兽二段",
+      "CandidateAddresses": [
+        "驯兽二段"
+      ],
+      "CandidateNames": [
+        "驯兽二段"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 123520101,
+          "Name": ""
+        },
+        {
+          "Id": 123520103,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 130010101,
+          "Name": ""
+        },
+        {
+          "Id": 330010100,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310501",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310501"
+      ],
+      "CandidateNames": [
+        "talent_skill_310501"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 131050101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370201"
+      ],
+      "CandidateNames": [
+        "talent_skill_370201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137020106,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370401",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370401"
+      ],
+      "CandidateNames": [
+        "talent_skill_370401"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 137040102,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "幻想冲击虚拟体",
+      "CandidateAddresses": [
+        "幻想冲击虚拟体"
+      ],
+      "CandidateNames": [
+        "幻想冲击虚拟体"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 10,
+      "Rows": [
+        {
+          "Id": 179970101,
+          "Name": ""
+        },
+        {
+          "Id": 179970102,
+          "Name": ""
+        },
+        {
+          "Id": 179970103,
+          "Name": ""
+        },
+        {
+          "Id": 179970104,
+          "Name": ""
+        },
+        {
+          "Id": 179970105,
+          "Name": ""
+        },
+        {
+          "Id": 179970106,
+          "Name": ""
+        },
+        {
+          "Id": 179970107,
+          "Name": ""
+        },
+        {
+          "Id": 179970108,
+          "Name": ""
+        },
+        {
+          "Id": 179970109,
+          "Name": ""
+        },
+        {
+          "Id": 179970110,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "飓风野猪-左右普攻",
+      "CandidateAddresses": [
+        "飓风野猪-左右普攻"
+      ],
+      "CandidateNames": [
+        "飓风野猪-左右普攻"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 314050100,
+          "Name": ""
+        },
+        {
+          "Id": 11499030102,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300201",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300201"
+      ],
+      "CandidateNames": [
+        "talent_skill_300201"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 330020100,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/mainui/attack",
+      "CandidateAddresses": [
+        "ui/textures/mainui/attack"
+      ],
+      "CandidateNames": [
+        "attack"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 11001010102,
+          "Name": ""
+        },
+        {
+          "Id": 31001010100,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_guardblade_ult",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_guardblade_ult"
+      ],
+      "CandidateNames": [
+        "weapon_guardblade_ult"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 11005610101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_tdl-01_skill_05",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_tdl-01_skill_05"
+      ],
+      "CandidateNames": [
+        "skill_weapon_tdl-01_skill_05"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 11106240102,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_ex",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_ex"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_ex"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17061040101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01",
+      "CandidateAddresses": [
+        "ui/textures/skill_weapon_wr/weapon_wr_skill_atk01"
+      ],
+      "CandidateNames": [
+        "weapon_wr_skill_atk01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17062050101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_iruna_skill_02",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_iruna_skill_02"
+      ],
+      "CandidateNames": [
+        "weapon_iruna_skill_02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 17063040101,
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
       "SourceFile": "skillnames.json",
       "SourceGroup": "skillnames",
       "Field": "IconPath",
@@ -6534,6 +7593,44 @@
     },
     {
       "SourceKind": "generated-json",
+      "SourceFile": "SkillBreakdownDetails.json",
+      "SourceGroup": "SkillBreakdownDetails",
+      "Field": "IconPath",
+      "Value": "ui/textures/skill/weapon_fz_flow",
+      "CandidateAddresses": [
+        "ui/textures/skill/weapon_fz_flow"
+      ],
+      "CandidateNames": [
+        "weapon_fz_flow"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 11506010101,
+          "Name": ""
+        }
+      ],
+      "Reason": "Multiple game asset candidates",
+      "Candidates": [
+        {
+          "ResourceType": "Sprite",
+          "MatchKind": "sprite-name",
+          "Address": "ui/atlas/mainui/weapon_fz_flow",
+          "BundleHash": 2826037989,
+          "SpriteName": "weapon_fz_flow"
+        },
+        {
+          "ResourceType": "Texture2D",
+          "MatchKind": "basename-address",
+          "Address": "ui/textures/mainui/skill/weapon_fz_flow",
+          "BundleHash": 3132148897,
+          "TextureName": "weapon_fz_flow"
+        }
+      ]
+    },
+    {
+      "SourceKind": "generated-json",
       "SourceFile": "skillnames.json",
       "SourceGroup": "skillnames",
       "Field": "IconPath",
@@ -6689,8 +7786,8 @@
       ]
     }
   ],
-  "PngExportedAt": "2026-04-24T22:50:13.856Z",
-  "PngAssetCount": 5465,
+  "PngExportedAt": "2026-04-25T06:57:11.427Z",
+  "PngAssetCount": 5901,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0,
   "PngFailures": []

@@ -96,6 +96,13 @@ const scripts = [
     outputFile: "icons/IconManifest.json",
   },
   {
+    id: "export-parser-assets",
+    fileName: "ExportParserAssets.gen",
+    label: "Export Parser Assets",
+    description: "Stages parser-shaped static images and an asset path map under output/parser-assets.",
+    outputFile: "parser-assets/manifest.json",
+  },
+  {
     id: "probe-sources",
     fileName: "ProbeSources.gen",
     label: "Probe Sources",
@@ -115,6 +122,8 @@ const outputFiles = [
   "SkillBreakdownDetails.json",
   "skillnames.json",
   "icons/IconManifest.json",
+  "parser-assets/manifest.json",
+  "parser-assets/asset-path-map.json",
   "probing-reports/ProbeSourcesReport.json",
 ];
 
@@ -167,6 +176,14 @@ function countEntries(value) {
 
     if (Array.isArray(value.icons)) {
       return value.icons.length;
+    }
+
+    if (Array.isArray(value.Assets)) {
+      return value.Assets.length;
+    }
+
+    if (Array.isArray(value.assets)) {
+      return value.assets.length;
     }
 
     if (value.files && typeof value.files === "object") {

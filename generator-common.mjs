@@ -518,6 +518,21 @@ export function readCtbTable(containerDir, metaEntries, tableName) {
     throw new Error(`Missing ${tableName} entry in meta.pkg.`);
   }
 
+  return readCtbTableEntry(containerDir, entry, tableName, key);
+}
+
+export function readCtbTableByHash(containerDir, metaEntries, hash, tableName = `CTB:${hash}`) {
+  const entries = metaEntries instanceof Map ? metaEntries : loadMetaEntries(containerDir);
+  const key = Number(hash) >>> 0;
+  const entry = entries.get(key);
+  if (!entry) {
+    throw new Error(`Missing ${tableName} entry (${key}) in meta.pkg.`);
+  }
+
+  return readCtbTableEntry(containerDir, entry, tableName, key);
+}
+
+export function readCtbTableEntry(containerDir, entry, tableName = `CTB:${entry?.key ?? ""}`, key = entry?.key) {
   const data = readPkgEntry(containerDir, entry);
   const rowCount = data.readInt32LE(8);
   const poolCount = data.readInt32LE(12);

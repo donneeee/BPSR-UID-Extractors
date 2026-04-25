@@ -104,15 +104,26 @@ Notes:
     const iconLinks = collectIconLinks([
       { path: linkedBuff?.IconPath, source: "BuffName" },
       { path: linkedSkillTable?.iconPath, source: "SkillTable", offset: linkedSkillTable?.iconPathOffset },
+      { path: linkedSkillTable?.parentSkillIconPath, source: "SkillTable.ParentSkillTable", offset: linkedSkillTable?.parentSkillIconPathOffset },
       {
         path: linkedSkillTableFromEffect?.iconPath,
         source: "SkillEffectTableSkillIdToSkillTable",
         offset: linkedSkillTableFromEffect?.iconPathOffset
       },
       {
+        path: linkedSkillTableFromEffect?.parentSkillIconPath,
+        source: "SkillEffectTableSkillIdToSkillTable.ParentSkillTable",
+        offset: linkedSkillTableFromEffect?.parentSkillIconPathOffset
+      },
+      {
         path: linkedSkillTableFromFight?.iconPath,
         source: "SkillFightLevelTableSkillIdToSkillTable",
         offset: linkedSkillTableFromFight?.iconPathOffset
+      },
+      {
+        path: linkedSkillTableFromFight?.parentSkillIconPath,
+        source: "SkillFightLevelTableSkillIdToSkillTable.ParentSkillTable",
+        offset: linkedSkillTableFromFight?.parentSkillIconPathOffset
       }
     ]);
     const iconPath = iconLinks[0]?.path || "";
@@ -193,6 +204,7 @@ Notes:
             LinkedSkillEffectSkillTableNameId: linkedSkillTableFromEffect.nameId,
             LinkedSkillEffectSkillTableNames: linkedSkillTableFromEffect.names,
             LinkedSkillEffectSkillTableSourceOffset: linkedSkillTableFromEffect.sourceOffset,
+            ...skillTableParentFields("LinkedSkillEffectSkillTable", linkedSkillTableFromEffect),
             ...(linkedSkillTableFromEffect.iconPath
               ? {
                   LinkedSkillEffectSkillTableIconPath: linkedSkillTableFromEffect.iconPath,
@@ -208,6 +220,7 @@ Notes:
             LinkedSkillTableNameId: linkedSkillTable.nameId,
             LinkedSkillTableNames: linkedSkillTable.names,
             LinkedSkillTableSourceOffset: linkedSkillTable.sourceOffset,
+            ...skillTableParentFields("LinkedSkillTable", linkedSkillTable),
             ...(linkedSkillTable.iconPath
               ? {
                   LinkedSkillTableIconPath: linkedSkillTable.iconPath,
@@ -228,7 +241,8 @@ Notes:
                   LinkedSkillFightSkillTableName: linkedSkillTableFromFight.name,
                   LinkedSkillFightSkillTableNameId: linkedSkillTableFromFight.nameId,
                   LinkedSkillFightSkillTableNames: linkedSkillTableFromFight.names,
-                  LinkedSkillFightSkillTableSourceOffset: linkedSkillTableFromFight.sourceOffset
+                  LinkedSkillFightSkillTableSourceOffset: linkedSkillTableFromFight.sourceOffset,
+                  ...skillTableParentFields("LinkedSkillFightSkillTable", linkedSkillTableFromFight)
                 }
               : {}),
             ...(linkedSkillTableFromFight?.iconPath
@@ -302,6 +316,7 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
     const skillId = readU32(table.data, rowOffset);
     const nameOffset = readU32(table.data, rowOffset + 4);
     const nameId = readU32(table.data, rowOffset + 12);
+    const parentSkillId = readU32(table.data, rowOffset + 16);
     const name = readCtbString(table, STRING_POOL, nameOffset, { allowZero: false });
     const iconPathOffset = nextCtbStringOffset(table, STRING_POOL, nameOffset);
     const iconPath = readCtbString(table, STRING_POOL, iconPathOffset, { allowZero: false });
@@ -320,13 +335,52 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
         ? names
         : buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false }),
       nameOffset,
+      ...(parentSkillId && parentSkillId !== skillId ? { parentSkillId } : {}),
       iconPath: looksLikeIconPath(iconPath) ? iconPath : "",
       iconPathOffset,
       sourceOffset: table.entry.offset + rowOffset
     });
   }
 
+  for (const entry of bySkillId.values()) {
+    if (!entry.parentSkillId) {
+      continue;
+    }
+    const parent = bySkillId.get(String(entry.parentSkillId));
+    if (!parent) {
+      continue;
+    }
+    entry.parentSkillName = parent.name;
+    entry.parentSkillNameId = parent.nameId;
+    entry.parentSkillNames = parent.names;
+    entry.parentSkillIconPath = parent.iconPath;
+    entry.parentSkillIconPathOffset = parent.iconPathOffset;
+    entry.parentSkillSourceOffset = parent.sourceOffset;
+  }
+
   return bySkillId;
+}
+
+function skillTableParentFields(prefix, entry) {
+  if (!entry?.parentSkillId) {
+    return {};
+  }
+  const out = {
+    [`${prefix}ParentId`]: entry.parentSkillId
+  };
+  if (entry.parentSkillName) out[`${prefix}ParentName`] = entry.parentSkillName;
+  if (entry.parentSkillNameId) out[`${prefix}ParentNameId`] = entry.parentSkillNameId;
+  if (entry.parentSkillNames && Object.keys(entry.parentSkillNames).length) {
+    out[`${prefix}ParentNames`] = entry.parentSkillNames;
+  }
+  if (entry.parentSkillIconPath) out[`${prefix}ParentIconPath`] = entry.parentSkillIconPath;
+  if (Number.isFinite(Number(entry.parentSkillIconPathOffset))) {
+    out[`${prefix}ParentIconPathOffset`] = entry.parentSkillIconPathOffset;
+  }
+  if (Number.isFinite(Number(entry.parentSkillSourceOffset))) {
+    out[`${prefix}ParentSourceOffset`] = entry.parentSkillSourceOffset;
+  }
+  return out;
 }
 
 function buildSkillFightLookup(containerDir, metaEntries, helpers) {

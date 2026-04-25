@@ -408,6 +408,7 @@ function collectSecondaryBuffNames(
       containerDir,
       metaEntries,
       buffIds,
+      rawRows,
       spec,
       englishTable,
       localizationTables
@@ -426,6 +427,7 @@ function collectNamedBuffLinkCandidatesFromTable(
   containerDir,
   metaEntries,
   buffIds,
+  rawRows,
   spec,
   englishTable,
   localizationTables
@@ -439,6 +441,7 @@ function collectNamedBuffLinkCandidatesFromTable(
   const intPool = table.pools.get(1);
   const stringPool = table.pools.get(6);
   const rawLinks = new Map();
+  const rawRowsById = new Map(rawRows.map((row) => [Number(row.id), row]));
 
   for (let index = 0; index < table.rowCount; index += 1) {
     const rowOffset = table.rowStart + index * table.rowSize;
@@ -469,9 +472,6 @@ function collectNamedBuffLinkCandidatesFromTable(
       }
       collectBuffIdMatchesFromValue(value, intPool, buffIds, linkedBuffIds);
     }
-    if (!linkedBuffIds.size) {
-      continue;
-    }
 
     const rowHints = collectTableRowHints(table, rowOffset, englishTable, stringPool);
     const effectId =
@@ -492,6 +492,10 @@ function collectNamedBuffLinkCandidatesFromTable(
       rowTextValues: rowHints.textValues,
       rowIconPaths: rowHints.iconPaths
     };
+    collectAlignedSeasonTalentBuffLink(spec, rowId, rawRowsById, baseCandidate, linkedBuffIds);
+    if (!linkedBuffIds.size) {
+      continue;
+    }
 
     for (const [buffId, match] of linkedBuffIds.entries()) {
       const candidates = rawLinks.get(buffId) ?? [];
@@ -507,6 +511,7 @@ function collectNamedBuffLinkCandidatesFromTable(
             linkedBuffCount: linkedBuffIds.size,
             minPathDepth: match.minPathDepth,
             hasDirectBuffField: match.hasDirectBuffField,
+            ...(match.seasonTalentAligned ? { seasonTalentAligned: true } : {}),
             ...(Number.isFinite(level) ? { level } : {}),
             ...(effectId ? { effectId } : {})
           }
@@ -639,6 +644,13 @@ function scoreSecondaryCandidate(candidate, rawRow) {
   ) {
     score += 36;
   }
+  if (
+    isAlignedSeasonTalentBuffCandidate(candidate, rawRow) &&
+    Array.isArray(candidate.rowIconPaths) &&
+    candidate.rowIconPaths.some((iconPath) => !isGenericIconPath(iconPath))
+  ) {
+    score += 36;
+  }
 
   return score;
 }
@@ -657,6 +669,76 @@ function isAlignedTalentBuffCandidate(candidate, rawRow) {
     return false;
   }
   return rowId === Math.floor(suffix / 10) - 501;
+}
+
+function isAlignedSeasonTalentBuffCandidate(candidate, rawRow) {
+  return (
+    candidate.source === "CTB:164473594" &&
+    candidate.rows?.some((row) => row.seasonTalentAligned) &&
+    isSeasonTalentNameMatch(candidate, rawRow)
+  );
+}
+
+function collectAlignedSeasonTalentBuffLink(spec, rowId, rawRowsById, candidate, out) {
+  if (spec.hash !== 164473594) {
+    return;
+  }
+  const buffId = seasonTalentBuffIdFromRowId(rowId);
+  if (!buffId) {
+    return;
+  }
+  const rawRow = rawRowsById.get(buffId);
+  if (!rawRow) {
+    return;
+  }
+  mergeBuffIdMatch(out, buffId, 1, false, { seasonTalentAligned: true });
+}
+
+function seasonTalentBuffIdFromRowId(rowId) {
+  const id = Number(rowId);
+  if (!Number.isInteger(id)) {
+    return null;
+  }
+  const group = Math.floor(id / 100) - 10;
+  const slot = id % 100;
+  if (group < 0 || slot < 1 || slot > 10) {
+    return null;
+  }
+  return 3002010 + group * 200 + (slot - 1) * 10;
+}
+
+function isSeasonTalentNameMatch(candidate, rawRow) {
+  const designName = String(rawRow?.designName || "").trim();
+  const rowName = normalizeCompareText(designName);
+  if (!rowName) {
+    return false;
+  }
+  const labelTexts = [
+    candidate?.preferredLabel,
+    ...(Array.isArray(candidate?.localizedLabels) ? candidate.localizedLabels : []),
+    ...(Array.isArray(candidate?.rowTextFields)
+      ? candidate.rowTextFields
+          .filter((field) => field?.kind === "loc")
+          .map((field) => field.text)
+      : [])
+  ];
+  const rawParts = [designName, ...designName.split(/[\s_\-－·・:：]+/g)]
+    .map((value) => String(value || "").trim())
+    .filter(Boolean);
+  for (const label of sortLabels(labelTexts)) {
+    const text = String(label || "").trim();
+    if (!text) {
+      continue;
+    }
+    if (rawParts.some((part) => part === text || part.includes(text) || text.includes(part))) {
+      return true;
+    }
+    const value = normalizeCompareText(text);
+    if (value && (value === rowName || containsComparableText(rowName, value))) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function collectAdjacentEffectBuffNames(rawRows, directLinks) {
@@ -784,14 +866,19 @@ function collectBuffIdMatchesFromValue(value, intPool, buffIds, out, seen = new 
   }
 }
 
-function mergeBuffIdMatch(out, buffId, minPathDepth, hasDirectBuffField) {
+function mergeBuffIdMatch(out, buffId, minPathDepth, hasDirectBuffField, metadata = {}) {
   const existing = out.get(buffId);
   if (!existing) {
-    out.set(buffId, { minPathDepth, hasDirectBuffField: Boolean(hasDirectBuffField) });
+    out.set(buffId, {
+      minPathDepth,
+      hasDirectBuffField: Boolean(hasDirectBuffField),
+      ...metadata
+    });
     return;
   }
   existing.minPathDepth = Math.min(existing.minPathDepth, minPathDepth);
   existing.hasDirectBuffField = existing.hasDirectBuffField || Boolean(hasDirectBuffField);
+  existing.seasonTalentAligned = existing.seasonTalentAligned || Boolean(metadata.seasonTalentAligned);
 }
 
 function collectTableRowHints(table, rowOffset, englishTable, stringPool) {

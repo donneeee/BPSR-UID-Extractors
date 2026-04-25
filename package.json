@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "ui": "node ./ui/server.mjs",
-    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js"
+    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js && node ./ExportParserAssets.gen --help && node ./HistoryLabelEvidence.gen --help"
   }
 }
