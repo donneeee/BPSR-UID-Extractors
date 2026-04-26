@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const STRING_POOL = 6;
+const VIRTUAL_SKILL_BRIDGE_TABLE_HASH = 3518555200;
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -23,6 +24,7 @@ async function main() {
     printHelp,
     readCtbString,
     readCtbTable,
+    readCtbTableByHash,
     readU32,
     resolvePaths
   } = await import("./generator-common.mjs");
@@ -55,6 +57,7 @@ Notes:
     nextCtbStringOffset,
     readCtbString,
     readCtbTable,
+    readCtbTableByHash,
     readU32
   });
   const skillFightLookup = buildSkillFightLookup(containerDir, metaEntries, {
@@ -204,6 +207,15 @@ Notes:
             LinkedSkillEffectSkillTableNameId: linkedSkillTableFromEffect.nameId,
             LinkedSkillEffectSkillTableNames: linkedSkillTableFromEffect.names,
             LinkedSkillEffectSkillTableSourceOffset: linkedSkillTableFromEffect.sourceOffset,
+            ...(linkedSkillTableFromEffect.nameSources?.length
+              ? { LinkedSkillEffectSkillTableNameSources: linkedSkillTableFromEffect.nameSources }
+              : {}),
+            ...(linkedSkillTableFromEffect.nameBridgeSkillId
+              ? { LinkedSkillEffectSkillTableNameBridgeSkillId: linkedSkillTableFromEffect.nameBridgeSkillId }
+              : {}),
+            ...(linkedSkillTableFromEffect.nameBridgeSourceOffset
+              ? { LinkedSkillEffectSkillTableNameBridgeSourceOffset: linkedSkillTableFromEffect.nameBridgeSourceOffset }
+              : {}),
             ...skillTableParentFields("LinkedSkillEffectSkillTable", linkedSkillTableFromEffect),
             ...(linkedSkillTableFromEffect.iconPath
               ? {
@@ -220,6 +232,11 @@ Notes:
             LinkedSkillTableNameId: linkedSkillTable.nameId,
             LinkedSkillTableNames: linkedSkillTable.names,
             LinkedSkillTableSourceOffset: linkedSkillTable.sourceOffset,
+            ...(linkedSkillTable.nameSources?.length ? { LinkedSkillTableNameSources: linkedSkillTable.nameSources } : {}),
+            ...(linkedSkillTable.nameBridgeSkillId ? { LinkedSkillTableNameBridgeSkillId: linkedSkillTable.nameBridgeSkillId } : {}),
+            ...(linkedSkillTable.nameBridgeSourceOffset
+              ? { LinkedSkillTableNameBridgeSourceOffset: linkedSkillTable.nameBridgeSourceOffset }
+              : {}),
             ...skillTableParentFields("LinkedSkillTable", linkedSkillTable),
             ...(linkedSkillTable.iconPath
               ? {
@@ -242,6 +259,15 @@ Notes:
                   LinkedSkillFightSkillTableNameId: linkedSkillTableFromFight.nameId,
                   LinkedSkillFightSkillTableNames: linkedSkillTableFromFight.names,
                   LinkedSkillFightSkillTableSourceOffset: linkedSkillTableFromFight.sourceOffset,
+                  ...(linkedSkillTableFromFight.nameSources?.length
+                    ? { LinkedSkillFightSkillTableNameSources: linkedSkillTableFromFight.nameSources }
+                    : {}),
+                  ...(linkedSkillTableFromFight.nameBridgeSkillId
+                    ? { LinkedSkillFightSkillTableNameBridgeSkillId: linkedSkillTableFromFight.nameBridgeSkillId }
+                    : {}),
+                  ...(linkedSkillTableFromFight.nameBridgeSourceOffset
+                    ? { LinkedSkillFightSkillTableNameBridgeSourceOffset: linkedSkillTableFromFight.nameBridgeSourceOffset }
+                    : {}),
                   ...skillTableParentFields("LinkedSkillFightSkillTable", linkedSkillTableFromFight)
                 }
               : {}),
@@ -307,7 +333,15 @@ function buildSkillEffectLookup(containerDir, metaEntries, helpers) {
 }
 
 function buildSkillTableLookup(containerDir, metaEntries, localizationTables, helpers) {
-  const { buildLocaleTextObject, looksLikeIconPath, nextCtbStringOffset, readCtbString, readCtbTable, readU32 } = helpers;
+  const {
+    buildLocaleTextObject,
+    looksLikeIconPath,
+    nextCtbStringOffset,
+    readCtbString,
+    readCtbTable,
+    readCtbTableByHash,
+    readU32
+  } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
   const bySkillId = new Map();
 
@@ -338,9 +372,16 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
       ...(parentSkillId && parentSkillId !== skillId ? { parentSkillId } : {}),
       iconPath: looksLikeIconPath(iconPath) ? iconPath : "",
       iconPathOffset,
-      sourceOffset: table.entry.offset + rowOffset
+      sourceOffset: table.entry.offset + rowOffset,
+      nameSources: ["SkillTable"]
     });
   }
+
+  applyVirtualSkillNameBridges(bySkillId, containerDir, metaEntries, {
+    readCtbString,
+    readCtbTableByHash,
+    readU32
+  });
 
   for (const entry of bySkillId.values()) {
     if (!entry.parentSkillId) {
@@ -359,6 +400,85 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
   }
 
   return bySkillId;
+}
+
+function applyVirtualSkillNameBridges(skillRows, containerDir, metaEntries, helpers) {
+  const { readCtbString, readCtbTableByHash, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(
+      containerDir,
+      metaEntries,
+      VIRTUAL_SKILL_BRIDGE_TABLE_HASH,
+      "CTB:3518555200"
+    );
+  } catch {
+    return;
+  }
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const sourceSkillId = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const targetSkillId = readU32(table.data, rowOffset + 8);
+    if (!sourceSkillId || !targetSkillId || sourceSkillId === targetSkillId) {
+      continue;
+    }
+
+    const source = skillRows.get(String(sourceSkillId));
+    const target = skillRows.get(String(targetSkillId));
+    if (!source || !target || !hasRealLocale(source.names) || hasRealLocale(target.names)) {
+      continue;
+    }
+
+    const bridgeDesign = readCtbString(table, STRING_POOL, designOffset, { allowZero: false });
+    if (!isVirtualSkillNameBridge(source.name, target.name, bridgeDesign)) {
+      continue;
+    }
+
+    target.names = copyRealLocaleNamesWithDesign(source.names, target.name);
+    target.nameSources = uniqueStrings([
+      ...(Array.isArray(target.nameSources) ? target.nameSources : []),
+      "CTB:3518555200.VirtualSkillNameBridge"
+    ]);
+    target.nameBridgeSkillId = sourceSkillId;
+    target.nameBridgeSourceOffset = table.entry.offset + rowOffset;
+    if (!target.iconPath && source.iconPath) {
+      target.iconPath = source.iconPath;
+      target.iconPathOffset = source.iconPathOffset;
+    }
+  }
+}
+
+function isVirtualSkillNameBridge(sourceName, targetName, bridgeDesign) {
+  const sourceBase = normalizeVirtualBridgeName(sourceName || bridgeDesign);
+  const targetBase = normalizeVirtualBridgeName(targetName);
+  return Boolean(sourceBase && targetBase && (targetBase.startsWith(sourceBase) || sourceBase.startsWith(targetBase)));
+}
+
+function normalizeVirtualBridgeName(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\u865a\u62df\u4f53|\u865b\u64ec\u9ad4|hologram|dummy|clone|virtual body/gi, "")
+    .replace(/[-_\s]/g, "")
+    .trim();
+}
+
+function copyRealLocaleNamesWithDesign(names, designText) {
+  const out = {};
+  for (const [locale, text] of Object.entries(names || {})) {
+    if (locale !== "design" && String(text || "").trim()) {
+      out[locale] = text;
+    }
+  }
+  if (designText) {
+    out.design = designText;
+  }
+  return out;
+}
+
+function hasRealLocale(names) {
+  return Object.entries(names || {}).some(([locale, text]) => locale !== "design" && String(text || "").trim());
 }
 
 function skillTableParentFields(prefix, entry) {

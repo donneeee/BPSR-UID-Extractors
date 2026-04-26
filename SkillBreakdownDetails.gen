@@ -127,7 +127,7 @@ Notes:
       gameTerms
     });
     const reasons = buildReasons(row, recount, category, sourceClassification);
-    const sourceFiles = buildSourceFiles(row, recount);
+    const sourceFiles = buildSourceFiles(row, recount, sourceClassification);
     const preferredIcon = choosePreferredIcon(row, linked, recount, sourceClassification);
 
     out[String(id)] = stripEmpty({
@@ -192,6 +192,11 @@ Notes:
       RecountOwnerSkillId: sourceClassification.recountOwnerSkillId,
       RecountOwnerSkillName: sourceClassification.recountOwnerSkillName,
       RecountOwnerSkillNames: sourceClassification.recountOwnerSkillNames,
+      MonsterOwnerIds: sourceClassification.monsterOwnerIds,
+      MonsterOwnerName: sourceClassification.monsterOwnerName,
+      MonsterOwnerNames: sourceClassification.monsterOwnerNames,
+      MonsterOwnerSource: sourceClassification.monsterOwnerSource,
+      MonsterOwners: sourceClassification.monsterOwners,
       UnderlyingSkillId: sourceClassification.underlyingSkillId,
       UnderlyingSkillName: underlying.name,
       UnderlyingSkillNames: underlying.names,
@@ -576,7 +581,12 @@ function resolveSkillMeta(skillRows, skillId) {
     kinds,
     isBaseSkill: Boolean(row.IsBaseSkill || row.Kind === "base-skill" || kinds.includes("skill-table")),
     isTalent: Boolean(row.IsTalent || row.Kind === "talent" || kinds.includes("talent")),
-    isPassive: Boolean(row.IsPassive || row.Kind === "passive" || kinds.includes("passive"))
+    isPassive: Boolean(row.IsPassive || row.Kind === "passive" || kinds.includes("passive")),
+    monsterOwnerIds: Array.isArray(row.MonsterOwnerIds) ? row.MonsterOwnerIds : [],
+    monsterOwnerName: String(row.MonsterOwnerName || ""),
+    monsterOwnerNames: normalizeNames(row.MonsterOwnerNames, row.MonsterOwnerName),
+    monsterOwnerSource: String(row.MonsterOwnerSource || ""),
+    monsterOwners: Array.isArray(row.MonsterOwners) ? row.MonsterOwners : []
   };
 }
 
@@ -621,8 +631,23 @@ function buildSourceClassification({ category, row, recount, linkedSkillId, link
           : isBaseSkill
             ? "base-skill"
             : "unknown";
-  const role = chooseSourceRole({ key, type, row, linkedSkillMeta, recountOwnerSkillMismatch, recountOwnerNameMismatch });
   const recountOwnerSkillId = isTalent ? recountTalentId : recountBaseSkillId;
+  const monsterOwnerIds = Array.isArray(linkedSkillMeta.monsterOwnerIds)
+    ? linkedSkillMeta.monsterOwnerIds
+    : [];
+  const hasMonsterOwner =
+    Boolean(monsterOwnerIds.length) ||
+    Boolean(linkedSkillMeta.monsterOwnerName) ||
+    hasRealLocale(linkedSkillMeta.monsterOwnerNames);
+  const role = chooseSourceRole({
+    key,
+    type,
+    row,
+    linkedSkillMeta,
+    recountOwnerSkillMismatch,
+    recountOwnerNameMismatch,
+    hasMonsterOwner
+  });
 
   return {
     type,
@@ -646,13 +671,18 @@ function buildSourceClassification({ category, row, recount, linkedSkillId, link
           firstNonEmptyObject(recount?.LinkedBaseSkillNames, recountOwnerNameMismatch ? recount?.Names : null),
           recount?.LinkedBaseSkillName || (recountOwnerNameMismatch ? recount?.Name || recount?.RecountName : undefined)
         ),
+    monsterOwnerIds: monsterOwnerIds.length ? monsterOwnerIds : undefined,
+    monsterOwnerName: hasMonsterOwner ? linkedSkillMeta.monsterOwnerName : undefined,
+    monsterOwnerNames: hasMonsterOwner ? linkedSkillMeta.monsterOwnerNames : undefined,
+    monsterOwnerSource: hasMonsterOwner ? linkedSkillMeta.monsterOwnerSource || "MonsterTable.SkillPool" : undefined,
+    monsterOwners: hasMonsterOwner ? linkedSkillMeta.monsterOwners : undefined,
     underlyingSkillId: linkedSkillId,
     recountOwnerSkillMismatch,
     recountOwnerNameMismatch
   };
 }
 
-function chooseSourceRole({ key, type, row, linkedSkillMeta, recountOwnerSkillMismatch, recountOwnerNameMismatch }) {
+function chooseSourceRole({ key, type, row, linkedSkillMeta, recountOwnerSkillMismatch, recountOwnerNameMismatch, hasMonsterOwner }) {
   if (key === "lucky-strike") return "lucky-strike";
   if (key === "set-effect") return "set-effect";
   if (key === "imagine") return "imagine";
@@ -662,6 +692,7 @@ function chooseSourceRole({ key, type, row, linkedSkillMeta, recountOwnerSkillMi
   if (type === "base-skill" && (recountOwnerSkillMismatch || recountOwnerNameMismatch)) {
     return "recount-owned-reused-skill-hit";
   }
+  if (type === "base-skill" && hasMonsterOwner) return "monster-owned-skill-hit";
   if (type === "base-skill") return "base-skill-hit";
   if (key === "skill-proc") return "skill-proc";
   if (key === "mechanic") return "recount-mechanic";
@@ -841,6 +872,9 @@ function chooseDisplayNames({ row, recount, category, linked, directNames, sourc
       row.LinkedSkillFightSkillTableName ||
       recount?.Name ||
       row.Name;
+    if (!hasRealLocale(skillNames) && hasRealLocale(sourceClassification?.monsterOwnerNames)) {
+      return normalizeNames(sourceClassification.monsterOwnerNames, sourceClassification.monsterOwnerName);
+    }
     const friendlySkillNames = friendlyInternalDisplayNames(rawSkillName, gameTerms);
     return normalizeNames(
       hasRealLocale(skillNames) ? skillNames : rawDisplayBridge?.names || friendlySkillNames || skillNames,
@@ -1411,6 +1445,7 @@ function chooseDisplayDetail({ row, recount, category, linked, underlying, displ
     recount,
     category,
     underlying,
+    sourceClassification,
     gameTerms
   });
   if (gameFileDetail) {
@@ -1496,7 +1531,35 @@ function chooseDisplayDetail({ row, recount, category, linked, underlying, displ
   return { kind: "", name: "", names: {} };
 }
 
-function chooseGameFileDerivedDetail({ row, recount, category, underlying, gameTerms }) {
+function chooseGameFileDerivedDetail({ row, recount, category, underlying, sourceClassification, gameTerms }) {
+  if (isMonsterOwnedInternalSkill(row, category, sourceClassification)) {
+    const skillId = sourceClassification.underlyingSkillId || row.LinkedSkillEffectSkillTableId || row.LinkedSkillTableId || row.LinkedSkillFightSkillId;
+    const rawSkillName =
+      row.LinkedSkillEffectSkillTableName ||
+      row.LinkedSkillTableName ||
+      row.LinkedSkillFightSkillTableName ||
+      underlying?.name ||
+      row.NameDesign ||
+      row.Name;
+    const names = normalizeNames({ en: `Monster skill #${skillId}` }, `Monster skill #${skillId}`);
+    return {
+      kind: "monster-skill-owner",
+      name: chooseAnyName(names),
+      names,
+      source: "MonsterTable skill pool",
+      evidence: stripEmpty({
+        DamageAttrId: row.Id,
+        DamageAttrName: row.NameDesign || row.Name,
+        SkillTableId: skillId,
+        SkillTableNameDesign: rawSkillName,
+        MonsterOwnerIds: Array.isArray(sourceClassification.monsterOwnerIds)
+          ? sourceClassification.monsterOwnerIds.join(",")
+          : "",
+        MonsterOwnerName: sourceClassification.monsterOwnerName
+      })
+    };
+  }
+
   if (isHeavyAttackFormula(row, underlying)) {
     const parent = resolveSkillTableParent(row);
     const parentNames = normalizeNames(parent.names, parent.name);
@@ -1585,6 +1648,18 @@ function chooseDamageDesignTermDetail(row, gameTerms) {
   }
 
   return null;
+}
+
+function isMonsterOwnedInternalSkill(row, category, sourceClassification) {
+  if (category?.key !== "base-skill" || !sourceClassification?.monsterOwnerName) {
+    return false;
+  }
+  const skillNames = firstNonEmptyObject(
+    row.LinkedSkillEffectSkillTableNames,
+    row.LinkedSkillTableNames,
+    row.LinkedSkillFightSkillTableNames
+  );
+  return !hasRealLocale(skillNames);
 }
 
 function isHeavyAttackFormula(row, underlying) {
@@ -1701,11 +1776,14 @@ function buildReasons(row, recount, category, sourceClassification) {
   if (sourceClassification?.underlyingSkillId !== undefined) reasons.push(`UnderlyingSkillId=${sourceClassification.underlyingSkillId}`);
   if (sourceClassification?.recountOwnerSkillMismatch) reasons.push("Recount owner skill differs from underlying damage skill.");
   if (sourceClassification?.recountOwnerNameMismatch) reasons.push("Recount owner name differs from underlying damage skill.");
+  if (sourceClassification?.monsterOwnerName) reasons.push(`MonsterOwner=${sourceClassification.monsterOwnerName}`);
+  if (sourceClassification?.monsterOwnerIds?.length) reasons.push(`MonsterOwnerIds=${sourceClassification.monsterOwnerIds.join(",")}`);
+  if (rowHasVirtualSkillNameBridge(row)) reasons.push("VirtualSkillNameBridge=CTB:3518555200");
   if (row.IconPath) reasons.push(`IconPath=${row.IconPath}`);
   return uniqueStrings(reasons);
 }
 
-function buildSourceFiles(row, recount) {
+function buildSourceFiles(row, recount, sourceClassification) {
   const sources = ["DamageAttrTable.ctb"];
   if (row.LinkedSource === "BuffName" || row.LinkedBuffId !== undefined) sources.push("BuffTable.ctb");
   if (row.LinkedSkillId !== undefined || row.LinkedSkillEffectId !== undefined || row.LinkedSkillEffectSkillTableId !== undefined) {
@@ -1718,7 +1796,23 @@ function buildSourceFiles(row, recount) {
   if (recount) sources.push("RecountTable.ctb");
   if (recount?.LinkedBaseSkillId !== undefined) sources.push("SkillTable.ctb");
   if (recount?.LinkedTalentId !== undefined) sources.push("CTB:3345237628");
+  if (sourceClassification?.monsterOwnerName || sourceClassification?.monsterOwnerIds?.length) {
+    sources.push("MonsterTable.ctb");
+  }
+  if (rowHasVirtualSkillNameBridge(row)) {
+    sources.push("CTB:3518555200");
+  }
   return uniqueStrings(sources);
+}
+
+function rowHasVirtualSkillNameBridge(row) {
+  return [
+    row.LinkedSkillTableNameSources,
+    row.LinkedSkillEffectSkillTableNameSources,
+    row.LinkedSkillFightSkillTableNameSources
+  ].some((sources) =>
+    Array.isArray(sources) && sources.some((source) => String(source || "") === "CTB:3518555200.VirtualSkillNameBridge")
+  );
 }
 
 function choosePreferredIcon(row, linked, recount, sourceClassification) {

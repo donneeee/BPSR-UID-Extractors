@@ -2,6 +2,27 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
+const GENERIC_ENGLISH_LABELS = new Set([
+  "a",
+  "all",
+  "an",
+  "and",
+  "aoe",
+  "area",
+  "attack",
+  "buff",
+  "damage",
+  "each",
+  "effect",
+  "enemy",
+  "every",
+  "hit",
+  "skill",
+  "target",
+  "the",
+  "this"
+]);
+
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
   process.exit(1);
@@ -22,7 +43,9 @@ async function main() {
 
   const args = parseArgs(process.argv.slice(2), {
     audit: "../resonance-logs-global/DEV_exports/history-label-audit.json",
-    limit: "250"
+    limit: "250",
+    rowLimit: "250",
+    duplicateLimit: "100"
   });
 
   if (args.help) {
@@ -32,6 +55,8 @@ async function main() {
 Options:
   --audit <path>             history-label-audit.json to inspect.
   --limit <count>            Maximum visible-label clusters to probe. Default: 250.
+  --row-limit <count>        Maximum ranked rows to include. Default: 250.
+  --duplicate-limit <count>  Maximum duplicate-label clusters to include. Default: 100.
 
 Notes:
   This writes a probing report only. It does not feed production generator output.
@@ -45,8 +70,28 @@ Notes:
   const paths = resolvePaths(args, path.join("probing-reports", "HistoryLabelEvidence.json"));
   const auditPath = path.resolve(args.audit);
   const limit = Math.max(1, Number.parseInt(String(args.limit || "250"), 10) || 250);
+  const rowLimit = Math.max(1, Number.parseInt(String(args.rowLimit || "250"), 10) || 250);
+  const duplicateLimit = Math.max(1, Number.parseInt(String(args.duplicateLimit || "100"), 10) || 100);
   const audit = readJson(auditPath);
+  const observedRows = Array.isArray(audit.observed_rows)
+    ? audit.observed_rows
+    : Array.isArray(audit.issues)
+      ? audit.issues
+      : [];
   const visibleIssues = Array.isArray(audit.visible_issues) ? audit.visible_issues : [];
+  const sourceEvidenceIssues = Array.isArray(audit.source_evidence_issues) ? audit.source_evidence_issues : [];
+  const generated = loadGeneratedEvidence(paths.outputDir);
+  const enrichedRows = observedRows
+    .map((row) => enrichObservedRow(row, generated))
+    .filter(Boolean)
+    .sort(compareImpactRows);
+  const qualityRows = enrichedRows
+    .map(addQualityFlags)
+    .filter((row) => row.qualityReasons.length > 0)
+    .sort(compareImpactRows);
+  const rankedRows = qualityRows.slice(0, rowLimit);
+  const duplicateDisplayClusters = buildDuplicateDisplayClusters(enrichedRows)
+    .slice(0, duplicateLimit);
 
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
@@ -56,12 +101,24 @@ Notes:
     .sort((left, right) => right.totalValue - left.totalValue || right.hits - left.hits)
     .slice(0, limit)
     .map((cluster) => attachEvidence(cluster, localizationIndex, choosePreferredLocaleText));
+  const sourceEvidenceClusters = buildVisibleIssueClusters(sourceEvidenceIssues)
+    .sort((left, right) => right.totalValue - left.totalValue || right.hits - left.hits)
+    .slice(0, limit)
+    .map((cluster) => attachEvidence(cluster, localizationIndex, choosePreferredLocaleText));
+  const qualityClusters = buildQualityClusters(qualityRows)
+    .slice(0, limit)
+    .map((cluster) => attachEvidence(cluster, localizationIndex, choosePreferredLocaleText));
 
   const summary = {
     audit: displayRelative(auditPath),
     gamePathPresetOrRoot: paths.gameRoot,
+    observedRows: observedRows.length,
     visibleIssueRows: visibleIssues.length,
+    sourceEvidenceIssueRows: sourceEvidenceIssues.length,
     visibleLabelClusters: buildVisibleIssueClusters(visibleIssues).length,
+    qualityRows: qualityRows.length,
+    rankedQualityRows: rankedRows.length,
+    duplicateDisplayClusters: duplicateDisplayClusters.length,
     probedClusters: clusters.length,
     clustersWithExactCandidate: clusters.filter((cluster) =>
       cluster.candidates.some((candidate) => candidate.matchKind === "exact")
@@ -71,11 +128,20 @@ Notes:
 
   const report = {
     summary,
+    rankedRows,
+    duplicateDisplayClusters,
+    qualityClusters,
+    sourceEvidenceClusters,
     clusters
   };
 
+  console.log(`Observed rows: ${summary.observedRows}`);
   console.log(`Visible issue rows: ${summary.visibleIssueRows}`);
+  console.log(`Source-evidence issue rows: ${summary.sourceEvidenceIssueRows}`);
   console.log(`Visible label clusters: ${summary.visibleLabelClusters}`);
+  console.log(`Quality rows: ${summary.qualityRows}`);
+  console.log(`Ranked quality rows: ${summary.rankedQualityRows}`);
+  console.log(`Duplicate display clusters: ${summary.duplicateDisplayClusters}`);
   console.log(`Probed clusters: ${summary.probedClusters}`);
   console.log(`Clusters with candidates: ${summary.clustersWithAnyCandidate}`);
   console.log(`Output: ${displayPath(paths.out)}`);
@@ -87,6 +153,302 @@ function readJson(filePath) {
     throw new Error(`Missing audit input: ${displayRelative(filePath)}`);
   }
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function loadGeneratedEvidence(outputDir) {
+  const recount = readOptionalJson(path.join(outputDir, "RecountTable.json"), {});
+  const breakdown = readOptionalJson(path.join(outputDir, "SkillBreakdownDetails.json"), {});
+  const damage = readOptionalJson(path.join(outputDir, "DamageAttrIdName.json"), {});
+  const recountByDamageId = new Map();
+  for (const entry of Object.values(recount || {})) {
+    for (const damageId of entry?.DamageId || []) {
+      recountByDamageId.set(String(damageId), entry);
+    }
+  }
+  return { recount, recountByDamageId, breakdown, damage };
+}
+
+function enrichObservedRow(row, generated) {
+  if (!row || row.skill_id === undefined || row.skill_id === null) {
+    return null;
+  }
+  const id = String(row.skill_id);
+  const detail = generated.breakdown?.[id] || {};
+  const damage = generated.damage?.[id] || {};
+  const recount = generated.recountByDamageId?.get(id) || null;
+  const displayLabel = cleanText(row.display_label || detail.DisplayName || recount?.RecountName || damage.Name || "");
+  const detailLabel = cleanText(row.detail_label || detail.DisplayDetailName || "");
+  const fullLabel = cleanText(row.full_label || (detailLabel ? `${displayLabel} · ${detailLabel}` : displayLabel));
+  const displayNames = detail.DisplayNames || {};
+  const detailNames = detail.DisplayDetailNames || {};
+  const damageNames = detail.DamageNames || damage.Names || {};
+
+  return stripEmpty({
+    skillId: numberOrString(row.skill_id),
+    mode: row.mode,
+    totalValue: Number(row.total_value || 0),
+    hits: Number(row.hits || 0),
+    encounterCount: Number(row.encounter_count || 0),
+    sampleEncounterIds: row.sample_encounter_ids || [],
+    samplePlayers: row.sample_players || [],
+    sampleScenes: row.sample_scenes || [],
+    parentRecountId: firstDefined(row.parent_recount_id, detail.ParentRecountId, recount?.Id),
+    parentRecountLabel: cleanText(row.parent_recount_label || detail.ParentRecountName || recount?.RecountName || ""),
+    displayLabel,
+    detailLabel,
+    fullLabel,
+    badge: row.badge || detail.Badge,
+    category: row.category || detail.Category,
+    sourceType: detail.SourceType,
+    sourceRole: row.source_role || detail.SourceRole,
+    displayDetailKind: row.display_detail_kind || detail.DisplayDetailKind,
+    displayDetailSource: row.display_detail_source || detail.DisplayDetailSource,
+    damageLabel: cleanText(row.damage_label || detail.DamageName || damage.Name || ""),
+    damageKind: detail.DamageKind || damage.DamageKind,
+    detailKind: detail.DetailKind || damage.DetailKind,
+    linkedSource: detail.LinkedSource || damage.LinkedSource,
+    linkedId: firstDefined(detail.LinkedId, damage.LinkedId),
+    linkedSkillId: firstDefined(detail.LinkedSkillId, damage.LinkedSkillId),
+    linkedSkillEffectId: firstDefined(detail.LinkedSkillEffectId, damage.LinkedSkillEffectId),
+    linkedBuffId: firstDefined(detail.LinkedBuffId, damage.LinkedBuffId),
+    baseSkillId: detail.BaseSkillId,
+    talentSkillId: detail.TalentSkillId,
+    buffSourceId: detail.BuffSourceId,
+    mechanicRecountId: detail.MechanicRecountId,
+    parentBaseSkillId: detail.ParentBaseSkillId,
+    parentBaseSkillName: detail.ParentBaseSkillName,
+    parentTalentId: detail.ParentTalentId,
+    parentTalentName: detail.ParentTalentName,
+    underlyingSkillId: detail.UnderlyingSkillId,
+    underlyingSkillName: detail.UnderlyingSkillName,
+    monsterOwnerIds: detail.MonsterOwnerIds,
+    monsterOwnerName: detail.MonsterOwnerName,
+    iconPath: detail.IconPath || damage.IconPath || recount?.IconPath,
+    iconSource: detail.IconSource || damage.IconSource || recount?.IconSource,
+    displayNames: compactNames(displayNames),
+    detailNames: compactNames(detailNames),
+    damageNames: compactNames(damageNames),
+    displayLocales: localizedKeys(displayNames),
+    detailLocales: localizedKeys(detailNames),
+    damageLocales: localizedKeys(damageNames),
+    visibleUnresolved: Boolean(row.visible_unresolved),
+    sourceUnresolved: Boolean(row.source_unresolved),
+    visibleReasons: row.visible_reasons || [],
+    sourceReasons: row.source_reasons || [],
+    auditReasons: row.reasons || [],
+    generatorReason: row.generator_reason || detail.Reason,
+    generatorReasons: detail.Reasons || [],
+    sourceFiles: uniqueStrings([
+      ...(Array.isArray(detail.SourceFiles) ? detail.SourceFiles : []),
+      damage.Source && `${damage.Source}.ctb`,
+      recount?.Source && `${recount.Source}.ctb`
+    ]),
+    sourceOffsets: uniqueNumbers([
+      ...(Array.isArray(detail.SourceOffsets) ? detail.SourceOffsets : []),
+      detail.SourceOffset,
+      damage.SourceOffset,
+      recount?.SourceOffset
+    ])
+  });
+}
+
+function addQualityFlags(row) {
+  const reasons = new Set([...(row.visibleReasons || []), ...(row.sourceReasons || [])]);
+  const display = cleanText(row.displayLabel);
+  const detail = cleanText(row.detailLabel);
+  const full = cleanText(row.fullLabel || display);
+  if (display && detail && normalizeLookup(display) === normalizeLookup(detail)) {
+    reasons.add("display/detail duplicate the same label");
+  }
+  if (isGenericEnglishLabel(display) || isGenericEnglishLabel(detail)) {
+    reasons.add("uninformative English display token");
+  }
+  if (hasInternalToken(full)) {
+    reasons.add("visible label contains an internal formula/design token");
+  }
+  if (containsCjk(full)) {
+    reasons.add("visible label contains CJK fallback");
+  }
+  if (row.category === "unknown" || row.badge === "Unknown") {
+    reasons.add("unknown generated source classification");
+  }
+  if (!row.sourceFiles || row.sourceFiles.length === 0) {
+    reasons.add("missing generated game-file source evidence");
+  }
+  if (row.displayDetailKind === "monster-skill-owner") {
+    reasons.add("monster-owned skill only has owner/id detail");
+  }
+  if (
+    row.monsterOwnerName &&
+    display &&
+    normalizeLookup(row.monsterOwnerName) === normalizeLookup(display) &&
+    (!row.displayLocales || row.displayLocales.length === 0)
+  ) {
+    reasons.add("display falls back to monster owner instead of localized skill");
+  }
+  if (
+    ["base-skill", "talent-skill", "buff-proc"].includes(String(row.category || "")) &&
+    (!row.displayLocales || row.displayLocales.length === 0)
+  ) {
+    reasons.add("display name has no non-design locale bridge");
+  }
+  if (String(row.generatorReason || "").includes("No direct linked source")) {
+    reasons.add("generator found no direct linked source");
+  }
+
+  return {
+    ...row,
+    qualityReasons: [...reasons].sort()
+  };
+}
+
+function buildQualityClusters(rows) {
+  const byKey = new Map();
+  for (const row of rows || []) {
+    const primaryReason = row.qualityReasons?.[0] || "quality issue";
+    const label = cleanText(row.displayLabel || row.fullLabel || row.damageLabel || "");
+    const key = `${primaryReason}\u0000${label}\u0000${row.category || ""}`;
+    let cluster = byKey.get(key);
+    if (!cluster) {
+      cluster = {
+        label,
+        category: row.category || "",
+        badge: row.badge || "",
+        sourceRole: row.sourceRole || "",
+        primaryReason,
+        qualityReasons: [],
+        totalValue: 0,
+        hits: 0,
+        encounterCount: 0,
+        modes: [],
+        skillIds: [],
+        sampleScenes: [],
+        samplePlayers: [],
+        sampleRows: []
+      };
+      byKey.set(key, cluster);
+    }
+    cluster.totalValue += Number(row.totalValue || 0);
+    cluster.hits += Number(row.hits || 0);
+    cluster.encounterCount += Number(row.encounterCount || 0);
+    addUnique(cluster.modes, row.mode);
+    addUnique(cluster.skillIds, row.skillId);
+    for (const reason of row.qualityReasons || []) addUnique(cluster.qualityReasons, reason);
+    for (const scene of row.sampleScenes || []) addUnique(cluster.sampleScenes, scene);
+    for (const player of row.samplePlayers || []) addUnique(cluster.samplePlayers, player);
+    if (cluster.sampleRows.length < 8) {
+      cluster.sampleRows.push(compactRow(row));
+    }
+  }
+  return [...byKey.values()]
+    .map(finalizeCluster)
+    .sort((left, right) => right.totalValue - left.totalValue || right.hits - left.hits);
+}
+
+function buildDuplicateDisplayClusters(rows) {
+  const byKey = new Map();
+  for (const row of rows || []) {
+    const label = cleanText(row.displayLabel || "");
+    if (!label) {
+      continue;
+    }
+    const key = [
+      row.mode || "",
+      row.parentRecountId || "",
+      normalizeLookup(label),
+      row.category || ""
+    ].join("\u0000");
+    let cluster = byKey.get(key);
+    if (!cluster) {
+      cluster = {
+        label,
+        parentRecountId: row.parentRecountId,
+        parentRecountLabel: row.parentRecountLabel,
+        category: row.category || "",
+        badge: row.badge || "",
+        sourceRole: row.sourceRole || "",
+        totalValue: 0,
+        hits: 0,
+        encounterCount: 0,
+        modes: [],
+        skillIds: [],
+        damageLabels: [],
+        detailLabels: [],
+        sampleRows: []
+      };
+      byKey.set(key, cluster);
+    }
+    cluster.totalValue += Number(row.totalValue || 0);
+    cluster.hits += Number(row.hits || 0);
+    cluster.encounterCount += Number(row.encounterCount || 0);
+    addUnique(cluster.modes, row.mode);
+    addUnique(cluster.skillIds, row.skillId);
+    addUnique(cluster.damageLabels, row.damageLabel);
+    addUnique(cluster.detailLabels, row.detailLabel);
+    if (cluster.sampleRows.length < 10) {
+      cluster.sampleRows.push(compactRow(row));
+    }
+  }
+
+  return [...byKey.values()]
+    .filter((cluster) => cluster.skillIds.length > 1)
+    .map((cluster) =>
+      finalizeCluster({
+        ...cluster,
+        qualityReasons: ["same displayed label maps to multiple observed damage ids"]
+      })
+    )
+    .sort((left, right) => right.totalValue - left.totalValue || right.hits - left.hits);
+}
+
+function compactRow(row) {
+  return stripEmpty({
+    skillId: row.skillId,
+    mode: row.mode,
+    totalValue: row.totalValue,
+    hits: row.hits,
+    displayLabel: row.displayLabel,
+    detailLabel: row.detailLabel,
+    damageLabel: row.damageLabel,
+    parentRecountId: row.parentRecountId,
+    parentRecountLabel: row.parentRecountLabel,
+    badge: row.badge,
+    category: row.category,
+    sourceType: row.sourceType,
+    sourceRole: row.sourceRole,
+    damageKind: row.damageKind,
+    linkedSource: row.linkedSource,
+    linkedId: row.linkedId,
+    linkedSkillId: row.linkedSkillId,
+    linkedBuffId: row.linkedBuffId,
+    baseSkillId: row.baseSkillId,
+    talentSkillId: row.talentSkillId,
+    buffSourceId: row.buffSourceId,
+    parentBaseSkillId: row.parentBaseSkillId,
+    parentTalentId: row.parentTalentId,
+    underlyingSkillId: row.underlyingSkillId,
+    monsterOwnerName: row.monsterOwnerName,
+    iconPath: row.iconPath,
+    sourceFiles: row.sourceFiles,
+    qualityReasons: row.qualityReasons
+  });
+}
+
+function finalizeCluster(cluster) {
+  cluster.skillIds = cluster.skillIds
+    .map(numberOrString)
+    .sort((left, right) => Number(left) - Number(right));
+  cluster.modes = uniqueStrings(cluster.modes).sort();
+  cluster.sampleScenes = uniqueStrings(cluster.sampleScenes).slice(0, 8);
+  cluster.samplePlayers = uniqueStrings(cluster.samplePlayers).slice(0, 8);
+  cluster.qualityReasons = uniqueStrings(cluster.qualityReasons || []);
+  cluster.damageLabels = uniqueStrings(cluster.damageLabels || []).slice(0, 12);
+  cluster.detailLabels = uniqueStrings(cluster.detailLabels || []).slice(0, 12);
+  return cluster;
 }
 
 function displayRelative(filePath) {
@@ -372,6 +734,99 @@ function uniqueStrings(values) {
     out.push(text);
   }
   return out;
+}
+
+function uniqueNumbers(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    const number = Number(value);
+    if (!Number.isFinite(number) || seen.has(number)) {
+      continue;
+    }
+    seen.add(number);
+    out.push(number);
+  }
+  return out.sort((left, right) => left - right);
+}
+
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && value !== "") {
+      return value;
+    }
+  }
+  return undefined;
+}
+
+function numberOrString(value) {
+  const number = Number(value);
+  return Number.isSafeInteger(number) ? number : String(value);
+}
+
+function stripEmpty(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return value;
+  }
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    if (entry === undefined || entry === null || entry === "") {
+      continue;
+    }
+    if (Array.isArray(entry) && entry.length === 0) {
+      continue;
+    }
+    if (entry && typeof entry === "object" && !Array.isArray(entry) && Object.keys(entry).length === 0) {
+      continue;
+    }
+    out[key] = entry;
+  }
+  return out;
+}
+
+function compactNames(names) {
+  const source = names && typeof names === "object" ? names : {};
+  const locales = localizedKeys(source);
+  return stripEmpty({
+    en: cleanText(source.en),
+    zhCN: cleanText(source["zh-CN"]),
+    zhTW: cleanText(source["zh-TW"]),
+    ja: cleanText(source.ja),
+    design: cleanText(source.design),
+    locales
+  });
+}
+
+function localizedKeys(names) {
+  return Object.keys(names || {})
+    .filter((key) => key !== "design" && cleanText(names[key]))
+    .sort();
+}
+
+function compareImpactRows(left, right) {
+  return (
+    Number(right.totalValue || 0) - Number(left.totalValue || 0) ||
+    Number(right.hits || 0) - Number(left.hits || 0) ||
+    Number(left.skillId || 0) - Number(right.skillId || 0)
+  );
+}
+
+function hasInternalToken(value) {
+  const upper = String(value || "").toUpperCase();
+  return (
+    upper.includes("ATK_") ||
+    upper.includes("EXATK") ||
+    upper.includes("BUFF") ||
+    upper.includes("SKILL_") ||
+    upper.includes("SUBBUFF") ||
+    upper.includes("FORMULA") ||
+    upper.includes("AOEBUFF")
+  );
+}
+
+function isGenericEnglishLabel(value) {
+  const normalized = cleanText(value).toLowerCase();
+  return GENERIC_ENGLISH_LABELS.has(normalized);
 }
 
 function containsCjk(value) {

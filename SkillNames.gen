@@ -4,6 +4,7 @@ const path = require("node:path");
 
 const STRING_POOL = 6;
 const TALENT_PASSIVE_TABLE_HASH = 3345237628;
+const VIRTUAL_SKILL_BRIDGE_TABLE_HASH = 3518555200;
 const TALENT_NAME_MATCH_MIN_LOCALES = 10;
 
 main().catch((error) => {
@@ -55,6 +56,7 @@ Notes:
     nextCtbStringOffset,
     readCtbString,
     readCtbTable,
+    readCtbTableByHash,
     readU32
   });
   const rawSkillIds = buildRawSkillIdSet(containerDir, metaEntries, { readCtbTable, readU32 });
@@ -70,6 +72,9 @@ Notes:
     skillEffectSkillId: 0,
     skillFight: 0,
     tempAttr: 0,
+    monsterSkillOwners: 0,
+    monsterSkillFamilyOwners: 0,
+    virtualSkillBridges: 0,
     recountTalentBridge: 0
   };
 
@@ -107,6 +112,13 @@ Notes:
     readCtbTable,
     readU32
   }, stats);
+  collectMonsterSkillOwnerEntries(out, containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbTable,
+    readU32
+  }, stats);
+  collectMonsterSkillFamilyOwnerEntries(out, stats);
 
   const rows = {};
   for (const [id, entry] of [...out.entries()].sort(([left], [right]) => compareNumericStrings(left, right))) {
@@ -138,7 +150,29 @@ Notes:
       ...(entry.recountIds.length ? { RecountIds: uniqueSortedNumbers(entry.recountIds) } : {}),
       ...(entry.talentIds.length ? { TalentIds: uniqueSortedNumbers(entry.talentIds) } : {}),
       ...(entry.skillEffectIds.length ? { SkillEffectIds: uniqueSortedNumbers(entry.skillEffectIds) } : {}),
-      ...(entry.linkedIds.length ? { LinkedIds: uniqueSortedNumbers(entry.linkedIds) } : {})
+      ...(entry.linkedIds.length ? { LinkedIds: uniqueSortedNumbers(entry.linkedIds) } : {}),
+      ...(entry.monsterOwners.length
+        ? {
+            MonsterOwnerIds: uniqueSortedNumbers(entry.monsterOwners.flatMap((owner) => owner.ids)),
+            MonsterOwnerName: entry.monsterOwners[0].name,
+            MonsterOwnerNames: entry.monsterOwners[0].names,
+            MonsterOwnerSource: chooseMonsterOwnerSource(entry.monsterOwners),
+            MonsterOwnerSources: uniqueSortedStrings(entry.monsterOwners.flatMap((owner) => owner.bridgeSources)),
+            MonsterOwners: entry.monsterOwners.map((owner) => ({
+              Ids: uniqueSortedNumbers(owner.ids),
+              Name: owner.name,
+              Names: owner.names,
+              BridgeSources: uniqueSortedStrings(owner.bridgeSources),
+              NameIds: uniqueSortedNumbers(owner.nameIds),
+              MonsterTypes: uniqueSortedNumbers(owner.monsterTypes),
+              SkillPoolFieldOffset: owner.skillPoolFieldOffset,
+              SkillPoolOffsets: uniqueSortedNumbers(owner.skillPoolOffsets),
+              FamilyPrefixes: uniqueSortedStrings(owner.familyPrefixes),
+              InferredFromSkillIds: uniqueSortedNumbers(owner.inferredFromSkillIds),
+              SourceOffsets: uniqueSortedNumbers(owner.sourceOffsets)
+            }))
+          }
+        : {})
     };
   }
 
@@ -152,6 +186,9 @@ Notes:
   console.log(`SkillEffect SkillId bridges: ${stats.skillEffectSkillId}`);
   console.log(`SkillFight named rows: ${stats.skillFight}`);
   console.log(`TempAttr rows: ${stats.tempAttr}`);
+  console.log(`Monster skill owner bridges: ${stats.monsterSkillOwners}`);
+  console.log(`Monster skill family owner bridges: ${stats.monsterSkillFamilyOwners}`);
+  console.log(`Virtual skill name bridges: ${stats.virtualSkillBridges}`);
   console.log(`Recount talent name bridges: ${stats.recountTalentBridge}`);
   console.log(`Skill-name entries written: ${Object.keys(rows).length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
@@ -159,7 +196,15 @@ Notes:
 }
 
 function buildSkillTableLookup(containerDir, metaEntries, localizationTables, helpers) {
-  const { buildLocaleTextObject, looksLikeIconPath, nextCtbStringOffset, readCtbString, readCtbTable, readU32 } = helpers;
+  const {
+    buildLocaleTextObject,
+    looksLikeIconPath,
+    nextCtbStringOffset,
+    readCtbString,
+    readCtbTable,
+    readCtbTableByHash,
+    readU32
+  } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
   const out = new Map();
 
@@ -185,11 +230,90 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
         : buildLocaleTextObject([{ localeId: "design", text: name }], { includeDesign: false }),
       nameDesign: name,
       sourceOffset: table.entry.offset + rowOffset,
+      nameSources: ["SkillTable"],
       iconPath: looksLikeIconPath(iconPath) ? iconPath : "",
       iconPathOffset
     });
   }
 
+  applyVirtualSkillNameBridges(out, containerDir, metaEntries, helpers);
+  return out;
+}
+
+function applyVirtualSkillNameBridges(skillRows, containerDir, metaEntries, helpers) {
+  const { readCtbString, readCtbTableByHash, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(
+      containerDir,
+      metaEntries,
+      VIRTUAL_SKILL_BRIDGE_TABLE_HASH,
+      "CTB:3518555200"
+    );
+  } catch {
+    return;
+  }
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const sourceSkillId = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const targetSkillId = readU32(table.data, rowOffset + 8);
+    if (!sourceSkillId || !targetSkillId || sourceSkillId === targetSkillId) {
+      continue;
+    }
+
+    const source = skillRows.get(String(sourceSkillId));
+    const target = skillRows.get(String(targetSkillId));
+    if (!source || !target || !hasRealLocale(source.names) || hasRealLocale(target.names)) {
+      continue;
+    }
+
+    const bridgeDesign = readCtbString(table, STRING_POOL, designOffset, { allowZero: false });
+    if (!isVirtualSkillNameBridge(source.name, target.name, bridgeDesign)) {
+      continue;
+    }
+
+    target.names = copyRealLocaleNamesWithDesign(source.names, target.name);
+    target.nameSources = uniqueSortedStrings([
+      ...(Array.isArray(target.nameSources) ? target.nameSources : []),
+      "CTB:3518555200.VirtualSkillNameBridge"
+    ]);
+    target.linkedSkillIds = uniqueSortedNumbers([
+      ...(Array.isArray(target.linkedSkillIds) ? target.linkedSkillIds : []),
+      sourceSkillId
+    ]);
+    if (!target.iconPath && source.iconPath) {
+      target.iconPath = source.iconPath;
+      target.iconPathOffset = source.iconPathOffset;
+    }
+  }
+}
+
+function isVirtualSkillNameBridge(sourceName, targetName, bridgeDesign) {
+  const sourceBase = normalizeVirtualBridgeName(sourceName || bridgeDesign);
+  const targetBase = normalizeVirtualBridgeName(targetName);
+  return Boolean(sourceBase && targetBase && (targetBase.startsWith(sourceBase) || sourceBase.startsWith(targetBase)));
+}
+
+function normalizeVirtualBridgeName(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\u865a\u62df\u4f53|\u865b\u64ec\u9ad4|hologram|dummy|clone|virtual body/gi, "")
+    .replace(/[-_\s]/g, "")
+    .trim();
+}
+
+function copyRealLocaleNamesWithDesign(names, designText) {
+  const out = {};
+  for (const [locale, text] of Object.entries(names || {})) {
+    if (locale !== "design" && String(text || "").trim()) {
+      out[locale] = text;
+    }
+  }
+  if (designText) {
+    out.design = designText;
+  }
   return out;
 }
 
@@ -223,8 +347,10 @@ function collectSkillTableEntries(target, skillTableLookup, stats) {
       names: row.names,
       nameDesign: row.nameDesign,
       source: "SkillTable",
+      sources: row.nameSources,
       priority: 60,
       sourceOffset: row.sourceOffset,
+      linkedIds: row.linkedSkillIds,
       ...(row.iconPath
         ? {
             iconPath: row.iconPath,
@@ -234,6 +360,9 @@ function collectSkillTableEntries(target, skillTableLookup, stats) {
         : {})
     });
     stats.skillTable += 1;
+    if (row.nameSources?.some((source) => source === "CTB:3518555200.VirtualSkillNameBridge")) {
+      stats.virtualSkillBridges += 1;
+    }
   }
 }
 
@@ -720,6 +849,150 @@ function collectTempAttrEntries(target, containerDir, metaEntries, helpers, stat
   }
 }
 
+function collectMonsterSkillOwnerEntries(target, containerDir, metaEntries, localizationTables, helpers, stats) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readCtbTable, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTable(containerDir, metaEntries, "MonsterTable.ctb");
+  } catch {
+    return;
+  }
+
+  const skillPool = table.pools.get(1);
+  if (!skillPool) {
+    return;
+  }
+
+  const addedSkillIds = new Set();
+  const skillPoolFieldOffset = 28;
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const nameId = readU32(table.data, rowOffset + 4);
+    const monsterType = readU32(table.data, rowOffset + 12);
+    const poolOffset = readU32(table.data, rowOffset + skillPoolFieldOffset);
+    if (!id || !poolOffset) {
+      continue;
+    }
+
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    const name = choosePreferredLocaleText(names);
+    if (!name || !hasRealLocale(names)) {
+      continue;
+    }
+
+    const skillIds = readMonsterSkillIds(skillPool, poolOffset);
+    for (const skillId of skillIds) {
+      putEntry(target, skillId, {
+        source: "MonsterTable.SkillPool",
+        monsterOwner: {
+          id,
+          name,
+          nameId,
+          names,
+          monsterType,
+          bridgeSource: "MonsterTable.SkillPool",
+          skillPoolFieldOffset,
+          skillPoolOffset: poolOffset,
+          sourceOffset: table.entry.offset + rowOffset
+        }
+      });
+      addedSkillIds.add(String(skillId));
+    }
+  }
+  stats.monsterSkillOwners += addedSkillIds.size;
+}
+
+function collectMonsterSkillFamilyOwnerEntries(target, stats) {
+  const families = new Map();
+  for (const [id, entry] of target.entries()) {
+    const prefix = skillFamilyPrefix(id);
+    if (!prefix || !entry?.monsterOwners?.length || !entry.sources?.has("MonsterTable.SkillPool")) {
+      continue;
+    }
+    const family = families.get(prefix) ?? {
+      prefix,
+      skillIds: [],
+      ownersByKey: new Map()
+    };
+    family.skillIds.push(Number(id));
+    for (const owner of entry.monsterOwners) {
+      const key = stableNameKey(owner.names, owner.name);
+      if (!family.ownersByKey.has(key)) {
+        family.ownersByKey.set(key, {
+          ...owner,
+          ids: uniqueSortedNumbers(owner.ids),
+          nameIds: uniqueSortedNumbers(owner.nameIds),
+          monsterTypes: uniqueSortedNumbers(owner.monsterTypes),
+          skillPoolOffsets: uniqueSortedNumbers(owner.skillPoolOffsets),
+          sourceOffsets: uniqueSortedNumbers(owner.sourceOffsets)
+        });
+      }
+    }
+    families.set(prefix, family);
+  }
+
+  const addedSkillIds = new Set();
+  for (const [id, entry] of target.entries()) {
+    if (entry?.monsterOwners?.length || !entry?.sources?.has("SkillTable")) {
+      continue;
+    }
+    const prefix = skillFamilyPrefix(id);
+    const family = prefix ? families.get(prefix) : null;
+    if (!family || family.ownersByKey.size !== 1 || !family.skillIds.length) {
+      continue;
+    }
+    const owner = [...family.ownersByKey.values()][0];
+    putEntry(target, id, {
+      source: "MonsterTable.SkillFamilyPrefix",
+      monsterOwner: {
+        ...owner,
+        id: owner.ids?.[0],
+        nameId: owner.nameIds?.[0],
+        monsterType: owner.monsterTypes?.[0],
+        skillPoolOffset: owner.skillPoolOffsets?.[0],
+        sourceOffset: owner.sourceOffsets?.[0],
+        bridgeSource: "MonsterTable.SkillFamilyPrefix",
+        familyPrefix: prefix,
+        inferredFromSkillIds: family.skillIds
+      }
+    });
+    addedSkillIds.add(String(id));
+  }
+
+  stats.monsterSkillFamilyOwners += addedSkillIds.size;
+}
+
+function skillFamilyPrefix(id) {
+  const text = String(id || "").trim();
+  if (!/^\d{6,}$/.test(text)) {
+    return "";
+  }
+  return text.slice(0, -2);
+}
+
+function readMonsterSkillIds(pool, offset) {
+  const numericOffset = Number(offset);
+  if (!pool || !Number.isInteger(numericOffset) || numericOffset <= 0 || numericOffset + 2 > pool.length) {
+    return [];
+  }
+  const count = pool.readUInt16LE(numericOffset);
+  if (!count || count > 256 || numericOffset + 2 + count * 4 > pool.length) {
+    return [];
+  }
+
+  const out = [];
+  for (let index = 0; index < count; index += 1) {
+    const id = pool.readUInt32LE(numericOffset + 2 + index * 4);
+    if (id) {
+      out.push(id);
+    }
+  }
+  return out;
+}
+
 function putEntry(target, id, update) {
   if (id === undefined || id === null || id === "" || Number(id) === 0) {
     return;
@@ -739,7 +1012,8 @@ function putEntry(target, id, update) {
     recountIds: [],
     talentIds: [],
     skillEffectIds: [],
-    linkedIds: []
+    linkedIds: [],
+    monsterOwners: []
   };
 
   const priority = Number(update.priority ?? 0);
@@ -789,7 +1063,78 @@ function putEntry(target, id, update) {
       if (Number.isFinite(Number(linkedId))) current.linkedIds.push(Number(linkedId));
     }
   }
+  if (update.monsterOwner) {
+    mergeMonsterOwner(current.monsterOwners, update.monsterOwner);
+  }
   target.set(key, current);
+}
+
+function mergeMonsterOwner(owners, owner) {
+  if (!owner || owner.id === undefined || owner.id === null) {
+    return;
+  }
+
+  const names = owner.names && typeof owner.names === "object" && !Array.isArray(owner.names)
+    ? owner.names
+    : {};
+  const name = String(owner.name || chooseFirstText(names)).trim();
+  if (!name) {
+    return;
+  }
+
+  const key = stableNameKey(names, name);
+  let current = owners.find((entry) => entry.key === key);
+  if (!current) {
+    current = {
+      key,
+      ids: [],
+      name,
+      names,
+      bridgeSources: [],
+      nameIds: [],
+      monsterTypes: [],
+      skillPoolFieldOffset: Number(owner.skillPoolFieldOffset ?? 28),
+      skillPoolOffsets: [],
+      familyPrefixes: [],
+      inferredFromSkillIds: [],
+      sourceOffsets: []
+    };
+    owners.push(current);
+  }
+
+  if (owner.bridgeSource) current.bridgeSources.push(String(owner.bridgeSource));
+  if (Number.isFinite(Number(owner.id))) current.ids.push(Number(owner.id));
+  if (Number.isFinite(Number(owner.nameId))) current.nameIds.push(Number(owner.nameId));
+  if (Number.isFinite(Number(owner.monsterType))) current.monsterTypes.push(Number(owner.monsterType));
+  if (Number.isFinite(Number(owner.skillPoolOffset))) current.skillPoolOffsets.push(Number(owner.skillPoolOffset));
+  if (owner.familyPrefix) current.familyPrefixes.push(String(owner.familyPrefix));
+  if (Array.isArray(owner.inferredFromSkillIds)) {
+    for (const skillId of owner.inferredFromSkillIds) {
+      if (Number.isFinite(Number(skillId))) current.inferredFromSkillIds.push(Number(skillId));
+    }
+  }
+  if (Number.isFinite(Number(owner.sourceOffset))) current.sourceOffsets.push(Number(owner.sourceOffset));
+  owners.sort((left, right) => {
+    const leftIds = uniqueSortedNumbers(left.ids);
+    const rightIds = uniqueSortedNumbers(right.ids);
+    const leftId = leftIds.length ? leftIds[0] : Number.POSITIVE_INFINITY;
+    const rightId = rightIds.length ? rightIds[0] : Number.POSITIVE_INFINITY;
+    return leftId - rightId || left.name.localeCompare(right.name);
+  });
+}
+
+function stableNameKey(names, fallback) {
+  const text =
+    String(names?.en || "").trim() ||
+    String(names?.["zh-CN"] || "").trim() ||
+    String(fallback || "").trim();
+  return text.toLowerCase();
+}
+
+function chooseMonsterOwnerSource(owners) {
+  const sources = uniqueSortedStrings((owners || []).flatMap((owner) => owner.bridgeSources || []));
+  if (sources.includes("MonsterTable.SkillPool")) return "MonsterTable.SkillPool";
+  return sources[0] || "";
 }
 
 function classifySkillNameEntry(id, entry, names) {
