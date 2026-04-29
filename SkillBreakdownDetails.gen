@@ -37,6 +37,7 @@ const UNINFORMATIVE_LOCALIZED_TERM_EN = new Set([
   "skill",
   "target",
   "targets",
+  "test",
   "the",
   "this",
   "to",
@@ -54,10 +55,8 @@ main().catch((error) => {
 
 async function main() {
   const {
-    buildLocaleTextObject,
     choosePreferredLocaleText,
     displayPath,
-    loadLocalizationTables,
     loadMetaEntries,
     maybeWriteJson,
     parseArgs,
@@ -84,8 +83,6 @@ Notes:
   const paths = resolvePaths(args, "SkillBreakdownDetails.json");
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
-  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
-  const gameTerms = buildGameTerms(localizationTables, { buildLocaleTextObject });
   const damageRows = readRequiredJson(path.join(paths.outputDir, "DamageAttrIdName.json"));
   const recountRows = readRequiredJson(path.join(paths.outputDir, "RecountTable.json"));
   const skillRows = readOptionalJson(path.join(paths.outputDir, "skillnames.json"), {});
@@ -98,7 +95,12 @@ Notes:
     const recount = damageToRecount.get(String(id)) ?? null;
     const category = classifyBreakdownRow(row, recount);
     const directNames = normalizeNames(row.Names, row.NameDesign || row.Name);
-    const linkedSkillId = firstDefined(row.LinkedSkillTableId, row.LinkedSkillEffectSkillTableId, row.LinkedSkillFightSkillId);
+    const linkedSkillId = firstDefined(
+      row.LinkedSkillTableId,
+      row.LinkedSkillEffectSkillTableId,
+      row.LinkedSkillFightSkillId,
+      row.LinkedSkillTableNameMatchId
+    );
     const linkedSkillMeta = resolveSkillMeta(skillRows, linkedSkillId);
     const underlying = resolveUnderlyingSkillDisplay(row);
     const sourceClassification = buildSourceClassification({
@@ -109,7 +111,7 @@ Notes:
       linkedSkillMeta
     });
     const linked = resolveLinkedDisplay(row, category, recount);
-    const displayNames = chooseDisplayNames({ row, recount, category, linked, directNames, sourceClassification, gameTerms });
+    const displayNames = chooseDisplayNames({ row, recount, category, linked, directNames, sourceClassification });
     const displayName =
       choosePreferredLocaleText(displayNames) ||
       choosePreferredLocaleText(directNames) ||
@@ -123,8 +125,7 @@ Notes:
       linked,
       underlying,
       displayNames,
-      sourceClassification,
-      gameTerms
+      sourceClassification
     });
     const reasons = buildReasons(row, recount, category, sourceClassification);
     const sourceFiles = buildSourceFiles(row, recount, sourceClassification);
@@ -184,6 +185,10 @@ Notes:
       LinkedSkillKind: linkedSkillMeta.kind,
       LinkedSkillKinds: linkedSkillMeta.kinds,
       LinkedSkillEffectId: row.LinkedSkillEffectId,
+      LinkedSkillTableNameMatchId: row.LinkedSkillTableNameMatchId,
+      LinkedSkillTableNameMatchName: row.LinkedSkillTableNameMatchName,
+      LinkedSkillTableNameMatchNames: normalizeNames(row.LinkedSkillTableNameMatchNames, row.LinkedSkillTableNameMatchName),
+      LinkedSkillTableNameMatchSource: row.LinkedSkillTableNameMatchSource,
       LinkedBuffId: row.LinkedBuffId,
       BaseSkillId: sourceClassification.baseSkillId,
       TalentSkillId: sourceClassification.talentSkillId,
@@ -200,6 +205,8 @@ Notes:
       UnderlyingSkillId: sourceClassification.underlyingSkillId,
       UnderlyingSkillName: underlying.name,
       UnderlyingSkillNames: underlying.names,
+      UnderlyingRelatedSkillIds: sourceClassification.relatedSkillIds,
+      UnderlyingSkillRelations: sourceClassification.skillRelations,
       ...(sourceClassification.recountOwnerSkillMismatch ? { IsRecountOwnerSkillMismatch: true } : {}),
       ...(sourceClassification.recountOwnerNameMismatch ? { IsRecountOwnerNameMismatch: true } : {}),
       IconPath: preferredIcon.iconPath,
@@ -215,17 +222,23 @@ Notes:
       ]),
       IconSource: preferredIcon.iconSource || row.IconSource || linked.iconSource || recount?.IconSource || "",
       SourceFiles: sourceFiles,
-      SourceOffsets: uniqueNumbers([row.SourceOffset, ...(Array.isArray(row.SourceOffsets) ? row.SourceOffsets : []), recount?.SourceOffset])
+      SourceOffsets: uniqueNumbers([
+        row.SourceOffset,
+        ...(Array.isArray(row.SourceOffsets) ? row.SourceOffsets : []),
+        recount?.SourceOffset
+      ])
     });
     stats.set(category.key, (stats.get(category.key) ?? 0) + 1);
   }
 
+  const collisionStats = augmentSourceCollisionDetails(out);
   const sorted = Object.fromEntries(
     Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
   );
 
   console.log(`DamageAttr rows scanned: ${Object.keys(damageRows || {}).length}`);
   console.log(`Breakdown detail entries written: ${Object.keys(sorted).length}`);
+  console.log(`Source collision variants: ${collisionStats.variantCount}`);
   for (const [category, count] of [...stats.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
     console.log(`${category}: ${count}`);
   }
@@ -245,6 +258,151 @@ function readOptionalJson(filePath, fallback) {
     return fallback;
   }
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function augmentSourceCollisionDetails(out) {
+  const groups = new Map();
+  for (const [id, detail] of Object.entries(out || {})) {
+    if (!isSourceCollisionCandidate(detail)) {
+      continue;
+    }
+    const key = sourceCollisionKey(detail);
+    if (!key) {
+      continue;
+    }
+    const rows = groups.get(key) || [];
+    rows.push({ id, detail });
+    groups.set(key, rows);
+  }
+
+  let variantCount = 0;
+  for (const rows of groups.values()) {
+    if (rows.length < 2) {
+      continue;
+    }
+    const variants = rows.map((row) => chooseCollisionVariant(row.detail, rows));
+    if (variants.some((variant) => !variant)) {
+      continue;
+    }
+    const variantKeys = new Set(variants.map((variant) => compareNameText(variant.names, variant.name)));
+    if (variantKeys.size !== variants.length) {
+      continue;
+    }
+    for (let index = 0; index < rows.length; index += 1) {
+      applyCollisionVariant(rows[index].detail, variants[index]);
+      variantCount += 1;
+    }
+  }
+  return { variantCount };
+}
+
+function isSourceCollisionCandidate(detail) {
+  if (!detail || !detail.ParentRecountId || !detail.DisplayName || !detail.DisplayDetailName) {
+    return false;
+  }
+  if (detail.DisplayDetailKind === "source-talent" || detail.DisplayDetailKind === "sibling-buff-family-source") {
+    return true;
+  }
+  return detail.DisplayDetailKind === "localized-raw-term" && [
+    "talent-skill",
+    "passive-proc",
+    "recount-owned-reused-skill-hit"
+  ].includes(detail.SourceRole);
+}
+
+function sourceCollisionKey(detail) {
+  return [
+    detail.ParentRecountId,
+    localizedSourceCollisionKey(detail.DisplayNames, detail.DisplayName),
+    localizedSourceCollisionKey(detail.DisplayDetailNames, detail.DisplayDetailName),
+    detail.DisplayDetailKind || "",
+    detail.SourceRole || "",
+    detail.Badge || "",
+    detail.SourceTalentId || "",
+    detail.ParentTalentId || ""
+  ].join("|");
+}
+
+function localizedSourceCollisionKey(values, fallback) {
+  return [
+    values?.en,
+    values?.["zh-CN"],
+    values?.["zh-TW"],
+    values?.ja,
+    values?.["ko-KR"],
+    values?.fr,
+    values?.de,
+    values?.es,
+    values?.["pt-BR"],
+    values?.th,
+    fallback
+  ]
+    .filter(Boolean)
+    .join("/")
+    .trim()
+    .toLowerCase();
+}
+
+function chooseCollisionVariant(detail, groupRows) {
+  return chooseDesignSideVariant(detail, groupRows);
+}
+
+function chooseDesignSideVariant(detail, groupRows) {
+  const side = extractSideVariant(rawVariantTexts(detail));
+  if (!side) {
+    return null;
+  }
+  const groupSides = new Set(groupRows.map((row) => extractSideVariant(rawVariantTexts(row.detail))?.key).filter(Boolean));
+  if (groupSides.size < 2) {
+    return null;
+  }
+  return {
+    kind: "design-side",
+    name: side.names.en,
+    names: side.names,
+    source: "DamageAttr/SkillTable design side suffix",
+    evidence: stripEmpty({
+      DamageAttrId: detail.Id,
+      LinkedSkillId: detail.LinkedSkillId,
+      UnderlyingSkillId: detail.UnderlyingSkillId,
+      RawVariantText: side.raw
+    })
+  };
+}
+
+function applyCollisionVariant(detail, variant) {
+  detail.DisplayVariantName = variant.name;
+  detail.DisplayVariantNames = variant.names;
+  detail.DisplayVariantKind = variant.kind;
+  detail.DisplayVariantSource = variant.source;
+  detail.DisplayVariantEvidence = variant.evidence;
+}
+
+function rawVariantTexts(detail) {
+  return uniqueStringsInOrder([
+    detail.DamageNames?.design,
+    detail.DamageName,
+    detail.UnderlyingSkillNames?.design,
+    detail.UnderlyingSkillName,
+    detail.LinkedNames?.design,
+    detail.LinkedName
+  ]);
+}
+
+function extractSideVariant(values) {
+  for (const raw of values || []) {
+    const text = normalizeDesignText(raw);
+    if (!text) {
+      continue;
+    }
+    if (/(?:[-_:\s]|^)(?:left|lhs|l)$/i.test(text) || /(?:[-ï¼â€”_:ï¼š]|\s|^)(?:å·¦|\u5de6)\s*$/i.test(text)) {
+      return { key: "left", raw: text, names: normalizeNames({ en: "Left", design: text }, "Left") };
+    }
+    if (/(?:[-_:\s]|^)(?:right|rhs|r)$/i.test(text) || /(?:[-ï¼â€”_:ï¼š]|\s|^)(?:å³|\u53f3)\s*$/i.test(text)) {
+      return { key: "right", raw: text, names: normalizeNames({ en: "Right", design: text }, "Right") };
+    }
+  }
+  return null;
 }
 
 function displayRelative(filePath) {
@@ -299,7 +457,13 @@ function classifyBreakdownRow(row, recount) {
   if (/BuffName/i.test(linkedSource)) {
     return category("buff-proc", "Buff proc", "Buff", "DamageAttr row links directly to BuffName.", 80);
   }
-  if (row.LinkedSkillId || row.LinkedSkillTableId || row.LinkedSkillEffectSkillTableId || row.LinkedSkillFightSkillId) {
+  if (
+    row.LinkedSkillId ||
+    row.LinkedSkillTableId ||
+    row.LinkedSkillEffectSkillTableId ||
+    row.LinkedSkillFightSkillId ||
+    row.LinkedSkillTableNameMatchId
+  ) {
     return category("base-skill", "Base skill hit", "Base", "DamageAttr row links to a SkillTable/SkillEffect row.", 74);
   }
   if (recount) {
@@ -586,7 +750,9 @@ function resolveSkillMeta(skillRows, skillId) {
     monsterOwnerName: String(row.MonsterOwnerName || ""),
     monsterOwnerNames: normalizeNames(row.MonsterOwnerNames, row.MonsterOwnerName),
     monsterOwnerSource: String(row.MonsterOwnerSource || ""),
-    monsterOwners: Array.isArray(row.MonsterOwners) ? row.MonsterOwners : []
+    monsterOwners: Array.isArray(row.MonsterOwners) ? row.MonsterOwners : [],
+    relatedSkillIds: Array.isArray(row.RelatedSkillIds) ? row.RelatedSkillIds : [],
+    skillRelations: Array.isArray(row.SkillRelations) ? row.SkillRelations : []
   };
 }
 
@@ -616,9 +782,13 @@ function buildSourceClassification({ category, row, recount, linkedSkillId, link
       firstNonEmptyObject(
         row.LinkedSkillEffectSkillTableNames,
         row.LinkedSkillTableNames,
-        row.LinkedSkillFightSkillTableNames
+        row.LinkedSkillFightSkillTableNames,
+        row.LinkedSkillTableNameMatchNames
       ),
-      row.LinkedSkillEffectSkillTableName || row.LinkedSkillTableName || row.LinkedSkillFightSkillTableName
+      row.LinkedSkillEffectSkillTableName ||
+        row.LinkedSkillTableName ||
+        row.LinkedSkillFightSkillTableName ||
+        row.LinkedSkillTableNameMatchName
     );
   const type = isTalent
     ? "talent"
@@ -634,6 +804,12 @@ function buildSourceClassification({ category, row, recount, linkedSkillId, link
   const recountOwnerSkillId = isTalent ? recountTalentId : recountBaseSkillId;
   const monsterOwnerIds = Array.isArray(linkedSkillMeta.monsterOwnerIds)
     ? linkedSkillMeta.monsterOwnerIds
+    : [];
+  const relatedSkillIds = Array.isArray(linkedSkillMeta.relatedSkillIds)
+    ? linkedSkillMeta.relatedSkillIds
+    : [];
+  const skillRelations = Array.isArray(linkedSkillMeta.skillRelations)
+    ? linkedSkillMeta.skillRelations
     : [];
   const hasMonsterOwner =
     Boolean(monsterOwnerIds.length) ||
@@ -676,6 +852,8 @@ function buildSourceClassification({ category, row, recount, linkedSkillId, link
     monsterOwnerNames: hasMonsterOwner ? linkedSkillMeta.monsterOwnerNames : undefined,
     monsterOwnerSource: hasMonsterOwner ? linkedSkillMeta.monsterOwnerSource || "MonsterTable.SkillPool" : undefined,
     monsterOwners: hasMonsterOwner ? linkedSkillMeta.monsterOwners : undefined,
+    relatedSkillIds: relatedSkillIds.length ? relatedSkillIds : undefined,
+    skillRelations: skillRelations.length ? skillRelations : undefined,
     underlyingSkillId: linkedSkillId,
     recountOwnerSkillMismatch,
     recountOwnerNameMismatch
@@ -716,6 +894,8 @@ function searchableText(row, recount) {
     row.LinkedSkillFightName,
     row.LinkedSkillFightSkillTableName,
     namesText(row.LinkedSkillFightSkillTableNames),
+    row.LinkedSkillTableNameMatchName,
+    namesText(row.LinkedSkillTableNameMatchNames),
     row.IconPath,
     row.LinkedBuffIconPath,
     recount?.IconPath,
@@ -780,6 +960,13 @@ function resolveLinkedDisplay(row, category, recount) {
       iconSource: "SkillTable"
     },
     {
+      source: "DamageAttrTable.NameDesignExactSkillTableMatch",
+      name: row.LinkedSkillTableNameMatchName,
+      names: normalizeNames(row.LinkedSkillTableNameMatchNames, row.LinkedSkillTableNameMatchName),
+      iconPath: row.LinkedSkillTableNameMatchIconPath,
+      iconSource: "DamageAttrNameExactSkillTable"
+    },
+    {
       source: "SkillEffectTable",
       name: row.LinkedSkillName,
       names: normalizeNames(null, row.LinkedSkillName),
@@ -821,6 +1008,10 @@ function resolveUnderlyingSkillDisplay(row) {
       names: normalizeNames(row.LinkedSkillTableNames, row.LinkedSkillTableName)
     },
     {
+      name: row.LinkedSkillTableNameMatchName,
+      names: normalizeNames(row.LinkedSkillTableNameMatchNames, row.LinkedSkillTableNameMatchName)
+    },
+    {
       name: row.LinkedSkillName,
       names: normalizeNames(null, row.LinkedSkillName)
     }
@@ -837,9 +1028,7 @@ function resolveUnderlyingSkillDisplay(row) {
   return { name: "", names: {} };
 }
 
-function chooseDisplayNames({ row, recount, category, linked, directNames, sourceClassification, gameTerms }) {
-  const rawDisplayBridge = chooseLocalizedRawDisplayBridge(row, category, gameTerms);
-
+function chooseDisplayNames({ row, recount, category, linked, directNames, sourceClassification }) {
   if (sourceClassification?.recountOwnerSkillMismatch || sourceClassification?.recountOwnerNameMismatch) {
     const ownerNames = firstNonEmptyObject(recount?.LinkedBaseSkillNames, recount?.Names);
     return normalizeNames(
@@ -864,22 +1053,20 @@ function chooseDisplayNames({ row, recount, category, linked, directNames, sourc
     const skillNames = firstNonEmptyObject(
       row.LinkedSkillEffectSkillTableNames,
       row.LinkedSkillTableNames,
-      row.LinkedSkillFightSkillTableNames
+      row.LinkedSkillFightSkillTableNames,
+      row.LinkedSkillTableNameMatchNames
     );
     const rawSkillName =
       row.LinkedSkillEffectSkillTableName ||
       row.LinkedSkillTableName ||
       row.LinkedSkillFightSkillTableName ||
+      row.LinkedSkillTableNameMatchName ||
       recount?.Name ||
       row.Name;
     if (!hasRealLocale(skillNames) && hasRealLocale(sourceClassification?.monsterOwnerNames)) {
       return normalizeNames(sourceClassification.monsterOwnerNames, sourceClassification.monsterOwnerName);
     }
-    const friendlySkillNames = friendlyInternalDisplayNames(rawSkillName, gameTerms);
-    return normalizeNames(
-      hasRealLocale(skillNames) ? skillNames : rawDisplayBridge?.names || friendlySkillNames || skillNames,
-      rawDisplayBridge?.name || chooseAnyName(friendlySkillNames) || rawSkillName
-    );
+    return normalizeNames(skillNames, rawSkillName);
   }
 
   if (["talent-skill", "passive-proc", "set-effect", "skill-proc"].includes(category.key)) {
@@ -887,6 +1074,7 @@ function chooseDisplayNames({ row, recount, category, linked, directNames, sourc
       row.LinkedSkillFightSkillTableNames,
       row.LinkedSkillTableNames,
       row.LinkedSkillEffectSkillTableNames,
+      row.LinkedSkillTableNameMatchNames,
       recount?.LinkedTalentNames,
       recount?.Names,
       linked.names
@@ -895,18 +1083,13 @@ function chooseDisplayNames({ row, recount, category, linked, directNames, sourc
       row.LinkedSkillFightSkillTableName ||
       row.LinkedSkillTableName ||
       row.LinkedSkillEffectSkillTableName ||
+      row.LinkedSkillTableNameMatchName ||
       recount?.LinkedTalentName ||
       recount?.Name ||
       recount?.RecountName ||
       row.Name ||
       row.NameDesign;
-    const friendlyLinkedNames = friendlyInternalDisplayNames(rawLinkedName, gameTerms);
-    return normalizeNames(
-      hasRealLocale(linkedNames) ? linkedNames : rawDisplayBridge?.names || friendlyLinkedNames || linkedNames,
-      rawDisplayBridge?.name ||
-        chooseAnyName(friendlyLinkedNames) ||
-        rawLinkedName
-    );
+    return normalizeNames(linkedNames, rawLinkedName);
   }
 
   if (["buff-proc", "lucky-strike", "imagine"].includes(category.key)) {
@@ -914,14 +1097,7 @@ function chooseDisplayNames({ row, recount, category, linked, directNames, sourc
       return normalizeNames(recount?.Names, recount?.Name || recount?.RecountName || row.LinkedBuffName || row.Name || row.NameDesign);
     }
     const buffNames = firstNonEmptyObject(row.LinkedBuffNames, linked.names);
-    return normalizeNames(
-      hasRealLocale(buffNames) ? buffNames : rawDisplayBridge?.names || buffNames,
-      rawDisplayBridge?.name || row.LinkedBuffName || row.Name || row.NameDesign
-    );
-  }
-
-  if (!hasRealLocale(directNames) && rawDisplayBridge?.names) {
-    return normalizeNames(rawDisplayBridge.names, rawDisplayBridge.name || row.Name || row.NameDesign);
+    return normalizeNames(buffNames, row.LinkedBuffName || row.Name || row.NameDesign);
   }
 
   return Object.keys(directNames || {}).length
@@ -957,6 +1133,7 @@ function rawDisplayValuesForRow(row, category) {
     row.LinkedSkillFightSkillTableName,
     row.LinkedSkillEffectSkillTableName,
     row.LinkedSkillTableName,
+    row.LinkedSkillTableNameMatchName,
     row.LinkedSkillName,
     row.LinkedBuffName
   );
@@ -976,6 +1153,12 @@ function chooseLocalizedRawDesignDetail({ row, recount, category, displayNames, 
     }
     if (!bridge?.names || !hasRealLocale(bridge.names)) {
       return null;
+    }
+    if (hasWeakLocalizedSourceName(bridge.names)) {
+      continue;
+    }
+    if (!hasExactCjkLocalizedTermMatch(bridge)) {
+      continue;
     }
     if (namesContainLookupText(displayNames, rawValue)) {
       return null;
@@ -1033,6 +1216,7 @@ function rawDesignValuesForRow(row, category) {
     row.LinkedSkillFightSkillTableName,
     row.LinkedSkillEffectSkillTableName,
     row.LinkedSkillTableName,
+    row.LinkedSkillTableNameMatchName,
     row.LinkedSkillName,
     row.LinkedBuffName,
     row.Name,
@@ -1405,9 +1589,21 @@ function normalizeEnglishTermText(value) {
 function isUsefulLocalizedTermCandidate(names) {
   const english = normalizeEnglishTermText(names?.en);
   if (!english) return false;
+  if (hasWeakLocalizedSourceName(names)) return false;
   if (UNINFORMATIVE_LOCALIZED_TERM_EN.has(english)) return false;
   if (/^[\d\s.,:+%/-]+$/.test(english)) return false;
   return true;
+}
+
+function hasWeakLocalizedSourceName(names) {
+  for (const value of Object.values(names || {})) {
+    const text = normalizeEnglishTermText(value);
+    if (!text) continue;
+    if (UNINFORMATIVE_LOCALIZED_TERM_EN.has(text)) return true;
+    if (/\btest\b/i.test(text)) return true;
+    if (/[\u6d4b\u8bd5\u6e2c\u8a66]/.test(String(value || ""))) return true;
+  }
+  return false;
 }
 
 function isUsefulDesignTermCandidate(value) {
@@ -1437,7 +1633,15 @@ function uniqueStringsInOrder(values) {
   return out;
 }
 
-function chooseDisplayDetail({ row, recount, category, linked, underlying, displayNames, sourceClassification, gameTerms }) {
+function chooseDisplayDetail({
+  row,
+  recount,
+  category,
+  linked,
+  underlying,
+  displayNames,
+  sourceClassification
+}) {
   const displayCompare = compareNameText(displayNames, recount?.Name || recount?.RecountName || row.Name || row.NameDesign);
   const underlyingCompare = compareNameText(underlying?.names, underlying?.name);
   const gameFileDetail = chooseGameFileDerivedDetail({
@@ -1445,111 +1649,100 @@ function chooseDisplayDetail({ row, recount, category, linked, underlying, displ
     recount,
     category,
     underlying,
-    sourceClassification,
-    gameTerms
+    sourceClassification
   });
   if (gameFileDetail) {
     return gameFileDetail;
   }
 
-  const damageTermDetail = chooseDamageDesignTermDetail(row, gameTerms);
-  if (damageTermDetail) {
-    return damageTermDetail;
-  }
-
-  const localizedRawDetail = chooseLocalizedRawDesignDetail({
-    row,
-    recount,
-    category,
-    displayNames,
-    gameTerms
-  });
-  if (localizedRawDetail) {
-    return localizedRawDetail;
-  }
-
   if (
     underlyingCompare &&
     underlyingCompare !== displayCompare &&
+    hasRealLocale(underlying?.names) &&
     (sourceClassification?.underlyingSkillId !== undefined || category.key === "base-skill")
   ) {
-    const friendly = friendlyInternalDetailName(underlying?.name);
-    const hasLocalizedUnderlying = hasRealLocale(underlying?.names);
     const underlyingLooksInternal =
       isInternalFormulaLabel(underlying?.name) ||
       hasImplementationToken(underlying?.name) ||
       hasImplementationToken(chooseAnyName(underlying?.names)) ||
-      (!hasLocalizedUnderlying && containsCjk(underlying?.name));
-    if (underlyingLooksInternal && hasRealLocale(displayNames)) {
+      containsCjk(underlying?.name);
+    const localizedUnderlyingLooksInternal =
+      isInternalFormulaLabel(chooseAnyName(underlying?.names)) ||
+      hasImplementationToken(chooseAnyName(underlying?.names)) ||
+      hasInternalSkillImplementationToken(chooseAnyName(underlying?.names));
+    if (
+      underlyingLooksInternal &&
+      hasRealLocale(displayNames) &&
+      localizedUnderlyingLooksInternal
+    ) {
       return { kind: "", name: "", names: {} };
     }
     return {
-      kind: hasLocalizedUnderlying ? "underlying-skill" : "underlying-formula",
-      name: hasLocalizedUnderlying ? chooseAnyName(underlying?.names) : friendly || underlying?.name || chooseAnyName(underlying?.names),
-      names: hasLocalizedUnderlying
-        ? normalizeNames(underlying.names, underlying.name)
-        : normalizeNames({ en: friendly }, underlying?.name)
+      kind: "underlying-skill",
+      name: chooseAnyName(underlying?.names),
+      names: normalizeNames(underlying.names, underlying.name)
     };
   }
 
   if (category.key === "buff-proc" || category.key === "lucky-strike") {
     const rawName = row.LinkedBuffName || linked?.name || row.Name || row.NameDesign;
-    const friendly = friendlyInternalDetailName(rawName);
-    if (!friendly && (hasImplementationToken(rawName) || (containsCjk(rawName) && hasRealLocale(displayNames)))) {
+    if (normalizeCompareText(rawName) === displayCompare) {
+      return { kind: "", name: "", names: {} };
+    }
+    if (!hasRealLocale(row.LinkedBuffNames)) {
       return { kind: "", name: "", names: {} };
     }
     return {
-      kind: friendly.toLowerCase().includes("aoe") ? "buff-aoe" : "buff",
-      name: friendly || rawName,
-      names: normalizeNames(friendly ? { en: friendly, design: rawName } : row.LinkedBuffNames, rawName)
-    };
-  }
-
-  const rawDamage = row.Name || row.NameDesign;
-  const friendlyDamage = friendlyInternalDetailName(rawDamage);
-  if (friendlyDamage && normalizeCompareText(friendlyDamage) !== displayCompare) {
-    if (
-      isInternalFormulaLabel(friendlyDamage) &&
-      hasRealLocale(
-        firstNonEmptyObject(
-          row.LinkedSkillTableNames,
-          row.LinkedSkillEffectSkillTableNames,
-          row.LinkedSkillFightSkillTableNames,
-          underlying?.names
-        )
-      )
-    ) {
-      return { kind: "", name: "", names: {} };
-    }
-    return {
-      kind: "damage-row",
-      name: friendlyDamage,
-      names: normalizeNames({ en: friendlyDamage, design: rawDamage }, rawDamage)
+      kind: "buff",
+      name: chooseAnyName(row.LinkedBuffNames),
+      names: normalizeNames(row.LinkedBuffNames, rawName)
     };
   }
 
   return { kind: "", name: "", names: {} };
 }
 
-function chooseGameFileDerivedDetail({ row, recount, category, underlying, sourceClassification, gameTerms }) {
+function chooseGameFileDerivedDetail({
+  row,
+  recount,
+  category,
+  underlying,
+  sourceClassification
+}) {
   if (isMonsterOwnedInternalSkill(row, category, sourceClassification)) {
-    const skillId = sourceClassification.underlyingSkillId || row.LinkedSkillEffectSkillTableId || row.LinkedSkillTableId || row.LinkedSkillFightSkillId;
+    const skillId =
+      sourceClassification.underlyingSkillId ||
+      row.LinkedSkillEffectSkillTableId ||
+      row.LinkedSkillTableId ||
+      row.LinkedSkillFightSkillId ||
+      row.LinkedSkillTableNameMatchId;
     const rawSkillName =
       row.LinkedSkillEffectSkillTableName ||
       row.LinkedSkillTableName ||
       row.LinkedSkillFightSkillTableName ||
+      row.LinkedSkillTableNameMatchName ||
       underlying?.name ||
       row.NameDesign ||
       row.Name;
-    const names = normalizeNames({ en: `Monster skill #${skillId}` }, `Monster skill #${skillId}`);
+    const skillNames = firstNonEmptyObject(
+      row.LinkedSkillEffectSkillTableNames,
+      row.LinkedSkillTableNames,
+      row.LinkedSkillFightSkillTableNames,
+      row.LinkedSkillTableNameMatchNames,
+      underlying?.names
+    );
+    if (!hasRealLocale(skillNames)) {
+      return null;
+    }
+    const names = normalizeNames(skillNames, rawSkillName);
     return {
       kind: "monster-skill-owner",
       name: chooseAnyName(names),
       names,
-      source: "MonsterTable skill pool",
+      source: "MonsterTable skill pool plus linked SkillTable localization",
       evidence: stripEmpty({
         DamageAttrId: row.Id,
-        DamageAttrName: row.NameDesign || row.Name,
+        DamageAttrName: row.NameDesign || row.Names?.design || row.Name,
         SkillTableId: skillId,
         SkillTableNameDesign: rawSkillName,
         MonsterOwnerIds: Array.isArray(sourceClassification.monsterOwnerIds)
@@ -1560,57 +1753,150 @@ function chooseGameFileDerivedDetail({ row, recount, category, underlying, sourc
     };
   }
 
-  if (isHeavyAttackFormula(row, underlying)) {
-    const parent = resolveSkillTableParent(row);
-    const parentNames = normalizeNames(parent.names, parent.name);
-    const names = composeLocaleNames(parentNames, gameTerms?.heavyAttack, parent.name, "Heavy Attack");
-    if (row.NameDesign || row.Name) {
-      names.design = row.NameDesign || row.Name;
-    }
-
-    return {
-      kind: "underlying-heavy-attack",
-      name: chooseAnyName(names),
-      names,
-      source: "SkillTable parent plus localized combat term",
-      evidence: stripEmpty({
-        DamageAttrId: row.Id,
-        DamageAttrName: row.NameDesign || row.Name,
-        LinkedSkillFightId: row.LinkedSkillFightId,
-        LinkedSkillTableId: parent.childId,
-        ParentSkillTableId: parent.id,
-        ParentSkillTableName: parent.name,
-        HeavyAttackTermId: TERM_HEAVY_ATTACK_ID
-      })
-    };
-  }
-
-  if (isQuadraflareAoeBuff(row, recount, category)) {
-    const parentNames = normalizeNames(recount?.Names, recount?.Name || recount?.RecountName);
-    const names = composeLocaleNames(parentNames, gameTerms?.aoe, recount?.Name || recount?.RecountName, "AoE");
-    names.en = "Empowered Arrow AoE";
-    if (row.NameDesign || row.LinkedBuffName || row.Name) {
-      names.design = row.NameDesign || row.LinkedBuffName || row.Name;
-    }
-
-    return {
-      kind: "quadraflare-empowered-arrow-aoe",
-      name: chooseAnyName(names),
-      names,
-      source: "RecountTable owner plus BuffTable/DamageAttr internal AoE buff and localized skill description",
-      evidence: stripEmpty({
-        DamageAttrId: row.Id,
-        BuffId: row.LinkedBuffId,
-        BuffDesignName: row.LinkedBuffName || row.NameDesign || row.Name,
-        RecountId: recount?.Id,
-        RecountNameId: recount?.NameId,
-        AreaTermId: TERM_AOE_ID,
-        SourceSkillDescriptionNameId: DOUBLE_ARROW_DESCRIPTION_ID
-      })
-    };
-  }
-
   return null;
+}
+
+function chooseSourceTalentDetail(row, recount, displayNames, category) {
+  if (!recount?.LinkedSourceTalentId) {
+    return null;
+  }
+  if (recount.SourceTalentBridge === "CTB:3345237628.SkillTriggerMatch") {
+    // Skill-trigger source-talent bridges are static game-file evidence, not a player loadout.
+    // Showing them as child labels can leak another spec into the breakdown.
+    return null;
+  }
+  const names = normalizeNames(recount.LinkedSourceTalentNames, recount.LinkedSourceTalentName);
+  if (!hasRealLocale(names)) {
+    return null;
+  }
+  if (hasWeakLocalizedSourceName(names)) {
+    return null;
+  }
+  const sourceCompare = compareNameText(names, recount.LinkedSourceTalentName);
+  const displayCompare = compareNameText(displayNames, row.DisplayName || row.Name || row.NameDesign);
+  if (sourceCompare && displayCompare && sourceCompare === displayCompare) {
+    return null;
+  }
+  return {
+    kind: "source-talent",
+    name: chooseAnyName(names),
+    names,
+    source: "Talent/passive table skill trigger match",
+    evidence: stripEmpty({
+      DamageAttrId: row.Id,
+      RecountId: recount?.Id,
+      SourceTalentId: recount.LinkedSourceTalentId,
+      MatchedSkillIds: Array.isArray(recount.LinkedSourceTalentSkillIds)
+        ? recount.LinkedSourceTalentSkillIds.join(",")
+        : "",
+      SourceTalentBridge: recount.SourceTalentBridge
+    })
+  };
+}
+
+function chooseSiblingBuffFamilySourceDetail(row, recount, siblingSourceDetails) {
+  const key = siblingBuffFamilyKey(recount?.Id, row.LinkedBuffId);
+  if (!key) {
+    return null;
+  }
+  const detail = siblingSourceDetails?.get(key);
+  if (!detail || detail.ambiguous || !hasRealLocale(detail.names)) {
+    return null;
+  }
+  return {
+    kind: "sibling-buff-family-source",
+    name: chooseAnyName(detail.names),
+    names: detail.names,
+    source: "Sibling DamageAttr rows in the same RecountTable buff family",
+    evidence: stripEmpty({
+      DamageAttrId: row.Id,
+      BuffId: row.LinkedBuffId,
+      RecountId: recount?.Id,
+      SourceDamageAttrId: detail.sourceDamageAttrId,
+      SourceBuffFamilyId: detail.buffFamilyId,
+      LocalizedTermId: detail.localizedTermId
+    })
+  };
+}
+
+function buildSiblingSourceDetailLookup({ damageRows, damageToRecount, gameTerms }) {
+  const out = new Map();
+  for (const [id, row] of Object.entries(damageRows || {})) {
+    if (!row || typeof row !== "object" || row.LinkedBuffId === undefined) {
+      continue;
+    }
+    const recount = damageToRecount.get(String(id));
+    const key = siblingBuffFamilyKey(recount?.Id, row.LinkedBuffId);
+    if (!key) {
+      continue;
+    }
+    const detail = chooseRawSourceDetailForSiblingLookup(row, gameTerms);
+    if (!detail) {
+      continue;
+    }
+    const existing = out.get(key);
+    const detailCompare = compareNameText(detail.names, detail.name);
+    if (existing) {
+      const existingCompare = compareNameText(existing.names, existing.name);
+      if (existingCompare && detailCompare && existingCompare !== detailCompare) {
+        existing.ambiguous = true;
+      }
+      continue;
+    }
+    out.set(key, detail);
+  }
+  return out;
+}
+
+function chooseRawSourceDetailForSiblingLookup(row, gameTerms) {
+  for (const rawValue of uniqueStringsInOrder([row.LinkedBuffName, row.Name, row.NameDesign])) {
+    const bridge = resolveLocalizedDesignTerm(rawValue, gameTerms, { composeRoleNames: true });
+    if (!bridge?.names || !hasRealLocale(bridge.names)) {
+      continue;
+    }
+    if (hasWeakLocalizedSourceName(bridge.names)) {
+      continue;
+    }
+    if (!hasExactCjkLocalizedTermMatch(bridge)) {
+      continue;
+    }
+    return {
+      name: bridge.name,
+      names: normalizeNames(bridge.names, bridge.name),
+      sourceDamageAttrId: row.Id,
+      buffFamilyId: buffFamilyRoot(row.LinkedBuffId),
+      localizedTermId: bridge.id
+    };
+  }
+  return null;
+}
+
+function hasExactCjkLocalizedTermMatch(bridge) {
+  const baseText = normalizeTermLookupText(bridge?.baseText || "");
+  if (!baseText || !containsCjk(baseText)) {
+    return true;
+  }
+  const names = bridge?.names || {};
+  return [names["zh-CN"], names["zh-TW"], names.design]
+    .map(normalizeTermLookupText)
+    .some((value) => value && value === baseText);
+}
+
+function siblingBuffFamilyKey(recountId, buffId) {
+  const group = Number(recountId);
+  const family = buffFamilyRoot(buffId);
+  if (!Number.isFinite(group) || !Number.isFinite(family) || family <= 0) {
+    return "";
+  }
+  return `${group}:${family}`;
+}
+
+function buffFamilyRoot(buffId) {
+  const value = Number(buffId);
+  if (!Number.isFinite(value) || value <= 0) {
+    return 0;
+  }
+  return Math.floor(value / 10) * 10;
 }
 
 function chooseDamageDesignTermDetail(row, gameTerms) {
@@ -1657,7 +1943,8 @@ function isMonsterOwnedInternalSkill(row, category, sourceClassification) {
   const skillNames = firstNonEmptyObject(
     row.LinkedSkillEffectSkillTableNames,
     row.LinkedSkillTableNames,
-    row.LinkedSkillFightSkillTableNames
+    row.LinkedSkillFightSkillTableNames,
+    row.LinkedSkillTableNameMatchNames
   );
   return !hasRealLocale(skillNames);
 }
@@ -1672,6 +1959,7 @@ function isHeavyAttackFormula(row, underlying) {
     row.LinkedSkillFightSkillTableName,
     row.LinkedSkillEffectSkillTableName,
     row.LinkedSkillTableName,
+    row.LinkedSkillTableNameMatchName,
     row.LinkedSkillName
   ].filter(Boolean).join(" ");
   return /ATK[_-]?0?2/i.test(linkedName) || Boolean(resolveSkillTableParent(row).id);
@@ -1774,6 +2062,10 @@ function buildReasons(row, recount, category, sourceClassification) {
     reasons.push(`LinkedTalentBuffIds=${recount.LinkedTalentBuffIds.join(",")}`);
   }
   if (sourceClassification?.underlyingSkillId !== undefined) reasons.push(`UnderlyingSkillId=${sourceClassification.underlyingSkillId}`);
+  if (sourceClassification?.relatedSkillIds?.length) {
+    reasons.push(`UnderlyingRelatedSkillIds=${sourceClassification.relatedSkillIds.join(",")}`);
+  }
+  if (row.LinkedSkillTableNameMatchSource) reasons.push(`SkillTableNameMatch=${row.LinkedSkillTableNameMatchSource}`);
   if (sourceClassification?.recountOwnerSkillMismatch) reasons.push("Recount owner skill differs from underlying damage skill.");
   if (sourceClassification?.recountOwnerNameMismatch) reasons.push("Recount owner name differs from underlying damage skill.");
   if (sourceClassification?.monsterOwnerName) reasons.push(`MonsterOwner=${sourceClassification.monsterOwnerName}`);
@@ -1789,7 +2081,12 @@ function buildSourceFiles(row, recount, sourceClassification) {
   if (row.LinkedSkillId !== undefined || row.LinkedSkillEffectId !== undefined || row.LinkedSkillEffectSkillTableId !== undefined) {
     sources.push("SkillEffectTable.ctb");
   }
-  if (row.LinkedSkillTableId !== undefined || row.LinkedSkillEffectSkillTableId !== undefined || row.LinkedSkillFightSkillId !== undefined) {
+  if (
+    row.LinkedSkillTableId !== undefined ||
+    row.LinkedSkillEffectSkillTableId !== undefined ||
+    row.LinkedSkillFightSkillId !== undefined ||
+    row.LinkedSkillTableNameMatchId !== undefined
+  ) {
     sources.push("SkillTable.ctb");
   }
   if (row.LinkedSkillFightId !== undefined) sources.push("SkillFightLevelTable.ctb");
@@ -1802,14 +2099,36 @@ function buildSourceFiles(row, recount, sourceClassification) {
   if (rowHasVirtualSkillNameBridge(row)) {
     sources.push("CTB:3518555200");
   }
+  for (const source of relationSourceFiles(sourceClassification?.skillRelations)) {
+    sources.push(source);
+  }
   return uniqueStrings(sources);
+}
+
+function relationSourceFiles(skillRelations) {
+  const out = [];
+  for (const relation of Array.isArray(skillRelations) ? skillRelations : []) {
+    if (Array.isArray(relation?.TableHashes)) {
+      for (const hash of relation.TableHashes) {
+        if (Number.isFinite(Number(hash))) out.push(`CTB:${Number(hash)}`);
+      }
+    }
+    if (Array.isArray(relation?.Sources)) {
+      for (const source of relation.Sources) {
+        const match = /^CTB:(\d+)/.exec(String(source || ""));
+        if (match) out.push(`CTB:${match[1]}`);
+      }
+    }
+  }
+  return uniqueStrings(out);
 }
 
 function rowHasVirtualSkillNameBridge(row) {
   return [
     row.LinkedSkillTableNameSources,
     row.LinkedSkillEffectSkillTableNameSources,
-    row.LinkedSkillFightSkillTableNameSources
+    row.LinkedSkillFightSkillTableNameSources,
+    row.LinkedSkillTableNameMatchNameSources
   ].some((sources) =>
     Array.isArray(sources) && sources.some((source) => String(source || "") === "CTB:3518555200.VirtualSkillNameBridge")
   );

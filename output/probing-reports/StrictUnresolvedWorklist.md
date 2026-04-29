@@ -1,0 +1,124 @@
+# Strict Unresolved Worklist
+
+- Issue rows: 648
+- Visible issue rows: 192
+- Source-evidence issue rows: 646
+- Incoming/taken clusters: 184
+- Player damage clusters: 302
+
+## Candidate Buckets
+- display-localized-source-row-unresolved: 456
+- raw-design-only: 168
+- relationship-only-no-localization: 18
+- direct-localized-but-visible-unresolved: 3
+- missing-skill-breakdown-entry: 3
+
+## Top Incoming/Taken Clusters
+- 普攻-二连击 | mode=taken | rows=2 | encounters=40, 41, 42, 43, 44, 76, 77, 78, 79, 80, 81, 82, 111, 113, 114, 115, 116, 117, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 185, 186 | bucket=display-localized-source-row-unresolved | value=303,039,762
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 140500010102, 140500010103
+- 绯红剑影惩罚爆炸P1 | mode=taken | rows=2 | encounters=148, 149, 150, 152, 153, 155, 156, 157, 195 | bucket=raw-design-only | value=200,572,368
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103003510101, 1103003510102
+- 石头人-追逐战阶段叠层计数 | mode=taken | rows=1 | encounters=7, 9, 15, 142, 145, 146, 159 | bucket=raw-design-only | value=167,698,617
+  - sources: BuffTable.ctb, DamageAttrTable, DamageAttrTable.ctb
+  - skill ids: 282723403
+- 石头人疯狂锤地(P2阶段) | mode=taken | rows=1 | encounters=3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 142, 145, 146, 159 | bucket=display-localized-source-row-unresolved | value=148,242,502
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1102901150102
+- 殷红断狱-普攻 | mode=taken | rows=3 | encounters=143, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 160, 187, 188, 189, 190, 195, 196, 197, 199, 200, 201, 202, 203 | bucket=display-localized-source-row-unresolved | value=116,654,073
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103003010101, 1103003010102, 1103003010103
+- 跳圈烟圈 | mode=taken | rows=1 | encounters=26, 28, 31, 33, 35, 63, 65, 67, 68, 69, 70, 73, 88, 90, 92 | bucket=raw-design-only | value=95,082,230
+  - sources: BuffTable.ctb, DamageAttrTable, DamageAttrTable.ctb
+  - skill ids: 3350100
+- 岩蛇BOSS-遁地移动总BUFF | mode=taken | rows=1 | encounters=57, 59, 60, 61, 95, 98, 99, 101, 103, 105, 106, 108 | bucket=raw-design-only | value=76,906,847
+  - sources: BuffTable.ctb, DamageAttrTable, DamageAttrTable.ctb
+  - skill ids: 288172103
+- 机制-梦魇缠绕爆炸伤害 | mode=taken | rows=1 | encounters=28, 31, 33, 35, 63, 65, 67, 68, 69, 70, 73, 88, 90, 92 | bucket=raw-design-only | value=73,648,575
+  - sources: BuffTable.ctb, DamageAttrTable, DamageAttrTable.ctb
+  - skill ids: 288320601
+- 蜥蜴-披甲 | mode=taken | rows=1 | encounters=19, 20, 21, 22, 23, 24, 25, 62, 87 | bucket=raw-design-only | value=61,410,128
+  - sources: BuffTable.ctb, DamageAttrTable, DamageAttrTable.ctb
+  - skill ids: 288310203
+- 殷红断狱-顺劈 | mode=taken | rows=1 | encounters=143, 148, 149, 150, 152, 153, 154, 155, 156, 157, 160, 187, 188, 190, 195, 196, 197, 199, 201, 202, 203 | bucket=display-localized-source-row-unresolved | value=52,636,491
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103003020101
+- 火焰兽人爪击三连 | mode=taken | rows=2 | encounters=143, 147, 148, 149, 150, 152, 153, 155, 156, 157, 160, 187, 188, 189, 190, 195, 196, 197, 199, 201, 202, 203 | bucket=display-localized-source-row-unresolved | value=52,506,873
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103001010102, 1103001010104
+- 牛羊犯病 | mode=taken | rows=1 | encounters=19, 20, 21, 22, 23, 24, 25, 62, 87 | bucket=display-localized-source-row-unresolved | value=50,087,310
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 19202110102
+- 绯红剑影普通爆炸P2 | mode=taken | rows=2 | encounters=153, 155, 157, 160, 190, 196, 197, 199, 203 | bucket=raw-design-only | value=43,999,679
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103003520201, 1103003520202
+- 分摊虚拟体 | mode=taken | rows=1 | encounters=153, 155, 196, 197, 199, 203 | bucket=raw-design-only | value=42,922,206
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103002500101
+- 鬼人化关闭标记buff | mode=taken | rows=1 | encounters=40, 41, 42, 43, 44, 76, 77, 78, 79, 80, 81, 82, 111, 112, 113, 114, 116, 119, 121, 122, 123, 124, 125, 126, 128, 129, 130, 131, 132 | bucket=raw-design-only | value=40,066,639
+  - sources: BuffTable.ctb, DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 3370100
+- 迷失地板（45扇形单片） | mode=taken | rows=2 | encounters=26, 28, 29, 31, 33, 35, 63, 65, 67, 68, 69, 70, 73, 88, 90, 92 | bucket=relationship-only-no-localization | value=38,085,818
+  - sources: CTB:1383488036, CTB:2319498083, CTB:3307381957, CTB:3754561411, CTB:395604162, DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 133501330102, 133501330103
+- 弓箭手-减速箭雨-虚拟体 | mode=taken | rows=1 | encounters=36, 37, 38, 39, 75, 109, 110, 118 | bucket=raw-design-only | value=36,608,349
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 120016600101
+- 火焰兽人砸地冲击 | mode=taken | rows=2 | encounters=143, 155, 157, 160, 188, 196 | bucket=display-localized-source-row-unresolved | value=35,731,131
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103002040102, 1103002040103
+- 石头人普攻 | mode=taken | rows=3 | encounters=3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 142, 145, 146, 159 | bucket=display-localized-source-row-unresolved | value=33,987,077
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1102901020104, 1102901020105, 1102901020106
+- 火焰兽人砸地冲击 | mode=taken | rows=1 | encounters=148, 149, 150, 152, 153, 155, 156, 157, 195 | bucket=display-localized-source-row-unresolved | value=33,638,037
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103001130101
+- 幻影湮灭虚拟体 | mode=taken | rows=1 | encounters=143, 148, 149, 150, 152, 153, 155, 156, 157, 188, 190, 195, 196, 197, 199, 202, 203 | bucket=raw-design-only | value=32,935,577
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103001510101
+- 虚蚀蒂娜_虚蚀重击 | mode=taken | rows=1 | encounters=143, 147, 148, 149, 150, 152, 153, 154, 155, 156, 157, 187, 188, 189, 190, 195, 196, 197, 199, 200, 201, 202, 203 | bucket=display-localized-source-row-unresolved | value=32,237,718
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1103003050105
+- 坠梦子弹 | mode=taken | rows=1 | encounters=26, 28, 29, 30, 31, 33, 35, 63, 65, 67, 68, 69, 70, 71, 72, 73, 88, 90, 92 | bucket=raw-design-only | value=32,030,730
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 133501050101
+- 吐息 | mode=taken | rows=1 | encounters=19, 20, 21, 22, 23, 24, 25, 62, 87 | bucket=display-localized-source-row-unresolved | value=31,643,466
+  - sources: DamageAttrTable, DamageAttrTable.ctb, MonsterTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 120018120101
+- 石头人直线地幔 | mode=taken | rows=1 | encounters=3, 4, 5, 6, 7, 9, 10, 11, 13, 14, 15, 145, 146 | bucket=raw-design-only | value=31,582,438
+  - sources: DamageAttrTable, DamageAttrTable.ctb, SkillEffectTable.ctb, SkillTable.ctb
+  - skill ids: 1102901530101
+
+## Top Encounters By Incoming/Taken Issues
+- #155: rows=145, taken=31, damage=98, healing=16, value=100,101,876,969
+- #153: rows=143, taken=30, damage=97, healing=16, value=102,016,660,179
+- #157: rows=145, taken=29, damage=100, healing=16, value=101,877,520,799
+- #203: rows=156, taken=27, damage=106, healing=23, value=104,847,770,052
+- #197: rows=156, taken=25, damage=108, healing=23, value=106,927,798,776
+- #196: rows=150, taken=25, damage=104, healing=21, value=103,513,649,761
+- #190: rows=136, taken=24, damage=94, healing=18, value=99,985,911,755
+- #199: rows=146, taken=23, damage=100, healing=23, value=104,836,564,060
+- #110: rows=101, taken=23, damage=69, healing=9, value=78,062,664,845
+- #143: rows=154, taken=22, damage=108, healing=24, value=106,512,297,198
+- #109: rows=101, taken=22, damage=70, healing=9, value=87,181,523,821
+- #188: rows=129, taken=21, damage=90, healing=18, value=100,197,486,573
+- #70: rows=97, taken=21, damage=67, healing=9, value=90,443,582,146
+- #36: rows=98, taken=21, damage=70, healing=7, value=88,607,675,412
+- #145: rows=123, taken=20, damage=87, healing=16, value=98,820,668,544
+- #35: rows=90, taken=20, damage=63, healing=7, value=86,285,565,799
+- #7: rows=139, taken=19, damage=91, healing=29, value=104,684,684,898
+- #146: rows=122, taken=19, damage=87, healing=16, value=99,227,895,902
+- #39: rows=98, taken=19, damage=70, healing=9, value=90,700,914,123
+- #68: rows=92, taken=19, damage=63, healing=10, value=88,553,236,942
+- #65: rows=91, taken=19, damage=62, healing=10, value=88,400,343,426
+- #118: rows=99, taken=19, damage=69, healing=11, value=79,610,123,171
+- #73: rows=91, taken=18, damage=64, healing=9, value=90,293,735,388
+- #75: rows=93, taken=18, damage=62, healing=13, value=74,955,422,952
+- #15: rows=138, taken=17, damage=90, healing=31, value=106,333,651,459
+- #9: rows=138, taken=17, damage=92, healing=29, value=106,156,256,848
+- #148: rows=113, taken=17, damage=80, healing=16, value=99,162,675,677
+- #156: rows=112, taken=17, damage=79, healing=16, value=99,049,570,403
+- #31: rows=85, taken=17, damage=61, healing=7, value=88,790,109,426
+- #92: rows=87, taken=17, damage=61, healing=9, value=88,613,029,622
+

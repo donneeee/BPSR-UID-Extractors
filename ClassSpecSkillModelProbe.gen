@@ -1,0 +1,689 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const TALENT_PASSIVE_TABLE_HASH = 3345237628;
+const STRING_POOL = 6;
+const INT_POOL = 1;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    markdown: ""
+  });
+
+  if (args.help) {
+    printHelp(
+      "ClassSpecSkillModelProbe.gen - report direct class/spec/base-skill/talent evidence from game files.",
+      `
+Options:
+  --markdown <path>    Optional Markdown summary output path.
+
+Notes:
+  This is a probe report only. It separates typed entities by source table and
+  records direct game-file relationships where present. It does not feed runtime
+  labels, does not infer selected player talents, and does not collapse rows just
+  because they share a localized name.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "ClassSpecSkillModelProbe.json"));
+  const generated = loadGenerated(paths.outputDir);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+
+  const baseSkillRows = buildObservedBaseSkillRows(generated);
+  const skillIds = new Set(
+    Object.values(generated.skills)
+      .filter((row) => row?.IsBaseSkill)
+      .map((row) => Number(row.Id))
+      .filter((value) => Number.isFinite(value) && value > 0)
+  );
+  const buffIds = new Set(
+    Object.values(generated.buffs)
+      .map((row) => Number(row?.Id))
+      .filter((value) => Number.isFinite(value) && value > 0)
+  );
+
+  const talentPassiveRows = collectTalentPassiveRows(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    skillIds,
+    buffIds
+  }).map((row) => attachLinkedRows(row, generated));
+  const weaponStyleBuffs = collectWeaponStyleBuffs(generated.buffs);
+  const talentSpecRows = talentPassiveRows.filter(isSpecLikeTalentRow);
+  const weaponStyleGroups = buildWeaponStyleGroups(weaponStyleBuffs, talentSpecRows);
+  const sharedLocalizedNames = buildSharedLocalizedNames(generated, talentPassiveRows);
+
+  const summary = {
+    weaponStyleBuffRows: weaponStyleBuffs.length,
+    weaponStyleGroups: weaponStyleGroups.length,
+    talentPassiveRows: talentPassiveRows.length,
+    talentSpecRows: talentSpecRows.length,
+    observedBaseSkillRows: baseSkillRows.length,
+    sharedLocalizedNames: sharedLocalizedNames.length,
+    strictRuntimeStatus: "probe-only"
+  };
+  const report = {
+    summary,
+    notes: [
+      "Entity type is assigned from source table, not localized label text.",
+      "BuffTable rows are reported as buffs.",
+      "SkillTable-backed skillnames rows with IsBaseSkill=true are reported as base skills.",
+      "CTB:3345237628 rows are reported as talent/passive/spec rows.",
+      "Weapon-style group class labels are unresolved unless another direct game row supplies the class name; group keys are shared BuffTable icon paths.",
+      "CTB field +36 is decoded as a top-level list of effect records. Payload values inside those records are not recursively treated as pointers.",
+      "Opcode 6 records are reported as ordered SkillTable id pairs, not ownership.",
+      "candidateTalentPassiveSpecs are localized-name candidates only, not proven style relationships."
+    ],
+    weaponStyleGroups,
+    weaponStyleBuffs,
+    talentSpecRows,
+    talentPassiveRows,
+    observedBaseSkills: baseSkillRows,
+    sharedLocalizedNames
+  };
+
+  console.log(`Weapon style BuffTable rows: ${summary.weaponStyleBuffRows}`);
+  console.log(`Weapon style icon groups: ${summary.weaponStyleGroups}`);
+  console.log(`Talent/passive CTB rows: ${summary.talentPassiveRows}`);
+  console.log(`Spec-like CTB rows: ${summary.talentSpecRows}`);
+  console.log(`Observed Recount base skills: ${summary.observedBaseSkillRows}`);
+  console.log(`Shared localized names across typed entities: ${summary.sharedLocalizedNames}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "ClassSpecSkillModelProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function loadGenerated(outputDir) {
+  return {
+    buffs: readOptionalJson(path.join(outputDir, "BuffName.json"), []),
+    recount: readOptionalJson(path.join(outputDir, "RecountTable.json"), {}),
+    skills: readOptionalJson(path.join(outputDir, "skillnames.json"), {})
+  };
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function collectWeaponStyleBuffs(buffRows) {
+  return Object.values(buffRows || {})
+    .filter((row) => {
+      const name = preferredName(row);
+      return /^Weapon Style - /i.test(name) && row?.NameIdSource === "BuffTable";
+    })
+    .map((row) => ({
+      type: "buff",
+      sourceTable: "BuffTable.ctb",
+      id: row.Id,
+      level: row.Level,
+      name: preferredName(row),
+      names: row.Names || {},
+      nameId: row.NameId,
+      nameIdSource: row.NameIdSource,
+      designName: row.DesignName || "",
+      iconPath: row.IconPath || "",
+      iconSource: row.IconPathSource || "",
+      sourceOffset: row.SourceOffset
+    }))
+    .sort(compareByNameThenId);
+}
+
+function collectTalentPassiveRows(containerDir, metaEntries, localizationTables, helpers) {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    skillIds,
+    buffIds
+  } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(
+      containerDir,
+      metaEntries,
+      TALENT_PASSIVE_TABLE_HASH,
+      `CTB:${TALENT_PASSIVE_TABLE_HASH}`
+    );
+  } catch {
+    return [];
+  }
+
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const nameId = readU32(table.data, rowOffset + 8);
+    const iconOffset = readU32(table.data, rowOffset + 20);
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    const name = choosePreferredLocaleText(names);
+    const designName = readCtbString(table, STRING_POOL, designOffset, { allowZero: false });
+    const iconPath = readCtbString(table, STRING_POOL, iconOffset, { allowZero: false });
+    if (!id || !name) {
+      continue;
+    }
+
+    const effectRecords = collectEffectRecordsFromField(table, rowOffset, 36, {
+      buffIds,
+      readU32,
+      skillIds
+    });
+    const skillPairRecords = effectRecords.filter((record) => record.kind === "opcode-6-skill-pair");
+    const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+
+    rows.push(stripEmpty({
+      type: "talent-passive",
+      sourceTable: `CTB:${TALENT_PASSIVE_TABLE_HASH}`,
+      id,
+      name,
+      names,
+      nameId,
+      designName,
+      iconPath,
+      iconPathOffset: iconOffset,
+      sourceOffset: table.entry.offset + rowOffset,
+      effectReferenceField: 36,
+      effectRecords,
+      skillPairRecords,
+      buffEffectRecords
+    }));
+  }
+  return rows.sort(compareByNameThenId);
+}
+
+function collectLocalizedTextEntries(nameId, localizationTables) {
+  const id = Number(nameId);
+  if (!Number.isInteger(id) || !id) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index?.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function collectEffectRecordsFromField(table, rowOffset, fieldOffset, helpers) {
+  const { buffIds, readU32, skillIds } = helpers;
+  const intPool = table?.pools?.get(INT_POOL);
+  if (!intPool) {
+    return [];
+  }
+  const topOffset = readU32(table.data, rowOffset + fieldOffset);
+  const topValues = readIntArrayFromPool(intPool, topOffset);
+  if (!topValues.length) {
+    return [];
+  }
+  const records = [];
+  for (const recordOffset of topValues) {
+    const rawValues = readIntArrayFromPool(intPool, recordOffset);
+    if (!rawValues.length) {
+      records.push({
+        kind: "unknown-record-offset",
+        fieldOffset,
+        recordOffset
+      });
+      continue;
+    }
+    const opcode = rawValues[0];
+    if (opcode === 3) {
+      const buffId = Number(rawValues[1]);
+      records.push(stripEmpty({
+        kind: "opcode-3-buff-record",
+        opcode,
+        fieldOffset,
+        recordOffset,
+        rawValues,
+        buffId,
+        value: rawValues[2],
+        buffIdStatus: buffIds instanceof Set && buffIds.has(buffId) ? "known-buff-id" : "unresolved-buff-id"
+      }));
+      continue;
+    }
+    if (opcode === 6) {
+      const firstSkillTableId = Number(rawValues[1]);
+      const secondSkillTableId = Number(rawValues[2]);
+      records.push(stripEmpty({
+        kind: "opcode-6-skill-pair",
+        opcode,
+        fieldOffset,
+        recordOffset,
+        rawValues,
+        firstSkillTableId,
+        firstSkillTableIdStatus: skillIds instanceof Set && skillIds.has(firstSkillTableId) ? "known-skill-table-id" : "unresolved-skill-table-id",
+        secondSkillTableId,
+        secondSkillTableIdStatus: skillIds instanceof Set && skillIds.has(secondSkillTableId) ? "known-skill-table-id" : "unresolved-skill-table-id"
+      }));
+      continue;
+    }
+    records.push({
+      kind: "unknown-opcode-record",
+      opcode,
+      fieldOffset,
+      recordOffset,
+      rawValues
+    });
+  }
+  return records;
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (!pool || index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 128 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function attachLinkedRows(row, generated) {
+  const skills = Object.fromEntries(Object.values(generated.skills || {}).map((entry) => [String(entry?.Id), entry]));
+  const buffs = Object.fromEntries(Object.values(generated.buffs || {}).map((entry) => [String(entry?.Id), entry]));
+  const effectRecords = (row.effectRecords || []).map((record) => attachEffectRecordRows(record, { buffs, skills }));
+  const skillPairRecords = effectRecords.filter((record) => record.kind === "opcode-6-skill-pair");
+  const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+  return {
+    ...row,
+    effectRecords,
+    ...(skillPairRecords.length ? { skillPairRecords } : {}),
+    ...(buffEffectRecords.length ? { buffEffectRecords } : {})
+  };
+}
+
+function attachEffectRecordRows(record, lookups) {
+  if (record?.kind === "opcode-6-skill-pair") {
+    return stripEmpty({
+      ...record,
+      firstSkillTableRow: skillEntity(lookups.skills[String(record.firstSkillTableId)]),
+      secondSkillTableRow: skillEntity(lookups.skills[String(record.secondSkillTableId)])
+    });
+  }
+  if (record?.kind === "opcode-3-buff-record") {
+    return stripEmpty({
+      ...record,
+      buffRow: buffEntity(lookups.buffs[String(record.buffId)])
+    });
+  }
+  return record;
+}
+
+function skillEntity(skill) {
+  if (!skill) {
+    return null;
+  }
+  return {
+    type: "skill-table",
+    sourceTable: "SkillTable.ctb",
+    id: skill.Id,
+    name: preferredName(skill),
+    names: skill.Names || {},
+    kind: skill.Kind,
+    iconPath: skill.IconPath || "",
+    sourceOffsets: skill.SourceOffsets || []
+  };
+}
+
+function buffEntity(buff) {
+  if (!buff) {
+    return null;
+  }
+  return {
+    type: "buff",
+    sourceTable: "BuffTable.ctb",
+    id: buff.Id,
+    name: preferredName(buff),
+    names: buff.Names || {},
+    nameIdSource: buff.NameIdSource || "",
+    iconPath: buff.IconPath || "",
+    sourceOffset: buff.SourceOffset
+  };
+}
+
+function buildWeaponStyleGroups(styleBuffs, talentSpecRows) {
+  const specsBySuffix = new Map();
+  for (const row of talentSpecRows || []) {
+    specsBySuffix.set(normalizeSpecName(row.name), row);
+  }
+
+  const grouped = new Map();
+  for (const buff of styleBuffs || []) {
+    const groupKey = buff.iconPath || "missing-icon";
+    const items = grouped.get(groupKey) || [];
+    const specName = normalizeSpecName(buff.name.replace(/^Weapon Style - /i, ""));
+    const matchedTalentRow = specsBySuffix.get(specName);
+    const candidateTalentRows = findTalentSpecNameCandidates(specName, talentSpecRows);
+    items.push(stripEmpty({
+      specName: buff.name.replace(/^Weapon Style - /i, ""),
+      weaponStyleBuff: buff,
+      matchedTalentPassiveSpec: matchedTalentRow
+        ? {
+            bridge: "Exact localized spec-name match after removing 'Weapon Style -' prefix",
+            bridgeStatus: "probe-only",
+            id: matchedTalentRow.id,
+            name: matchedTalentRow.name,
+            names: matchedTalentRow.names,
+            sourceTable: matchedTalentRow.sourceTable,
+            sourceOffset: matchedTalentRow.sourceOffset,
+            effectReferenceField: matchedTalentRow.effectReferenceField,
+            skillPairRecords: matchedTalentRow.skillPairRecords || [],
+            buffEffectRecords: matchedTalentRow.buffEffectRecords || []
+          }
+        : null,
+      candidateTalentPassiveSpecs: candidateTalentRows.map((row) => ({
+        bridge: normalizeSpecName(row.name) === specName
+          ? "Exact localized spec-name match after removing 'Weapon Style -' prefix"
+          : "Localized suffix spec-name candidate",
+        bridgeStatus: "name-only-candidate",
+        id: row.id,
+        name: row.name,
+        names: row.names,
+        sourceTable: row.sourceTable,
+        sourceOffset: row.sourceOffset,
+        effectReferenceField: row.effectReferenceField,
+        skillPairRecords: row.skillPairRecords || [],
+        buffEffectRecords: row.buffEffectRecords || []
+      }))
+    }));
+    grouped.set(groupKey, items);
+  }
+
+  return [...grouped.entries()]
+    .map(([iconPath, specs], index) => ({
+      classGroupKey: `weapon-style-icon:${iconPath}`,
+      classNameStatus: "unresolved-direct-class-label",
+      groupIndex: index + 1,
+      evidence: {
+        sourceTable: "BuffTable.ctb",
+        rule: "Weapon-style buffs share this direct BuffTable icon path.",
+        iconPath
+      },
+      specs: specs.sort((left, right) => String(left.specName).localeCompare(String(right.specName)))
+    }))
+    .sort((left, right) => left.classGroupKey.localeCompare(right.classGroupKey));
+}
+
+function buildObservedBaseSkillRows(generated) {
+  const skills = Object.fromEntries(Object.values(generated.skills || {}).map((entry) => [String(entry?.Id), entry]));
+  const bySkillId = new Map();
+  for (const row of Object.values(generated.recount || {})) {
+    const skillId = Number(row?.LinkedBaseSkillId);
+    if (!Number.isFinite(skillId) || !skillId) {
+      continue;
+    }
+    const skill = skills[String(skillId)] || {};
+    const current = bySkillId.get(skillId) || {
+      type: "base-skill",
+      sourceTable: "SkillTable.ctb",
+      id: skillId,
+      name: row.LinkedBaseSkillName || row.Name || preferredName(skill),
+      names: row.LinkedBaseSkillNames || skill.Names || {},
+      kind: skill.Kind || "base-skill",
+      iconPath: row.LinkedBaseSkillIconPath || skill.IconPath || row.IconPath || "",
+      bridge: row.BaseSkillNameBridge || "RecountTable.LinkedBaseSkillId",
+      sourceOffsets: [],
+      observedRecountRows: []
+    };
+    current.sourceOffsets.push(row.LinkedBaseSkillSourceOffset, ...(Array.isArray(skill.SourceOffsets) ? skill.SourceOffsets : []));
+    current.observedRecountRows.push({
+      recountId: row.Id,
+      recountName: row.Name,
+      recountSourceOffset: row.SourceOffset,
+      damageIds: row.DamageId || []
+    });
+    bySkillId.set(skillId, current);
+  }
+  return [...bySkillId.values()]
+    .map((row) => ({
+      ...row,
+      sourceOffsets: uniqueNumbers(row.sourceOffsets),
+      observedRecountRows: row.observedRecountRows.sort((left, right) => Number(left.recountId) - Number(right.recountId))
+    }))
+    .sort((left, right) => Number(left.id) - Number(right.id));
+}
+
+function buildSharedLocalizedNames(generated, talentPassiveRows) {
+  const entities = [];
+  for (const row of Object.values(generated.buffs || {})) {
+    if (!row?.Id || !preferredName(row)) {
+      continue;
+    }
+    entities.push({
+      type: "buff",
+      sourceTable: "BuffTable.ctb",
+      id: row.Id,
+      name: preferredName(row),
+      names: row.Names || {},
+      iconPath: row.IconPath || "",
+      sourceOffset: row.SourceOffset
+    });
+  }
+  for (const row of Object.values(generated.skills || {})) {
+    if (!row?.Id || !row?.IsBaseSkill || !preferredName(row)) {
+      continue;
+    }
+    entities.push({
+      type: "base-skill",
+      sourceTable: "SkillTable.ctb",
+      id: row.Id,
+      name: preferredName(row),
+      names: row.Names || {},
+      iconPath: row.IconPath || "",
+      sourceOffsets: row.SourceOffsets || []
+    });
+  }
+  for (const row of talentPassiveRows || []) {
+    entities.push({
+      type: "talent-passive",
+      sourceTable: row.sourceTable,
+      id: row.id,
+      name: row.name,
+      names: row.names || {},
+      iconPath: row.iconPath || "",
+      sourceOffset: row.sourceOffset
+    });
+  }
+
+  const byName = new Map();
+  for (const entity of entities) {
+    const key = normalizeName(entity.names?.en || entity.name);
+    if (!key) {
+      continue;
+    }
+    const bucket = byName.get(key) || [];
+    bucket.push(entity);
+    byName.set(key, bucket);
+  }
+
+  return [...byName.entries()]
+    .map(([key, bucket]) => ({
+      nameKey: key,
+      displayName: bucket.find((entry) => entry.names?.en)?.names?.en || bucket[0]?.name || key,
+      types: uniqueStrings(bucket.map((entry) => entry.type)),
+      entities: bucket.sort(compareEntity)
+    }))
+    .filter((row) => row.types.length > 1)
+    .sort((left, right) => left.displayName.localeCompare(right.displayName));
+}
+
+function isSpecLikeTalentRow(row) {
+  const values = [
+    row?.name,
+    row?.names?.en,
+    row?.names?.["zh-CN"],
+    row?.names?.["zh-TW"],
+    row?.designName
+  ];
+  return values.some((value) => /\bSpec\b/i.test(String(value || "")) || /流派/.test(String(value || "")));
+}
+
+function findTalentSpecNameCandidates(styleSpecName, talentSpecRows) {
+  const normalizedStyle = normalizeSpecName(styleSpecName);
+  return (talentSpecRows || [])
+    .filter((row) => {
+      const normalizedTalent = normalizeSpecName(row?.name);
+      return normalizedTalent &&
+        (normalizedTalent === normalizedStyle || normalizedStyle.endsWith(` ${normalizedTalent}`));
+    })
+    .sort((left, right) => {
+      const leftExact = normalizeSpecName(left.name) === normalizedStyle ? 0 : 1;
+      const rightExact = normalizeSpecName(right.name) === normalizedStyle ? 0 : 1;
+      return leftExact - rightExact || Number(left.id) - Number(right.id);
+    });
+}
+
+function normalizeSpecName(value) {
+  return normalizeName(String(value || "").replace(/^Weapon Style - /i, ""));
+}
+
+function normalizeName(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function preferredName(row) {
+  return String(row?.Names?.en || row?.Name || row?.NameDesign || row?.name || "").trim();
+}
+
+function compareByNameThenId(left, right) {
+  return String(left.name || "").localeCompare(String(right.name || "")) || Number(left.id || left.Id) - Number(right.id || right.Id);
+}
+
+function compareEntity(left, right) {
+  return String(left.type).localeCompare(String(right.type)) || Number(left.id) - Number(right.id);
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(Number).filter((value) => Number.isFinite(value)))].sort((left, right) => left - right);
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))].sort((left, right) => left.localeCompare(right));
+}
+
+function stripEmpty(value) {
+  if (Array.isArray(value)) {
+    return value.map(stripEmpty).filter((entry) => entry !== undefined);
+  }
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    const cleaned = stripEmpty(entry);
+    if (cleaned === undefined || cleaned === null || cleaned === "") {
+      continue;
+    }
+    if (Array.isArray(cleaned) && !cleaned.length) {
+      continue;
+    }
+    if (typeof cleaned === "object" && !Array.isArray(cleaned) && !Object.keys(cleaned).length) {
+      continue;
+    }
+    out[key] = cleaned;
+  }
+  return out;
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Class/Spec Skill Model Probe");
+  lines.push("");
+  lines.push("This is a worklist/report only. It keeps source-table entity types separate and does not infer selected player talents.");
+  lines.push("CTB field+36 is decoded as top-level effect records. Opcode 6 records are reported as ordered SkillTable id pairs, not ownership.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.summary || {})) {
+    lines.push(`- ${key}: ${value}`);
+  }
+  lines.push("");
+  lines.push("## Weapon Style Groups");
+  lines.push("");
+  for (const group of report.weaponStyleGroups || []) {
+    lines.push(`### ${group.classGroupKey}`);
+    lines.push(`- classNameStatus: ${group.classNameStatus}`);
+    for (const spec of group.specs || []) {
+      const skillPairs = formatSkillPairs(spec.matchedTalentPassiveSpec?.skillPairRecords || []);
+      const candidateNames = spec.candidateTalentPassiveSpecs?.map((candidate) => `${candidate.id} ${candidate.name}`).join(", ") || "none";
+      lines.push(`- ${spec.specName}: buff ${spec.weaponStyleBuff.id}; exact CTB opcode-6 skill pairs: ${skillPairs}; name-only candidates: ${candidateNames}`);
+    }
+    lines.push("");
+  }
+  lines.push("## Shared Localized Names");
+  lines.push("");
+  for (const row of (report.sharedLocalizedNames || []).slice(0, 40)) {
+    const entities = row.entities.map((entry) => `${entry.type} ${entry.id}`).join(", ");
+    lines.push(`- ${row.displayName}: ${entities}`);
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function formatSkillPairs(records) {
+  const values = (records || [])
+    .map((record) => {
+      const first = record.firstSkillTableRow
+        ? `${record.firstSkillTableRow.id} ${record.firstSkillTableRow.name}`
+        : String(record.firstSkillTableId || "");
+      const second = record.secondSkillTableRow
+        ? `${record.secondSkillTableRow.id} ${record.secondSkillTableRow.name}`
+        : String(record.secondSkillTableId || "");
+      return first && second ? `${first} -> ${second}` : "";
+    })
+    .filter(Boolean);
+  return values.length ? values.join("; ") : "none";
+}

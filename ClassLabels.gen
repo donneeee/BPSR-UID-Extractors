@@ -1,0 +1,238 @@
+#!/usr/bin/env node
+const path = require("node:path");
+
+const SUPPORTED_LOCALES = [
+  "en",
+  "zh-CN",
+  "zh-TW",
+  "ja",
+  "ko-KR",
+  "fr",
+  "de",
+  "es",
+  "pt-BR",
+  "th",
+  "id"
+];
+
+const CLASS_DEFS = [
+  { key: "Heavy Guardian", classId: 9, itemIds: [1020152, 1020005] },
+  { key: "Shield Knight", classId: 12, itemIds: [1020157, 1020010] },
+  { key: "Stormblade", classId: 1, itemIds: [1020151, 1020004] },
+  { key: "Wind Knight", classId: 4, itemIds: [1020156, 1020009] },
+  { key: "Marksman", classId: 11, itemIds: [1020155, 1020008] },
+  { key: "Frost Mage", classId: 2, itemIds: [1020153, 1020006] },
+  {
+    key: "Flame Berserker",
+    classId: 3,
+    itemIds: [],
+    fallbackNames: {
+      en: "Flame Berserker",
+      "zh-CN": "赤炎狂战士",
+      "zh-TW": "赤炎狂戰士"
+    }
+  },
+  { key: "Verdant Oracle", classId: 5, itemIds: [1020154, 1020007] },
+  { key: "Beat Performer", classId: 13, itemIds: [1020158] }
+];
+
+const SPEC_DEFS = [
+  { key: "Earthfort", talentId: 931 },
+  { key: "Block", talentId: 930 },
+  {
+    key: "Iaido",
+    talentId: 130,
+    // The UID row is named "Iaido Slash Spec", but Iaido Slash is the base
+    // attack inside the Iaido spec. Keep the app's canonical spec label.
+    labelOverrides: {
+      en: "Iaido",
+      th: "Iaido",
+      id: "Iaido"
+    }
+  },
+  { key: "Moonstrike", talentId: 157 },
+  { key: "Vanguard", talentId: 433 },
+  { key: "Skyward", talentId: 432 },
+  { key: "Wildpack", talentId: 1126 },
+  { key: "Falconry", talentId: 1129 },
+  { key: "Icicle", talentId: 233 },
+  { key: "Frostbeam", talentId: 212 },
+  { key: "Voidflame", talentId: 312 },
+  { key: "Blazecrimson", talentId: 342 },
+  { key: "Smite", talentId: 510 },
+  { key: "Lifebind", talentId: 531 },
+  { key: "Recovery", talentId: 1208 },
+  { key: "Shield", talentId: 1218 },
+  { key: "Concerto", talentId: 1317 },
+  { key: "Dissonance", talentId: 1308 }
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    displayPath,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readJson,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+
+  if (args.help) {
+    printHelp(
+      "ClassLabels.gen - generate class-labels.json from UID extractor outputs.",
+      `
+Notes:
+  Class labels are resolved from generated itemnames.json class evidence.
+  Spec labels are resolved from ClassSpecSkillModelProbe talent spec rows.
+  The output is a combined table keyed by class.* and spec.* for app runtime use.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "class-labels.json");
+  const itemNamesPath = path.join(paths.outputDir, "itemnames.json");
+  const classSpecProbePath = path.join(
+    paths.outputDir,
+    "probing-reports",
+    "ClassSpecSkillModelProbe.json"
+  );
+
+  const itemNames = readJson(itemNamesPath, []);
+  const classSpecProbe = readJson(classSpecProbePath, { talentSpecRows: [] });
+
+  const itemById = new Map(
+    (Array.isArray(itemNames) ? itemNames : []).map((entry) => [Number(entry.Id), entry])
+  );
+  const talentSpecById = new Map(
+    (Array.isArray(classSpecProbe.talentSpecRows) ? classSpecProbe.talentSpecRows : [])
+      .map((entry) => [Number(entry.id), entry])
+  );
+
+  const out = {};
+
+  for (const def of CLASS_DEFS) {
+    const label = buildClassLabel(def, itemById);
+    out[`class.${def.key}`] = label;
+  }
+
+  for (const def of SPEC_DEFS) {
+    const label = buildSpecLabel(def, talentSpecById);
+    out[`spec.${def.key}`] = label;
+  }
+
+  console.log(`Class labels: ${CLASS_DEFS.length}`);
+  console.log(`Spec labels: ${SPEC_DEFS.length}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, out, Boolean(args.dryRun));
+}
+
+function buildClassLabel(def, itemById) {
+  const out = {};
+  for (const itemId of def.itemIds) {
+    const entry = itemById.get(Number(itemId));
+    if (!entry || !entry.Names || typeof entry.Names !== "object") {
+      continue;
+    }
+
+    for (const locale of SUPPORTED_LOCALES) {
+      if (out[locale]) continue;
+      const rawText = entry.Names[locale];
+      const text = normalizeClassEvidence(rawText, locale, def.key);
+      if (text) out[locale] = text;
+    }
+  }
+
+  for (const [locale, text] of Object.entries(def.fallbackNames || {})) {
+    if (!out[locale] && text) out[locale] = text;
+  }
+
+  for (const locale of SUPPORTED_LOCALES) {
+    if (!out[locale] && out.en) out[locale] = out.en;
+  }
+
+  return out;
+}
+
+function buildSpecLabel(def, talentSpecById) {
+  const row = talentSpecById.get(Number(def.talentId));
+  const names = row && row.names && typeof row.names === "object" ? row.names : {};
+  const out = {};
+
+  for (const locale of SUPPORTED_LOCALES) {
+    const rawText = names[locale];
+    const text = def.labelOverrides?.[locale] || normalizeSpecEvidence(rawText, locale, def.key);
+    if (text) out[locale] = text;
+  }
+
+  for (const locale of SUPPORTED_LOCALES) {
+    if (!out[locale] && out.en) out[locale] = out.en;
+  }
+
+  return out;
+}
+
+function normalizeClassEvidence(value, locale, fallback) {
+  let text = normalizeText(value);
+  if (!text) return "";
+
+  const rules = [
+    /^Stellar Core\s*[-–]\s*/i,
+    /^Starshine Core\s*[-–]\s*/i,
+    /^Astra Core\s*[-–]\s*/i,
+    /^Noyau stellaire\s*[-–]\s*/i,
+    /^Stellarium-Kern\s*[-–]\s*/i,
+    /^星耀晶核[·・]/,
+    /^星光結晶核[·・]/,
+    /^엔그램 결정 코어[·・]/,
+    /^Núcleo Estelar\s*[-–]\s*/i,
+    /^Núcleo estelar\s*[（(]/i,
+    /^[）)]$/,
+    /\s+Advance(?:d)? Book$/i,
+    /^Advanced Book of\s+/i,
+    /进阶之书$/,
+    /進階之書$/,
+    /の書$/,
+    /\s*승급의 서$/,
+    /^Manuel de progression (?:de |d')/i,
+    /^Fortschrittsbuch\s*["“]/i,
+    /["”]$/i,
+    /^Libro de mejora:\s*/i,
+    /^Livro Avançado (?:do|da|de)\s*/i,
+    /^Livro de Avanço (?:do|da|de)\s*/i
+  ];
+
+  for (const rule of rules) {
+    text = text.replace(rule, "");
+  }
+
+  text = text.replace(/[）)]$/u, "").trim();
+
+  if (locale === "en" && /Battle Axe$/i.test(text)) {
+    return fallback;
+  }
+
+  return text || fallback;
+}
+
+function normalizeSpecEvidence(value, locale, fallback) {
+  let text = normalizeText(value);
+  if (!text) return fallback;
+
+  if (locale === "en") {
+    text = text.replace(/\s+Spec$/i, "").trim();
+  }
+
+  return text || fallback;
+}
+
+function normalizeText(value) {
+  return typeof value === "string" ? value.trim() : "";
+}

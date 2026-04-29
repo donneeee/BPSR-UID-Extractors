@@ -60,6 +60,7 @@ Notes:
     readCtbTableByHash,
     readU32
   });
+  const skillTableDesignLookup = buildUniqueSkillTableDesignLookup(skillTableLookup);
   const skillFightLookup = buildSkillFightLookup(containerDir, metaEntries, {
     buildLocaleTextObject,
     readCtbString,
@@ -73,6 +74,7 @@ Notes:
   let linkedSkillCount = 0;
   let linkedSkillTableCount = 0;
   let linkedSkillFightCount = 0;
+  let linkedSkillTableNameMatchCount = 0;
 
   for (let index = 0; index < damageTable.rowCount; index += 1) {
     const rowOffset = damageTable.rowStart + index * damageTable.rowSize;
@@ -104,6 +106,10 @@ Notes:
     const linkedSkillTableFromFight = linkedSkillFight?.skillId
       ? skillTableLookup.get(String(linkedSkillFight.skillId)) ?? null
       : null;
+    const linkedSkillTableFromDesign =
+      directName && !linkedBuff && !linkedSkill && !linkedSkillTable && !linkedSkillFight
+        ? skillTableDesignLookup.get(normalizeDesignLookupText(directName)) ?? null
+        : null;
     const iconLinks = collectIconLinks([
       { path: linkedBuff?.IconPath, source: "BuffName" },
       { path: linkedSkillTable?.iconPath, source: "SkillTable", offset: linkedSkillTable?.iconPathOffset },
@@ -127,11 +133,44 @@ Notes:
         path: linkedSkillTableFromFight?.parentSkillIconPath,
         source: "SkillFightLevelTableSkillIdToSkillTable.ParentSkillTable",
         offset: linkedSkillTableFromFight?.parentSkillIconPathOffset
+      },
+      {
+        path: linkedSkillTableFromDesign?.iconPath,
+        source: "DamageAttrNameExactSkillTable",
+        offset: linkedSkillTableFromDesign?.iconPathOffset
+      },
+      {
+        path: linkedSkillTableFromDesign?.parentSkillIconPath,
+        source: "DamageAttrNameExactSkillTable.ParentSkillTable",
+        offset: linkedSkillTableFromDesign?.parentSkillIconPathOffset
       }
     ]);
     const iconPath = iconLinks[0]?.path || "";
     const iconPaths = uniqueStrings(iconLinks.map((link) => link.path));
-    const names = directName
+    const designMatchNames = linkedSkillTableFromDesign?.names && hasRealLocale(linkedSkillTableFromDesign.names)
+      ? linkedSkillTableFromDesign.names
+      : null;
+    const linkedLocalizedNames = firstRealLocaleNameSet(
+      linkedBuff?.Names,
+      linkedSkillTableFromEffect?.names,
+      linkedSkillTable?.names,
+      linkedSkillTableFromFight?.names,
+      linkedSkillFight?.names
+    );
+    const damageAttrDesignName =
+      directName ||
+      linkedBuff?.Name ||
+      linkedSkill?.name ||
+      linkedSkillTable?.name ||
+      linkedSkillTableFromEffect?.name ||
+      linkedSkillFight?.name ||
+      linkedSkillTableFromFight?.name ||
+      "";
+    const names = designMatchNames
+      ? designMatchNames
+      : linkedLocalizedNames
+        ? copyRealLocaleNamesWithDesign(linkedLocalizedNames, damageAttrDesignName)
+      : directName
       ? buildLocaleTextObject([{ localeId: "design", text: directName }], { includeDesign: false })
       : linkedBuff?.Names && Object.keys(linkedBuff.Names).length
         ? linkedBuff.Names
@@ -166,6 +205,7 @@ Notes:
     if (linkedSkill) linkedSkillCount += 1;
     if (!directName && !linkedBuff && !linkedSkill && linkedSkillTable) linkedSkillTableCount += 1;
     if (!directName && !linkedBuff && !linkedSkill && !linkedSkillTable && linkedSkillFight) linkedSkillFightCount += 1;
+    if (linkedSkillTableFromDesign) linkedSkillTableNameMatchCount += 1;
 
     rows[String(id)] = {
       Id: numberOrString(id),
@@ -279,6 +319,32 @@ Notes:
               : {})
           }
         : {}),
+      ...(linkedSkillTableFromDesign
+        ? {
+            LinkedSkillTableNameMatchId: linkedSkillTableFromDesign.skillId,
+            LinkedSkillTableNameMatchName: linkedSkillTableFromDesign.name,
+            LinkedSkillTableNameMatchNameId: linkedSkillTableFromDesign.nameId,
+            LinkedSkillTableNameMatchNames: linkedSkillTableFromDesign.names,
+            LinkedSkillTableNameMatchSourceOffset: linkedSkillTableFromDesign.sourceOffset,
+            LinkedSkillTableNameMatchSource: "DamageAttrTable.NameDesignExactSkillTableMatch",
+            ...(linkedSkillTableFromDesign.nameSources?.length
+              ? { LinkedSkillTableNameMatchNameSources: linkedSkillTableFromDesign.nameSources }
+              : {}),
+            ...(linkedSkillTableFromDesign.nameBridgeSkillId
+              ? { LinkedSkillTableNameMatchNameBridgeSkillId: linkedSkillTableFromDesign.nameBridgeSkillId }
+              : {}),
+            ...(linkedSkillTableFromDesign.nameBridgeSourceOffset
+              ? { LinkedSkillTableNameMatchNameBridgeSourceOffset: linkedSkillTableFromDesign.nameBridgeSourceOffset }
+              : {}),
+            ...skillTableParentFields("LinkedSkillTableNameMatch", linkedSkillTableFromDesign),
+            ...(linkedSkillTableFromDesign.iconPath
+              ? {
+                  LinkedSkillTableNameMatchIconPath: linkedSkillTableFromDesign.iconPath,
+                  LinkedSkillTableNameMatchIconPathOffset: linkedSkillTableFromDesign.iconPathOffset
+                }
+              : {})
+          }
+        : {}),
       Source: "DamageAttrTable",
       SourceOffset: damageTable.entry.offset + rowOffset
     };
@@ -294,6 +360,7 @@ Notes:
   console.log(`Rows linked to direct SkillEffect rows: ${linkedSkillCount}`);
   console.log(`Rows linked to direct SkillTable rows: ${linkedSkillTableCount}`);
   console.log(`Rows linked to direct SkillFightLevel rows: ${linkedSkillFightCount}`);
+  console.log(`Rows bridged by exact DamageAttr design to SkillTable: ${linkedSkillTableNameMatchCount}`);
   console.log(`DamageAttr entries written: ${Object.keys(sorted).length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
@@ -402,6 +469,47 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
   return bySkillId;
 }
 
+function buildUniqueSkillTableDesignLookup(skillTableLookup) {
+  const grouped = new Map();
+  for (const entry of skillTableLookup.values()) {
+    const key = normalizeDesignLookupText(entry?.name);
+    if (!isSafeSkillTableDesignMatch(entry?.name, key)) {
+      continue;
+    }
+    const group = grouped.get(key) || new Map();
+    group.set(String(entry.skillId), entry);
+    grouped.set(key, group);
+  }
+
+  const out = new Map();
+  for (const [key, group] of grouped.entries()) {
+    const entries = [...group.values()];
+    if (entries.length === 1) {
+      out.set(key, entries[0]);
+    }
+  }
+  return out;
+}
+
+function isSafeSkillTableDesignMatch(rawName, key) {
+  if (!key) {
+    return false;
+  }
+  const text = String(rawName || "");
+  if (/[\u3400-\u9fff]/.test(text)) {
+    return key.length >= 2;
+  }
+  return key.replace(/[^a-z0-9]/g, "").length >= 5;
+}
+
+function normalizeDesignLookupText(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/\s+/g, "")
+    .trim()
+    .toLowerCase();
+}
+
 function applyVirtualSkillNameBridges(skillRows, containerDir, metaEntries, helpers) {
   const { readCtbString, readCtbTableByHash, readU32 } = helpers;
   let table;
@@ -454,6 +562,15 @@ function isVirtualSkillNameBridge(sourceName, targetName, bridgeDesign) {
   const sourceBase = normalizeVirtualBridgeName(sourceName || bridgeDesign);
   const targetBase = normalizeVirtualBridgeName(targetName);
   return Boolean(sourceBase && targetBase && (targetBase.startsWith(sourceBase) || sourceBase.startsWith(targetBase)));
+}
+
+function firstRealLocaleNameSet(...candidates) {
+  for (const names of candidates) {
+    if (names && typeof names === "object" && !Array.isArray(names) && hasRealLocale(names)) {
+      return names;
+    }
+  }
+  return null;
 }
 
 function normalizeVirtualBridgeName(value) {

@@ -1,0 +1,536 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    displayPath,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    audit: "../resonance-logs-global/DEV_exports/history-label-audit.json",
+    markdown: ""
+  });
+
+  if (args.help) {
+    printHelp(
+      "StrictUnresolvedWorklist.gen - group unresolved saved-encounter labels by encounter and game-file evidence.",
+      `
+Options:
+  --audit <path>       history-label-audit.json to inspect.
+  --markdown <path>    Optional Markdown summary output path.
+
+Notes:
+  This report is a worklist only. It does not search fuzzy localization terms,
+  infer source ownership, or feed production labels. Candidate buckets are based
+  only on direct generated game-file metadata already present in parser JSON.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "StrictUnresolvedWorklist.json"));
+  const auditPath = path.resolve(args.audit);
+  const audit = readJson(auditPath);
+  const generated = loadGenerated(paths.outputDir);
+  const rows = (Array.isArray(audit.issues) ? audit.issues : [])
+    .map((row) => enrichIssue(row, generated))
+    .filter(Boolean)
+    .sort(compareWorkRows);
+  const visibleRows = rows.filter((row) => row.visibleUnresolved);
+  const sourceRows = rows.filter((row) => row.sourceUnresolved);
+  const clusters = buildClusters(rows);
+  const encounters = buildEncounters(rows);
+  const priority = {
+    incomingDamage: clusters.filter((cluster) => cluster.mode === "taken"),
+    playerDamage: clusters.filter((cluster) => cluster.mode === "damage"),
+    healing: clusters.filter((cluster) => cluster.mode === "healing"),
+    all: clusters
+  };
+  const summary = {
+    audit: displayRelative(auditPath),
+    observedRows: Number(audit.observed_skill_count || audit.observed_rows?.length || 0),
+    issueRows: rows.length,
+    visibleIssueRows: visibleRows.length,
+    sourceEvidenceIssueRows: sourceRows.length,
+    clusterCount: clusters.length,
+    encounterCount: encounters.length,
+    modeCounts: countBy(rows, (row) => row.mode || "unknown"),
+    priorityRows: countBy(rows, (row) => row.priorityBucket),
+    candidateBuckets: countBy(rows, (row) => row.candidateBucket),
+    incomingDamageRows: rows.filter((row) => row.mode === "taken").length,
+    incomingDamageClusters: clusters.filter((cluster) => cluster.mode === "taken").length,
+    playerDamageRows: rows.filter((row) => row.mode === "damage").length,
+    playerDamageClusters: clusters.filter((cluster) => cluster.mode === "damage").length
+  };
+
+  const report = {
+    summary,
+    priority,
+    encounters,
+    clusters,
+    rows
+  };
+
+  console.log(`Issue rows: ${summary.issueRows}`);
+  console.log(`Visible issue rows: ${summary.visibleIssueRows}`);
+  console.log(`Source-evidence issue rows: ${summary.sourceEvidenceIssueRows}`);
+  console.log(`Clusters: ${summary.clusterCount}`);
+  console.log(`Encounter groups: ${summary.encounterCount}`);
+  console.log(`Incoming/taken clusters: ${summary.incomingDamageClusters}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "StrictUnresolvedWorklist.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function readJson(filePath) {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Missing JSON input: ${displayRelative(filePath)}`);
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function loadGenerated(outputDir) {
+  return {
+    breakdown: readOptionalJson(path.join(outputDir, "SkillBreakdownDetails.json"), {}),
+    damage: readOptionalJson(path.join(outputDir, "DamageAttrIdName.json"), {}),
+    recount: readOptionalJson(path.join(outputDir, "RecountTable.json"), {}),
+    skills: readOptionalJson(path.join(outputDir, "skillnames.json"), {})
+  };
+}
+
+function enrichIssue(row, generated) {
+  if (!row || row.skill_id === undefined || row.skill_id === null) {
+    return null;
+  }
+  const id = String(row.skill_id);
+  const detail = generated.breakdown?.[id] || {};
+  const damage = generated.damage?.[id] || {};
+  const skill = generated.skills?.[String(detail.UnderlyingSkillId || detail.LinkedSkillId || "")] || {};
+  const encounterIds = uniqueNumbers([
+    ...(Array.isArray(row.encounter_ids) ? row.encounter_ids : []),
+    ...(Array.isArray(row.sample_encounter_ids) ? row.sample_encounter_ids : [])
+  ]);
+  const directLocalizedSources = directLocalizedEvidence(detail, damage, skill);
+  const rawDesignSources = rawDesignEvidence(detail, damage, skill);
+  const candidateBucket = chooseCandidateBucket({
+    row,
+    detail,
+    damage,
+    skill,
+    directLocalizedSources,
+    rawDesignSources
+  });
+  const priorityBucket = choosePriorityBucket(row, detail);
+  const sourceFiles = uniqueStrings([
+    ...(Array.isArray(detail.SourceFiles) ? detail.SourceFiles : []),
+    damage.Source,
+    ...(Array.isArray(skill.SourceFiles) ? skill.SourceFiles : [])
+  ]);
+
+  return stripEmpty({
+    skillId: numberOrString(row.skill_id),
+    mode: String(row.mode || ""),
+    priorityBucket,
+    totalValue: Number(row.total_value || 0),
+    hits: Number(row.hits || 0),
+    encounterCount: Number(row.encounter_count || encounterIds.length || 0),
+    encounterIds,
+    samplePlayers: row.sample_players || [],
+    sampleScenes: row.sample_scenes || [],
+    displayLabel: row.display_label || detail.DisplayName || "",
+    detailLabel: row.detail_label || detail.DisplayDetailName || "",
+    fullLabel: row.full_label || "",
+    damageLabel: row.damage_label || damage.Name || detail.DamageName || "",
+    visibleUnresolved: Boolean(row.visible_unresolved),
+    sourceUnresolved: Boolean(row.source_unresolved),
+    visibleReasons: row.visible_reasons || [],
+    sourceReasons: row.source_reasons || [],
+    reasons: row.reasons || [],
+    candidateBucket,
+    directLocalizedSources,
+    rawDesignSources,
+    category: row.category || detail.Category,
+    badge: row.badge || detail.Badge,
+    sourceRole: row.source_role || detail.SourceRole,
+    displayDetailKind: row.display_detail_kind || detail.DisplayDetailKind,
+    parentRecountId: firstDefined(row.parent_recount_id, detail.ParentRecountId),
+    parentRecountName: row.parent_recount_label || detail.ParentRecountName,
+    damageKind: detail.DamageKind || damage.DamageKind,
+    detailKind: detail.DetailKind || damage.DetailKind,
+    linkedSource: detail.LinkedSource || damage.LinkedSource,
+    linkedId: firstDefined(detail.LinkedId, damage.LinkedId),
+    linkedSkillId: firstDefined(detail.LinkedSkillId, damage.LinkedSkillId),
+    linkedSkillEffectId: firstDefined(detail.LinkedSkillEffectId, damage.LinkedSkillEffectId),
+    linkedBuffId: firstDefined(detail.LinkedBuffId, damage.LinkedBuffId),
+    parentBaseSkillId: detail.ParentBaseSkillId,
+    parentBaseSkillName: detail.ParentBaseSkillName,
+    parentTalentId: detail.ParentTalentId,
+    parentTalentName: detail.ParentTalentName,
+    underlyingSkillId: firstDefined(row.underlying_skill_id, detail.UnderlyingSkillId),
+    underlyingSkillName: detail.UnderlyingSkillName,
+    underlyingRelatedSkillIds: uniqueNumbers([
+      ...(Array.isArray(row.underlying_related_skill_ids) ? row.underlying_related_skill_ids : []),
+      ...(Array.isArray(detail.UnderlyingRelatedSkillIds) ? detail.UnderlyingRelatedSkillIds : [])
+    ]),
+    underlyingSkillRelations: Array.isArray(row.underlying_skill_relations) && row.underlying_skill_relations.length
+      ? row.underlying_skill_relations
+      : detail.UnderlyingSkillRelations,
+    monsterOwnerIds: detail.MonsterOwnerIds,
+    monsterOwnerName: detail.MonsterOwnerName,
+    sourceFiles,
+    sourceOffsets: uniqueNumbers([
+      ...(Array.isArray(detail.SourceOffsets) ? detail.SourceOffsets : []),
+      damage.SourceOffset,
+      skill.SourceOffset
+    ]),
+    generatorReason: row.generator_reason || detail.Reason,
+    clusterKey: ""
+  });
+}
+
+function directLocalizedEvidence(detail, damage, skill) {
+  const candidates = [
+    ["DisplayNames", detail.DisplayNames],
+    ["DisplayDetailNames", detail.DisplayDetailNames],
+    ["DamageNames", detail.DamageNames || damage.Names],
+    ["LinkedNames", detail.LinkedNames],
+    ["LinkedBuffNames", detail.LinkedBuffNames || damage.LinkedBuffNames],
+    ["LinkedSkillTableNames", detail.LinkedSkillTableNames || damage.LinkedSkillTableNames],
+    ["LinkedSkillEffectSkillTableNames", detail.LinkedSkillEffectSkillTableNames || damage.LinkedSkillEffectSkillTableNames],
+    ["LinkedSkillFightSkillTableNames", detail.LinkedSkillFightSkillTableNames || damage.LinkedSkillFightSkillTableNames],
+    ["LinkedSkillTableNameMatchNames", detail.LinkedSkillTableNameMatchNames || damage.LinkedSkillTableNameMatchNames],
+    ["ParentRecountNames", detail.ParentRecountNames],
+    ["ParentBaseSkillNames", detail.ParentBaseSkillNames],
+    ["ParentTalentNames", detail.ParentTalentNames],
+    ["UnderlyingSkillNames", detail.UnderlyingSkillNames || skill.Names],
+    ["MonsterOwnerNames", detail.MonsterOwnerNames || skill.MonsterOwnerNames]
+  ];
+  return candidates
+    .filter(([, names]) => hasRealLocale(names))
+    .map(([source]) => source);
+}
+
+function rawDesignEvidence(detail, damage, skill) {
+  const candidates = [
+    ["DisplayNames", detail.DisplayNames],
+    ["DamageNames", detail.DamageNames || damage.Names],
+    ["LinkedNames", detail.LinkedNames],
+    ["LinkedBuffNames", detail.LinkedBuffNames || damage.LinkedBuffNames],
+    ["LinkedSkillTableNames", detail.LinkedSkillTableNames || damage.LinkedSkillTableNames],
+    ["LinkedSkillEffectSkillTableNames", detail.LinkedSkillEffectSkillTableNames || damage.LinkedSkillEffectSkillTableNames],
+    ["LinkedSkillFightSkillTableNames", detail.LinkedSkillFightSkillTableNames || damage.LinkedSkillFightSkillTableNames],
+    ["LinkedSkillTableNameMatchNames", detail.LinkedSkillTableNameMatchNames || damage.LinkedSkillTableNameMatchNames],
+    ["UnderlyingSkillNames", detail.UnderlyingSkillNames || skill.Names]
+  ];
+  return candidates
+    .filter(([, names]) => !hasRealLocale(names) && hasDesignText(names))
+    .map(([source]) => source);
+}
+
+function chooseCandidateBucket({ row, detail, damage, skill, directLocalizedSources, rawDesignSources }) {
+  if (!detail || !Object.keys(detail).length) {
+    return "missing-skill-breakdown-entry";
+  }
+  if (!damage || !Object.keys(damage).length) {
+    return "missing-damage-entry";
+  }
+  if (directLocalizedSources.length) {
+    return row.visible_unresolved
+      ? "direct-localized-but-visible-unresolved"
+      : "display-localized-source-row-unresolved";
+  }
+  const relatedIds = [
+    ...(Array.isArray(row.underlying_related_skill_ids) ? row.underlying_related_skill_ids : []),
+    ...(Array.isArray(detail.UnderlyingRelatedSkillIds) ? detail.UnderlyingRelatedSkillIds : []),
+    ...(Array.isArray(skill.RelatedSkillIds) ? skill.RelatedSkillIds : [])
+  ];
+  if (relatedIds.length) {
+    return "relationship-only-no-localization";
+  }
+  if (rawDesignSources.length) {
+    return "raw-design-only";
+  }
+  return "no-direct-candidate";
+}
+
+function choosePriorityBucket(row, detail) {
+  if (row.mode === "taken") {
+    if (String(detail.SourceRole || row.source_role || "").includes("monster")) {
+      return "incoming-monster-damage";
+    }
+    return "incoming-damage";
+  }
+  if (row.mode === "damage") {
+    return "player-outgoing-damage";
+  }
+  if (row.mode === "healing") {
+    return "player-healing";
+  }
+  return "other";
+}
+
+function buildClusters(rows) {
+  const groups = new Map();
+  for (const row of rows) {
+    const key = clusterKey(row);
+    row.clusterKey = key;
+    const group = groups.get(key) || {
+      key,
+      mode: row.mode,
+      priorityBucket: row.priorityBucket,
+      displayLabel: row.displayLabel,
+      damageLabel: row.damageLabel,
+      sourceRole: row.sourceRole,
+      candidateBucket: row.candidateBucket,
+      totalValue: 0,
+      hits: 0,
+      rowCount: 0,
+      encounterIds: [],
+      skillIds: [],
+      parentRecountIds: [],
+      linkedIds: [],
+      underlyingSkillIds: [],
+      sourceFiles: [],
+      rows: []
+    };
+    group.totalValue += Number(row.totalValue || 0);
+    group.hits += Number(row.hits || 0);
+    group.rowCount += 1;
+    group.encounterIds.push(...(row.encounterIds || []));
+    group.skillIds.push(row.skillId);
+    group.parentRecountIds.push(row.parentRecountId);
+    group.linkedIds.push(row.linkedId);
+    group.underlyingSkillIds.push(row.underlyingSkillId);
+    group.sourceFiles.push(...(row.sourceFiles || []));
+    group.rows.push(row);
+    groups.set(key, group);
+  }
+  return [...groups.values()]
+    .map((group) => ({
+      ...group,
+      encounterIds: uniqueNumbers(group.encounterIds),
+      skillIds: uniqueNumbers(group.skillIds),
+      parentRecountIds: uniqueNumbers(group.parentRecountIds),
+      linkedIds: uniqueNumbers(group.linkedIds),
+      underlyingSkillIds: uniqueNumbers(group.underlyingSkillIds),
+      sourceFiles: uniqueStrings(group.sourceFiles),
+      sampleRows: group.rows.slice(0, 12),
+      rows: undefined
+    }))
+    .sort(compareClusters);
+}
+
+function buildEncounters(rows) {
+  const encounters = new Map();
+  for (const row of rows) {
+    for (const encounterId of row.encounterIds || []) {
+      const key = String(encounterId);
+      const encounter = encounters.get(key) || {
+        encounterId,
+        totalValue: 0,
+        hits: 0,
+        rowCount: 0,
+        modes: {},
+        candidateBuckets: {},
+        clusters: new Map()
+      };
+      encounter.totalValue += Number(row.totalValue || 0);
+      encounter.hits += Number(row.hits || 0);
+      encounter.rowCount += 1;
+      encounter.modes[row.mode] = (encounter.modes[row.mode] || 0) + 1;
+      encounter.candidateBuckets[row.candidateBucket] = (encounter.candidateBuckets[row.candidateBucket] || 0) + 1;
+      const clusterKeyValue = row.clusterKey || clusterKey(row);
+      const cluster = encounter.clusters.get(clusterKeyValue) || {
+        key: clusterKeyValue,
+        mode: row.mode,
+        priorityBucket: row.priorityBucket,
+        displayLabel: row.displayLabel,
+        damageLabel: row.damageLabel,
+        sourceRole: row.sourceRole,
+        candidateBucket: row.candidateBucket,
+        totalValue: 0,
+        hits: 0,
+        skillIds: [],
+        sourceFiles: [],
+        rows: []
+      };
+      cluster.totalValue += Number(row.totalValue || 0);
+      cluster.hits += Number(row.hits || 0);
+      cluster.skillIds.push(row.skillId);
+      cluster.sourceFiles.push(...(row.sourceFiles || []));
+      cluster.rows.push(row);
+      encounter.clusters.set(clusterKeyValue, cluster);
+      encounters.set(String(encounterId), encounter);
+    }
+  }
+  return [...encounters.values()]
+    .map((encounter) => ({
+      ...encounter,
+      clusters: [...encounter.clusters.values()]
+        .map((cluster) => ({
+          ...cluster,
+          skillIds: uniqueNumbers(cluster.skillIds),
+          sourceFiles: uniqueStrings(cluster.sourceFiles),
+          sampleRows: cluster.rows.slice(0, 8),
+          rows: undefined
+        }))
+        .sort(compareClusters)
+    }))
+    .sort((left, right) => {
+      const leftTaken = left.modes.taken || 0;
+      const rightTaken = right.modes.taken || 0;
+      return rightTaken - leftTaken || right.totalValue - left.totalValue || left.encounterId - right.encounterId;
+    });
+}
+
+function clusterKey(row) {
+  return [
+    row.mode,
+    row.sourceRole,
+    row.parentRecountId,
+    normalizeKey(row.damageLabel),
+    row.linkedSource,
+    row.linkedId,
+    row.underlyingSkillId,
+    row.candidateBucket
+  ].join("|");
+}
+
+function compareWorkRows(left, right) {
+  return modeRank(left.mode) - modeRank(right.mode) ||
+    right.totalValue - left.totalValue ||
+    right.hits - left.hits ||
+    Number(left.skillId || 0) - Number(right.skillId || 0);
+}
+
+function compareClusters(left, right) {
+  return modeRank(left.mode) - modeRank(right.mode) ||
+    right.totalValue - left.totalValue ||
+    right.hits - left.hits ||
+    String(left.key).localeCompare(String(right.key));
+}
+
+function modeRank(mode) {
+  if (mode === "taken") return 0;
+  if (mode === "damage") return 1;
+  if (mode === "healing") return 2;
+  return 3;
+}
+
+function countBy(values, keyFn) {
+  const out = {};
+  for (const value of values || []) {
+    const key = String(keyFn(value) || "unknown");
+    out[key] = (out[key] || 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(out).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])));
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Strict Unresolved Worklist");
+  lines.push("");
+  lines.push(`- Issue rows: ${report.summary.issueRows}`);
+  lines.push(`- Visible issue rows: ${report.summary.visibleIssueRows}`);
+  lines.push(`- Source-evidence issue rows: ${report.summary.sourceEvidenceIssueRows}`);
+  lines.push(`- Incoming/taken clusters: ${report.summary.incomingDamageClusters}`);
+  lines.push(`- Player damage clusters: ${report.summary.playerDamageClusters}`);
+  lines.push("");
+  lines.push("## Candidate Buckets");
+  for (const [bucket, count] of Object.entries(report.summary.candidateBuckets)) {
+    lines.push(`- ${bucket}: ${count}`);
+  }
+  lines.push("");
+  lines.push("## Top Incoming/Taken Clusters");
+  for (const cluster of report.priority.incomingDamage.slice(0, 25)) {
+    lines.push(`- ${cluster.damageLabel || cluster.displayLabel || "(blank)"} | mode=${cluster.mode} | rows=${cluster.rowCount} | encounters=${cluster.encounterIds.join(", ")} | bucket=${cluster.candidateBucket} | value=${formatNumber(cluster.totalValue)}`);
+    if (cluster.sourceFiles.length) {
+      lines.push(`  - sources: ${cluster.sourceFiles.join(", ")}`);
+    }
+    if (cluster.skillIds.length) {
+      lines.push(`  - skill ids: ${cluster.skillIds.join(", ")}`);
+    }
+  }
+  lines.push("");
+  lines.push("## Top Encounters By Incoming/Taken Issues");
+  for (const encounter of report.encounters.slice(0, 30)) {
+    lines.push(`- #${encounter.encounterId}: rows=${encounter.rowCount}, taken=${encounter.modes.taken || 0}, damage=${encounter.modes.damage || 0}, healing=${encounter.modes.healing || 0}, value=${formatNumber(encounter.totalValue)}`);
+  }
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
+function hasRealLocale(names) {
+  if (!names || typeof names !== "object" || Array.isArray(names)) return false;
+  return Object.entries(names).some(([locale, value]) => locale !== "design" && String(value || "").trim());
+}
+
+function hasDesignText(names) {
+  if (!names || typeof names !== "object" || Array.isArray(names)) return false;
+  return Boolean(String(names.design || "").trim());
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(Number).filter(Number.isFinite))].sort((a, b) => a - b);
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))].sort();
+}
+
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && value !== "") return value;
+  }
+  return undefined;
+}
+
+function numberOrString(value) {
+  const numeric = Number(value);
+  return Number.isSafeInteger(numeric) && String(numeric) === String(value) ? numeric : value;
+}
+
+function normalizeKey(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(Number(value || 0));
+}
+
+function stripEmpty(value) {
+  const out = {};
+  for (const [key, entry] of Object.entries(value || {})) {
+    if (entry === undefined || entry === null || entry === "") continue;
+    if (Array.isArray(entry) && !entry.length) continue;
+    if (entry && typeof entry === "object" && !Array.isArray(entry) && !Object.keys(entry).length) continue;
+    out[key] = entry;
+  }
+  return out;
+}
+
+function displayRelative(filePath) {
+  return path.relative(__dirname, filePath).replace(/\\/g, "/") || path.basename(filePath);
+}

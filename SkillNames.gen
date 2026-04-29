@@ -5,6 +5,13 @@ const path = require("node:path");
 const STRING_POOL = 6;
 const TALENT_PASSIVE_TABLE_HASH = 3345237628;
 const VIRTUAL_SKILL_BRIDGE_TABLE_HASH = 3518555200;
+const CTB_SKILL_PAIR_TABLE_HASHES = Object.freeze([
+  1383488036,
+  395604162,
+  2319498083,
+  3307381957,
+  3754561411
+]);
 const TALENT_NAME_MATCH_MIN_LOCALES = 10;
 
 main().catch((error) => {
@@ -75,6 +82,8 @@ Notes:
     monsterSkillOwners: 0,
     monsterSkillFamilyOwners: 0,
     virtualSkillBridges: 0,
+    virtualMonsterOwnerBridges: 0,
+    skillPairRelations: 0,
     recountTalentBridge: 0
   };
 
@@ -118,7 +127,10 @@ Notes:
     readCtbTable,
     readU32
   }, stats);
-  collectMonsterSkillFamilyOwnerEntries(out, stats);
+  collectCtbSkillPairRelations(out, containerDir, metaEntries, {
+    readCtbTableByHash,
+    readU32
+  }, stats);
 
   const rows = {};
   for (const [id, entry] of [...out.entries()].sort(([left], [right]) => compareNumericStrings(left, right))) {
@@ -151,6 +163,29 @@ Notes:
       ...(entry.talentIds.length ? { TalentIds: uniqueSortedNumbers(entry.talentIds) } : {}),
       ...(entry.skillEffectIds.length ? { SkillEffectIds: uniqueSortedNumbers(entry.skillEffectIds) } : {}),
       ...(entry.linkedIds.length ? { LinkedIds: uniqueSortedNumbers(entry.linkedIds) } : {}),
+      ...(entry.skillRelations.length
+        ? {
+            RelatedSkillIds: uniqueSortedNumbers(entry.skillRelations.map((relation) => relation.relatedSkillId)),
+            SkillRelations: entry.skillRelations.map((relation) => ({
+              Kind: relation.kind,
+              RelatedSkillId: relation.relatedSkillId,
+              ...(relation.relatedSkillName ? { RelatedSkillName: relation.relatedSkillName } : {}),
+              ...(relation.relatedSkillNames && Object.keys(relation.relatedSkillNames).length
+                ? { RelatedSkillNames: relation.relatedSkillNames }
+                : {}),
+              Sources: uniqueSortedStrings(relation.sources),
+              TableHashes: uniqueSortedNumbers(relation.tableHashes),
+              RowIds: uniqueSortedNumbers(relation.rowIds),
+              RowIndexes: uniqueSortedNumbers(relation.rowIndexes),
+              SourceOffsets: uniqueSortedNumbers(relation.sourceOffsets),
+              FieldOffsets: {
+                RowId: relation.rowIdFieldOffset,
+                SkillId: relation.skillIdFieldOffset,
+                RelatedSkillId: relation.relatedSkillIdFieldOffset
+              }
+            }))
+          }
+        : {}),
       ...(entry.monsterOwners.length
         ? {
             MonsterOwnerIds: uniqueSortedNumbers(entry.monsterOwners.flatMap((owner) => owner.ids)),
@@ -189,6 +224,8 @@ Notes:
   console.log(`Monster skill owner bridges: ${stats.monsterSkillOwners}`);
   console.log(`Monster skill family owner bridges: ${stats.monsterSkillFamilyOwners}`);
   console.log(`Virtual skill name bridges: ${stats.virtualSkillBridges}`);
+  console.log(`Virtual skill design owner bridges: ${stats.virtualMonsterOwnerBridges}`);
+  console.log(`CTB skill-pair relations: ${stats.skillPairRelations}`);
   console.log(`Recount talent name bridges: ${stats.recountTalentBridge}`);
   console.log(`Skill-name entries written: ${Object.keys(rows).length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
@@ -505,8 +542,9 @@ function collectDamageAttrEntries(target, outputDir, stats) {
   }
   const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
   for (const [id, row] of Object.entries(rows || {})) {
-    const directName = String(row?.Name ?? row?.NameDesign ?? "").trim();
     const directNames = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
+    const designName = String(row?.NameDesign ?? directNames.design ?? "").trim();
+    const directName = String(row?.Name ?? designName).trim();
     const linkedNameSet = chooseLinkedDamageNameSet(row);
     const names = !hasRealLocale(directNames) && linkedNameSet?.names ? linkedNameSet.names : directNames;
     const name = !hasRealLocale(directNames) && linkedNameSet?.name ? linkedNameSet.name : directName;
@@ -516,7 +554,7 @@ function collectDamageAttrEntries(target, outputDir, stats) {
     putEntry(target, id, {
       name,
       names,
-      nameDesign: directName || row?.NameDesign,
+      nameDesign: designName || directName,
       source: linkedNameSet?.source || "DamageAttrIdName",
       priority: 80,
       sourceOffset: row?.SourceOffset,
@@ -539,23 +577,30 @@ function collectDamageAttrLinkedRawSkillEntries(target, outputDir, rawSkillIds, 
   for (const [damageId, row] of Object.entries(rows || {})) {
     const linkedId = row?.LinkedId;
     const key = linkedId === undefined || linkedId === null ? "" : String(linkedId);
-    const directName = String(row?.NameDesign ?? "").trim();
+    const rowNames = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
+    const directName = String(row?.NameDesign ?? rowNames.design ?? "").trim();
     if (!key || !directName || !rawSkillIds.has(key)) {
       continue;
     }
 
+    const names = rowNames;
     const existing = target.get(key);
     const existingIsDamageAlias = existing?.sources?.has("DamageAttrLinkedRawSkillId") ?? false;
     const existingName = String(existing?.name ?? "").trim() || chooseFirstText(existing?.names || {});
-    if (existingName && !existingIsDamageAlias) {
+    const canEnrichDesignOnlySkill = hasRealLocale(names) && !hasRealLocale(existing?.names || {});
+    if (existingName && !existingIsDamageAlias && !canEnrichDesignOnlySkill) {
       continue;
     }
+    const skillDesignName = String(existing?.nameDesign || directName).trim();
+    const skillNames = { ...names };
+    if (skillDesignName) {
+      skillNames.design = skillDesignName;
+    }
 
-    const names = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
     putEntry(target, linkedId, {
       name: directName,
-      names,
-      nameDesign: directName,
+      names: skillNames,
+      nameDesign: skillDesignName || directName,
       source: "DamageAttrLinkedRawSkillId",
       priority: 42,
       sourceOffset: row?.SourceOffset,
@@ -965,6 +1010,216 @@ function collectMonsterSkillFamilyOwnerEntries(target, stats) {
   stats.monsterSkillFamilyOwners += addedSkillIds.size;
 }
 
+function collectVirtualSkillDesignOwnerEntries(target, containerDir, metaEntries, outputDir, helpers, stats) {
+  const { readCtbString, readCtbTableByHash, readU32 } = helpers;
+  const monsterTerms = loadMonsterOwnerTerms(outputDir);
+  if (!monsterTerms.length) {
+    return;
+  }
+
+  let table;
+  try {
+    table = readCtbTableByHash(
+      containerDir,
+      metaEntries,
+      VIRTUAL_SKILL_BRIDGE_TABLE_HASH,
+      "CTB:3518555200"
+    );
+  } catch {
+    return;
+  }
+
+  const addedSkillIds = new Set();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const sourceSkillId = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const targetSkillId = readU32(table.data, rowOffset + 8);
+    if (!targetSkillId) {
+      continue;
+    }
+
+    const entry = target.get(String(targetSkillId));
+    if (!entry || entry.monsterOwners?.length || !entry.sources?.has("SkillTable")) {
+      continue;
+    }
+
+    const design = readCtbString(table, STRING_POOL, designOffset, { allowZero: false });
+    const owner = chooseVirtualDesignMonsterOwner(design, monsterTerms);
+    if (!owner) {
+      continue;
+    }
+
+    putEntry(target, targetSkillId, {
+      source: "CTB:3518555200.VirtualDesignMonsterOwner",
+      sourceOffset: table.entry.offset + rowOffset,
+      linkedId: sourceSkillId,
+      monsterOwner: {
+        id: owner.ids[0],
+        name: owner.name,
+        nameId: owner.nameIds[0],
+        names: owner.names,
+        monsterType: owner.monsterTypes[0],
+        bridgeSource: "CTB:3518555200.VirtualDesignMonsterOwner",
+        sourceOffset: table.entry.offset + rowOffset
+      }
+    });
+    addedSkillIds.add(String(targetSkillId));
+  }
+
+  stats.virtualMonsterOwnerBridges += addedSkillIds.size;
+}
+
+function collectCtbSkillPairRelations(target, containerDir, metaEntries, helpers, stats) {
+  const { readCtbTableByHash, readU32 } = helpers;
+  const addedPairs = new Set();
+
+  for (const hash of CTB_SKILL_PAIR_TABLE_HASHES) {
+    let table;
+    try {
+      table = readCtbTableByHash(containerDir, metaEntries, hash, "CTB:" + hash);
+    } catch {
+      continue;
+    }
+    if (table.rowSize !== 107) {
+      continue;
+    }
+
+    for (let index = 0; index < table.rowCount; index += 1) {
+      const rowOffset = table.rowStart + index * table.rowSize;
+      const rowId = readU32(table.data, rowOffset);
+      const skillId = readU32(table.data, rowOffset + 4);
+      const relatedSkillId = readU32(table.data, rowOffset + 8);
+      if (!skillId || !relatedSkillId || skillId === relatedSkillId) {
+        continue;
+      }
+
+      const entry = target.get(String(skillId));
+      if (!entry?.sources?.has("SkillTable")) {
+        continue;
+      }
+
+      const relatedEntry = target.get(String(relatedSkillId));
+      putEntry(target, skillId, {
+        source: "CTB:" + hash + ".SkillPair",
+        sourceOffset: table.entry.offset + rowOffset,
+        skillRelation: {
+          kind: "ctb-skill-pair",
+          relatedSkillId,
+          relatedSkillName: relatedEntry?.name || "",
+          relatedSkillNames: relatedEntry?.names || {},
+          source: "CTB:" + hash + ".SkillPair",
+          tableHash: hash,
+          rowId,
+          rowIndex: index,
+          sourceOffset: table.entry.offset + rowOffset,
+          rowIdFieldOffset: 0,
+          skillIdFieldOffset: 4,
+          relatedSkillIdFieldOffset: 8
+        }
+      });
+      addedPairs.add(`${skillId}:${relatedSkillId}`);
+    }
+  }
+
+  stats.skillPairRelations += addedPairs.size;
+}
+
+function loadMonsterOwnerTerms(outputDir) {
+  const filePath = path.join(outputDir, "monsternames.json");
+  if (!fs.existsSync(filePath)) {
+    return [];
+  }
+
+  const byTerm = new Map();
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  for (const row of Object.values(rows || {})) {
+    const names = row?.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {};
+    if (!hasRealLocale(names)) {
+      continue;
+    }
+    for (const [localeId, value] of Object.entries(names)) {
+      if (localeId === "en" || localeId === "design" || localeId === "und") {
+        continue;
+      }
+      const term = normalizeVirtualOwnerTerm(value);
+      if (term.length < 3) {
+        continue;
+      }
+      const key = `${term}|${stableNameKey(names, row?.Name)}`;
+      const current = byTerm.get(key) ?? {
+        term,
+        name: String(row?.Name || chooseFirstText(names)).trim(),
+        names,
+        ids: [],
+        nameIds: [],
+        monsterTypes: []
+      };
+      if (Number.isFinite(Number(row?.Id))) current.ids.push(Number(row.Id));
+      if (Number.isFinite(Number(row?.NameId))) current.nameIds.push(Number(row.NameId));
+      if (Number.isFinite(Number(row?.MonsterType))) current.monsterTypes.push(Number(row.MonsterType));
+      byTerm.set(key, current);
+    }
+  }
+
+  return [...byTerm.values()]
+    .map((entry) => ({
+      ...entry,
+      ids: uniqueSortedNumbers(entry.ids),
+      nameIds: uniqueSortedNumbers(entry.nameIds),
+      monsterTypes: uniqueSortedNumbers(entry.monsterTypes)
+    }))
+    .sort((left, right) => right.term.length - left.term.length || left.name.localeCompare(right.name));
+}
+
+function chooseVirtualDesignMonsterOwner(design, monsterTerms) {
+  const normalized = normalizeVirtualOwnerTerm(design);
+  if (!normalized) {
+    return null;
+  }
+
+  const matches = [];
+  for (const owner of monsterTerms) {
+    const index = normalized.indexOf(owner.term);
+    if (index < 0 || index > 8) {
+      continue;
+    }
+    matches.push({ owner, index });
+  }
+  if (!matches.length) {
+    return null;
+  }
+
+  matches.sort((left, right) =>
+    left.index - right.index ||
+    right.owner.term.length - left.owner.term.length ||
+    left.owner.name.localeCompare(right.owner.name)
+  );
+  const best = matches[0];
+  const tied = matches.filter((match) => match.index === best.index && match.owner.term.length === best.owner.term.length);
+  const ownerKeys = new Set(tied.map((match) => stableNameKey(match.owner.names, match.owner.name)));
+  if (ownerKeys.size !== 1) {
+    return null;
+  }
+
+  const merged = {
+    ...best.owner,
+    ids: uniqueSortedNumbers(tied.flatMap((match) => match.owner.ids)),
+    nameIds: uniqueSortedNumbers(tied.flatMap((match) => match.owner.nameIds)),
+    monsterTypes: uniqueSortedNumbers(tied.flatMap((match) => match.owner.monsterTypes))
+  };
+  return merged.ids.length ? merged : null;
+}
+
+function normalizeVirtualOwnerTerm(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/[\s\-_.·・:：,，;；!！?？()[\]{}（）【】"'“”‘’]/g, "")
+    .replace(/[的之]/g, "")
+    .trim();
+}
+
 function skillFamilyPrefix(id) {
   const text = String(id || "").trim();
   if (!/^\d{6,}$/.test(text)) {
@@ -1013,6 +1268,7 @@ function putEntry(target, id, update) {
     talentIds: [],
     skillEffectIds: [],
     linkedIds: [],
+    skillRelations: [],
     monsterOwners: []
   };
 
@@ -1066,7 +1322,61 @@ function putEntry(target, id, update) {
   if (update.monsterOwner) {
     mergeMonsterOwner(current.monsterOwners, update.monsterOwner);
   }
+  if (update.skillRelation) {
+    mergeSkillRelation(current.skillRelations, update.skillRelation);
+  }
   target.set(key, current);
+}
+
+function mergeSkillRelation(relations, relation) {
+  if (!relation || relation.relatedSkillId === undefined || relation.relatedSkillId === null) {
+    return;
+  }
+
+  const relatedSkillId = Number(relation.relatedSkillId);
+  if (!Number.isFinite(relatedSkillId) || relatedSkillId <= 0) {
+    return;
+  }
+
+  const kind = String(relation.kind || "ctb-skill-pair");
+  const key = `${kind}:${relatedSkillId}`;
+  let current = relations.find((entry) => entry.key === key);
+  if (!current) {
+    current = {
+      key,
+      kind,
+      relatedSkillId,
+      relatedSkillName: "",
+      relatedSkillNames: {},
+      sources: [],
+      tableHashes: [],
+      rowIds: [],
+      rowIndexes: [],
+      sourceOffsets: [],
+      rowIdFieldOffset: Number(relation.rowIdFieldOffset ?? 0),
+      skillIdFieldOffset: Number(relation.skillIdFieldOffset ?? 4),
+      relatedSkillIdFieldOffset: Number(relation.relatedSkillIdFieldOffset ?? 8)
+    };
+    relations.push(current);
+  }
+
+  const relatedNames = relation.relatedSkillNames && typeof relation.relatedSkillNames === "object" && !Array.isArray(relation.relatedSkillNames)
+    ? relation.relatedSkillNames
+    : {};
+  if (!current.relatedSkillName && relation.relatedSkillName) {
+    current.relatedSkillName = String(relation.relatedSkillName);
+  }
+  if (!hasRealLocale(current.relatedSkillNames) && Object.keys(relatedNames).length) {
+    current.relatedSkillNames = relatedNames;
+  }
+  if (relation.source) current.sources.push(String(relation.source));
+  if (Number.isFinite(Number(relation.tableHash))) current.tableHashes.push(Number(relation.tableHash));
+  if (Number.isFinite(Number(relation.rowId))) current.rowIds.push(Number(relation.rowId));
+  if (Number.isFinite(Number(relation.rowIndex))) current.rowIndexes.push(Number(relation.rowIndex));
+  if (Number.isFinite(Number(relation.sourceOffset))) current.sourceOffsets.push(Number(relation.sourceOffset));
+  relations.sort((left, right) =>
+    left.relatedSkillId - right.relatedSkillId || left.kind.localeCompare(right.kind)
+  );
 }
 
 function mergeMonsterOwner(owners, owner) {

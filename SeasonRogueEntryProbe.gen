@@ -1,0 +1,511 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const ROGUE_ENTRY_TABLE_HASH = 4038258408;
+const ROGUE_ENTRY_DESCRIPTION_TABLE_HASH = 2200122700;
+const STRING_POOL = 6;
+const INT_POOL = 1;
+const ENTRY_NAME_FIELD = 4;
+const ENTRY_BUFF_FIELD = 8;
+const ENTRY_ICON_FIELD = 28;
+const ENTRY_TEXTURE_ICON_FIELD = 32;
+const ENTRY_DESCRIPTION_REF_FIELD = 36;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    markdown: ""
+  });
+
+  if (args.help) {
+    printHelp(
+      "SeasonRogueEntryProbe.gen - report Slumbering Dream seasonal rogue-like entry buffs.",
+      `
+Options:
+  --markdown <path>    Optional Markdown summary output path.
+
+Notes:
+  This is a probe report only. It decodes CTB:4038258408 rogue-entry rows,
+  their direct BuffTable ids, and their CTB:2200122700 localized descriptions.
+  It does not infer selected player entries or class/spec ownership.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "SeasonRogueEntryProbe.json"));
+  const generated = loadGenerated(paths.outputDir);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const buffsById = new Map(objectValues(generated.buffs).map((row) => [String(row?.Id), row]));
+
+  const entryTable = readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    ROGUE_ENTRY_TABLE_HASH,
+    `CTB:${ROGUE_ENTRY_TABLE_HASH}`
+  );
+  const descriptionTable = readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    ROGUE_ENTRY_DESCRIPTION_TABLE_HASH,
+    `CTB:${ROGUE_ENTRY_DESCRIPTION_TABLE_HASH}`
+  );
+  const descriptionsByEntryKey = collectRogueEntryDescriptions(descriptionTable, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readU32
+  });
+  const entries = collectRogueEntries(entryTable, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    descriptionsByEntryKey,
+    readCtbString,
+    readU32
+  }).map((row) => attachGeneratedRows(row, { buffsById }));
+  const groups = buildEntryGroups(entries);
+  const unreferencedDescriptions = collectUnreferencedDescriptions(descriptionsByEntryKey, entries);
+  const summary = {
+    sourceTable: `CTB:${ROGUE_ENTRY_TABLE_HASH}`,
+    descriptionSourceTable: `CTB:${ROGUE_ENTRY_DESCRIPTION_TABLE_HASH}`,
+    entryRows: entries.length,
+    descriptionRows: descriptionTable.rowCount,
+    entriesWithBuffId: entries.filter((row) => row.buffId).length,
+    entriesWithLocalizedName: entries.filter((row) => row.name).length,
+    entriesWithDescriptionReference: entries.filter((row) => row.descriptionReferenceRecords?.length).length,
+    entriesWithResolvedDescription: entries.filter((row) => row.description).length,
+    entriesWithDifficultyGate: entries.filter((row) => row.difficultyAvailability?.length).length,
+    nightmareOnlyEntries: entries.filter((row) => row.difficultyAvailability?.length === 1 && row.difficultyAvailability?.includes("Nightmare")).length,
+    hardAndNightmareEntries: entries.filter((row) => row.difficultyAvailability?.includes("Hard") && row.difficultyAvailability?.includes("Nightmare")).length,
+    genericEntryRows: entries.filter((row) => row.entryFamily === "generic-rogue-entry").length,
+    advancedEntryRows: entries.filter((row) => row.entryFamily === "advanced-rogue-entry").length,
+    groups: groups.length,
+    unreferencedDescriptionRows: unreferencedDescriptions.length,
+    strictRuntimeStatus: "probe-only"
+  };
+
+  const report = {
+    summary,
+    notes: [
+      "Status: probe-only. This report is not consumed by runtime display code.",
+      "Rows come from CTB:4038258408, the seasonal rogue-like entry table already used by BuffNames.gen for entry names and direct BuffTable ids.",
+      `Descriptions come from CTB:${ROGUE_ENTRY_DESCRIPTION_TABLE_HASH}. CTB:4038258408 field +36 resolves through the int pool to opcode-1 description entry keys, and CTB:${ROGUE_ENTRY_DESCRIPTION_TABLE_HASH} maps those keys to localized description ids.`,
+      "Difficulty availability is extracted from exact localized description wording such as Available only in [Nightmare].",
+      "Entry families are broad source-table buckets only. This report does not claim selected player entries or class/spec ownership."
+    ],
+    groups,
+    entries,
+    unreferencedDescriptions
+  };
+
+  console.log(`Season rogue entry rows: ${summary.entryRows}`);
+  console.log(`Rows with descriptions: ${summary.entriesWithResolvedDescription}`);
+  console.log(`Rows with difficulty gates: ${summary.entriesWithDifficultyGate}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "SeasonRogueEntryProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function loadGenerated(outputDir) {
+  return {
+    buffs: readOptionalJson(path.join(outputDir, "BuffName.json"), [])
+  };
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function collectRogueEntryDescriptions(table, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readU32 } = helpers;
+  const out = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const entryDescriptionKey = readU32(table.data, rowOffset);
+    const descriptionId = readU32(table.data, rowOffset + 4);
+    if (!entryDescriptionKey || !descriptionId) {
+      continue;
+    }
+    const descriptions = buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables),
+      { includeDesign: false }
+    );
+    const description = choosePreferredLocaleText(descriptions);
+    out.set(String(entryDescriptionKey), stripEmpty({
+      evidenceStatus: "probe-only-source-backed-rogue-entry-description-table",
+      sourceTable: `CTB:${ROGUE_ENTRY_DESCRIPTION_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset,
+      entryDescriptionKey,
+      descriptionId,
+      textId: descriptionId,
+      text: description,
+      texts: descriptions,
+      cleanTexts: cleanDescriptionsByLocale(descriptions),
+      linkTexts: collectDescriptionLinkTexts(descriptions),
+      difficultyAvailability: extractDifficultyAvailability(description)
+    }));
+  }
+  return out;
+}
+
+function collectRogueEntries(table, localizationTables, helpers) {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    descriptionsByEntryKey,
+    readCtbString,
+    readU32
+  } = helpers;
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const entryId = readU32(table.data, rowOffset);
+    const nameId = readU32(table.data, rowOffset + ENTRY_NAME_FIELD);
+    const buffId = readU32(table.data, rowOffset + ENTRY_BUFF_FIELD);
+    if (!entryId || !buffId) {
+      continue;
+    }
+    const names = buildLocaleTextObject(
+      collectLocalizedTextEntries(nameId, localizationTables),
+      { includeDesign: false }
+    );
+    const name = choosePreferredLocaleText(names);
+    const descriptionReferenceRecords = collectDescriptionReferenceRecords(table, rowOffset, ENTRY_DESCRIPTION_REF_FIELD, { readU32 });
+    const descriptionKey = descriptionReferenceRecords.find((record) => record.descriptionEntryKey)?.descriptionEntryKey;
+    const description = descriptionsByEntryKey.get(String(descriptionKey));
+    rows.push(stripEmpty({
+      type: "season-rogue-entry",
+      sourceTable: `CTB:${ROGUE_ENTRY_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset,
+      tableRowIndex: index,
+      entryId,
+      entryFamily: entryId < 200 ? "generic-rogue-entry" : "advanced-rogue-entry",
+      name,
+      names,
+      nameId,
+      buffId,
+      buffLevel: readU32(table.data, rowOffset + 12),
+      rarityOrTier: readU32(table.data, rowOffset + 24),
+      iconPath: readCtbString(table, STRING_POOL, readU32(table.data, rowOffset + ENTRY_ICON_FIELD), { allowZero: false, maxLen: 512 }),
+      textureIconPath: readCtbString(table, STRING_POOL, readU32(table.data, rowOffset + ENTRY_TEXTURE_ICON_FIELD), { allowZero: false, maxLen: 512 }),
+      descriptionReferenceField: ENTRY_DESCRIPTION_REF_FIELD,
+      descriptionReferenceRecords,
+      descriptionEntryKey: description?.entryDescriptionKey,
+      descriptionId: description?.descriptionId,
+      description: description?.text,
+      descriptions: description?.texts,
+      cleanDescriptions: description?.cleanTexts,
+      descriptionLinkTexts: description?.linkTexts,
+      difficultyAvailability: description?.difficultyAvailability
+    }));
+  }
+  return rows.sort((left, right) => Number(left.entryId) - Number(right.entryId));
+}
+
+function collectDescriptionReferenceRecords(table, rowOffset, fieldOffset, helpers) {
+  const { readU32 } = helpers;
+  const intPool = table?.pools?.get(INT_POOL);
+  if (!intPool) {
+    return [];
+  }
+  const topOffset = readU32(table.data, rowOffset + fieldOffset);
+  const topValues = readIntArrayFromPool(intPool, topOffset);
+  if (!topValues.length) {
+    return [];
+  }
+  const records = [];
+  for (const recordOffset of topValues) {
+    const rawValues = readIntArrayFromPool(intPool, recordOffset);
+    if (!rawValues.length) {
+      records.push({
+        kind: "unknown-record-offset",
+        fieldOffset,
+        recordOffset
+      });
+      continue;
+    }
+    const opcode = rawValues[0];
+    if (opcode === 1) {
+      records.push(stripEmpty({
+        kind: "opcode-1-description-entry-key",
+        opcode,
+        fieldOffset,
+        recordOffset,
+        rawValues,
+        descriptionEntryKey: rawValues[1]
+      }));
+      continue;
+    }
+    records.push({
+      kind: "unknown-opcode-record",
+      opcode,
+      fieldOffset,
+      recordOffset,
+      rawValues
+    });
+  }
+  return records;
+}
+
+function attachGeneratedRows(row, lookups) {
+  const buff = lookups.buffsById.get(String(row.buffId));
+  return stripEmpty({
+    ...row,
+    buffRow: buffEntity(buff),
+    buffIdStatus: buff ? "known-buff-id" : "unresolved-buff-id"
+  });
+}
+
+function buildEntryGroups(entries) {
+  const grouped = new Map();
+  for (const row of entries || []) {
+    const key = entryGroupKey(row.entryId);
+    const bucket = grouped.get(key) || [];
+    bucket.push(row);
+    grouped.set(key, bucket);
+  }
+  return [...grouped.entries()]
+    .map(([groupKey, rows]) => stripEmpty({
+      groupKey,
+      groupName: inferGroupName(rows),
+      groupNameStatus: "source-row-name-prefix",
+      rows: rows.sort((left, right) => Number(left.entryId) - Number(right.entryId))
+    }))
+    .sort((left, right) => Number(left.rows?.[0]?.entryId || 0) - Number(right.rows?.[0]?.entryId || 0));
+}
+
+function entryGroupKey(entryId) {
+  const id = Number(entryId);
+  if (id < 200) {
+    return `generic-${Math.floor(id / 10) * 10}`;
+  }
+  return `advanced-${Math.floor(id / 10) * 10}`;
+}
+
+function inferGroupName(rows) {
+  const firstName = String(rows?.[0]?.name || "").trim();
+  if (!firstName) {
+    return "";
+  }
+  const prefix = firstName.includes(" - ") ? firstName.split(" - ")[0].trim() : "";
+  return prefix || firstName;
+}
+
+function collectUnreferencedDescriptions(descriptionsByEntryKey, entries) {
+  const used = new Set((entries || []).map((row) => String(row.descriptionEntryKey)).filter(Boolean));
+  return [...descriptionsByEntryKey.values()]
+    .filter((row) => !used.has(String(row.entryDescriptionKey)))
+    .sort((left, right) => Number(left.entryDescriptionKey) - Number(right.entryDescriptionKey));
+}
+
+function collectLocalizedTextEntries(textId, localizationTables) {
+  const id = Number(textId);
+  if (!Number.isInteger(id) || !id) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index?.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (!pool || index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 128 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function extractDifficultyAvailability(text) {
+  const source = String(text || "");
+  const values = new Set();
+  if (/Available only in \[Hard\] and \[Nightmare\]/i.test(source)) {
+    values.add("Hard");
+    values.add("Nightmare");
+  }
+  if (/Available only in \[Nightmare\]/i.test(source)) {
+    values.add("Nightmare");
+  }
+  return [...values].sort();
+}
+
+function collectDescriptionLinkTexts(descriptions) {
+  const byId = new Map();
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const regex = /<linktext=(\d+)[^>]*>(.*?)<\/linktext>/gis;
+    for (const match of String(text || "").matchAll(regex)) {
+      const linkTextId = Number(match[1]);
+      const label = cleanMarkup(match[2]);
+      if (!Number.isFinite(linkTextId) || !label) {
+        continue;
+      }
+      const current = byId.get(linkTextId) || { linkTextId, labels: {} };
+      if (!current.labels[localeId]) {
+        current.labels[localeId] = label;
+      }
+      byId.set(linkTextId, current);
+    }
+  }
+  return [...byId.values()]
+    .map((row) => ({ ...row, label: preferredLocaleText(row.labels) }))
+    .sort((left, right) => Number(left.linkTextId) - Number(right.linkTextId));
+}
+
+function cleanDescriptionsByLocale(descriptions) {
+  const out = {};
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const cleaned = cleanMarkup(String(text || "").replace(/<br\s*\/?>/gi, "\n"));
+    if (cleaned) {
+      out[localeId] = cleaned;
+    }
+  }
+  return out;
+}
+
+function cleanMarkup(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\{[^}]*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buffEntity(buff) {
+  if (!buff?.Id) {
+    return null;
+  }
+  return stripEmpty({
+    type: "buff",
+    sourceTable: "BuffTable",
+    id: buff.Id,
+    level: buff.Level,
+    name: preferredName(buff),
+    names: buff.Names,
+    nameId: buff.NameId,
+    nameIdSource: buff.NameIdSource,
+    iconPath: buff.IconPath,
+    iconPathSource: buff.IconPathSource,
+    sourceOffset: buff.SourceOffset
+  });
+}
+
+function preferredName(row) {
+  return String(row?.Names?.en || row?.Name || row?.NameDesign || row?.name || "").trim();
+}
+
+function preferredLocaleText(values) {
+  for (const localeId of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id", "design"]) {
+    const text = String(values?.[localeId] || "").trim();
+    if (text) {
+      return text;
+    }
+  }
+  return Object.values(values || {}).find(Boolean) || "";
+}
+
+function objectValues(value) {
+  return Array.isArray(value) ? value : Object.values(value || {});
+}
+
+function stripEmpty(value) {
+  if (Array.isArray(value)) {
+    return value.map(stripEmpty).filter((entry) => entry !== undefined);
+  }
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    const cleaned = stripEmpty(entry);
+    if (cleaned === undefined || cleaned === null || cleaned === "") {
+      continue;
+    }
+    if (Array.isArray(cleaned) && !cleaned.length) {
+      continue;
+    }
+    if (typeof cleaned === "object" && !Array.isArray(cleaned) && !Object.keys(cleaned).length) {
+      continue;
+    }
+    out[key] = cleaned;
+  }
+  return out;
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Season Rogue Entry Probe");
+  lines.push("");
+  lines.push("This is a probe-only report for CTB:4038258408 seasonal rogue-like entry buffs and CTB:2200122700 descriptions.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.summary || {})) {
+    lines.push(`- ${key}: ${value}`);
+  }
+  lines.push("");
+  lines.push("## Difficulty-Gated Entries");
+  lines.push("");
+  for (const row of (report.entries || []).filter((entry) => entry.difficultyAvailability?.length)) {
+    const gate = row.difficultyAvailability.join("+");
+    lines.push(`- ${row.entryId} ${row.name} -> buff ${row.buffId} [${gate}]: ${truncate(cleanMarkup(row.description), 160)}`);
+  }
+  lines.push("");
+  lines.push("## Generic Crit Examples");
+  lines.push("");
+  for (const row of (report.entries || []).filter((entry) => /crit/i.test(`${entry.name} ${entry.description}`)).slice(0, 30)) {
+    lines.push(`- ${row.entryId} ${row.name} -> buff ${row.buffId}: ${truncate(cleanMarkup(row.description), 140)}`);
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function truncate(value, maxLength) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  return text.length > maxLength ? `${text.slice(0, maxLength - 3)}...` : text;
+}

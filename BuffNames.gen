@@ -24,8 +24,30 @@ const LOCALIZED_TERM_IDS = {
   brigand: 805545164,
   buff: 590395546,
   dmgReduction: 1103839493,
-  inspiration: 1051082739
+  inspiration: 1051082739,
+  fivefoldCrescendoOverhealing: 685846183
 };
+const DERIVED_BUFF_TERM_SOURCES = [
+  {
+    source: "LocalizedDescriptionPhrase:685846183.Overhealing",
+    nameId: LOCALIZED_TERM_IDS.fivefoldCrescendoOverhealing,
+    fallback: "Overhealing",
+    matchesDesign: (value) => /溢出治[疗療]|五重奏.*溢出|溢出.*五重奏/i.test(String(value || "")),
+    patterns: {
+      en: /\boverhealing\b/i,
+      "zh-CN": /溢出治疗/,
+      "zh-TW": /溢出治療/,
+      ja: /過剰回復力|超過回復/,
+      "ko-KR": /초과\s*(?:치료량|치유량)/,
+      fr: /soins excédentaires|excédent de soin/i,
+      de: /Überheilung|überschüssige Heilung/i,
+      es: /sobrecuración/i,
+      "pt-BR": /cura excedente/i,
+      th: /Heal ที่ล้นเกิน|รักษาที่เกิน/i,
+      id: /Healing yang berlebih|pemulihan berlebih/i
+    }
+  }
+];
 const SECONDARY_NAME_TABLES = [
   {
     hash: 983121143,
@@ -181,9 +203,10 @@ Notes:
     rawRows,
     localizationTables
   );
-  const linkedBuffNames = collectAdjacentEffectBuffNames(rawRows, baseLinkedNames);
+  const derivedBuffNames = collectDerivedBuffTermLinks(rawRows, localizationTables);
+  const linkedBuffNames = collectAdjacentEffectBuffNames(rawRows, mergeBuffNameLinks(baseLinkedNames, derivedBuffNames));
   for (const link of linkedBuffNames.values()) {
-    for (const nameId of link.nameIds) {
+    for (const nameId of link.nameIds || []) {
       wantedNameIds.add(nameId);
     }
   }
@@ -201,19 +224,28 @@ Notes:
     const composedLocaleEntries = linkedName?.composeParts
       ? composeLocalizedNameEntries(linkedName.composeParts, localizedNamesById)
       : [];
+    const directLinkedLocaleEntries = Array.isArray(linkedName?.localeEntries) ? linkedName.localeEntries : [];
     const linkedLocalizedNames = linkedName
       ? composedLocaleEntries.length
         ? sortLabels(composedLocaleEntries.map((entry) => entry.text))
-        : sortLabels(linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.labels ?? []))
+        : sortLabels([
+            ...directLinkedLocaleEntries.map((entry) => entry.text),
+            ...(linkedName.nameIds || []).flatMap((id) => localizedNamesById.get(id)?.labels ?? [])
+          ])
       : [];
     const linkedLocaleEntries = linkedName
       ? composedLocaleEntries.length
         ? composedLocaleEntries
-        : linkedName.nameIds.flatMap((id) => localizedNamesById.get(id)?.localeEntries ?? [])
+        : [
+            ...directLinkedLocaleEntries,
+            ...(linkedName.nameIds || []).flatMap((id) => localizedNamesById.get(id)?.localeEntries ?? [])
+          ]
       : [];
     const linkedPreferredName = linkedName
       ? composedLocaleEntries.find((entry) => entry.localeId === "en")?.text ||
-        linkedName.nameIds.map((id) => localizedNamesById.get(id)?.preferredLabel).find(Boolean) ||
+        linkedName.preferredLabel ||
+        directLinkedLocaleEntries.find((entry) => entry.localeId === "en")?.text ||
+        (linkedName.nameIds || []).map((id) => localizedNamesById.get(id)?.preferredLabel).find(Boolean) ||
         ""
       : "";
     const iconLink = secondaryLink?.iconPaths?.length ? secondaryLink : linkedName;
@@ -233,7 +265,7 @@ Notes:
       Id: row.id,
       Level: row.level ?? 0,
       NameDesign: preferredName,
-      NameId: row.nameMlStringId || (linkedName?.composeParts ? null : linkedName?.nameIds[0]) || null,
+      NameId: row.nameMlStringId || (linkedName?.composeParts ? null : linkedName?.nameIds?.[0]) || null,
       NameIdSource: row.nameMlStringId ? "BuffTable" : linkedName?.source ?? null,
       NameOffset: row.nameOffset,
       DesignName: row.designName,
@@ -250,12 +282,13 @@ Notes:
       ...(linkedName
         ? {
             ...(linkedName.effectIds?.length ? { LinkedEffectIds: linkedName.effectIds } : {}),
-            LinkedNameIds: linkedName.nameIds,
+            ...(linkedName.nameIds?.length ? { LinkedNameIds: linkedName.nameIds } : {}),
             LinkedSourceRows: linkedName.rows,
             ...(linkedName.source?.startsWith("ModEffectTable")
               ? { LinkedModEffectRows: linkedName.rows }
               : {}),
             ...(linkedName.tableHash ? { LinkedTableHash: linkedName.tableHash } : {}),
+            ...(linkedName.phraseNameId ? { LinkedPhraseNameId: linkedName.phraseNameId } : {}),
             ...(typeof linkedName.nameField === "number"
               ? { LinkedNameField: linkedName.nameField }
               : {}),
@@ -276,6 +309,7 @@ Notes:
   console.log(`Loaded localization files: ${localizationTables.length}`);
   console.log(`Resolved mlstring ids: ${localizedNamesById.size}`);
   console.log(`Secondary table direct buff-name links: ${baseLinkedNames.size}`);
+  console.log(`Derived localized buff-term links: ${derivedBuffNames.size}`);
   console.log(`Secondary table links after adjacent buff inheritance: ${linkedBuffNames.size}`);
   console.log(`Generated entries: ${entries.length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
@@ -421,6 +455,106 @@ function collectSecondaryBuffNames(
   }
 
   return chooseBestSecondaryBuffNames(rawRows, candidatesByBuffId);
+}
+
+function mergeBuffNameLinks(primaryLinks, fallbackLinks) {
+  const out = new Map(primaryLinks);
+  for (const [buffId, link] of fallbackLinks.entries()) {
+    if (!out.has(buffId)) {
+      out.set(buffId, link);
+    }
+  }
+  return out;
+}
+
+function collectDerivedBuffTermLinks(rawRows, localizationTables) {
+  const termCache = new Map();
+  const out = new Map();
+
+  for (const row of rawRows) {
+    if (!row.id || row.nameMlStringId) {
+      continue;
+    }
+    for (const spec of DERIVED_BUFF_TERM_SOURCES) {
+      if (!spec.matchesDesign(row.designName)) {
+        continue;
+      }
+
+      let derived = termCache.get(spec.source);
+      if (!derived) {
+        derived = deriveLocalizedPhraseEntries(spec, localizationTables);
+        termCache.set(spec.source, derived);
+      }
+      if (!derived.localeEntries.length) {
+        continue;
+      }
+
+      out.set(row.id, {
+        source: spec.source,
+        nameIds: [],
+        phraseNameId: spec.nameId,
+        localeEntries: derived.localeEntries,
+        preferredLabel: derived.preferredLabel,
+        iconPaths: [],
+        rows: [
+          {
+            rowId: row.id,
+            rowIndex: row.index,
+            designName: row.designName,
+            phraseNameId: spec.nameId,
+            source: spec.source
+          }
+        ]
+      });
+      break;
+    }
+  }
+
+  return out;
+}
+
+function deriveLocalizedPhraseEntries(spec, localizationTables) {
+  const entries = [];
+  let preferredLabel = "";
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index.get(spec.nameId);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+
+    const localeId = localeIdFromGameLanguage(table.language);
+    const sourceText = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    const phrase = extractDerivedPhraseForLocale(sourceText, localeId, spec);
+    if (!phrase) {
+      continue;
+    }
+
+    entries.push({ language: table.language, localeId, stringIndex, text: phrase });
+    if (localeId === "en") {
+      preferredLabel = phrase;
+    }
+  }
+
+  return {
+    localeEntries: entries,
+    preferredLabel: preferredLabel || entries[0]?.text || spec.fallback || ""
+  };
+}
+
+function extractDerivedPhraseForLocale(sourceText, localeId, spec) {
+  const pattern = spec.patterns?.[localeId];
+  if (!pattern) {
+    return "";
+  }
+  const match = String(sourceText || "").match(pattern);
+  if (!match) {
+    return "";
+  }
+  const phrase = String(match[0] || "").trim();
+  if (localeId === "en" && phrase.toLowerCase() === "overhealing") {
+    return "Overhealing";
+  }
+  return phrase;
 }
 
 function collectNamedBuffLinkCandidatesFromTable(

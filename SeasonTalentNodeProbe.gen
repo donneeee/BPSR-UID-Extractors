@@ -1,0 +1,697 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const SEASON_TALENT_TABLE_HASH = 164473594;
+const SEASON_TALENT_DESCRIPTION_TABLE_HASH = 4192598123;
+const STRING_POOL = 6;
+const INT_POOL = 1;
+const NODE_NAME_FIELD = 4;
+const NODE_EFFECT_FIELD = 16;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    markdown: ""
+  });
+
+  if (args.help) {
+    printHelp(
+      "SeasonTalentNodeProbe.gen - report Slumbering Dream / season talent-like node evidence.",
+      `
+Options:
+  --markdown <path>    Optional Markdown summary output path.
+
+Notes:
+  This is a probe report only. It decodes CTB:164473594 rows and aligned
+  BuffTable rows without inferring selected player nodes or skill ownership.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "SeasonTalentNodeProbe.json"));
+  const generated = loadGenerated(paths.outputDir);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const buffsById = new Map(objectValues(generated.buffs).map((row) => [String(row?.Id), row]));
+  const buffsByName = buildGeneratedNameIndex(generated.buffs);
+  const skillsByName = buildGeneratedNameIndex(generated.skills);
+  const recountByName = buildGeneratedNameIndex(generated.recount);
+  const damageByName = buildGeneratedNameIndex(generated.damage);
+
+  const table = readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    SEASON_TALENT_TABLE_HASH,
+    `CTB:${SEASON_TALENT_TABLE_HASH}`
+  );
+  const descriptionTable = readOptionalCtbTableByHash(
+    containerDir,
+    metaEntries,
+    readCtbTableByHash,
+    SEASON_TALENT_DESCRIPTION_TABLE_HASH
+  );
+  const descriptionsByBuffId = descriptionTable
+    ? collectBuffDescriptionRows(descriptionTable, localizationTables, {
+      buildLocaleTextObject,
+      choosePreferredLocaleText,
+      readU32
+    })
+    : new Map();
+
+  const allRows = collectSeasonTalentRows(table, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readU32
+  }).map((row) => attachAlignedGeneratedEvidence(row, {
+    buffsById,
+    buffsByName,
+    damageByName,
+    descriptionsByBuffId,
+    recountByName,
+    skillsByName
+  }));
+  const nodeRows = allRows.filter((row) => row.alignedBuff);
+  const rowGroups = buildRowGroups(nodeRows);
+  const summary = {
+    sourceTable: `CTB:${SEASON_TALENT_TABLE_HASH}`,
+    rowCount: table.rowCount,
+    rowSize: table.rowSize,
+    decodedRows: allRows.length,
+    alignedBuffNodeRows: nodeRows.length,
+    groups: rowGroups.length,
+    descriptionSourceTable: descriptionTable ? `CTB:${SEASON_TALENT_DESCRIPTION_TABLE_HASH}` : "missing",
+    descriptionSourceRows: descriptionTable?.rowCount || 0,
+    rowsWithLocalizedTextFields: nodeRows.filter((row) => row.localizedTextFields?.length).length,
+    rowsWithDescriptionCandidates: nodeRows.filter((row) => row.descriptionCandidates?.length).length,
+    rowsWithOpcode3BuffRecords: nodeRows.filter((row) => row.buffEffectRecords?.length).length,
+    rowsWithStringFields: nodeRows.filter((row) => row.stringFields?.length).length,
+    strictRuntimeStatus: "probe-only"
+  };
+
+  const report = {
+    summary,
+    notes: [
+      "Status: probe-only. This report is not consumed by runtime display code.",
+      "Rows come from CTB:164473594, the season talent-like table already used by BuffNames.gen for aligned node buff names.",
+      "Aligned buff ids are selected from CTB:164473594 field +16 opcode-3 buff records when present.",
+      "The row-id pattern already present in BuffNames.gen and exact localized node name plus season icon matches are retained as secondary bridge evidence.",
+      `Descriptions come from CTB:${SEASON_TALENT_DESCRIPTION_TABLE_HASH} rows where field +0 is the buff id and field +4 is the localized description id.`,
+      "Localized text fields are emitted with field offsets. Description candidates remain probe-only until the exact schema is promoted.",
+      "Generated skill/recount/damage name matches are evidence only; they are not ownership or selected-node inference."
+    ],
+    groups: rowGroups,
+    nodeRows,
+    allRows
+  };
+
+  console.log(`Season talent table rows: ${summary.rowCount}`);
+  console.log(`Aligned buff node rows: ${summary.alignedBuffNodeRows}`);
+  console.log(`Groups: ${summary.groups}`);
+  console.log(`Rows with description candidates: ${summary.rowsWithDescriptionCandidates}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "SeasonTalentNodeProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function loadGenerated(outputDir) {
+  return {
+    buffs: readOptionalJson(path.join(outputDir, "BuffName.json"), []),
+    damage: readOptionalJson(path.join(outputDir, "DamageAttrIdName.json"), {}),
+    recount: readOptionalJson(path.join(outputDir, "RecountTable.json"), {}),
+    skills: readOptionalJson(path.join(outputDir, "skillnames.json"), {})
+  };
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function readOptionalCtbTableByHash(containerDir, metaEntries, readCtbTableByHash, hash) {
+  try {
+    return readCtbTableByHash(containerDir, metaEntries, hash, `CTB:${hash}`);
+  } catch {
+    return null;
+  }
+}
+
+function collectSeasonTalentRows(table, localizationTables, helpers) {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readU32
+  } = helpers;
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    if (!id) {
+      continue;
+    }
+    const fields = collectRowFields(table, rowOffset, localizationTables, { buildLocaleTextObject, choosePreferredLocaleText, readCtbString, readU32 });
+    const nameField = fields.find((field) => field.fieldOffset === NODE_NAME_FIELD && field.localizedText);
+    const names = nameField?.localizedTexts || {};
+    const name = choosePreferredLocaleText(names, nameField?.localizedText || "");
+    const computedAlignedBuffId = seasonTalentBuffIdFromRowId(id);
+    const effectRecords = collectEffectRecordsFromField(table, rowOffset, NODE_EFFECT_FIELD, { readU32 });
+    const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+    const descriptionCandidates = fields
+      .filter((field) => field.kind === "localized-text" && field.fieldOffset !== NODE_NAME_FIELD)
+      .map((field) => ({
+        fieldOffset: field.fieldOffset,
+        textId: field.value,
+        text: field.localizedText,
+        texts: field.localizedTexts,
+        cleanTexts: cleanDescriptionsByLocale(field.localizedTexts),
+        linkTexts: collectDescriptionLinkTexts(field.localizedTexts)
+      }));
+    rows.push(stripEmpty({
+      type: "season-talent-node",
+      sourceTable: `CTB:${SEASON_TALENT_TABLE_HASH}`,
+      id,
+      groupIndex: Math.floor(id / 100) - 10,
+      slotIndex: id % 100,
+      name,
+      names,
+      nameId: nameField?.value,
+      nameFieldOffset: NODE_NAME_FIELD,
+      computedAlignedBuffId,
+      effectReferenceField: NODE_EFFECT_FIELD,
+      effectRecords,
+      buffEffectRecords,
+      sourceOffset: table.entry.offset + rowOffset,
+      localizedTextFields: fields.filter((field) => field.kind === "localized-text"),
+      stringFields: fields.filter((field) => field.kind === "string"),
+      intArrayFields: fields.filter((field) => field.kind === "int-array"),
+      rawU32Fields: fields.filter((field) => field.kind === "u32"),
+      descriptionCandidates
+    }));
+  }
+  return rows.sort((left, right) => Number(left.id) - Number(right.id));
+}
+
+function collectBuffDescriptionRows(table, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readU32 } = helpers;
+  const out = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const buffId = readU32(table.data, rowOffset);
+    const descriptionId = readU32(table.data, rowOffset + 4);
+    if (!buffId || !descriptionId) {
+      continue;
+    }
+    const descriptions = buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables),
+      { includeDesign: false }
+    );
+    const description = choosePreferredLocaleText(descriptions);
+    if (!description) {
+      continue;
+    }
+    out.set(String(buffId), stripEmpty({
+      evidenceStatus: "probe-only-source-backed-buff-description-table",
+      sourceTable: `CTB:${SEASON_TALENT_DESCRIPTION_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset,
+      buffId,
+      descriptionId,
+      textId: descriptionId,
+      text: description,
+      texts: descriptions,
+      cleanTexts: cleanDescriptionsByLocale(descriptions),
+      linkTexts: collectDescriptionLinkTexts(descriptions)
+    }));
+  }
+  return out;
+}
+
+function collectEffectRecordsFromField(table, rowOffset, fieldOffset, helpers) {
+  const { readU32 } = helpers;
+  const intPool = table?.pools?.get(INT_POOL);
+  if (!intPool) {
+    return [];
+  }
+  const topOffset = readU32(table.data, rowOffset + fieldOffset);
+  const topValues = readIntArrayFromPool(intPool, topOffset);
+  if (!topValues.length) {
+    return [];
+  }
+  const records = [];
+  for (const recordOffset of topValues) {
+    const rawValues = readIntArrayFromPool(intPool, recordOffset);
+    if (!rawValues.length) {
+      records.push({
+        kind: "unknown-record-offset",
+        fieldOffset,
+        recordOffset
+      });
+      continue;
+    }
+    const opcode = rawValues[0];
+    if (opcode === 3) {
+      records.push(stripEmpty({
+        kind: "opcode-3-buff-record",
+        opcode,
+        fieldOffset,
+        recordOffset,
+        rawValues,
+        buffId: Number(rawValues[1]),
+        value: rawValues[2]
+      }));
+      continue;
+    }
+    records.push({
+      kind: "unknown-opcode-record",
+      opcode,
+      fieldOffset,
+      recordOffset,
+      rawValues
+    });
+  }
+  return records;
+}
+
+function collectRowFields(table, rowOffset, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readCtbString, readU32 } = helpers;
+  const out = [];
+  const intPool = table?.pools?.get(INT_POOL);
+  for (let fieldOffset = 0; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
+    const value = readU32(table.data, rowOffset + fieldOffset);
+    if (!value) {
+      continue;
+    }
+    const localizedEntries = collectLocalizedTextEntries(value, localizationTables);
+    if (localizedEntries.length) {
+      const localizedTexts = buildLocaleTextObject(localizedEntries, { includeDesign: false });
+      out.push(stripEmpty({
+        kind: "localized-text",
+        fieldOffset,
+        value,
+        localizedText: choosePreferredLocaleText(localizedTexts),
+        localizedTexts
+      }));
+      continue;
+    }
+    const stringValue = readCtbString(table, STRING_POOL, value, { allowZero: false, maxLen: 512 });
+    if (stringValue) {
+      out.push({
+        kind: "string",
+        fieldOffset,
+        value,
+        text: stringValue
+      });
+      continue;
+    }
+    const intArray = readIntArrayFromPool(intPool, value);
+    if (intArray.length) {
+      out.push({
+        kind: "int-array",
+        fieldOffset,
+        value,
+        intArray
+      });
+      continue;
+    }
+    out.push({
+      kind: "u32",
+      fieldOffset,
+      value
+    });
+  }
+  return out;
+}
+
+function collectLocalizedTextEntries(textId, localizationTables) {
+  const id = Number(textId);
+  if (!Number.isInteger(id) || !id) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index?.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function attachAlignedGeneratedEvidence(row, lookups) {
+  const nameKey = normalizeName(row.names?.en || row.name);
+  const buffNameMatches = nameKey ? (lookups.buffsByName.get(nameKey) || []) : [];
+  const effectRecords = (row.effectRecords || []).map((record) => attachEffectRecordRows(record, lookups));
+  const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+  const selected = selectAlignedBuff({ ...row, effectRecords, buffEffectRecords }, buffNameMatches, lookups);
+  const description = selected.buff
+    ? lookups.descriptionsByBuffId.get(String(selected.buff.Id))
+    : null;
+  const descriptionCandidates = [
+    ...(row.descriptionCandidates || []),
+    ...(description ? [description] : [])
+  ];
+  return stripEmpty({
+    ...row,
+    alignedBuffId: selected.buff?.Id,
+    alignedBuffBridge: selected.bridge,
+    alignedBuffBridgeStatus: selected.bridgeStatus,
+    computedAlignedBuffIdStatus: row.computedAlignedBuffId && selected.buff?.Id
+      ? (Number(row.computedAlignedBuffId) === Number(selected.buff.Id) ? "matches-aligned-buff" : "differs-from-aligned-buff")
+      : "",
+    alignedBuff: selected.buff ? buffEntity(selected.buff) : null,
+    effectRecords,
+    buffEffectRecords,
+    descriptionCandidates,
+    generatedNameMatches: {
+      buffs: buffNameMatches.slice(0, 20).map(buffEntity),
+      skills: nameKey ? (lookups.skillsByName.get(nameKey) || []).slice(0, 20).map(generatedEntity) : [],
+      recount: nameKey ? (lookups.recountByName.get(nameKey) || []).slice(0, 20).map(generatedEntity) : [],
+      damage: nameKey ? (lookups.damageByName.get(nameKey) || []).slice(0, 20).map(generatedEntity) : []
+    }
+  });
+}
+
+function selectAlignedBuff(row, buffNameMatches, lookups) {
+  const directEffectBuffRecord = (row.buffEffectRecords || [])
+    .find((record) => lookups.buffsById.has(String(record.buffId)));
+  if (directEffectBuffRecord) {
+    return {
+      buff: lookups.buffsById.get(String(directEffectBuffRecord.buffId)),
+      bridge: `CTB:164473594Field${directEffectBuffRecord.fieldOffset}Opcode3BuffRecord`,
+      bridgeStatus: "source-backed-opcode-3-buff-record"
+    };
+  }
+  const computedBuff = lookups.buffsById.get(String(row.computedAlignedBuffId));
+  if (computedBuff) {
+    return {
+      buff: computedBuff,
+      bridge: "BuffNamesSeasonTalentRowIdPattern",
+      bridgeStatus: "source-backed-row-id-pattern"
+    };
+  }
+  const exactSeasonBuff = findSeasonBuffByExactNodeNameAndIcon(row, buffNameMatches);
+  if (exactSeasonBuff) {
+    return {
+      buff: exactSeasonBuff,
+      bridge: "CTB:164473594ExactLocalizedNameAndSeasonIconMatch",
+      bridgeStatus: "source-backed-name-icon-match"
+    };
+  }
+  return {
+    buff: null,
+    bridge: "unresolved",
+    bridgeStatus: "no-source-backed-buff-bridge"
+  };
+}
+
+function attachEffectRecordRows(record, lookups) {
+  if (record?.kind !== "opcode-3-buff-record") {
+    return record;
+  }
+  const buff = lookups.buffsById.get(String(record.buffId));
+  return stripEmpty({
+    ...record,
+    buffIdStatus: buff ? "known-buff-id" : "unresolved-buff-id",
+    buffRow: buffEntity(buff)
+  });
+}
+
+function findSeasonBuffByExactNodeNameAndIcon(row, buffNameMatches) {
+  const nodeIcon = normalizeAssetPath(
+    row.stringFields?.find((field) => field.fieldOffset === 36)?.text
+  );
+  const seasonMatches = (buffNameMatches || []).filter((buff) => {
+    return buff?.NameIdSource === `CTB:${SEASON_TALENT_TABLE_HASH}` &&
+      normalizeAssetPath(buff?.IconPath).startsWith("ui/atlas/season_talent/");
+  });
+  if (!seasonMatches.length) {
+    return null;
+  }
+  return seasonMatches.find((buff) => normalizeAssetPath(buff?.IconPath) === nodeIcon) || null;
+}
+
+function buildGeneratedNameIndex(rows) {
+  const out = new Map();
+  for (const row of objectValues(rows)) {
+    const key = normalizeName(row?.Names?.en || row?.Name || row?.NameDesign);
+    if (!key) {
+      continue;
+    }
+    const bucket = out.get(key) || [];
+    bucket.push(row);
+    out.set(key, bucket);
+  }
+  return out;
+}
+
+function buildRowGroups(nodeRows) {
+  const grouped = new Map();
+  for (const row of nodeRows || []) {
+    const key = String(row.groupIndex);
+    const bucket = grouped.get(key) || [];
+    bucket.push(row);
+    grouped.set(key, bucket);
+  }
+  return [...grouped.entries()]
+    .map(([groupIndex, rows]) => ({
+      groupIndex: Number(groupIndex),
+      groupName: rows.sort((left, right) => Number(left.slotIndex) - Number(right.slotIndex))[0]?.name,
+      groupNameStatus: "first-slot-node-name",
+      rows: rows.sort((left, right) => Number(left.slotIndex) - Number(right.slotIndex))
+    }))
+    .sort((left, right) => Number(left.groupIndex) - Number(right.groupIndex));
+}
+
+function seasonTalentBuffIdFromRowId(rowId) {
+  const id = Number(rowId);
+  if (!Number.isInteger(id)) {
+    return null;
+  }
+  const group = Math.floor(id / 100) - 10;
+  const slot = id % 100;
+  if (group < 0 || slot < 1 || slot > 10) {
+    return null;
+  }
+  return 3002010 + group * 200 + (slot - 1) * 10;
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (!pool || index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 128 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function collectDescriptionLinkTexts(descriptions) {
+  const byId = new Map();
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const regex = /<linktext=(\d+)[^>]*>(.*?)<\/linktext>/gis;
+    for (const match of String(text || "").matchAll(regex)) {
+      const linkTextId = Number(match[1]);
+      const label = cleanMarkup(match[2]);
+      if (!Number.isFinite(linkTextId) || !label) {
+        continue;
+      }
+      const current = byId.get(linkTextId) || { linkTextId, labels: {} };
+      if (!current.labels[localeId]) {
+        current.labels[localeId] = label;
+      }
+      byId.set(linkTextId, current);
+    }
+  }
+  return [...byId.values()]
+    .map((row) => ({ ...row, label: preferredLocaleText(row.labels) }))
+    .sort((left, right) => Number(left.linkTextId) - Number(right.linkTextId));
+}
+
+function cleanDescriptionsByLocale(descriptions) {
+  const out = {};
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const cleaned = cleanMarkup(String(text || "").replace(/<br\s*\/?>/gi, "\n"));
+    if (cleaned) {
+      out[localeId] = cleaned;
+    }
+  }
+  return out;
+}
+
+function cleanMarkup(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\{[^}]*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function buffEntity(buff) {
+  if (!buff?.Id) {
+    return null;
+  }
+  return stripEmpty({
+    type: "buff",
+    sourceTable: "BuffTable",
+    id: buff.Id,
+    level: buff.Level,
+    name: preferredName(buff),
+    names: buff.Names,
+    nameId: buff.NameId,
+    nameIdSource: buff.NameIdSource,
+    iconPath: buff.IconPath,
+    iconPathSource: buff.IconPathSource,
+    sourceOffset: buff.SourceOffset
+  });
+}
+
+function generatedEntity(row) {
+  return stripEmpty({
+    id: row?.Id,
+    name: preferredName(row),
+    names: row?.Names,
+    kind: row?.Kind,
+    isBaseSkill: row?.IsBaseSkill,
+    iconPath: row?.IconPath,
+    sourceOffsets: row?.SourceOffsets,
+    damageId: row?.DamageId,
+    linkedBaseSkillId: row?.LinkedBaseSkillId,
+    linkedBaseSkillName: row?.LinkedBaseSkillName
+  });
+}
+
+function preferredName(row) {
+  return String(row?.Names?.en || row?.Name || row?.NameDesign || row?.name || "").trim();
+}
+
+function preferredLocaleText(values) {
+  for (const localeId of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id", "design"]) {
+    const text = String(values?.[localeId] || "").trim();
+    if (text) {
+      return text;
+    }
+  }
+  return Object.values(values || {}).find(Boolean) || "";
+}
+
+function normalizeName(value) {
+  return String(value || "")
+    .replace(/\u200b/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function normalizeAssetPath(value) {
+  return String(value || "")
+    .replace(/\\/g, "/")
+    .replace(/\s+/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+function objectValues(value) {
+  return Array.isArray(value) ? value : Object.values(value || {});
+}
+
+function stripEmpty(value) {
+  if (Array.isArray(value)) {
+    return value.map(stripEmpty).filter((entry) => entry !== undefined);
+  }
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    const cleaned = stripEmpty(entry);
+    if (cleaned === undefined || cleaned === null || cleaned === "") {
+      continue;
+    }
+    if (Array.isArray(cleaned) && !cleaned.length) {
+      continue;
+    }
+    if (typeof cleaned === "object" && !Array.isArray(cleaned) && !Object.keys(cleaned).length) {
+      continue;
+    }
+    out[key] = cleaned;
+  }
+  return out;
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Season Talent Node Probe");
+  lines.push("");
+  lines.push("This is a probe-only report for CTB:164473594 season talent-like nodes and aligned BuffTable rows.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.summary || {})) {
+    lines.push(`- ${key}: ${value}`);
+  }
+  lines.push("");
+  lines.push("## Groups");
+  lines.push("");
+  for (const group of report.groups || []) {
+    lines.push(`### Group ${group.groupIndex}${group.groupName ? `: ${group.groupName}` : ""}`);
+    for (const row of group.rows || []) {
+      const descriptions = (row.descriptionCandidates || [])
+        .map((entry) => {
+          const source = entry.fieldOffset !== undefined
+            ? `+${entry.fieldOffset}`
+            : `${entry.sourceTable || "description"}:${entry.descriptionId || entry.textId || ""}`;
+          return `${source} ${truncate(entry.text, 90)}`;
+        })
+        .join("; ");
+      const bridge = row.alignedBuffBridge ? ` (${row.alignedBuffBridge})` : "";
+      lines.push(`- ${row.id} slot ${row.slotIndex}: ${row.name || row.alignedBuff?.name || "unnamed"} -> buff ${row.alignedBuffId}${bridge}${descriptions ? `; descriptions: ${descriptions}` : ""}`);
+    }
+    lines.push("");
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function truncate(value, maxLength) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  return text.length > maxLength ? `${text.slice(0, maxLength - 3)}...` : text;
+}

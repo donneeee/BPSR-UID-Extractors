@@ -33,6 +33,7 @@ Normal generators read game package data only. A generator may read another gene
 - `ExtractIcons.gen`: resolves icon references to game texture or sprite-atlas assets and writes PNG work manifests.
 - `ExportIconPngs.gen`: decodes those game assets to PNG using temporary bundle files that are removed after export.
 - `ProbeSources.gen`: compares external JSON samples against the current generated outputs.
+- `FormulaSurfaceProbe.gen`: scans CTB-like package entries, localization byte tables, generated outputs, and existing probe reports for damage-formula-adjacent surfaces.
 - `Probing Sources/`: optional audit input folder for external JSON samples.
 - `output/`: generated JSON artifacts and probe reports.
 
@@ -51,6 +52,19 @@ The probe report is written to `output/probing-reports/ProbeSourcesReport.json`.
 
 Probe samples never become output data. If a probe exposes a useful missing id or icon, add or improve a direct game-file bridge, then regenerate from the game files.
 
+## Formula Surface Probe
+
+`FormulaSurfaceProbe.gen` is a broad audit tool for parser research. It scans every CTB-like package entry it can decode, row numeric fields, nested int-pool arrays, CTB strings, localization byte tables, generated parser outputs, and existing probe reports for damage formula surfaces.
+
+Run:
+
+```powershell
+npm run probe:formula
+node .\FormulaSurfaceProbe.gen --max-samples 80
+```
+
+The report is written to `output/probing-reports/FormulaSurfaceProbe.json` and `output/probing-reports/FormulaSurfaceProbe.md`. Treat the Markdown report as the community-shareable summary. It separates exact emitted child damage rows, source-only factor evidence, parameterized Phantom Factor descriptions, talent/passive evidence, ID-construction formula hits, and candidate numeric formula tables. A formula-like text hit is not proof of runtime contribution math until the table schema, active source state, target skill scope, stacking rules, and base total semantics are all validated.
+
 ## Scripts
 
 - `ItemNames.gen`: rebuilds `itemnames.json` by scanning item table families, resolving game name ids through the language-byte localization tables, using package string fallback when the game lacks a localization hit, and attaching direct `ItemTable.ctb` icon paths when present.
@@ -67,6 +81,7 @@ Probe samples never become output data. If a probe exposes a useful missing id o
 - `ExportParserAssets.gen`: stages a parser-shaped image tree under `output/parser-assets/static/images` and writes `asset-path-map.json` with the game-file-derived parser image path for each exported asset.
 - `GenerateAll.gen`: runs the generator set in dependency order.
 - `ProbeSources.gen`: audits external JSON samples against generated outputs.
+- `FormulaSurfaceProbe.gen`: builds a conservative formula-surface report for parser developers, highlighting exact child damage ids separately from source-only or parameterized modifier evidence.
 
 ## Running
 

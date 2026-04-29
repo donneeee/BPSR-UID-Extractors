@@ -58,7 +58,7 @@ Notes:
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
-  const damageIconLookup = loadDamageIconLookup(paths.outputDir);
+  const damageLookup = loadDamageLookup(paths.outputDir);
   const generatedBuffIds = loadGeneratedBuffIds(paths.outputDir);
   const baseSkillRows = collectBaseSkillRows(containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
@@ -99,7 +99,7 @@ Notes:
     const damageIds = readDamageIdList(pkg, payloadBase, damageOffset, { readU16, readU32 });
     const linkedTalent = findTalentBridge(names, talentRows, damageIds);
     const linkedBaseSkill = findBaseSkillNameBridge(names, baseSkillRows);
-    const damageIconPaths = collectDamageIconPaths(damageIds, damageIconLookup);
+    const damageIconPaths = collectDamageIconPaths(damageIds, damageLookup);
     const iconPaths = uniqueStrings([linkedTalent?.iconPath, linkedBaseSkill?.iconPath, ...damageIconPaths]);
     const preferredIconPath = linkedTalent?.iconPath || linkedBaseSkill?.iconPath || damageIconPaths[0] || "";
     out[String(id)] = {
@@ -178,7 +178,7 @@ Notes:
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
 
-function loadDamageIconLookup(outputDir) {
+function loadDamageLookup(outputDir) {
   const filePath = path.join(outputDir, "DamageAttrIdName.json");
   if (!fs.existsSync(filePath)) {
     return new Map();
@@ -191,10 +191,27 @@ function loadDamageIconLookup(outputDir) {
       ...(Array.isArray(row?.IconPaths) ? row.IconPaths : [])
     ]);
     if (iconPaths.length) {
-      out.set(String(id), iconPaths);
+      out.set(String(id), {
+        iconPaths,
+        linkedSkillIds: collectDamageLinkedSkillIds(row)
+      });
+    } else {
+      const linkedSkillIds = collectDamageLinkedSkillIds(row);
+      if (linkedSkillIds.length) {
+        out.set(String(id), { iconPaths: [], linkedSkillIds });
+      }
     }
   }
   return out;
+}
+
+function collectDamageLinkedSkillIds(row) {
+  return uniqueNumbers([
+    row?.LinkedSkillId,
+    row?.LinkedSkillTableId,
+    row?.LinkedSkillEffectSkillTableId,
+    row?.LinkedSkillFightSkillId
+  ]);
 }
 
 function loadGeneratedBuffIds(outputDir) {
@@ -214,9 +231,9 @@ function loadGeneratedBuffIds(outputDir) {
 function collectDamageIconPaths(damageIds, lookup) {
   const paths = [];
   for (const id of damageIds || []) {
-    const iconPaths = lookup.get(String(id));
-    if (Array.isArray(iconPaths)) {
-      paths.push(...iconPaths);
+    const entry = lookup.get(String(id));
+    if (Array.isArray(entry?.iconPaths)) {
+      paths.push(...entry.iconPaths);
     }
   }
   return uniqueStrings(paths);
@@ -263,7 +280,15 @@ function collectBaseSkillRows(containerDir, metaEntries, localizationTables, hel
 }
 
 function collectTalentPassiveRows(containerDir, metaEntries, localizationTables, helpers) {
-  const { buildLocaleTextObject, choosePreferredLocaleText, generatedBuffIds, readCtbString, readCtbTableByHash, readU32 } = helpers;
+  const {
+    baseSkillIds,
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    generatedBuffIds,
+    readCtbString,
+    readCtbTableByHash,
+    readU32
+  } = helpers;
   let table;
   try {
     table = readCtbTableByHash(containerDir, metaEntries, TALENT_PASSIVE_TABLE_HASH, "CTB:3345237628");
@@ -308,24 +333,14 @@ function collectLinkedBuffIdsFromRow(table, rowOffset, buffIds, readU32) {
     return [];
   }
   const out = new Set();
-  for (let fieldOffset = 4; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
-    collectBuffIdsFromIntPool(readU32(table.data, rowOffset + fieldOffset), intPool, buffIds, out);
-  }
-  return [...out].sort((left, right) => left - right);
-}
-
-function collectBuffIdsFromIntPool(value, intPool, buffIds, out, seen = new Set(), depth = 0) {
-  if (!intPool || depth > 5 || value <= 20 || value >= intPool.length || seen.has(value)) {
-    return;
-  }
-  seen.add(value);
-  for (const nested of readIntArrayFromPool(intPool, value)) {
-    if (buffIds.has(nested)) {
-      out.add(nested);
-    } else if (nested > 20 && nested < intPool.length) {
-      collectBuffIdsFromIntPool(nested, intPool, buffIds, out, new Set(seen), depth + 1);
+  const topValues = readIntArrayFromPool(intPool, readU32(table.data, rowOffset + 36));
+  for (const recordOffset of topValues) {
+    const rawValues = readIntArrayFromPool(intPool, recordOffset);
+    if (rawValues[0] === 3 && buffIds.has(Number(rawValues[1]))) {
+      out.add(Number(rawValues[1]));
     }
   }
+  return [...out].sort((left, right) => left - right);
 }
 
 function readIntArrayFromPool(pool, index) {

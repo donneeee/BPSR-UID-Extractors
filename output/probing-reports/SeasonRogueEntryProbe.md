@@ -1,0 +1,185 @@
+# Season Rogue Entry Probe
+
+This is a probe-only report for CTB:4038258408 seasonal rogue-like entry buffs and CTB:2200122700 descriptions.
+
+## Summary
+
+- sourceTable: CTB:4038258408
+- descriptionSourceTable: CTB:2200122700
+- entryRows: 242
+- descriptionRows: 243
+- entriesWithBuffId: 242
+- entriesWithLocalizedName: 242
+- entriesWithDescriptionReference: 242
+- entriesWithResolvedDescription: 242
+- entriesWithDifficultyGate: 127
+- nightmareOnlyEntries: 63
+- hardAndNightmareEntries: 64
+- genericEntryRows: 100
+- advancedEntryRows: 142
+- groups: 25
+- unreferencedDescriptionRows: 1
+- strictRuntimeStatus: probe-only
+
+## Difficulty-Gated Entries
+
+- 215 Stormblade - Phantom Edgewind -> buff 3050160 [Nightmare]: Dealing damage with Iaido Slash is guaranteed to trigger Bladewind Domain. Bladewind Domain's CD reduction for Oblivion Combo is increased by 300%. Only one ...
+- 216 Stormblade - Surging Thunderseal -> buff 3050170 [Hard+Nightmare]: Doubles the Thunder Sigil limit. Overdrive's Thunder Sigil recovery efficiency is increased by 300%. Available only in [Hard] and [Nightmare].
+- 217 Stormblade - Iai Flash -> buff 3050180 [Hard+Nightmare]: Iaido Slash's CD is reduced by 50%, and Iaido Slash's Dream DMG is increased by 50%. Available only in [Hard] and [Nightmare].
+- 218 Stormblade - Ultimate Violent Slash -> buff 3050190 [Nightmare]: Doubles Ultimate Slash's Crit DMG. Available only in [Nightmare].
+- 219 Stormblade - Dragonfall Echo -> buff 3050200 [Nightmare]: Casting Dracoflash or Phantom Slash extends Volt Surge's duration by 10s. Dracoflash and Phantom Slash's Dream DMG is increased by 500%. Available only in [N...
+- 220 Stormblade - Thunderclap Reset -> buff 3050210 [Nightmare]: During Volt Surge, Crits from Flash Strike and Raijin Dash will reset their CDs. Flash Strike and Raijin Dash's Dream DMG is increased by 50%. Available only...
+- 221 Stormblade - Lingering Thunder Cut -> buff 3050220 [Hard+Nightmare]: Thunder Cut's Movement Speed is reduced by 50%, and Thunder Cut's Dream DMG is increased by 60%. Available only in [Hard] and [Nightmare].
+- 222 Stormblade - Overwhelming Current -> buff 3050230 [Hard+Nightmare]: Doubles the efficiency of gaining Thundrage. Available only in [Hard] and [Nightmare].
+- 223 Stormblade - Moonstrike Scythe Dance -> buff 3050240 [Hard+Nightmare]: Moonstrike no longer consumes Thunder Sigils, and casting Moonstrike will trigger Storm Scythe (requires the Storm Scythe Talent). Available only in [Hard] a...
+- 224 Stormblade - Stacking Divine Retribution -> buff 3050250 [Nightmare]: Increases Divine Sickle's max stacks by 7. Casting Divine Sickle consumes all stacks, increasing Dream DMG by 15% per stack. Available only in [Nightmare].
+- 225 Stormblade - Moonstrike Sync -> buff 3050260 [Hard+Nightmare]: When casting Divine Sickle, Moonblades will also simultaneously summon Divine Sickle. Available only in [Hard] and [Nightmare].
+- 226 Stormblade - Expanded Moonstrike -> buff 3050270 [Nightmare]: Increases the max number of Moonblades by 2. Available only in [Nightmare].
+- 227 Stormblade - Quintuple Thunderstorm -> buff 3050280 [Hard+Nightmare]: For every 5 times Thunderstrike is triggered, the next Thunderstrike will also trigger a Thunderstorm. Available only in [Hard] and [Nightmare].
+- 228 Stormblade - Instinctive Divine Retribution -> buff 3050290 [Nightmare]: Divine Sickle is cast automatically. Each cast reduces the CD of Stormflash by 2s. Available only in [Nightmare].
+- 229 Stormblade - Lucky Thunderstrike -> buff 3050300 [Hard+Nightmare]: Thunderstrike and Storm Scythe can now trigger a Lucky Strike. Available only in [Hard] and [Nightmare].
+- 230 Stormblade - Luck Multiplier -> buff 3050310 [Nightmare]: Lucky Strike Multiplier is increased by 100%. Luck Boost is doubled. Available only in [Nightmare].
+- 231 Frost Mage - Iceflow Pulse -> buff 3052280 [Hard+Nightmare]: When Frostbeam hits a target, Cold Pulse counter is increased by 5, and Cold Pulse Crit DMG is increased by 50%. (Triggers only once per cast, even on multip...
+- 232 Frost Mage - Pulse Reduction -> buff 3052290 [Hard+Nightmare]: Each time Cold Pulse is triggered, the CD of Permafrost is reduced by 1s. Available only in [Hard] and [Nightmare].
+- 233 Frost Mage - Permafrost Might -> buff 3052300 [Nightmare]: When Cold Pulse deals damage, it permanently increases Ice Attack by 2 points. (Triggers only once per cast, even on multiple hits.) Available only in [Night...
+- 234 Frost Mage - Stacking Frostbolts -> buff 3052310 [Nightmare]: When Cold Pulse deals damage, it increases Ice Arrow damage by 5% for 5s. This effect stacks up to 50 times. (Triggers only once per cast, even on multiple h...
+- 235 Frost Mage - Frigid Infusion -> buff 3052240 [Hard+Nightmare]: While in the Ultra Cold state, Frozen Gale gains the Permafrost effect, and its Dream DMG is increased by 200%. Available only in [Hard] and [Nightmare].
+- 236 Frost Mage - Deca-Vortex -> buff 3052250 [Nightmare]: For every 10 times Frostbeam deals damage to the main target, it randomly triggers Water Vortex, Tidal Vortex, or Crystal Veil (if equipped). Frostbeam's Dre...
+- 237 Frost Mage - Cascading Gyre -> buff 3052260 [Hard+Nightmare]: When Crystal Veil's frozen explosion occurs, it creates a Tidal Vortex at its location that lasts for 5s (this Tidal Vortex will not split again). When this ...
+- 238 Frost Mage - Shatter Vortex -> buff 3052270 [Nightmare]: After its frozen explosion, Tidal Vortex splits into two new Tidal Vortexes (they will not split again). Tidal Vortex's Dream DMG is increased by 200%. Avail...
+- 239 Frost Mage - Orbital Lance -> buff 3052200 [Nightmare]: Every 1.5s, Crystal Veil fires a Piercing Ice Lance at a random target (or forward if there is no target). When Piercing Ice Lance deals damage, the CD of Cr...
+- 240 Frost Mage - Lance Count -> buff 3052210 [Hard+Nightmare]: Reduces the count required for Piercing Ice Lance by 5. Available only in [Hard] and [Nightmare].
+- 241 Frost Mage - Dual Frost Crystal Lance -> buff 3052220 [Nightmare]: When casting Frost Lance with more than 2 Frost Crystals, it will consume 1 additional Frost Crystal to trigger Frost Lance twice consecutively. Frost Lance'...
+- 242 Frost Mage - Lance Reduction -> buff 3052230 [Hard+Nightmare]: When Piercing Ice Lance deals damage, the CD of Permafrost is reduced by 0.3s. Available only in [Hard] and [Nightmare].
+- 243 Frost Mage - Orbital Tempest -> buff 3052160 [Hard+Nightmare]: Casting Crystal Veil also casts Blizzard. When Blizzard deals damage, the CD of Crystal Veil is reduced by 0.3s. Available only in [Hard] and [Nightmare].
+- 244 Frost Mage - Triple Storm -> buff 3052170 [Hard+Nightmare]: Blizzard becomes an instant cast, and it summons three at once. Blizzard's Dream DMG is increased by 200%. Available only in [Hard] and [Nightmare].
+- 245 Frost Mage - Final Meteor -> buff 3052180 [Nightmare]: Every 5 casts of Meteor Storm summons a meteor from the Ultimate, which instantly puts Blizzard on CD and reduces Permafrost's CD by 5s. The Ultimate's Dream...
+- 246 Frost Mage - Eternal Winter -> buff 3052190 [Nightmare]: Permanently enter the Endless Cold state, which grants double damage. Each stack of Frost Crystal additionally increases Attack Speed by 10%. Available only ...
+- 247 Marksman - Call of the Wild -> buff 3053160 [Nightmare]: The Ultimate also triggers Stampede of Beasts, consuming all Photon Energy to summon Wild Wolves. 1 Wild Wolf is summoned for every 20 Photon Energy consumed...
+- 248 Marksman - Legendary Companion -> buff 3053170 [Hard+Nightmare]: Legendary Beasts now appear simultaneously, and their effects are increased by 100%. Available only in [Hard] and [Nightmare].
+- 249 Marksman - Wolf's Focus -> buff 3053180 [Hard+Nightmare]: Each Wild Wolf summoned reduces the CD of Focus by 5s. Available only in [Hard] and [Nightmare].
+- 250 Marksman - Primal Power -> buff 3053190 [Nightmare]: Companions gain +50% PHY Boost. Available only in [Nightmare].
+- 251 Marksman - Multiplying Arrow Rain -> buff 3053200 [Nightmare]: Increases the attack multiplier of Arrow Rain by 10x. If more than 3 companions are on the field, each additional companion increases Final Damage by 100%. A...
+- 252 Marksman - Tidal Fury -> buff 3053210 [Hard+Nightmare]: Torrent Volley is guaranteed to be a Crit. Every 1% of Crit Rate increases its Crit DMG by 10%. Available only in [Hard] and [Nightmare].
+- 253 Marksman - Demon Wolf Beast -> buff 3053220 [Nightmare]: Phantom Direwolves are now considered Beasts. Available only in [Nightmare].
+- 254 Marksman - Storm Tamer -> buff 3053230 [Hard+Nightmare]: Storm Arrow is guaranteed to be a Crit. The Beast Mastery Talent's effect is changed to increasing Storm Arrow's Crit DMG by 300%. Available only in [Hard] a...
+- 255 Marksman - Falcon's Gift -> buff 3053240 [Hard+Nightmare]: When the Falcon deals damage, 1 Photon Energy is restored, and Companion's DMG is increased by 50%. Available only in [Hard] and [Nightmare].
+- 256 Marksman - Boundless Volley -> buff 3053250 [Nightmare]: Explosive Arrow cannot be cast again before it detonates. The stack limit for Explosive Arrow is removed, and the stack generation efficiency from Falcon Str...
+- 257 Marksman - Eagle-Eyed Focus -> buff 3053260 [Hard+Nightmare]: Each time Falcon Strike deals damage, the duration of Focus is extended by 0.3s. While Focus is active, Companion's Crit DMG is increased by 100%. Available ...
+- 258 Marksman - Twin Talon Strike -> buff 3053270 [Nightmare]: Wildcall now summons two Falcons. Available only in [Nightmare].
+- 259 Marksman - Charged Triple Shot -> buff 3053280 [Nightmare]: Powerdraw now fires projectiles in three forward directions. The closer the target, the higher the damage (from a minimum of +10% to a maximum of +100%). Ava...
+- 260 Marksman - Charged Execution -> buff 3053290 [Nightmare]: Powerdraw Elemental Damage +100%. Deals +500% Dream DMG to targets with over 80% HP. Available only in [Nightmare].
+- 261 Marksman - Crit CD Reduction -> buff 3053300 [Hard+Nightmare]: After casting Focus, the next Powerdraw becomes a double shot. Each cast of Powerdraw also reduces the CD of Focus by 3s. Available only in [Hard] and [Night...
+- 262 Marksman - Devastating Bombardment -> buff 3053310 [Hard+Nightmare]: Every Crit reduces the CD of Radiance Barrage by 0.2s. Radiance Barrage's Crit DMG is increased by 100%. Available only in [Hard] and [Nightmare].
+- 263 Verdant Oracle - Pulsing Thorns -> buff 3056220 [Nightmare]: Regen Pulse applies Thorn to the target. Thorn and Wild Seed can now trigger Lucky Strike. Available only in [Nightmare].
+- 264 Verdant Oracle - Wild Growth -> buff 3056230 [Hard+Nightmare]: Feral Seed's CD is reduced by 90%, and its Casting Speed is increased by 100%. Available only in [Hard] and [Nightmare].
+- 265 Verdant Oracle - Critical Pulse -> buff 3056240 [Nightmare]: Regen Pulse is guaranteed to be a Crit, and its Crit DMG is increased by 2,000%. Available only in [Nightmare].
+- 266 Verdant Oracle - Instinctive Assault -> buff 3056250 [Hard+Nightmare]: Automatically triggers when Stag Charge is gained. Increases Special Attack's Dream DMG by 400%. Available only in [Hard] and [Nightmare].
+- 267 Verdant Oracle - Scattering Infusion -> buff 3056260 [Nightmare]: Infusion fires additional bullets at 5 surrounding targets. Infusion's Dream DMG is increased by 100%. Available only in [Nightmare].
+- 268 Verdant Oracle - Stag Assault Buff -> buff 3056270 [Nightmare]: The automatically triggered Stag Charge can now trigger Talent effects. Each time Stag Charge is triggered, Expertise Skill Damage and Luck Damage are increa...
+- 269 Verdant Oracle - Tenfold Charge -> buff 3056280 [Hard+Nightmare]: For every 10 times Infusion hits a target, Blossom Charge is triggered. Available only in [Hard] and [Nightmare].
+- 270 Verdant Oracle - Luck Stacks -> buff 3056290 [Hard+Nightmare]: When Infusion hits a target, Lucky Strike's Dream DMG is increased by 1%. This effect stacks up to 50 times and lasts for 5s. Available only in [Hard] and [N...
+- 271 Verdant Oracle - Nourish Burst -> buff 3056300 [Hard+Nightmare]: The damage area of the Blossom Charge summoned by Nourishing Seed is doubled, and its Dream DMG is increased by 1,000%. Available only in [Hard] and [Nightma...
+- 272 Verdant Oracle - Wishing Bud -> buff 3056310 [Nightmare]: Continuously gain Regen Bud while Grove Wish is active, and it grants a 100% CD Boost for Grove Wish. Available only in [Nightmare].
+- 273 Verdant Oracle - Full Bloom CD Reduction -> buff 3056320 [Nightmare]: Gain the Fast Growth buff when casting the Ultimate Skill (requires Fast Growth). Each time Blossom Charge is triggered, the CD of the Ultimate Skill is redu...
+- 274 Verdant Oracle - Nourish Multiplier -> buff 3056330 [Hard+Nightmare]: Doubles the number of Nourishing Seeds thrown. Available only in [Hard] and [Nightmare].
+- 275 Verdant Oracle - High-Cost Special -> buff 3056340 [Hard+Nightmare]: Reduces the cost of Special Attack by 90%. Available only in [Hard] and [Nightmare].
+- 276 Verdant Oracle - Perpetual Vitality -> buff 3056350 [Hard+Nightmare]: Permanently gain Vital Surge with its effect doubled. Available only in [Hard] and [Nightmare].
+- 277 Verdant Oracle - Unending Magic -> buff 3056360 [Nightmare]: Grants a 50% MAG Boost and 30% Haste to all class skills, but prevents using Ultimate Skills. Available only in [Nightmare].
+- 278 Verdant Oracle - Siphon CD Reduction -> buff 3056370 [Nightmare]: When Nourish's DoT reaches 3 stacks, the target is afflicted with Life Drain: For 5s, deals (MATK × 20 × Mastery%) damage per second. Each time damage is dea...
+- 279 Wind Knight - Wind Gate Damage Buff -> buff 3051160 [Nightmare]: Wind Gate Dream DMG +50%, and Great Wind Cyclone Dream DMG +100%. Available only in [Nightmare].
+- 280 Wind Knight - Drake Cannon Wind Gate -> buff 3051170 [Hard+Nightmare]: Triggering Drake Cannon also triggers Great Wind Cyclone. Available only in [Hard] and [Nightmare].
+- 281 Wind Knight - Double Wind Gate -> buff 3051180 [Nightmare]: Great Wind Cyclone becomes a two-hit combo. When it deals damage, your Wind Attack is permanently increased by 2 points. Available only in [Nightmare].
+- 282 Wind Knight - Extreme Galeform -> buff 3051190 [Hard+Nightmare]: Reduces the CD of Galeform by 80% and doubles its effect. Available only in [Hard] and [Nightmare].
+- 283 Wind Knight - Spiral Breach Pursuit -> buff 3051200 [Hard+Nightmare]: When Vortex Strike is cast as a derivative from Breach Pursuit, its Crit DMG is increased by 50% (requires the Vortex Strike Talent). Available only in [Hard...
+- 284 Wind Knight - Courage Crit Damage -> buff 3051210 [Nightmare]: Casting Vortex Strike consumes all Courage. For each point of Courage consumed, its Dream DMG is increased by 3%. Available only in [Nightmare].
+- 285 Wind Knight - Spiral CD Reduction -> buff 3051220 [Hard+Nightmare]: Each cast of Vortex Strike reduces the Ultimate Skill's CD. The amount of Courage restored by Breach Pursuit is increased by 100%. Available only in [Hard] a...
+- 286 Wind Knight - Wind Essence Siphon -> buff 3051230 [Nightmare]: Casting Vortex Strike permanently increases your Wind Attack by 2 points. Available only in [Nightmare].
+- 287 Wind Knight - Sever Wind Summoning -> buff 3051240 [Nightmare]: When Azure Sever deals damage, it triggers an additional Tornado. This Tornado's Dream DMG is increased by 100%. Available only in [Nightmare].
+- 288 Wind Knight - Sevenfold Tornado -> buff 3051250 [Hard+Nightmare]: For every 7 times a Tornado is triggered, an Enhanced Tornado is summoned, dealing damage equal to 2,000% of your ATK. Available only in [Hard] and [Nightmare].
+- 289 Wind Knight - Extreme Instant Edge -> buff 3051260 [Hard+Nightmare]: Reduces the Sharp cost of Instant Edge to 1 and increases its Dream DMG by 50%. Available only in [Hard] and [Nightmare].
+- 290 Wind Knight - Wind Fury Celerity -> buff 3051270 [Nightmare]: Increases Attack Speed by 100% during Wind Fury. Available only in [Nightmare].
+- 291 Wind Knight - Skyfall Recharge -> buff 3051280 [Hard+Nightmare]: Skyfall can now charge Sharp Impact, increasing its Dream DMG by 200%. Available only in [Hard] and [Nightmare].
+- 292 Wind Knight - Self-Generating Sharpness -> buff 3051290 [Hard+Nightmare]: Doubles the max amount of Sharp. For 10s after casting Sharp Impact, gain 1 Sharp every 0.5s. Available only in [Hard] and [Nightmare].
+- 293 Wind Knight - Instant Edge Sharp Damage -> buff 3051300 [Nightmare]: Instant Edge now consumes all Sharp, with each point consumed increasing its Dream DMG by an additional 10%. Available only in [Nightmare].
+- 294 Wind Knight - Wind Fury Triple Stack -> buff 3051310 [Nightmare]: Wind Fury can now stack up to 3 times, with its buffs increasing proportionally. Available only in [Nightmare].
+- 295 Shield Knight - Tenfold Spinning Shield -> buff 3054200 [Nightmare]: After every 10 Shield Tosses, Shield Toss will be enhanced. Tap to make the shields spin around the caster. Available only in [Nightmare].
+- 296 Shield Knight - Burning Judgment -> buff 3054210 [Hard+Nightmare]: Increases the Dream DMG of Judgment and Divine Strike by 50%. Available only in [Hard] and [Nightmare].
+- 297 Shield Knight - Ultimate Judgment -> buff 3054220 [Hard+Nightmare]: After casting Scorching Judgment, Dream DMG dealt is increased by 50% for its duration. Available only in [Hard] and [Nightmare].
+- 298 Shield Knight - Shield Attack Stack -> buff 3054230 [Nightmare]: Casting Shield Toss increases ATK by 2% for 2s. This effect stacks up to 50 times. Available only in [Nightmare].
+- 299 Shield Knight - Reckoning Crit -> buff 3054240 [Hard+Nightmare]: Increases the Crit DMG of Inferno Reckon by 100%. Available only in [Hard] and [Nightmare].
+- 300 Shield Knight - Guard Reckoning -> buff 3054250 [Nightmare]: During Aegis Ward, Inferno Reckon is triggered every 0.5s, and its Attack Speed is increased by 100%. Available only in [Nightmare].
+- 301 Shield Knight - Holy Reckoning -> buff 3054260 [Nightmare]: Inferno Reckon can now trigger Divine Strike. The CD reduction effect of Aegis Ward's Retribution on Aegis Ward is doubled. Available only in [Nightmare].
+- 302 Shield Knight - Holy Strike -> buff 3054270 [Hard+Nightmare]: Special Attacks can now trigger Divine Strike. Divine Strike's Dream DMG is increased by 100%. Available only in [Hard] and [Nightmare].
+- 303 Shield Knight - Swift Resolve -> buff 3054280 [Hard+Nightmare]: Reduces the CD of Radiance by 50%. During its effect, the Dream DMG dealt is increased by 20%. Available only in [Hard] and [Nightmare].
+- 304 Shield Knight - Blood Sacred Blade -> buff 3054290 [Hard+Nightmare]: Sacred Blade deals additional fixed damage equal to 50% of Max HP. It also increases Max HP by 50%. Available only in [Hard] and [Nightmare].
+- 305 Shield Knight - Sacred Blade Seal -> buff 3054300 [Nightmare]: Reduces the cost of Sacred Blade by 1. When Sacred Blade hits a target with a Holy Mark, Max HP is permanently increased by 200 points. Available only in [Ni...
+- 306 Shield Knight - Lightforged Multiplier -> buff 3054310 [Nightmare]: Doubles the additional effects of Lightforged Barrier. Available only in [Nightmare].
+- 307 Shield Knight - Blood Blade Pursuit -> buff 3054320 [Nightmare]: Vanguard Hunt and Divine Arc Slash deal additional fixed damage equal to 50% of Max HP. Available only in [Nightmare].
+- 308 Shield Knight - Swift Crusade -> buff 3054340 [Hard+Nightmare]: Reduces the CD of Zeal Crusade by 50%. During its effect, the Dream DMG dealt is increased by 20%. Available only in [Hard] and [Nightmare].
+- 309 Shield Knight - Holy Sigil Judgment -> buff 3054350 [Hard+Nightmare]: Judgment now consumes all Photon Energy. Vanguard Hunt's Crits now grant a Holy Sigil. Judgment's Dream DMG is increased by 50%. Available only in [Hard] and...
+- 310 Heavy Guardian - Sandstone Reversal -> buff 3055200 [Nightmare]: Skills that consume Sand Crystals now restore them instead, and their Dream DMG is increased by 200%. Available only in [Nightmare].
+- 311 Heavy Guardian - Mountain Shatter -> buff 3055210 [Hard+Nightmare]: Terra Sunder will consume all Sand Crystals. For each crystal consumed, its Dream DMG is increased by 50%. Available only in [Hard] and [Nightmare].
+- 312 Heavy Guardian - Rock Solid Buff -> buff 3055220 [Hard+Nightmare]: After standing still for 2s, Rock Bonus is increased by 40%. Available only in [Hard] and [Nightmare].
+- 313 Heavy Guardian - Boulder Overload -> buff 3055230 [Nightmare]: While Stoneform is active, energy is continuously obtained. All hits are guaranteed to Crit, and Crit DMG is increased by 200%. Available only in [Nightmare].
+- 314 Heavy Guardian - Starshatter Shield -> buff 3055240 [Nightmare]: Each time Shield Echo is triggered, Star Shatter deals bonus damage equal to 100% of the current Shield value (this bonus is affected by Star Shatter's damag...
+- 315 Heavy Guardian - Weak Spot Shield Break -> buff 3055250 [Hard+Nightmare]: Shield Echo has a 30% chance of triggering Weakness Strike. When triggered, Weakness Strike deals bonus damage equal to 100% of the current Shield value (thi...
+- 316 Heavy Guardian - Weak Spot CD Reduction -> buff 3055260 [Hard+Nightmare]: When Weakness Strike is triggered, the CD of Sandshroud is reduced by 1s. Available only in [Hard] and [Nightmare].
+- 317 Heavy Guardian - Shield Growth -> buff 3055270 [Nightmare]: Max Shield value can now be increased to 1,000%. Participating in a kill increases Shield Strength by 5%. Available only in [Nightmare].
+- 318 Heavy Guardian - Ultimate Rageblow -> buff 3055280 [Hard+Nightmare]: Casting Granite Fury guarantees Rageblow, and Rageblow's Dream DMG is increased by 100%. Available only in [Hard] and [Nightmare].
+- 319 Heavy Guardian - Twentyfold Rockfall -> buff 3055290 [Nightmare]: For every 20 times Stone Fist is triggered, a giant rock is summoned to fall on the target, dealing damage equal to 3% of the target's current HP. Available ...
+- 320 Heavy Guardian - Granite Block -> buff 3055300 [Hard+Nightmare]: While in Countercrush, the Rock Bonus is increased by 25%. Available only in [Hard] and [Nightmare].
+- 321 Heavy Guardian - Granite Ascension -> buff 3055310 [Nightmare]: Each time Granite is triggered, Rock Attack is permanently increased by 2 points. Available only in [Nightmare].
+- 322 Heavy Guardian - Rageblow Defense -> buff 3055320 [Hard+Nightmare]: Granite Fury's cost is reduced by 1, and Granite Fury will extend the duration of Countercrush. Granite Fury's Dream DMG is increased by 100%. Available only...
+- 323 Heavy Guardian - Burning Counter -> buff 3055330 [Nightmare]: Countercrush deals bonus damage equal to 0.1% of the target's current HP. Available only in [Nightmare].
+- 324 Heavy Guardian - Enhanced Counter -> buff 3055340 [Hard+Nightmare]: While in Countercrush, Countercrush's Rock Bonus is increased by 50%. Available only in [Hard] and [Nightmare].
+- 325 Heavy Guardian - Enhanced Rock Block -> buff 3055350 [Nightmare]: Each time Countercrush is triggered, Rock Attack is permanently increased by 2 points. Available only in [Nightmare].
+- 326 Beat Performer - Spotlight Finale -> buff 3057160 [Hard+Nightmare]: For 10s after casting Center Stage, Harmonic Anthem will be at maximum stacks, and its Dream DMG is increased by 300%. Available only in [Hard] and [Nightmare].
+- 327 Beat Performer - Luck CD Reduction -> buff 3057170 [Hard+Nightmare]: Triggering a Lucky Strike reduces the CDs of Harmonic Anthem and Center Stage by 0.5s. Available only in [Hard] and [Nightmare].
+- 328 Beat Performer - Endless Rhapsody -> buff 3057180 [Nightmare]: Casting Rhapsody of Flame permanently increases Fire Attack by 2 points each time. Available only in [Nightmare].
+- 329 Beat Performer - Rhapsody Presto -> buff 3057190 [Nightmare]: Attack Speed is increased by 60% while in Rhapsody of Flame. Available only in [Nightmare].
+- 330 Beat Performer - Heroic Rhapsody -> buff 3057200 [Nightmare]: Dream DMG is increased by 50%. When Heroic Melody is active, Rhapsody of Flame will be active. Available only in [Nightmare].
+- 331 Beat Performer - Luck Encore -> buff 3057210 [Hard+Nightmare]: Lucky Strike's DMG Multiplier is increased by 40%. Special Attacks can now trigger Encore. Available only in [Hard] and [Nightmare].
+- 332 Beat Performer - Ultimate Rebound -> buff 3057220 [Nightmare]: For 10s after casting an Ultimate, all Performance Passion will be recovered every second. Available only in [Nightmare].
+- 333 Beat Performer - Lucky Ultimate -> buff 3057230 [Hard+Nightmare]: Triggering a Lucky Strike reduces the Ultimate Skill's CD by 0.5s. Available only in [Hard] and [Nightmare].
+- 334 Beat Performer - Passionate Exaltation -> buff 3057240 [Hard+Nightmare]: Passion Burst is permanently replaced with Passion Fury. This requires the Passion Fury Talent to be activated. Dream DMG is also increased by 300%. Availabl...
+- 335 Beat Performer - Exaltation Burst -> buff 3057250 [Nightmare]: Passion Fury fires 2 additional projectiles. Elemental Bonus is also increased by 500%. Available only in [Nightmare].
+- 336 Beat Performer - Resounding Encore -> buff 3057260 [Nightmare]: Casting Encore summons a sound system in front of the caster that lasts for 15s. Available only in [Nightmare].
+- 337 Beat Performer - Flaming Strings -> buff 3057270 [Hard+Nightmare]: When Passion Fury deals Crit DMG, it triggers Encore Strings on a random target (up to once every 0.5s). Available only in [Hard] and [Nightmare].
+- 338 Beat Performer - Enhanced Special Heal -> buff 3057280 [Hard+Nightmare]: Special Attack's cost is changed to 1, and Special Attack's healing is increased by 500%. Available only in [Hard] and [Nightmare].
+- 339 Beat Performer - Tour Burst -> buff 3057290 [Hard+Nightmare]: For 10s after casting Concert Circuit, an explosion occurs around the caster every second, dealing damage equal to 2,000% of ATK. Available only in [Hard] an...
+- 340 Beat Performer - Fivefold Freecast -> buff 3057300 [Nightmare]: Fivefold Crescendo no longer consumes Performance Passion. Casting a Special Attack reduces the CDs of Fivefold Crescendo and the modified Ultimate by 1s. Av...
+- 341 Beat Performer - Movement of Wisdom -> buff 3057310 [Nightmare]: Permanently increases Intellect by 1 point each time Healing Melody deals damage. Available only in [Nightmare].
+
+## Generic Crit Examples
+
+- 110 Unlimited Power -> buff 998060: Defeating a target increases Crit DMG by 10% for 5s (up to 30%)
+- 111 Wrath of the Thunder God -> buff 998070: When dealing damage to targets with more than 80% HP, Crit DMG +60%
+- 138 Overload Crit -> buff 997401: Crit Rate +30%. For any permanent Crit Rate above 50%, every 2% is converted to 1% Crit DMG (up to 50%)
+- 139 Lethal Doubled -> buff 997402: Doubles Crit DMG
+- 140 Crit Storm -> buff 997403: When landing a Crit hit, deals additional AoE DMG equal to 200% ATK at the target location (CD: 1s). This AoE DMG is guaranteed to crit. ...
+- 141 Crit Cooldown -> buff 997405: Crits reduce the cooldowns of all skills by 0.5s (triggers at most once every 1s)
+- 142 Crit Mark -> buff 997406: Gains 1 stack of Reaper's Sigil with each Crit. Upon reaching 20 stacks, increases Crit DMG by 30% for 5s
+- 143 Specialization Crit -> buff 997408: Expertise Skill Crit +50%
+- 144 Special Crit -> buff 997409: Special Attack Crit +50%
+- 145 Crit Regen -> buff 997410: Crits restore 1% of HP (CD: 0.1s)
+- 146 Revenge Crit -> buff 997411: When damage dealt is not a critical hit, Crit is increased by 50% until the next critical hit
+- 147 Ultimate Crit -> buff 997412: Within 15s after casting an Ultimate Skill, all damage is guaranteed to be a Crit
+- 148 Healing Crit -> buff 997414: When receiving healing, +20% Crit for 5s
+- 149 Crit on Kill -> buff 997416: For every enemy defeated, Crit increases by 0.3% (up to 100 stacks)
+- 150 Finisher Crit -> buff 997417: Ultimate Skill Crit +50%
+- 151 Lucky Crit -> buff 997419: When landing a Crit hit, deals additional AoE DMG equal to 200% ATK at the target location (CD: 1s). This AoE DMG is guaranteed to be a L...
+- 152 Element Crit -> buff 997420: Crits increase Elemental Damage by 1% for 5s, up to 15 stacks
+- 153 Haste Crit -> buff 997422: Crits increase Attack SPD by 1% and Casting SPD by 2%, up to 15 stacks
+- 154 First Strike Crit -> buff 997424: The first Crit upon entering combat increases Crit DMG by 500%
+- 155 Chain Crit -> buff 997425: For every 3 Crits, the next Crit's Crit DMG increases by 50% and resets the counter
+- 156 Crit DMG Boost -> buff 997426: Crit DMG +20%
+- 157 Crit Rate Boost -> buff 997427: Crit +10%
+- 158 Summon on Crit -> buff 997428: Special Attack Crits summon a Muku Chief Battle Imagine (CD: 15s)
+- 166 Fateful Crit -> buff 997452: Lucky Strike always triggers Crit
+- 177 Illusionary Judgment -> buff 997472: Damage dealt by Battle Imagine is guaranteed to crit and the Crit DMG is increased by 50%.
+- 179 Illusionary Crit -> buff 997474: Battle Imagine Crit +80%
+- 183 Illusionary Precision -> buff 997478: Battle Imagine Crit +20%
+- 197 Attribute Transfer -> buff 997514: When Crit/Luck/Haste/Mastery/Versatility changes, nearby allies gain a 10% increase of the corresponding stat for 10s
+- 209 Synergy Crit Field -> buff 997536: After a Special Attack is used, a Crit Aura that lasts for 5s is created, increasing the Crit DMG of allies within 15m by +3%.
+- 218 Stormblade - Ultimate Violent Slash -> buff 3050190: Doubles Ultimate Slash's Crit DMG. Available only in [Nightmare].

@@ -1,0 +1,988 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const INT_POOL = 1;
+const STRING_POOL = 6;
+const DEFAULT_MAX_SAMPLES = 40;
+const DEFAULT_MAX_TABLES = 80;
+
+const KNOWN_TABLE_NAMES = [
+  "DamageAttrTable.ctb",
+  "RecountTable.ctb",
+  "SkillTable.ctb",
+  "SkillEffectTable.ctb",
+  "SkillFightLevelTable.ctb",
+  "BuffTable.ctb",
+  "ModEffectTable.ctb",
+  "TempAttrTable.ctb",
+  "FightAttrTable.ctb",
+  "BasicAttrTable.ctb",
+  "TalentTable.ctb",
+  "ItemTable.ctb",
+];
+
+const KNOWN_HASH_LABELS = new Map([
+  [164473594, "CTB:164473594 SeasonTalentNode"],
+  [395604162, "CTB:395604162 SkillPair"],
+  [1383488036, "CTB:1383488036 SkillPair"],
+  [2200122700, "CTB:2200122700 RogueEntryDescription"],
+  [2319498083, "CTB:2319498083 SkillPair"],
+  [2553675475, "CTB:2553675475 SeasonPhantomFactor"],
+  [3307381957, "CTB:3307381957 SkillPair"],
+  [3345237628, "TalentTable.ctb"],
+  [3518555200, "CTB:3518555200 VirtualSkillBridge"],
+  [3701956197, "CTB:3701956197 ItemCategory"],
+  [3754561411, "CTB:3754561411 SkillPair"],
+  [4038258408, "CTB:4038258408 RogueEntry"],
+  [4192598123, "CTB:4192598123 SeasonEffectDescription"],
+]);
+
+const FORMULA_TABLE_NAME_CANDIDATES = [
+  "DamageFormulaTable.ctb",
+  "SkillDamageFormulaTable.ctb",
+  "SkillFormulaTable.ctb",
+  "SkillDamageTable.ctb",
+  "SkillDamageCalcTable.ctb",
+  "DamageCalculateTable.ctb",
+  "DamageCoefficientTable.ctb",
+  "SkillRatioTable.ctb",
+  "SkillDamageRatioTable.ctb",
+  "DamageRatioTable.ctb",
+  "DamageParamTable.ctb",
+  "SkillParamTable.ctb",
+  "FightFormulaTable.ctb",
+  "BattleFormulaTable.ctb",
+  "HurtFormulaTable.ctb",
+  "AttackFormulaTable.ctb",
+  "SkillValueTable.ctb",
+  "SkillLevelTable.ctb",
+  "ValueCalTable.ctb",
+  "DamageValueCalTable.ctb",
+  "SkillValueCalTable.ctb",
+  "CoefficientTable.ctb",
+  "AttrFormulaTable.ctb",
+  "FightAttrTable.ctb",
+  "TempAttrTable.ctb",
+  "BasicAttrTable.ctb",
+];
+
+const TEXT_PATTERNS = [
+  { category: "formula-token", re: /formula|valuecal|coefficient|multiplier|modifier|ratio|calc(?:ulate|ulation)?/i },
+  { category: "damage-token", re: /\bdmg\b|damage|attack|atk|skill damage|dream(?:scape)? dmg/i },
+  { category: "crit-lucky-token", re: /crit|critical|lucky|luck/i },
+  { category: "parameter-token", re: /percent|rate|bonus|increase|decrease|stack|duration|interval|cooldown/i },
+  { category: "placeholder", re: /\{\*Decision\.[^}]+\*\}/i },
+  { category: "cjk-damage-token", re: /[\u4f24\u50b7]\u5bb3|\u30c0\u30e1\u30fc\u30b8|\ub300\ubbf8\uc9c0|\ud53c\ud574/u },
+  { category: "cjk-multiplier-token", re: /\u500d\u7387|\u7cfb\u6570|\u4fc2\u6578|\u52a0\u6210|\u63d0\u5347|\u589e\u52a0/u },
+  { category: "powerdraw-focus", re: /powerdraw|radiance barrage|phantom factor|dream(?:scape)? dmg/i },
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    markdown: "",
+    maxSamples: DEFAULT_MAX_SAMPLES,
+    maxTables: DEFAULT_MAX_TABLES,
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "FormulaSurfaceProbe.gen - scan game files for damage-formula and formula-adjacent surfaces.",
+      `
+Options:
+  --markdown <path>       Optional Markdown report path.
+  --max-samples <count>   Maximum sample rows per section. Default: ${DEFAULT_MAX_SAMPLES}.
+  --max-tables <count>    Maximum top scored CTB tables in Markdown. Default: ${DEFAULT_MAX_TABLES}.
+
+Notes:
+  This is a probe/report only. It scans every CTB-like package entry, game
+  localization strings, generated parser outputs, and existing probe reports.
+  It distinguishes exact emitted child damage, source-only relationships,
+  parameterized descriptions, damage-id construction formulas, and true numeric
+  formula candidates. It does not enable runtime damage splitting.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = common.resolvePaths(args, path.join("probing-reports", "FormulaSurfaceProbe.json"));
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const localizationTables = common.loadLocalizationTables(containerDir, { metaEntries });
+  const generated = loadGenerated(paths.outputDir);
+  const indexes = buildGeneratedIndexes(generated);
+
+  addKnownTableHashes(common.hash33);
+  const candidateTableNameHits = collectCandidateTableNameHits(metaEntries, common.hash33);
+  const ctbScan = scanAllCtbEntries({
+    common,
+    containerDir,
+    metaEntries,
+    indexes,
+    maxSamples: Number(args.maxSamples) || DEFAULT_MAX_SAMPLES,
+  });
+  const localizationScan = scanLocalizationTables(localizationTables, Number(args.maxSamples) || DEFAULT_MAX_SAMPLES);
+  const generatedEvidence = scanGeneratedEvidence(generated, Number(args.maxSamples) || DEFAULT_MAX_SAMPLES);
+  const report = buildReport({
+    paths,
+    metaEntries,
+    candidateTableNameHits,
+    ctbScan,
+    localizationScan,
+    generatedEvidence,
+    maxTables: Number(args.maxTables) || DEFAULT_MAX_TABLES,
+  });
+
+  common.maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "FormulaSurfaceProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+  }
+
+  console.log(`CTB entries scanned: ${report.summary.ctbEntriesScanned}`);
+  console.log(`CTB entries with formula-like strings: ${report.summary.ctbTablesWithFormulaText}`);
+  console.log(`Parameterized description surfaces: ${report.summary.parameterizedDescriptionSurfaces}`);
+  console.log(`High-confidence numeric formula tables: ${report.summary.highConfidenceNumericFormulaTables}`);
+}
+
+function addKnownTableHashes(hash33) {
+  for (const tableName of KNOWN_TABLE_NAMES) {
+    KNOWN_HASH_LABELS.set(hash33(tableName), tableName);
+  }
+}
+
+function loadGenerated(outputDir) {
+  const probingDir = path.join(outputDir, "probing-reports");
+  const appGeneratedDir = path.resolve(__dirname, "..", "resonance-logs-global", "parser-data", "generated");
+  const readGenerated = (fileName, fallback) =>
+    readJson(path.join(outputDir, fileName), readJson(path.join(appGeneratedDir, fileName), fallback));
+  return {
+    buffs: readGenerated("BuffName.json", []),
+    damage: readGenerated("DamageAttrIdName.json", {}),
+    recount: readGenerated("RecountTable.json", {}),
+    breakdown: readGenerated("SkillBreakdownDetails.json", {}),
+    factors: readGenerated("SeasonPhantomFactors.json", {}),
+    effectSources: readGenerated("EffectSources.json", {}),
+    skills: readGenerated("skillnames.json", {}),
+    talentProbe: readJson(path.join(probingDir, "TalentEffectModelProbe.json"), {}),
+    seasonTalentProbe: readJson(path.join(probingDir, "SeasonTalentNodeProbe.json"), {}),
+    seasonRogueProbe: readJson(path.join(probingDir, "SeasonRogueEntryProbe.json"), {}),
+    phantomProbe: readJson(path.join(probingDir, "SeasonPhantomFactorProbe.json"), {}),
+    attributionSurface: readJson(path.resolve(outputDir, "..", "DEV_exports", "attribution-surface-scan.json"), null),
+  };
+}
+
+function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
+function objectValues(value) {
+  if (Array.isArray(value)) return value;
+  if (value && typeof value === "object") return Object.values(value);
+  return [];
+}
+
+function buildGeneratedIndexes(generated) {
+  const damageIds = new Set(Object.keys(generated.damage || {}));
+  const recountIds = new Set(Object.keys(generated.recount || {}));
+  const recountDamageIds = new Set();
+  for (const row of objectValues(generated.recount)) {
+    for (const damageId of row?.DamageId ?? []) {
+      recountDamageIds.add(String(damageId));
+      damageIds.add(String(damageId));
+    }
+  }
+  return {
+    damageIds,
+    recountIds,
+    recountDamageIds,
+    skillIds: new Set(objectValues(generated.skills).map((row) => String(row?.Id)).filter(Boolean)),
+    buffIds: new Set(objectValues(generated.buffs).map((row) => String(row?.Id)).filter(Boolean)),
+    factorBuffIds: new Set(Object.keys(generated.factors?.factorsByBuffId ?? {})),
+    effectSourceEntityIds: new Set(
+      objectValues(generated.effectSources?.effectSourcesById)
+        .map((row) => String(row?.sourceEntityId))
+        .filter((value) => value && value !== "undefined" && value !== "null")
+    ),
+  };
+}
+
+function collectCandidateTableNameHits(metaEntries, hash33) {
+  return FORMULA_TABLE_NAME_CANDIDATES
+    .map((name) => {
+      const hash = hash33(name);
+      const entry = metaEntries.get(hash);
+      return entry
+        ? {
+          name,
+          hash,
+          packageIndex: entry.index,
+          offset: entry.offset,
+          length: entry.length,
+        }
+        : null;
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.name.localeCompare(right.name));
+}
+
+function scanAllCtbEntries({ common, containerDir, metaEntries, indexes, maxSamples }) {
+  const stats = {
+    metaEntries: metaEntries.size,
+    ctbEntries: 0,
+    ctbParseFailures: 0,
+    rowBytesScanned: 0,
+    poolBytesScanned: 0,
+    stringPoolStrings: 0,
+    formulaStringHits: 0,
+    localizationOrStringPlaceholders: 0,
+    tablesWithFormulaText: 0,
+    tablesWithNestedIntRecords: 0,
+    tablesWithKnownDamageRefs: 0,
+    tablesWithKnownSourceRefs: 0,
+  };
+  const tableSummaries = [];
+
+  for (const entry of [...metaEntries.values()].sort((left, right) => left.key - right.key)) {
+    let data;
+    try {
+      data = common.readPkgEntry(containerDir, entry);
+    } catch {
+      continue;
+    }
+    const table = tryParseCtb(entry, data);
+    if (!table) continue;
+
+    stats.ctbEntries += 1;
+    stats.rowBytesScanned += table.rowDataBytes;
+    stats.poolBytesScanned += table.pools.reduce((sum, pool) => sum + pool.length, 0);
+
+    const stringScan = scanStringPools(table, maxSamples);
+    const rowScan = scanRows(table, indexes, maxSamples);
+    const score = scoreTable({ stringScan, rowScan });
+    const summary = {
+      key: entry.key,
+      label: tableLabel(entry.key),
+      packageIndex: entry.index,
+      packageOffset: entry.offset,
+      packageLength: entry.length,
+      rowCount: table.rowCount,
+      rowSize: table.rowSize,
+      poolCount: table.poolCount,
+      poolTypes: table.pools.map((pool) => ({ type: pool.type, length: pool.length })),
+      score,
+      confidence: classifyTableConfidence({ stringScan, rowScan }),
+      formulaStringHits: stringScan.hitCount,
+      placeholderHits: stringScan.placeholderHits,
+      stringHitCategories: stringScan.categoryCounts,
+      stringSamples: stringScan.samples,
+      knownIdHits: rowScan.knownIdHits,
+      knownIdFieldSamples: rowScan.knownIdFieldSamples,
+      nestedIntRecordFields: rowScan.nestedIntRecordFields,
+      directIntArrayFields: rowScan.directIntArrayFields,
+      floatCandidateFields: rowScan.floatCandidateFields,
+    };
+    tableSummaries.push(summary);
+
+    stats.stringPoolStrings += stringScan.stringCount;
+    stats.formulaStringHits += stringScan.hitCount;
+    stats.localizationOrStringPlaceholders += stringScan.placeholderHits;
+    if (stringScan.hitCount) stats.tablesWithFormulaText += 1;
+    if (rowScan.nestedIntRecordFields.length) stats.tablesWithNestedIntRecords += 1;
+    if (rowScan.knownIdHits.damage || rowScan.knownIdHits.recountDamage) stats.tablesWithKnownDamageRefs += 1;
+    if (rowScan.knownIdHits.buff || rowScan.knownIdHits.skill || rowScan.knownIdHits.factorBuff) {
+      stats.tablesWithKnownSourceRefs += 1;
+    }
+  }
+
+  const scoredTables = tableSummaries
+    .slice()
+    .sort((left, right) => right.score - left.score || left.label.localeCompare(right.label));
+  const highConfidenceNumericFormulaTables = scoredTables.filter((row) => row.confidence === "high").length;
+  return {
+    stats: {
+      ...stats,
+      highConfidenceNumericFormulaTables,
+    },
+    tableSummaries,
+    topScoredTables: scoredTables.slice(0, 200),
+    highConfidenceTables: scoredTables.filter((row) => row.confidence === "high"),
+    parameterLikeTables: scoredTables.filter((row) => row.confidence === "medium").slice(0, 200),
+  };
+}
+
+function tryParseCtb(entry, data) {
+  if (!data || data.length < 20) return null;
+  const rowCount = data.readInt32LE(8);
+  const poolCount = data.readInt32LE(12);
+  const rowDataBytes = data.readInt32LE(16);
+  if (rowCount <= 0 || poolCount < 0 || rowDataBytes <= 0 || rowDataBytes % rowCount !== 0) return null;
+  const rowSize = rowDataBytes / rowCount;
+  const indexStart = 20;
+  const rowStart = indexStart + rowCount * 8;
+  if (rowSize <= 0 || rowStart + rowDataBytes > data.length) return null;
+
+  let offset = rowStart + rowDataBytes;
+  const pools = [];
+  for (let index = 0; index < poolCount; index += 1) {
+    if (offset + 8 > data.length) return null;
+    const type = data.readInt32LE(offset);
+    const length = data.readInt32LE(offset + 4);
+    offset += 8;
+    if (length < 0 || offset + length > data.length) return null;
+    pools.push({
+      type,
+      start: offset,
+      end: offset + length,
+      length,
+      buffer: data.subarray(offset, offset + length),
+    });
+    offset += length;
+  }
+
+  return {
+    key: entry.key,
+    data,
+    rowCount,
+    poolCount,
+    rowDataBytes,
+    rowSize,
+    rowStart,
+    pools,
+  };
+}
+
+function tableLabel(key) {
+  return KNOWN_HASH_LABELS.get(Number(key) >>> 0) ?? `CTB:${Number(key) >>> 0}`;
+}
+
+function scanStringPools(table, maxSamples) {
+  const categoryCounts = {};
+  const samples = [];
+  let stringCount = 0;
+  let hitCount = 0;
+  let placeholderHits = 0;
+
+  for (const pool of table.pools.filter((entry) => entry.type === STRING_POOL)) {
+    for (const item of extractLengthPrefixedStrings(pool.buffer)) {
+      stringCount += 1;
+      const matches = matchText(item.text);
+      if (!matches.length) continue;
+      hitCount += 1;
+      for (const category of matches) {
+        categoryCounts[category] = (categoryCounts[category] ?? 0) + 1;
+      }
+      if (matches.includes("placeholder")) placeholderHits += 1;
+      pushLimited(samples, {
+        poolType: pool.type,
+        poolOffset: item.offset,
+        categories: matches,
+        text: compactText(item.text),
+      }, maxSamples);
+    }
+  }
+
+  return { stringCount, hitCount, placeholderHits, categoryCounts, samples };
+}
+
+function extractLengthPrefixedStrings(buffer) {
+  const out = [];
+  let offset = 0;
+  while (offset + 2 <= buffer.length) {
+    const len = buffer.readUInt16LE(offset);
+    if (!len || len > 4096 || offset + 2 + len > buffer.length) {
+      offset += 1;
+      continue;
+    }
+    const bytes = buffer.subarray(offset + 2, offset + 2 + len);
+    if (!bytes.includes(0)) {
+      const text = bytes.toString("utf8").replace(/\u0000/g, "").trim();
+      if (text) out.push({ offset, text });
+    }
+    offset += 2 + len;
+  }
+  return out;
+}
+
+function matchText(text) {
+  const out = [];
+  for (const pattern of TEXT_PATTERNS) {
+    if (pattern.re.test(text)) out.push(pattern.category);
+  }
+  return out;
+}
+
+function compactText(text, maxLength = 240) {
+  const compact = String(text || "").replace(/\s+/g, " ").trim();
+  return compact.length > maxLength ? `${compact.slice(0, maxLength - 3)}...` : compact;
+}
+
+function scanRows(table, indexes, maxSamples) {
+  const intPool = table.pools.find((pool) => pool.type === INT_POOL)?.buffer ?? null;
+  const fieldStats = new Map();
+  const knownIdHits = {
+    damage: 0,
+    recountDamage: 0,
+    skill: 0,
+    buff: 0,
+    factorBuff: 0,
+    effectSourceEntity: 0,
+  };
+  const knownIdFieldSamples = [];
+
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    for (let fieldOffset = 0; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
+      const absoluteOffset = rowOffset + fieldOffset;
+      const u32 = readU32(table.data, absoluteOffset);
+      const stat = getFieldStat(fieldStats, fieldOffset);
+
+      const knownKinds = classifyKnownId(u32, indexes);
+      if (knownKinds.length) {
+        for (const kind of knownKinds) {
+          knownIdHits[kind] += 1;
+          stat.knownIdCounts[kind] = (stat.knownIdCounts[kind] ?? 0) + 1;
+        }
+        pushLimited(knownIdFieldSamples, {
+          rowIndex,
+          fieldOffset,
+          value: u32,
+          knownKinds,
+        }, maxSamples);
+      }
+
+      const floatValue = table.data.readFloatLE(absoluteOffset);
+      if (isInterestingFloat(floatValue)) {
+        stat.floatCount += 1;
+        pushLimited(stat.floatSamples, roundFloat(floatValue), 8);
+      }
+
+      if (!intPool) continue;
+      const array = readIntArrayFromPool(intPool, u32);
+      if (!array.length) continue;
+      stat.arrayRows += 1;
+      stat.arrayLengths[array.length] = (stat.arrayLengths[array.length] ?? 0) + 1;
+      const nested = [];
+      for (const recordOffset of array) {
+        const rawValues = readIntArrayFromPool(intPool, recordOffset);
+        if (rawValues.length) {
+          nested.push({ recordOffset, rawValues });
+          stat.opcodeCounts[String(rawValues[0])] = (stat.opcodeCounts[String(rawValues[0])] ?? 0) + 1;
+        }
+      }
+      if (nested.length) {
+        stat.nestedRows += 1;
+        for (const record of nested.slice(0, 4)) {
+          pushLimited(stat.samples, {
+            rowIndex,
+            fieldOffset,
+            topOffset: u32,
+            recordOffset: record.recordOffset,
+            rawValues: record.rawValues.slice(0, 16),
+          }, maxSamples);
+        }
+      } else {
+        pushLimited(stat.directArraySamples, {
+          rowIndex,
+          fieldOffset,
+          arrayOffset: u32,
+          values: array.slice(0, 16),
+        }, maxSamples);
+      }
+    }
+  }
+
+  const fields = [...fieldStats.values()];
+  return {
+    knownIdHits,
+    knownIdFieldSamples,
+    nestedIntRecordFields: fields
+      .filter((field) => field.nestedRows > 0)
+      .sort(compareFieldStats)
+      .slice(0, 24)
+      .map(formatFieldStat),
+    directIntArrayFields: fields
+      .filter((field) => field.arrayRows > 0 && field.nestedRows === 0)
+      .sort(compareFieldStats)
+      .slice(0, 24)
+      .map(formatFieldStat),
+    floatCandidateFields: fields
+      .filter((field) => field.floatCount >= Math.max(3, Math.ceil(table.rowCount * 0.02)))
+      .sort((left, right) => right.floatCount - left.floatCount)
+      .slice(0, 12)
+      .map((field) => ({
+        fieldOffset: field.fieldOffset,
+        floatCount: field.floatCount,
+        samples: field.floatSamples,
+      })),
+  };
+}
+
+function getFieldStat(fieldStats, fieldOffset) {
+  const existing = fieldStats.get(fieldOffset);
+  if (existing) return existing;
+  const created = {
+    fieldOffset,
+    arrayRows: 0,
+    nestedRows: 0,
+    arrayLengths: {},
+    opcodeCounts: {},
+    knownIdCounts: {},
+    floatCount: 0,
+    floatSamples: [],
+    samples: [],
+    directArraySamples: [],
+  };
+  fieldStats.set(fieldOffset, created);
+  return created;
+}
+
+function readU32(buffer, offset) {
+  if (offset < 0 || offset + 4 > buffer.length) return 0;
+  return buffer.readUInt32LE(offset);
+}
+
+function readIntArrayFromPool(pool, offset) {
+  if (!pool || !Number.isInteger(offset) || offset < 0 || offset + 2 > pool.length) return [];
+  const length = pool.readInt16LE(offset);
+  if (length <= 0 || length > 512 || offset + 2 + length * 4 > pool.length) return [];
+  const out = [];
+  for (let index = 0; index < length; index += 1) {
+    out.push(pool.readInt32LE(offset + 2 + index * 4));
+  }
+  return out;
+}
+
+function classifyKnownId(value, indexes) {
+  const key = String(value);
+  const kinds = [];
+  if (indexes.damageIds.has(key)) kinds.push("damage");
+  if (indexes.recountDamageIds.has(key)) kinds.push("recountDamage");
+  if (indexes.skillIds.has(key)) kinds.push("skill");
+  if (indexes.buffIds.has(key)) kinds.push("buff");
+  if (indexes.factorBuffIds.has(key)) kinds.push("factorBuff");
+  if (indexes.effectSourceEntityIds.has(key)) kinds.push("effectSourceEntity");
+  return kinds;
+}
+
+function isInterestingFloat(value) {
+  return Number.isFinite(value)
+    && Math.abs(value) >= 0.001
+    && Math.abs(value) <= 1000
+    && Math.abs(value - Math.round(value)) > 0.0001;
+}
+
+function roundFloat(value) {
+  return Number(value.toFixed(6));
+}
+
+function compareFieldStats(left, right) {
+  return right.nestedRows - left.nestedRows
+    || right.arrayRows - left.arrayRows
+    || sumObject(right.knownIdCounts) - sumObject(left.knownIdCounts)
+    || left.fieldOffset - right.fieldOffset;
+}
+
+function formatFieldStat(field) {
+  return {
+    fieldOffset: field.fieldOffset,
+    arrayRows: field.arrayRows,
+    nestedRows: field.nestedRows,
+    arrayLengths: topObjectEntries(field.arrayLengths, 8),
+    opcodeCounts: topObjectEntries(field.opcodeCounts, 16),
+    knownIdCounts: topObjectEntries(field.knownIdCounts, 12),
+    samples: field.samples.slice(0, 8),
+    directArraySamples: field.directArraySamples.slice(0, 4),
+  };
+}
+
+function scoreTable({ stringScan, rowScan }) {
+  return stringScan.hitCount * 8
+    + stringScan.placeholderHits * 20
+    + rowScan.nestedIntRecordFields.reduce((sum, field) => sum + field.nestedRows, 0)
+    + (rowScan.knownIdHits.damage + rowScan.knownIdHits.recountDamage) * 6
+    + (rowScan.knownIdHits.buff + rowScan.knownIdHits.skill + rowScan.knownIdHits.factorBuff) * 2
+    + rowScan.floatCandidateFields.reduce((sum, field) => sum + field.floatCount, 0);
+}
+
+function classifyTableConfidence({ stringScan, rowScan }) {
+  const hasDamage = rowScan.knownIdHits.damage || rowScan.knownIdHits.recountDamage;
+  const hasSource = rowScan.knownIdHits.buff || rowScan.knownIdHits.skill || rowScan.knownIdHits.factorBuff;
+  const hasNested = rowScan.nestedIntRecordFields.length > 0;
+  const hasStrongFormulaText = Boolean(stringScan.categoryCounts["formula-token"] || stringScan.placeholderHits);
+  const hasModifierText = Boolean(stringScan.categoryCounts["parameter-token"] || stringScan.categoryCounts["cjk-multiplier-token"]);
+  const hasDamageText = Boolean(stringScan.categoryCounts["damage-token"] || stringScan.categoryCounts["cjk-damage-token"]);
+  if (hasStrongFormulaText && hasDamage && hasSource && hasNested) return "high";
+  if ((hasStrongFormulaText || hasModifierText) && (hasNested || hasDamage || hasSource)) return "medium";
+  if (hasDamageText && hasNested && (hasDamage || hasSource)) return "low";
+  if (hasNested && (hasDamage || hasSource)) return "low";
+  return "none";
+}
+
+function scanLocalizationTables(localizationTables, maxSamples) {
+  const byLanguage = [];
+  let totalStrings = 0;
+  let totalHits = 0;
+  let placeholders = 0;
+  const samples = [];
+  for (const table of localizationTables || []) {
+    const categoryCounts = {};
+    let languageHits = 0;
+    for (const [key, stringIndex] of table.index.entries()) {
+      const text = table.strings[stringIndex];
+      if (!text) continue;
+      totalStrings += 1;
+      const matches = matchText(text);
+      if (!matches.length) continue;
+      languageHits += 1;
+      totalHits += 1;
+      if (matches.includes("placeholder")) placeholders += 1;
+      for (const category of matches) categoryCounts[category] = (categoryCounts[category] ?? 0) + 1;
+      pushLimited(samples, {
+        language: table.language,
+        key,
+        categories: matches,
+        text: compactText(text),
+      }, maxSamples);
+    }
+    byLanguage.push({
+      language: table.language,
+      strings: table.strings.length,
+      formulaLikeHits: languageHits,
+      categoryCounts,
+    });
+  }
+  return { languages: byLanguage, totalStrings, totalHits, placeholders, samples };
+}
+
+function scanGeneratedEvidence(generated, maxSamples) {
+  const recountRows = objectValues(generated.recount);
+  const breakdownRows = objectValues(generated.breakdown);
+  const recountDamageIds = new Set(recountRows.flatMap((row) => row?.DamageId ?? []).map(String));
+  const factors = objectValues(generated.factors?.factorsByBuffId);
+  const effectSources = objectValues(generated.effectSources?.effectSourcesById);
+  const phantomFamilies = generated.phantomProbe?.families ?? [];
+  const talentRows = generated.talentProbe?.talentRows ?? [];
+  const allNonBaseBreakdownRows = breakdownRows.filter((row) => row?.Category && row.Category !== "base-skill");
+  const exactNonBase = allNonBaseBreakdownRows.filter((row) => recountDamageIds.has(String(row?.Id)));
+  const directFactorRows = factors.filter((row) => (row?.affectedDamageIds ?? []).length);
+  const sourceOnlyFactors = factors.filter((row) => (row?.affectedRecountIds ?? []).length && !(row?.affectedDamageIds ?? []).length);
+  const parameterizedFamilies = phantomFamilies.filter((family) =>
+    (family?.gradeRows ?? []).some((grade) => (grade?.parameterValues ?? []).length)
+      || containsDecisionPlaceholder(family?.description)
+      || Object.values(family?.descriptions ?? {}).some(containsDecisionPlaceholder)
+  );
+  const descriptionTargetFamilies = phantomFamilies.filter((family) => (family?.descriptionTargetRecountRows ?? []).length);
+  const talentFormulaMatches = talentRows.flatMap((row) =>
+    (row?.observedRecountRows ?? [])
+      .flatMap((recount) => recount?.formulaMatches ?? [])
+      .map((match) => ({ talent: row, match }))
+  );
+
+  return {
+    summary: {
+      recountRows: recountRows.length,
+      skillBreakdownRows: breakdownRows.length,
+      allNonBaseBreakdownRows: allNonBaseBreakdownRows.length,
+      exactNonBaseChildRows: exactNonBase.length,
+      directFactorFamilies: directFactorRows.length,
+      sourceOnlyFactorFamilies: sourceOnlyFactors.length,
+      effectSources: effectSources.length,
+      effectSourcesWithDamageIds: effectSources.filter((row) => (row?.affectedDamageIds ?? []).length).length,
+      effectSourcesWithRecountIds: effectSources.filter((row) => (row?.affectedRecountIds ?? []).length).length,
+      phantomFamilies: phantomFamilies.length,
+      parameterizedPhantomFamilies: parameterizedFamilies.length,
+      phantomFamiliesWithDescriptionTargetRecountRows: descriptionTargetFamilies.length,
+      talentRows: talentRows.length,
+      talentOpcode3BuffRecords: sum(talentRows.map((row) => row?.buffEffectRecords?.length ?? 0)),
+      talentOpcode6SkillPairRecords: sum(talentRows.map((row) => row?.skillPairRecords?.length ?? 0)),
+      talentNumericFormulaMatches: talentFormulaMatches.length,
+    },
+    directFactorSamples: directFactorRows.slice(0, maxSamples).map(factorSummary),
+    sourceOnlyFactorSamples: sourceOnlyFactors.slice(0, maxSamples).map(factorSummary),
+    parameterizedPhantomSamples: parameterizedFamilies.slice(0, maxSamples).map(phantomFamilySummary),
+    talentFormulaMatchSamples: talentFormulaMatches.slice(0, maxSamples).map((entry) => ({
+      talentId: entry.talent?.id,
+      talentName: entry.talent?.name,
+      recountId: entry.match?.recount?.recountId,
+      recountName: entry.match?.recount?.recountName,
+      evidenceStatus: entry.match?.evidenceStatus,
+      matchedFormulaIds: entry.match?.matchedFormulaIds,
+      matchedBuffIds: entry.match?.matchedBuffIds,
+    })),
+  };
+}
+
+function containsDecisionPlaceholder(value) {
+  return /\{\*Decision\.[^}]+\*\}/i.test(String(value || ""));
+}
+
+function factorSummary(row) {
+  return {
+    buffId: row?.buffId,
+    familyName: row?.familyName,
+    affectedDamageIds: row?.affectedDamageIds,
+    affectedRecountIds: row?.affectedRecountIds,
+    evidenceStatuses: row?.evidenceStatuses,
+    relationshipKind: row?.relationshipKind,
+  };
+}
+
+function phantomFamilySummary(row) {
+  const gradeRows = row?.gradeRows ?? [];
+  return {
+    familyId: row?.familyId,
+    familyName: row?.familyName,
+    primaryBuffIds: row?.primaryBuffIds,
+    description: compactText(row?.description),
+    descriptionTargetRecountRows: row?.descriptionTargetRecountRows,
+    gradeParameterValues: gradeRows.map((grade) => ({
+      grade: grade.grade,
+      itemId: grade.itemId,
+      parameterValues: grade.parameterValues,
+      resolvedDescription: compactText(grade.resolvedDescription),
+    })),
+  };
+}
+
+function buildReport({
+  paths,
+  metaEntries,
+  candidateTableNameHits,
+  ctbScan,
+  localizationScan,
+  generatedEvidence,
+  maxTables,
+}) {
+  const highConfidence = ctbScan.highConfidenceTables;
+  const parameterLikeTables = ctbScan.parameterLikeTables;
+  return {
+    generatedAt: new Date().toISOString(),
+    gamePackage: paths.m0Path,
+    scope: {
+      metaEntries: metaEntries.size,
+      scannedSurfaces: [
+        "all CTB-like meta.pkg entries",
+        "all CTB row data fields as u32 and float32 candidates",
+        "all CTB int-pool array references reachable from row fields",
+        "all CTB string pools",
+        "all game localization byte tables",
+        "generated parser outputs",
+        "existing probe reports",
+      ],
+    },
+    summary: {
+      ctbEntriesScanned: ctbScan.stats.ctbEntries,
+      ctbParseFailures: ctbScan.stats.ctbParseFailures,
+      rowBytesScanned: ctbScan.stats.rowBytesScanned,
+      poolBytesScanned: ctbScan.stats.poolBytesScanned,
+      ctbStringPoolStrings: ctbScan.stats.stringPoolStrings,
+      ctbFormulaStringHits: ctbScan.stats.formulaStringHits,
+      ctbTablesWithFormulaText: ctbScan.stats.tablesWithFormulaText,
+      ctbTablesWithNestedIntRecords: ctbScan.stats.tablesWithNestedIntRecords,
+      ctbTablesWithKnownDamageRefs: ctbScan.stats.tablesWithKnownDamageRefs,
+      ctbTablesWithKnownSourceRefs: ctbScan.stats.tablesWithKnownSourceRefs,
+      highConfidenceNumericFormulaTables: highConfidence.length,
+      parameterLikeCtbTables: parameterLikeTables.length,
+      localizationStringsScanned: localizationScan.totalStrings,
+      localizationFormulaLikeHits: localizationScan.totalHits,
+      localizationDecisionPlaceholders: localizationScan.placeholders,
+      dedicatedFormulaTableNameHits: candidateTableNameHits.length,
+      exactNonBaseChildDamageRows: generatedEvidence.summary.exactNonBaseChildRows,
+      directFactorFamilies: generatedEvidence.summary.directFactorFamilies,
+      sourceOnlyFactorFamilies: generatedEvidence.summary.sourceOnlyFactorFamilies,
+      parameterizedDescriptionSurfaces: generatedEvidence.summary.parameterizedPhantomFamilies,
+      talentNumericFormulaMatches: generatedEvidence.summary.talentNumericFormulaMatches,
+    },
+    conclusion: {
+      headline: highConfidence.length
+        ? "Potential high-confidence numeric formula surfaces were found and need manual schema validation."
+        : "No dedicated, high-confidence numeric damage formula table was found by this broad scan.",
+      attributionImplication:
+        "Exact contribution remains packet-exact only for separately emitted child damage ids. Formula replay may be possible for selected parameterized surfaces, but it needs table schema validation and runtime active-source proof before it should be shown as numeric contribution.",
+    },
+    confidenceDefinitions: {
+      high: "Same CTB table has formula-like text, nested parameter/effect records, known damage references, and known source references.",
+      medium: "A table has formula-like text or Decision placeholders plus nested records, damage ids, or source ids.",
+      low: "A table has nested records with known damage/source ids but no formula-like text.",
+      none: "No formula-adjacent evidence under this probe's criteria.",
+    },
+    candidateTableNameHits,
+    generatedEvidence,
+    localizationScan,
+    ctbScan: {
+      stats: ctbScan.stats,
+      topScoredTables: ctbScan.topScoredTables.slice(0, maxTables),
+      highConfidenceTables: highConfidence,
+      parameterLikeTables: parameterLikeTables.slice(0, maxTables),
+      allTableSummaryCount: ctbScan.tableSummaries.length,
+    },
+  };
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# BPSR Formula Surface Probe");
+  lines.push("");
+  lines.push(`Generated: ${report.generatedAt}`);
+  lines.push(`Game package: \`${report.gamePackage}\``);
+  lines.push("");
+  lines.push("## Executive Summary");
+  lines.push("");
+  lines.push(`- ${report.conclusion.headline}`);
+  lines.push(`- ${report.conclusion.attributionImplication}`);
+  lines.push(`- CTB-like tables scanned: ${report.summary.ctbEntriesScanned}`);
+  lines.push(`- CTB tables with formula-like text: ${report.summary.ctbTablesWithFormulaText}`);
+  lines.push(`- High-confidence numeric formula tables: ${report.summary.highConfidenceNumericFormulaTables}`);
+  lines.push(`- Parameterized Phantom Factor description surfaces: ${report.summary.parameterizedDescriptionSurfaces}`);
+  lines.push(`- Exact non-base child damage rows already available from generated data: ${report.summary.exactNonBaseChildDamageRows}`);
+  lines.push(`- Source-only factor families: ${report.summary.sourceOnlyFactorFamilies}`);
+  lines.push("");
+  lines.push("## Scan Scope");
+  lines.push("");
+  for (const surface of report.scope.scannedSurfaces) lines.push(`- ${surface}`);
+  lines.push("");
+  lines.push("## Confidence Model");
+  lines.push("");
+  for (const [key, text] of Object.entries(report.confidenceDefinitions)) {
+    lines.push(`- ${key}: ${text}`);
+  }
+  lines.push("");
+  lines.push("## Dedicated Formula Table Name Check");
+  lines.push("");
+  if (!report.candidateTableNameHits.length) {
+    lines.push("- No obvious dedicated table name candidate such as `DamageFormulaTable.ctb`, `SkillDamageFormulaTable.ctb`, or `SkillRatioTable.ctb` resolved in `meta.pkg`.");
+  } else {
+    for (const hit of report.candidateTableNameHits) {
+      lines.push(`- ${hit.name}: hash ${hit.hash}, m${hit.packageIndex}.pkg offset ${hit.offset}, length ${hit.length}`);
+    }
+  }
+  lines.push("");
+  lines.push("## Generated Evidence Baseline");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.generatedEvidence.summary)) {
+    lines.push(`- ${key}: ${formatSummaryValue(value)}`);
+  }
+  lines.push("");
+  lines.push("### Direct Factor Damage Samples");
+  appendFactorSamples(lines, report.generatedEvidence.directFactorSamples);
+  lines.push("");
+  lines.push("### Source-Only Factor Samples");
+  appendFactorSamples(lines, report.generatedEvidence.sourceOnlyFactorSamples);
+  lines.push("");
+  lines.push("### Parameterized Phantom Factor Samples");
+  for (const sample of report.generatedEvidence.parameterizedPhantomSamples.slice(0, 20)) {
+    const targets = (sample.descriptionTargetRecountRows ?? []).map((row) => `${row.recountId} ${row.recountName || ""}`.trim()).join(", ") || "none";
+    const values = sample.gradeParameterValues?.slice(0, 4).map((row) => `G${row.grade}: [${(row.parameterValues ?? []).join(", ")}]`).join("; ") || "none";
+    lines.push(`- ${sample.familyId} ${sample.familyName || ""}: targets=${targets}; params=${values}`);
+  }
+  lines.push("");
+  lines.push("## CTB Formula-Adjacent Tables");
+  lines.push("");
+  if (!report.ctbScan.highConfidenceTables.length) {
+    lines.push("- No CTB table met the high-confidence criteria for a numeric formula table.");
+  } else {
+    for (const table of report.ctbScan.highConfidenceTables) appendTableSummary(lines, table);
+  }
+  lines.push("");
+  lines.push("## Top Scored CTB Tables");
+  lines.push("");
+  for (const table of report.ctbScan.topScoredTables.slice(0, 40)) {
+    appendTableSummary(lines, table);
+  }
+  lines.push("");
+  lines.push("## Localization Formula Text");
+  lines.push("");
+  lines.push(`- Localization strings scanned: ${report.localizationScan.totalStrings}`);
+  lines.push(`- Formula-like localization hits: ${report.localizationScan.totalHits}`);
+  lines.push(`- Decision placeholders: ${report.localizationScan.placeholders}`);
+  for (const row of report.localizationScan.languages.filter((entry) => entry.formulaLikeHits).slice(0, 20)) {
+    lines.push(`- ${row.language}: ${row.formulaLikeHits} hits`);
+  }
+  lines.push("");
+  lines.push("## Parser Development Implications");
+  lines.push("");
+  lines.push("- Keep exact contribution tied to emitted child damage ids.");
+  lines.push("- Source-only rows can be shown when runtime active buff/factor/talent evidence exists, but value columns should remain non-numeric unless replay semantics are proven.");
+  lines.push("- A future derived/experimental mode can allocate a parent total only when the active source, modifier parameters, stacking rules, target skill scope, and base total are all proven.");
+  lines.push("- The best next community help would be table schema names, DummyDll/Panda table definitions, or controlled captures where one factor/talent is toggled at a time.");
+  lines.push("");
+  lines.push("## Important Boundary");
+  lines.push("");
+  lines.push("This report is intentionally conservative. Formula-like text and parameter arrays prove that the game has configurable modifier data; they do not by themselves prove the server's runtime damage equation or contribution split.");
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
+function appendFactorSamples(lines, samples) {
+  if (!samples.length) {
+    lines.push("- none");
+    return;
+  }
+  for (const sample of samples.slice(0, 20)) {
+    lines.push(`- ${sample.buffId} ${sample.familyName || ""}: damage=${(sample.affectedDamageIds ?? []).join(", ") || "none"}; recount=${(sample.affectedRecountIds ?? []).join(", ") || "none"}; evidence=${(sample.evidenceStatuses ?? []).join(", ") || sample.relationshipKind || "unknown"}`);
+  }
+}
+
+function appendTableSummary(lines, table) {
+  lines.push(`- ${table.label}: score=${table.score}, confidence=${table.confidence}, rows=${table.rowCount}, rowSize=${table.rowSize}, stringHits=${table.formulaStringHits}, placeholders=${table.placeholderHits}, knownIds=${formatKnownHits(table.knownIdHits)}`);
+  const topFields = table.nestedIntRecordFields?.slice(0, 3) ?? [];
+  for (const field of topFields) {
+    lines.push(`  - field +${field.fieldOffset}: nestedRows=${field.nestedRows}, opcodes=${formatObjectBrief(field.opcodeCounts)}`);
+  }
+  for (const sample of (table.stringSamples ?? []).slice(0, 2)) {
+    lines.push(`  - text: ${sample.text}`);
+  }
+}
+
+function formatKnownHits(value) {
+  return Object.entries(value || {})
+    .filter(([, count]) => count)
+    .map(([key, count]) => `${key}:${count}`)
+    .join(", ") || "none";
+}
+
+function formatObjectBrief(value) {
+  const entries = Object.entries(value || {}).slice(0, 8);
+  return entries.map(([key, count]) => `${key}:${count}`).join(", ") || "none";
+}
+
+function formatSummaryValue(value) {
+  if (Array.isArray(value)) return value.join(", ");
+  if (value && typeof value === "object") return JSON.stringify(value);
+  return String(value);
+}
+
+function pushLimited(array, value, limit) {
+  if (array.length < limit) array.push(value);
+}
+
+function topObjectEntries(value, limit) {
+  return Object.fromEntries(
+    Object.entries(value || {})
+      .sort((left, right) => Number(right[1]) - Number(left[1]) || String(left[0]).localeCompare(String(right[0]), undefined, { numeric: true }))
+      .slice(0, limit)
+  );
+}
+
+function sumObject(value) {
+  return Object.values(value || {}).reduce((total, current) => total + Number(current || 0), 0);
+}
+
+function sum(values) {
+  return values.reduce((total, value) => total + Number(value || 0), 0);
+}

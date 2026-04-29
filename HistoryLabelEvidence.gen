@@ -225,6 +225,13 @@ function enrichObservedRow(row, generated) {
     parentTalentName: detail.ParentTalentName,
     underlyingSkillId: detail.UnderlyingSkillId,
     underlyingSkillName: detail.UnderlyingSkillName,
+    underlyingRelatedSkillIds: uniqueNumbers([
+      ...(Array.isArray(row.underlying_related_skill_ids) ? row.underlying_related_skill_ids : []),
+      ...(Array.isArray(detail.UnderlyingRelatedSkillIds) ? detail.UnderlyingRelatedSkillIds : [])
+    ]),
+    underlyingSkillRelations: Array.isArray(row.underlying_skill_relations) && row.underlying_skill_relations.length
+      ? row.underlying_skill_relations
+      : detail.UnderlyingSkillRelations,
     monsterOwnerIds: detail.MonsterOwnerIds,
     monsterOwnerName: detail.MonsterOwnerName,
     iconPath: detail.IconPath || damage.IconPath || recount?.IconPath,
@@ -431,6 +438,8 @@ function compactRow(row) {
     parentBaseSkillId: row.parentBaseSkillId,
     parentTalentId: row.parentTalentId,
     underlyingSkillId: row.underlyingSkillId,
+    underlyingRelatedSkillIds: row.underlyingRelatedSkillIds,
+    underlyingSkillRelations: row.underlyingSkillRelations,
     monsterOwnerName: row.monsterOwnerName,
     iconPath: row.iconPath,
     sourceFiles: row.sourceFiles,

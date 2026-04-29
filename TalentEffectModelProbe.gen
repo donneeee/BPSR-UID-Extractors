@@ -1,0 +1,1264 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const TALENT_PASSIVE_TABLE_HASH = 3345237628;
+const STRING_POOL = 6;
+const INT_POOL = 1;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    markdown: ""
+  });
+
+  if (args.help) {
+    printHelp(
+      "TalentEffectModelProbe.gen - report strict talent/passive/effect evidence by skill.",
+      `
+Options:
+  --markdown <path>    Optional Markdown summary output path.
+
+Notes:
+  This is a probe report only. It does not feed runtime labels and does not
+  claim that text mentions, skill-pair records, or shared names are ownership.
+  The report keeps each evidence type separate so the next production bridge
+  can be promoted only after the game-file semantics are proven.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "TalentEffectModelProbe.json"));
+  const generated = loadGenerated(paths.outputDir);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const lookups = buildLookups(generated);
+  const skillIds = new Set([...lookups.skillsById.keys()].map(Number));
+  const buffIds = new Set([...lookups.buffsById.keys()].map(Number));
+
+  const talentRows = collectTalentRows(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    skillIds,
+    buffIds
+  }).map((row) => attachLinkedRows(row, lookups));
+
+  const skillEvidenceIndex = buildSkillEvidenceIndex(generated, talentRows, lookups);
+  const recountEvidenceIndex = buildRecountEvidenceIndex(generated, talentRows, skillEvidenceIndex);
+  const talentRowsWithRecountLinks = attachRecountLinksToTalents(talentRows, recountEvidenceIndex);
+  const seasonTalentNodes = buildSeasonTalentNodeSection(generated.seasonTalentProbe);
+  const seasonRogueEntries = buildSeasonRogueEntrySection(generated.seasonRogueEntryProbe);
+  const seasonPhantomFactors = buildSeasonPhantomFactorSection(generated.seasonPhantomFactorProbe);
+
+  const summary = buildSummary(
+    talentRowsWithRecountLinks,
+    skillEvidenceIndex,
+    recountEvidenceIndex,
+    seasonTalentNodes,
+    seasonRogueEntries,
+    seasonPhantomFactors
+  );
+  const report = {
+    summary,
+    notes: [
+      "Status: probe-only. No fields from this report are consumed by runtime display code.",
+      "CTB:3345237628 rows are reported as talent/passive/spec source rows.",
+      "Seasonal Slumbering Dream Psychoscope node rows are included from SeasonTalentNodeProbe.json as a separate talent-like source family.",
+      "Seasonal rogue-like entry buffs are included from SeasonRogueEntryProbe.json as a separate dungeon-entry source family.",
+      "Seasonal Deep-Slumber Psychoscope Phantom Factors are included from SeasonPhantomFactorProbe.json as a separate factor source family.",
+      "Description linktext entries are exact game-localized text references, but linktext ids are not treated as SkillTable ids.",
+      "Opcode 3 field+36 records are reported as buff/effect records.",
+      "Opcode 6 field+36 records are reported as ordered SkillTable id pairs, not ownership and not source attribution.",
+      "Damage formula matches are numeric candidates from Recount damage ids to opcode-3 buff ids; current production-safe links are still the RecountTable bridges."
+    ],
+    talentRows: talentRowsWithRecountLinks,
+    seasonTalentNodes,
+    seasonRogueEntries,
+    seasonPhantomFactors,
+    skillEvidenceIndex,
+    recountEvidenceIndex
+  };
+
+  console.log(`Talent/passive CTB rows: ${summary.talentPassiveRows}`);
+  console.log(`Rows with descriptions: ${summary.talentRowsWithDescriptions}`);
+  console.log(`Description linktext refs: ${summary.descriptionLinkTextRefs}`);
+  console.log(`Opcode 3 buff records: ${summary.opcode3BuffRecords}`);
+  console.log(`Opcode 6 skill pair records: ${summary.opcode6SkillPairRecords}`);
+  console.log(`Skill rows with evidence: ${summary.skillRowsWithAnyTalentEvidence}`);
+  console.log(`Recount rows with probe evidence: ${summary.recountRowsWithProbeEvidence}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "TalentEffectModelProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function loadGenerated(outputDir) {
+  return {
+    buffs: readOptionalJson(path.join(outputDir, "BuffName.json"), []),
+    damage: readOptionalJson(path.join(outputDir, "DamageAttrIdName.json"), {}),
+    recount: readOptionalJson(path.join(outputDir, "RecountTable.json"), {}),
+    seasonPhantomFactorProbe: readOptionalJson(path.join(outputDir, "probing-reports", "SeasonPhantomFactorProbe.json"), null),
+    seasonRogueEntryProbe: readOptionalJson(path.join(outputDir, "probing-reports", "SeasonRogueEntryProbe.json"), null),
+    seasonTalentProbe: readOptionalJson(path.join(outputDir, "probing-reports", "SeasonTalentNodeProbe.json"), null),
+    skills: readOptionalJson(path.join(outputDir, "skillnames.json"), {})
+  };
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function buildLookups(generated) {
+  return {
+    buffsById: objectValues(generated.buffs).reduce((map, row) => {
+      if (row?.Id) map.set(String(row.Id), row);
+      return map;
+    }, new Map()),
+    damageById: objectValues(generated.damage).reduce((map, row) => {
+      if (row?.Id) map.set(String(row.Id), row);
+      return map;
+    }, new Map()),
+    skillsById: objectValues(generated.skills).reduce((map, row) => {
+      if (row?.Id) map.set(String(row.Id), row);
+      return map;
+    }, new Map())
+  };
+}
+
+function collectTalentRows(containerDir, metaEntries, localizationTables, helpers) {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readCtbString,
+    readCtbTableByHash,
+    readU32,
+    skillIds,
+    buffIds
+  } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(
+      containerDir,
+      metaEntries,
+      TALENT_PASSIVE_TABLE_HASH,
+      `CTB:${TALENT_PASSIVE_TABLE_HASH}`
+    );
+  } catch {
+    return [];
+  }
+
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const designOffset = readU32(table.data, rowOffset + 4);
+    const nameId = readU32(table.data, rowOffset + 8);
+    const descriptionId = readU32(table.data, rowOffset + 12);
+    const iconOffset = readU32(table.data, rowOffset + 20);
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    const name = choosePreferredLocaleText(names);
+    const descriptions = buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables),
+      { includeDesign: false }
+    );
+    const description = choosePreferredLocaleText(descriptions);
+    const designName = readCtbString(table, STRING_POOL, designOffset, { allowZero: false });
+    const iconPath = readCtbString(table, STRING_POOL, iconOffset, { allowZero: false });
+    if (!id || !name) {
+      continue;
+    }
+
+    const effectRecords = collectEffectRecordsFromField(table, rowOffset, 36, {
+      buffIds,
+      readU32,
+      skillIds
+    });
+    const skillPairRecords = effectRecords.filter((record) => record.kind === "opcode-6-skill-pair");
+    const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+    const descriptionLinkTexts = collectDescriptionLinkTexts(descriptions);
+
+    rows.push(stripEmpty({
+      type: "talent-passive",
+      sourceTable: `CTB:${TALENT_PASSIVE_TABLE_HASH}`,
+      id,
+      name,
+      names,
+      nameId,
+      descriptionId,
+      description,
+      descriptions,
+      cleanDescriptions: cleanDescriptionsByLocale(descriptions),
+      descriptionLinkTexts,
+      designName,
+      iconPath,
+      iconPathOffset: iconOffset,
+      sourceOffset: table.entry.offset + rowOffset,
+      effectReferenceField: 36,
+      effectRecords,
+      skillPairRecords,
+      buffEffectRecords
+    }));
+  }
+  return rows.sort(compareByNameThenId);
+}
+
+function collectLocalizedTextEntries(textId, localizationTables) {
+  const id = Number(textId);
+  if (!Number.isInteger(id) || !id) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index?.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function collectDescriptionLinkTexts(descriptions) {
+  const byId = new Map();
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const regex = /<linktext=(\d+)[^>]*>(.*?)<\/linktext>/gis;
+    for (const match of String(text || "").matchAll(regex)) {
+      const linkTextId = Number(match[1]);
+      const label = cleanMarkup(match[2]);
+      if (!Number.isFinite(linkTextId) || !label) {
+        continue;
+      }
+      const current = byId.get(linkTextId) || {
+        linkTextId,
+        labels: {}
+      };
+      if (!current.labels[localeId]) {
+        current.labels[localeId] = label;
+      }
+      byId.set(linkTextId, current);
+    }
+  }
+  return [...byId.values()]
+    .map((row) => ({
+      ...row,
+      label: preferredLocaleText(row.labels)
+    }))
+    .sort((left, right) => Number(left.linkTextId) - Number(right.linkTextId));
+}
+
+function collectEffectRecordsFromField(table, rowOffset, fieldOffset, helpers) {
+  const { buffIds, readU32, skillIds } = helpers;
+  const intPool = table?.pools?.get(INT_POOL);
+  if (!intPool) {
+    return [];
+  }
+  const topOffset = readU32(table.data, rowOffset + fieldOffset);
+  const topValues = readIntArrayFromPool(intPool, topOffset);
+  if (!topValues.length) {
+    return [];
+  }
+  const records = [];
+  for (const recordOffset of topValues) {
+    const rawValues = readIntArrayFromPool(intPool, recordOffset);
+    if (!rawValues.length) {
+      records.push({
+        kind: "unknown-record-offset",
+        fieldOffset,
+        recordOffset
+      });
+      continue;
+    }
+    const opcode = rawValues[0];
+    if (opcode === 3) {
+      const buffId = Number(rawValues[1]);
+      records.push(stripEmpty({
+        kind: "opcode-3-buff-record",
+        opcode,
+        fieldOffset,
+        recordOffset,
+        rawValues,
+        buffId,
+        value: rawValues[2],
+        buffIdStatus: buffIds instanceof Set && buffIds.has(buffId) ? "known-buff-id" : "unresolved-buff-id"
+      }));
+      continue;
+    }
+    if (opcode === 6) {
+      const firstSkillTableId = Number(rawValues[1]);
+      const secondSkillTableId = Number(rawValues[2]);
+      records.push(stripEmpty({
+        kind: "opcode-6-skill-pair",
+        opcode,
+        fieldOffset,
+        recordOffset,
+        rawValues,
+        firstSkillTableId,
+        firstSkillTableIdStatus: skillIds instanceof Set && skillIds.has(firstSkillTableId) ? "known-skill-table-id" : "unresolved-skill-table-id",
+        secondSkillTableId,
+        secondSkillTableIdStatus: skillIds instanceof Set && skillIds.has(secondSkillTableId) ? "known-skill-table-id" : "unresolved-skill-table-id"
+      }));
+      continue;
+    }
+    records.push({
+      kind: "unknown-opcode-record",
+      opcode,
+      fieldOffset,
+      recordOffset,
+      rawValues
+    });
+  }
+  return records;
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (!pool || index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 128 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function attachLinkedRows(row, lookups) {
+  const effectRecords = (row.effectRecords || []).map((record) => attachEffectRecordRows(record, lookups));
+  const skillPairRecords = effectRecords.filter((record) => record.kind === "opcode-6-skill-pair");
+  const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+  return {
+    ...row,
+    effectRecords,
+    ...(skillPairRecords.length ? { skillPairRecords } : {}),
+    ...(buffEffectRecords.length ? { buffEffectRecords } : {})
+  };
+}
+
+function attachEffectRecordRows(record, lookups) {
+  if (record?.kind === "opcode-6-skill-pair") {
+    return stripEmpty({
+      ...record,
+      firstSkillTableRow: skillEntity(lookups.skillsById.get(String(record.firstSkillTableId))),
+      secondSkillTableRow: skillEntity(lookups.skillsById.get(String(record.secondSkillTableId)))
+    });
+  }
+  if (record?.kind === "opcode-3-buff-record") {
+    return stripEmpty({
+      ...record,
+      buffRow: buffEntity(lookups.buffsById.get(String(record.buffId)))
+    });
+  }
+  return record;
+}
+
+function buildSkillEvidenceIndex(generated, talentRows, lookups) {
+  const skillNameIndex = buildSkillNameIndex(lookups.skillsById);
+  const bySkillId = new Map();
+  const ensure = (skillId) => {
+    const id = Number(skillId);
+    if (!Number.isFinite(id) || !id) {
+      return null;
+    }
+    const key = String(id);
+    if (!bySkillId.has(key)) {
+      bySkillId.set(key, {
+        skill: skillEntity(lookups.skillsById.get(key), id),
+        observedRecountRows: [],
+        damageRows: [],
+        talentSkillPairRecords: [],
+        descriptionLinkTextMentions: [],
+        formulaBuffMatches: []
+      });
+    }
+    return bySkillId.get(key);
+  };
+
+  for (const row of objectValues(generated.recount)) {
+    const skillId = Number(row?.LinkedBaseSkillId);
+    const entry = ensure(skillId);
+    if (entry) {
+      entry.observedRecountRows.push(recountEntity(row));
+    }
+  }
+
+  for (const row of objectValues(generated.damage)) {
+    for (const skillId of collectDamageLinkedSkillIds(row)) {
+      const entry = ensure(skillId);
+      if (entry) {
+        entry.damageRows.push(damageEntity(row));
+      }
+    }
+  }
+
+  for (const talent of talentRows || []) {
+    for (const record of talent.skillPairRecords || []) {
+      addSkillPairEvidence(ensure(record.firstSkillTableId), talent, record, "firstSkillTableId");
+      addSkillPairEvidence(ensure(record.secondSkillTableId), talent, record, "secondSkillTableId");
+    }
+    for (const linkText of talent.descriptionLinkTexts || []) {
+      for (const match of findSkillNameMatches(linkText, skillNameIndex)) {
+        const entry = ensure(match.skillId);
+        if (entry) {
+          entry.descriptionLinkTextMentions.push(stripEmpty({
+            evidenceStatus: "probe-only-localized-linktext-label-match",
+            talent: talentSummary(talent),
+            descriptionId: talent.descriptionId,
+            linkTextId: linkText.linkTextId,
+            linkTextLabel: linkText.label,
+            linkTextLabels: linkText.labels,
+            matchedLocales: match.matchedLocales
+          }));
+        }
+      }
+    }
+  }
+
+  const formulaMatchesBySkill = buildFormulaMatchesBySkill(generated.recount, talentRows);
+  for (const [skillId, matches] of formulaMatchesBySkill.entries()) {
+    const entry = ensure(skillId);
+    if (entry) {
+      entry.formulaBuffMatches.push(...matches);
+    }
+  }
+
+  return [...bySkillId.values()]
+    .map((entry) => stripEmpty({
+      ...entry,
+      observedRecountRows: uniqueByJson(entry.observedRecountRows).sort(compareRecountEntities),
+      damageRows: uniqueByJson(entry.damageRows).sort(compareDamageEntities),
+      talentSkillPairRecords: uniqueByJson(entry.talentSkillPairRecords).sort(compareTalentEvidence),
+      descriptionLinkTextMentions: uniqueByJson(entry.descriptionLinkTextMentions).sort(compareTalentEvidence),
+      formulaBuffMatches: uniqueByJson(entry.formulaBuffMatches).sort(compareTalentEvidence),
+      evidenceCounts: {
+        observedRecountRows: uniqueByJson(entry.observedRecountRows).length,
+        damageRows: uniqueByJson(entry.damageRows).length,
+        talentSkillPairRecords: uniqueByJson(entry.talentSkillPairRecords).length,
+        descriptionLinkTextMentions: uniqueByJson(entry.descriptionLinkTextMentions).length,
+        formulaBuffMatches: uniqueByJson(entry.formulaBuffMatches).length
+      }
+    }))
+    .filter((entry) => hasAnyTalentEvidence(entry) || entry.observedRecountRows?.length)
+    .sort((left, right) => Number(left.skill?.id || 0) - Number(right.skill?.id || 0));
+}
+
+function buildSkillNameIndex(skillsById) {
+  const byLocalizedName = new Map();
+  for (const [skillId, skill] of skillsById.entries()) {
+    if (!skill?.IsBaseSkill) {
+      continue;
+    }
+    const names = normalizeNames(skill?.Names, skill?.Name);
+    for (const [localeId, name] of Object.entries(names)) {
+      const key = localizedNameKey(localeId, name);
+      if (!key) {
+        continue;
+      }
+      const bucket = byLocalizedName.get(key) || [];
+      bucket.push({ skillId: Number(skillId), localeId, name });
+      byLocalizedName.set(key, bucket);
+    }
+  }
+  return byLocalizedName;
+}
+
+function findSkillNameMatches(linkText, skillNameIndex) {
+  const bySkill = new Map();
+  for (const [localeId, label] of Object.entries(linkText?.labels || {})) {
+    const key = localizedNameKey(localeId, label);
+    if (!key) {
+      continue;
+    }
+    for (const hit of skillNameIndex.get(key) || []) {
+      const current = bySkill.get(hit.skillId) || {
+        skillId: hit.skillId,
+        matchedLocales: []
+      };
+      current.matchedLocales.push(localeId);
+      bySkill.set(hit.skillId, current);
+    }
+  }
+  return [...bySkill.values()]
+    .map((row) => ({
+      ...row,
+      matchedLocales: uniqueStrings(row.matchedLocales)
+    }))
+    .filter((row) => row.matchedLocales.includes("en") || row.matchedLocales.length >= 3)
+    .sort((left, right) => Number(left.skillId) - Number(right.skillId));
+}
+
+function addSkillPairEvidence(entry, talent, record, role) {
+  if (!entry) {
+    return;
+  }
+  const pairedSkill = role === "firstSkillTableId"
+    ? record.secondSkillTableRow || skillEntity(null, record.secondSkillTableId)
+    : record.firstSkillTableRow || skillEntity(null, record.firstSkillTableId);
+  entry.talentSkillPairRecords.push(stripEmpty({
+    evidenceStatus: "probe-only-opcode-6-skill-pair",
+    role,
+    talent: talentSummary(talent),
+    pair: skillPairSummary(record),
+    pairedSkill,
+    relatedBuffRecords: (talent.buffEffectRecords || []).map(buffRecordSummary)
+  }));
+}
+
+function buildFormulaMatchesBySkill(recountRows, talentRows) {
+  const bySkill = new Map();
+  const talentBuffRecords = [];
+  for (const talent of talentRows || []) {
+    for (const record of talent.buffEffectRecords || []) {
+      if (record?.buffId) {
+        talentBuffRecords.push({ talent, record });
+      }
+    }
+  }
+
+  for (const recount of objectValues(recountRows)) {
+    const linkedSkillId = Number(recount?.LinkedBaseSkillId);
+    if (!Number.isFinite(linkedSkillId) || !linkedSkillId) {
+      continue;
+    }
+    const formulaIds = collectDamageFormulaIds(recount.DamageId || []);
+    if (!formulaIds.length) {
+      continue;
+    }
+    for (const { talent, record } of talentBuffRecords) {
+      const matchedFormulaIds = [];
+      const matchedBuffIds = [];
+      for (const formulaId of formulaIds) {
+        const direct = Number(formulaId);
+        const family = buffFamilyRoot(direct);
+        if (Number(record.buffId) === direct || Number(record.buffId) === family) {
+          matchedFormulaIds.push(direct);
+          matchedBuffIds.push(Number(record.buffId));
+        }
+      }
+      if (!matchedFormulaIds.length) {
+        continue;
+      }
+      const current = bySkill.get(String(linkedSkillId)) || [];
+      current.push(stripEmpty({
+        evidenceStatus: recount.LinkedTalentId === talent.id
+          ? "current-production-recount-talent-bridge"
+          : "probe-only-numeric-damage-formula-to-opcode-3-buff",
+        recount: recountEntity(recount),
+        talent: talentSummary(talent),
+        buffRecord: buffRecordSummary(record),
+        matchedFormulaIds: uniqueNumbers(matchedFormulaIds),
+        matchedBuffIds: uniqueNumbers(matchedBuffIds)
+      }));
+      bySkill.set(String(linkedSkillId), current);
+    }
+  }
+  return bySkill;
+}
+
+function buildRecountEvidenceIndex(generated, talentRows, skillEvidenceIndex) {
+  const skillEvidenceById = new Map(
+    (skillEvidenceIndex || []).map((row) => [String(row.skill?.id || ""), row])
+  );
+  const formulaMatchesBySkill = buildFormulaMatchesBySkill(generated.recount, talentRows);
+  return objectValues(generated.recount)
+    .map((row) => {
+      const linkedSkillId = Number(row?.LinkedBaseSkillId);
+      const skillEvidence = skillEvidenceById.get(String(linkedSkillId));
+      const formulaMatches = formulaMatchesBySkill.get(String(linkedSkillId)) || [];
+      return stripEmpty({
+        recountId: row.Id,
+        recountName: row.Name || row.RecountName,
+        names: row.Names,
+        damageIds: row.DamageId || [],
+        linkedBaseSkill: row.LinkedBaseSkillId
+          ? {
+              skillId: row.LinkedBaseSkillId,
+              skillName: row.LinkedBaseSkillName,
+              bridge: row.BaseSkillNameBridge,
+              bridgeStatus: "current-production-direct-name-bridge"
+            }
+          : null,
+        linkedTalent: row.LinkedTalentId
+          ? {
+              talentId: row.LinkedTalentId,
+              talentName: row.LinkedTalentName,
+              bridge: row.TalentBridge || row.TalentNameBridge || row.TalentFormulaBridge,
+              bridgeStatus: "current-production-recount-talent-bridge",
+              linkedBuffIds: row.LinkedTalentBuffIds,
+              linkedFormulaIds: row.LinkedTalentFormulaIds
+            }
+          : null,
+        formulaMatches: formulaMatches.filter((match) => match.recount?.recountId === row.Id),
+        skillEvidenceSummary: skillEvidence
+          ? {
+              skillId: skillEvidence.skill?.id,
+              skillName: skillEvidence.skill?.name,
+              talentSkillPairRecords: skillEvidence.evidenceCounts?.talentSkillPairRecords || 0,
+              descriptionLinkTextMentions: skillEvidence.evidenceCounts?.descriptionLinkTextMentions || 0,
+              formulaBuffMatches: skillEvidence.evidenceCounts?.formulaBuffMatches || 0,
+              damageRows: skillEvidence.evidenceCounts?.damageRows || 0
+            }
+          : null
+      });
+    })
+    .filter((row) =>
+      row.linkedTalent ||
+      row.formulaMatches?.length ||
+      row.skillEvidenceSummary?.talentSkillPairRecords ||
+      row.skillEvidenceSummary?.descriptionLinkTextMentions ||
+      row.skillEvidenceSummary?.formulaBuffMatches
+    )
+    .sort((left, right) => Number(left.recountId) - Number(right.recountId));
+}
+
+function attachRecountLinksToTalents(talentRows, recountEvidenceIndex) {
+  const byTalent = new Map();
+  for (const recount of recountEvidenceIndex || []) {
+    if (recount.linkedTalent?.talentId) {
+      const current = byTalent.get(String(recount.linkedTalent.talentId)) || {
+        productionRecountTalentLinks: [],
+        numericFormulaRecountMatches: []
+      };
+      current.productionRecountTalentLinks.push({
+        recountId: recount.recountId,
+        recountName: recount.recountName,
+        bridge: recount.linkedTalent.bridge,
+        linkedBuffIds: recount.linkedTalent.linkedBuffIds,
+        linkedFormulaIds: recount.linkedTalent.linkedFormulaIds
+      });
+      byTalent.set(String(recount.linkedTalent.talentId), current);
+    }
+    for (const match of recount.formulaMatches || []) {
+      const talentId = match.talent?.id;
+      if (!talentId) {
+        continue;
+      }
+      const current = byTalent.get(String(talentId)) || {
+        productionRecountTalentLinks: [],
+        numericFormulaRecountMatches: []
+      };
+      current.numericFormulaRecountMatches.push({
+        recountId: recount.recountId,
+        recountName: recount.recountName,
+        evidenceStatus: match.evidenceStatus,
+        matchedFormulaIds: match.matchedFormulaIds,
+        matchedBuffIds: match.matchedBuffIds
+      });
+      byTalent.set(String(talentId), current);
+    }
+  }
+  return (talentRows || []).map((row) => stripEmpty({
+    ...row,
+    ...(byTalent.get(String(row.id)) || {})
+  }));
+}
+
+function buildSeasonTalentNodeSection(seasonTalentProbe) {
+  if (!seasonTalentProbe?.nodeRows?.length) {
+    return null;
+  }
+  const groups = (seasonTalentProbe.groups || []).map((group) => stripEmpty({
+    groupIndex: group.groupIndex,
+    groupName: group.groupName,
+    groupNameStatus: group.groupNameStatus,
+    rows: (group.rows || []).map(seasonTalentNodeSummary)
+  }));
+  return stripEmpty({
+    summary: seasonTalentProbe.summary,
+    sourceReport: "output/probing-reports/SeasonTalentNodeProbe.json",
+    evidenceStatus: "probe-only-source-backed-season-talent-nodes",
+    groups,
+    nodeRows: (seasonTalentProbe.nodeRows || []).map(seasonTalentNodeSummary)
+  });
+}
+
+function seasonTalentNodeSummary(row) {
+  const description = (row.descriptionCandidates || [])
+    .find((entry) => entry.sourceTable && entry.descriptionId);
+  const iconPath = row.stringFields?.find((field) => field.fieldOffset === 36)?.text;
+  return stripEmpty({
+    type: "season-talent-node",
+    sourceTable: row.sourceTable,
+    id: row.id,
+    groupIndex: row.groupIndex,
+    slotIndex: row.slotIndex,
+    name: row.name,
+    names: row.names,
+    nameId: row.nameId,
+    iconPath,
+    alignedBuffId: row.alignedBuffId,
+    alignedBuffBridge: row.alignedBuffBridge,
+    alignedBuffBridgeStatus: row.alignedBuffBridgeStatus,
+    alignedBuff: row.alignedBuff,
+    effectReferenceField: row.effectReferenceField,
+    buffEffectRecords: (row.buffEffectRecords || []).map(buffRecordSummary),
+    descriptionId: description?.descriptionId,
+    description: description?.text,
+    descriptions: description?.texts,
+    cleanDescriptions: description?.cleanTexts,
+    descriptionLinkTexts: description?.linkTexts,
+    sourceOffset: row.sourceOffset
+  });
+}
+
+function buildSeasonRogueEntrySection(seasonRogueEntryProbe) {
+  if (!seasonRogueEntryProbe?.entries?.length) {
+    return null;
+  }
+  return stripEmpty({
+    summary: seasonRogueEntryProbe.summary,
+    sourceReport: "output/probing-reports/SeasonRogueEntryProbe.json",
+    evidenceStatus: "probe-only-source-backed-season-rogue-entry-buffs",
+    groups: (seasonRogueEntryProbe.groups || []).map((group) => stripEmpty({
+      groupKey: group.groupKey,
+      groupName: group.groupName,
+      groupNameStatus: group.groupNameStatus,
+      rows: (group.rows || []).map(seasonRogueEntrySummary)
+    })),
+    entries: (seasonRogueEntryProbe.entries || []).map(seasonRogueEntrySummary)
+  });
+}
+
+function seasonRogueEntrySummary(row) {
+  return stripEmpty({
+    type: "season-rogue-entry",
+    sourceTable: row.sourceTable,
+    entryId: row.entryId,
+    entryFamily: row.entryFamily,
+    name: row.name,
+    names: row.names,
+    nameId: row.nameId,
+    buffId: row.buffId,
+    buffRow: row.buffRow,
+    rarityOrTier: row.rarityOrTier,
+    iconPath: row.iconPath,
+    descriptionReferenceField: row.descriptionReferenceField,
+    descriptionReferenceRecords: row.descriptionReferenceRecords,
+    descriptionEntryKey: row.descriptionEntryKey,
+    descriptionId: row.descriptionId,
+    description: row.description,
+    descriptions: row.descriptions,
+    cleanDescriptions: row.cleanDescriptions,
+    descriptionLinkTexts: row.descriptionLinkTexts,
+    difficultyAvailability: row.difficultyAvailability,
+    sourceOffset: row.sourceOffset
+  });
+}
+
+function buildSeasonPhantomFactorSection(seasonPhantomFactorProbe) {
+  if (!seasonPhantomFactorProbe?.families?.length) {
+    return null;
+  }
+  return stripEmpty({
+    summary: seasonPhantomFactorProbe.summary,
+    sourceReport: "output/probing-reports/SeasonPhantomFactorProbe.json",
+    evidenceStatus: "probe-only-source-backed-season-phantom-factors",
+    classGateIndex: (seasonPhantomFactorProbe.classGateIndex || []).map((entry) => stripEmpty({
+      classGateId: entry.classGateId,
+      classNameEvidence: entry.classNameEvidence,
+      observedClassLabels: entry.observedClassLabels,
+      factorFamilyCount: entry.factorFamilies?.length || 0
+    })),
+    families: (seasonPhantomFactorProbe.families || []).map(seasonPhantomFactorFamilySummary)
+  });
+}
+
+function seasonPhantomFactorFamilySummary(family) {
+  return stripEmpty({
+    type: "season-phantom-factor-family",
+    sourceTable: family.sourceTable,
+    familyId: family.familyId,
+    familyName: family.familyName,
+    familyNames: family.familyNames,
+    familyNameStatus: family.familyNameStatus,
+    iconPath: family.iconPath,
+    classGateIds: family.classGateIds,
+    primaryBuffIds: family.primaryBuffIds,
+    descriptionId: family.descriptionId,
+    description: family.description,
+    descriptions: family.descriptions,
+    cleanDescriptions: family.cleanDescriptions,
+    descriptionLinkTexts: family.descriptionLinkTexts,
+    gradeRows: (family.gradeRows || []).map(seasonPhantomFactorGradeSummary)
+  });
+}
+
+function seasonPhantomFactorGradeSummary(row) {
+  return stripEmpty({
+    itemId: row.itemId,
+    grade: row.grade,
+    name: row.name,
+    names: row.names,
+    primaryBuffId: row.primaryBuffId,
+    primaryBuff: row.primaryBuff,
+    parameterValues: row.parameterValues,
+    effectRecords: row.effectRecords,
+    buffEffectRecords: row.buffEffectRecords,
+    conditionRecords: row.conditionRecords,
+    classGateIds: row.classGateIds,
+    resolvedDescription: row.resolvedDescription,
+    resolvedDescriptions: row.resolvedDescriptions,
+    cleanResolvedDescriptions: row.cleanResolvedDescriptions,
+    sourceOffset: row.sourceOffset
+  });
+}
+
+function buildSummary(talentRows, skillEvidenceIndex, recountEvidenceIndex, seasonTalentNodes, seasonRogueEntries, seasonPhantomFactors) {
+  const skillRowsWithAnyTalentEvidence = (skillEvidenceIndex || []).filter(hasAnyTalentEvidence).length;
+  return {
+    talentPassiveRows: talentRows.length,
+    talentRowsWithDescriptions: talentRows.filter((row) => row.description).length,
+    descriptionLinkTextRefs: sum(talentRows.map((row) => row.descriptionLinkTexts?.length || 0)),
+    opcode3BuffRecords: sum(talentRows.map((row) => row.buffEffectRecords?.length || 0)),
+    opcode6SkillPairRecords: sum(talentRows.map((row) => row.skillPairRecords?.length || 0)),
+    skillRowsWithAnyTalentEvidence,
+    skillRowsWithOpcode6PairEvidence: skillEvidenceIndex.filter((row) => row.talentSkillPairRecords?.length).length,
+    skillRowsWithDescriptionLinkTextEvidence: skillEvidenceIndex.filter((row) => row.descriptionLinkTextMentions?.length).length,
+    skillRowsWithFormulaBuffEvidence: skillEvidenceIndex.filter((row) => row.formulaBuffMatches?.length).length,
+    recountRowsWithProbeEvidence: recountEvidenceIndex.length,
+    recountRowsWithCurrentProductionTalentLinks: recountEvidenceIndex.filter((row) => row.linkedTalent).length,
+    seasonTalentNodeRows: seasonTalentNodes?.summary?.alignedBuffNodeRows || 0,
+    seasonTalentNodeGroups: seasonTalentNodes?.summary?.groups || 0,
+    seasonTalentNodeRowsWithDescriptions: seasonTalentNodes?.summary?.rowsWithDescriptionCandidates || 0,
+    seasonTalentOpcode3BuffRecords: seasonTalentNodes?.summary?.rowsWithOpcode3BuffRecords || 0,
+    seasonRogueEntryRows: seasonRogueEntries?.summary?.entryRows || 0,
+    seasonRogueEntryRowsWithDescriptions: seasonRogueEntries?.summary?.entriesWithResolvedDescription || 0,
+    seasonRogueEntryDifficultyGatedRows: seasonRogueEntries?.summary?.entriesWithDifficultyGate || 0,
+    seasonRogueEntryNightmareOnlyRows: seasonRogueEntries?.summary?.nightmareOnlyEntries || 0,
+    seasonRogueEntryHardAndNightmareRows: seasonRogueEntries?.summary?.hardAndNightmareEntries || 0,
+    seasonPhantomFactorRows: seasonPhantomFactors?.summary?.decodedRows || 0,
+    seasonPhantomFactorFamilies: seasonPhantomFactors?.summary?.factorFamilies || 0,
+    seasonPhantomFactorRowsWithDescriptions: seasonPhantomFactors?.summary?.rowsWithResolvedDescription || 0,
+    seasonPhantomFactorRowsWithClassGate: seasonPhantomFactors?.summary?.rowsWithClassGate || 0,
+    seasonPhantomFactorClassGateIds: seasonPhantomFactors?.summary?.classGateIds || [],
+    strictRuntimeStatus: "probe-only"
+  };
+}
+
+function hasAnyTalentEvidence(row) {
+  return Boolean(
+    row?.talentSkillPairRecords?.length ||
+    row?.descriptionLinkTextMentions?.length ||
+    row?.formulaBuffMatches?.length
+  );
+}
+
+function collectDamageLinkedSkillIds(row) {
+  return uniqueNumbers([
+    row?.LinkedSkillId,
+    row?.LinkedSkillTableId,
+    row?.LinkedSkillEffectSkillTableId,
+    row?.LinkedSkillFightSkillId
+  ]);
+}
+
+function collectDamageFormulaIds(damageIds) {
+  const out = new Set();
+  for (const damageId of damageIds || []) {
+    const id = String(damageId || "");
+    for (const damageType of ["1", "2", "3"]) {
+      if (!id.startsWith(damageType)) {
+        continue;
+      }
+      const rest = id.slice(1);
+      for (let cut = 1; cut <= rest.length - 2; cut += 1) {
+        const formulaId = rest.slice(0, cut);
+        const suffix = rest.slice(cut);
+        if (isValidDamageFormulaSuffix(suffix)) {
+          out.add(Number(formulaId));
+        }
+      }
+    }
+  }
+  return [...out].filter((value) => Number.isFinite(value) && value > 0);
+}
+
+function isValidDamageFormulaSuffix(suffix) {
+  return /^\d{2}$/.test(suffix) || /^[1-9]\d{2,}$/.test(suffix);
+}
+
+function buffFamilyRoot(buffId) {
+  return Math.floor(Number(buffId) / 10) * 10;
+}
+
+function skillEntity(skill, fallbackId = undefined) {
+  const id = Number(skill?.Id ?? fallbackId);
+  if (!Number.isFinite(id) || !id) {
+    return null;
+  }
+  return stripEmpty({
+    type: "skill-table",
+    sourceTable: "SkillTable.ctb",
+    id,
+    name: preferredName(skill) || `SkillTable #${id}`,
+    names: normalizeNames(skill?.Names, skill?.Name),
+    kind: skill?.Kind,
+    iconPath: skill?.IconPath || "",
+    sourceOffsets: skill?.SourceOffsets || []
+  });
+}
+
+function buffEntity(buff) {
+  if (!buff?.Id) {
+    return null;
+  }
+  return stripEmpty({
+    type: "buff",
+    sourceTable: "BuffTable.ctb",
+    id: buff.Id,
+    name: preferredName(buff),
+    names: normalizeNames(buff.Names, buff.Name),
+    nameIdSource: buff.NameIdSource || "",
+    iconPath: buff.IconPath || "",
+    sourceOffset: buff.SourceOffset
+  });
+}
+
+function recountEntity(row) {
+  return stripEmpty({
+    recountId: row?.Id,
+    recountName: row?.Name || row?.RecountName,
+    names: row?.Names,
+    damageIds: row?.DamageId || [],
+    linkedBaseSkillId: row?.LinkedBaseSkillId,
+    linkedBaseSkillName: row?.LinkedBaseSkillName,
+    linkedTalentId: row?.LinkedTalentId,
+    linkedTalentName: row?.LinkedTalentName,
+    talentBridge: row?.TalentBridge || row?.TalentNameBridge || row?.TalentFormulaBridge
+  });
+}
+
+function damageEntity(row) {
+  return stripEmpty({
+    damageId: row?.Id,
+    damageName: row?.Name,
+    source: row?.Source,
+    damageKind: row?.DamageKind,
+    detailKind: row?.DetailKind,
+    linkedSkillId: row?.LinkedSkillId,
+    linkedSkillTableId: row?.LinkedSkillTableId,
+    linkedSkillEffectSkillTableId: row?.LinkedSkillEffectSkillTableId,
+    linkedSkillFightSkillId: row?.LinkedSkillFightSkillId,
+    linkedBuffId: row?.LinkedBuffId,
+    linkedBuffName: row?.LinkedBuffName,
+    iconPath: row?.IconPath
+  });
+}
+
+function talentSummary(talent) {
+  return stripEmpty({
+    type: "talent-passive",
+    sourceTable: talent.sourceTable,
+    id: talent.id,
+    name: talent.name,
+    names: talent.names,
+    descriptionId: talent.descriptionId,
+    iconPath: talent.iconPath,
+    sourceOffset: talent.sourceOffset
+  });
+}
+
+function skillPairSummary(record) {
+  return stripEmpty({
+    opcode: record.opcode,
+    recordOffset: record.recordOffset,
+    firstSkillTableId: record.firstSkillTableId,
+    firstSkillTableName: record.firstSkillTableRow?.name,
+    secondSkillTableId: record.secondSkillTableId,
+    secondSkillTableName: record.secondSkillTableRow?.name,
+    rawValues: record.rawValues
+  });
+}
+
+function buffRecordSummary(record) {
+  return stripEmpty({
+    opcode: record.opcode,
+    recordOffset: record.recordOffset,
+    buffId: record.buffId,
+    buffName: record.buffRow?.name,
+    value: record.value,
+    rawValues: record.rawValues
+  });
+}
+
+function cleanDescriptionsByLocale(descriptions) {
+  const out = {};
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const cleaned = cleanMarkup(String(text || "").replace(/<br\s*\/?>/gi, "\n"));
+    if (cleaned) {
+      out[localeId] = cleaned;
+    }
+  }
+  return out;
+}
+
+function cleanMarkup(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\{[^}]*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeNames(names, fallback = "") {
+  const out = {};
+  for (const [localeId, value] of Object.entries(names || {})) {
+    const text = String(value || "").trim();
+    if (text) {
+      out[localeId] = text;
+    }
+  }
+  if (!Object.keys(out).length && fallback) {
+    out.en = String(fallback).trim();
+  }
+  return out;
+}
+
+function localizedNameKey(localeId, value) {
+  const normalized = normalizeName(value);
+  return localeId && normalized ? `${localeId}:${normalized}` : "";
+}
+
+function normalizeName(value) {
+  return String(value || "")
+    .replace(/\u200b/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function preferredName(row) {
+  return String(row?.Names?.en || row?.Name || row?.NameDesign || row?.name || "").trim();
+}
+
+function preferredLocaleText(values) {
+  for (const localeId of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id", "design"]) {
+    const text = String(values?.[localeId] || "").trim();
+    if (text) {
+      return text;
+    }
+  }
+  return Object.values(values || {}).find(Boolean) || "";
+}
+
+function objectValues(value) {
+  return Array.isArray(value) ? value : Object.values(value || {});
+}
+
+function compareByNameThenId(left, right) {
+  return String(left.name || "").localeCompare(String(right.name || "")) || Number(left.id || left.Id) - Number(right.id || right.Id);
+}
+
+function compareRecountEntities(left, right) {
+  return Number(left.recountId) - Number(right.recountId);
+}
+
+function compareDamageEntities(left, right) {
+  return compareNumericStrings(String(left.damageId || ""), String(right.damageId || ""));
+}
+
+function compareTalentEvidence(left, right) {
+  return Number(left.talent?.id || 0) - Number(right.talent?.id || 0) ||
+    Number(left.linkTextId || 0) - Number(right.linkTextId || 0) ||
+    String(left.evidenceStatus || "").localeCompare(String(right.evidenceStatus || ""));
+}
+
+function compareNumericStrings(left, right) {
+  try {
+    const a = BigInt(left);
+    const b = BigInt(right);
+    return a < b ? -1 : a > b ? 1 : 0;
+  } catch {
+    return String(left).localeCompare(String(right));
+  }
+}
+
+function uniqueByJson(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    const key = JSON.stringify(value);
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(value);
+  }
+  return out;
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(Number).filter((value) => Number.isFinite(value)))]
+    .sort((left, right) => left - right);
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function sum(values) {
+  return (values || []).reduce((total, value) => total + Number(value || 0), 0);
+}
+
+function stripEmpty(value) {
+  if (Array.isArray(value)) {
+    return value.map(stripEmpty).filter((entry) => entry !== undefined);
+  }
+  if (!value || typeof value !== "object") {
+    return value;
+  }
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    const cleaned = stripEmpty(entry);
+    if (cleaned === undefined || cleaned === null || cleaned === "") {
+      continue;
+    }
+    if (Array.isArray(cleaned) && !cleaned.length) {
+      continue;
+    }
+    if (typeof cleaned === "object" && !Array.isArray(cleaned) && !Object.keys(cleaned).length) {
+      continue;
+    }
+    out[key] = cleaned;
+  }
+  return out;
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Talent Effect Model Probe");
+  lines.push("");
+  lines.push("This is a worklist/report only. It separates direct game-file evidence from probe-only candidates and does not infer selected player talents.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.summary || {})) {
+    lines.push(`- ${key}: ${value}`);
+  }
+  if (report.seasonTalentNodes?.groups?.length) {
+    lines.push("");
+    lines.push("## Season Talent Node Trees");
+    lines.push("");
+    lines.push(`Source report: ${report.seasonTalentNodes.sourceReport}`);
+    lines.push("");
+    for (const group of report.seasonTalentNodes.groups) {
+      const rowCount = group.rows?.length || 0;
+      const preview = (group.rows || [])
+        .slice(0, 4)
+        .map((row) => `${row.id} ${row.name} -> ${row.alignedBuffId}`)
+        .join("; ");
+      lines.push(`- Group ${group.groupIndex}${group.groupName ? ` ${group.groupName}` : ""}: ${rowCount} rows${preview ? ` (${preview})` : ""}`);
+    }
+  }
+  if (report.seasonRogueEntries?.entries?.length) {
+    lines.push("");
+    lines.push("## Season Rogue Entries");
+    lines.push("");
+    lines.push(`Source report: ${report.seasonRogueEntries.sourceReport}`);
+    lines.push("");
+    for (const row of report.seasonRogueEntries.entries.filter((entry) => entry.difficultyAvailability?.length).slice(0, 30)) {
+      lines.push(`- ${row.entryId} ${row.name} -> ${row.buffId} [${row.difficultyAvailability.join("+")}]: ${truncate(cleanMarkup(row.description), 140)}`);
+    }
+  }
+  if (report.seasonPhantomFactors?.families?.length) {
+    lines.push("");
+    lines.push("## Season Phantom Factors");
+    lines.push("");
+    lines.push(`Source report: ${report.seasonPhantomFactors.sourceReport}`);
+    lines.push("");
+    for (const family of report.seasonPhantomFactors.families.filter((entry) => entry.classGateIds?.includes(11)).slice(0, 14)) {
+      const gradeTen = family.gradeRows?.find((row) => Number(row.grade) === 10) || family.gradeRows?.[0] || {};
+      lines.push(`- ${family.familyId} ${gradeTen.name || family.familyName} -> ${gradeTen.primaryBuffId || ""}: ${truncate(cleanMarkup(gradeTen.resolvedDescriptions?.en || gradeTen.resolvedDescription), 150)}`);
+    }
+  }
+  lines.push("");
+  lines.push("## Stormblade Check");
+  lines.push("");
+  for (const skillId of [1714, 1715]) {
+    const row = (report.skillEvidenceIndex || []).find((entry) => Number(entry.skill?.id) === skillId);
+    if (!row) {
+      continue;
+    }
+    lines.push(`### ${row.skill.id} ${row.skill.name}`);
+    lines.push(`- Recount rows: ${formatRecountRefs(row.observedRecountRows)}`);
+    lines.push(`- Opcode 6 skill-pair mentions: ${formatTalentRefs(row.talentSkillPairRecords)}`);
+    lines.push(`- Description linktext mentions: ${formatTalentRefs(row.descriptionLinkTextMentions)}`);
+    lines.push(`- Formula/buff matches: ${formatTalentRefs(row.formulaBuffMatches)}`);
+    lines.push("");
+  }
+  lines.push("## Opcode 6 Skill Pair Examples");
+  lines.push("");
+  const skillPairExamples = [];
+  for (const talent of report.talentRows || []) {
+    for (const record of talent.skillPairRecords || []) {
+      skillPairExamples.push({ talent, record });
+    }
+  }
+  for (const { talent, record } of skillPairExamples.slice(0, 30)) {
+    lines.push(`- ${talent.id} ${talent.name}: ${record.firstSkillTableId} ${record.firstSkillTableRow?.name || ""} -> ${record.secondSkillTableId} ${record.secondSkillTableRow?.name || ""}`);
+  }
+  lines.push("");
+  lines.push("## Description Linktext Examples");
+  lines.push("");
+  for (const talent of (report.talentRows || []).filter((row) => row.descriptionLinkTexts?.length).slice(0, 30)) {
+    const refs = talent.descriptionLinkTexts.map((entry) => `${entry.linkTextId} ${entry.label}`).join("; ");
+    lines.push(`- ${talent.id} ${talent.name}: ${refs}`);
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function formatRecountRefs(rows) {
+  const values = (rows || []).map((row) => `${row.recountId} ${row.recountName}`);
+  return values.length ? values.join("; ") : "none";
+}
+
+function formatTalentRefs(rows) {
+  const values = uniqueStrings((rows || []).map((row) => `${row.talent?.id || "?"} ${row.talent?.name || "?"}`));
+  return values.length ? values.join("; ") : "none";
+}
+
+function truncate(value, maxLength) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  return text.length > maxLength ? `${text.slice(0, maxLength - 3)}...` : text;
+}

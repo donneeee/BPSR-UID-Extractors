@@ -1,0 +1,1280 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const PHANTOM_FACTOR_TABLE_HASH = 2553675475;
+const PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH = 4192598123;
+const ITEM_TABLE_NAME = "ItemTable.ctb";
+const ITEM_CATEGORY_TABLE_HASH = 3701956197;
+const STRING_POOL = 6;
+const INT_POOL = 1;
+
+const FACTOR_ITEM_MIN_ID = 20010000;
+const FACTOR_ITEM_MAX_ID = 20030000;
+
+const FIELD_ITEM_ID = 0;
+const FIELD_RARITY_BUCKET = 4;
+const FIELD_GRADE = 8;
+const FIELD_EFFECT_RECORDS = 12;
+const FIELD_CONDITION_RECORDS = 16;
+const FIELD_PARAMETER_RECORDS = 20;
+const FIELD_REWARD_ITEM_ID = 32;
+const FIELD_CLASS_GATE = 36;
+const FIELD_FAMILY_ID = 40;
+
+const LOCALE_ORDER = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+const DREAM_DAMAGE_MARKERS = [
+  /Dream(?:scape)? DMG/gi,
+  /\u68a6\u5883\u4f24\u5bb3/g,
+  /\u5922\u5883\u50b7\u5bb3/g,
+  /\u5922\u754c\u30c0\u30e1\u30fc\u30b8/g,
+  /\uafc8\s*\ub300\ubbf8\uc9c0/gi,
+  /D\u00e9g\u00e2ts oniriques/gi,
+  /d\u00e9g\u00e2ts oniriques/gi,
+  /Traum-SCH/gi,
+  /D\u00d1O on\u00edrico/gi,
+  /Dano On\u00edrico/gi
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTable,
+    readCtbTableByHash,
+    readU32,
+    resolvePaths
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2), {
+    markdown: ""
+  });
+
+  if (args.help) {
+    printHelp(
+      "SeasonPhantomFactorProbe.gen - report Deep-Slumber Psychoscope Phantom Factor evidence.",
+      `
+Options:
+  --markdown <path>    Optional Markdown summary output path.
+
+Notes:
+  This is a probe report only. It decodes Phantom Factor item rows, direct
+  factor effect records, BuffTable links, descriptions, class gates, and per
+  grade parameter values without inferring selected player factors.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("probing-reports", "SeasonPhantomFactorProbe.json"));
+  const generated = loadGenerated(paths.outputDir);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const buffsById = new Map(objectValues(generated.buffs).map((row) => [String(row?.Id), row]));
+  const recountRows = collectRecountRows(generated.recount);
+
+  const itemTable = readCtbTable(containerDir, metaEntries, ITEM_TABLE_NAME);
+  const factorTable = readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    PHANTOM_FACTOR_TABLE_HASH,
+    `CTB:${PHANTOM_FACTOR_TABLE_HASH}`
+  );
+  const descriptionTable = readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH,
+    `CTB:${PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH}`
+  );
+  const itemCategoryTable = readOptionalCtbTableByHash(
+    containerDir,
+    metaEntries,
+    readCtbTableByHash,
+    ITEM_CATEGORY_TABLE_HASH
+  );
+
+  const itemCategoriesById = itemCategoryTable
+    ? collectItemCategoryRows(itemCategoryTable, localizationTables, {
+      buildLocaleTextObject,
+      choosePreferredLocaleText,
+      readU32
+    })
+    : new Map();
+  const factorItemRowsById = collectFactorItemRows(itemTable, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    itemCategoriesById,
+    readCtbString,
+    readU32
+  });
+  const descriptionsByBuffId = collectBuffDescriptionRows(descriptionTable, localizationTables, {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    readU32
+  });
+  const factorRows = collectFactorRows(factorTable, factorItemRowsById, {
+    buffsById,
+    descriptionsByBuffId,
+    readU32
+  });
+  const families = buildFactorFamilies(factorRows);
+  applyDescriptionTargetRecountRows(families, recountRows);
+  const classGateIndex = buildClassGateIndex(families);
+  const descriptionTargetRows = families.flatMap((family) => family.descriptionTargetRecountRows || []);
+  const descriptionTargetCandidates = families.flatMap((family) => family.descriptionTargetCandidates || []);
+  const summary = {
+    sourceTable: `CTB:${PHANTOM_FACTOR_TABLE_HASH}`,
+    itemSourceTable: ITEM_TABLE_NAME,
+    descriptionSourceTable: `CTB:${PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH}`,
+    itemCategorySourceTable: itemCategoryTable ? `CTB:${ITEM_CATEGORY_TABLE_HASH}` : "missing",
+    sourceRows: factorTable.rowCount,
+    decodedRows: factorRows.length,
+    factorFamilies: families.length,
+    factorItemRows: factorItemRowsById.size,
+    rowsWithBuffEffectRecord: factorRows.filter((row) => row.buffEffectRecords?.length).length,
+    rowsWithResolvedDescription: factorRows.filter((row) => row.description).length,
+    rowsWithRenderedDescription: factorRows.filter((row) => row.resolvedDescription).length,
+    rowsWithClassGate: factorRows.filter((row) => row.classGateIds?.length).length,
+    classGateIds: classGateIndex.map((entry) => entry.classGateId),
+    familiesWithClassGate: families.filter((family) => family.classGateIds?.length).length,
+    familiesWithoutClassGate: families.filter((family) => !family.classGateIds?.length).length,
+    maxGradesPerFamily: Math.max(0, ...families.map((family) => family.gradeRows?.length || 0)),
+    recountRowsAvailableForDescriptionTargets: recountRows.length,
+    familiesWithDescriptionTargetRecountRows: families.filter((family) => family.descriptionTargetRecountRows?.length).length,
+    descriptionTargetRecountRows: descriptionTargetRows.length,
+    descriptionTargetCandidateRows: descriptionTargetCandidates.length,
+    descriptionTargetAmbiguousCandidates: descriptionTargetCandidates.filter((candidate) => candidate.status === "ambiguous").length,
+    descriptionTargetUnmatchedCandidates: descriptionTargetCandidates.filter((candidate) => candidate.status === "unmatched").length,
+    strictRuntimeStatus: "probe-only"
+  };
+
+  const report = {
+    summary,
+    notes: [
+      "Status: probe-only. This report is not consumed by runtime display code.",
+      `Factor rows come from CTB:${PHANTOM_FACTOR_TABLE_HASH}. Field +0 is the factor item id, +8 is the grade, +12 points at effect records, +20 points at grade parameter values, +36 points at class gates, and +40 is the factor family id.`,
+      `Factor item names, icons, and generic item descriptions come from ${ITEM_TABLE_NAME}. These are direct localized item rows such as Marksman X1 - G1.`,
+      `Effect descriptions come from CTB:${PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH}, keyed by the BuffTable id found in field +12 opcode-3 records.`,
+      "Resolved descriptions replace only explicit {*Decision.*(n)*} placeholders with the raw parameter values from field +20. Raw parameters are retained beside every row.",
+      "Class labels in classGateIndex are derived only from localized factor item names that share the same direct class gate id; classGateIds remain the authoritative source field.",
+      "Rows without opcode-3 buff records are still emitted with raw opcode records because several common factors use direct attribute-style records instead of BuffTable effects.",
+      "Description target rows are extracted only from structured Dream DMG target clauses in localized factor descriptions and are marked as description-target evidence, not formula or direct ID evidence.",
+      "Trigger clauses such as after/casting/during are kept out of descriptionTargetRecountRows unless the skill name also appears inside the Dream DMG target clause.",
+      "The report does not infer selected player factors, active factor slots, or actual combat ownership."
+    ],
+    classGateIndex,
+    families,
+    factorRows
+  };
+
+  console.log(`Phantom Factor source rows: ${summary.sourceRows}`);
+  console.log(`Decoded factor rows: ${summary.decodedRows}`);
+  console.log(`Factor families: ${summary.factorFamilies}`);
+  console.log(`Rows with descriptions: ${summary.rowsWithResolvedDescription}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "SeasonPhantomFactorProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function loadGenerated(outputDir) {
+  return {
+    buffs: readOptionalJson(path.join(outputDir, "BuffName.json"), []),
+    recount: readOptionalJson(path.join(outputDir, "RecountTable.json"), {})
+  };
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function readOptionalCtbTableByHash(containerDir, metaEntries, readCtbTableByHash, hash) {
+  try {
+    return readCtbTableByHash(containerDir, metaEntries, hash, `CTB:${hash}`);
+  } catch {
+    return null;
+  }
+}
+
+function collectItemCategoryRows(table, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readU32 } = helpers;
+  const rows = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const nameId = readU32(table.data, rowOffset + 4);
+    if (!id || !nameId) {
+      continue;
+    }
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    rows.set(String(id), stripEmpty({
+      id,
+      nameId,
+      name: choosePreferredLocaleText(names),
+      names,
+      sourceTable: `CTB:${ITEM_CATEGORY_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset
+    }));
+  }
+  return rows;
+}
+
+function collectFactorItemRows(table, localizationTables, helpers) {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    itemCategoriesById,
+    readCtbString,
+    readU32
+  } = helpers;
+  const rows = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const itemId = readU32(table.data, rowOffset);
+    if (itemId < FACTOR_ITEM_MIN_ID || itemId >= FACTOR_ITEM_MAX_ID) {
+      continue;
+    }
+    const nameId = readU32(table.data, rowOffset + 4);
+    const iconPath = readCtbString(table, STRING_POOL, readU32(table.data, rowOffset + 8), {
+      allowZero: false,
+      maxLen: 512
+    });
+    const itemTypeCode = readU32(table.data, rowOffset + 12);
+    const itemCategoryId = readU32(table.data, rowOffset + 16);
+    const itemQualityTier = readU32(table.data, rowOffset + 24);
+    const itemSubcategoryId = readU32(table.data, rowOffset + 28);
+    const descriptionId = readU32(table.data, rowOffset + 32);
+    const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
+      includeDesign: false
+    });
+    const descriptions = buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables),
+      { includeDesign: false }
+    );
+    rows.set(String(itemId), stripEmpty({
+      type: "phantom-factor-item",
+      sourceTable: ITEM_TABLE_NAME,
+      itemId,
+      name: choosePreferredLocaleText(names),
+      names,
+      nameId,
+      iconPath,
+      itemTypeCode,
+      itemCategoryId,
+      itemCategory: itemCategoriesById.get(String(itemCategoryId)),
+      itemQualityTier,
+      itemSubcategoryId,
+      descriptionId,
+      itemDescription: choosePreferredLocaleText(descriptions),
+      itemDescriptions: descriptions,
+      sourceOffset: table.entry.offset + rowOffset
+    }));
+  }
+  return rows;
+}
+
+function collectBuffDescriptionRows(table, localizationTables, helpers) {
+  const { buildLocaleTextObject, choosePreferredLocaleText, readU32 } = helpers;
+  const rows = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const buffId = readU32(table.data, rowOffset);
+    const descriptionId = readU32(table.data, rowOffset + 4);
+    if (!buffId || !descriptionId) {
+      continue;
+    }
+    const descriptions = buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables),
+      { includeDesign: false }
+    );
+    rows.set(String(buffId), stripEmpty({
+      sourceTable: `CTB:${PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset,
+      buffId,
+      descriptionId,
+      text: choosePreferredLocaleText(descriptions),
+      texts: descriptions,
+      cleanTexts: cleanDescriptionsByLocale(descriptions),
+      descriptionLinkTexts: collectDescriptionLinkTexts(descriptions)
+    }));
+  }
+  return rows;
+}
+
+function collectFactorRows(table, factorItemRowsById, helpers) {
+  const { buffsById, descriptionsByBuffId, readU32 } = helpers;
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const itemId = readU32(table.data, rowOffset + FIELD_ITEM_ID);
+    const item = factorItemRowsById.get(String(itemId));
+    if (!item) {
+      continue;
+    }
+    const effectRecords = collectNestedRecordsFromField(table, rowOffset, FIELD_EFFECT_RECORDS, {
+      readU32
+    });
+    const buffEffectRecords = effectRecords
+      .filter((record) => record.opcode === 3 && record.rawValues.length >= 2)
+      .map((record) => stripEmpty({
+        ...record,
+        kind: "opcode-3-buff-record",
+        buffId: Number(record.rawValues[1]),
+        value: record.rawValues[2],
+        buffRow: buffEntity(buffsById.get(String(record.rawValues[1])))
+      }));
+    const primaryBuffId = buffEffectRecords.find((record) => record.buffId)?.buffId;
+    const description = descriptionsByBuffId.get(String(primaryBuffId));
+    const conditionRecords = collectNestedRecordsFromField(table, rowOffset, FIELD_CONDITION_RECORDS, {
+      readU32
+    });
+    const parameterRecords = collectNestedRecordsFromField(table, rowOffset, FIELD_PARAMETER_RECORDS, {
+      readU32
+    });
+    const parameterValues = parameterRecords.flatMap((record) => record.rawValues || []);
+    const renderedDescriptions = description
+      ? renderDescriptionsByLocale(description.texts, parameterValues)
+      : {};
+    const cleanRenderedDescriptions = cleanDescriptionsByLocale(renderedDescriptions);
+    rows.push(stripEmpty({
+      type: "season-phantom-factor",
+      sourceTable: `CTB:${PHANTOM_FACTOR_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset,
+      tableRowIndex: index,
+      itemId,
+      familyId: readU32(table.data, rowOffset + FIELD_FAMILY_ID),
+      grade: readU32(table.data, rowOffset + FIELD_GRADE),
+      rarityBucket: readU32(table.data, rowOffset + FIELD_RARITY_BUCKET),
+      item,
+      name: item.name,
+      names: item.names,
+      iconPath: item.iconPath,
+      rewardItemId: readU32(table.data, rowOffset + FIELD_REWARD_ITEM_ID),
+      effectReferenceField: FIELD_EFFECT_RECORDS,
+      effectRecords,
+      buffEffectRecords,
+      primaryBuffId,
+      primaryBuff: buffEntity(buffsById.get(String(primaryBuffId))),
+      conditionReferenceField: FIELD_CONDITION_RECORDS,
+      conditionRecords,
+      parameterReferenceField: FIELD_PARAMETER_RECORDS,
+      parameterRecords,
+      parameterValues,
+      classGateField: FIELD_CLASS_GATE,
+      classGateIds: readIntArrayFromPool(table.pools.get(INT_POOL), readU32(table.data, rowOffset + FIELD_CLASS_GATE)),
+      descriptionId: description?.descriptionId,
+      description: description?.text,
+      descriptions: description?.texts,
+      cleanDescriptions: description?.cleanTexts,
+      descriptionLinkTexts: description?.descriptionLinkTexts,
+      resolvedDescription: chooseFirstObjectValue(renderedDescriptions),
+      resolvedDescriptions: renderedDescriptions,
+      cleanResolvedDescriptions: cleanRenderedDescriptions
+    }));
+  }
+  return rows.sort((left, right) => Number(left.itemId) - Number(right.itemId));
+}
+
+function collectNestedRecordsFromField(table, rowOffset, fieldOffset, helpers) {
+  const { readU32 } = helpers;
+  const intPool = table?.pools?.get(INT_POOL);
+  if (!intPool) {
+    return [];
+  }
+  const topOffset = readU32(table.data, rowOffset + fieldOffset);
+  const topValues = readIntArrayFromPool(intPool, topOffset);
+  const records = [];
+  for (const recordOffset of topValues) {
+    const rawValues = readIntArrayFromPool(intPool, recordOffset);
+    if (!rawValues.length) {
+      records.push({
+        kind: "raw-value",
+        fieldOffset,
+        value: recordOffset
+      });
+      continue;
+    }
+    records.push(stripEmpty({
+      kind: `opcode-${rawValues[0]}-record`,
+      opcode: rawValues[0],
+      fieldOffset,
+      recordOffset,
+      rawValues
+    }));
+  }
+  return records;
+}
+
+function buildFactorFamilies(factorRows) {
+  const byFamily = new Map();
+  for (const row of factorRows || []) {
+    const key = String(row.familyId);
+    const current = byFamily.get(key) || [];
+    current.push(row);
+    byFamily.set(key, current);
+  }
+  const families = [];
+  for (const [familyId, rows] of byFamily.entries()) {
+    const sortedRows = rows.slice().sort((left, right) => Number(left.grade) - Number(right.grade));
+    const first = sortedRows[0];
+    families.push(stripEmpty({
+      type: "season-phantom-factor-family",
+      sourceTable: first?.sourceTable,
+      familyId: Number(familyId),
+      familyName: stripGradeSuffix(first?.name || ""),
+      familyNames: stripGradeSuffixes(first?.names || {}),
+      familyNameStatus: "localized-item-name-with-grade-suffix-removed",
+      iconPath: first?.iconPath,
+      classGateIds: uniqueNumbers(sortedRows.flatMap((row) => row.classGateIds || [])),
+      primaryBuffIds: uniqueNumbers(sortedRows.flatMap((row) => row.primaryBuffId ? [row.primaryBuffId] : [])),
+      descriptionId: first?.descriptionId,
+      description: first?.description,
+      descriptions: first?.descriptions,
+      cleanDescriptions: first?.cleanDescriptions,
+      descriptionLinkTexts: first?.descriptionLinkTexts,
+      gradeRows: sortedRows.map(factorRowSummary)
+    }));
+  }
+  return families.sort((left, right) => Number(left.familyId) - Number(right.familyId));
+}
+
+function factorRowSummary(row) {
+  return stripEmpty({
+    itemId: row.itemId,
+    grade: row.grade,
+    name: row.name,
+    names: row.names,
+    itemQualityTier: row.item?.itemQualityTier,
+    primaryBuffId: row.primaryBuffId,
+    primaryBuff: row.primaryBuff,
+    effectRecords: row.effectRecords,
+    buffEffectRecords: row.buffEffectRecords,
+    conditionRecords: row.conditionRecords,
+    parameterValues: row.parameterValues,
+    parameterRecords: row.parameterRecords,
+    classGateIds: row.classGateIds,
+    resolvedDescription: row.resolvedDescription,
+    resolvedDescriptions: row.resolvedDescriptions,
+    cleanResolvedDescriptions: row.cleanResolvedDescriptions,
+    sourceOffset: row.sourceOffset
+  });
+}
+
+function buildClassGateIndex(families) {
+  const byClassGate = new Map();
+  for (const family of families || []) {
+    for (const classGateId of family.classGateIds || []) {
+      const key = String(classGateId);
+      const current = byClassGate.get(key) || {
+        classGateId: Number(classGateId),
+        factorFamilies: []
+      };
+      current.factorFamilies.push({
+        familyId: family.familyId,
+        familyName: family.familyName,
+        familyNames: family.familyNames,
+        primaryBuffIds: family.primaryBuffIds
+      });
+      byClassGate.set(key, current);
+    }
+  }
+  return [...byClassGate.values()]
+    .map((entry) => {
+      const labels = collectClassLabelsFromFamilyNames(entry.factorFamilies);
+      return stripEmpty({
+        ...entry,
+        classNameEvidence: labels.length ? "localized-factor-item-name-prefixes" : "",
+        observedClassLabels: labels
+      });
+    })
+    .sort((left, right) => Number(left.classGateId) - Number(right.classGateId));
+}
+
+function collectClassLabelsFromFamilyNames(families) {
+  const labels = new Set();
+  for (const family of families || []) {
+    const label = classPrefixFromFactorName(family.familyNames?.en || family.familyName);
+    if (label) {
+      labels.add(label);
+    }
+  }
+  return [...labels].sort((left, right) => left.localeCompare(right));
+}
+
+function classPrefixFromFactorName(value) {
+  const text = String(value || "").trim();
+  const match = text.match(/^(.+?)\s+(?:Rhapsody\s+)?(?:Stasis\s+)?X\d+\b/i);
+  return match?.[1]?.trim() || "";
+}
+
+function collectRecountRows(rawRecount) {
+  return objectValues(rawRecount)
+    .map((row) => stripEmpty({
+      recountId: Number(row?.Id),
+      recountName: row?.RecountName || row?.Name || "",
+      recountNames: normalizeNames(row?.Names, row?.RecountName || row?.Name || ""),
+      damageIds: uniqueNumbers(row?.DamageId || []),
+      linkedBaseSkillId: row?.LinkedBaseSkillId,
+      linkedTalentId: row?.LinkedTalentId
+    }))
+    .filter((row) => Number.isFinite(row?.recountId) && row.recountId > 0);
+}
+
+function applyDescriptionTargetRecountRows(families, recountRows) {
+  const nameIndex = buildRecountNameIndex(recountRows);
+  for (const family of families || []) {
+    const mentions = collectDescriptionTargetMentions(family);
+    const targetRowsById = new Map();
+    const candidateRows = [];
+    for (const mention of mentions) {
+      const labels = expandTargetLabels(mention.targetText, mention.localeId);
+      for (const label of labels) {
+        const match = matchTargetLabelToRecount(label, mention.localeId, nameIndex, recountRows);
+        if (!match.rows.length) {
+          candidateRows.push(stripEmpty({
+            status: "unmatched",
+            relationshipKind: mention.relationshipKind,
+            localeId: mention.localeId,
+            targetText: mention.targetText,
+            candidateText: label,
+            marker: mention.marker
+          }));
+          continue;
+        }
+        if (match.rows.length > 1) {
+          candidateRows.push(stripEmpty({
+            status: "ambiguous",
+            relationshipKind: mention.relationshipKind,
+            localeId: mention.localeId,
+            targetText: mention.targetText,
+            candidateText: label,
+            marker: mention.marker,
+            recountMatches: match.rows.map((row) => ({
+              recountId: row.recountId,
+              recountName: row.recountName
+            }))
+          }));
+          continue;
+        }
+        const row = match.rows[0];
+        const evidence = stripEmpty({
+          source: "SeasonPhantomFactorProbe.DescriptionTextDreamDmgTarget",
+          sourceTable: `CTB:${PHANTOM_FACTOR_DESCRIPTION_TABLE_HASH}`,
+          relationshipKind: mention.relationshipKind,
+          evidenceStatus: match.matchKind,
+          descriptionId: family.descriptionId,
+          localeId: mention.localeId,
+          targetText: mention.targetText,
+          candidateText: label,
+          matchedText: match.matchedText,
+          marker: mention.marker
+        });
+        const current = targetRowsById.get(String(row.recountId)) || {
+          recountId: row.recountId,
+          recountName: row.recountName,
+          recountNames: row.recountNames,
+          damageIds: row.damageIds,
+          relationshipKind: mention.relationshipKind,
+          evidenceSource: evidence.source,
+          evidenceStatuses: [],
+          evidence: []
+        };
+        current.evidenceStatuses = uniqueStrings([
+          ...(current.evidenceStatuses || []),
+          match.matchKind
+        ]);
+        current.evidence.push(evidence);
+        targetRowsById.set(String(row.recountId), current);
+      }
+    }
+    const targetRows = [...targetRowsById.values()]
+      .map((row) => stripEmpty(row))
+      .sort((left, right) => Number(left.recountId) - Number(right.recountId));
+    if (targetRows.length) {
+      family.descriptionTargetRecountRows = targetRows;
+    }
+    const unresolvedCandidates = compactDescriptionTargetCandidates(candidateRows, targetRowsById);
+    if (unresolvedCandidates.length) {
+      family.descriptionTargetCandidates = unresolvedCandidates;
+    }
+  }
+}
+
+function buildRecountNameIndex(recountRows) {
+  const byLocale = new Map();
+  for (const row of recountRows || []) {
+    for (const [localeId, name] of Object.entries(row.recountNames || {})) {
+      const normalized = normalizeTargetLabel(name);
+      if (!normalized) {
+        continue;
+      }
+      const key = `${localeId}|${normalized}`;
+      const current = byLocale.get(key) || [];
+      current.push(row);
+      byLocale.set(key, current);
+    }
+  }
+  return byLocale;
+}
+
+function collectDescriptionTargetMentions(family) {
+  const mentions = [];
+  const descriptions = family.cleanDescriptions || {};
+  for (const localeId of LOCALE_ORDER) {
+    const text = descriptions[localeId];
+    if (!text) {
+      continue;
+    }
+    for (const mention of extractDreamDamageTargets(text, localeId)) {
+      mentions.push(mention);
+    }
+  }
+  for (const [localeId, text] of Object.entries(descriptions)) {
+    if (LOCALE_ORDER.includes(localeId) || !text) {
+      continue;
+    }
+    for (const mention of extractDreamDamageTargets(text, localeId)) {
+      mentions.push(mention);
+    }
+  }
+  return mentions;
+}
+
+function extractDreamDamageTargets(text, localeId) {
+  const cleanText = cleanMarkup(text);
+  const targets = [];
+  for (const markerRegex of DREAM_DAMAGE_MARKERS) {
+    markerRegex.lastIndex = 0;
+    for (const match of cleanText.matchAll(markerRegex)) {
+      const marker = match[0];
+      const markerStart = match.index || 0;
+      const markerEnd = markerStart + marker.length;
+      const after = cleanText.slice(markerEnd);
+      if (isDefensiveDreamDamageTarget(after)) {
+        continue;
+      }
+      const beforeTarget = targetTextBeforeMarker(cleanText.slice(0, markerStart), localeId);
+      const afterTarget = targetTextAfterMarker(after);
+      const targetText = shouldPreferAfterTarget(beforeTarget, afterTarget)
+        ? afterTarget
+        : beforeTarget;
+      if (!targetText || isDefensiveTargetText(targetText)) {
+        continue;
+      }
+      targets.push(stripEmpty({
+        relationshipKind: "affected-dream-damage-target",
+        localeId,
+        marker,
+        targetText,
+        descriptionText: cleanText
+      }));
+    }
+  }
+  return dedupeMentions(targets);
+}
+
+function dedupeMentions(mentions) {
+  const seen = new Set();
+  const out = [];
+  for (const mention of mentions || []) {
+    const key = [
+      mention.relationshipKind,
+      mention.localeId,
+      mention.marker,
+      mention.targetText
+    ].join("|");
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    out.push(mention);
+  }
+  return out;
+}
+
+function shouldPreferAfterTarget(beforeTarget, afterTarget) {
+  if (!afterTarget) {
+    return false;
+  }
+  if (!beforeTarget) {
+    return true;
+  }
+  return /^(?:the|a|an|les|le|la|l'|der|die|das|el|la|los|las|o|a|os|as)$/i.test(beforeTarget.trim());
+}
+
+function targetTextBeforeMarker(textBefore, localeId) {
+  let clause = lastTopLevelClause(textBefore);
+  clause = stripTriggerPrefix(clause, localeId);
+  return cleanupTargetText(clause);
+}
+
+function targetTextAfterMarker(textAfter) {
+  const after = String(textAfter || "")
+    .replace(/^\s*(?:of|from|dari|de|da|do|du|del|von|des|dos|das|\u7684|\u306e|\uc758|\u0e02\u0e2d\u0e07)\s+/i, "")
+    .trim();
+  const clause = firstTopLevelClause(after);
+  return cleanupTargetText(clause);
+}
+
+function lastTopLevelClause(text) {
+  const clauses = splitTopLevel(String(text || ""), /[.;\u3002\uff1b]/);
+  return (clauses.at(-1) || "").trim();
+}
+
+function firstTopLevelClause(text) {
+  const clauses = splitTopLevel(String(text || ""), /[.;\u3002\uff1b+]/);
+  return (clauses[0] || "").trim();
+}
+
+function stripTriggerPrefix(value, localeId) {
+  let text = String(value || "").trim();
+  const commaParts = splitTopLevel(text, /[,\uff0c]/);
+  if (commaParts.length > 1 && hasTriggerPrefix(commaParts.slice(0, -1).join(" "), localeId)) {
+    text = commaParts.at(-1).trim();
+  }
+  text = text
+    .replace(/^.*(?:\bafter\b|\bduring\b|\bwhen\b|\bwhile\b)[^,]*,\s*/i, "")
+    .replace(/^.*(?:\u5185|\u5167|\u9593\u306f|\ub3d9\uc548)\s*/, "")
+    .trim();
+  return text;
+}
+
+function hasTriggerPrefix(value) {
+  return /(?:\bafter\b|\bduring\b|\bwhen\b|\bwhile\b|\bcasting\b|\bcast\b|\u65bd\u653e|\u767a\u52d5|\u5f8c|\u540e|\u30ad\u30e3\u30b9\u30c8|\uc2dc\uc804|lancement|conjurar|lanzar|wirken|melancarkan)/i
+    .test(String(value || ""));
+}
+
+function cleanupTargetText(value) {
+  let text = String(value || "")
+    .replace(/\([^)]*(?:does not affect|unchanged)[^)]*\)/gi, "")
+    .replace(/\uff08[^\uff09]*(?:does not affect|unchanged)[^\uff09]*\uff09/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  text = text
+    .replace(/^(?:and|or|of|from|de|da|do|du|del|von|dari|the|les|le|la|der|die|das|el|los|las|o|os|as)\s+/i, "")
+    .replace(/(?:\u306e|\uc758|\u7684)$/g, "")
+    .replace(/\s*(?:\+|increases(?: by)?|is increased(?: by)?|are increased(?: by)?|wird um erh\u00f6ht|aumenta(?: em)?|aumentado(?: en)?|เพิ่ม|증가합니다).*$/i, "")
+    .replace(/[:：,，;；.。]+$/g, "")
+    .trim();
+  return text;
+}
+
+function isDefensiveDreamDamageTarget(textAfter) {
+  return /^\s*(?:Resistance|Reduction|Resist|Mitigation|Taken|DEF|Reducci|R\u00e9duction|Redu\u00e7|Resist\u00eancia|\u51cf\u514d|\u6e1b\u514d|\u62b5\u6297|\u6297\u6027|\u8efd\u6e1b|\uac10\uba74|\uac10\uc18c|\uc800\ud56d)/i
+    .test(String(textAfter || ""));
+}
+
+function isDefensiveTargetText(value) {
+  return /(?:Resistance|Reduction|Resist|Mitigation|DEF|Reducci|R\u00e9duction|Redu\u00e7|Resist\u00eancia|\u51cf\u514d|\u6e1b\u514d|\u62b5\u6297|\u6297\u6027|\u8efd\u6e1b|\uac10\uba74|\uac10\uc18c|\uc800\ud56d)$/i
+    .test(String(value || "").trim());
+}
+
+function splitTopLevel(text, delimiterRegex) {
+  const parts = [];
+  let current = "";
+  let depth = 0;
+  for (const char of String(text || "")) {
+    if (char === "(" || char === "\uff08") {
+      depth += 1;
+    } else if ((char === ")" || char === "\uff09") && depth > 0) {
+      depth -= 1;
+    }
+    if (depth === 0 && delimiterRegex.test(char)) {
+      parts.push(current);
+      current = "";
+      delimiterRegex.lastIndex = 0;
+      continue;
+    }
+    current += char;
+    delimiterRegex.lastIndex = 0;
+  }
+  parts.push(current);
+  return parts;
+}
+
+function expandTargetLabels(targetText, localeId) {
+  const candidates = new Set();
+  const cleaned = cleanupTargetText(targetText);
+  if (!cleaned) {
+    return [];
+  }
+  candidates.add(cleaned);
+  for (const grouped of expandGroupedTargetLabels(cleaned, localeId)) {
+    candidates.add(grouped);
+  }
+  for (const part of splitConjoinedTargets(cleaned)) {
+    candidates.add(part);
+  }
+  return [...candidates]
+    .map(cleanupTargetText)
+    .map((value) => value.replace(/^\u200b+|\u200b+$/g, "").trim())
+    .filter((value) => value && !isGenericTargetLabel(value))
+    .sort((left, right) => right.length - left.length || left.localeCompare(right));
+}
+
+function expandGroupedTargetLabels(targetText) {
+  const out = [];
+  const regex = /([^\(\uff08]{1,48})[\(\uff08]([^\)\uff09]+)[\)\uff09]/g;
+  for (const match of String(targetText || "").matchAll(regex)) {
+    const prefix = normalizeGroupedPrefix(match[1]);
+    const parts = splitConjoinedTargets(match[2]);
+    for (const part of parts) {
+      out.push(part);
+      if (prefix && !startsWithNormalized(part, prefix)) {
+        out.push(joinGroupedPrefix(prefix, part));
+      }
+    }
+  }
+  return out;
+}
+
+function normalizeGroupedPrefix(value) {
+  let prefix = cleanupTargetText(value);
+  prefix = prefix
+    .replace(/^.*(?:\bafter\b|\bduring\b|\bwhen\b|\bwhile\b)[^,]*,\s*/i, "")
+    .replace(/^.*(?:\u5185|\u5167|\u9593\u306f|\ub3d9\uc548|setelah|ap\u00f3s|tras|nach)\s*/i, "")
+    .replace(/^.*[\s,，、]/, "")
+    .replace(/^[\u306f\s]+/, "")
+    .trim();
+  return prefix;
+}
+
+function joinGroupedPrefix(prefix, part) {
+  if (usesSpaceBetweenPrefixAndPart(prefix, part)) {
+    return `${prefix} ${part}`.trim();
+  }
+  return `${prefix}${part}`.trim();
+}
+
+function usesSpaceBetweenPrefixAndPart(prefix, part) {
+  return /^[A-Za-z0-9]/.test(prefix) && /^[A-Za-z0-9]/.test(part);
+}
+
+function startsWithNormalized(value, prefix) {
+  const normalizedValue = normalizeTargetLabel(value);
+  const normalizedPrefix = normalizeTargetLabel(prefix);
+  return Boolean(normalizedPrefix) && normalizedValue.startsWith(normalizedPrefix);
+}
+
+function splitConjoinedTargets(value) {
+  return splitTopLevel(String(value || ""), /[,，、/]/)
+    .flatMap((part) => part.split(/\s+(?:and|or|und|et|y|e|dan)\s+/i))
+    .map(cleanupTargetText)
+    .filter(Boolean);
+}
+
+function isGenericTargetLabel(value) {
+  const normalized = normalizeTargetLabel(value);
+  const localizedGenericLabels = new Set([
+    "basic attack",
+    "normal attack",
+    "auto attack",
+    "\u666e\u901a\u653b\u51fb",
+    "\u666e\u901a\u653b\u64ca",
+    "\u901a\u5e38\u653b\u6483",
+    "\uc77c\ubc18 \uacf5\uaca9",
+    "ataque b\u00e1sico"
+  ]);
+  return normalized.length < 3
+    || localizedGenericLabels.has(normalized)
+    || /^(?:dream dmg|dreamscape dmg|class skill|ultimate|lucky strike)$/.test(normalized);
+}
+
+function matchTargetLabelToRecount(label, localeId, nameIndex, recountRows) {
+  const normalized = normalizeTargetLabel(label);
+  if (!normalized || isGenericTargetLabel(label)) {
+    return { rows: [], matchKind: "unmatched" };
+  }
+  const exactRows = uniqueRecountRows(nameIndex.get(`${localeId}|${normalized}`) || []);
+  if (exactRows.length) {
+    return {
+      rows: exactRows,
+      matchKind: "description-target-exact-localized-name",
+      matchedText: label
+    };
+  }
+  const suffixRows = uniqueRecountRows((recountRows || []).filter((row) => {
+    const name = row.recountNames?.[localeId];
+    const normalizedName = normalizeTargetLabel(name);
+    return isSafeSuffixTarget(normalized, normalizedName);
+  }));
+  if (suffixRows.length === 1) {
+    return {
+      rows: suffixRows,
+      matchKind: "description-target-unique-localized-suffix",
+      matchedText: label
+    };
+  }
+  return { rows: suffixRows, matchKind: suffixRows.length ? "ambiguous-localized-suffix" : "unmatched" };
+}
+
+function isSafeSuffixTarget(normalizedTarget, normalizedName) {
+  if (!normalizedTarget || !normalizedName || normalizedTarget === normalizedName) {
+    return false;
+  }
+  if (!normalizedName.endsWith(normalizedTarget)) {
+    return false;
+  }
+  if (/^[a-z0-9 ]+$/.test(normalizedTarget)) {
+    return normalizedTarget.length >= 8 && normalizedTarget.includes(" ");
+  }
+  return normalizedTarget.length >= 4;
+}
+
+function normalizeTargetLabel(value) {
+  return cleanMarkup(value)
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/\s+/g, " ")
+    .replace(/[’']/g, "'")
+    .trim()
+    .toLowerCase();
+}
+
+function uniqueRecountRows(rows) {
+  const byId = new Map();
+  for (const row of rows || []) {
+    if (row?.recountId) {
+      byId.set(String(row.recountId), row);
+    }
+  }
+  return [...byId.values()].sort((left, right) => Number(left.recountId) - Number(right.recountId));
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).filter(Boolean).map(String))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function compactDescriptionTargetCandidates(candidates, targetRowsById) {
+  const seen = new Set();
+  const out = [];
+  for (const candidate of candidates || []) {
+    const key = [
+      candidate.status,
+      candidate.localeId,
+      candidate.targetText,
+      candidate.candidateText,
+      (candidate.recountMatches || []).map((row) => row.recountId).join(",")
+    ].join("|");
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    if (candidate.status === "unmatched" && hasResolvedSiblingCandidate(candidate, targetRowsById)) {
+      continue;
+    }
+    out.push(candidate);
+  }
+  return out.slice(0, 40);
+}
+
+function hasResolvedSiblingCandidate(candidate, targetRowsById) {
+  const candidateText = normalizeTargetLabel(candidate?.candidateText);
+  for (const row of targetRowsById.values()) {
+    for (const evidence of row.evidence || []) {
+      if (normalizeTargetLabel(evidence?.candidateText) === candidateText) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function renderDescriptionsByLocale(descriptions, parameterValues) {
+  const out = {};
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const rendered = renderDecisionPlaceholders(text, parameterValues);
+    if (rendered) {
+      out[localeId] = rendered;
+    }
+  }
+  return out;
+}
+
+function renderDecisionPlaceholders(text, parameterValues) {
+  return String(text || "").replace(
+    /\{\*Decision\.([A-Za-z0-9_]+)\((\d+)\)\*\}/g,
+    (match, functionName, indexText) => {
+      const value = parameterValues[Number(indexText) - 1];
+      if (value === undefined) {
+        return match;
+      }
+      return formatDecisionValue(functionName, value);
+    }
+  );
+}
+
+function formatDecisionValue(functionName, value) {
+  const name = String(functionName || "").toLowerCase();
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    return String(value);
+  }
+  if (name === "unmarkpercent") {
+    return `${formatDecimal(numericValue / 100)}%`;
+  }
+  if (name === "unmarktime") {
+    return `${formatDecimal(numericValue / 1000)}s`;
+  }
+  if (name === "unmarknormal") {
+    return formatDecimal(numericValue);
+  }
+  return String(value);
+}
+
+function formatDecimal(value) {
+  if (Number.isInteger(value)) {
+    return String(value);
+  }
+  return value.toFixed(3).replace(/0+$/g, "").replace(/\.$/g, "");
+}
+
+function stripGradeSuffix(value) {
+  return String(value || "")
+    .replace(/\s*(?:[-–—·・]\s*G\d+|\(G\d+\))\s*$/i, "")
+    .trim();
+}
+
+function stripGradeSuffixes(names) {
+  const out = {};
+  for (const [localeId, value] of Object.entries(names || {})) {
+    const text = stripGradeSuffix(value);
+    if (text) {
+      out[localeId] = text;
+    }
+  }
+  return out;
+}
+
+function collectLocalizedTextEntries(textId, localizationTables) {
+  const id = Number(textId);
+  if (!Number.isInteger(id) || !id) {
+    return [];
+  }
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index?.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    if (text) {
+      entries.push({ language: table.language, stringIndex, text });
+    }
+  }
+  return entries;
+}
+
+function readIntArrayFromPool(pool, index) {
+  if (!pool || !Number.isInteger(index) || index < 0 || index + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(index);
+  if (length <= 0 || length > 512 || index + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const out = [];
+  for (let i = 0; i < length; i += 1) {
+    out.push(pool.readInt32LE(index + 2 + i * 4));
+  }
+  return out;
+}
+
+function cleanDescriptionsByLocale(descriptions) {
+  const out = {};
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const cleaned = cleanMarkup(String(text || "").replace(/<br\s*\/?>/gi, "\n"));
+    if (cleaned) {
+      out[localeId] = cleaned;
+    }
+  }
+  return out;
+}
+
+function cleanMarkup(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\{[^}]*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function collectDescriptionLinkTexts(descriptions) {
+  const byId = new Map();
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const regex = /<linktext=(\d+)[^>]*>(.*?)<\/linktext>/gis;
+    for (const match of String(text || "").matchAll(regex)) {
+      const linkTextId = Number(match[1]);
+      const label = cleanMarkup(match[2]);
+      if (!Number.isFinite(linkTextId) || !label) {
+        continue;
+      }
+      const current = byId.get(String(linkTextId)) || {
+        linkTextId,
+        labelsByLocale: {}
+      };
+      current.labelsByLocale[localeId] = label;
+      byId.set(String(linkTextId), current);
+    }
+  }
+  return [...byId.values()];
+}
+
+function buffEntity(buff) {
+  if (!buff?.Id) {
+    return null;
+  }
+  return stripEmpty({
+    type: "buff",
+    sourceTable: "BuffTable.ctb",
+    id: buff.Id,
+    name: preferredName(buff),
+    names: normalizeNames(buff.Names, buff.Name),
+    designName: buff.DesignName || buff.NameDesign || "",
+    nameIdSource: buff.NameIdSource || "",
+    iconPath: buff.IconPath || "",
+    sourceOffset: buff.SourceOffset
+  });
+}
+
+function preferredName(row) {
+  return row?.Names?.en || row?.Name || row?.NameDesign || row?.DesignName || "";
+}
+
+function normalizeNames(names, fallback = "") {
+  const out = {};
+  for (const [localeId, value] of Object.entries(names || {})) {
+    const text = String(value || "").trim();
+    if (text) {
+      out[localeId] = text;
+    }
+  }
+  if (!Object.keys(out).length && fallback) {
+    out.en = String(fallback).trim();
+  }
+  return out;
+}
+
+function chooseFirstObjectValue(values) {
+  for (const localeId of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"]) {
+    const value = String(values?.[localeId] || "").trim();
+    if (value) {
+      return value;
+    }
+  }
+  for (const value of Object.values(values || {})) {
+    const text = String(value || "").trim();
+    if (text) {
+      return text;
+    }
+  }
+  return "";
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || [])
+    .map(Number)
+    .filter((value) => Number.isFinite(value) && value > 0))]
+    .sort((left, right) => left - right);
+}
+
+function objectValues(value) {
+  return Array.isArray(value) ? value : Object.values(value || {});
+}
+
+function stripEmpty(value) {
+  if (Array.isArray(value)) {
+    const out = value
+      .map(stripEmpty)
+      .filter((entry) => entry !== undefined);
+    return out.length ? out : undefined;
+  }
+  if (value && typeof value === "object") {
+    const out = {};
+    for (const [key, entry] of Object.entries(value)) {
+      const cleaned = stripEmpty(entry);
+      if (cleaned !== undefined) {
+        out[key] = cleaned;
+      }
+    }
+    return Object.keys(out).length ? out : undefined;
+  }
+  if (value === "" || value === null || value === undefined) {
+    return undefined;
+  }
+  return value;
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Season Phantom Factor Probe");
+  lines.push("");
+  lines.push("Status: probe-only. No runtime labels consume this report.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  lines.push(`- Source rows: ${report.summary.sourceRows}`);
+  lines.push(`- Decoded factor rows: ${report.summary.decodedRows}`);
+  lines.push(`- Factor families: ${report.summary.factorFamilies}`);
+  lines.push(`- Rows with BuffTable effect records: ${report.summary.rowsWithBuffEffectRecord}`);
+  lines.push(`- Rows with resolved descriptions: ${report.summary.rowsWithResolvedDescription}`);
+  lines.push(`- Rows with class gates: ${report.summary.rowsWithClassGate}`);
+  lines.push(`- Class gate ids: ${(report.summary.classGateIds || []).join(", ")}`);
+  lines.push(`- Families with description target Recount rows: ${report.summary.familiesWithDescriptionTargetRecountRows}`);
+  lines.push(`- Description target Recount rows: ${report.summary.descriptionTargetRecountRows}`);
+  lines.push("");
+  lines.push("## Class Gates");
+  lines.push("");
+  lines.push("| Class Gate | Observed Labels | Families |");
+  lines.push("| --- | --- | ---: |");
+  for (const entry of report.classGateIndex || []) {
+    lines.push(`| ${entry.classGateId} | ${(entry.observedClassLabels || []).join(", ")} | ${entry.factorFamilies?.length || 0} |`);
+  }
+  lines.push("");
+  lines.push("## Marksman Examples");
+  lines.push("");
+  lines.push("| Family | Grade | Item | Buff | Resolved EN Description |");
+  lines.push("| --- | ---: | --- | --- | --- |");
+  for (const family of (report.families || []).filter((entry) => entry.classGateIds?.includes(11)).slice(0, 14)) {
+    const gradeTen = family.gradeRows?.find((row) => Number(row.grade) === 10) || family.gradeRows?.[0] || {};
+    lines.push(`| ${family.familyId} | ${gradeTen.grade || ""} | ${escapeMarkdown(gradeTen.name || family.familyName || "")} | ${gradeTen.primaryBuffId || ""} | ${escapeMarkdown(cleanMarkup(gradeTen.resolvedDescriptions?.en || gradeTen.resolvedDescription || ""))} |`);
+  }
+  lines.push("");
+  lines.push("## First Families");
+  lines.push("");
+  lines.push("| Family | Name | Class Gates | Buffs | Grades |");
+  lines.push("| --- | --- | --- | --- | ---: |");
+  for (const family of (report.families || []).slice(0, 40)) {
+    lines.push(`| ${family.familyId} | ${escapeMarkdown(family.familyName || "")} | ${(family.classGateIds || []).join(", ")} | ${(family.primaryBuffIds || []).join(", ")} | ${family.gradeRows?.length || 0} |`);
+  }
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
+function escapeMarkdown(value) {
+  return String(value || "").replace(/\|/g, "\\|").replace(/\n/g, " ");
+}

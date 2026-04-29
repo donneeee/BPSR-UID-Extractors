@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "ui": "node ./ui/server.mjs",
-    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js && node ./ExportParserAssets.gen --help && node ./HistoryLabelEvidence.gen --help"
+    "probe:formula": "node ./FormulaSurfaceProbe.gen",
+    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js && node ./ExportParserAssets.gen --help && node ./ClassLabels.gen --help && node ./HistoryLabelEvidence.gen --help && node ./StrictUnresolvedWorklist.gen --help && node ./ClassSpecSkillModelProbe.gen --help && node ./TalentEffectModelProbe.gen --help && node ./SeasonTalentNodeProbe.gen --help && node ./SeasonRogueEntryProbe.gen --help && node ./SeasonPhantomFactorProbe.gen --help && node ./FormulaSurfaceProbe.gen --help"
   }
 }
