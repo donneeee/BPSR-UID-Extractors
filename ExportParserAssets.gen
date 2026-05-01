@@ -339,6 +339,13 @@ function classifyParserBucketForSource(sourceGroup, name, address, asset = {}) {
 
   const base = basenameNoExt(name).toLowerCase();
   const text = `${base} ${String(address || "").toLowerCase()} ${String(asset.AtlasAddress || "").toLowerCase()}`;
+  if (
+    (sourceGroup === "SeasonPhantomFactors" || sourceGroup === "EffectSources") &&
+    /^(?:kuangxiang)?yinzi_/i.test(base)
+  ) {
+    return { bucket: "season_phantom_factor", noSuffix: true };
+  }
+
   if (isLikelyNonUiIconAsset(base, text, asset)) {
     return null;
   }

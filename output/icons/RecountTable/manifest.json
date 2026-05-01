@@ -1,15 +1,15 @@
 {
-  "GeneratedAt": "2026-04-25T06:53:35.026Z",
+  "GeneratedAt": "2026-05-01T02:50:18.609Z",
   "SourceGroup": "RecountTable",
   "OutputDir": "output/icons/RecountTable",
-  "AssetCount": 216,
+  "AssetCount": 218,
   "Assets": [
     {
       "AssetId": "RecountTable|Sprite|1447258277|buff_abnormal_green_icon|RecountTable/buff_abnormal_green_icon.png",
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "173.IconPaths.0",
       "Value": "ui/atlas/buff/buff_abnormal_green_icon",
       "Address": "ui/atlas/buff/buff_abnormal_green_icon",
       "AddressHash": 2047329081,
@@ -43,7 +43,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "222.IconPaths.0",
       "Value": "ui/atlas/hud/buff/buff_blue_atk",
       "Address": "ui/atlas/hud/buff_blue_atk",
       "AddressHash": 3185659383,
@@ -77,7 +77,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "151.IconPaths.0",
       "Value": "ui/atlas/hud/buff/buff_blue_def",
       "Address": "ui/atlas/hud/buff_blue_def",
       "AddressHash": 3185659383,
@@ -111,7 +111,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "284.IconPath",
       "Value": "ui/atlas/hud/buff/buff_blue_heal",
       "Address": "ui/atlas/hud/buff_blue_heal",
       "AddressHash": 3185659383,
@@ -145,7 +145,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "245.IconPaths.0",
       "Value": "ui/atlas/buff/buff_icon09",
       "Address": "ui/atlas/buff/buff_icon09",
       "AddressHash": 2047329081,
@@ -179,7 +179,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "246.IconPaths.0",
       "Value": "ui/atlas/buff/buff_icon133",
       "Address": "ui/atlas/buff/buff_icon133",
       "AddressHash": 2047329081,
@@ -213,7 +213,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "273.IconPath",
       "Value": "ui/atlas/buff/buff_icon155",
       "Address": "ui/atlas/buff/buff_icon155",
       "AddressHash": 2047329081,
@@ -247,7 +247,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "132.IconPaths.0",
       "Value": "ui/atlas/buff/buff_icon60",
       "Address": "ui/atlas/buff/buff_icon60",
       "AddressHash": 2047329081,
@@ -271,6 +271,16 @@
       "AtlasHash": 2047329081,
       "SpriteName": "buff_icon60",
       "SpriteAddress": 3368385849,
+      "Fields": [
+        "132.IconPaths.0",
+        "162.IconPaths.0"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon60"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -285,7 +295,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "152.IconPaths.0",
       "Value": "ui/atlas/buff/buff_icon70",
       "Address": "ui/atlas/buff/buff_icon70",
       "AddressHash": 2047329081,
@@ -319,7 +329,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "262.IconPath",
       "Value": "ui/atlas/buff/buff_passive_icon_general_sup_inspireex",
       "Address": "ui/atlas/buff/buff_passive_icon_general_sup_inspireex",
       "AddressHash": 2047329081,
@@ -353,7 +363,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "183.IconPath",
       "Value": "ui/atlas/buff/buff_passive_icon_tank_violent01",
       "Address": "ui/atlas/buff/buff_passive_icon_tank_violent01",
       "AddressHash": 2047329081,
@@ -387,7 +397,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "260.IconPaths.0",
       "Value": "ui/atlas/hud/debuff/buff_red_def",
       "Address": "ui/atlas/hud/buff_red_def",
       "AddressHash": 3185659383,
@@ -421,7 +431,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "21.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_4/changqiang440",
       "Address": "ui/atlas/talent_passive_4/changqiang440",
       "AddressHash": 359924875,
@@ -446,8 +456,8 @@
       "SpriteName": "changqiang440",
       "SpriteAddress": 3020913635,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "21.LinkedTalentIconPath",
+        "21.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_4/changqiang440"
@@ -469,7 +479,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "12.IconPaths.0",
       "Value": "ui/atlas/talent_passive_4/changqiang447",
       "Address": "ui/atlas/talent_passive_4/changqiang447",
       "AddressHash": 359924875,
@@ -503,7 +513,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "215.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_13/gita1314",
       "Address": "ui/atlas/talent_passive_13/gita1314",
       "AddressHash": 3287586235,
@@ -528,8 +538,8 @@
       "SpriteName": "gita1314",
       "SpriteAddress": 2854877400,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "215.LinkedTalentIconPath",
+        "215.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_13/gita1314"
@@ -551,7 +561,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "200.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_13/gita1330",
       "Address": "ui/atlas/talent_passive_13/gita1330",
       "AddressHash": 3287586235,
@@ -576,8 +586,8 @@
       "SpriteName": "gita1330",
       "SpriteAddress": 2854877462,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "200.LinkedTalentIconPath",
+        "200.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_13/gita1330"
@@ -599,7 +609,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "203.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_13/gita1342",
       "Address": "ui/atlas/talent_passive_13/gita1342",
       "AddressHash": 3287586235,
@@ -624,8 +634,8 @@
       "SpriteName": "gita1342",
       "SpriteAddress": 2854877497,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "203.LinkedTalentIconPath",
+        "203.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_13/gita1342"
@@ -647,7 +657,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "204.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_13/gita1343",
       "Address": "ui/atlas/talent_passive_13/gita1343",
       "AddressHash": 3287586235,
@@ -672,8 +682,8 @@
       "SpriteName": "gita1343",
       "SpriteAddress": 2854877498,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "204.LinkedTalentIconPath",
+        "204.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_13/gita1343"
@@ -695,7 +705,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "214.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_13/gita1361",
       "Address": "ui/atlas/talent_passive_13/gita1361",
       "AddressHash": 3287586235,
@@ -720,8 +730,8 @@
       "SpriteName": "gita1361",
       "SpriteAddress": 2854877562,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "214.LinkedTalentIconPath",
+        "214.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_13/gita1361"
@@ -743,7 +753,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "100.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_11/gongjian1151",
       "Address": "ui/atlas/talent_passive_11/gongjian1151",
       "AddressHash": 3287586233,
@@ -768,8 +778,8 @@
       "SpriteName": "gongjian1151",
       "SpriteAddress": 3315583133,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "100.LinkedTalentIconPath",
+        "100.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_11/gongjian1151"
@@ -791,7 +801,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "96.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_11/gongjian1153",
       "Address": "ui/atlas/talent_passive_11/gongjian1153",
       "AddressHash": 3287586233,
@@ -816,8 +826,8 @@
       "SpriteName": "gongjian1153",
       "SpriteAddress": 3315583135,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "96.LinkedTalentIconPath",
+        "96.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_11/gongjian1153"
@@ -839,7 +849,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "97.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_11/gongjian1160",
       "Address": "ui/atlas/talent_passive_11/gongjian1160",
       "AddressHash": 3287586233,
@@ -864,8 +874,8 @@
       "SpriteName": "gongjian1160",
       "SpriteAddress": 3315583165,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "97.LinkedTalentIconPath",
+        "97.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_11/gongjian1160"
@@ -887,7 +897,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "102.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_11/gongjian1162",
       "Address": "ui/atlas/talent_passive_11/gongjian1162",
       "AddressHash": 3287586233,
@@ -912,8 +922,8 @@
       "SpriteName": "gongjian1162",
       "SpriteAddress": 3315583167,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "102.LinkedTalentIconPath",
+        "102.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_11/gongjian1162"
@@ -935,7 +945,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "154.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_12/jiandun1201",
       "Address": "ui/atlas/talent_passive_12/jiandun1201",
       "AddressHash": 3287586234,
@@ -960,8 +970,8 @@
       "SpriteName": "jiandun1201",
       "SpriteAddress": 4243426582,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "154.LinkedTalentIconPath",
+        "154.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_12/jiandun1201"
@@ -983,7 +993,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "163.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_12/jiandun1223",
       "Address": "ui/atlas/talent_passive_12/jiandun1223",
       "AddressHash": 3287586234,
@@ -1008,8 +1018,8 @@
       "SpriteName": "jiandun1223",
       "SpriteAddress": 4243426650,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "163.LinkedTalentIconPath",
+        "163.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_12/jiandun1223"
@@ -1031,7 +1041,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "158.IconPath",
       "Value": "ui/atlas/talent_passive_12/jiandun1224",
       "Address": "ui/atlas/talent_passive_12/jiandun1224",
       "AddressHash": 3287586234,
@@ -1065,7 +1075,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "160.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_12/jiandun1245",
       "Address": "ui/atlas/talent_passive_12/jiandun1245",
       "AddressHash": 3287586234,
@@ -1090,8 +1100,8 @@
       "SpriteName": "jiandun1245",
       "SpriteAddress": 4243426718,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "160.LinkedTalentIconPath",
+        "160.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_12/jiandun1245"
@@ -1113,7 +1123,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "161.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_12/jiandun1254",
       "Address": "ui/atlas/talent_passive_12/jiandun1254",
       "AddressHash": 3287586234,
@@ -1138,8 +1148,8 @@
       "SpriteName": "jiandun1254",
       "SpriteAddress": 4243426750,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "161.LinkedTalentIconPath",
+        "161.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_12/jiandun1254"
@@ -1161,7 +1171,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "280.IconPath",
       "Value": "ui/atlas/mod_effect/mod_effect_icon_035",
       "Address": "ui/atlas/mod_effect/mod_effect_icon_035",
       "AddressHash": 3564913090,
@@ -1195,7 +1205,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "288.IconPath",
       "Value": "ui/atlas/season_talent_icon/s2talent01_04",
       "Address": "ui/atlas/season_talent_icon/s2talent01_04",
       "AddressHash": 3703755086,
@@ -1219,6 +1229,16 @@
       "AtlasHash": 3703755086,
       "SpriteName": "s2talent01_04",
       "SpriteAddress": 2797434254,
+      "Fields": [
+        "288.IconPath",
+        "289.IconPath"
+      ],
+      "Values": [
+        "ui/atlas/season_talent_icon/s2talent01_04"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 39,
       "PngHeight": 39,
@@ -1233,7 +1253,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "231.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
       "AddressHash": 3660535822,
@@ -1264,7 +1284,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "241.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
       "AddressHash": 3660535826,
@@ -1295,7 +1315,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "240.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010",
       "AddressHash": 3660535850,
@@ -1317,8 +1337,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_010",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "240.LinkedBaseSkillIconPath",
+        "240.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010"
@@ -1340,7 +1360,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "246.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_012",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_012",
       "AddressHash": 3660535852,
@@ -1362,8 +1382,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_012",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "246.LinkedBaseSkillIconPath",
+        "246.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_012"
@@ -1385,7 +1405,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "247.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
       "AddressHash": 3660535854,
@@ -1416,7 +1436,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "254.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
       "AddressHash": 3660535855,
@@ -1447,7 +1467,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "249.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017",
       "AddressHash": 3660535857,
@@ -1469,8 +1489,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_017",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "249.LinkedBaseSkillIconPath",
+        "249.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017"
@@ -1492,7 +1512,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "226.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_018",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_018",
       "AddressHash": 3660535858,
@@ -1514,8 +1534,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_018",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "226.LinkedBaseSkillIconPath",
+        "226.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_018"
@@ -1537,7 +1557,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "242.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019",
       "AddressHash": 3660535859,
@@ -1563,8 +1583,9 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_019",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "242.LinkedBaseSkillIconPath",
+        "242.IconPath",
+        "282.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019"
@@ -1586,7 +1607,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "229.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_020",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_020",
       "AddressHash": 3660535883,
@@ -1608,8 +1629,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_020",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "229.LinkedBaseSkillIconPath",
+        "229.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_020"
@@ -1631,7 +1652,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "250.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_022",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_022",
       "AddressHash": 3660535885,
@@ -1653,8 +1674,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_022",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "250.LinkedBaseSkillIconPath",
+        "250.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_022"
@@ -1676,7 +1697,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "255.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
       "AddressHash": 3660535888,
@@ -1707,7 +1728,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "228.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
       "AddressHash": 3660535889,
@@ -1738,7 +1759,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "251.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028",
       "AddressHash": 3660535891,
@@ -1760,8 +1781,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_028",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "251.LinkedBaseSkillIconPath",
+        "251.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028"
@@ -1783,7 +1804,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "232.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_029",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_029",
       "AddressHash": 3660535892,
@@ -1805,8 +1826,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_029",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "232.LinkedBaseSkillIconPath",
+        "232.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_029"
@@ -1828,7 +1849,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "222.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_030",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_030",
       "AddressHash": 3660535916,
@@ -1850,8 +1871,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_030",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "222.LinkedBaseSkillIconPath",
+        "222.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_030"
@@ -1873,7 +1894,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "225.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
       "AddressHash": 3660535917,
@@ -1904,7 +1925,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "243.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_032",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_032",
       "AddressHash": 3660535918,
@@ -1926,8 +1947,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_032",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "243.LinkedBaseSkillIconPath",
+        "243.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_032"
@@ -1949,7 +1970,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "244.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_033",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_033",
       "AddressHash": 3660535919,
@@ -1971,8 +1992,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_033",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "244.LinkedBaseSkillIconPath",
+        "244.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_033"
@@ -1994,7 +2015,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "224.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
       "AddressHash": 3660535923,
@@ -2025,7 +2046,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "245.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_038",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_038",
       "AddressHash": 3660535924,
@@ -2047,8 +2068,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_038",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "245.LinkedBaseSkillIconPath",
+        "245.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_038"
@@ -2070,7 +2091,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "230.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
       "AddressHash": 3660535949,
@@ -2101,7 +2122,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "234.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
       "AddressHash": 3660535950,
@@ -2132,7 +2153,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "236.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_043",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_043",
       "AddressHash": 3660535952,
@@ -2154,8 +2175,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_043",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "236.LinkedBaseSkillIconPath",
+        "236.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_043"
@@ -2177,7 +2198,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "237.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
       "AddressHash": 3660535953,
@@ -2208,7 +2229,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "252.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_045",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_045",
       "AddressHash": 3660535954,
@@ -2230,8 +2251,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_045",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "252.LinkedBaseSkillIconPath",
+        "252.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_045"
@@ -2253,7 +2274,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "227.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_046",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_046",
       "AddressHash": 3660535955,
@@ -2275,8 +2296,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_046",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "227.LinkedBaseSkillIconPath",
+        "227.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_046"
@@ -2298,7 +2319,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "248.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_047",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_047",
       "AddressHash": 3660535956,
@@ -2320,8 +2341,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_047",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "248.LinkedBaseSkillIconPath",
+        "248.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_047"
@@ -2343,7 +2364,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "233.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
       "AddressHash": 3660535957,
@@ -2374,7 +2395,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "253.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
       "AddressHash": 3660535958,
@@ -2405,7 +2426,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "259.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_050",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_050",
       "AddressHash": 3660535982,
@@ -2427,8 +2448,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_050",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "259.LinkedBaseSkillIconPath",
+        "259.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_050"
@@ -2450,7 +2471,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "238.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_051",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_051",
       "AddressHash": 3660535983,
@@ -2472,8 +2493,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_051",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "238.LinkedBaseSkillIconPath",
+        "238.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_051"
@@ -2495,7 +2516,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "260.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_052",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_052",
       "AddressHash": 3660535984,
@@ -2517,8 +2538,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_052",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "260.LinkedBaseSkillIconPath",
+        "260.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_052"
@@ -2540,7 +2561,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "263.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_053",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_053",
       "AddressHash": 3660535985,
@@ -2562,8 +2583,8 @@
       ],
       "TextureName": "skill_aoyi_skill_icon_053",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "263.LinkedBaseSkillIconPath",
+        "263.IconPath"
       ],
       "Values": [
         "ui/textures/skill_aoyi/skill_aoyi_skill_icon_053"
@@ -2585,7 +2606,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "261.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
       "AddressHash": 3660535987,
@@ -2616,7 +2637,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "270.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
       "AddressHash": 3660535988,
@@ -2647,7 +2668,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "264.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
       "AddressHash": 3660535990,
@@ -2678,7 +2699,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "272.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
       "AddressHash": 3660535991,
@@ -2709,7 +2730,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "274.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
       "AddressHash": 3660536016,
@@ -2740,7 +2761,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[1]",
+      "Field": "273.IconPaths.1",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
       "AddressHash": 3660536017,
@@ -2771,7 +2792,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "265.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
       "AddressHash": 3660536018,
@@ -2802,7 +2823,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "276.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
       "AddressHash": 3660536019,
@@ -2833,7 +2854,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "267.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
       "AddressHash": 3660536021,
@@ -2864,7 +2885,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "275.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
       "AddressHash": 3660536022,
@@ -2895,7 +2916,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "266.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
       "AddressHash": 3660536023,
@@ -2926,7 +2947,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "278.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
       "AddressHash": 3660536024,
@@ -2957,7 +2978,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "268.IconPath",
       "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
       "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
       "AddressHash": 3660536048,
@@ -2988,7 +3009,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "65.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_1/taidao158",
       "Address": "ui/atlas/talent_passive_1/taidao158",
       "AddressHash": 359924872,
@@ -3013,8 +3034,8 @@
       "SpriteName": "taidao158",
       "SpriteAddress": 1355717063,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "65.LinkedTalentIconPath",
+        "65.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_1/taidao158"
@@ -3036,7 +3057,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "68.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_1/taidao162",
       "Address": "ui/atlas/talent_passive_1/taidao162",
       "AddressHash": 359924872,
@@ -3061,8 +3082,8 @@
       "SpriteName": "taidao162",
       "SpriteAddress": 1355717090,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "68.LinkedTalentIconPath",
+        "68.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_1/taidao162"
@@ -3084,7 +3105,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "191.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04",
       "Address": "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04",
       "AddressHash": 359924876,
@@ -3109,8 +3130,8 @@
       "SpriteName": "talent_passive_icon_dps_lucky04",
       "SpriteAddress": 3256921782,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "191.LinkedTalentIconPath",
+        "191.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04"
@@ -3132,7 +3153,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "18.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_backhitpro",
       "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_backhitpro",
       "AddressHash": 359924875,
@@ -3157,8 +3178,8 @@
       "SpriteName": "talent_passive_icon_general_dps_backhitpro",
       "SpriteAddress": 4269191085,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "18.LinkedTalentIconPath",
+        "18.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_backhitpro"
@@ -3176,11 +3197,59 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "RecountTable|Sprite|2255238245|talent_passive_icon_general_dps_bowarrow|RecountTable/talent_passive_icon_general_dps_bowarrow.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "106.LinkedTalentIconPath",
+      "Value": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_bowarrow",
+      "Address": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_bowarrow",
+      "AddressHash": 3287586233,
+      "BundleHash": 2255238245,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "RecountTable/talent_passive_icon_general_dps_bowarrow.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": 106,
+          "Name": "Explosive Arrow"
+        },
+        {
+          "Id": 106,
+          "Name": "Explosive Arrow"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_11",
+      "AtlasHash": 3287586233,
+      "SpriteName": "talent_passive_icon_general_dps_bowarrow",
+      "SpriteAddress": 992359943,
+      "Fields": [
+        "106.LinkedTalentIconPath",
+        "106.IconPath"
+      ],
+      "Values": [
+        "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_bowarrow"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 146,
+      "PngHeight": 147,
+      "PngMode": "RGBA",
+      "PixelSha256": "d11792f4b60be59f33627834bbb70183b1b1e3028447e05a16178e25f57c8301",
+      "ObjectPathId": "-6517615294903934427",
+      "SelectedObjectName": "talent_passive_icon_general_dps_bowarrow",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "RecountTable|Sprite|2473336053|talent_passive_icon_general_dps_icearrowaoe|RecountTable/talent_passive_icon_general_dps_icearrowaoe.png",
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "40.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe",
       "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe",
       "AddressHash": 359924873,
@@ -3205,8 +3274,8 @@
       "SpriteName": "talent_passive_icon_general_dps_icearrowaoe",
       "SpriteAddress": 3808793589,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "40.LinkedTalentIconPath",
+        "40.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe"
@@ -3228,7 +3297,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "41.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecharge",
       "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecharge",
       "AddressHash": 359924873,
@@ -3253,8 +3322,8 @@
       "SpriteName": "talent_passive_icon_general_dps_icecharge",
       "SpriteAddress": 3046987135,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "41.LinkedTalentIconPath",
+        "41.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecharge"
@@ -3276,7 +3345,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "39.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet",
       "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet",
       "AddressHash": 359924873,
@@ -3301,8 +3370,8 @@
       "SpriteName": "talent_passive_icon_general_dps_icecomet",
       "SpriteAddress": 1784553965,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "39.LinkedTalentIconPath",
+        "39.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet"
@@ -3324,7 +3393,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "42.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icepulse",
       "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icepulse",
       "AddressHash": 359924873,
@@ -3349,8 +3418,8 @@
       "SpriteName": "talent_passive_icon_general_dps_icepulse",
       "SpriteAddress": 1800185918,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "42.LinkedTalentIconPath",
+        "42.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icepulse"
@@ -3372,7 +3441,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "19.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_spearrush",
       "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_spearrush",
       "AddressHash": 359924875,
@@ -3397,8 +3466,8 @@
       "SpriteName": "talent_passive_icon_general_dps_spearrush",
       "SpriteAddress": 3256387075,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "19.LinkedTalentIconPath",
+        "19.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_spearrush"
@@ -3420,7 +3489,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "23.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_teardelay",
       "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_teardelay",
       "AddressHash": 359924875,
@@ -3445,8 +3514,8 @@
       "SpriteName": "talent_passive_icon_general_dps_teardelay",
       "SpriteAddress": 41611393,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "23.LinkedTalentIconPath",
+        "23.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_teardelay"
@@ -3468,7 +3537,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "16.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral",
       "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral",
       "AddressHash": 359924875,
@@ -3493,8 +3562,8 @@
       "SpriteName": "talent_passive_icon_general_dps_windspiral",
       "SpriteAddress": 492176483,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "16.LinkedTalentIconPath",
+        "16.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral"
@@ -3516,7 +3585,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "170.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide",
       "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide",
       "AddressHash": 359924876,
@@ -3532,12 +3601,12 @@
           "Name": "Bloomheal"
         },
         {
-          "Id": 171,
-          "Name": "Vital Surge"
-        },
-        {
           "Id": 170,
           "Name": "Bloomheal"
+        },
+        {
+          "Id": 171,
+          "Name": "Vital Surge"
         },
         {
           "Id": 171,
@@ -3549,8 +3618,10 @@
       "SpriteName": "talent_passive_icon_general_sup_aoyiguide",
       "SpriteAddress": 2279399608,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "170.LinkedTalentIconPath",
+        "170.IconPath",
+        "171.LinkedTalentIconPath",
+        "171.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide"
@@ -3572,7 +3643,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "115.IconPath",
       "Value": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
       "Address": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
       "AddressHash": 2047329081,
@@ -3606,7 +3677,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "181.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdeer",
       "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdeer",
       "AddressHash": 359924876,
@@ -3631,8 +3702,8 @@
       "SpriteName": "talent_passive_icon_general_sup_grassdeer",
       "SpriteAddress": 3896159320,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "181.LinkedTalentIconPath",
+        "181.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdeer"
@@ -3654,7 +3725,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "129.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_guide",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_guide",
       "AddressHash": 359924880,
@@ -3679,8 +3750,8 @@
       "SpriteName": "talent_passive_icon_general_sup_guide",
       "SpriteAddress": 2183133066,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "129.LinkedTalentIconPath",
+        "129.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_guide"
@@ -3702,7 +3773,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "185.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healshield",
       "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healshield",
       "AddressHash": 359924876,
@@ -3727,8 +3798,8 @@
       "SpriteName": "talent_passive_icon_general_sup_healshield",
       "SpriteAddress": 4005295435,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "185.LinkedTalentIconPath",
+        "185.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healshield"
@@ -3750,7 +3821,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "128.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_starfield",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_starfield",
       "AddressHash": 359924880,
@@ -3775,8 +3846,8 @@
       "SpriteName": "talent_passive_icon_general_sup_starfield",
       "SpriteAddress": 1002167994,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "128.LinkedTalentIconPath",
+        "128.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_starfield"
@@ -3798,7 +3869,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "283.IconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_grind",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_grind",
       "AddressHash": 359924880,
@@ -3832,7 +3903,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "136.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_unrelent",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_unrelent",
       "AddressHash": 359924880,
@@ -3857,8 +3928,8 @@
       "SpriteName": "talent_passive_icon_general_tank_unrelent",
       "SpriteAddress": 2567611199,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "136.LinkedTalentIconPath",
+        "136.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_unrelent"
@@ -3880,7 +3951,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "188.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_5/talent_passive_icon_sup_melee03",
       "Address": "ui/atlas/talent_passive_5/talent_passive_icon_sup_melee03",
       "AddressHash": 359924876,
@@ -3905,8 +3976,8 @@
       "SpriteName": "talent_passive_icon_sup_melee03",
       "SpriteAddress": 1905639430,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "188.LinkedTalentIconPath",
+        "188.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_5/talent_passive_icon_sup_melee03"
@@ -3928,7 +3999,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "111.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_sup_meleeconversion",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_sup_meleeconversion",
       "AddressHash": 359924880,
@@ -3953,8 +4024,8 @@
       "SpriteName": "talent_passive_icon_sup_meleeconversion",
       "SpriteAddress": 2716919661,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "111.LinkedTalentIconPath",
+        "111.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/talent_passive_icon_sup_meleeconversion"
@@ -3976,7 +4047,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "130.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule02",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule02",
       "AddressHash": 359924880,
@@ -4001,8 +4072,8 @@
       "SpriteName": "talent_passive_icon_tank_ridicule02",
       "SpriteAddress": 2206635592,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "130.LinkedTalentIconPath",
+        "130.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule02"
@@ -4024,7 +4095,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "127.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule03",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule03",
       "AddressHash": 359924880,
@@ -4049,8 +4120,8 @@
       "SpriteName": "talent_passive_icon_tank_ridicule03",
       "SpriteAddress": 2206635593,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "127.LinkedTalentIconPath",
+        "127.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule03"
@@ -4072,7 +4143,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "70.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_1/talent_skill_360105",
       "Address": "ui/atlas/talent_passive_1/talent_skill_360105",
       "AddressHash": 359924872,
@@ -4097,8 +4168,8 @@
       "SpriteName": "talent_skill_360105",
       "SpriteAddress": 2838406603,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "70.LinkedTalentIconPath",
+        "70.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_1/talent_skill_360105"
@@ -4120,7 +4191,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[1]",
+      "Field": "263.IconPaths.1",
       "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_01",
       "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_01",
       "AddressHash": 3382812208,
@@ -4151,7 +4222,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[2]",
+      "Field": "263.IconPaths.2",
       "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_atk",
       "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_atk",
       "AddressHash": 4258676143,
@@ -4182,7 +4253,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[3]",
+      "Field": "263.IconPaths.3",
       "Value": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_passive",
       "Address": "ui/textures/skill_weapon_cannongun/weapon_cannongun_skill_passive",
       "AddressHash": 2889132650,
@@ -4213,7 +4284,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "20.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq_skill_01",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq_skill_01",
       "AddressHash": 3906095594,
@@ -4244,7 +4315,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "1.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq_skill_atk",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq_skill_atk",
       "AddressHash": 52191401,
@@ -4253,8 +4324,12 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_cq_skill_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 7,
       "Rows": [
+        {
+          "Id": 1,
+          "Name": "Red Light Counter"
+        },
         {
           "Id": 3,
           "Name": "Windborne Grace"
@@ -4262,12 +4337,33 @@
         {
           "Id": 3,
           "Name": "Windborne Grace"
+        },
+        {
+          "Id": 15,
+          "Name": "Drake Cannon"
+        },
+        {
+          "Id": 16,
+          "Name": "Vortex Strike"
+        },
+        {
+          "Id": 18,
+          "Name": "Swift Blade"
+        },
+        {
+          "Id": 252,
+          "Name": "Stunt! Transform into Bee"
         }
       ],
       "TextureName": "weapon_cq_skill_atk",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "1.IconPath",
+        "3.LinkedBaseSkillIconPath",
+        "3.IconPath",
+        "15.IconPaths.0",
+        "16.IconPaths.1",
+        "18.IconPaths.1",
+        "252.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq_skill_atk"
@@ -4289,7 +4385,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "7.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx01",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx01",
       "AddressHash": 2315875133,
@@ -4311,8 +4407,8 @@
       ],
       "TextureName": "weapon_cq-01_kx01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "7.LinkedBaseSkillIconPath",
+        "7.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_kx01"
@@ -4334,7 +4430,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "8.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx02",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx02",
       "AddressHash": 2315875134,
@@ -4343,14 +4439,28 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_cq-01_kx02.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 8,
           "Name": "Spiral Thrust"
+        },
+        {
+          "Id": 16,
+          "Name": "Vortex Strike"
         }
       ],
       "TextureName": "weapon_cq-01_kx02",
+      "Fields": [
+        "8.IconPath",
+        "16.IconPaths.2"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_cq/weapon_cq-01_kx02"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -4365,7 +4475,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "9.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx03",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx03",
       "AddressHash": 2315875135,
@@ -4396,7 +4506,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "14.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx04",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx04",
       "AddressHash": 2315875136,
@@ -4427,7 +4537,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "11.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx05",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx05",
       "AddressHash": 2315875137,
@@ -4449,8 +4559,8 @@
       ],
       "TextureName": "weapon_cq-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "11.LinkedBaseSkillIconPath",
+        "11.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_kx05"
@@ -4472,7 +4582,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "10.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx06",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx06",
       "AddressHash": 2315875138,
@@ -4481,7 +4591,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_cq-01_kx06.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 10,
@@ -4490,12 +4600,17 @@
         {
           "Id": 10,
           "Name": "Falcon Toss"
+        },
+        {
+          "Id": 17,
+          "Name": "Azure Sever"
         }
       ],
       "TextureName": "weapon_cq-01_kx06",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "10.LinkedBaseSkillIconPath",
+        "10.IconPath",
+        "17.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_kx06"
@@ -4517,7 +4632,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "12.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx07",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx07",
       "AddressHash": 2315875139,
@@ -4539,8 +4654,8 @@
       ],
       "TextureName": "weapon_cq-01_kx07",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "12.LinkedBaseSkillIconPath",
+        "12.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_kx07"
@@ -4562,7 +4677,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "13.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_kx08",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_kx08",
       "AddressHash": 2315875140,
@@ -4584,8 +4699,8 @@
       ],
       "TextureName": "weapon_cq-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "13.LinkedBaseSkillIconPath",
+        "13.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_kx08"
@@ -4607,7 +4722,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "17.IconPaths.1",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tf01",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tf01",
       "AddressHash": 2316178964,
@@ -4638,7 +4753,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "16.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tf02",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tf02",
       "AddressHash": 2316178965,
@@ -4660,8 +4775,8 @@
       ],
       "TextureName": "weapon_cq-01_tf02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "16.LinkedBaseSkillIconPath",
+        "16.IconPaths.3"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_tf02"
@@ -4683,7 +4798,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "15.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tf03",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tf03",
       "AddressHash": 2316178966,
@@ -4705,8 +4820,8 @@
       ],
       "TextureName": "weapon_cq-01_tf03",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "15.LinkedBaseSkillIconPath",
+        "15.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_tf03"
@@ -4728,7 +4843,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "4.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tg01",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tg01",
       "AddressHash": 2316180053,
@@ -4737,14 +4852,28 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_cq-01_tg01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 4,
           "Name": "Gale Thrust"
+        },
+        {
+          "Id": 5,
+          "Name": "Skyfall"
         }
       ],
       "TextureName": "weapon_cq-01_tg01",
+      "Fields": [
+        "4.IconPath",
+        "5.IconPaths.0"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_cq/weapon_cq-01_tg01"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -4759,7 +4888,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "5.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_tg02",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_tg02",
       "AddressHash": 2316180054,
@@ -4781,8 +4910,8 @@
       ],
       "TextureName": "weapon_cq-01_tg02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "5.LinkedBaseSkillIconPath",
+        "5.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_cq/weapon_cq-01_tg02"
@@ -4804,7 +4933,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "6.IconPath",
       "Value": "ui/textures/skill_weapon_cq/weapon_cq-01_ult_01",
       "Address": "ui/textures/skill_weapon_cq/weapon_cq-01_ult_01",
       "AddressHash": 1221835406,
@@ -4835,7 +4964,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "164.IconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk",
       "AddressHash": 1682189021,
@@ -4844,19 +4973,19 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_fh_skill_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 7,
+      "RefCount": 9,
       "Rows": [
         {
-          "Id": 166,
-          "Name": "Vines' Embrace"
+          "Id": 164,
+          "Name": "Red Light Counter"
         },
         {
           "Id": 166,
           "Name": "Vines' Embrace"
         },
         {
-          "Id": 189,
-          "Name": "Healing Pulse"
+          "Id": 166,
+          "Name": "Vines' Embrace"
         },
         {
           "Id": 172,
@@ -4873,14 +5002,27 @@
         {
           "Id": 181,
           "Name": "Stag Charge"
+        },
+        {
+          "Id": 189,
+          "Name": "Healing Pulse"
+        },
+        {
+          "Id": 193,
+          "Name": "Red Light Counter"
         }
       ],
       "TextureName": "weapon_fh_skill_atk",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath",
-        "IconPaths[0]",
-        "IconPaths[1]"
+        "164.IconPath",
+        "166.LinkedBaseSkillIconPath",
+        "166.IconPath",
+        "172.IconPaths.0",
+        "174.IconPaths.0",
+        "175.IconPaths.0",
+        "181.IconPaths.1",
+        "189.IconPath",
+        "193.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh_skill_atk"
@@ -4902,7 +5044,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "168.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh_skill_passive",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh_skill_passive",
       "AddressHash": 1158774424,
@@ -4924,8 +5066,8 @@
       ],
       "TextureName": "weapon_fh_skill_passive",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "168.LinkedBaseSkillIconPath",
+        "168.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh_skill_passive"
@@ -4947,7 +5089,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "175.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx01",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx01",
       "AddressHash": 2861637745,
@@ -4969,8 +5111,8 @@
       ],
       "TextureName": "weapon_fh-01_kx01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "175.LinkedBaseSkillIconPath",
+        "175.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx01"
@@ -4992,7 +5134,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "173.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx04",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx04",
       "AddressHash": 2861637748,
@@ -5014,8 +5156,8 @@
       ],
       "TextureName": "weapon_fh-01_kx04",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "173.LinkedBaseSkillIconPath",
+        "173.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx04"
@@ -5037,7 +5179,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "174.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx05",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx05",
       "AddressHash": 2861637749,
@@ -5059,8 +5201,8 @@
       ],
       "TextureName": "weapon_fh-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "174.LinkedBaseSkillIconPath",
+        "174.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx05"
@@ -5082,7 +5224,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "180.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx06",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx06",
       "AddressHash": 2861637750,
@@ -5104,8 +5246,8 @@
       ],
       "TextureName": "weapon_fh-01_kx06",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "180.LinkedBaseSkillIconPath",
+        "180.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx06"
@@ -5127,7 +5269,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "179.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07",
       "AddressHash": 2861637751,
@@ -5149,8 +5291,8 @@
       ],
       "TextureName": "weapon_fh-01_kx07",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "179.LinkedBaseSkillIconPath",
+        "179.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx07"
@@ -5172,7 +5314,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "178.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx08",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx08",
       "AddressHash": 2861637752,
@@ -5194,8 +5336,8 @@
       ],
       "TextureName": "weapon_fh-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "178.LinkedBaseSkillIconPath",
+        "178.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx08"
@@ -5217,7 +5359,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "172.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_kx09",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_kx09",
       "AddressHash": 2861637753,
@@ -5239,8 +5381,8 @@
       ],
       "TextureName": "weapon_fh-01_kx09",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "172.LinkedBaseSkillIconPath",
+        "172.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_kx09"
@@ -5262,7 +5404,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "169.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_ult",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_ult",
       "AddressHash": 2429436290,
@@ -5271,7 +5413,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_fh-01_ult.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 169,
@@ -5280,12 +5422,17 @@
         {
           "Id": 169,
           "Name": "Divine Circle Bloom"
+        },
+        {
+          "Id": 170,
+          "Name": "Bloomheal"
         }
       ],
       "TextureName": "weapon_fh-01_ult",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "169.LinkedBaseSkillIconPath",
+        "169.IconPath",
+        "170.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_ult"
@@ -5307,7 +5454,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "170.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_ult02",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_ult02",
       "AddressHash": 4251234404,
@@ -5329,8 +5476,8 @@
       ],
       "TextureName": "weapon_fh-01_ult02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "170.LinkedBaseSkillIconPath",
+        "170.IconPaths.2"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_ult02"
@@ -5352,7 +5499,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "171.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_fh/weapon_fh-01_ult03",
       "Address": "ui/textures/skill_weapon_fh/weapon_fh-01_ult03",
       "AddressHash": 4251234405,
@@ -5374,8 +5521,8 @@
       ],
       "TextureName": "weapon_fh-01_ult03",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "171.LinkedBaseSkillIconPath",
+        "171.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_fh/weapon_fh-01_ult03"
@@ -5397,7 +5544,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "73.IconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_atk",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_atk",
       "AddressHash": 1792324275,
@@ -5406,8 +5553,12 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_gj-01_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 13,
+      "RefCount": 18,
       "Rows": [
+        {
+          "Id": 73,
+          "Name": "Red Light Counter"
+        },
         {
           "Id": 75,
           "Name": "Bullseye"
@@ -5421,8 +5572,44 @@
           "Name": "Storm Arrow"
         },
         {
+          "Id": 77,
+          "Name": "Double Arrow"
+        },
+        {
           "Id": 78,
           "Name": "​Quadraflare​"
+        },
+        {
+          "Id": 79,
+          "Name": "Luminary Bolt"
+        },
+        {
+          "Id": 81,
+          "Name": "Torrent Volley"
+        },
+        {
+          "Id": 87,
+          "Name": "Blast Shot"
+        },
+        {
+          "Id": 88,
+          "Name": "Deter Shot"
+        },
+        {
+          "Id": 89,
+          "Name": "Wild Wolf - Basic Attack"
+        },
+        {
+          "Id": 90,
+          "Name": "Wild Wolf - Coordinated Attack"
+        },
+        {
+          "Id": 91,
+          "Name": "Wild Wolf - Tail Sweep"
+        },
+        {
+          "Id": 96,
+          "Name": "Phantom Falcon"
         },
         {
           "Id": 103,
@@ -5439,34 +5626,28 @@
         {
           "Id": 106,
           "Name": "Explosive Arrow"
-        },
-        {
-          "Id": 77,
-          "Name": "Double Arrow"
-        },
-        {
-          "Id": 81,
-          "Name": "Torrent Volley"
-        },
-        {
-          "Id": 87,
-          "Name": "Blast Shot"
-        },
-        {
-          "Id": 88,
-          "Name": "Deter Shot"
-        },
-        {
-          "Id": 96,
-          "Name": "Phantom Falcon"
         }
       ],
       "TextureName": "weapon_gj-01_atk",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath",
-        "IconPaths[0]",
-        "IconPaths[1]"
+        "73.IconPath",
+        "75.LinkedBaseSkillIconPath",
+        "75.IconPath",
+        "76.IconPath",
+        "77.IconPaths.0",
+        "78.IconPath",
+        "79.IconPaths.0",
+        "81.IconPaths.0",
+        "87.IconPaths.0",
+        "88.IconPaths.0",
+        "89.IconPath",
+        "90.IconPath",
+        "91.IconPath",
+        "96.IconPaths.1",
+        "103.IconPath",
+        "104.IconPath",
+        "105.IconPath",
+        "106.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_atk"
@@ -5488,7 +5669,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "82.IconPaths.1",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01_01",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01_01",
       "AddressHash": 1569761687,
@@ -5519,7 +5700,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "81.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01",
       "AddressHash": 3312488055,
@@ -5528,7 +5709,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_gj-01_kx01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 81,
@@ -5537,12 +5718,17 @@
         {
           "Id": 81,
           "Name": "Torrent Volley"
+        },
+        {
+          "Id": 82,
+          "Name": "Lumi Torrent"
         }
       ],
       "TextureName": "weapon_gj-01_kx01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "81.LinkedBaseSkillIconPath",
+        "81.IconPath",
+        "82.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx01"
@@ -5564,7 +5750,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "86.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx02",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx02",
       "AddressHash": 3312488056,
@@ -5586,8 +5772,8 @@
       ],
       "TextureName": "weapon_gj-01_kx02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "86.LinkedBaseSkillIconPath",
+        "86.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx02"
@@ -5609,7 +5795,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "83.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx03",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx03",
       "AddressHash": 3312488057,
@@ -5631,8 +5817,8 @@
       ],
       "TextureName": "weapon_gj-01_kx03",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "83.LinkedBaseSkillIconPath",
+        "83.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx03"
@@ -5654,7 +5840,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "85.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx04",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx04",
       "AddressHash": 3312488058,
@@ -5676,8 +5862,8 @@
       ],
       "TextureName": "weapon_gj-01_kx04",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "85.LinkedBaseSkillIconPath",
+        "85.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx04"
@@ -5699,7 +5885,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "84.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx05",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx05",
       "AddressHash": 3312488059,
@@ -5721,8 +5907,8 @@
       ],
       "TextureName": "weapon_gj-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "84.LinkedBaseSkillIconPath",
+        "84.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx05"
@@ -5744,7 +5930,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "88.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx06",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx06",
       "AddressHash": 3312488060,
@@ -5766,8 +5952,8 @@
       ],
       "TextureName": "weapon_gj-01_kx06",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "88.LinkedBaseSkillIconPath",
+        "88.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx06"
@@ -5789,7 +5975,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "87.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_kx08",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_kx08",
       "AddressHash": 3312488062,
@@ -5811,8 +5997,8 @@
       ],
       "TextureName": "weapon_gj-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "87.LinkedBaseSkillIconPath",
+        "87.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_kx08"
@@ -5834,7 +6020,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "77.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_tg02",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_tg02",
       "AddressHash": 3312792976,
@@ -5856,8 +6042,8 @@
       ],
       "TextureName": "weapon_gj-01_tg02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "77.LinkedBaseSkillIconPath",
+        "77.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_tg02"
@@ -5879,7 +6065,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "79.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_gj/weapon_gj-01_ult",
       "Address": "ui/textures/skill_weapon_gj/weapon_gj-01_ult",
       "AddressHash": 1792345800,
@@ -5901,8 +6087,8 @@
       ],
       "TextureName": "weapon_gj-01_ult",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "79.LinkedBaseSkillIconPath",
+        "79.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_gj/weapon_gj-01_ult"
@@ -5924,7 +6110,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "155.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex",
       "AddressHash": 2964853993,
@@ -5946,8 +6132,8 @@
       ],
       "TextureName": "weapon_jd-01_atk_ex",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "155.LinkedBaseSkillIconPath",
+        "155.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex"
@@ -5969,7 +6155,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "137.IconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_atk",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_atk",
       "AddressHash": 3167317613,
@@ -5978,8 +6164,12 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jd-01_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 4,
+      "RefCount": 7,
       "Rows": [
+        {
+          "Id": 137,
+          "Name": "Red Light Counter"
+        },
         {
           "Id": 139,
           "Name": "Blade of Justice"
@@ -5995,13 +6185,25 @@
         {
           "Id": 150,
           "Name": "Radiance"
+        },
+        {
+          "Id": 154,
+          "Name": "Condemn"
+        },
+        {
+          "Id": 155,
+          "Name": "Enhanced Condemn"
         }
       ],
       "TextureName": "weapon_jd-01_atk",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath",
-        "IconPaths[0]"
+        "137.IconPath",
+        "139.LinkedBaseSkillIconPath",
+        "139.IconPath",
+        "148.IconPath",
+        "150.IconPaths.0",
+        "154.IconPaths.1",
+        "155.IconPaths.0"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_atk"
@@ -6023,7 +6225,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "153.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx02",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx02",
       "AddressHash": 1442627954,
@@ -6045,8 +6247,8 @@
       ],
       "TextureName": "weapon_jd-01_kx02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "153.LinkedBaseSkillIconPath",
+        "153.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_kx02"
@@ -6068,7 +6270,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "144.IconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx03",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx03",
       "AddressHash": 1442627955,
@@ -6099,7 +6301,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "156.IconPaths.1",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04_ex",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04_ex",
       "AddressHash": 3465698960,
@@ -6130,7 +6332,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "147.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04",
       "AddressHash": 1442627956,
@@ -6139,7 +6341,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jd-01_kx04.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 147,
@@ -6148,12 +6350,17 @@
         {
           "Id": 147,
           "Name": "Reckoning"
+        },
+        {
+          "Id": 156,
+          "Name": "Inferno Reckon"
         }
       ],
       "TextureName": "weapon_jd-01_kx04",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "147.LinkedBaseSkillIconPath",
+        "147.IconPath",
+        "156.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_kx04"
@@ -6175,7 +6382,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "151.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx06",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx06",
       "AddressHash": 1442627958,
@@ -6197,8 +6404,8 @@
       ],
       "TextureName": "weapon_jd-01_kx06",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "151.LinkedBaseSkillIconPath",
+        "151.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_kx06"
@@ -6220,7 +6427,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "152.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx07",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx07",
       "AddressHash": 1442627959,
@@ -6242,8 +6449,8 @@
       ],
       "TextureName": "weapon_jd-01_kx07",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "152.LinkedBaseSkillIconPath",
+        "152.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_kx07"
@@ -6265,7 +6472,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "150.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx08",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx08",
       "AddressHash": 1442627960,
@@ -6287,8 +6494,8 @@
       ],
       "TextureName": "weapon_jd-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "150.LinkedBaseSkillIconPath",
+        "150.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_kx08"
@@ -6310,7 +6517,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "149.IconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_kx09",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_kx09",
       "AddressHash": 1442627961,
@@ -6341,7 +6548,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "140.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_tg01",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_tg01",
       "AddressHash": 1442932873,
@@ -6350,7 +6557,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jd-01_tg01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 5,
       "Rows": [
         {
           "Id": 140,
@@ -6359,12 +6566,27 @@
         {
           "Id": 140,
           "Name": "Valor Bash"
+        },
+        {
+          "Id": 141,
+          "Name": "Vanguard Strike"
+        },
+        {
+          "Id": 142,
+          "Name": "Vanguard Hunt"
+        },
+        {
+          "Id": 157,
+          "Name": "Radiant Impact"
         }
       ],
       "TextureName": "weapon_jd-01_tg01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "140.LinkedBaseSkillIconPath",
+        "140.IconPath",
+        "141.IconPaths.0",
+        "142.IconPath",
+        "157.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_tg01"
@@ -6386,7 +6608,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "141.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_tg02",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_tg02",
       "AddressHash": 1442932874,
@@ -6412,8 +6634,9 @@
       ],
       "TextureName": "weapon_jd-01_tg02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "141.LinkedBaseSkillIconPath",
+        "141.IconPath",
+        "142.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_tg02"
@@ -6435,7 +6658,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "143.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01",
       "Address": "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01",
       "AddressHash": 3738396098,
@@ -6457,8 +6680,8 @@
       ],
       "TextureName": "weapon_jd-01_ult_01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "143.LinkedBaseSkillIconPath",
+        "143.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01"
@@ -6480,7 +6703,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "196.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_atk",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_atk",
       "AddressHash": 1648942733,
@@ -6514,10 +6737,11 @@
       ],
       "TextureName": "weapon_jt-01_atk",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath",
-        "IconPaths[0]",
-        "IconPaths[1]"
+        "196.LinkedBaseSkillIconPath",
+        "196.IconPath",
+        "201.IconPaths.0",
+        "203.IconPaths.1",
+        "204.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_atk"
@@ -6539,7 +6763,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "201.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx01",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx01",
       "AddressHash": 2875864465,
@@ -6565,9 +6789,9 @@
       ],
       "TextureName": "weapon_jt-01_kx01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath",
-        "IconPaths[0]"
+        "201.LinkedBaseSkillIconPath",
+        "201.IconPath",
+        "202.IconPaths.0"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx01"
@@ -6589,7 +6813,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "202.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx02",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx02",
       "AddressHash": 2875864466,
@@ -6611,8 +6835,8 @@
       ],
       "TextureName": "weapon_jt-01_kx02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "202.LinkedBaseSkillIconPath",
+        "202.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx02"
@@ -6634,7 +6858,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "206.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01",
       "AddressHash": 143412019,
@@ -6656,8 +6880,8 @@
       ],
       "TextureName": "weapon_jt-01_kx03_01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "206.LinkedBaseSkillIconPath",
+        "206.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01"
@@ -6679,7 +6903,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[2]",
+      "Field": "202.IconPaths.2",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03",
       "AddressHash": 2875864467,
@@ -6705,9 +6929,9 @@
       ],
       "TextureName": "weapon_jt-01_kx03",
       "Fields": [
-        "IconPaths[2]",
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "202.IconPaths.2",
+        "205.LinkedBaseSkillIconPath",
+        "205.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx03"
@@ -6729,7 +6953,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "207.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx04",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx04",
       "AddressHash": 2875864468,
@@ -6751,8 +6975,8 @@
       ],
       "TextureName": "weapon_jt-01_kx04",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "207.LinkedBaseSkillIconPath",
+        "207.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx04"
@@ -6774,7 +6998,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "208.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx05",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx05",
       "AddressHash": 2875864469,
@@ -6796,8 +7020,8 @@
       ],
       "TextureName": "weapon_jt-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "208.LinkedBaseSkillIconPath",
+        "208.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx05"
@@ -6819,7 +7043,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "209.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx06",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx06",
       "AddressHash": 2875864470,
@@ -6828,7 +7052,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jt-01_kx06.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 209,
@@ -6837,12 +7061,17 @@
         {
           "Id": 209,
           "Name": "Passion Burst"
+        },
+        {
+          "Id": 210,
+          "Name": "Passion Fury"
         }
       ],
       "TextureName": "weapon_jt-01_kx06",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "209.LinkedBaseSkillIconPath",
+        "209.IconPath",
+        "210.IconPaths.0"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx06"
@@ -6864,7 +7093,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "211.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx07",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx07",
       "AddressHash": 2875864471,
@@ -6886,8 +7115,8 @@
       ],
       "TextureName": "weapon_jt-01_kx07",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "211.LinkedBaseSkillIconPath",
+        "211.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx07"
@@ -6909,7 +7138,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "212.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_kx08",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_kx08",
       "AddressHash": 2875864472,
@@ -6931,8 +7160,8 @@
       ],
       "TextureName": "weapon_jt-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "212.LinkedBaseSkillIconPath",
+        "212.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_kx08"
@@ -6954,7 +7183,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "210.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01",
       "AddressHash": 2472252074,
@@ -6976,8 +7205,8 @@
       ],
       "TextureName": "weapon_jt-01_tf03_01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "210.LinkedBaseSkillIconPath",
+        "210.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01"
@@ -6999,7 +7228,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "197.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
       "AddressHash": 2876169385,
@@ -7021,8 +7250,8 @@
       ],
       "TextureName": "weapon_jt-01_tg01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "197.LinkedBaseSkillIconPath",
+        "197.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_tg01"
@@ -7044,7 +7273,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "198.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_tg02",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_tg02",
       "AddressHash": 2876169386,
@@ -7066,8 +7295,8 @@
       ],
       "TextureName": "weapon_jt-01_tg02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "198.LinkedBaseSkillIconPath",
+        "198.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_tg02"
@@ -7089,7 +7318,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "199.IconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_ult",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_ult",
       "AddressHash": 1648964258,
@@ -7098,14 +7327,28 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_jt-01_ult.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 199,
           "Name": "Rock the Stage/Infinite Rhapsody"
+        },
+        {
+          "Id": 200,
+          "Name": "Concert Circuit"
         }
       ],
       "TextureName": "weapon_jt-01_ult",
+      "Fields": [
+        "199.IconPath",
+        "200.IconPaths.1"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_jt/weapon_jt-01_ult"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -7120,7 +7363,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[1]",
+      "Field": "199.IconPaths.1",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_ult01",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_ult01",
       "AddressHash": 425748867,
@@ -7151,7 +7394,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "200.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_ult02",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_ult02",
       "AddressHash": 425748868,
@@ -7173,8 +7416,8 @@
       ],
       "TextureName": "weapon_jt-01_ult02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "200.LinkedBaseSkillIconPath",
+        "200.IconPaths.2"
       ],
       "Values": [
         "ui/textures/skill_weapon_jt/weapon_jt-01_ult02"
@@ -7196,7 +7439,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "35.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx01",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx01",
       "AddressHash": 4228415395,
@@ -7218,8 +7461,8 @@
       ],
       "TextureName": "weapon_mz-01_kx01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "35.LinkedBaseSkillIconPath",
+        "35.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx01"
@@ -7241,7 +7484,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "37.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx02",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx02",
       "AddressHash": 4228415396,
@@ -7263,8 +7506,8 @@
       ],
       "TextureName": "weapon_mz-01_kx02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "37.LinkedBaseSkillIconPath",
+        "37.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx02"
@@ -7286,7 +7529,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "32.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx03",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx03",
       "AddressHash": 4228415397,
@@ -7308,8 +7551,8 @@
       ],
       "TextureName": "weapon_mz-01_kx03",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "32.LinkedBaseSkillIconPath",
+        "32.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx03"
@@ -7331,7 +7574,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "31.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx05",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx05",
       "AddressHash": 4228415399,
@@ -7353,8 +7596,8 @@
       ],
       "TextureName": "weapon_mz-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "31.LinkedBaseSkillIconPath",
+        "31.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx05"
@@ -7376,7 +7619,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[0]",
+      "Field": "27.IconPaths.0",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx06",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx06",
       "AddressHash": 4228415400,
@@ -7398,8 +7641,8 @@
       ],
       "TextureName": "weapon_mz-01_kx06",
       "Fields": [
-        "IconPaths[0]",
-        "IconPath"
+        "27.IconPaths.0",
+        "44.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx06"
@@ -7421,7 +7664,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "30.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx07",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx07",
       "AddressHash": 4228415401,
@@ -7443,8 +7686,8 @@
       ],
       "TextureName": "weapon_mz-01_kx07",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "30.LinkedBaseSkillIconPath",
+        "30.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx07"
@@ -7466,7 +7709,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "34.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_kx08",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_kx08",
       "AddressHash": 4228415402,
@@ -7488,8 +7731,8 @@
       ],
       "TextureName": "weapon_mz-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "34.LinkedBaseSkillIconPath",
+        "34.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx08"
@@ -7511,7 +7754,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "24.IconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_skill_atk",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_skill_atk",
       "AddressHash": 3592713373,
@@ -7520,8 +7763,12 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_mz-01_skill_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 5,
       "Rows": [
+        {
+          "Id": 24,
+          "Name": "Red Light Counter"
+        },
         {
           "Id": 26,
           "Name": "Raincall Surge"
@@ -7529,12 +7776,23 @@
         {
           "Id": 26,
           "Name": "Raincall Surge"
+        },
+        {
+          "Id": 27,
+          "Name": "Frost Lance"
+        },
+        {
+          "Id": 44,
+          "Name": "Piercing Ice Lance"
         }
       ],
       "TextureName": "weapon_mz-01_skill_atk",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "24.IconPath",
+        "26.LinkedBaseSkillIconPath",
+        "26.IconPath",
+        "27.IconPaths.1",
+        "44.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_skill_atk"
@@ -7556,7 +7814,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "28.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_tg01",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_tg01",
       "AddressHash": 4228720315,
@@ -7578,8 +7836,8 @@
       ],
       "TextureName": "weapon_mz-01_tg01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "28.LinkedBaseSkillIconPath",
+        "28.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_tg01"
@@ -7601,7 +7859,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "27.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_tg02",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_tg02",
       "AddressHash": 4228720316,
@@ -7610,7 +7868,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_mz-01_tg02.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 27,
@@ -7619,12 +7877,17 @@
         {
           "Id": 27,
           "Name": "Frost Lance"
+        },
+        {
+          "Id": 28,
+          "Name": "Frostbeam"
         }
       ],
       "TextureName": "weapon_mz-01_tg02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "27.LinkedBaseSkillIconPath",
+        "27.IconPath",
+        "28.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_tg02"
@@ -7646,7 +7909,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "29.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_mz/weapon_mz-01_ult",
       "Address": "ui/textures/skill_weapon_mz/weapon_mz-01_ult",
       "AddressHash": 4032660084,
@@ -7672,8 +7935,9 @@
       ],
       "TextureName": "weapon_mz-01_ult",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "29.LinkedBaseSkillIconPath",
+        "29.IconPath",
+        "43.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_ult"
@@ -7691,11 +7955,42 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "RecountTable|Texture2D|2628357623|weapon_sf-01_skill_atk01|RecountTable/weapon_sf-01_skill_atk01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "RecountTable.json",
+      "SourceGroup": "RecountTable",
+      "Field": "193.IconPaths.1",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk01",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk01",
+      "AddressHash": 875100578,
+      "BundleHash": 2628357623,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "RecountTable/weapon_sf-01_skill_atk01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 193,
+          "Name": "Red Light Counter"
+        }
+      ],
+      "TextureName": "weapon_sf-01_skill_atk01",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "b65f99fdc249147f1a48c9e9e7317f94d442b5533143331c91c025ead4388526",
+      "ObjectPathId": "3331288184095321799",
+      "SelectedObjectName": "weapon_sf-01_skill_atk01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "RecountTable|Texture2D|1564110835|weapon_tdl-01_kx02|RecountTable/weapon_tdl-01_kx02.png",
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "53.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02",
       "AddressHash": 212367582,
@@ -7704,7 +7999,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_tdl-01_kx02.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 53,
@@ -7713,12 +8008,17 @@
         {
           "Id": 53,
           "Name": "Flash Strike"
+        },
+        {
+          "Id": 63,
+          "Name": "Dracoflash"
         }
       ],
       "TextureName": "weapon_tdl-01_kx02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "53.LinkedBaseSkillIconPath",
+        "53.IconPath",
+        "63.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02"
@@ -7740,7 +8040,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "54.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03",
       "AddressHash": 212367583,
@@ -7749,7 +8049,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_tdl-01_kx03.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 54,
@@ -7758,12 +8058,17 @@
         {
           "Id": 54,
           "Name": "Raijin Dash"
+        },
+        {
+          "Id": 64,
+          "Name": "Phantom Slash"
         }
       ],
       "TextureName": "weapon_tdl-01_kx03",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "54.LinkedBaseSkillIconPath",
+        "54.IconPath",
+        "64.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03"
@@ -7785,7 +8090,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "55.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04",
       "AddressHash": 212367584,
@@ -7807,8 +8112,8 @@
       ],
       "TextureName": "weapon_tdl-01_kx04",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "55.LinkedBaseSkillIconPath",
+        "55.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04"
@@ -7830,7 +8135,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "61.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
       "AddressHash": 212367585,
@@ -7852,8 +8157,8 @@
       ],
       "TextureName": "weapon_tdl-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "61.LinkedBaseSkillIconPath",
+        "61.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05"
@@ -7875,7 +8180,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "58.IconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx06",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx06",
       "AddressHash": 212367586,
@@ -7884,14 +8189,33 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_tdl-01_kx06.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 58,
           "Name": "Thundercut"
+        },
+        {
+          "Id": 66,
+          "Name": "Storm Scythe"
+        },
+        {
+          "Id": 67,
+          "Name": "Thundercleave"
         }
       ],
       "TextureName": "weapon_tdl-01_kx06",
+      "Fields": [
+        "58.IconPath",
+        "66.IconPath",
+        "67.IconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx06"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -7906,7 +8230,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "60.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx08",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx08",
       "AddressHash": 212367588,
@@ -7928,8 +8252,8 @@
       ],
       "TextureName": "weapon_tdl-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "60.LinkedBaseSkillIconPath",
+        "60.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx08"
@@ -7951,7 +8275,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "57.IconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_passive",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_passive",
       "AddressHash": 1116578514,
@@ -7971,8 +8295,16 @@
           "Name": "Phantom Slash"
         },
         {
+          "Id": 65,
+          "Name": "Divine Sickle"
+        },
+        {
           "Id": 69,
           "Name": "Piercing Slash"
+        },
+        {
+          "Id": 70,
+          "Name": "Bladewind Domain"
         },
         {
           "Id": 71,
@@ -7981,20 +8313,17 @@
         {
           "Id": 72,
           "Name": "Thunderburst"
-        },
-        {
-          "Id": 65,
-          "Name": "Divine Sickle"
-        },
-        {
-          "Id": 70,
-          "Name": "Bladewind Domain"
         }
       ],
       "TextureName": "weapon_tdl-01_skill_passive",
       "Fields": [
-        "IconPath",
-        "IconPaths[1]"
+        "57.IconPath",
+        "64.IconPaths.1",
+        "65.IconPaths.1",
+        "69.IconPath",
+        "70.IconPaths.1",
+        "71.IconPath",
+        "72.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_passive"
@@ -8016,7 +8345,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "65.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf01",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf01",
       "AddressHash": 212671412,
@@ -8038,8 +8367,8 @@
       ],
       "TextureName": "weapon_tdl-01_tf01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[2]"
+        "65.LinkedBaseSkillIconPath",
+        "65.IconPaths.2"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf01"
@@ -8061,7 +8390,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "68.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf02",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf02",
       "AddressHash": 212671413,
@@ -8083,8 +8412,8 @@
       ],
       "TextureName": "weapon_tdl-01_tf02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "68.LinkedBaseSkillIconPath",
+        "68.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf02"
@@ -8106,7 +8435,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "63.IconPaths.1",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf03",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf03",
       "AddressHash": 212671414,
@@ -8137,7 +8466,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[1]",
+      "Field": "64.IconPaths.2",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf04",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf04",
       "AddressHash": 212671415,
@@ -8168,7 +8497,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "49.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01",
       "AddressHash": 212672501,
@@ -8177,7 +8506,7 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_tdl-01_tg01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 4,
       "Rows": [
         {
           "Id": 49,
@@ -8186,12 +8515,22 @@
         {
           "Id": 49,
           "Name": "Iaido Slash"
+        },
+        {
+          "Id": 50,
+          "Name": "Moonstrike"
+        },
+        {
+          "Id": 68,
+          "Name": "Chaos Breaker"
         }
       ],
       "TextureName": "weapon_tdl-01_tg01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "49.LinkedBaseSkillIconPath",
+        "49.IconPath",
+        "50.IconPaths.0",
+        "68.IconPaths.2"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01"
@@ -8213,7 +8552,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "50.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02",
       "AddressHash": 212672502,
@@ -8235,8 +8574,8 @@
       ],
       "TextureName": "weapon_tdl-01_tg02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "50.LinkedBaseSkillIconPath",
+        "50.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02"
@@ -8258,7 +8597,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "51.IconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_ult",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_ult",
       "AddressHash": 266746990,
@@ -8289,7 +8628,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "107.IconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk",
       "AddressHash": 2717855891,
@@ -8298,11 +8637,19 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_wr_skill_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 4,
+      "RefCount": 7,
       "Rows": [
+        {
+          "Id": 107,
+          "Name": "Red Light Counter"
+        },
         {
           "Id": 109,
           "Name": "Halberd's Edge"
+        },
+        {
+          "Id": 122,
+          "Name": "Rageblow"
         },
         {
           "Id": 124,
@@ -8315,13 +8662,21 @@
         {
           "Id": 135,
           "Name": "Granite"
+        },
+        {
+          "Id": 136,
+          "Name": "Resolute Breath"
         }
       ],
       "TextureName": "weapon_wr_skill_atk",
       "Fields": [
-        "IconPath",
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "107.IconPath",
+        "109.IconPath",
+        "122.IconPath",
+        "124.LinkedBaseSkillIconPath",
+        "124.IconPath",
+        "135.IconPaths.1",
+        "136.IconPaths.1"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr_skill_atk"
@@ -8343,7 +8698,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[1]",
+      "Field": "125.IconPaths.1",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr_skill_passive",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr_skill_passive",
       "AddressHash": 1336176462,
@@ -8365,8 +8720,8 @@
       ],
       "TextureName": "weapon_wr_skill_passive",
       "Fields": [
-        "IconPaths[1]",
-        "IconPaths[0]"
+        "125.IconPaths.1",
+        "126.IconPaths.0"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr_skill_passive"
@@ -8388,7 +8743,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "123.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01_01",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01_01",
       "AddressHash": 4091047367,
@@ -8410,8 +8765,8 @@
       ],
       "TextureName": "weapon_wr-01_kx01_01",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPaths[1]"
+        "123.LinkedBaseSkillIconPath",
+        "123.IconPaths.2"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr-01_kx01_01"
@@ -8433,7 +8788,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "114.IconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01",
       "AddressHash": 4081270951,
@@ -8442,14 +8797,28 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_wr-01_kx01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": 114,
           "Name": "Star Shatter"
+        },
+        {
+          "Id": 123,
+          "Name": "Starfall"
         }
       ],
       "TextureName": "weapon_wr-01_kx01",
+      "Fields": [
+        "114.IconPath",
+        "123.IconPaths.1"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_wr/weapon_wr-01_kx01"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -8464,7 +8833,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPaths[1]",
+      "Field": "115.IconPaths.1",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx02",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx02",
       "AddressHash": 4081270952,
@@ -8495,7 +8864,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "119.IconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx03",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx03",
       "AddressHash": 4081270953,
@@ -8526,7 +8895,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "117.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx05",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx05",
       "AddressHash": 4081270955,
@@ -8548,8 +8917,8 @@
       ],
       "TextureName": "weapon_wr-01_kx05",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "117.LinkedBaseSkillIconPath",
+        "117.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr-01_kx05"
@@ -8571,7 +8940,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "121.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx06",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx06",
       "AddressHash": 4081270956,
@@ -8593,8 +8962,8 @@
       ],
       "TextureName": "weapon_wr-01_kx06",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "121.LinkedBaseSkillIconPath",
+        "121.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr-01_kx06"
@@ -8616,7 +8985,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "120.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_kx08",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_kx08",
       "AddressHash": 4081270958,
@@ -8638,8 +9007,8 @@
       ],
       "TextureName": "weapon_wr-01_kx08",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "120.LinkedBaseSkillIconPath",
+        "120.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr-01_kx08"
@@ -8661,7 +9030,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "112.IconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_tg01_01",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_tg01_01",
       "AddressHash": 2164055519,
@@ -8692,7 +9061,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "110.IconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_tg02",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_tg02",
       "AddressHash": 4081575872,
@@ -8701,14 +9070,33 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_wr-01_tg02.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 3,
       "Rows": [
         {
           "Id": 110,
           "Name": "Shield Bash"
+        },
+        {
+          "Id": 111,
+          "Name": "Shield Combo"
+        },
+        {
+          "Id": 112,
+          "Name": "Countercrush"
         }
       ],
       "TextureName": "weapon_wr-01_tg02",
+      "Fields": [
+        "110.IconPath",
+        "111.IconPaths.1",
+        "112.IconPaths.1"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_wr/weapon_wr-01_tg02"
+      ],
+      "SourceFiles": [
+        "RecountTable.json"
+      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -8723,7 +9111,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "113.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_wr/weapon_wr-01_ult",
       "Address": "ui/textures/skill_weapon_wr/weapon_wr-01_ult",
       "AddressHash": 2466394872,
@@ -8745,8 +9133,8 @@
       ],
       "TextureName": "weapon_wr-01_ult",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "113.LinkedBaseSkillIconPath",
+        "113.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weapon_wr-01_ult"
@@ -8768,7 +9156,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedBaseSkillIconPath",
+      "Field": "126.LinkedBaseSkillIconPath",
       "Value": "ui/textures/skill_weapon_wr/weaponn-wr_sikll_atk_02",
       "Address": "ui/textures/skill_weapon_wr/weaponn-wr_sikll_atk_02",
       "AddressHash": 740297264,
@@ -8790,8 +9178,8 @@
       ],
       "TextureName": "weaponn-wr_sikll_atk_02",
       "Fields": [
-        "LinkedBaseSkillIconPath",
-        "IconPath"
+        "126.LinkedBaseSkillIconPath",
+        "126.IconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_wr/weaponn-wr_sikll_atk_02"
@@ -8813,7 +9201,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "131.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/weiren939",
       "Address": "ui/atlas/talent_passive_9/weiren939",
       "AddressHash": 359924880,
@@ -8838,8 +9226,8 @@
       "SpriteName": "weiren939",
       "SpriteAddress": 2871073422,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "131.LinkedTalentIconPath",
+        "131.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/weiren939"
@@ -8861,7 +9249,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "132.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/weiren947",
       "Address": "ui/atlas/talent_passive_9/weiren947",
       "AddressHash": 359924880,
@@ -8877,11 +9265,11 @@
           "Name": "Recovery"
         },
         {
-          "Id": 162,
+          "Id": 132,
           "Name": "Recovery"
         },
         {
-          "Id": 132,
+          "Id": 162,
           "Name": "Recovery"
         },
         {
@@ -8894,8 +9282,10 @@
       "SpriteName": "weiren947",
       "SpriteAddress": 2871073453,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "132.LinkedTalentIconPath",
+        "132.IconPath",
+        "162.LinkedTalentIconPath",
+        "162.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/weiren947"
@@ -8917,7 +9307,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "123.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/weiren948",
       "Address": "ui/atlas/talent_passive_9/weiren948",
       "AddressHash": 359924880,
@@ -8942,8 +9332,8 @@
       "SpriteName": "weiren948",
       "SpriteAddress": 2871073454,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "123.LinkedTalentIconPath",
+        "123.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/weiren948"
@@ -8965,7 +9355,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "IconPath",
+      "Field": "125.IconPath",
       "Value": "ui/atlas/talent_passive_9/weiren955",
       "Address": "ui/atlas/talent_passive_9/weiren955",
       "AddressHash": 359924880,
@@ -8999,7 +9389,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "135.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/weiren960",
       "Address": "ui/atlas/talent_passive_9/weiren960",
       "AddressHash": 359924880,
@@ -9024,8 +9414,8 @@
       "SpriteName": "weiren960",
       "SpriteAddress": 2871073512,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "135.LinkedTalentIconPath",
+        "135.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/weiren960"
@@ -9047,7 +9437,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "LinkedTalentIconPath",
+      "Field": "133.LinkedTalentIconPath",
       "Value": "ui/atlas/talent_passive_9/weiren962",
       "Address": "ui/atlas/talent_passive_9/weiren962",
       "AddressHash": 359924880,
@@ -9072,8 +9462,8 @@
       "SpriteName": "weiren962",
       "SpriteAddress": 2871073514,
       "Fields": [
-        "LinkedTalentIconPath",
-        "IconPath"
+        "133.LinkedTalentIconPath",
+        "133.IconPath"
       ],
       "Values": [
         "ui/atlas/talent_passive_9/weiren962"
@@ -9091,8 +9481,8 @@
       "SelectedObjectType": "Sprite"
     }
   ],
-  "PngExportedAt": "2026-04-25T06:57:11.409Z",
-  "PngAssetCount": 216,
+  "PngExportedAt": "2026-05-01T02:52:16.375Z",
+  "PngAssetCount": 218,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

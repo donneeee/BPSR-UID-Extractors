@@ -15,6 +15,12 @@ const scripts = [
   "SkillNames.gen",
   "ClassLabels.gen",
   "SkillBreakdownDetails.gen",
+  "SeasonTalentNodeProbe.gen",
+  "SeasonRogueEntryProbe.gen",
+  "SeasonPhantomFactorProbe.gen",
+  "TalentEffectModelProbe.gen",
+  "SeasonPhantomFactors.gen",
+  "EffectSources.gen",
   "ExtractIcons.gen",
   "ExportIconPngs.gen",
   "ExportParserAssets.gen"

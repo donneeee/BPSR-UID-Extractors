@@ -191,52 +191,90 @@ function listOutputJsonFiles(outputDir) {
 }
 
 function collectGeneratedIconReferences(sourceJson, jsonName, value) {
-  const rows = Array.isArray(value)
-    ? value.map((row, index) => ({ key: String(index), row }))
-    : value && typeof value === "object"
-      ? Object.entries(value).map(([key, row]) => ({ key, row }))
-      : [];
   const refs = [];
-
-  for (const { key, row } of rows) {
-    if (!row || typeof row !== "object" || Array.isArray(row)) {
-      continue;
-    }
-    const rowId = row.Id ?? row.id ?? key;
-    const preferredFile = typeof row.Icon === "string" ? row.Icon : "";
-    const hasExplicitIconAddress =
-      typeof row.IconPath === "string" ||
-      typeof row.IconTexture === "string" ||
-      (Array.isArray(row.IconPaths) && row.IconPaths.some((item) => typeof item === "string" && item.trim()));
-    const explicitIconValues = new Set([row.IconPath, row.IconTexture]
-      .map((item) => String(item || "").trim())
-      .filter(Boolean));
-
-    for (const [field, rawValue] of Object.entries(row)) {
-      const values = Array.isArray(rawValue)
-        ? rawValue.map((item, index) => ({ field: `${field}[${index}]`, value: item }))
-        : [{ field, value: rawValue }];
-      for (const item of values) {
-        if (Array.isArray(rawValue) && explicitIconValues.has(String(item.value || "").trim())) {
-          continue;
-        }
-        if (!isGeneratedIconField(item.field, item.value, { hasExplicitIconAddress })) {
-          continue;
-        }
-        refs.push(makeReference({
-          sourceKind: "generated-json",
-          sourceFile: sourceJson,
-          groupName: jsonName,
-          field: item.field,
-          value: String(item.value),
-          preferredFile,
-          rows: [{ Id: rowId, Name: row.Name || row.NameDesign || "" }]
-        }));
-      }
-    }
-  }
+  collectGeneratedIconReferencesDeep(value, {
+    refs,
+    sourceJson,
+    jsonName,
+    stack: []
+  });
 
   return refs;
+}
+
+function collectGeneratedIconReferencesDeep(value, context) {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => collectGeneratedIconReferencesDeep(item, {
+      ...context,
+      stack: [...context.stack, String(index)]
+    }));
+    return;
+  }
+
+  if (!value || typeof value !== "object") {
+    return;
+  }
+
+  const rowId = value.Id ??
+    value.id ??
+    value.sourceId ??
+    value.factorBuffId ??
+    value.buffId ??
+    value.recountId ??
+    context.stack.at(-1) ??
+    context.stack.join(".");
+  const preferredFile = typeof value.Icon === "string" ? value.Icon : "";
+  const hasExplicitIconAddress =
+    typeof value.IconPath === "string" ||
+    typeof value.iconPath === "string" ||
+    typeof value.IconTexture === "string" ||
+    typeof value.iconTexture === "string" ||
+    (Array.isArray(value.IconPaths) && value.IconPaths.some((item) => typeof item === "string" && item.trim()));
+  const explicitIconValues = new Set([value.IconPath, value.iconPath, value.IconTexture, value.iconTexture]
+    .map((item) => String(item || "").trim())
+    .filter(Boolean));
+
+  for (const [field, rawValue] of Object.entries(value)) {
+    const fieldPath = [...context.stack, field].join(".");
+    const values = Array.isArray(rawValue)
+      ? rawValue.map((item, index) => ({ field: `${field}[${index}]`, fieldPath: `${fieldPath}.${index}`, value: item }))
+      : [{ field, fieldPath, value: rawValue }];
+
+    for (const item of values) {
+      if (Array.isArray(rawValue) && explicitIconValues.has(String(item.value || "").trim())) {
+        continue;
+      }
+      if (!isGeneratedIconField(item.field, item.value, { hasExplicitIconAddress })) {
+        continue;
+      }
+      refsPushGeneratedReference(context.refs, {
+        sourceJson: context.sourceJson,
+        jsonName: context.jsonName,
+        field: item.fieldPath,
+        value: String(item.value),
+        preferredFile,
+        rowId,
+        rowName: value.Name || value.NameDesign || value.sourceName || value.familyName || ""
+      });
+    }
+
+    collectGeneratedIconReferencesDeep(rawValue, {
+      ...context,
+      stack: [...context.stack, field]
+    });
+  }
+}
+
+function refsPushGeneratedReference(refs, input) {
+  refs.push(makeReference({
+    sourceKind: "generated-json",
+    sourceFile: input.sourceJson,
+    groupName: input.jsonName,
+    field: input.field,
+    value: input.value,
+    preferredFile: input.preferredFile,
+    rows: [{ Id: input.rowId, Name: input.rowName }]
+  }));
 }
 
 function collectImageProbeReferences(dirs) {
