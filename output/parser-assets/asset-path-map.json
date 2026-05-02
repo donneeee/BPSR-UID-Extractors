@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-05-01T02:56:55.690Z",
+  "GeneratedAt": "2026-05-01T19:05:00.060Z",
   "OutputDir": "output/parser-assets",
   "StaticImagesDir": "output/parser-assets/static/images",
   "SourceIconManifest": "output/icons/IconManifest.json",
@@ -82,18 +82,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|4193267298|weapon_jt-01_atk|DamageAttrIdName/weapon_jt-01_atk.png",
+        "EffectSources|Texture2D|4193267298|weapon_jt-01_atk|EffectSources/weapon_jt-01_atk.png",
         "RecountTable|Texture2D|4193267298|weapon_jt-01_atk|RecountTable/weapon_jt-01_atk.png",
         "SkillBreakdownDetails|Texture2D|4193267298|weapon_jt-01_atk|SkillBreakdownDetails/weapon_jt-01_atk.png",
         "skillnames|Texture2D|4193267298|weapon_jt-01_atk|skillnames/weapon_jt-01_atk.png"
@@ -435,6 +438,10 @@
         {
           "Id": 323010100,
           "Name": "Harmonic Anthem"
+        },
+        {
+          "Id": "buff-source:2301",
+          "Name": "Resonant Strings"
         }
       ]
     },
@@ -693,18 +700,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|485825575|weapon_jt-01_kx02|DamageAttrIdName/weapon_jt-01_kx02.png",
+        "EffectSources|Texture2D|485825575|weapon_jt-01_kx02|EffectSources/weapon_jt-01_kx02.png",
         "RecountTable|Texture2D|485825575|weapon_jt-01_kx02|RecountTable/weapon_jt-01_kx02.png",
         "SkillBreakdownDetails|Texture2D|485825575|weapon_jt-01_kx02|SkillBreakdownDetails/weapon_jt-01_kx02.png",
         "skillnames|Texture2D|485825575|weapon_jt-01_kx02|skillnames/weapon_jt-01_kx02.png"
@@ -856,6 +866,10 @@
         },
         {
           "Id": 323100100
+        },
+        {
+          "Id": "buff-source:55301",
+          "Name": "Rhapsody of Flame"
         }
       ]
     },
@@ -945,18 +959,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|487011496|weapon_jt-01_kx03|DamageAttrIdName/weapon_jt-01_kx03.png",
+        "EffectSources|Texture2D|487011496|weapon_jt-01_kx03|EffectSources/weapon_jt-01_kx03.png",
         "RecountTable|Texture2D|487011496|weapon_jt-01_kx03|RecountTable/weapon_jt-01_kx03.png",
         "SkillBreakdownDetails|Texture2D|487011496|weapon_jt-01_kx03|SkillBreakdownDetails/weapon_jt-01_kx03.png",
         "skillnames|Texture2D|487011496|weapon_jt-01_kx03|skillnames/weapon_jt-01_kx03.png"
@@ -1119,11 +1136,15 @@
         {
           "Id": 323100100,
           "Name": "Rhapsody of Flame"
+        },
+        {
+          "Id": "buff-source:55341",
+          "Name": "Heroic Melody"
         }
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|488197417|weapon_jt-01_kx04|RecountTable/weapon_jt-01_kx04.png",
+      "AssetId": "icon:EffectSources|Texture2D|488197417|weapon_jt-01_kx04|EffectSources/weapon_jt-01_kx04.png",
       "ParserPath": "static/images/beat_performer/skill/weapon_jt-01_kx04_-3732826959301775432.png",
       "ParserImagePath": "/images/beat_performer/skill/weapon_jt-01_kx04_-3732826959301775432.png",
       "Bucket": "beat_performer/skill",
@@ -1145,16 +1166,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|488197417|weapon_jt-01_kx04|EffectSources/weapon_jt-01_kx04.png",
         "RecountTable|Texture2D|488197417|weapon_jt-01_kx04|RecountTable/weapon_jt-01_kx04.png",
         "SkillBreakdownDetails|Texture2D|488197417|weapon_jt-01_kx04|SkillBreakdownDetails/weapon_jt-01_kx04.png",
         "skillnames|Texture2D|488197417|weapon_jt-01_kx04|skillnames/weapon_jt-01_kx04.png"
@@ -1290,6 +1314,10 @@
         },
         {
           "Id": 25534201
+        },
+        {
+          "Id": "buff-source:55342",
+          "Name": "Healing Melody"
         }
       ]
     },
@@ -1359,18 +1387,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|489383338|weapon_jt-01_kx05|DamageAttrIdName/weapon_jt-01_kx05.png",
+        "EffectSources|Texture2D|489383338|weapon_jt-01_kx05|EffectSources/weapon_jt-01_kx05.png",
         "RecountTable|Texture2D|489383338|weapon_jt-01_kx05|RecountTable/weapon_jt-01_kx05.png",
         "SkillBreakdownDetails|Texture2D|489383338|weapon_jt-01_kx05|SkillBreakdownDetails/weapon_jt-01_kx05.png",
         "skillnames|Texture2D|489383338|weapon_jt-01_kx05|skillnames/weapon_jt-01_kx05.png"
@@ -1559,6 +1590,10 @@
         },
         {
           "Id": 25530403
+        },
+        {
+          "Id": "buff-source:55304",
+          "Name": "Fivefold Crescendo"
         }
       ]
     },
@@ -1801,7 +1836,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|491755180|weapon_jt-01_kx07|RecountTable/weapon_jt-01_kx07.png",
+      "AssetId": "icon:EffectSources|Texture2D|491755180|weapon_jt-01_kx07|EffectSources/weapon_jt-01_kx07.png",
       "ParserPath": "static/images/beat_performer/skill/weapon_jt-01_kx07_7957313065835692809.png",
       "ParserImagePath": "/images/beat_performer/skill/weapon_jt-01_kx07_7957313065835692809.png",
       "Bucket": "beat_performer/skill",
@@ -1823,16 +1858,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|491755180|weapon_jt-01_kx07|EffectSources/weapon_jt-01_kx07.png",
         "RecountTable|Texture2D|491755180|weapon_jt-01_kx07|RecountTable/weapon_jt-01_kx07.png",
         "SkillBreakdownDetails|Texture2D|491755180|weapon_jt-01_kx07|SkillBreakdownDetails/weapon_jt-01_kx07.png",
         "skillnames|Texture2D|491755180|weapon_jt-01_kx07|skillnames/weapon_jt-01_kx07.png"
@@ -1977,6 +2015,10 @@
         },
         {
           "Id": 323050100
+        },
+        {
+          "Id": "buff-source:55314",
+          "Name": "Encore"
         }
       ]
     },
@@ -2551,7 +2593,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|1319604031|weapon_jt-01_tg02|RecountTable/weapon_jt-01_tg02.png",
+      "AssetId": "icon:EffectSources|Texture2D|1319604031|weapon_jt-01_tg02|EffectSources/weapon_jt-01_tg02.png",
       "ParserPath": "static/images/beat_performer/skill/weapon_jt-01_tg02_-3786325572815905119.png",
       "ParserImagePath": "/images/beat_performer/skill/weapon_jt-01_tg02_-3786325572815905119.png",
       "Bucket": "beat_performer/skill",
@@ -2573,16 +2615,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|1319604031|weapon_jt-01_tg02|EffectSources/weapon_jt-01_tg02.png",
         "RecountTable|Texture2D|1319604031|weapon_jt-01_tg02|RecountTable/weapon_jt-01_tg02.png",
         "SkillBreakdownDetails|Texture2D|1319604031|weapon_jt-01_tg02|SkillBreakdownDetails/weapon_jt-01_tg02.png",
         "skillnames|Texture2D|1319604031|weapon_jt-01_tg02|skillnames/weapon_jt-01_tg02.png"
@@ -2721,6 +2766,10 @@
         },
         {
           "Id": 25530204
+        },
+        {
+          "Id": "buff-source:55302",
+          "Name": "Healing Beat"
         }
       ]
     },
@@ -2748,18 +2797,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3950413047|weapon_jt-01_ult|DamageAttrIdName/weapon_jt-01_ult.png",
+        "EffectSources|Texture2D|3950413047|weapon_jt-01_ult|EffectSources/weapon_jt-01_ult.png",
         "RecountTable|Texture2D|3950413047|weapon_jt-01_ult|RecountTable/weapon_jt-01_ult.png",
         "SkillBreakdownDetails|Texture2D|3950413047|weapon_jt-01_ult|SkillBreakdownDetails/weapon_jt-01_ult.png",
         "skillnames|Texture2D|3950413047|weapon_jt-01_ult|skillnames/weapon_jt-01_ult.png"
@@ -2971,6 +3023,14 @@
         },
         {
           "Id": 25534601
+        },
+        {
+          "Id": "buff-source:55344",
+          "Name": "Rock the Stage/Infinite Rhapsody"
+        },
+        {
+          "Id": "buff-source:55346",
+          "Name": "Rock the Stage/Infinite Rhapsody"
         }
       ]
     },
@@ -3470,6 +3530,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -3477,6 +3538,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -3484,6 +3546,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_abnormal_green_icon|BuffName/buff_abnormal_green_icon.png",
         "DamageAttrIdName|Sprite|1447258277|buff_abnormal_green_icon|DamageAttrIdName/buff_abnormal_green_icon.png",
+        "EffectSources|Sprite|1447258277|buff_abnormal_green_icon|EffectSources/buff_abnormal_green_icon.png",
         "RecountTable|Sprite|1447258277|buff_abnormal_green_icon|RecountTable/buff_abnormal_green_icon.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_abnormal_green_icon|SkillBreakdownDetails/buff_abnormal_green_icon.png",
         "skillnames|Sprite|1447258277|buff_abnormal_green_icon|skillnames/buff_abnormal_green_icon.png"
@@ -3558,6 +3621,22 @@
         },
         {
           "Id": 990825,
+          "Name": "Rejuvenation Roar"
+        },
+        {
+          "Id": "buff-source:21404",
+          "Name": "HP Recovery"
+        },
+        {
+          "Id": "buff-source:2202321",
+          "Name": "Magnificence (Applier)"
+        },
+        {
+          "Id": "buff-source:683624",
+          "Name": "Airona - HP Regen"
+        },
+        {
+          "Id": "buff-source:990825",
           "Name": "Rejuvenation Roar"
         }
       ]
@@ -3707,18 +3786,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_abnormal_icon_01|BuffName/buff_abnormal_icon_01.png",
         "DamageAttrIdName|Sprite|1337047534|buff_abnormal_icon_01|DamageAttrIdName/buff_abnormal_icon_01.png",
+        "EffectSources|Sprite|1337047534|buff_abnormal_icon_01|EffectSources/buff_abnormal_icon_01.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_abnormal_icon_01|SkillBreakdownDetails/buff_abnormal_icon_01.png",
         "skillnames|Sprite|1337047534|buff_abnormal_icon_01|skillnames/buff_abnormal_icon_01.png"
       ],
@@ -3772,6 +3854,14 @@
         {
           "Id": 990506,
           "Name": "Web Bind"
+        },
+        {
+          "Id": "buff-source:2110100",
+          "Name": "Iron Fang - Healing Prohibition"
+        },
+        {
+          "Id": "buff-source:881076",
+          "Name": "<Soul> About to Split"
         }
       ]
     },
@@ -3800,18 +3890,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_abnormal_icon_02|BuffName/buff_abnormal_icon_02.png",
         "DamageAttrIdName|Sprite|1337047534|buff_abnormal_icon_02|DamageAttrIdName/buff_abnormal_icon_02.png",
+        "EffectSources|Sprite|1337047534|buff_abnormal_icon_02|EffectSources/buff_abnormal_icon_02.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_abnormal_icon_02|SkillBreakdownDetails/buff_abnormal_icon_02.png",
         "skillnames|Sprite|1337047534|buff_abnormal_icon_02|skillnames/buff_abnormal_icon_02.png"
       ],
@@ -3894,6 +3987,14 @@
         {
           "Id": 997006,
           "Name": "Weakness"
+        },
+        {
+          "Id": "buff-source:821034",
+          "Name": "Dimensional corrosion"
+        },
+        {
+          "Id": "buff-source:990424",
+          "Name": "Lizardman King - Chanting prohibited"
         }
       ]
     },
@@ -3920,13 +4021,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_abnormal_img_icon|BuffName/buff_abnormal_img_icon.png"
+        "BuffName|Sprite|1447258277|buff_abnormal_img_icon|BuffName/buff_abnormal_img_icon.png",
+        "EffectSources|Sprite|1447258277|buff_abnormal_img_icon|EffectSources/buff_abnormal_img_icon.png"
       ],
       "Rows": [
         {
@@ -3952,6 +4056,10 @@
         {
           "Id": 974304,
           "Name": "Snowmelt"
+        },
+        {
+          "Id": "buff-source:681838",
+          "Name": "Airona Transformation - Pure Model"
         }
       ]
     },
@@ -4074,18 +4182,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_abnormal_red_icon_03|BuffName/buff_abnormal_red_icon_03.png",
         "DamageAttrIdName|Sprite|1337047534|buff_abnormal_red_icon_03|DamageAttrIdName/buff_abnormal_red_icon_03.png",
+        "EffectSources|Sprite|1337047534|buff_abnormal_red_icon_03|EffectSources/buff_abnormal_red_icon_03.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_abnormal_red_icon_03|SkillBreakdownDetails/buff_abnormal_red_icon_03.png",
         "skillnames|Sprite|1337047534|buff_abnormal_red_icon_03|skillnames/buff_abnormal_red_icon_03.png"
       ],
@@ -4160,6 +4271,18 @@
         {
           "Id": 990603,
           "Name": "Poisoned"
+        },
+        {
+          "Id": "buff-source:700013",
+          "Name": "Dark Corruption"
+        },
+        {
+          "Id": "buff-source:855120",
+          "Name": "Resentful Gaze"
+        },
+        {
+          "Id": "buff-source:990603",
+          "Name": "Venobzzar Incubator - Poisoned"
         }
       ]
     },
@@ -4188,18 +4311,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_add_electricity|BuffName/buff_add_electricity.png",
         "DamageAttrIdName|Sprite|1447258277|buff_add_electricity|DamageAttrIdName/buff_add_electricity.png",
+        "EffectSources|Sprite|1447258277|buff_add_electricity|EffectSources/buff_add_electricity.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_add_electricity|SkillBreakdownDetails/buff_add_electricity.png",
         "skillnames|Sprite|1447258277|buff_add_electricity|skillnames/buff_add_electricity.png"
       ],
@@ -4253,6 +4379,22 @@
         {
           "Id": 995114,
           "Name": "Charging"
+        },
+        {
+          "Id": "buff-source:3200027",
+          "Name": "Muku Vanguard - Thunder Infusion"
+        },
+        {
+          "Id": "buff-source:681837",
+          "Name": "Void Tina Transformation - Locked Blade"
+        },
+        {
+          "Id": "buff-source:835067",
+          "Name": "Fulgurite"
+        },
+        {
+          "Id": "buff-source:880810",
+          "Name": "Electro Bomb Attachment"
         }
       ]
     },
@@ -4281,18 +4423,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_add_fire|BuffName/buff_add_fire.png",
         "DamageAttrIdName|Sprite|1447258277|buff_add_fire|DamageAttrIdName/buff_add_fire.png",
+        "EffectSources|Sprite|1447258277|buff_add_fire|EffectSources/buff_add_fire.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_add_fire|SkillBreakdownDetails/buff_add_fire.png",
         "skillnames|Sprite|1447258277|buff_add_fire|skillnames/buff_add_fire.png"
       ],
@@ -4306,6 +4451,10 @@
         },
         {
           "Id": 800010,
+          "Name": "Twin's Fire Seed"
+        },
+        {
+          "Id": "buff-source:800010",
           "Name": "Twin's Fire Seed"
         }
       ]
@@ -4359,13 +4508,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_add_wind|BuffName/buff_add_wind.png"
+        "BuffName|Sprite|1447258277|buff_add_wind|BuffName/buff_add_wind.png",
+        "EffectSources|Sprite|1447258277|buff_add_wind|EffectSources/buff_add_wind.png"
       ],
       "Rows": [
         {
@@ -4375,6 +4527,10 @@
         {
           "Id": 995161,
           "Name": "Wind spirit activation"
+        },
+        {
+          "Id": "buff-source:3200024",
+          "Name": "Storm Goblin King - Storm Blessing"
         }
       ]
     },
@@ -4555,15 +4711,21 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_agentia_up|BuffName/buff_agentia_up.png"
+        "BuffName|Sprite|1447258277|buff_agentia_up|BuffName/buff_agentia_up.png",
+        "EffectSources|Sprite|1447258277|buff_agentia_up|EffectSources/buff_agentia_up.png"
       ],
       "Rows": [
+        {
+          "Id": "0"
+        },
         {
           "Id": 2010064,
           "Name": "Slumberdream Resistance 1 Active"
@@ -4963,6 +5125,206 @@
         {
           "Id": 997030,
           "Name": "Enthralling Pollen"
+        },
+        {
+          "Id": "buff-source:2033011",
+          "Name": "Fire Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033012",
+          "Name": "Fire Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033013",
+          "Name": "Fire Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033014",
+          "Name": "Blazing Lizard Spine Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033015",
+          "Name": "Blazing Lizard Spine Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033016",
+          "Name": "Blazing Lizard Spine Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033021",
+          "Name": "Fire Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033022",
+          "Name": "Fire Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033023",
+          "Name": "Fire Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033024",
+          "Name": "Lizard Spine Fire Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033025",
+          "Name": "Lizard Spine Fire Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033026",
+          "Name": "Lizard Spine Fire Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033031",
+          "Name": "Ice Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033032",
+          "Name": "Ice Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033033",
+          "Name": "Ice Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033034",
+          "Name": "Frost Lizard Spine Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033035",
+          "Name": "Frost Lizard Spine Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033036",
+          "Name": "Frost Lizard Spine Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033041",
+          "Name": "Ice Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033042",
+          "Name": "Ice Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033043",
+          "Name": "Ice Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033044",
+          "Name": "Lizard Spine Ice Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033045",
+          "Name": "Lizard Spine Ice Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033046",
+          "Name": "Lizard Spine Ice Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033051",
+          "Name": "Forest Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033052",
+          "Name": "Forest Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033053",
+          "Name": "Forest Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033054",
+          "Name": "Verdant Lizard Spine Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033055",
+          "Name": "Verdant Lizard Spine Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033056",
+          "Name": "Verdant Lizard Spine Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033061",
+          "Name": "Forest Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033062",
+          "Name": "Forest Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033063",
+          "Name": "Forest Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033064",
+          "Name": "Lizard Spine Frost Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033065",
+          "Name": "Lizard Spine Frost Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033066",
+          "Name": "Lizard Spine Frost Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033071",
+          "Name": "Rock Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033072",
+          "Name": "Rock Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033073",
+          "Name": "Rock Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033074",
+          "Name": "Sandstone Lizard Spine Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033075",
+          "Name": "Sandstone Lizard Spine Serum Lv.2"
+        },
+        {
+          "Id": "buff-source:2033076",
+          "Name": "Sandstone Lizard Spine Serum Lv.3"
+        },
+        {
+          "Id": "buff-source:2033081",
+          "Name": "Rock Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033082",
+          "Name": "Rock Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033083",
+          "Name": "Rock Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033084",
+          "Name": "Lizard Spine Rock Drop Lv.1"
+        },
+        {
+          "Id": "buff-source:2033085",
+          "Name": "Lizard Spine Rock Drop Lv.2"
+        },
+        {
+          "Id": "buff-source:2033086",
+          "Name": "Lizard Spine Rock Drop Lv.3"
+        },
+        {
+          "Id": "buff-source:2033091",
+          "Name": "Wind Serum Lv.1"
+        },
+        {
+          "Id": "buff-source:2033092",
+          "Name": "Wind Serum Lv.2"
         }
       ]
     },
@@ -4991,6 +5353,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -4998,6 +5361,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -5005,6 +5369,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_blue_atk|BuffName/buff_blue_atk.png",
         "DamageAttrIdName|Sprite|2990205475|buff_blue_atk|DamageAttrIdName/buff_blue_atk.png",
+        "EffectSources|Sprite|2990205475|buff_blue_atk|EffectSources/buff_blue_atk.png",
         "RecountTable|Sprite|2990205475|buff_blue_atk|RecountTable/buff_blue_atk.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_blue_atk|SkillBreakdownDetails/buff_blue_atk.png",
         "skillnames|Sprite|2990205475|buff_blue_atk|skillnames/buff_blue_atk.png"
@@ -5116,6 +5481,14 @@
         {
           "Id": 995178,
           "Name": "Lightning Surge"
+        },
+        {
+          "Id": "buff-source:2110062",
+          "Name": "Roar Command"
+        },
+        {
+          "Id": "buff-source:990215",
+          "Name": "Muku Chief - Power of Muku"
         }
       ]
     },
@@ -5202,6 +5575,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -5209,6 +5583,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -5216,6 +5591,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_blue_def|BuffName/buff_blue_def.png",
         "DamageAttrIdName|Sprite|2990205475|buff_blue_def|DamageAttrIdName/buff_blue_def.png",
+        "EffectSources|Sprite|2990205475|buff_blue_def|EffectSources/buff_blue_def.png",
         "RecountTable|Sprite|2990205475|buff_blue_def|RecountTable/buff_blue_def.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_blue_def|SkillBreakdownDetails/buff_blue_def.png",
         "skillnames|Sprite|2990205475|buff_blue_def|skillnames/buff_blue_def.png"
@@ -5397,6 +5773,38 @@
         {
           "Id": 995276,
           "Name": "Defense +50%"
+        },
+        {
+          "Id": "buff-source:2110084",
+          "Name": "Shield of Flowing Fire"
+        },
+        {
+          "Id": "buff-source:21422",
+          "Name": "Shield"
+        },
+        {
+          "Id": "buff-source:2404211",
+          "Name": "Shield"
+        },
+        {
+          "Id": "buff-source:3200003",
+          "Name": "Iron Fang - Survival Instinct"
+        },
+        {
+          "Id": "buff-source:50024",
+          "Name": "Shield"
+        },
+        {
+          "Id": "buff-source:55405",
+          "Name": "Aegis Ward"
+        },
+        {
+          "Id": "buff-source:851383",
+          "Name": "Airona - Radiant shield"
+        },
+        {
+          "Id": "buff-source:881836",
+          "Name": "Crystalrock Shield"
         }
       ]
     },
@@ -5425,6 +5833,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -5432,6 +5841,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -5439,6 +5849,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_blue_heal|BuffName/buff_blue_heal.png",
         "DamageAttrIdName|Sprite|2990205475|buff_blue_heal|DamageAttrIdName/buff_blue_heal.png",
+        "EffectSources|Sprite|2990205475|buff_blue_heal|EffectSources/buff_blue_heal.png",
         "RecountTable|Sprite|2990205475|buff_blue_heal|RecountTable/buff_blue_heal.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_blue_heal|SkillBreakdownDetails/buff_blue_heal.png",
         "skillnames|Sprite|2990205475|buff_blue_heal|skillnames/buff_blue_heal.png"
@@ -5519,6 +5930,22 @@
         {
           "Id": 835409,
           "Name": "S-Rank Magic Band-Aid"
+        },
+        {
+          "Id": "buff-source:3001031",
+          "Name": "Void Aura"
+        },
+        {
+          "Id": "buff-source:835407",
+          "Name": "B-Rank Magic Band-Aid"
+        },
+        {
+          "Id": "buff-source:835408",
+          "Name": "A-Rank Magic Band-Aid"
+        },
+        {
+          "Id": "buff-source:835409",
+          "Name": "S-Rank Magic Band-Aid"
         }
       ]
     },
@@ -5547,18 +5974,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_blue_hp|BuffName/buff_blue_hp.png",
         "DamageAttrIdName|Sprite|2990205475|buff_blue_hp|DamageAttrIdName/buff_blue_hp.png",
+        "EffectSources|Sprite|2990205475|buff_blue_hp|EffectSources/buff_blue_hp.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_blue_hp|SkillBreakdownDetails/buff_blue_hp.png",
         "skillnames|Sprite|2990205475|buff_blue_hp|skillnames/buff_blue_hp.png"
       ],
@@ -5687,6 +6117,18 @@
         {
           "Id": 999977,
           "Name": "Survival Boost"
+        },
+        {
+          "Id": "buff-source:835501",
+          "Name": "B-Rank Shadow Devour Ring"
+        },
+        {
+          "Id": "buff-source:835502",
+          "Name": "A-Rank Shadow Devour Ring"
+        },
+        {
+          "Id": "buff-source:835503",
+          "Name": "S-Rank Shadow Devour Ring"
         }
       ]
     },
@@ -5713,13 +6155,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|2990205475|buff_blue_lucky|BuffName/buff_blue_lucky.png"
+        "BuffName|Sprite|2990205475|buff_blue_lucky|BuffName/buff_blue_lucky.png",
+        "EffectSources|Sprite|2990205475|buff_blue_lucky|EffectSources/buff_blue_lucky.png"
       ],
       "Rows": [
         {
@@ -5736,6 +6181,10 @@
         },
         {
           "Id": 681835,
+          "Name": "Void Tina Transformation - Pure Model"
+        },
+        {
+          "Id": "buff-source:681835",
           "Name": "Void Tina Transformation - Pure Model"
         }
       ]
@@ -5765,18 +6214,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_blue_movespeed|BuffName/buff_blue_movespeed.png",
         "DamageAttrIdName|Sprite|2990205475|buff_blue_movespeed|DamageAttrIdName/buff_blue_movespeed.png",
+        "EffectSources|Sprite|2990205475|buff_blue_movespeed|EffectSources/buff_blue_movespeed.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_blue_movespeed|SkillBreakdownDetails/buff_blue_movespeed.png",
         "skillnames|Sprite|2990205475|buff_blue_movespeed|skillnames/buff_blue_movespeed.png"
       ],
@@ -5843,6 +6295,14 @@
         {
           "Id": 960724,
           "Name": "Exaltation"
+        },
+        {
+          "Id": "buff-source:2110103",
+          "Name": "Celestial Flier - Azure Gale"
+        },
+        {
+          "Id": "buff-source:960404",
+          "Name": "Speed up!"
         }
       ]
     },
@@ -5897,18 +6357,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_dungeons_xushi|BuffName/buff_dungeons_xushi.png",
         "DamageAttrIdName|Sprite|1337047534|buff_dungeons_xushi|DamageAttrIdName/buff_dungeons_xushi.png",
+        "EffectSources|Sprite|1337047534|buff_dungeons_xushi|EffectSources/buff_dungeons_xushi.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_dungeons_xushi|SkillBreakdownDetails/buff_dungeons_xushi.png",
         "skillnames|Sprite|1337047534|buff_dungeons_xushi|skillnames/buff_dungeons_xushi.png"
       ],
@@ -5983,6 +6446,22 @@
         {
           "Id": 880700,
           "Name": "Void Corruption"
+        },
+        {
+          "Id": "buff-source:823213",
+          "Name": "Touch of Darkness"
+        },
+        {
+          "Id": "buff-source:823234",
+          "Name": "Purify: Root"
+        },
+        {
+          "Id": "buff-source:840010",
+          "Name": "Void Sigil"
+        },
+        {
+          "Id": "buff-source:880628",
+          "Name": "Touch of Darkness"
         }
       ]
     },
@@ -6035,15 +6514,24 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "ConsumableBuffBridge",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "ConsumableBuffBridge.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_food_up|BuffName/buff_food_up.png"
+        "BuffName|Sprite|1447258277|buff_food_up|BuffName/buff_food_up.png",
+        "ConsumableBuffBridge|Sprite|1447258277|buff_food_up|ConsumableBuffBridge/buff_food_up.png",
+        "EffectSources|Sprite|1447258277|buff_food_up|EffectSources/buff_food_up.png"
       ],
       "Rows": [
+        {
+          "Id": "0"
+        },
         {
           "Id": 2010003,
           "Name": "Sea Breeze Feast"
@@ -6089,16 +6577,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032011,
+          "Name": "Cuisine - ATK Lv.1"
+        },
+        {
           "Id": 2032012,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032012,
+          "Name": "Cuisine - ATK Lv.2"
         },
         {
           "Id": 2032013,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032013,
+          "Name": "Cuisine - ATK Lv.3"
+        },
+        {
           "Id": 2032014,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032014,
+          "Name": "Cuisine - ATK Lv.4"
         },
         {
           "Id": 2032015,
@@ -6121,16 +6625,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032021,
+          "Name": "Cuisine - MATK Lv.1"
+        },
+        {
           "Id": 2032022,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032022,
+          "Name": "Cuisine - MATK Lv.2"
         },
         {
           "Id": 2032023,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032023,
+          "Name": "Cuisine - MATK Lv.3"
+        },
+        {
           "Id": 2032024,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032024,
+          "Name": "Cuisine - MATK Lv.4"
         },
         {
           "Id": 2032025,
@@ -6153,16 +6673,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032031,
+          "Name": "Cuisine - Armor Lv.1"
+        },
+        {
           "Id": 2032032,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032032,
+          "Name": "Cuisine - Armor Lv.2"
         },
         {
           "Id": 2032033,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032033,
+          "Name": "Cuisine - Armor Lv.3"
+        },
+        {
           "Id": 2032034,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032034,
+          "Name": "Cuisine - Armor Lv.4"
         },
         {
           "Id": 2032035,
@@ -6185,16 +6721,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032041,
+          "Name": "Cuisine - Stamina Lv.1"
+        },
+        {
           "Id": 2032042,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032042,
+          "Name": "Cuisine - HP Lv.2"
         },
         {
           "Id": 2032043,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032043,
+          "Name": "Cuisine - HP Lv.3"
+        },
+        {
           "Id": 2032044,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032044,
+          "Name": "Cuisine - HP Lv.4"
         },
         {
           "Id": 2032045,
@@ -6217,16 +6769,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032051,
+          "Name": "Cuisine - HP Regen Lv.1"
+        },
+        {
           "Id": 2032052,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032052,
+          "Name": "Cuisine - HP Regen Lv.2"
         },
         {
           "Id": 2032053,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032053,
+          "Name": "Cuisine - HP Regen Lv.3"
+        },
+        {
           "Id": 2032054,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032054,
+          "Name": "Cuisine - HP Regen Lv.4"
         },
         {
           "Id": 2032055,
@@ -6249,24 +6817,48 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032065,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.1"
+        },
+        {
           "Id": 2032067,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032067,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032075,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032075,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.1"
+        },
+        {
           "Id": 2032077,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032077,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032086,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032086,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.1"
+        },
+        {
           "Id": 2032088,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032088,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
         },
         {
           "Id": 2032111,
@@ -6443,6 +7035,206 @@
         {
           "Id": 965208,
           "Name": "Harvest Feast​"
+        },
+        {
+          "Id": "buff-source:2032011",
+          "Name": "Cuisine - ATK Lv.1"
+        },
+        {
+          "Id": "buff-source:2032012",
+          "Name": "Cuisine - ATK Lv.2"
+        },
+        {
+          "Id": "buff-source:2032013",
+          "Name": "Cuisine - ATK Lv.3"
+        },
+        {
+          "Id": "buff-source:2032014",
+          "Name": "Cuisine - ATK Lv.4"
+        },
+        {
+          "Id": "buff-source:2032015",
+          "Name": "Cuisine - ATK Lv.5"
+        },
+        {
+          "Id": "buff-source:2032016",
+          "Name": "Cuisine - ATK Lv.6"
+        },
+        {
+          "Id": "buff-source:2032017",
+          "Name": "Cuisine - ATK Lv.7"
+        },
+        {
+          "Id": "buff-source:2032018",
+          "Name": "Cuisine - ATK Lv.8"
+        },
+        {
+          "Id": "buff-source:2032021",
+          "Name": "Cuisine - MATK Lv.1"
+        },
+        {
+          "Id": "buff-source:2032022",
+          "Name": "Cuisine - MATK Lv.2"
+        },
+        {
+          "Id": "buff-source:2032023",
+          "Name": "Cuisine - MATK Lv.3"
+        },
+        {
+          "Id": "buff-source:2032024",
+          "Name": "Cuisine - MATK Lv.4"
+        },
+        {
+          "Id": "buff-source:2032025",
+          "Name": "Cuisine - MATK Lv.5"
+        },
+        {
+          "Id": "buff-source:2032026",
+          "Name": "Cuisine - MATK Lv.6"
+        },
+        {
+          "Id": "buff-source:2032027",
+          "Name": "Cuisine - MATK Lv.7"
+        },
+        {
+          "Id": "buff-source:2032028",
+          "Name": "Cuisine - MATK Lv.8"
+        },
+        {
+          "Id": "buff-source:2032031",
+          "Name": "Cuisine - Armor Lv.1"
+        },
+        {
+          "Id": "buff-source:2032032",
+          "Name": "Cuisine - Armor Lv.2"
+        },
+        {
+          "Id": "buff-source:2032033",
+          "Name": "Cuisine - Armor Lv.3"
+        },
+        {
+          "Id": "buff-source:2032034",
+          "Name": "Cuisine - Armor Lv.4"
+        },
+        {
+          "Id": "buff-source:2032035",
+          "Name": "Cuisine - Armor Lv.5"
+        },
+        {
+          "Id": "buff-source:2032036",
+          "Name": "Cuisine - Armor Lv.6"
+        },
+        {
+          "Id": "buff-source:2032037",
+          "Name": "Cuisine - Armor Lv.7"
+        },
+        {
+          "Id": "buff-source:2032038",
+          "Name": "Cuisine - Armor Lv.8"
+        },
+        {
+          "Id": "buff-source:2032041",
+          "Name": "Cuisine - Stamina Lv.1"
+        },
+        {
+          "Id": "buff-source:2032042",
+          "Name": "Cuisine - HP Lv.2"
+        },
+        {
+          "Id": "buff-source:2032043",
+          "Name": "Cuisine - HP Lv.3"
+        },
+        {
+          "Id": "buff-source:2032044",
+          "Name": "Cuisine - HP Lv.4"
+        },
+        {
+          "Id": "buff-source:2032045",
+          "Name": "Cuisine - HP Lv.5"
+        },
+        {
+          "Id": "buff-source:2032046",
+          "Name": "Cuisine - HP Lv.6"
+        },
+        {
+          "Id": "buff-source:2032047",
+          "Name": "Cuisine - HP Lv.7"
+        },
+        {
+          "Id": "buff-source:2032048",
+          "Name": "Cuisine - HP Lv.8"
+        },
+        {
+          "Id": "buff-source:2032051",
+          "Name": "Cuisine - HP Regen Lv.1"
+        },
+        {
+          "Id": "buff-source:2032052",
+          "Name": "Cuisine - HP Regen Lv.2"
+        },
+        {
+          "Id": "buff-source:2032053",
+          "Name": "Cuisine - HP Regen Lv.3"
+        },
+        {
+          "Id": "buff-source:2032054",
+          "Name": "Cuisine - HP Regen Lv.4"
+        },
+        {
+          "Id": "buff-source:2032055",
+          "Name": "Cuisine - HP Regen Lv.5"
+        },
+        {
+          "Id": "buff-source:2032056",
+          "Name": "Cuisine - HP Regen Lv.6"
+        },
+        {
+          "Id": "buff-source:2032057",
+          "Name": "Cuisine - HP Regen Lv.7"
+        },
+        {
+          "Id": "buff-source:2032058",
+          "Name": "Cuisine - HP Regen Lv.8"
+        },
+        {
+          "Id": "buff-source:2032065",
+          "Name": "Cuisine - ATK + DMG to Elites Lv.1"
+        },
+        {
+          "Id": "buff-source:2032067",
+          "Name": "Cuisine - ATK + DMG to Elites Lv.2"
+        },
+        {
+          "Id": "buff-source:2032075",
+          "Name": "Cuisine - MATK + DMG to Elites Lv.1"
+        },
+        {
+          "Id": "buff-source:2032077",
+          "Name": "Cuisine - MATK + DMG to Elites Lv.2"
+        },
+        {
+          "Id": "buff-source:2032086",
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.1"
+        },
+        {
+          "Id": "buff-source:2032088",
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
+        },
+        {
+          "Id": "buff-source:2032111",
+          "Name": "Cuisine - ATK Lv.1"
+        },
+        {
+          "Id": "buff-source:2032112",
+          "Name": "Cuisine - ATK Lv.2"
+        },
+        {
+          "Id": "buff-source:2032113",
+          "Name": "Cuisine - ATK Lv.3"
+        },
+        {
+          "Id": "buff-source:2032114",
+          "Name": "Cuisine - ATK Lv.4"
         }
       ]
     },
@@ -6561,18 +7353,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_hideseek_icon03|BuffName/buff_hideseek_icon03.png",
         "DamageAttrIdName|Sprite|1447258277|buff_hideseek_icon03|DamageAttrIdName/buff_hideseek_icon03.png",
+        "EffectSources|Sprite|1447258277|buff_hideseek_icon03|EffectSources/buff_hideseek_icon03.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_hideseek_icon03|SkillBreakdownDetails/buff_hideseek_icon03.png",
         "skillnames|Sprite|1447258277|buff_hideseek_icon03|skillnames/buff_hideseek_icon03.png"
       ],
@@ -6586,6 +7381,10 @@
         },
         {
           "Id": 835017,
+          "Name": "Reflection Shield"
+        },
+        {
+          "Id": "buff-source:835017",
           "Name": "Reflection Shield"
         }
       ]
@@ -6691,18 +7490,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_hideseek_icon06|BuffName/buff_hideseek_icon06.png",
         "DamageAttrIdName|Sprite|1447258277|buff_hideseek_icon06|DamageAttrIdName/buff_hideseek_icon06.png",
+        "EffectSources|Sprite|1447258277|buff_hideseek_icon06|EffectSources/buff_hideseek_icon06.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_hideseek_icon06|SkillBreakdownDetails/buff_hideseek_icon06.png",
         "skillnames|Sprite|1447258277|buff_hideseek_icon06|skillnames/buff_hideseek_icon06.png"
       ],
@@ -6716,6 +7518,10 @@
         },
         {
           "Id": 835014,
+          "Name": "Gigantification"
+        },
+        {
+          "Id": "buff-source:835014",
           "Name": "Gigantification"
         }
       ]
@@ -7091,18 +7897,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_icon_fire|BuffName/buff_icon_fire.png",
         "DamageAttrIdName|Sprite|1337047534|buff_icon_fire|DamageAttrIdName/buff_icon_fire.png",
+        "EffectSources|Sprite|1337047534|buff_icon_fire|EffectSources/buff_icon_fire.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_icon_fire|SkillBreakdownDetails/buff_icon_fire.png",
         "skillnames|Sprite|1337047534|buff_icon_fire|skillnames/buff_icon_fire.png"
       ],
@@ -7202,6 +8011,34 @@
         {
           "Id": 974003,
           "Name": "On fire"
+        },
+        {
+          "Id": "buff-source:4501",
+          "Name": "Burn"
+        },
+        {
+          "Id": "buff-source:823010",
+          "Name": "Flame Echo"
+        },
+        {
+          "Id": "buff-source:855137",
+          "Name": "Burn"
+        },
+        {
+          "Id": "buff-source:873003",
+          "Name": "Burn"
+        },
+        {
+          "Id": "buff-source:960244",
+          "Name": "On fire"
+        },
+        {
+          "Id": "buff-source:965430",
+          "Name": "On fire"
+        },
+        {
+          "Id": "buff-source:974003",
+          "Name": "On fire"
         }
       ]
     },
@@ -7268,18 +8105,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_icon_ice|BuffName/buff_icon_ice.png",
         "DamageAttrIdName|Sprite|1337047534|buff_icon_ice|DamageAttrIdName/buff_icon_ice.png",
+        "EffectSources|Sprite|1337047534|buff_icon_ice|EffectSources/buff_icon_ice.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_icon_ice|SkillBreakdownDetails/buff_icon_ice.png",
         "skillnames|Sprite|1337047534|buff_icon_ice|skillnames/buff_icon_ice.png"
       ],
@@ -7326,6 +8166,10 @@
         {
           "Id": 971002,
           "Name": "Frozen"
+        },
+        {
+          "Id": "buff-source:882101",
+          "Name": "Touch of Frost"
         }
       ]
     },
@@ -7444,18 +8288,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_icon_ray|BuffName/buff_icon_ray.png",
         "DamageAttrIdName|Sprite|1337047534|buff_icon_ray|DamageAttrIdName/buff_icon_ray.png",
+        "EffectSources|Sprite|1337047534|buff_icon_ray|EffectSources/buff_icon_ray.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_icon_ray|SkillBreakdownDetails/buff_icon_ray.png",
         "skillnames|Sprite|1337047534|buff_icon_ray|skillnames/buff_icon_ray.png"
       ],
@@ -7500,6 +8347,14 @@
         {
           "Id": 995270,
           "Name": "Thunder Suppress"
+        },
+        {
+          "Id": "buff-source:965431",
+          "Name": "Paralyzed"
+        },
+        {
+          "Id": "buff-source:995270",
+          "Name": "Thunder Suppress"
         }
       ]
     },
@@ -7528,18 +8383,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|buff_icon_wind|BuffName/buff_icon_wind.png",
         "DamageAttrIdName|Sprite|1337047534|buff_icon_wind|DamageAttrIdName/buff_icon_wind.png",
+        "EffectSources|Sprite|1337047534|buff_icon_wind|EffectSources/buff_icon_wind.png",
         "SkillBreakdownDetails|Sprite|1337047534|buff_icon_wind|SkillBreakdownDetails/buff_icon_wind.png",
         "skillnames|Sprite|1337047534|buff_icon_wind|skillnames/buff_icon_wind.png"
       ],
@@ -7561,6 +8419,10 @@
         },
         {
           "Id": 995167,
+          "Name": "Wind Binding Connection"
+        },
+        {
+          "Id": "buff-source:995167",
           "Name": "Wind Binding Connection"
         }
       ]
@@ -7770,17 +8632,24 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon06|BuffName/buff_icon06.png"
+        "BuffName|Sprite|1447258277|buff_icon06|BuffName/buff_icon06.png",
+        "EffectSources|Sprite|1447258277|buff_icon06|EffectSources/buff_icon06.png"
       ],
       "Rows": [
         {
           "Id": 5001920,
+          "Name": "Olvera's Blessing"
+        },
+        {
+          "Id": "buff-source:5001920",
           "Name": "Olvera's Blessing"
         }
       ]
@@ -7848,18 +8717,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon08|BuffName/buff_icon08.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon08|DamageAttrIdName/buff_icon08.png",
+        "EffectSources|Sprite|1447258277|buff_icon08|EffectSources/buff_icon08.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon08|SkillBreakdownDetails/buff_icon08.png",
         "skillnames|Sprite|1447258277|buff_icon08|skillnames/buff_icon08.png"
       ],
@@ -7877,6 +8749,10 @@
         },
         {
           "Id": 997036,
+          "Name": "Mirrored Illusion"
+        },
+        {
+          "Id": "buff-source:997036",
           "Name": "Mirrored Illusion"
         }
       ]
@@ -7906,6 +8782,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -7913,6 +8790,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -7920,6 +8798,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon09|BuffName/buff_icon09.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon09|DamageAttrIdName/buff_icon09.png",
+        "EffectSources|Sprite|1447258277|buff_icon09|EffectSources/buff_icon09.png",
         "RecountTable|Sprite|1447258277|buff_icon09|RecountTable/buff_icon09.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon09|SkillBreakdownDetails/buff_icon09.png",
         "skillnames|Sprite|1447258277|buff_icon09|skillnames/buff_icon09.png"
@@ -7989,6 +8868,10 @@
         {
           "Id": 999065,
           "Name": "Invincible"
+        },
+        {
+          "Id": "buff-source:2110096",
+          "Name": "Boarrier King - Electro Shield"
         }
       ]
     },
@@ -8061,18 +8944,25 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon100|BuffName/buff_icon100.png"
+        "BuffName|Sprite|1447258277|buff_icon100|BuffName/buff_icon100.png",
+        "EffectSources|Sprite|1447258277|buff_icon100|EffectSources/buff_icon100.png"
       ],
       "Rows": [
         {
           "Id": 2110129,
           "Name": "Haste Specialization"
+        },
+        {
+          "Id": "buff-source:2110129",
+          "Name": "Emerald Caprahorn - Haste Specialization"
         }
       ]
     },
@@ -8457,17 +9347,24 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon111|BuffName/buff_icon111.png"
+        "BuffName|Sprite|1447258277|buff_icon111|BuffName/buff_icon111.png",
+        "EffectSources|Sprite|1447258277|buff_icon111|EffectSources/buff_icon111.png"
       ],
       "Rows": [
         {
           "Id": 5001921,
+          "Name": "Tina's Blessing"
+        },
+        {
+          "Id": "buff-source:5001921",
           "Name": "Tina's Blessing"
         }
       ]
@@ -8947,18 +9844,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon124|BuffName/buff_icon124.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon124|DamageAttrIdName/buff_icon124.png",
+        "EffectSources|Sprite|1447258277|buff_icon124|EffectSources/buff_icon124.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon124|SkillBreakdownDetails/buff_icon124.png",
         "skillnames|Sprite|1447258277|buff_icon124|skillnames/buff_icon124.png"
       ],
@@ -8972,6 +9872,10 @@
         },
         {
           "Id": 997046,
+          "Name": "Therapeutic Bloom"
+        },
+        {
+          "Id": "buff-source:997046",
           "Name": "Therapeutic Bloom"
         }
       ]
@@ -9347,6 +10251,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -9354,6 +10259,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -9361,6 +10267,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon133|BuffName/buff_icon133.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon133|DamageAttrIdName/buff_icon133.png",
+        "EffectSources|Sprite|1447258277|buff_icon133|EffectSources/buff_icon133.png",
         "RecountTable|Sprite|1447258277|buff_icon133|RecountTable/buff_icon133.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon133|SkillBreakdownDetails/buff_icon133.png",
         "skillnames|Sprite|1447258277|buff_icon133|skillnames/buff_icon133.png"
@@ -9402,6 +10309,10 @@
         {
           "Id": 3210101,
           "Name": "Muku's Protection"
+        },
+        {
+          "Id": "buff-source:3210101",
+          "Name": "Muku King - Muku's Protection"
         }
       ]
     },
@@ -9468,18 +10379,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon135|BuffName/buff_icon135.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon135|DamageAttrIdName/buff_icon135.png",
+        "EffectSources|Sprite|1447258277|buff_icon135|EffectSources/buff_icon135.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon135|SkillBreakdownDetails/buff_icon135.png",
         "skillnames|Sprite|1447258277|buff_icon135|skillnames/buff_icon135.png"
       ],
@@ -9520,6 +10434,18 @@
         {
           "Id": 960110,
           "Name": "Blurred State"
+        },
+        {
+          "Id": "buff-source:835419",
+          "Name": "B-Rank Reflector"
+        },
+        {
+          "Id": "buff-source:835420",
+          "Name": "A-Rank Reflector"
+        },
+        {
+          "Id": "buff-source:835421",
+          "Name": "S-Rank Reflector"
         }
       ]
     },
@@ -9598,18 +10524,25 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon138|BuffName/buff_icon138.png"
+        "BuffName|Sprite|1447258277|buff_icon138|BuffName/buff_icon138.png",
+        "EffectSources|Sprite|1447258277|buff_icon138|EffectSources/buff_icon138.png"
       ],
       "Rows": [
         {
           "Id": 3200013,
           "Name": "Active Muscles"
+        },
+        {
+          "Id": "buff-source:3200013",
+          "Name": "Mutant Yeti - Active Muscles"
         }
       ]
     },
@@ -9872,13 +10805,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon144|BuffName/buff_icon144.png"
+        "BuffName|Sprite|1447258277|buff_icon144|BuffName/buff_icon144.png",
+        "EffectSources|Sprite|1447258277|buff_icon144|EffectSources/buff_icon144.png"
       ],
       "Rows": [
         {
@@ -9888,6 +10824,14 @@
         {
           "Id": 3210121,
           "Name": "Pet Frenzy"
+        },
+        {
+          "Id": "buff-source:2110121",
+          "Name": "Crimson Foxen - Phantom Rally"
+        },
+        {
+          "Id": "buff-source:3210121",
+          "Name": "Crimson Foxen - Pet Frenzy"
         }
       ]
     },
@@ -10306,6 +11250,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -10313,6 +11258,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -10320,6 +11266,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon155|BuffName/buff_icon155.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon155|DamageAttrIdName/buff_icon155.png",
+        "EffectSources|Sprite|1447258277|buff_icon155|EffectSources/buff_icon155.png",
         "RecountTable|Sprite|1447258277|buff_icon155|RecountTable/buff_icon155.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon155|SkillBreakdownDetails/buff_icon155.png",
         "skillnames|Sprite|1447258277|buff_icon155|skillnames/buff_icon155.png"
@@ -10355,6 +11302,14 @@
         },
         {
           "Id": 273,
+          "Name": "Stunt! Healing Bomb"
+        },
+        {
+          "Id": "buff-source:2110131",
+          "Name": "Healing Spell"
+        },
+        {
+          "Id": "buff-source:3200034",
           "Name": "Stunt! Healing Bomb"
         }
       ]
@@ -10886,13 +11841,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon32|BuffName/buff_icon32.png"
+        "BuffName|Sprite|1447258277|buff_icon32|BuffName/buff_icon32.png",
+        "EffectSources|Sprite|1447258277|buff_icon32|EffectSources/buff_icon32.png"
       ],
       "Rows": [
         {
@@ -10902,6 +11860,10 @@
         {
           "Id": 3210151,
           "Name": "Blade Intent"
+        },
+        {
+          "Id": "buff-source:2110107",
+          "Name": "Boarrier Tyrant - Enhanced Special Attack"
         }
       ]
     },
@@ -10956,18 +11918,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon34|BuffName/buff_icon34.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon34|DamageAttrIdName/buff_icon34.png",
+        "EffectSources|Sprite|1447258277|buff_icon34|EffectSources/buff_icon34.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon34|SkillBreakdownDetails/buff_icon34.png",
         "skillnames|Sprite|1447258277|buff_icon34|skillnames/buff_icon34.png"
       ],
@@ -10985,6 +11950,10 @@
         },
         {
           "Id": 880809,
+          "Name": "Void Corruption Burn"
+        },
+        {
+          "Id": "buff-source:880809",
           "Name": "Void Corruption Burn"
         }
       ]
@@ -11416,13 +12385,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon47|BuffName/buff_icon47.png"
+        "BuffName|Sprite|1447258277|buff_icon47|BuffName/buff_icon47.png",
+        "EffectSources|Sprite|1447258277|buff_icon47|EffectSources/buff_icon47.png"
       ],
       "Rows": [
         {
@@ -11436,6 +12408,10 @@
         {
           "Id": 997032,
           "Name": "Bloom & Wither"
+        },
+        {
+          "Id": "buff-source:3210141",
+          "Name": "Flamehorn - Absolute Luck"
         }
       ]
     },
@@ -11624,18 +12600,25 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon53|BuffName/buff_icon53.png"
+        "BuffName|Sprite|1447258277|buff_icon53|BuffName/buff_icon53.png",
+        "EffectSources|Sprite|1447258277|buff_icon53|EffectSources/buff_icon53.png"
       ],
       "Rows": [
         {
           "Id": 2110117,
           "Name": "Caprahorn Shield"
+        },
+        {
+          "Id": "buff-source:2110117",
+          "Name": "Fafala - Caprahorn Shield"
         }
       ]
     },
@@ -11868,6 +12851,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -11875,6 +12859,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -11882,6 +12867,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon60|BuffName/buff_icon60.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon60|DamageAttrIdName/buff_icon60.png",
+        "EffectSources|Sprite|1447258277|buff_icon60|EffectSources/buff_icon60.png",
         "RecountTable|Sprite|1447258277|buff_icon60|RecountTable/buff_icon60.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon60|SkillBreakdownDetails/buff_icon60.png",
         "skillnames|Sprite|1447258277|buff_icon60|skillnames/buff_icon60.png"
@@ -11931,6 +12917,10 @@
         {
           "Id": 882731,
           "Name": "Totem Power"
+        },
+        {
+          "Id": "buff-source:2201492",
+          "Name": "Recovery"
         }
       ]
     },
@@ -12101,13 +13091,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_icon65|BuffName/buff_icon65.png"
+        "BuffName|Sprite|1447258277|buff_icon65|BuffName/buff_icon65.png",
+        "EffectSources|Sprite|1447258277|buff_icon65|EffectSources/buff_icon65.png"
       ],
       "Rows": [
         {
@@ -12125,6 +13118,10 @@
         {
           "Id": 881915,
           "Name": "Nappo Death Mark"
+        },
+        {
+          "Id": "buff-source:2110114",
+          "Name": "Dorothy Aid"
         }
       ]
     },
@@ -12257,6 +13254,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -12264,6 +13262,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -12271,6 +13270,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon70|BuffName/buff_icon70.png",
         "DamageAttrIdName|Sprite|1447258277|buff_icon70|DamageAttrIdName/buff_icon70.png",
+        "EffectSources|Sprite|1447258277|buff_icon70|EffectSources/buff_icon70.png",
         "RecountTable|Sprite|1447258277|buff_icon70|RecountTable/buff_icon70.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_icon70|SkillBreakdownDetails/buff_icon70.png",
         "skillnames|Sprite|1447258277|buff_icon70|skillnames/buff_icon70.png"
@@ -12343,6 +13343,14 @@
         {
           "Id": 833545,
           "Name": "Giant Starland!"
+        },
+        {
+          "Id": "buff-source:55412",
+          "Name": "Zeal Crusade"
+        },
+        {
+          "Id": "buff-source:55417",
+          "Name": "Zeal Crusade"
         }
       ]
     },
@@ -13519,13 +14527,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_passive_icon_general_dps_icedamgeup|BuffName/buff_passive_icon_general_dps_icedamgeup.png"
+        "BuffName|Sprite|1447258277|buff_passive_icon_general_dps_icedamgeup|BuffName/buff_passive_icon_general_dps_icedamgeup.png",
+        "EffectSources|Sprite|1447258277|buff_passive_icon_general_dps_icedamgeup|EffectSources/buff_passive_icon_general_dps_icedamgeup.png"
       ],
       "Rows": [
         {
@@ -13535,6 +14546,10 @@
         {
           "Id": 3210091,
           "Name": "Tidal Force"
+        },
+        {
+          "Id": "buff-source:3210091",
+          "Name": "Lizardman King - Tidal Force"
         }
       ]
     },
@@ -13661,13 +14676,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_passive_icon_general_dps_lightenergycost|BuffName/buff_passive_icon_general_dps_lightenergycost.png"
+        "BuffName|Sprite|1447258277|buff_passive_icon_general_dps_lightenergycost|BuffName/buff_passive_icon_general_dps_lightenergycost.png",
+        "EffectSources|Sprite|1447258277|buff_passive_icon_general_dps_lightenergycost|EffectSources/buff_passive_icon_general_dps_lightenergycost.png"
       ],
       "Rows": [
         {
@@ -13729,6 +14747,10 @@
         {
           "Id": 997049,
           "Name": "Dreamchaser"
+        },
+        {
+          "Id": "buff-source:3200023",
+          "Name": "Great Warhog - Light Blessing"
         }
       ]
     },
@@ -13807,18 +14829,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_passive_icon_general_dps_ruthless|BuffName/buff_passive_icon_general_dps_ruthless.png",
         "DamageAttrIdName|Sprite|1447258277|buff_passive_icon_general_dps_ruthless|DamageAttrIdName/buff_passive_icon_general_dps_ruthless.png",
+        "EffectSources|Sprite|1447258277|buff_passive_icon_general_dps_ruthless|EffectSources/buff_passive_icon_general_dps_ruthless.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_passive_icon_general_dps_ruthless|SkillBreakdownDetails/buff_passive_icon_general_dps_ruthless.png",
         "skillnames|Sprite|1447258277|buff_passive_icon_general_dps_ruthless|skillnames/buff_passive_icon_general_dps_ruthless.png"
       ],
@@ -13841,6 +14866,10 @@
         {
           "Id": 3210071,
           "Name": "Master Specialist"
+        },
+        {
+          "Id": "buff-source:30501",
+          "Name": "Tina - Inspire"
         }
       ]
     },
@@ -14113,6 +15142,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -14120,6 +15150,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -14127,6 +15158,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|BuffName/buff_passive_icon_general_sup_inspireex.png",
         "DamageAttrIdName|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|DamageAttrIdName/buff_passive_icon_general_sup_inspireex.png",
+        "EffectSources|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|EffectSources/buff_passive_icon_general_sup_inspireex.png",
         "RecountTable|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|RecountTable/buff_passive_icon_general_sup_inspireex.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|SkillBreakdownDetails/buff_passive_icon_general_sup_inspireex.png",
         "skillnames|Sprite|1447258277|buff_passive_icon_general_sup_inspireex|skillnames/buff_passive_icon_general_sup_inspireex.png"
@@ -14150,6 +15182,10 @@
         {
           "Id": 262,
           "Name": "Arcane! Guardian's Boundary"
+        },
+        {
+          "Id": "buff-source:2110118",
+          "Name": "Fafala - Edge of Defense"
         }
       ]
     },
@@ -14352,18 +15388,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_passive_icon_sup_heal02|BuffName/buff_passive_icon_sup_heal02.png",
         "DamageAttrIdName|Sprite|1447258277|buff_passive_icon_sup_heal02|DamageAttrIdName/buff_passive_icon_sup_heal02.png",
+        "EffectSources|Sprite|1447258277|buff_passive_icon_sup_heal02|EffectSources/buff_passive_icon_sup_heal02.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_passive_icon_sup_heal02|SkillBreakdownDetails/buff_passive_icon_sup_heal02.png",
         "skillnames|Sprite|1447258277|buff_passive_icon_sup_heal02|skillnames/buff_passive_icon_sup_heal02.png"
       ],
@@ -14386,6 +15425,10 @@
         {
           "Id": 3002241,
           "Name": "Time-Slit - Illusion"
+        },
+        {
+          "Id": "buff-source:2202142",
+          "Name": "Healing"
         }
       ]
     },
@@ -14494,6 +15537,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -14501,6 +15545,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -14508,6 +15553,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_passive_icon_tank_violent01|BuffName/buff_passive_icon_tank_violent01.png",
         "DamageAttrIdName|Sprite|1447258277|buff_passive_icon_tank_violent01|DamageAttrIdName/buff_passive_icon_tank_violent01.png",
+        "EffectSources|Sprite|1447258277|buff_passive_icon_tank_violent01|EffectSources/buff_passive_icon_tank_violent01.png",
         "RecountTable|Sprite|1447258277|buff_passive_icon_tank_violent01|RecountTable/buff_passive_icon_tank_violent01.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_passive_icon_tank_violent01|SkillBreakdownDetails/buff_passive_icon_tank_violent01.png",
         "skillnames|Sprite|1447258277|buff_passive_icon_tank_violent01|skillnames/buff_passive_icon_tank_violent01.png"
@@ -14539,6 +15585,10 @@
         {
           "Id": 997027,
           "Name": "Flickering Mirage"
+        },
+        {
+          "Id": "buff-source:21423",
+          "Name": "Symbiotic Mark"
         }
       ]
     },
@@ -14731,6 +15781,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -14738,6 +15789,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -14745,6 +15797,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_red_def|BuffName/buff_red_def.png",
         "DamageAttrIdName|Sprite|2990205475|buff_red_def|DamageAttrIdName/buff_red_def.png",
+        "EffectSources|Sprite|2990205475|buff_red_def|EffectSources/buff_red_def.png",
         "RecountTable|Sprite|2990205475|buff_red_def|RecountTable/buff_red_def.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_red_def|SkillBreakdownDetails/buff_red_def.png",
         "skillnames|Sprite|2990205475|buff_red_def|skillnames/buff_red_def.png"
@@ -14866,6 +15919,14 @@
         {
           "Id": 995274,
           "Name": "Defense -30%"
+        },
+        {
+          "Id": "buff-source:2110111",
+          "Name": "Rorola - Enchantment"
+        },
+        {
+          "Id": "buff-source:883207",
+          "Name": "Neverending Nightmares"
         }
       ]
     },
@@ -14932,18 +15993,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_red_hp|BuffName/buff_red_hp.png",
         "DamageAttrIdName|Sprite|2990205475|buff_red_hp|DamageAttrIdName/buff_red_hp.png",
+        "EffectSources|Sprite|2990205475|buff_red_hp|EffectSources/buff_red_hp.png",
         "SkillBreakdownDetails|Sprite|2990205475|buff_red_hp|SkillBreakdownDetails/buff_red_hp.png",
         "skillnames|Sprite|2990205475|buff_red_hp|skillnames/buff_red_hp.png"
       ],
@@ -15063,6 +16127,34 @@
         {
           "Id": 883101,
           "Name": "Rend Wound"
+        },
+        {
+          "Id": "buff-source:828108",
+          "Name": "Erosion Bloom Wound"
+        },
+        {
+          "Id": "buff-source:828123",
+          "Name": "Erosion Bloom Brand"
+        },
+        {
+          "Id": "buff-source:855179",
+          "Name": "Rend Wound"
+        },
+        {
+          "Id": "buff-source:881390",
+          "Name": "Poisoned"
+        },
+        {
+          "Id": "buff-source:881403",
+          "Name": "Poisonous"
+        },
+        {
+          "Id": "buff-source:882352",
+          "Name": "Solar Flare Corrosion"
+        },
+        {
+          "Id": "buff-source:883101",
+          "Name": "Rend Wound"
         }
       ]
     },
@@ -15167,18 +16259,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|BuffName/buff_talent_passive_icon_dps_luckyconversion.png",
         "DamageAttrIdName|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|DamageAttrIdName/buff_talent_passive_icon_dps_luckyconversion.png",
+        "EffectSources|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|EffectSources/buff_talent_passive_icon_dps_luckyconversion.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|SkillBreakdownDetails/buff_talent_passive_icon_dps_luckyconversion.png",
         "skillnames|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|skillnames/buff_talent_passive_icon_dps_luckyconversion.png"
       ],
@@ -15193,6 +16288,10 @@
         },
         {
           "Id": 2220213101
+        },
+        {
+          "Id": "buff-source:2202131",
+          "Name": "Double Infusion"
         }
       ]
     },
@@ -15409,18 +16508,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpenergyre03|BuffName/buff_talent_passive_icon_general_dps_sharpenergyre03.png",
         "DamageAttrIdName|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpenergyre03|DamageAttrIdName/buff_talent_passive_icon_general_dps_sharpenergyre03.png",
+        "EffectSources|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpenergyre03|EffectSources/buff_talent_passive_icon_general_dps_sharpenergyre03.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpenergyre03|SkillBreakdownDetails/buff_talent_passive_icon_general_dps_sharpenergyre03.png",
         "skillnames|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpenergyre03|skillnames/buff_talent_passive_icon_general_dps_sharpenergyre03.png"
       ],
@@ -15447,6 +16549,10 @@
         {
           "Id": 997028,
           "Name": "Death Immunity"
+        },
+        {
+          "Id": "buff-source:2206011",
+          "Name": "Radiant Shield"
         }
       ]
     },
@@ -15473,13 +16579,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpup|BuffName/buff_talent_passive_icon_general_dps_sharpup.png"
+        "BuffName|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpup|BuffName/buff_talent_passive_icon_general_dps_sharpup.png",
+        "EffectSources|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpup|EffectSources/buff_talent_passive_icon_general_dps_sharpup.png"
       ],
       "Rows": [
         {
@@ -15509,6 +16618,14 @@
         {
           "Id": 990811,
           "Name": "Well-Healed"
+        },
+        {
+          "Id": "buff-source:3210011",
+          "Name": "Power of the Frost Ogre"
+        },
+        {
+          "Id": "buff-source:990811",
+          "Name": "Goblin Shaman - Well-Healed"
         }
       ]
     },
@@ -16113,18 +17230,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_talent_skill_310401|BuffName/buff_talent_skill_310401.png",
         "DamageAttrIdName|Sprite|1447258277|buff_talent_skill_310401|DamageAttrIdName/buff_talent_skill_310401.png",
+        "EffectSources|Sprite|1447258277|buff_talent_skill_310401|EffectSources/buff_talent_skill_310401.png",
         "SkillBreakdownDetails|Sprite|1447258277|buff_talent_skill_310401|SkillBreakdownDetails/buff_talent_skill_310401.png",
         "skillnames|Sprite|1447258277|buff_talent_skill_310401|skillnames/buff_talent_skill_310401.png"
       ],
@@ -16167,6 +17287,14 @@
         {
           "Id": 700107,
           "Name": "Void Aura Enhancement"
+        },
+        {
+          "Id": "buff-source:2110101",
+          "Name": "Void Bzzar"
+        },
+        {
+          "Id": "buff-source:55223",
+          "Name": "Focus"
         }
       ]
     },
@@ -16435,13 +17563,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|buff_talent_skill_370101|BuffName/buff_talent_skill_370101.png"
+        "BuffName|Sprite|1447258277|buff_talent_skill_370101|BuffName/buff_talent_skill_370101.png",
+        "EffectSources|Sprite|1447258277|buff_talent_skill_370101|EffectSources/buff_talent_skill_370101.png"
       ],
       "Rows": [
         {
@@ -16763,6 +17894,10 @@
         {
           "Id": 973109,
           "Name": "Coin Aura - 6"
+        },
+        {
+          "Id": "buff-source:973088",
+          "Name": "Airona - Mangan Transform - Improvised"
         }
       ]
     },
@@ -18423,18 +19558,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1251108144|com_affix_anmie|BuffName/com_affix_anmie.png",
         "DamageAttrIdName|Sprite|1251108144|com_affix_anmie|DamageAttrIdName/com_affix_anmie.png",
+        "EffectSources|Sprite|1251108144|com_affix_anmie|EffectSources/com_affix_anmie.png",
         "SkillBreakdownDetails|Sprite|1251108144|com_affix_anmie|SkillBreakdownDetails/com_affix_anmie.png",
         "skillnames|Sprite|1251108144|com_affix_anmie|skillnames/com_affix_anmie.png"
       ],
@@ -18466,6 +19604,14 @@
         },
         {
           "Id": 873001,
+          "Name": "Burning Heart"
+        },
+        {
+          "Id": "buff-source:866424",
+          "Name": "Shadow Pool"
+        },
+        {
+          "Id": "buff-source:873001",
           "Name": "Burning Heart"
         }
       ]
@@ -19541,18 +20687,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1251108144|com_affix_hechongji|BuffName/com_affix_hechongji.png",
         "DamageAttrIdName|Sprite|1251108144|com_affix_hechongji|DamageAttrIdName/com_affix_hechongji.png",
+        "EffectSources|Sprite|1251108144|com_affix_hechongji|EffectSources/com_affix_hechongji.png",
         "SkillBreakdownDetails|Sprite|1251108144|com_affix_hechongji|SkillBreakdownDetails/com_affix_hechongji.png",
         "skillnames|Sprite|1251108144|com_affix_hechongji|skillnames/com_affix_hechongji.png"
       ],
@@ -19570,6 +20719,10 @@
         },
         {
           "Id": 864301,
+          "Name": "Nuclear Impact"
+        },
+        {
+          "Id": "buff-source:864201",
           "Name": "Nuclear Impact"
         }
       ]
@@ -19751,18 +20904,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1251108144|com_affix_jiaoshazhiteng|BuffName/com_affix_jiaoshazhiteng.png",
         "DamageAttrIdName|Sprite|1251108144|com_affix_jiaoshazhiteng|DamageAttrIdName/com_affix_jiaoshazhiteng.png",
+        "EffectSources|Sprite|1251108144|com_affix_jiaoshazhiteng|EffectSources/com_affix_jiaoshazhiteng.png",
         "SkillBreakdownDetails|Sprite|1251108144|com_affix_jiaoshazhiteng|SkillBreakdownDetails/com_affix_jiaoshazhiteng.png",
         "skillnames|Sprite|1251108144|com_affix_jiaoshazhiteng|skillnames/com_affix_jiaoshazhiteng.png"
       ],
@@ -19787,6 +20943,10 @@
         },
         {
           "Id": 866432,
+          "Name": "Entangling Vines"
+        },
+        {
+          "Id": "buff-source:866432",
           "Name": "Entangling Vines"
         }
       ]
@@ -19816,18 +20976,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1251108144|com_affix_jifengzhouyu|BuffName/com_affix_jifengzhouyu.png",
         "DamageAttrIdName|Sprite|1251108144|com_affix_jifengzhouyu|DamageAttrIdName/com_affix_jifengzhouyu.png",
+        "EffectSources|Sprite|1251108144|com_affix_jifengzhouyu|EffectSources/com_affix_jifengzhouyu.png",
         "SkillBreakdownDetails|Sprite|1251108144|com_affix_jifengzhouyu|SkillBreakdownDetails/com_affix_jifengzhouyu.png",
         "skillnames|Sprite|1251108144|com_affix_jifengzhouyu|skillnames/com_affix_jifengzhouyu.png"
       ],
@@ -19850,6 +21013,10 @@
         {
           "Id": 866412,
           "Name": "Quick Strike"
+        },
+        {
+          "Id": "buff-source:865901",
+          "Name": "Stormy Weather"
         }
       ]
     },
@@ -20856,18 +22023,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1251108144|com_affix_shenshengzhiyu|BuffName/com_affix_shenshengzhiyu.png",
         "DamageAttrIdName|Sprite|1251108144|com_affix_shenshengzhiyu|DamageAttrIdName/com_affix_shenshengzhiyu.png",
+        "EffectSources|Sprite|1251108144|com_affix_shenshengzhiyu|EffectSources/com_affix_shenshengzhiyu.png",
         "SkillBreakdownDetails|Sprite|1251108144|com_affix_shenshengzhiyu|SkillBreakdownDetails/com_affix_shenshengzhiyu.png",
         "skillnames|Sprite|1251108144|com_affix_shenshengzhiyu|skillnames/com_affix_shenshengzhiyu.png"
       ],
@@ -20881,6 +22051,10 @@
         },
         {
           "Id": 866410,
+          "Name": "Holy Healing"
+        },
+        {
+          "Id": "buff-source:866410",
           "Name": "Holy Healing"
         }
       ]
@@ -21554,18 +22728,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1251108144|com_affix_zhadanren|BuffName/com_affix_zhadanren.png",
         "DamageAttrIdName|Sprite|1251108144|com_affix_zhadanren|DamageAttrIdName/com_affix_zhadanren.png",
+        "EffectSources|Sprite|1251108144|com_affix_zhadanren|EffectSources/com_affix_zhadanren.png",
         "SkillBreakdownDetails|Sprite|1251108144|com_affix_zhadanren|SkillBreakdownDetails/com_affix_zhadanren.png",
         "skillnames|Sprite|1251108144|com_affix_zhadanren|skillnames/com_affix_zhadanren.png"
       ],
@@ -21650,6 +22827,14 @@
         },
         {
           "Id": 997823,
+          "Name": "Slumberdream Mask - Echo"
+        },
+        {
+          "Id": "buff-source:873101",
+          "Name": "Shockwave"
+        },
+        {
+          "Id": "buff-source:997823",
           "Name": "Slumberdream Mask - Echo"
         }
       ]
@@ -22321,18 +23506,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_2|BuffName/debuff_icon_2.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_2|DamageAttrIdName/debuff_icon_2.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_2|EffectSources/debuff_icon_2.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_2|SkillBreakdownDetails/debuff_icon_2.png",
         "skillnames|Sprite|1337047534|debuff_icon_2|skillnames/debuff_icon_2.png"
       ],
@@ -22346,6 +23534,10 @@
         },
         {
           "Id": 882719,
+          "Name": "Blazing Domain"
+        },
+        {
+          "Id": "buff-source:882719",
           "Name": "Blazing Domain"
         }
       ]
@@ -22373,13 +23565,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1337047534|debuff_icon_20|BuffName/debuff_icon_20.png"
+        "BuffName|Sprite|1337047534|debuff_icon_20|BuffName/debuff_icon_20.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_20|EffectSources/debuff_icon_20.png"
       ],
       "Rows": [
         {
@@ -22389,6 +23584,10 @@
         {
           "Id": 882403,
           "Name": "Lock-On"
+        },
+        {
+          "Id": "buff-source:705020",
+          "Name": "Crimson Foxen - Firebringer"
         }
       ]
     },
@@ -22715,18 +23914,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_3|BuffName/debuff_icon_3.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_3|DamageAttrIdName/debuff_icon_3.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_3|EffectSources/debuff_icon_3.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_3|SkillBreakdownDetails/debuff_icon_3.png",
         "skillnames|Sprite|1337047534|debuff_icon_3|skillnames/debuff_icon_3.png"
       ],
@@ -22758,6 +23960,14 @@
         },
         {
           "Id": 827241,
+          "Name": "Illusion Break"
+        },
+        {
+          "Id": "buff-source:827209",
+          "Name": "Electrical Shock"
+        },
+        {
+          "Id": "buff-source:827241",
           "Name": "Illusion Break"
         }
       ]
@@ -23007,18 +24217,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_38|BuffName/debuff_icon_38.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_38|DamageAttrIdName/debuff_icon_38.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_38|EffectSources/debuff_icon_38.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_38|SkillBreakdownDetails/debuff_icon_38.png",
         "skillnames|Sprite|1337047534|debuff_icon_38|skillnames/debuff_icon_38.png"
       ],
@@ -23184,6 +24397,14 @@
         {
           "Id": 995256,
           "Name": "Slow"
+        },
+        {
+          "Id": "buff-source:5001201",
+          "Name": "Transporting Cargos"
+        },
+        {
+          "Id": "buff-source:960221",
+          "Name": "Transporting Cargos"
         }
       ]
     },
@@ -23236,13 +24457,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1337047534|debuff_icon_4|BuffName/debuff_icon_4.png"
+        "BuffName|Sprite|1337047534|debuff_icon_4|BuffName/debuff_icon_4.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_4|EffectSources/debuff_icon_4.png"
       ],
       "Rows": [
         {
@@ -23268,6 +24492,14 @@
         {
           "Id": 705002,
           "Name": "Frozen"
+        },
+        {
+          "Id": "buff-source:705001",
+          "Name": "Frost Ogre - Frozen Gale"
+        },
+        {
+          "Id": "buff-source:705002",
+          "Name": "Frost Ogre - Frozen"
         }
       ]
     },
@@ -24128,18 +25360,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_7|BuffName/debuff_icon_7.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_7|DamageAttrIdName/debuff_icon_7.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_7|EffectSources/debuff_icon_7.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_7|SkillBreakdownDetails/debuff_icon_7.png",
         "skillnames|Sprite|1337047534|debuff_icon_7|skillnames/debuff_icon_7.png"
       ],
@@ -24153,6 +25388,10 @@
         },
         {
           "Id": 990803,
+          "Name": "Executed"
+        },
+        {
+          "Id": "buff-source:990803",
           "Name": "Executed"
         }
       ]
@@ -24470,18 +25709,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_8|BuffName/debuff_icon_8.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_8|DamageAttrIdName/debuff_icon_8.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_8|EffectSources/debuff_icon_8.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_8|SkillBreakdownDetails/debuff_icon_8.png",
         "skillnames|Sprite|1337047534|debuff_icon_8|skillnames/debuff_icon_8.png"
       ],
@@ -24499,6 +25741,10 @@
         },
         {
           "Id": 990821,
+          "Name": "Petrified"
+        },
+        {
+          "Id": "buff-source:990821",
           "Name": "Petrified"
         }
       ]
@@ -24606,18 +25852,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_83|BuffName/debuff_icon_83.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_83|DamageAttrIdName/debuff_icon_83.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_83|EffectSources/debuff_icon_83.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_83|SkillBreakdownDetails/debuff_icon_83.png",
         "skillnames|Sprite|1337047534|debuff_icon_83|skillnames/debuff_icon_83.png"
       ],
@@ -24639,6 +25888,10 @@
         },
         {
           "Id": 882842,
+          "Name": "Soul Shock"
+        },
+        {
+          "Id": "buff-source:882842",
           "Name": "Soul Shock"
         }
       ]
@@ -24694,18 +25947,21 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "BuffName|Sprite|1337047534|debuff_icon_85|BuffName/debuff_icon_85.png",
         "DamageAttrIdName|Sprite|1337047534|debuff_icon_85|DamageAttrIdName/debuff_icon_85.png",
+        "EffectSources|Sprite|1337047534|debuff_icon_85|EffectSources/debuff_icon_85.png",
         "SkillBreakdownDetails|Sprite|1337047534|debuff_icon_85|SkillBreakdownDetails/debuff_icon_85.png",
         "skillnames|Sprite|1337047534|debuff_icon_85|skillnames/debuff_icon_85.png"
       ],
@@ -24719,6 +25975,10 @@
         },
         {
           "Id": 990801,
+          "Name": "Rend"
+        },
+        {
+          "Id": "buff-source:990801",
           "Name": "Rend"
         }
       ]
@@ -47832,13 +49092,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|BuffName/talent_passive_icon_general_dps_arrtuprandom.png"
+        "BuffName|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|BuffName/talent_passive_icon_general_dps_arrtuprandom.png",
+        "EffectSources|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom.png"
       ],
       "Rows": [
         {
@@ -47848,6 +49111,10 @@
         {
           "Id": 833016,
           "Name": "Illusory Seed"
+        },
+        {
+          "Id": "buff-source:2110123",
+          "Name": "Flamehorn - Flame of Luck"
         }
       ]
     },
@@ -48622,13 +49889,16 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "EffectSources"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1447258277|talent_passive_icon_general_dps_iceenergycost|BuffName/talent_passive_icon_general_dps_iceenergycost.png"
+        "BuffName|Sprite|1447258277|talent_passive_icon_general_dps_iceenergycost|BuffName/talent_passive_icon_general_dps_iceenergycost.png",
+        "EffectSources|Sprite|1447258277|talent_passive_icon_general_dps_iceenergycost|EffectSources/talent_passive_icon_general_dps_iceenergycost.png"
       ],
       "Rows": [
         {
@@ -48646,6 +49916,14 @@
         {
           "Id": 974301,
           "Name": "Snow Nappo's Magic"
+        },
+        {
+          "Id": "buff-source:2110115",
+          "Name": "Boyce - Frostforce"
+        },
+        {
+          "Id": "buff-source:2110116",
+          "Name": "Boyce - Frostforce - EXT"
         }
       ]
     },
@@ -50953,6 +52231,7 @@
       "SourceGroups": [
         "BuffName",
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
@@ -50960,6 +52239,7 @@
       "SourceFiles": [
         "BuffName.json",
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
@@ -50967,6 +52247,7 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|BuffName/talent_passive_icon_general_sup_grassarea.png",
         "DamageAttrIdName|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|DamageAttrIdName/talent_passive_icon_general_sup_grassarea.png",
+        "EffectSources|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|EffectSources/talent_passive_icon_general_sup_grassarea.png",
         "RecountTable|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|RecountTable/talent_passive_icon_general_sup_grassarea.png",
         "SkillBreakdownDetails|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|SkillBreakdownDetails/talent_passive_icon_general_sup_grassarea.png",
         "skillnames|Sprite|1447258277|talent_passive_icon_general_sup_grassarea|skillnames/talent_passive_icon_general_sup_grassarea.png"
@@ -51013,6 +52294,10 @@
         {
           "Id": 999995,
           "Name": "Stat Boost"
+        },
+        {
+          "Id": "buff-source:50049",
+          "Name": "Sandshroud"
         }
       ]
     },
@@ -53452,18 +54737,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3371048761|weapon_mz-01_kx02|DamageAttrIdName/weapon_mz-01_kx02.png",
+        "EffectSources|Texture2D|3371048761|weapon_mz-01_kx02|EffectSources/weapon_mz-01_kx02.png",
         "RecountTable|Texture2D|3371048761|weapon_mz-01_kx02|RecountTable/weapon_mz-01_kx02.png",
         "SkillBreakdownDetails|Texture2D|3371048761|weapon_mz-01_kx02|SkillBreakdownDetails/weapon_mz-01_kx02.png",
         "skillnames|Texture2D|3371048761|weapon_mz-01_kx02|skillnames/weapon_mz-01_kx02.png"
@@ -53605,6 +54893,10 @@
         },
         {
           "Id": 37,
+          "Name": "Frost Shelter"
+        },
+        {
+          "Id": "buff-source:27009",
           "Name": "Frost Shelter"
         }
       ]
@@ -58709,7 +60001,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|1914702784|weapon_wr-01_kx05|RecountTable/weapon_wr-01_kx05.png",
+      "AssetId": "icon:EffectSources|Texture2D|1914702784|weapon_wr-01_kx05|EffectSources/weapon_wr-01_kx05.png",
       "ParserPath": "static/images/heavy_guardian/skill/weapon_wr-01_kx05_8365821505736997299.png",
       "ParserImagePath": "/images/heavy_guardian/skill/weapon_wr-01_kx05_8365821505736997299.png",
       "Bucket": "heavy_guardian/skill",
@@ -58731,16 +60023,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|1914702784|weapon_wr-01_kx05|EffectSources/weapon_wr-01_kx05.png",
         "RecountTable|Texture2D|1914702784|weapon_wr-01_kx05|RecountTable/weapon_wr-01_kx05.png",
         "SkillBreakdownDetails|Texture2D|1914702784|weapon_wr-01_kx05|SkillBreakdownDetails/weapon_wr-01_kx05.png",
         "skillnames|Texture2D|1914702784|weapon_wr-01_kx05|skillnames/weapon_wr-01_kx05.png"
@@ -58876,6 +60171,10 @@
         },
         {
           "Id": 25003301
+        },
+        {
+          "Id": "buff-source:50033",
+          "Name": "Sandgrip"
         }
       ]
     },
@@ -60597,18 +61896,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|1324721544|weapon_gj-01_atk|DamageAttrIdName/weapon_gj-01_atk.png",
+        "EffectSources|Texture2D|1324721544|weapon_gj-01_atk|EffectSources/weapon_gj-01_atk.png",
         "RecountTable|Texture2D|1324721544|weapon_gj-01_atk|RecountTable/weapon_gj-01_atk.png",
         "SkillBreakdownDetails|Texture2D|1324721544|weapon_gj-01_atk|SkillBreakdownDetails/weapon_gj-01_atk.png",
         "skillnames|Texture2D|1324721544|weapon_gj-01_atk|skillnames/weapon_gj-01_atk.png"
@@ -61120,6 +62422,10 @@
         {
           "Id": 96,
           "Name": "Phantom Falcon"
+        },
+        {
+          "Id": "buff-source:55235",
+          "Name": "​Quadraflare​"
         }
       ]
     },
@@ -61723,7 +63029,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|315468047|weapon_gj-01_kx04|RecountTable/weapon_gj-01_kx04.png",
+      "AssetId": "icon:EffectSources|Texture2D|315468047|weapon_gj-01_kx04|EffectSources/weapon_gj-01_kx04.png",
       "ParserPath": "static/images/marksman/skill/weapon_gj-01_kx04_-2928009548497092580.png",
       "ParserImagePath": "/images/marksman/skill/weapon_gj-01_kx04_-2928009548497092580.png",
       "Bucket": "marksman/skill",
@@ -61745,16 +63051,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|315468047|weapon_gj-01_kx04|EffectSources/weapon_gj-01_kx04.png",
         "RecountTable|Texture2D|315468047|weapon_gj-01_kx04|RecountTable/weapon_gj-01_kx04.png",
         "SkillBreakdownDetails|Texture2D|315468047|weapon_gj-01_kx04|SkillBreakdownDetails/weapon_gj-01_kx04.png",
         "skillnames|Texture2D|315468047|weapon_gj-01_kx04|skillnames/weapon_gj-01_kx04.png"
@@ -61892,6 +63201,10 @@
         },
         {
           "Id": 85,
+          "Name": "Radiance Barrage"
+        },
+        {
+          "Id": "buff-source:55240",
           "Name": "Radiance Barrage"
         }
       ]
@@ -62441,18 +63754,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|320211731|weapon_gj-01_kx08|DamageAttrIdName/weapon_gj-01_kx08.png",
+        "EffectSources|Texture2D|320211731|weapon_gj-01_kx08|EffectSources/weapon_gj-01_kx08.png",
         "RecountTable|Texture2D|320211731|weapon_gj-01_kx08|RecountTable/weapon_gj-01_kx08.png",
         "SkillBreakdownDetails|Texture2D|320211731|weapon_gj-01_kx08|SkillBreakdownDetails/weapon_gj-01_kx08.png",
         "skillnames|Texture2D|320211731|weapon_gj-01_kx08|skillnames/weapon_gj-01_kx08.png"
@@ -62597,6 +63913,10 @@
         },
         {
           "Id": 87,
+          "Name": "Blast Shot"
+        },
+        {
+          "Id": "buff-source:55231",
           "Name": "Blast Shot"
         }
       ]
@@ -63787,6 +65107,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -63794,6 +65115,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -63801,6 +65123,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|1861427559|skill_aoyi_skill_icon_009|DamageAttrIdName/skill_aoyi_skill_icon_009.png",
+        "EffectSources|Texture2D|1861427559|skill_aoyi_skill_icon_009|EffectSources/skill_aoyi_skill_icon_009.png",
         "RecountTable|Texture2D|1861427559|skill_aoyi_skill_icon_009|RecountTable/skill_aoyi_skill_icon_009.png",
         "skill_aoyi_icons|Texture2D|1861427559|skill_aoyi_skill_icon_009|skill_aoyi_icons/skill_aoyi_skill_icon_009_1861427559.png",
         "SkillBreakdownDetails|Texture2D|1861427559|skill_aoyi_skill_icon_009|SkillBreakdownDetails/skill_aoyi_skill_icon_009.png",
@@ -63853,6 +65176,14 @@
         },
         {
           "Id": 42014001,
+          "Name": "Stunt! Chaotic Barrage"
+        },
+        {
+          "Id": "buff-source:2110090",
+          "Name": "Stunt! Chaotic Barrage"
+        },
+        {
+          "Id": "buff-source:2110091",
           "Name": "Stunt! Chaotic Barrage"
         }
       ]
@@ -64055,7 +65386,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|1892261505|skill_aoyi_skill_icon_012|RecountTable/skill_aoyi_skill_icon_012.png",
+      "AssetId": "icon:EffectSources|Texture2D|1892261505|skill_aoyi_skill_icon_012|EffectSources/skill_aoyi_skill_icon_012.png",
       "ParserPath": "static/images/resonance_skill/skill_aoyi_skill_icon_012.png",
       "ParserImagePath": "/images/resonance_skill/skill_aoyi_skill_icon_012.png",
       "Bucket": "resonance_skill",
@@ -64077,16 +65408,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|1892261505|skill_aoyi_skill_icon_012|EffectSources/skill_aoyi_skill_icon_012.png",
         "RecountTable|Texture2D|1892261505|skill_aoyi_skill_icon_012|RecountTable/skill_aoyi_skill_icon_012.png",
         "SkillBreakdownDetails|Texture2D|1892261505|skill_aoyi_skill_icon_012|SkillBreakdownDetails/skill_aoyi_skill_icon_012.png",
         "skillnames|Texture2D|1892261505|skill_aoyi_skill_icon_012|skillnames/skill_aoyi_skill_icon_012.png"
@@ -64108,6 +65442,10 @@
         },
         {
           "Id": 390801,
+          "Name": "Arcane! Pulse Benediction"
+        },
+        {
+          "Id": "buff-source:2110012",
           "Name": "Arcane! Pulse Benediction"
         }
       ]
@@ -64263,6 +65601,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -64270,6 +65609,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -64277,6 +65617,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|1894633347|skill_aoyi_skill_icon_014|DamageAttrIdName/skill_aoyi_skill_icon_014.png",
+        "EffectSources|Texture2D|1894633347|skill_aoyi_skill_icon_014|EffectSources/skill_aoyi_skill_icon_014.png",
         "RecountTable|Texture2D|1894633347|skill_aoyi_skill_icon_014|RecountTable/skill_aoyi_skill_icon_014.png",
         "skill_aoyi_icons|Texture2D|1894633347|skill_aoyi_skill_icon_014|skill_aoyi_icons/skill_aoyi_skill_icon_014_1894633347.png",
         "SkillBreakdownDetails|Texture2D|1894633347|skill_aoyi_skill_icon_014|SkillBreakdownDetails/skill_aoyi_skill_icon_014.png",
@@ -64311,6 +65652,10 @@
         },
         {
           "Id": 390201,
+          "Name": "Arcane! Thunderfall Grasp"
+        },
+        {
+          "Id": "buff-source:3210031",
           "Name": "Arcane! Thunderfall Grasp"
         }
       ]
@@ -64583,18 +65928,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|1898191110|skill_aoyi_skill_icon_017|DamageAttrIdName/skill_aoyi_skill_icon_017.png",
+        "EffectSources|Texture2D|1898191110|skill_aoyi_skill_icon_017|EffectSources/skill_aoyi_skill_icon_017.png",
         "RecountTable|Texture2D|1898191110|skill_aoyi_skill_icon_017|RecountTable/skill_aoyi_skill_icon_017.png",
         "SkillBreakdownDetails|Texture2D|1898191110|skill_aoyi_skill_icon_017|SkillBreakdownDetails/skill_aoyi_skill_icon_017.png",
         "skillnames|Texture2D|1898191110|skill_aoyi_skill_icon_017|skillnames/skill_aoyi_skill_icon_017.png"
@@ -64620,6 +65968,14 @@
         },
         {
           "Id": 390101,
+          "Name": "Arcane! Flame Roar"
+        },
+        {
+          "Id": "buff-source:2110083",
+          "Name": "Arcane! Flame Roar"
+        },
+        {
+          "Id": "buff-source:3901",
           "Name": "Arcane! Flame Roar"
         }
       ]
@@ -64662,7 +66018,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|1899377031|skill_aoyi_skill_icon_018|RecountTable/skill_aoyi_skill_icon_018.png",
+      "AssetId": "icon:EffectSources|Texture2D|1899377031|skill_aoyi_skill_icon_018|EffectSources/skill_aoyi_skill_icon_018.png",
       "ParserPath": "static/images/resonance_skill/skill_aoyi_skill_icon_018.png",
       "ParserImagePath": "/images/resonance_skill/skill_aoyi_skill_icon_018.png",
       "Bucket": "resonance_skill",
@@ -64684,16 +66040,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|1899377031|skill_aoyi_skill_icon_018|EffectSources/skill_aoyi_skill_icon_018.png",
         "RecountTable|Texture2D|1899377031|skill_aoyi_skill_icon_018|RecountTable/skill_aoyi_skill_icon_018.png",
         "SkillBreakdownDetails|Texture2D|1899377031|skill_aoyi_skill_icon_018|SkillBreakdownDetails/skill_aoyi_skill_icon_018.png",
         "skillnames|Texture2D|1899377031|skill_aoyi_skill_icon_018|skillnames/skill_aoyi_skill_icon_018.png"
@@ -64713,6 +66072,10 @@
         {
           "Id": 390301,
           "Name": "炽炎战斧本体"
+        },
+        {
+          "Id": "buff-source:3210051",
+          "Name": "Arcane! Blazing Axe"
         }
       ]
     },
@@ -65275,6 +66638,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -65282,6 +66646,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -65289,6 +66654,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|1934954661|skill_aoyi_skill_icon_025|DamageAttrIdName/skill_aoyi_skill_icon_025.png",
+        "EffectSources|Texture2D|1934954661|skill_aoyi_skill_icon_025|EffectSources/skill_aoyi_skill_icon_025.png",
         "RecountTable|Texture2D|1934954661|skill_aoyi_skill_icon_025|RecountTable/skill_aoyi_skill_icon_025.png",
         "skill_aoyi_icons|Texture2D|1934954661|skill_aoyi_skill_icon_025|skill_aoyi_icons/skill_aoyi_skill_icon_025_1934954661.png",
         "SkillBreakdownDetails|Texture2D|1934954661|skill_aoyi_skill_icon_025|SkillBreakdownDetails/skill_aoyi_skill_icon_025.png",
@@ -65351,6 +66717,10 @@
         },
         {
           "Id": 392201,
+          "Name": "Arcane! Flash Execution"
+        },
+        {
+          "Id": "buff-source:2110085",
           "Name": "Arcane! Flash Execution"
         }
       ]
@@ -65416,6 +66786,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -65423,6 +66794,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -65430,6 +66802,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|1936140582|skill_aoyi_skill_icon_026|DamageAttrIdName/skill_aoyi_skill_icon_026.png",
+        "EffectSources|Texture2D|1936140582|skill_aoyi_skill_icon_026|EffectSources/skill_aoyi_skill_icon_026.png",
         "RecountTable|Texture2D|1936140582|skill_aoyi_skill_icon_026|RecountTable/skill_aoyi_skill_icon_026.png",
         "skill_aoyi_icons|Texture2D|1936140582|skill_aoyi_skill_icon_026|skill_aoyi_icons/skill_aoyi_skill_icon_026_1936140582.png",
         "SkillBreakdownDetails|Texture2D|1936140582|skill_aoyi_skill_icon_026|SkillBreakdownDetails/skill_aoyi_skill_icon_026.png",
@@ -65464,6 +66837,10 @@
         },
         {
           "Id": 390401,
+          "Name": "Stunt! Super Critical"
+        },
+        {
+          "Id": "buff-source:3210061",
           "Name": "Stunt! Super Critical"
         }
       ]
@@ -65626,7 +67003,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|1939698345|skill_aoyi_skill_icon_029|RecountTable/skill_aoyi_skill_icon_029.png",
+      "AssetId": "icon:EffectSources|Texture2D|1939698345|skill_aoyi_skill_icon_029|EffectSources/skill_aoyi_skill_icon_029.png",
       "ParserPath": "static/images/resonance_skill/skill_aoyi_skill_icon_029.png",
       "ParserImagePath": "/images/resonance_skill/skill_aoyi_skill_icon_029.png",
       "Bucket": "resonance_skill",
@@ -65648,16 +67025,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|1939698345|skill_aoyi_skill_icon_029|EffectSources/skill_aoyi_skill_icon_029.png",
         "RecountTable|Texture2D|1939698345|skill_aoyi_skill_icon_029|RecountTable/skill_aoyi_skill_icon_029.png",
         "SkillBreakdownDetails|Texture2D|1939698345|skill_aoyi_skill_icon_029|SkillBreakdownDetails/skill_aoyi_skill_icon_029.png",
         "skillnames|Texture2D|1939698345|skill_aoyi_skill_icon_029|skillnames/skill_aoyi_skill_icon_029.png"
@@ -65685,6 +67065,14 @@
         },
         {
           "Id": 392601,
+          "Name": "Arcane! Meteor Shower"
+        },
+        {
+          "Id": "buff-source:3210021",
+          "Name": "Arcane! Meteor Shower"
+        },
+        {
+          "Id": "buff-source:3210022",
           "Name": "Arcane! Meteor Shower"
         }
       ]
@@ -66053,7 +67441,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|1971718212|skill_aoyi_skill_icon_033|RecountTable/skill_aoyi_skill_icon_033.png",
+      "AssetId": "icon:EffectSources|Texture2D|1971718212|skill_aoyi_skill_icon_033|EffectSources/skill_aoyi_skill_icon_033.png",
       "ParserPath": "static/images/resonance_skill/skill_aoyi_skill_icon_033.png",
       "ParserImagePath": "/images/resonance_skill/skill_aoyi_skill_icon_033.png",
       "Bucket": "resonance_skill",
@@ -66075,16 +67463,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|1971718212|skill_aoyi_skill_icon_033|EffectSources/skill_aoyi_skill_icon_033.png",
         "RecountTable|Texture2D|1971718212|skill_aoyi_skill_icon_033|RecountTable/skill_aoyi_skill_icon_033.png",
         "SkillBreakdownDetails|Texture2D|1971718212|skill_aoyi_skill_icon_033|SkillBreakdownDetails/skill_aoyi_skill_icon_033.png",
         "skillnames|Texture2D|1971718212|skill_aoyi_skill_icon_033|skillnames/skill_aoyi_skill_icon_033.png"
@@ -66104,6 +67495,10 @@
         {
           "Id": 393001,
           "Name": "Stunt! Earth Shield"
+        },
+        {
+          "Id": "buff-source:2110066",
+          "Name": "Earth Shield"
         }
       ]
     },
@@ -66682,6 +68077,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -66689,6 +68085,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -66696,6 +68093,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|2007295842|skill_aoyi_skill_icon_040|DamageAttrIdName/skill_aoyi_skill_icon_040.png",
+        "EffectSources|Texture2D|2007295842|skill_aoyi_skill_icon_040|EffectSources/skill_aoyi_skill_icon_040.png",
         "RecountTable|Texture2D|2007295842|skill_aoyi_skill_icon_040|RecountTable/skill_aoyi_skill_icon_040.png",
         "skill_aoyi_icons|Texture2D|2007295842|skill_aoyi_skill_icon_040|skill_aoyi_icons/skill_aoyi_skill_icon_040_2007295842.png",
         "SkillBreakdownDetails|Texture2D|2007295842|skill_aoyi_skill_icon_040|SkillBreakdownDetails/skill_aoyi_skill_icon_040.png",
@@ -66737,6 +68135,10 @@
         },
         {
           "Id": 393701,
+          "Name": "Stunt! Thunder Suppress"
+        },
+        {
+          "Id": "buff-source:3210081",
           "Name": "Stunt! Thunder Suppress"
         }
       ]
@@ -67289,7 +68691,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|2014411368|skill_aoyi_skill_icon_046|RecountTable/skill_aoyi_skill_icon_046.png",
+      "AssetId": "icon:EffectSources|Texture2D|2014411368|skill_aoyi_skill_icon_046|EffectSources/skill_aoyi_skill_icon_046.png",
       "ParserPath": "static/images/resonance_skill/skill_aoyi_skill_icon_046.png",
       "ParserImagePath": "/images/resonance_skill/skill_aoyi_skill_icon_046.png",
       "Bucket": "resonance_skill",
@@ -67311,16 +68713,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|2014411368|skill_aoyi_skill_icon_046|EffectSources/skill_aoyi_skill_icon_046.png",
         "RecountTable|Texture2D|2014411368|skill_aoyi_skill_icon_046|RecountTable/skill_aoyi_skill_icon_046.png",
         "SkillBreakdownDetails|Texture2D|2014411368|skill_aoyi_skill_icon_046|SkillBreakdownDetails/skill_aoyi_skill_icon_046.png",
         "skillnames|Texture2D|2014411368|skill_aoyi_skill_icon_046|skillnames/skill_aoyi_skill_icon_046.png"
@@ -67342,6 +68747,10 @@
         },
         {
           "Id": 394201,
+          "Name": "Arcane! Poison Explosion"
+        },
+        {
+          "Id": "buff-source:2110099",
           "Name": "Arcane! Poison Explosion"
         }
       ]
@@ -67609,6 +69018,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -67616,6 +69026,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -67623,6 +69034,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|2017969131|skill_aoyi_skill_icon_049|DamageAttrIdName/skill_aoyi_skill_icon_049.png",
+        "EffectSources|Texture2D|2017969131|skill_aoyi_skill_icon_049|EffectSources/skill_aoyi_skill_icon_049.png",
         "RecountTable|Texture2D|2017969131|skill_aoyi_skill_icon_049|RecountTable/skill_aoyi_skill_icon_049.png",
         "skill_aoyi_icons|Texture2D|2017969131|skill_aoyi_skill_icon_049|skill_aoyi_icons/skill_aoyi_skill_icon_049_2017969131.png",
         "SkillBreakdownDetails|Texture2D|2017969131|skill_aoyi_skill_icon_049|SkillBreakdownDetails/skill_aoyi_skill_icon_049.png",
@@ -67657,6 +69069,10 @@
         },
         {
           "Id": 394501,
+          "Name": "Arcane! Silent Tide"
+        },
+        {
+          "Id": "buff-source:3210092",
           "Name": "Arcane! Silent Tide"
         }
       ]
@@ -67984,7 +69400,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|2049988998|skill_aoyi_skill_icon_053|RecountTable/skill_aoyi_skill_icon_053.png",
+      "AssetId": "icon:EffectSources|Texture2D|2049988998|skill_aoyi_skill_icon_053|EffectSources/skill_aoyi_skill_icon_053.png",
       "ParserPath": "static/images/resonance_skill/skill_aoyi_skill_icon_053.png",
       "ParserImagePath": "/images/resonance_skill/skill_aoyi_skill_icon_053.png",
       "Bucket": "resonance_skill",
@@ -68006,16 +69422,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|2049988998|skill_aoyi_skill_icon_053|EffectSources/skill_aoyi_skill_icon_053.png",
         "RecountTable|Texture2D|2049988998|skill_aoyi_skill_icon_053|RecountTable/skill_aoyi_skill_icon_053.png",
         "SkillBreakdownDetails|Texture2D|2049988998|skill_aoyi_skill_icon_053|SkillBreakdownDetails/skill_aoyi_skill_icon_053.png",
         "skillnames|Texture2D|2049988998|skill_aoyi_skill_icon_053|skillnames/skill_aoyi_skill_icon_053.png"
@@ -68070,6 +69489,10 @@
         },
         {
           "Id": 394901,
+          "Name": "Arcane! Illusion Resonance"
+        },
+        {
+          "Id": "buff-source:45300",
           "Name": "Arcane! Illusion Resonance"
         }
       ]
@@ -68887,6 +70310,7 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "skill_aoyi_icons",
         "SkillBreakdownDetails",
@@ -68894,6 +70318,7 @@
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "skill_aoyi_icons.json",
         "SkillBreakdownDetails.json",
@@ -68901,6 +70326,7 @@
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|2086752549|skill_aoyi_skill_icon_061|DamageAttrIdName/skill_aoyi_skill_icon_061.png",
+        "EffectSources|Texture2D|2086752549|skill_aoyi_skill_icon_061|EffectSources/skill_aoyi_skill_icon_061.png",
         "RecountTable|Texture2D|2086752549|skill_aoyi_skill_icon_061|RecountTable/skill_aoyi_skill_icon_061.png",
         "skill_aoyi_icons|Texture2D|2086752549|skill_aoyi_skill_icon_061|skill_aoyi_icons/skill_aoyi_skill_icon_061_2086752549.png",
         "SkillBreakdownDetails|Texture2D|2086752549|skill_aoyi_skill_icon_061|SkillBreakdownDetails/skill_aoyi_skill_icon_061.png",
@@ -68942,6 +70368,10 @@
         },
         {
           "Id": 396101,
+          "Name": "Stunt! Carpet Bombing"
+        },
+        {
+          "Id": "buff-source:3210161",
           "Name": "Stunt! Carpet Bombing"
         }
       ]
@@ -76494,18 +77924,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3220549186|weapon_jd-01_atk|DamageAttrIdName/weapon_jd-01_atk.png",
+        "EffectSources|Texture2D|3220549186|weapon_jd-01_atk|EffectSources/weapon_jd-01_atk.png",
         "RecountTable|Texture2D|3220549186|weapon_jd-01_atk|RecountTable/weapon_jd-01_atk.png",
         "SkillBreakdownDetails|Texture2D|3220549186|weapon_jd-01_atk|SkillBreakdownDetails/weapon_jd-01_atk.png",
         "skillnames|Texture2D|3220549186|weapon_jd-01_atk|skillnames/weapon_jd-01_atk.png"
@@ -76773,6 +78206,10 @@
         },
         {
           "Id": 324010500
+        },
+        {
+          "Id": "buff-source:2401",
+          "Name": "Blade of Justice"
         }
       ]
     },
@@ -77121,7 +78558,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|2745866247|weapon_jd-01_kx02|RecountTable/weapon_jd-01_kx02.png",
+      "AssetId": "icon:EffectSources|Texture2D|2745866247|weapon_jd-01_kx02|EffectSources/weapon_jd-01_kx02.png",
       "ParserPath": "static/images/shield_knight/skill/weapon_jd-01_kx02_-512459202271241313.png",
       "ParserImagePath": "/images/shield_knight/skill/weapon_jd-01_kx02_-512459202271241313.png",
       "Bucket": "shield_knight/skill",
@@ -77143,16 +78580,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|2745866247|weapon_jd-01_kx02|EffectSources/weapon_jd-01_kx02.png",
         "RecountTable|Texture2D|2745866247|weapon_jd-01_kx02|RecountTable/weapon_jd-01_kx02.png",
         "SkillBreakdownDetails|Texture2D|2745866247|weapon_jd-01_kx02|SkillBreakdownDetails/weapon_jd-01_kx02.png",
         "skillnames|Texture2D|2745866247|weapon_jd-01_kx02|skillnames/weapon_jd-01_kx02.png"
@@ -77291,6 +78731,10 @@
         },
         {
           "Id": 25540404
+        },
+        {
+          "Id": "buff-source:55404",
+          "Name": "Divine Circle"
         }
       ]
     },
@@ -77318,18 +78762,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|2747052168|weapon_jd-01_kx03|DamageAttrIdName/weapon_jd-01_kx03.png",
+        "EffectSources|Texture2D|2747052168|weapon_jd-01_kx03|EffectSources/weapon_jd-01_kx03.png",
         "RecountTable|Texture2D|2747052168|weapon_jd-01_kx03|RecountTable/weapon_jd-01_kx03.png",
         "SkillBreakdownDetails|Texture2D|2747052168|weapon_jd-01_kx03|SkillBreakdownDetails/weapon_jd-01_kx03.png",
         "skillnames|Texture2D|2747052168|weapon_jd-01_kx03|skillnames/weapon_jd-01_kx03.png"
@@ -77494,6 +78941,10 @@
         },
         {
           "Id": 25542103
+        },
+        {
+          "Id": "buff-source:55421",
+          "Name": "Judgment"
         }
       ]
     },
@@ -78447,7 +79898,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|2751795852|weapon_jd-01_kx07|RecountTable/weapon_jd-01_kx07.png",
+      "AssetId": "icon:EffectSources|Texture2D|2751795852|weapon_jd-01_kx07|EffectSources/weapon_jd-01_kx07.png",
       "ParserPath": "static/images/shield_knight/skill/weapon_jd-01_kx07_-2179158949615897327.png",
       "ParserImagePath": "/images/shield_knight/skill/weapon_jd-01_kx07_-2179158949615897327.png",
       "Bucket": "shield_knight/skill",
@@ -78469,16 +79920,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|2751795852|weapon_jd-01_kx07|EffectSources/weapon_jd-01_kx07.png",
         "RecountTable|Texture2D|2751795852|weapon_jd-01_kx07|RecountTable/weapon_jd-01_kx07.png",
         "SkillBreakdownDetails|Texture2D|2751795852|weapon_jd-01_kx07|SkillBreakdownDetails/weapon_jd-01_kx07.png",
         "skillnames|Texture2D|2751795852|weapon_jd-01_kx07|skillnames/weapon_jd-01_kx07.png"
@@ -78635,6 +80089,14 @@
         },
         {
           "Id": 25543201
+        },
+        {
+          "Id": "buff-source:55431",
+          "Name": "Zeal Crusade"
+        },
+        {
+          "Id": "buff-source:55432",
+          "Name": "Zeal Crusade"
         }
       ]
     },
@@ -79026,18 +80488,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3578458782|weapon_jd-01_tg01|DamageAttrIdName/weapon_jd-01_tg01.png",
+        "EffectSources|Texture2D|3578458782|weapon_jd-01_tg01|EffectSources/weapon_jd-01_tg01.png",
         "RecountTable|Texture2D|3578458782|weapon_jd-01_tg01|RecountTable/weapon_jd-01_tg01.png",
         "SkillBreakdownDetails|Texture2D|3578458782|weapon_jd-01_tg01|SkillBreakdownDetails/weapon_jd-01_tg01.png",
         "skillnames|Texture2D|3578458782|weapon_jd-01_tg01|skillnames/weapon_jd-01_tg01.png"
@@ -79260,6 +80725,14 @@
         {
           "Id": 240530,
           "Name": "Valor Bash"
+        },
+        {
+          "Id": "buff-source:2206541",
+          "Name": "Vanguard Hunt"
+        },
+        {
+          "Id": "buff-source:2206561",
+          "Name": "Vanguard Hunt"
         }
       ]
     },
@@ -84430,6 +85903,10 @@
           "Id": 2220843003
         },
         {
+          "Id": "buff-source:2208430",
+          "Name": "Crimson Expertise Spec"
+        },
+        {
           "Id": "talent:342",
           "Name": "Crimson Expertise Spec"
         },
@@ -84548,6 +86025,10 @@
         },
         {
           "Id": 23190105
+        },
+        {
+          "Id": "buff-source:2205450",
+          "Name": "Fortitude"
         },
         {
           "Id": "talent:344",
@@ -88820,6 +90301,10 @@
           "Name": "Blazing Heal"
         },
         {
+          "Id": "buff-source:2207151",
+          "Name": "Blazing Heal"
+        },
+        {
           "Id": "talent:1314",
           "Name": "Blazing Heal"
         }
@@ -89462,6 +90947,10 @@
           "Name": "Concert Circuit"
         },
         {
+          "Id": "buff-source:55339",
+          "Name": "Concert Circuit"
+        },
+        {
           "Id": "talent:1330",
           "Name": "Concert Circuit"
         }
@@ -89942,6 +91431,10 @@
         },
         {
           "Id": 2220743103,
+          "Name": "Flame's Rampage"
+        },
+        {
+          "Id": "buff-source:2207431",
           "Name": "Flame's Rampage"
         },
         {
@@ -90711,6 +92204,10 @@
         },
         {
           "Id": 2220762008,
+          "Name": "Vitality Unleash"
+        },
+        {
+          "Id": "buff-source:2207620",
           "Name": "Vitality Unleash"
         },
         {
@@ -91748,6 +93245,10 @@
           "Name": "Stomp"
         },
         {
+          "Id": "buff-source:2203512",
+          "Name": "Stomp"
+        },
+        {
           "Id": "talent:1151",
           "Name": "Stomp"
         }
@@ -92258,6 +93759,14 @@
         },
         {
           "Id": 2220362207,
+          "Name": "Light Prism"
+        },
+        {
+          "Id": "buff-source:2203621",
+          "Name": "Light Prism"
+        },
+        {
+          "Id": "buff-source:2203622",
           "Name": "Light Prism"
         },
         {
@@ -93455,6 +94964,10 @@
           "Name": "Holy Radiance"
         },
         {
+          "Id": "buff-source:2206240",
+          "Name": "Holy Radiance"
+        },
+        {
           "Id": "talent:1223",
           "Name": "Holy Radiance"
         }
@@ -93527,6 +95040,18 @@
         {
           "Id": 2220625006,
           "Name": "Holy Mark"
+        },
+        {
+          "Id": "buff-source:2206241",
+          "Name": "Holy Mark"
+        },
+        {
+          "Id": "buff-source:2206243",
+          "Name": "Holy Mark"
+        },
+        {
+          "Id": "buff-source:2206250",
+          "Name": "Determination Slash"
         },
         {
           "Id": "talent:1224",
@@ -94350,6 +95875,10 @@
           "Id": 2220646003
         },
         {
+          "Id": "buff-source:2206460",
+          "Name": "Shield Guard"
+        },
+        {
           "Id": "talent:1245",
           "Name": "Shield Guard"
         }
@@ -94716,6 +96245,10 @@
         },
         {
           "Id": 2220655204,
+          "Name": "Radiant Core"
+        },
+        {
+          "Id": "buff-source:2206552",
           "Name": "Radiant Core"
         },
         {
@@ -95256,16 +96789,19 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|1300425262|mod_effect_icon_004|DamageAttrIdName/mod_effect_icon_004.png",
+        "EffectSources|Sprite|1300425262|mod_effect_icon_004|EffectSources/mod_effect_icon_004.png",
         "SkillBreakdownDetails|Sprite|1300425262|mod_effect_icon_004|SkillBreakdownDetails/mod_effect_icon_004.png",
         "skillnames|Sprite|1300425262|mod_effect_icon_004|skillnames/mod_effect_icon_004.png"
       ],
@@ -95276,6 +96812,10 @@
         },
         {
           "Id": 2230242103
+        },
+        {
+          "Id": "buff-source:2302421",
+          "Name": "Life Wave"
         }
       ]
     },
@@ -95459,16 +96999,19 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|1300425262|mod_effect_icon_012|DamageAttrIdName/mod_effect_icon_012.png",
+        "EffectSources|Sprite|1300425262|mod_effect_icon_012|EffectSources/mod_effect_icon_012.png",
         "SkillBreakdownDetails|Sprite|1300425262|mod_effect_icon_012|SkillBreakdownDetails/mod_effect_icon_012.png",
         "skillnames|Sprite|1300425262|mod_effect_icon_012|skillnames/mod_effect_icon_012.png"
       ],
@@ -95479,6 +97022,10 @@
         },
         {
           "Id": 2230007003
+        },
+        {
+          "Id": "buff-source:2300070",
+          "Name": "Life Condense"
         }
       ]
     },
@@ -96000,18 +97547,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|1300425262|mod_effect_icon_035|DamageAttrIdName/mod_effect_icon_035.png",
+        "EffectSources|Sprite|1300425262|mod_effect_icon_035|EffectSources/mod_effect_icon_035.png",
         "RecountTable|Sprite|1300425262|mod_effect_icon_035|RecountTable/mod_effect_icon_035.png",
         "SkillBreakdownDetails|Sprite|1300425262|mod_effect_icon_035|SkillBreakdownDetails/mod_effect_icon_035.png",
         "skillnames|Sprite|1300425262|mod_effect_icon_035|skillnames/mod_effect_icon_035.png"
@@ -96026,6 +97576,10 @@
         },
         {
           "Id": 280,
+          "Name": "Life Steal"
+        },
+        {
+          "Id": "buff-source:2300080",
           "Name": "Life Steal"
         }
       ]
@@ -98932,6 +100486,14 @@
         {
           "Id": 289,
           "Name": "Shattered Illusion - Judgment - Heal"
+        },
+        {
+          "Id": "buff-source:3003250",
+          "Name": "Stasis Recovery"
+        },
+        {
+          "Id": "buff-source:3003260",
+          "Name": "Judgment - Heal"
         },
         {
           "Id": "season-talent-node:1002",
@@ -107792,6 +109354,10 @@
           "Name": "Thorn"
         },
         {
+          "Id": "buff-source:21424",
+          "Name": "Thorn"
+        },
+        {
           "Id": "talent:532",
           "Name": "Thorn"
         }
@@ -107870,6 +109436,10 @@
         },
         {
           "Id": 2220213001
+        },
+        {
+          "Id": "buff-source:2202130",
+          "Name": "Double Infusion"
         },
         {
           "Id": "talent:504",
@@ -108062,7 +109632,7 @@
       ]
     },
     {
-      "AssetId": "icon:EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom.png",
+      "AssetId": "icon:EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom_2473336053.png",
       "ParserPath": "static/images/talent/talent_passive_icon_general_dps_arrtuprandom_-170170258944537217.png",
       "ParserImagePath": "/images/talent/talent_passive_icon_general_dps_arrtuprandom_-170170258944537217.png",
       "Bucket": "talent",
@@ -108090,7 +109660,7 @@
         "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom.png"
+        "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom_2473336053.png"
       ],
       "Rows": [
         {
@@ -109069,6 +110639,10 @@
           "Name": "Frost Explosion"
         },
         {
+          "Id": "buff-source:2204081",
+          "Name": "Frost Explosion"
+        },
+        {
           "Id": "talent:208",
           "Name": "Frost Explosion"
         }
@@ -109124,6 +110698,10 @@
         },
         {
           "Id": 41,
+          "Name": "Frost Shock"
+        },
+        {
+          "Id": "buff-source:2204241",
           "Name": "Frost Shock"
         },
         {
@@ -109343,7 +110921,7 @@
       ]
     },
     {
-      "AssetId": "icon:EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_iceenergycost|EffectSources/talent_passive_icon_general_dps_iceenergycost.png",
+      "AssetId": "icon:EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_iceenergycost|EffectSources/talent_passive_icon_general_dps_iceenergycost_2473336053.png",
       "ParserPath": "static/images/talent/talent_passive_icon_general_dps_iceenergycost_4340790742977137723.png",
       "ParserImagePath": "/images/talent/talent_passive_icon_general_dps_iceenergycost_4340790742977137723.png",
       "Bucket": "talent",
@@ -109371,7 +110949,7 @@
         "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_iceenergycost|EffectSources/talent_passive_icon_general_dps_iceenergycost.png"
+        "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_iceenergycost|EffectSources/talent_passive_icon_general_dps_iceenergycost_2473336053.png"
       ],
       "Rows": [
         {
@@ -109703,6 +111281,10 @@
         },
         {
           "Id": 42,
+          "Name": "Cold Pulse"
+        },
+        {
+          "Id": "buff-source:2204320",
           "Name": "Cold Pulse"
         },
         {
@@ -111752,6 +113334,10 @@
           "Name": "Wind Rift Diffusion"
         },
         {
+          "Id": "buff-source:2205060",
+          "Name": "Wind Rift Diffusion"
+        },
+        {
           "Id": "talent:305",
           "Name": "Wild Soul - Break"
         },
@@ -112501,6 +114087,10 @@
           "Name": "Vortex Strike"
         },
         {
+          "Id": "buff-source:2208130",
+          "Name": "Tatta - Formless Expertise Spec"
+        },
+        {
           "Id": "talent:312",
           "Name": "Formless Expertise Spec"
         },
@@ -113245,7 +114835,7 @@
       ]
     },
     {
-      "AssetId": "icon:EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_grassarea|EffectSources/talent_passive_icon_general_sup_grassarea.png",
+      "AssetId": "icon:EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_grassarea|EffectSources/talent_passive_icon_general_sup_grassarea_2173254008.png",
       "ParserPath": "static/images/talent/talent_passive_icon_general_sup_grassarea_-2699280676978229692.png",
       "ParserImagePath": "/images/talent/talent_passive_icon_general_sup_grassarea_-2699280676978229692.png",
       "Bucket": "talent",
@@ -113273,7 +114863,7 @@
         "EffectSources.json"
       ],
       "SourceAssetIds": [
-        "EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_grassarea|EffectSources/talent_passive_icon_general_sup_grassarea.png"
+        "EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_grassarea|EffectSources/talent_passive_icon_general_sup_grassarea_2173254008.png"
       ],
       "Rows": [
         {
@@ -113377,6 +114967,10 @@
         },
         {
           "Id": 315010100,
+          "Name": "Stag Charge"
+        },
+        {
+          "Id": "buff-source:21418",
           "Name": "Stag Charge"
         },
         {
@@ -113508,6 +115102,18 @@
         },
         {
           "Id": 25006805,
+          "Name": "Countercrush"
+        },
+        {
+          "Id": "buff-source:50037",
+          "Name": "Countercrush"
+        },
+        {
+          "Id": "buff-source:50067",
+          "Name": "Countercrush"
+        },
+        {
+          "Id": "buff-source:50068",
           "Name": "Countercrush"
         },
         {
@@ -113646,6 +115252,10 @@
         },
         {
           "Id": 2220212004
+        },
+        {
+          "Id": "buff-source:2202120",
+          "Name": "Nature Shield"
         },
         {
           "Id": "talent:505",
@@ -113993,6 +115603,10 @@
           "Id": 2220108003
         },
         {
+          "Id": "buff-source:2201080",
+          "Name": "Block Recovery"
+        },
+        {
           "Id": "talent:906",
           "Name": "Block Recovery"
         }
@@ -114223,6 +115837,10 @@
         },
         {
           "Id": 2300122003
+        },
+        {
+          "Id": "buff-source:3001220",
+          "Name": "Shadow Mantra"
         },
         {
           "Id": "talent:918",
@@ -114492,6 +116110,14 @@
           "Name": "Void Corruption Frenzy Wave"
         },
         {
+          "Id": "buff-source:3001170",
+          "Name": "Void Corruption Fluctuation"
+        },
+        {
+          "Id": "buff-source:701002",
+          "Name": "Void Corruption Frenzy Wave"
+        },
+        {
           "Id": "talent:934",
           "Name": "Sandstone Shock"
         }
@@ -114544,6 +116170,10 @@
         },
         {
           "Id": 2220116003
+        },
+        {
+          "Id": "buff-source:2201160",
+          "Name": "Slam Shelter"
         },
         {
           "Id": "talent:914",
@@ -114978,6 +116608,10 @@
         },
         {
           "Id": 2220117203,
+          "Name": "Resolute Breath"
+        },
+        {
+          "Id": "buff-source:2201172",
           "Name": "Resolute Breath"
         },
         {
@@ -115597,6 +117231,10 @@
           "Name": "Natural Bloom"
         },
         {
+          "Id": "buff-source:2202271",
+          "Name": "Natural Bloom"
+        },
+        {
           "Id": "talent:525",
           "Name": "Natural Bloom"
         }
@@ -116020,6 +117658,10 @@
           "Id": 2220124005
         },
         {
+          "Id": "buff-source:2201240",
+          "Name": "Shield Echo"
+        },
+        {
           "Id": "talent:922",
           "Name": "Shield Echo"
         }
@@ -116075,6 +117717,10 @@
         },
         {
           "Id": 25003601,
+          "Name": "Weakness Strike"
+        },
+        {
+          "Id": "buff-source:50036",
           "Name": "Weakness Strike"
         },
         {
@@ -117320,6 +118966,10 @@
           "Id": 2220141005
         },
         {
+          "Id": "buff-source:2201410",
+          "Name": "Sandstone Revival"
+        },
+        {
           "Id": "talent:939",
           "Name": "Sandstone Revival"
         }
@@ -117652,6 +119302,14 @@
         },
         {
           "Id": 2220149303,
+          "Name": "Recovery"
+        },
+        {
+          "Id": "buff-source:2201491",
+          "Name": "Recovery"
+        },
+        {
+          "Id": "buff-source:2201493",
           "Name": "Recovery"
         },
         {
@@ -118012,6 +119670,10 @@
           "Name": "Terra Sunder"
         },
         {
+          "Id": "buff-source:2201570",
+          "Name": "Rock Guard"
+        },
+        {
           "Id": "talent:955",
           "Name": "Rock Guard"
         }
@@ -118229,6 +119891,10 @@
           "Name": "Granite"
         },
         {
+          "Id": "buff-source:1901",
+          "Name": "Granite"
+        },
+        {
           "Id": "talent:960",
           "Name": "Granite"
         }
@@ -118329,6 +119995,10 @@
         },
         {
           "Id": 2220164104,
+          "Name": "Rock Heal"
+        },
+        {
+          "Id": "buff-source:2201641",
           "Name": "Rock Heal"
         },
         {
@@ -119332,18 +121002,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3428075949|weapon_fh_skill_passive|DamageAttrIdName/weapon_fh_skill_passive.png",
+        "EffectSources|Texture2D|3428075949|weapon_fh_skill_passive|EffectSources/weapon_fh_skill_passive.png",
         "RecountTable|Texture2D|3428075949|weapon_fh_skill_passive|RecountTable/weapon_fh_skill_passive.png",
         "SkillBreakdownDetails|Texture2D|3428075949|weapon_fh_skill_passive|SkillBreakdownDetails/weapon_fh_skill_passive.png",
         "skillnames|Texture2D|3428075949|weapon_fh_skill_passive|skillnames/weapon_fh_skill_passive.png"
@@ -119489,6 +121162,14 @@
         },
         {
           "Id": 22110101
+        },
+        {
+          "Id": "buff-source:20301",
+          "Name": "Life Bloom"
+        },
+        {
+          "Id": "buff-source:21101",
+          "Name": "Life Bloom"
         }
       ]
     },
@@ -120176,7 +121857,7 @@
       ]
     },
     {
-      "AssetId": "icon:RecountTable|Texture2D|3649880202|weapon_fh-01_kx05|RecountTable/weapon_fh-01_kx05.png",
+      "AssetId": "icon:EffectSources|Texture2D|3649880202|weapon_fh-01_kx05|EffectSources/weapon_fh-01_kx05.png",
       "ParserPath": "static/images/verdant_oracle/skill/weapon_fh-01_kx05_-7390965526174956696.png",
       "ParserImagePath": "/images/verdant_oracle/skill/weapon_fh-01_kx05_-7390965526174956696.png",
       "Bucket": "verdant_oracle/skill",
@@ -120198,16 +121879,19 @@
         "generated-json"
       ],
       "SourceGroups": [
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
+        "EffectSources|Texture2D|3649880202|weapon_fh-01_kx05|EffectSources/weapon_fh-01_kx05.png",
         "RecountTable|Texture2D|3649880202|weapon_fh-01_kx05|RecountTable/weapon_fh-01_kx05.png",
         "SkillBreakdownDetails|Texture2D|3649880202|weapon_fh-01_kx05|SkillBreakdownDetails/weapon_fh-01_kx05.png",
         "skillnames|Texture2D|3649880202|weapon_fh-01_kx05|skillnames/weapon_fh-01_kx05.png"
@@ -120391,6 +122075,10 @@
         },
         {
           "Id": 315011200
+        },
+        {
+          "Id": "buff-source:21425",
+          "Name": "Regen Pulse"
         }
       ]
     },
@@ -120583,18 +122271,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3652252044|weapon_fh-01_kx07|DamageAttrIdName/weapon_fh-01_kx07.png",
+        "EffectSources|Texture2D|3652252044|weapon_fh-01_kx07|EffectSources/weapon_fh-01_kx07.png",
         "RecountTable|Texture2D|3652252044|weapon_fh-01_kx07|RecountTable/weapon_fh-01_kx07.png",
         "SkillBreakdownDetails|Texture2D|3652252044|weapon_fh-01_kx07|SkillBreakdownDetails/weapon_fh-01_kx07.png",
         "skillnames|Texture2D|3652252044|weapon_fh-01_kx07|skillnames/weapon_fh-01_kx07.png"
@@ -120753,6 +122444,14 @@
         },
         {
           "Id": 2220258204
+        },
+        {
+          "Id": "buff-source:2202581",
+          "Name": "Blossom Charge"
+        },
+        {
+          "Id": "buff-source:2202582",
+          "Name": "Blossom Charge"
         }
       ]
     },
@@ -121518,18 +123217,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|3785884631|weapon_fh-01_ult|DamageAttrIdName/weapon_fh-01_ult.png",
+        "EffectSources|Texture2D|3785884631|weapon_fh-01_ult|EffectSources/weapon_fh-01_ult.png",
         "RecountTable|Texture2D|3785884631|weapon_fh-01_ult|RecountTable/weapon_fh-01_ult.png",
         "SkillBreakdownDetails|Texture2D|3785884631|weapon_fh-01_ult|SkillBreakdownDetails/weapon_fh-01_ult.png",
         "skillnames|Texture2D|3785884631|weapon_fh-01_ult|skillnames/weapon_fh-01_ult.png"
@@ -121696,6 +123398,10 @@
         },
         {
           "Id": 22141405
+        },
+        {
+          "Id": "buff-source:21414",
+          "Name": "Divine Circle Bloom"
         }
       ]
     },
@@ -123255,18 +124961,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|4183542590|weapon_cq_skill_atk|DamageAttrIdName/weapon_cq_skill_atk.png",
+        "EffectSources|Texture2D|4183542590|weapon_cq_skill_atk|EffectSources/weapon_cq_skill_atk.png",
         "RecountTable|Texture2D|4183542590|weapon_cq_skill_atk|RecountTable/weapon_cq_skill_atk.png",
         "SkillBreakdownDetails|Texture2D|4183542590|weapon_cq_skill_atk|SkillBreakdownDetails/weapon_cq_skill_atk.png",
         "skillnames|Texture2D|4183542590|weapon_cq_skill_atk|skillnames/weapon_cq_skill_atk.png"
@@ -123821,6 +125530,10 @@
         },
         {
           "Id": 339100800
+        },
+        {
+          "Id": "buff-source:1401",
+          "Name": "Windborne Grace"
         }
       ]
     },
@@ -125031,18 +126744,21 @@
       ],
       "SourceGroups": [
         "DamageAttrIdName",
+        "EffectSources",
         "RecountTable",
         "SkillBreakdownDetails",
         "skillnames"
       ],
       "SourceFiles": [
         "DamageAttrIdName.json",
+        "EffectSources.json",
         "RecountTable.json",
         "SkillBreakdownDetails.json",
         "skillnames.json"
       ],
       "SourceAssetIds": [
         "DamageAttrIdName|Texture2D|2406337112|weapon_cq-01_kx07|DamageAttrIdName/weapon_cq-01_kx07.png",
+        "EffectSources|Texture2D|2406337112|weapon_cq-01_kx07|EffectSources/weapon_cq-01_kx07.png",
         "RecountTable|Texture2D|2406337112|weapon_cq-01_kx07|RecountTable/weapon_cq-01_kx07.png",
         "SkillBreakdownDetails|Texture2D|2406337112|weapon_cq-01_kx07|SkillBreakdownDetails/weapon_cq-01_kx07.png",
         "skillnames|Texture2D|2406337112|weapon_cq-01_kx07|skillnames/weapon_cq-01_kx07.png"
@@ -125195,6 +126911,10 @@
         },
         {
           "Id": 23190105
+        },
+        {
+          "Id": "buff-source:31901",
+          "Name": "Valor Cyclone"
         }
       ]
     },

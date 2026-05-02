@@ -5,6 +5,6 @@
   "scripts": {
     "ui": "node ./ui/server.mjs",
     "probe:formula": "node ./FormulaSurfaceProbe.gen",
-    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js && node ./ExportParserAssets.gen --help && node ./ClassLabels.gen --help && node ./HistoryLabelEvidence.gen --help && node ./StrictUnresolvedWorklist.gen --help && node ./ClassSpecSkillModelProbe.gen --help && node ./TalentEffectModelProbe.gen --help && node ./SeasonTalentNodeProbe.gen --help && node ./SeasonRogueEntryProbe.gen --help && node ./SeasonPhantomFactorProbe.gen --help && node ./SeasonPhantomFactors.gen --help && node ./EffectSources.gen --help && node ./FormulaSurfaceProbe.gen --help"
+    "check": "node --check ./ui/server.mjs && node --check ./ui/public/app.js && node ./ExportParserAssets.gen --help && node ./ClassLabels.gen --help && node ./HistoryLabelEvidence.gen --help && node ./StrictUnresolvedWorklist.gen --help && node ./ClassSpecSkillModelProbe.gen --help && node ./TalentEffectModelProbe.gen --help && node ./SeasonTalentNodeProbe.gen --help && node ./SeasonRogueEntryProbe.gen --help && node ./SeasonPhantomFactorProbe.gen --help && node ./SeasonPhantomFactors.gen --help && node ./ConsumableBuffBridge.gen --help && node ./EffectSources.gen --help && node ./EffectDescriptionSurfaceProbe.gen --help && node ./EffectPredicateAudit.gen --help && node ./EffectComponentWorklist.gen --help && node ./FormulaSurfaceProbe.gen --help"
   }
 }

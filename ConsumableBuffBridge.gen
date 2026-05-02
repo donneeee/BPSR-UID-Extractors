@@ -1,0 +1,451 @@
+#!/usr/bin/env node
+const path = require("node:path");
+
+const repoRoot = __dirname;
+const OUTPUT_NAME = "ConsumableBuffBridge.json";
+
+const FOOD_USE_TABLE_HASH = 1485987280;
+const ITEM_TABLE_HASH = 3425461443;
+const FOOD_BUFF_ICON = "ui/atlas/buff/buff_food_up";
+
+function stripUndefined(value) {
+  if (Array.isArray(value)) {
+    return value.map(stripUndefined).filter((entry) => entry !== undefined);
+  }
+  if (value && typeof value === "object") {
+    const out = {};
+    for (const [key, entry] of Object.entries(value)) {
+      if (entry === undefined || entry === null || entry === "") continue;
+      const cleaned = stripUndefined(entry);
+      if (cleaned !== undefined && (!Array.isArray(cleaned) || cleaned.length)) {
+        out[key] = cleaned;
+      }
+    }
+    return Object.keys(out).length ? out : undefined;
+  }
+  return value;
+}
+
+function toNumber(value) {
+  const numberValue = Number(value);
+  return Number.isFinite(numberValue) ? numberValue : null;
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values ?? []).map(toNumber).filter((value) => value !== null))]
+    .sort((left, right) => left - right);
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values ?? []).map(String).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function preferredName(names, fallback = "") {
+  return names?.en || names?.["zh-CN"] || names?.design || fallback || "";
+}
+
+function packageOffset(table, rowOffset) {
+  const entryOffset = Number(table?.entry?.offset);
+  if (!Number.isFinite(entryOffset)) return undefined;
+  return entryOffset + rowOffset;
+}
+
+function translateFoodEffectName(rawName) {
+  let text = String(rawName || "").trim();
+  if (!text) return "";
+
+  const replacements = [
+    ["生命恢复", "HP Regen"],
+    ["精英增伤", "DMG to Elites"],
+    ["精英减伤", "Elite DMG Reduction"],
+    ["物攻", "ATK"],
+    ["魔攻", "MATK"],
+    ["护甲", "Armor"],
+    ["耐力", "Stamina"],
+    ["生命", "HP"],
+  ];
+  for (const [from, to] of replacements) {
+    text = text.replaceAll(from, to);
+  }
+  text = text.replace(/\+/g, " + ");
+  text = text.replace(/Lv(\d+)/g, "Lv.$1");
+  text = text.replace(/([A-Za-z])Lv\./g, "$1 Lv.");
+  text = text.replace(/\s+/g, " ").trim();
+  return /^[\x00-\x7F]+$/.test(text) ? text : "";
+}
+
+function effectComponentForLabel(label, order) {
+  const cleanLabel = String(label || "").replace(/\bLv\.\d+\b/gi, "").trim();
+  const key = cleanLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  if (!cleanLabel || !key) return null;
+
+  if (/^dmg to elites$/i.test(cleanLabel)) {
+    return {
+      componentKey: key,
+      componentOrder: order,
+      label: cleanLabel,
+      effectClass: "damage-modifier",
+      direction: "damage-dealt",
+      contributionScope: "targeted",
+      targetPredicate: { monsterRankAtLeast: "elite" },
+      predicateTags: ["direction.damage-dealt", "target.elite-or-stronger"],
+    };
+  }
+
+  if (/^elite dmg reduction$/i.test(cleanLabel)) {
+    return {
+      componentKey: key,
+      componentOrder: order,
+      label: cleanLabel,
+      effectClass: "damage-reduction",
+      direction: "damage-taken",
+      contributionScope: "incoming",
+      attackerPredicate: { monsterRankAtLeast: "elite" },
+      predicateTags: ["attacker.elite-or-stronger", "direction.damage-taken-or-defense"],
+    };
+  }
+
+  const statKinds = new Map([
+    ["ATK", "offense-stat"],
+    ["MATK", "offense-stat"],
+    ["Armor", "defense-stat"],
+    ["Stamina", "resource-stat"],
+    ["HP", "resource-stat"],
+    ["HP Regen", "resource-stat"],
+  ]);
+  const statKind = statKinds.get(cleanLabel);
+  if (statKind) {
+    return {
+      componentKey: key,
+      componentOrder: order,
+      label: cleanLabel,
+      effectClass: statKind,
+      direction: "stat",
+      stat: cleanLabel,
+      contributionScope: "global",
+      predicateTags: ["scope.global"],
+    };
+  }
+
+  return {
+    componentKey: key,
+    componentOrder: order,
+    label: cleanLabel,
+    effectClass: "unknown-effect",
+    contributionScope: "unknown",
+    predicateTags: ["needs.effect-component-classification"],
+  };
+}
+
+function parseFoodEffectComponents(effectNameEn) {
+  const clean = String(effectNameEn || "").replace(/\bLv\.\d+\b/gi, "").trim();
+  if (!clean) return [];
+  return clean
+    .split(/\s+\+\s+/)
+    .map((part, index) => effectComponentForLabel(part, index + 1))
+    .filter(Boolean);
+}
+
+function buildFoodSourceNames(buffRow, effectNameEn) {
+  const names = { ...(buffRow?.Names ?? {}) };
+  const baseEn = names.en || buffRow?.Name || buffRow?.NameDesign || "Cuisine";
+  if (effectNameEn) {
+    names.en = `${baseEn} - ${effectNameEn}`;
+  }
+  if (buffRow?.DesignName) {
+    names.design = buffRow.DesignName;
+  }
+  return names;
+}
+
+function buildItemIndex(itemRows) {
+  const byId = new Map();
+  for (const row of Array.isArray(itemRows) ? itemRows : Object.values(itemRows ?? {})) {
+    const id = toNumber(row.Id);
+    if (id === null) continue;
+    byId.set(id, row);
+  }
+  return byId;
+}
+
+function buildBuffChildIndex(buffRows) {
+  const byId = new Map();
+  const childrenByBase = new Map();
+  for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
+    const buffId = toNumber(row.Id);
+    if (buffId === null) continue;
+    byId.set(buffId, row);
+    if (
+      buffId >= 2032000
+      && buffId < 2033000
+      && row.IconPath === FOOD_BUFF_ICON
+    ) {
+      const baseId = Math.floor(buffId / 10) * 10;
+      if (!childrenByBase.has(baseId)) childrenByBase.set(baseId, []);
+      childrenByBase.get(baseId).push({
+        buffId,
+        level: toNumber(row.Level),
+        designName: row.DesignName ?? row.NameDesign,
+        row,
+      });
+    }
+  }
+  for (const rows of childrenByBase.values()) {
+    rows.sort((left, right) => left.buffId - right.buffId);
+  }
+  return { byId, childrenByBase };
+}
+
+function readItemTableTiers(common, itemTable) {
+  const byId = new Map();
+  for (let index = 0; index < itemTable.rowCount; index += 1) {
+    const rowOffset = itemTable.rowStart + index * itemTable.rowSize;
+    const itemId = common.readU32(itemTable.data, rowOffset);
+    if (!Number.isInteger(itemId) || itemId <= 0) continue;
+    byId.set(itemId, {
+      itemId,
+      itemTier: common.readU32(itemTable.data, rowOffset + 24),
+      itemTableRowIndex: index,
+      itemTableSourceOffset: packageOffset(itemTable, rowOffset),
+    });
+  }
+  return byId;
+}
+
+function readFoodUseRows(common, foodUseTable, itemById, itemTierById) {
+  const rows = [];
+  for (let index = 0; index < foodUseTable.rowCount; index += 1) {
+    const rowOffset = foodUseTable.rowStart + index * foodUseTable.rowSize;
+    const itemId = common.readU32(foodUseTable.data, rowOffset);
+    const useType = common.readU32(foodUseTable.data, rowOffset + 4);
+    const effectValue = common.readU32(foodUseTable.data, rowOffset + 8);
+    const buffBaseId = common.readU32(foodUseTable.data, rowOffset + 12);
+    if (useType !== 18 || buffBaseId < 2032000 || buffBaseId >= 2033000) continue;
+
+    const itemRow = itemById.get(itemId);
+    const itemTier = itemTierById.get(itemId);
+    rows.push({
+      itemId,
+      itemName: preferredName(itemRow?.Names, itemRow?.NameDesign ?? itemRow?.Name ?? ""),
+      itemNames: itemRow?.Names,
+      itemIconPath: itemRow?.IconPath,
+      itemTier: itemTier?.itemTier,
+      itemSourceOffset: itemRow?.SourceOffset,
+      itemTableSourceOffset: itemTier?.itemTableSourceOffset,
+      bridgeRowIndex: index,
+      bridgeSourceOffset: packageOffset(foodUseTable, rowOffset),
+      useType,
+      effectValue,
+      buffBaseId,
+    });
+  }
+  return rows;
+}
+
+function selectRuntimeFoodBuff(useRow, rowsByBase, childrenByBase) {
+  const children = childrenByBase.get(useRow.buffBaseId) ?? [];
+  const itemTier = toNumber(useRow.itemTier);
+  if (!children.length || itemTier === null) {
+    return { runtimeBuff: null, selectionMethod: "unmapped-missing-tier-or-children" };
+  }
+
+  const direct = children.find((child) => child.buffId % 10 === itemTier);
+  if (direct) {
+    return { runtimeBuff: direct, selectionMethod: "direct-item-tier-suffix" };
+  }
+
+  const baseRows = rowsByBase.get(useRow.buffBaseId) ?? [];
+  const tiers = uniqueNumbers(baseRows.map((row) => row.itemTier));
+  const tierIndex = tiers.indexOf(itemTier);
+  if (tierIndex >= 0 && tiers.length === children.length) {
+    return { runtimeBuff: children[tierIndex], selectionMethod: "sparse-tier-rank" };
+  }
+
+  return {
+    runtimeBuff: null,
+    selectionMethod: "unmapped-tier-rank-mismatch",
+    selectionEvidence: {
+      itemTier,
+      baseItemTiers: tiers,
+      childBuffIds: children.map((child) => child.buffId),
+    },
+  };
+}
+
+function buildRowsByBase(foodUseRows) {
+  const rowsByBase = new Map();
+  for (const row of foodUseRows) {
+    if (!rowsByBase.has(row.buffBaseId)) rowsByBase.set(row.buffBaseId, []);
+    rowsByBase.get(row.buffBaseId).push(row);
+  }
+  return rowsByBase;
+}
+
+function buildBridgeData(foodUseRows, rowsByBase, buffIndex) {
+  const mappedRows = [];
+  for (const row of foodUseRows) {
+    const selection = selectRuntimeFoodBuff(row, rowsByBase, buffIndex.childrenByBase);
+    const runtimeBuff = selection.runtimeBuff;
+    mappedRows.push(stripUndefined({
+      ...row,
+      runtimeBuffId: runtimeBuff?.buffId,
+      runtimeBuffDesignName: runtimeBuff?.designName,
+      selectionMethod: selection.selectionMethod,
+      selectionEvidence: selection.selectionEvidence,
+    }));
+  }
+
+  const byBuffId = new Map();
+  for (const row of mappedRows) {
+    const runtimeBuffId = toNumber(row.runtimeBuffId);
+    if (runtimeBuffId === null) continue;
+    if (!byBuffId.has(runtimeBuffId)) {
+      byBuffId.set(runtimeBuffId, []);
+    }
+    byBuffId.get(runtimeBuffId).push(row);
+  }
+
+  const foodBuffSourcesByBuffId = {};
+  for (const [buffId, candidates] of [...byBuffId.entries()].sort((left, right) => left[0] - right[0])) {
+    const buffRow = buffIndex.byId.get(buffId);
+    const effectNameEn = translateFoodEffectName(buffRow?.DesignName);
+    const effectComponents = parseFoodEffectComponents(effectNameEn);
+    const sourceNames = buildFoodSourceNames(buffRow, effectNameEn);
+    const sourceName = preferredName(sourceNames, effectNameEn || "Cuisine");
+    const methods = uniqueStrings(candidates.map((candidate) => candidate.selectionMethod));
+    const buffBaseIds = uniqueNumbers(candidates.map((candidate) => candidate.buffBaseId));
+    const itemTierValues = uniqueNumbers(candidates.map((candidate) => candidate.itemTier));
+    const candidateItems = candidates
+      .map((candidate) => stripUndefined({
+        itemId: candidate.itemId,
+        itemName: candidate.itemName,
+        itemNames: candidate.itemNames,
+        itemIconPath: candidate.itemIconPath,
+        itemTier: candidate.itemTier,
+        effectValue: candidate.effectValue,
+        buffBaseId: candidate.buffBaseId,
+        bridgeRowIndex: candidate.bridgeRowIndex,
+        bridgeSourceOffset: candidate.bridgeSourceOffset,
+        itemSourceOffset: candidate.itemSourceOffset,
+        itemTableSourceOffset: candidate.itemTableSourceOffset,
+        selectionMethod: candidate.selectionMethod,
+      }))
+      .filter(Boolean)
+      .sort((left, right) => left.itemId - right.itemId);
+
+    foodBuffSourcesByBuffId[String(buffId)] = stripUndefined({
+      buffId,
+      buffBaseIds,
+      sourceName,
+      sourceNames,
+      effectNameEn,
+      effectDesignName: buffRow?.DesignName,
+      effectComponents,
+      iconPath: buffRow?.IconPath,
+      candidateItemCount: candidateItems.length,
+      candidateItemIds: candidateItems.map((candidate) => candidate.itemId),
+      candidateItemNames: candidateItems.map((candidate) => candidate.itemName),
+      itemTierValues,
+      selectionMethods: methods,
+      relationshipPolicy: candidateItems.length === 1
+        ? "Runtime food buff id maps to one candidate item in the current item-use bridge, but the runtime active-buff packet still proves the effect buff, not the item-use event."
+        : "Runtime food buff id is shared by multiple candidate food items; label the observed source by effect family and keep item names as candidates only.",
+      evidence: [{
+        source: "CTB:1485987280.food-item-use-buff-base",
+        bridgeTableHash: FOOD_USE_TABLE_HASH,
+        itemTableHash: ITEM_TABLE_HASH,
+        mappingPolicy: "Food items point at a base food-buff family. The runtime child buff is selected by direct item-tier suffix when present, otherwise by rank across sparse item-tier and child-buff rows in that family.",
+        candidateItems,
+      }],
+    });
+  }
+
+  return { mappedRows, foodBuffSourcesByBuffId };
+}
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    dryRun: false,
+    help: false,
+    outputDir: "",
+    out: "",
+    items: "",
+    buffs: "",
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "ConsumableBuffBridge.gen - map food item-use rows to shared runtime food buff effects.",
+      `
+Options:
+  --items <path>            itemnames.json input. Defaults to output/itemnames.json.
+  --buffs <path>            BuffName.json input. Defaults to output/BuffName.json.
+      `,
+    );
+    return;
+  }
+
+  const paths = common.resolvePaths(args, OUTPUT_NAME);
+  const itemsPath = path.resolve(args.items || path.join(paths.outputDir, "itemnames.json"));
+  const buffsPath = path.resolve(args.buffs || path.join(paths.outputDir, "BuffName.json"));
+  const itemRows = common.readJson(itemsPath, []);
+  const buffRows = common.readJson(buffsPath, []);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const itemTable = common.readCtbTableByHash(containerDir, metaEntries, ITEM_TABLE_HASH, "ItemTable.ctb");
+  const foodUseTable = common.readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    FOOD_USE_TABLE_HASH,
+    `CTB:${FOOD_USE_TABLE_HASH}`,
+  );
+
+  const itemById = buildItemIndex(itemRows);
+  const itemTierById = readItemTableTiers(common, itemTable);
+  const buffIndex = buildBuffChildIndex(buffRows);
+  const foodUseRows = readFoodUseRows(common, foodUseTable, itemById, itemTierById);
+  const rowsByBase = buildRowsByBase(foodUseRows);
+  const { mappedRows, foodBuffSourcesByBuffId } = buildBridgeData(foodUseRows, rowsByBase, buffIndex);
+
+  const foodRuntimeBuffIds = Object.keys(foodBuffSourcesByBuffId)
+    .map(Number)
+    .sort((left, right) => left - right);
+  const data = {
+    summary: {
+      source: "ConsumableBuffBridge.gen",
+      generatedFrom: {
+        game: path.relative(repoRoot, paths.m0Path).replaceAll("\\", "/"),
+        items: path.relative(repoRoot, itemsPath).replaceAll("\\", "/"),
+        buffs: path.relative(repoRoot, buffsPath).replaceAll("\\", "/"),
+        bridgeTable: `CTB:${FOOD_USE_TABLE_HASH}`,
+        itemTable: "ItemTable.ctb",
+      },
+      foodUseRows: foodUseRows.length,
+      mappedFoodUseRows: mappedRows.filter((row) => row.runtimeBuffId !== undefined).length,
+      unmappedFoodUseRows: mappedRows.filter((row) => row.runtimeBuffId === undefined).length,
+      runtimeFoodBuffSources: foodRuntimeBuffIds.length,
+      sharedRuntimeFoodBuffSources: foodRuntimeBuffIds.filter((id) =>
+        foodBuffSourcesByBuffId[String(id)]?.candidateItemCount > 1
+      ).length,
+      relationshipPolicy:
+        "Food active-buff packets expose runtime effect buffs. Exact dish names are candidate evidence only unless a separate item-use event bridge proves the consumed item.",
+    },
+    foodRuntimeBuffIds,
+    foodBuffSourcesByBuffId,
+    foodItemMappings: mappedRows.sort((left, right) => left.itemId - right.itemId),
+  };
+
+  if (!args.dryRun) {
+    common.writeJson(paths.out, data);
+  }
+  console.log(
+    `${args.dryRun ? "Dry run: would write" : "Wrote"} ${path.relative(repoRoot, paths.out)} (${data.summary.mappedFoodUseRows}/${data.summary.foodUseRows} food item rows mapped to ${data.summary.runtimeFoodBuffSources} runtime food buff sources).`,
+  );
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

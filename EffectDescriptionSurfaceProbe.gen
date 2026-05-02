@@ -1,0 +1,424 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const OUTPUT_NAME = path.join("probing-reports", "EffectDescriptionSurfaceProbe.json");
+const DEFAULT_MAX_RECORDS = 20000;
+const STRING_POOL = 6;
+
+const GENERATED_FILES = [
+  "EffectSources.json",
+  "SeasonPhantomFactors.json",
+  "SkillBreakdownDetails.json",
+  "RecountTable.json",
+  "DamageAttrIdName.json",
+  "BuffName.json",
+  "itemnames.json",
+  "skillnames.json",
+  path.join("probing-reports", "TalentEffectModelProbe.json"),
+  path.join("probing-reports", "SeasonTalentNodeProbe.json"),
+  path.join("probing-reports", "SeasonRogueEntryProbe.json"),
+  path.join("probing-reports", "SeasonPhantomFactorProbe.json"),
+];
+
+const EFFECT_TEXT_PATTERNS = [
+  /\bEffect[s]?\b/i,
+  /\bSpecial Effect\b/i,
+  /\bDMG\b|\bdamage\b/i,
+  /\bATK\b|\bMATK\b|\bArmor\b|\bCrit\b|\bHaste\b|\bVersatility\b|\bLuck\b|\bMastery\b/i,
+  /\bElite[s]?\b|\bboss\b|\bstronger enem/i,
+  /\bDuration\b|\blasting\b|\blasts?\b|\bfor \d+(?:\.\d+)?s\b/i,
+  /\bstack(?:s|ing)?\b/i,
+  /\bFocus\b|\bFocus state\b/i,
+  /\bCompanion[s]?\b|\bsummon(?:s|ed)?\b|\bPet\b/i,
+  /[\u4e00-\u9fff].*(?:效果|伤害|攻|护甲|精英|首领|持续|层|召唤|宠物)/u,
+];
+
+function cleanText(value) {
+  return String(value ?? "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\{\*[^}]+\*\}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function matchesEffectText(text) {
+  const clean = cleanText(text);
+  return clean.length >= 3 && EFFECT_TEXT_PATTERNS.some((pattern) => pattern.test(clean));
+}
+
+function addTag(tags, condition, tag) {
+  if (condition) tags.add(tag);
+}
+
+function classifyEffectText(text) {
+  const clean = cleanText(text);
+  const lower = clean.toLowerCase();
+  const tags = new Set();
+  addTag(tags, /\batk\b|\bmatk\b|\barmor\b|\bcrit\b|\bhaste\b|\bversatility\b|\bluck\b|\bmastery\b|攻|护甲/u.test(clean), "component.stat-or-attribute");
+  addTag(tags, /\bdmg\b|damage|伤害/u.test(clean), "component.damage");
+  addTag(tags, /dmg to elites|damage dealt to elites|elites? or stronger enemies|精英|首领/i.test(clean), "target.elite-or-stronger");
+  addTag(tags, /dmg reduction|damage taken|reduce[s]? .*damage|减伤|防御/u.test(clean), "direction.damage-taken-or-defense");
+  addTag(tags, /dmg to|dmg dealt|deal[s]? .*dmg|damage is increased|increases? .*damage|增伤|造成.*伤害/u.test(clean), "direction.damage-dealt");
+  addTag(tags, /duration|lasting|lasts|for \d+(?:\.\d+)?s|持续|秒/u.test(clean), "window.timed");
+  addTag(tags, /stack|stacks|stacking|层/u.test(clean), "window.stack-state");
+  addTag(tags, /focus state|focus is active|during focus|while focus|Focus\b|集中/u.test(clean), "activation.focus-state");
+  addTag(tags, /companion|companions|summon|summons|summoned|pet|伙伴|召唤|宠物/u.test(clean), "source.companion-or-summon");
+  addTag(tags, /\bEffect[s]?\b|Special Effect|效果/u.test(clean), "description.effect-labeled");
+  if (/atk\s*\+|matk\s*\+/i.test(clean) && /dmg to elites|elites? or stronger/i.test(clean)) {
+    tags.add("effect.compound-components");
+  }
+  return [...tags].sort();
+}
+
+function pushRecord(records, rawRecord, maxRecords) {
+  const text = cleanText(rawRecord.text);
+  if (!matchesEffectText(text)) return false;
+  const tags = classifyEffectText(text);
+  if (!tags.length) return false;
+  if (records.length < maxRecords) {
+    records.push({
+      ...rawRecord,
+      text,
+      tags,
+    });
+  }
+  return true;
+}
+
+function reverseLocalizationIndex(table) {
+  const byStringIndex = new Map();
+  for (const [id, index] of table.index.entries()) {
+    if (!byStringIndex.has(index)) byStringIndex.set(index, []);
+    byStringIndex.get(index).push(id);
+  }
+  return byStringIndex;
+}
+
+function scanLocalizationTables(localizationTables, maxRecords) {
+  const records = [];
+  let stringsScanned = 0;
+  let matchedStrings = 0;
+  for (const table of localizationTables) {
+    const idByStringIndex = reverseLocalizationIndex(table);
+    for (let index = 0; index < table.strings.length; index += 1) {
+      stringsScanned += 1;
+      const matched = pushRecord(records, {
+        surface: "localization",
+        language: table.language,
+        stringIndex: index,
+        localizationIds: idByStringIndex.get(index) || [],
+        text: table.strings[index],
+      }, maxRecords);
+      if (matched) matchedStrings += 1;
+    }
+  }
+  return { stringsScanned, matchedStrings, records };
+}
+
+function walkJsonStrings(value, visit, pathParts = []) {
+  if (typeof value === "string") {
+    visit(pathParts, value);
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) => walkJsonStrings(entry, visit, [...pathParts, String(index)]));
+    return;
+  }
+  if (value && typeof value === "object") {
+    for (const [key, entry] of Object.entries(value)) {
+      walkJsonStrings(entry, visit, [...pathParts, key]);
+    }
+  }
+}
+
+function readJson(filePath, fallback = null) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
+function scanGeneratedFiles(outputDir, maxRecords) {
+  const records = [];
+  let stringsScanned = 0;
+  let matchedStrings = 0;
+  for (const relativeFile of GENERATED_FILES) {
+    const filePath = path.join(outputDir, relativeFile);
+    const data = readJson(filePath);
+    if (!data) continue;
+    walkJsonStrings(data, (pathParts, text) => {
+      stringsScanned += 1;
+      const matched = pushRecord(records, {
+        surface: "generated-json",
+        file: relativeFile.replaceAll("\\", "/"),
+        jsonPath: pathParts.join("."),
+        text,
+      }, maxRecords);
+      if (matched) matchedStrings += 1;
+    });
+  }
+  return { stringsScanned, matchedStrings, records };
+}
+
+function tryParseCtb(entry, data) {
+  if (!data || data.length < 20) return null;
+  const rowCount = data.readInt32LE(8);
+  const poolCount = data.readInt32LE(12);
+  const rowDataBytes = data.readInt32LE(16);
+  if (rowCount <= 0 || poolCount < 0 || rowDataBytes <= 0 || rowDataBytes % rowCount !== 0) return null;
+  const rowSize = rowDataBytes / rowCount;
+  const rowStart = 20 + rowCount * 8;
+  if (rowSize <= 0 || rowStart + rowDataBytes > data.length) return null;
+
+  let offset = rowStart + rowDataBytes;
+  const pools = [];
+  for (let index = 0; index < poolCount; index += 1) {
+    if (offset + 8 > data.length) return null;
+    const type = data.readInt32LE(offset);
+    const length = data.readInt32LE(offset + 4);
+    offset += 8;
+    if (length < 0 || offset + length > data.length) return null;
+    pools.push({
+      type,
+      start: offset,
+      length,
+      buffer: data.subarray(offset, offset + length),
+    });
+    offset += length;
+  }
+
+  return {
+    key: Number(entry.key) >>> 0,
+    packageIndex: entry.index,
+    packageOffset: entry.offset,
+    packageLength: entry.length,
+    rowCount,
+    rowSize,
+    pools,
+  };
+}
+
+function extractLengthPrefixedStrings(buffer) {
+  const out = [];
+  let offset = 0;
+  while (offset + 2 <= buffer.length) {
+    const len = buffer.readUInt16LE(offset);
+    if (!len || len > 4096 || offset + 2 + len > buffer.length) {
+      offset += 1;
+      continue;
+    }
+    const bytes = buffer.subarray(offset + 2, offset + 2 + len);
+    if (!bytes.includes(0)) {
+      const text = cleanText(bytes.toString("utf8").replace(/\u0000/g, ""));
+      if (text) out.push({ offset, text });
+    }
+    offset += 2 + len;
+  }
+  return out;
+}
+
+function scanCtbStringPools(common, containerDir, metaEntries, maxRecords) {
+  const records = [];
+  let ctbEntriesScanned = 0;
+  let ctbParseFailures = 0;
+  let stringsScanned = 0;
+  let matchedStrings = 0;
+  let tablesWithMatches = 0;
+  const tableMatchCounts = {};
+
+  for (const entry of [...metaEntries.values()].sort((left, right) => left.key - right.key)) {
+    let data;
+    try {
+      data = common.readPkgEntry(containerDir, entry);
+    } catch {
+      continue;
+    }
+    const table = tryParseCtb(entry, data);
+    if (!table) {
+      ctbParseFailures += 1;
+      continue;
+    }
+    ctbEntriesScanned += 1;
+    let tableMatches = 0;
+    for (const pool of table.pools.filter((poolRecord) => poolRecord.type === STRING_POOL)) {
+      for (const item of extractLengthPrefixedStrings(pool.buffer)) {
+        stringsScanned += 1;
+        const matched = pushRecord(records, {
+          surface: "ctb-string-pool",
+          tableKey: table.key,
+          tableLabel: `CTB:${table.key}`,
+          packageIndex: table.packageIndex,
+          packageOffset: table.packageOffset,
+          poolType: pool.type,
+          poolOffset: item.offset,
+          absoluteOffset: pool.start + item.offset,
+          text: item.text,
+        }, maxRecords);
+        if (matched) {
+          matchedStrings += 1;
+          tableMatches += 1;
+        }
+      }
+    }
+    if (tableMatches > 0) {
+      tablesWithMatches += 1;
+      tableMatchCounts[`CTB:${table.key}`] = tableMatches;
+    }
+  }
+
+  return {
+    ctbEntriesScanned,
+    ctbParseFailures,
+    stringsScanned,
+    matchedStrings,
+    tablesWithMatches,
+    tableMatchCounts,
+    records,
+  };
+}
+
+function summarize(records) {
+  const tagCounts = {};
+  const surfaceCounts = {};
+  for (const record of records) {
+    surfaceCounts[record.surface] = (surfaceCounts[record.surface] || 0) + 1;
+    for (const tag of record.tags || []) {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    }
+  }
+  return {
+    tagCounts: Object.fromEntries(Object.entries(tagCounts).sort((a, b) => a[0].localeCompare(b[0]))),
+    surfaceCounts: Object.fromEntries(Object.entries(surfaceCounts).sort((a, b) => a[0].localeCompare(b[0]))),
+  };
+}
+
+function renderMarkdown(report) {
+  const rows = report.records
+    .filter((record) =>
+      record.tags.includes("effect.compound-components")
+      || record.tags.includes("target.elite-or-stronger")
+      || record.tags.includes("source.companion-or-summon")
+      || record.tags.includes("activation.focus-state")
+    )
+    .slice(0, 180);
+  return [
+    "# Effect Description Surface Probe",
+    "",
+    "This report scans localized and generated description-like text for effect semantics. It is an audit surface, not formula truth.",
+    "",
+    "## Summary",
+    "",
+    `- Localization strings scanned: ${report.summary.localizationStringsScanned}`,
+    `- CTB string-pool strings scanned: ${report.summary.ctbStringPoolStringsScanned}`,
+    `- Generated JSON strings scanned: ${report.summary.generatedJsonStringsScanned}`,
+    `- Effect-like strings matched: ${report.summary.matchedStrings}`,
+    `- Records retained: ${report.records.length}`,
+    "",
+    "### Tag Counts",
+    "",
+    ...Object.entries(report.summary.tagCounts).map(([tag, count]) => `- ${tag}: ${count}`),
+    "",
+    "## Representative Rows",
+    "",
+    ...rows.map((record) => [
+      `### ${record.surface}${record.language ? ` ${record.language}` : ""}${record.file ? ` ${record.file}` : ""}`,
+      "",
+      `- Tags: ${record.tags.join(", ")}`,
+      record.tableLabel ? `- Table: ${record.tableLabel}` : "",
+      record.poolOffset != null ? `- Pool offset: ${record.poolOffset}` : "",
+      record.localizationIds?.length ? `- Localization ids: ${record.localizationIds.slice(0, 8).join(", ")}` : "",
+      record.jsonPath ? `- JSON path: ${record.jsonPath}` : "",
+      `- Text: ${record.text.slice(0, 500)}`,
+    ].filter(Boolean).join("\n")),
+    "",
+  ].join("\n");
+}
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    maxRecords: DEFAULT_MAX_RECORDS,
+    markdown: "",
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "EffectDescriptionSurfaceProbe.gen - scan localized/generated descriptions for effect semantics.",
+      `
+Options:
+  --max-records <count>  Maximum matching records retained in JSON. Default: ${DEFAULT_MAX_RECORDS}.
+  --markdown <path>     Optional Markdown report path.
+
+Notes:
+  This scans every CTB string pool it can decode, all loaded game localization
+  strings, plus generated parser/probe JSON strings, then classifies
+  effect-bearing descriptions into broad predicate tags.
+`,
+    );
+    return;
+  }
+
+  const paths = common.resolvePaths(args, OUTPUT_NAME);
+  const maxRecords = Number(args.maxRecords) || DEFAULT_MAX_RECORDS;
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const localizationTables = common.loadLocalizationTables(containerDir, { metaEntries });
+  const ctbStringPoolScan = scanCtbStringPools(common, containerDir, metaEntries, maxRecords);
+  const localizationScan = scanLocalizationTables(localizationTables, maxRecords);
+  const generatedScan = scanGeneratedFiles(paths.outputDir, maxRecords);
+  const records = [...ctbStringPoolScan.records, ...localizationScan.records, ...generatedScan.records]
+    .slice(0, maxRecords)
+    .sort((a, b) =>
+      String(a.surface).localeCompare(String(b.surface))
+        || String(a.language ?? a.file ?? "").localeCompare(String(b.language ?? b.file ?? ""))
+        || String(a.stringIndex ?? a.jsonPath ?? "").localeCompare(String(b.stringIndex ?? b.jsonPath ?? "")),
+    );
+  const summaryBase = summarize(records);
+  const report = {
+    summary: {
+      generatedAt: new Date().toISOString(),
+      source: "EffectDescriptionSurfaceProbe.gen",
+      ctbEntriesScanned: ctbStringPoolScan.ctbEntriesScanned,
+      ctbParseFailures: ctbStringPoolScan.ctbParseFailures,
+      ctbStringPoolStringsScanned: ctbStringPoolScan.stringsScanned,
+      ctbStringPoolEffectLikeStrings: ctbStringPoolScan.matchedStrings,
+      ctbStringPoolTablesWithMatches: ctbStringPoolScan.tablesWithMatches,
+      topCtbStringPoolTables: Object.fromEntries(
+        Object.entries(ctbStringPoolScan.tableMatchCounts)
+          .sort((left, right) => right[1] - left[1])
+          .slice(0, 25),
+      ),
+      localizationStringsScanned: localizationScan.stringsScanned,
+      localizationEffectLikeStrings: localizationScan.matchedStrings,
+      generatedJsonStringsScanned: generatedScan.stringsScanned,
+      generatedJsonEffectLikeStrings: generatedScan.matchedStrings,
+      matchedStrings: ctbStringPoolScan.matchedStrings + localizationScan.matchedStrings + generatedScan.matchedStrings,
+      retainedRecords: records.length,
+      ...summaryBase,
+    },
+    notes: [
+      "Compound rows such as ATK + DMG to Elites must be split into component predicates before attribution.",
+      "Elite damage dealt predicates apply to the damaged target; elite damage reduction predicates apply to the incoming attacker.",
+      "Timed, stack, focus, companion, and summon tags identify follow-up parser predicates that should be proven from runtime packets.",
+    ],
+    records,
+  };
+
+  common.maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "EffectDescriptionSurfaceProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+  }
+  console.log(`Effect-like descriptions matched: ${report.summary.matchedStrings}`);
+}
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});

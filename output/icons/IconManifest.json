@@ -1,7 +1,7 @@
 {
-  "GeneratedAt": "2026-05-01T02:50:18.631Z",
+  "GeneratedAt": "2026-05-01T19:02:51.522Z",
   "OutputDir": "output/icons",
-  "JsonFilesScanned": 12,
+  "JsonFilesScanned": 13,
   "ProbeImageDirs": [
     "Probing Sources/images"
   ],
@@ -10,20 +10,25 @@
   ],
   "ProbeImageFilesScanned": 0,
   "ProbeTextFilesScanned": 0,
-  "GeneratedReferencesFound": 22487,
+  "GeneratedReferencesFound": 23545,
   "ProbeImageReferencesFound": 0,
   "ProbeTextReferencesFound": 0,
-  "UniqueReferences": 22487,
+  "UniqueReferences": 23545,
   "AddressCatalogEntries": 193085,
   "SpriteCatalogEntries": 8388,
-  "ResolvedAssetCount": 6880,
-  "MissingAssetCount": 700,
+  "ResolvedAssetCount": 7254,
+  "MissingAssetCount": 705,
   "AmbiguousAssetCount": 37,
   "GroupManifests": [
     {
       "SourceGroup": "BuffName",
       "Manifest": "BuffName/manifest.json",
       "AssetCount": 1011
+    },
+    {
+      "SourceGroup": "ConsumableBuffBridge",
+      "Manifest": "ConsumableBuffBridge/manifest.json",
+      "AssetCount": 142
     },
     {
       "SourceGroup": "DamageAttrIdName",
@@ -33,7 +38,7 @@
     {
       "SourceGroup": "EffectSources",
       "Manifest": "EffectSources/manifest.json",
-      "AssetCount": 817
+      "AssetCount": 1049
     },
     {
       "SourceGroup": "itemnames",
@@ -2593,6 +2598,116 @@
         {
           "Id": 31001010100,
           "Name": "棒槌哥布林投掷"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:3001.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3001",
+          "Name": "冰法杖3技能BD替换技能"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:3101.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3101",
+          "Name": "鬼人化效果生效Buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:3401.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3401",
+          "Name": "鬼人计combo计数管理"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:3601.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3601",
+          "Name": "鬼人QTE特效"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:3701.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3701",
+          "Name": "鬼人化关闭标记buff"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -16931,8 +17046,8 @@
       ]
     }
   ],
-  "PngExportedAt": "2026-05-01T02:52:16.407Z",
-  "PngAssetCount": 6880,
+  "PngExportedAt": "2026-05-01T19:04:24.177Z",
+  "PngAssetCount": 7254,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0,
   "PngFailures": []

@@ -1,0 +1,557 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const OUTPUT_NAME = path.join("probing-reports", "EffectComponentWorklist.json");
+const DEFAULT_MAX_EXAMPLES = 12;
+
+function readJson(filePath, fallback = null) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    if (fallback !== null && error && error.code === "ENOENT") return fallback;
+    throw error;
+  }
+}
+
+function cleanText(value) {
+  return String(value ?? "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\{\*[^}]+\*\}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function lowerText(value) {
+  return cleanText(value).toLowerCase();
+}
+
+function add(set, value, condition = true) {
+  if (condition) set.add(value);
+}
+
+function addMany(set, values) {
+  for (const value of values || []) {
+    if (value) set.add(value);
+  }
+}
+
+function hasAnyTag(tags, values) {
+  return values.some((value) => tags.has(value));
+}
+
+function tagArray(tags) {
+  return [...tags].sort();
+}
+
+function countArrayValues(items, key) {
+  const counts = {};
+  for (const item of items) {
+    for (const value of item[key] || []) {
+      counts[value] = (counts[value] || 0) + 1;
+    }
+  }
+  return Object.fromEntries(Object.entries(counts).sort((a, b) => a[0].localeCompare(b[0])));
+}
+
+function countScalarValues(items, key) {
+  const counts = {};
+  for (const item of items) {
+    const value = item[key] || "unknown";
+    counts[value] = (counts[value] || 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(counts).sort((a, b) => a[0].localeCompare(b[0])));
+}
+
+function summarizeSource(record) {
+  if (record.origin === "predicate-audit") {
+    return {
+      origin: record.origin,
+      family: record.family,
+      sourcePath: record.sourcePath,
+      sourceKind: record.sourceKind,
+      sourceType: record.sourceType,
+      sourceId: record.sourceId,
+    };
+  }
+  return {
+    origin: "description-surface",
+    surface: record.surface,
+    file: record.file,
+    jsonPath: record.jsonPath,
+    language: record.language,
+    localizationIds: record.localizationIds,
+    tableLabel: record.tableLabel,
+    poolOffset: record.poolOffset,
+    absoluteOffset: record.absoluteOffset,
+  };
+}
+
+function surfaceRecordId(record, index) {
+  if (record.surface === "generated-json") {
+    return `surface:${record.file || "generated"}:${record.jsonPath || index}`;
+  }
+  if (record.surface === "localization") {
+    return `surface:loc:${record.language || "unknown"}:${record.stringIndex ?? index}`;
+  }
+  if (record.surface === "ctb-string-pool") {
+    return `surface:ctb:${record.tableLabel || record.tableKey || "unknown"}:${record.poolOffset ?? index}`;
+  }
+  return `surface:${record.surface || "unknown"}:${index}`;
+}
+
+function auditRecordId(record, index) {
+  return `audit:${record.family || "unknown"}:${record.id || index}`;
+}
+
+function confidenceFor(record, tags) {
+  if (record.origin === "predicate-audit") {
+    if (Array.isArray(record.componentSummary) && record.componentSummary.length) {
+      return "generated-component-audit";
+    }
+    return "generated-source-audit";
+  }
+  if (record.surface === "generated-json") {
+    const file = String(record.file || "");
+    const jsonPath = String(record.jsonPath || "");
+    if (/ConsumableBuffBridge|EffectSources|SeasonPhantomFactors/i.test(file) && /effectComponents|componentSummary/i.test(jsonPath)) {
+      return "generated-component-surface";
+    }
+    if (/EffectSources|SeasonPhantomFactors|SkillBreakdownDetails|TalentEffectModelProbe|ConsumableBuffBridge/i.test(file)) {
+      return "generated-bridge-surface";
+    }
+    return "generated-json-surface";
+  }
+  if (record.surface === "localization") {
+    return hasAnyTag(tags, ["description.effect-labeled"]) ? "localization-effect-text" : "localization-discovery";
+  }
+  if (record.surface === "ctb-string-pool") {
+    return "ctb-string-discovery";
+  }
+  return "unknown";
+}
+
+function classifyComponents(text, tags, record) {
+  const components = new Set();
+  const componentSummary = Array.isArray(record.componentSummary) ? record.componentSummary : [];
+  for (const component of componentSummary) {
+    add(components, `component.${component.effectClass}`, Boolean(component.effectClass));
+  }
+
+  add(components, "component.damage-modifier", hasAnyTag(tags, ["direction.damage-dealt"]) && hasAnyTag(tags, ["component.damage"]));
+  add(components, "component.damage-reduction", (
+    hasAnyTag(tags, ["direction.damage-taken-or-defense"]) && /damage|dmg|reduction|taken|reduce|shield|armor/.test(text)
+  ) || /\bdamage\b.*\breduc|\breduc(?:e|es|ed|tion)\b.*\bdamage\b|\bincoming damage\b.*\breduc/.test(text));
+  add(components, "component.offense-stat", /\batk\b|\bmatk\b|\battack\b|\bmagic attack\b|\bstrength\b|\bintellect\b|\bagility\b|basic atk/.test(text));
+  add(components, "component.defense-stat", /\barmor\b|\bdefense\b|\bresistance\b|\bdamage reduction\b|\bblock\b|\bguard\b|\bsuper armor\b/.test(text));
+  add(components, "component.combat-rating-stat", /\bcrit\b|\bhaste\b|\bmastery\b|\bversatility\b|\bluck\b|\battack spd\b|\batk spd\b|\banimation/.test(text));
+  add(components, "component.health-stat", /\bmax hp\b|\bhp \+|\bhp\b.*\+/.test(text));
+  add(components, "component.elemental-stat", /\bfire\b|\bice\b|\blight\b|\bdark\b|\bearth\b|\bwind\b|\bthunder\b|\bforest\b|\belemental\b|\belement strength\b|\bstrength \+/.test(text));
+  add(components, "component.healing-or-lifesteal", /\bheal\b|\bhealing\b|\brecovery\b|\blifesteal\b|\blife steal\b|\bhp recovery\b/.test(text));
+  add(components, "component.shield-or-barrier", /\bshield\b|\bbarrier\b|\babsorb\b|\bsuper armor\b/.test(text));
+  add(components, "component.cooldown-or-resource", /\bcd\b|\bcooldown\b|\bcost\b|\bresource\b|\benergy\b|\bconsume\b|\bphoton energy\b|\bfactor energy\b/.test(text));
+  add(components, "component.proc-damage", /\bdeals?\b.*\bdmg\b|\bdamage every\b|\bevery \d+(?:\.\d+)?s\b.*\b(?:deal|dmg|damage|attack|hit)\b|\b(?:deal|dmg|damage|attack|hit)\b.*\bevery \d+(?:\.\d+)?s\b|\bsummons?\b.*\bdeal/.test(text));
+  add(components, "component.status-or-control", /\bstun\b|\bslow\b|\bparry\b|\btaunt\b|\bvulnerable\b|\bmark\b|\bmarked\b|\bdmg stack\b|\bdamage stack\b/.test(text));
+
+  if (!components.size && hasAnyTag(tags, ["component.damage"])) {
+    components.add("component.damage-unspecified");
+  }
+  if (!components.size && hasAnyTag(tags, ["component.stat-or-attribute"])) {
+    components.add("component.stat-unspecified");
+  }
+  if (!components.size) {
+    components.add("component.unknown-effect");
+  }
+  return tagArray(components);
+}
+
+function classifyBehaviors(text, tags) {
+  const behaviors = new Set();
+  add(behaviors, "behavior.timed-window", hasAnyTag(tags, ["window.timed"]));
+  add(behaviors, "behavior.stack-or-ramp", hasAnyTag(tags, ["window.stack-state"]));
+  add(behaviors, "behavior.focus-gated", hasAnyTag(tags, ["activation.focus-state"]));
+  add(behaviors, "behavior.companion-or-summon", hasAnyTag(tags, ["source.companion-or-summon"]));
+  add(behaviors, "behavior.target-rank-conditional", hasAnyTag(tags, ["target.elite-or-stronger", "attacker.elite-or-stronger", "target.boss-or-elite-suspect"]));
+  add(behaviors, "behavior.proc-damage", /\bdeals?\b.*\bdmg\b|\bcreates?\b.*storm|\bsummons?\b|\bafter \d+(?:\.\d+)?s.*\bdmg\b|\bevery \d+(?:\.\d+)?s\b.*\b(?:deal|dmg|damage|attack|hit)\b|\b(?:deal|dmg|damage|attack|hit)\b.*\bevery \d+(?:\.\d+)?s\b/.test(text));
+  add(behaviors, "behavior.proc-buff", /\bgrants?\b|\bgains?\b|\btrigger(?:s|ed)?\b|\bactivates?\b|\bwhen\b.*\bgain|\bon hit\b|\bon crit\b|\bon killing\b/.test(text));
+  add(behaviors, "behavior.target-debuff", /\bdebuff\b|\bvulnerable\b|\bdamage taken\b|\bdmg taken\b|\bdmg stack\b|\bdamage stack\b|\bmarked\b|\bmark\b/.test(text));
+  add(behaviors, "behavior.party-or-external", /\bparty\b|\ballies\b|\bally\b|\bteam\b|\bnearby players\b|\bwhole party\b|\bgroup\b/.test(text));
+  add(behaviors, "behavior.conversion-or-indirect-stat", /\bconvert|\bconversion\b|\bbased on\b|\bhighest\b|\bfor every\b|\bper \d+(?:\.\d+)?%|\bcrit rate\b.*\bcrit dmg\b|\bwhen hp changes\b/.test(text));
+  add(behaviors, "behavior.threshold-or-state-conditional", /\bwhile\b|\bif\b|\bwhen\b|\bbelow\b|\babove\b|\bless than\b|\bgreater than\b|\bhp changes\b|\bin state\b/.test(text));
+  add(behaviors, "behavior.cooldown-resource", /\bcd\b|\bcooldown\b|\bcost\b|\benergy\b|\bresource\b|\bconsume/.test(text));
+
+  if (!behaviors.size) {
+    behaviors.add("behavior.static-or-selected-state-suspect");
+  }
+  return tagArray(behaviors);
+}
+
+function classifyPredicates(text, tags) {
+  const predicates = new Set();
+  add(predicates, "predicate.target-monster-rank", hasAnyTag(tags, ["target.elite-or-stronger", "target.boss-or-elite-suspect"]));
+  add(predicates, "predicate.attacker-monster-rank", hasAnyTag(tags, ["attacker.elite-or-stronger"]));
+  add(predicates, "predicate.source-companion-or-summon", hasAnyTag(tags, ["source.companion-or-summon"]));
+  add(predicates, "predicate.outgoing-damage", hasAnyTag(tags, ["direction.damage-dealt"]));
+  add(predicates, "predicate.incoming-or-defense", hasAnyTag(tags, ["direction.damage-taken-or-defense"]));
+  add(predicates, "predicate.timed-window", hasAnyTag(tags, ["window.timed"]));
+  add(predicates, "predicate.stack-state", hasAnyTag(tags, ["window.stack-state"]));
+  add(predicates, "predicate.focus-window", hasAnyTag(tags, ["activation.focus-state"]));
+  add(predicates, "predicate.skill-or-recount-targeted", hasAnyTag(tags, ["scope.skill-or-recount-targeted"]));
+  add(predicates, "predicate.global", hasAnyTag(tags, ["scope.global"]));
+  add(predicates, "predicate.party-or-external-source", /\bparty\b|\ballies\b|\bally\b|\bteam\b|\bnearby players\b|\bwhole party\b|\bgroup\b/.test(text));
+  add(predicates, "predicate.target-debuff-host", /\bdebuff\b|\bvulnerable\b|\bdamage taken\b|\bdmg stack\b|\bdamage stack\b|\bmarked\b|\bmark\b/.test(text));
+  add(predicates, "predicate.stat-conversion-chain", /\bconvert|\bconversion\b|\bbased on\b|\bhighest\b|\bfor every\b|\bcrit rate\b.*\bcrit dmg\b|\bwhen hp changes\b/.test(text));
+  return tagArray(predicates);
+}
+
+function requiredEvidenceFor(item) {
+  const required = new Set();
+  const components = new Set(item.componentBuckets);
+  const behaviors = new Set(item.behaviorBuckets);
+  const predicates = new Set(item.predicates);
+
+  add(required, "structured-source-row-bridge", /ctb-string-discovery|localization/.test(item.confidence));
+  add(required, "target-monster-type-per-hit", predicates.has("predicate.target-monster-rank"));
+  add(required, "incoming-attacker-monster-type", predicates.has("predicate.attacker-monster-rank"));
+  add(required, "raw-attacker-vs-top-summoner", predicates.has("predicate.source-companion-or-summon"));
+  add(required, "modifier-window-open-close", predicates.has("predicate.timed-window") || behaviors.has("behavior.timed-window"));
+  add(required, "stack-count-window", predicates.has("predicate.stack-state") || behaviors.has("behavior.stack-or-ramp"));
+  add(required, "focus-or-activation-window", predicates.has("predicate.focus-window") || behaviors.has("behavior.focus-gated"));
+  add(required, "target-debuff-host-window", predicates.has("predicate.target-debuff-host") || behaviors.has("behavior.target-debuff"));
+  add(required, "source-player-or-party-host", predicates.has("predicate.party-or-external-source") || behaviors.has("behavior.party-or-external"));
+  add(required, "stat-snapshot-or-temp-attr", [...components].some((component) =>
+    /offense-stat|combat-rating-stat|elemental-stat|health-stat|stat-unspecified/.test(component)
+  ));
+  add(required, "stat-conversion-chain", predicates.has("predicate.stat-conversion-chain") || behaviors.has("behavior.conversion-or-indirect-stat"));
+  add(required, "damage-id-or-recount-produced-row", behaviors.has("behavior.proc-damage") || components.has("component.proc-damage"));
+  add(required, "separate-tanked-or-healing-report", [...components].some((component) =>
+    /damage-reduction|defense-stat|health-stat|shield|healing/.test(component)
+  ) || predicates.has("predicate.incoming-or-defense"));
+  add(required, "selected-loadout-or-static-state", behaviors.has("behavior.static-or-selected-state-suspect") && !/ctb-string-discovery|localization/.test(item.confidence));
+
+  return tagArray(required);
+}
+
+function promotionStateFor(item) {
+  const required = new Set(item.requiredEvidence);
+  const components = new Set(item.componentBuckets);
+  if (/ctb-string-discovery|localization/.test(item.confidence)) {
+    return "discovery-only-needs-bridge";
+  }
+  if (components.has("component.unknown-effect") || components.has("component.damage-unspecified") || components.has("component.stat-unspecified")) {
+    return "needs-component-parser";
+  }
+  if ([...components].some((component) => /damage-reduction|defense-stat|health-stat|shield|healing/.test(component))) {
+    return "keep-out-of-offensive-damage-until-report-split";
+  }
+  if (required.has("target-monster-type-per-hit") || required.has("raw-attacker-vs-top-summoner") || required.has("target-debuff-host-window")) {
+    return "needs-runtime-predicate-before-attribution";
+  }
+  if (required.has("modifier-window-open-close") || required.has("stack-count-window") || required.has("focus-or-activation-window")) {
+    return "needs-runtime-window-before-attribution";
+  }
+  if (required.has("stat-snapshot-or-temp-attr") || required.has("stat-conversion-chain")) {
+    return "needs-stat-state-before-attribution";
+  }
+  return "candidate-for-structured-component-promotion";
+}
+
+function actionFor(item) {
+  switch (item.promotionState) {
+    case "discovery-only-needs-bridge":
+      return "Find the structured table row/id bridge before adding this to EffectSources.";
+    case "needs-component-parser":
+      return "Parse the description into explicit effectComponents before parser attribution.";
+    case "keep-out-of-offensive-damage-until-report-split":
+      return "Keep this out of the offensive modifier view unless building incoming damage, shield, or healing attribution.";
+    case "needs-runtime-predicate-before-attribution":
+      return "Add the listed runtime predicate evidence first, then apply this only to matching hits.";
+    case "needs-runtime-window-before-attribution":
+      return "Use active buff/temp-attr/stack windows before estimating affected hits or damage.";
+    case "needs-stat-state-before-attribution":
+      return "Record the relevant stat/temp-attr/conversion state before estimating contribution.";
+    default:
+      return "Candidate for promotion once the source bridge is confirmed and tests cover the bucket.";
+  }
+}
+
+function noiseTagsFor(text, item) {
+  const noise = new Set();
+  add(noise, "noise.quest-shop-meta", /\bquest\b|\bshop\b|\bstore\b|\bexchange\b|\breward\b|\bhow to obtain\b|\bparticipate\b|\bdefeat\b|\bday\d+\b|\bentry\b|\bdrop\b/.test(text));
+  add(noise, "noise.rank-word-only", item.predicates.length === 1 && item.predicates[0] === "predicate.target-monster-rank" && item.componentBuckets.includes("component.unknown-effect"));
+  add(noise, "noise.discovery-only", /ctb-string-discovery|localization-discovery/.test(item.confidence));
+  return tagArray(noise);
+}
+
+function buildSurfaceItem(record, index) {
+  const text = lowerText(record.text);
+  const tags = new Set(record.tags || []);
+  const componentBuckets = classifyComponents(text, tags, record);
+  const behaviorBuckets = classifyBehaviors(text, tags);
+  const predicates = classifyPredicates(text, tags);
+  const item = {
+    id: surfaceRecordId(record, index),
+    label: record.file || record.tableLabel || record.language || record.surface || "description",
+    source: summarizeSource(record),
+    confidence: confidenceFor(record, tags),
+    originalTags: tagArray(tags),
+    componentBuckets,
+    behaviorBuckets,
+    predicates,
+    text: cleanText(record.text).slice(0, 1000),
+  };
+  item.requiredEvidence = requiredEvidenceFor(item);
+  item.promotionState = promotionStateFor(item);
+  item.recommendedAction = actionFor(item);
+  item.noiseTags = noiseTagsFor(text, item);
+  return item;
+}
+
+function buildAuditItem(record, index) {
+  const text = lowerText(record.text);
+  const tags = new Set(record.predicateTags || []);
+  const normalized = {
+    ...record,
+    origin: "predicate-audit",
+    sourceId: record.id,
+  };
+  const componentBuckets = classifyComponents(text, tags, normalized);
+  const behaviorBuckets = classifyBehaviors(text, tags);
+  const predicates = classifyPredicates(text, tags);
+  const item = {
+    id: auditRecordId(record, index),
+    label: record.name || String(record.id || "effect"),
+    source: summarizeSource(normalized),
+    confidence: confidenceFor(normalized, tags),
+    originalTags: tagArray(tags),
+    componentBuckets,
+    behaviorBuckets,
+    predicates,
+    componentSummary: record.componentSummary || [],
+    notes: record.notes || [],
+    text: cleanText(record.text).slice(0, 1000),
+  };
+  item.requiredEvidence = requiredEvidenceFor(item);
+  item.promotionState = promotionStateFor(item);
+  item.recommendedAction = actionFor(item);
+  item.noiseTags = noiseTagsFor(text, item);
+  return item;
+}
+
+function itemPriority(item) {
+  let score = 0;
+  if (/component/.test(item.confidence)) score -= 30;
+  if (item.promotionState === "candidate-for-structured-component-promotion") score -= 20;
+  if (item.originalTags.includes("effect.compound-components")) score -= 18;
+  if (item.predicates.includes("predicate.target-monster-rank")) score -= 12;
+  if (item.predicates.includes("predicate.source-companion-or-summon")) score -= 10;
+  if (item.behaviorBuckets.includes("behavior.conversion-or-indirect-stat")) score -= 8;
+  if (item.noiseTags.length) score += 20;
+  if (/ctb-string-discovery/.test(item.confidence)) score += 10;
+  return score;
+}
+
+function summarizeBuckets(workItems, key, bucketType, maxExamples) {
+  const buckets = new Map();
+  for (const item of workItems) {
+    for (const bucket of item[key] || []) {
+      if (!buckets.has(bucket)) buckets.set(bucket, []);
+      buckets.get(bucket).push(item);
+    }
+  }
+  return [...buckets.entries()]
+    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+    .map(([bucket, items]) => ({
+      bucketType,
+      bucket,
+      count: items.length,
+      confidenceCounts: countScalarValues(items, "confidence"),
+      promotionStateCounts: countScalarValues(items, "promotionState"),
+      requiredEvidenceCounts: countArrayValues(items, "requiredEvidence"),
+      examples: [...items]
+        .sort((a, b) => itemPriority(a) - itemPriority(b) || a.id.localeCompare(b.id))
+        .slice(0, maxExamples)
+        .map((item) => ({
+          id: item.id,
+          label: item.label,
+          confidence: item.confidence,
+          promotionState: item.promotionState,
+          requiredEvidence: item.requiredEvidence,
+          text: item.text.slice(0, 320),
+        })),
+    }));
+}
+
+function renderMarkdown(report) {
+  const priorityItems = [...report.workItems]
+    .sort((a, b) => itemPriority(a) - itemPriority(b) || a.id.localeCompare(b.id))
+    .slice(0, 80);
+  const componentBuckets = report.bucketSummaries
+    .filter((bucket) => bucket.bucketType === "component")
+    .slice(0, 14);
+  const behaviorBuckets = report.bucketSummaries
+    .filter((bucket) => bucket.bucketType === "behavior")
+    .slice(0, 14);
+  return [
+    "# Effect Component Worklist",
+    "",
+    "This report classifies broad effect-description matches into component, behavior, predicate, and required-runtime-evidence buckets. It is a worklist, not parser truth.",
+    "",
+    "## Summary",
+    "",
+    `- Surface records classified: ${report.summary.surfaceRecordCount}`,
+    `- Predicate-audit records classified: ${report.summary.predicateAuditRecordCount}`,
+    `- Total work items: ${report.summary.workItemCount}`,
+    "",
+    "### Confidence Counts",
+    "",
+    ...Object.entries(report.summary.confidenceCounts).map(([key, count]) => `- ${key}: ${count}`),
+    "",
+    "### Promotion State Counts",
+    "",
+    ...Object.entries(report.summary.promotionStateCounts).map(([key, count]) => `- ${key}: ${count}`),
+    "",
+    "### Required Evidence Counts",
+    "",
+    ...Object.entries(report.summary.requiredEvidenceCounts).map(([key, count]) => `- ${key}: ${count}`),
+    "",
+    "## Component Buckets",
+    "",
+    ...componentBuckets.map((bucket) => [
+      `### ${bucket.bucket}`,
+      "",
+      `- Count: ${bucket.count}`,
+      `- Top evidence: ${Object.entries(bucket.requiredEvidenceCounts).slice(0, 6).map(([key, count]) => `${key}=${count}`).join(", ") || "none"}`,
+      "",
+      ...bucket.examples.slice(0, 4).map((example) => `- ${example.label} [${example.promotionState}]: ${example.text}`),
+    ].join("\n")),
+    "",
+    "## Behavior Buckets",
+    "",
+    ...behaviorBuckets.map((bucket) => [
+      `### ${bucket.bucket}`,
+      "",
+      `- Count: ${bucket.count}`,
+      `- Top evidence: ${Object.entries(bucket.requiredEvidenceCounts).slice(0, 6).map(([key, count]) => `${key}=${count}`).join(", ") || "none"}`,
+      "",
+      ...bucket.examples.slice(0, 4).map((example) => `- ${example.label} [${example.promotionState}]: ${example.text}`),
+    ].join("\n")),
+    "",
+    "## Priority Rows",
+    "",
+    ...priorityItems.map((item) => [
+      `### ${item.label}`,
+      "",
+      `- Id: ${item.id}`,
+      `- Confidence: ${item.confidence}`,
+      `- Components: ${item.componentBuckets.join(", ")}`,
+      `- Behaviors: ${item.behaviorBuckets.join(", ")}`,
+      `- Predicates: ${item.predicates.join(", ") || "none"}`,
+      `- Required evidence: ${item.requiredEvidence.join(", ") || "none"}`,
+      `- State: ${item.promotionState}`,
+      `- Action: ${item.recommendedAction}`,
+      item.noiseTags.length ? `- Noise tags: ${item.noiseTags.join(", ")}` : "",
+      `- Text: ${item.text.slice(0, 500)}`,
+    ].filter(Boolean).join("\n")),
+    "",
+  ].join("\n");
+}
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    surfaceReport: "",
+    predicateAudit: "",
+    markdown: "",
+    maxExamplesPerBucket: DEFAULT_MAX_EXAMPLES,
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "EffectComponentWorklist.gen - classify effect descriptions into attribution work buckets.",
+      `
+Options:
+  --surface-report <path>         EffectDescriptionSurfaceProbe.json input.
+  --predicate-audit <path>        EffectPredicateAudit.json input.
+  --max-examples-per-bucket <n>   Examples retained per bucket summary. Default: ${DEFAULT_MAX_EXAMPLES}.
+  --markdown <path>               Optional Markdown report path.
+
+Notes:
+  This is a worklist only. It consumes broad description-surface matches and
+  generated predicate-audit rows, then classifies them into effect component,
+  behavior, predicate, and runtime-evidence buckets. It does not promote rows
+  into EffectSources.json by itself.
+`,
+    );
+    return;
+  }
+
+  const config = common.loadGeneratorConfig();
+  const outputDir = path.resolve(args.outputDir ? args.outputDir : config.outputDir);
+  const out = path.resolve(args.out ? args.out : path.join(outputDir, OUTPUT_NAME));
+  const reportDir = path.dirname(out);
+  const surfacePath = path.resolve(args.surfaceReport || path.join(outputDir, "probing-reports", "EffectDescriptionSurfaceProbe.json"));
+  const auditPath = path.resolve(args.predicateAudit || path.join(outputDir, "probing-reports", "EffectPredicateAudit.json"));
+  const maxExamples = Number(args.maxExamplesPerBucket) || DEFAULT_MAX_EXAMPLES;
+
+  const surfaceReport = readJson(surfacePath, { records: [], summary: {} });
+  const predicateAudit = readJson(auditPath, { records: [], summary: {} });
+  const surfaceItems = (surfaceReport.records || []).map(buildSurfaceItem);
+  const auditItems = (predicateAudit.records || []).map(buildAuditItem);
+  const workItems = [...surfaceItems, ...auditItems]
+    .sort((a, b) => itemPriority(a) - itemPriority(b) || a.id.localeCompare(b.id));
+
+  const bucketSummaries = [
+    ...summarizeBuckets(workItems, "componentBuckets", "component", maxExamples),
+    ...summarizeBuckets(workItems, "behaviorBuckets", "behavior", maxExamples),
+    ...summarizeBuckets(workItems, "predicates", "predicate", maxExamples),
+    ...summarizeBuckets(workItems, "requiredEvidence", "required-evidence", maxExamples),
+  ];
+
+  const report = {
+    summary: {
+      generatedAt: new Date().toISOString(),
+      source: "EffectComponentWorklist.gen",
+      sourceFiles: [
+        common.displayPath(surfacePath),
+        common.displayPath(auditPath),
+      ],
+      sourceSurfaceMatchedStrings: surfaceReport.summary?.matchedStrings || 0,
+      sourceSurfaceRetainedRecords: surfaceReport.summary?.retainedRecords || 0,
+      surfaceRecordCount: surfaceItems.length,
+      predicateAuditRecordCount: auditItems.length,
+      workItemCount: workItems.length,
+      confidenceCounts: countScalarValues(workItems, "confidence"),
+      promotionStateCounts: countScalarValues(workItems, "promotionState"),
+      componentCounts: countArrayValues(workItems, "componentBuckets"),
+      behaviorCounts: countArrayValues(workItems, "behaviorBuckets"),
+      predicateCounts: countArrayValues(workItems, "predicates"),
+      requiredEvidenceCounts: countArrayValues(workItems, "requiredEvidence"),
+      noiseTagCounts: countArrayValues(workItems, "noiseTags"),
+    },
+    notes: [
+      "This report is a classification worklist, not formula truth.",
+      "Discovery-only CTB/localization rows must be bridged to structured IDs before production attribution.",
+      "Target-rank, source-companion, timed-window, stack, target-debuff, and stat-conversion buckets need runtime evidence before contribution math can be trusted.",
+      "Defensive, healing, and shield buckets should not enter the offensive damage modifier view unless the report is explicitly split by damage/healing/tanked context.",
+    ],
+    bucketSummaries,
+    workItems,
+  };
+
+  common.maybeWriteJson(out, report, Boolean(args.dryRun));
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(reportDir, "EffectComponentWorklist.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+  }
+  console.log(`Classified ${workItems.length} effect work items.`);
+}
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});

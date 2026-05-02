@@ -10,7 +10,12 @@ function buildDefaultPaths(outputDir) {
     factors: path.join(outputDir, "SeasonPhantomFactors.json"),
     breakdown: path.join(outputDir, "SkillBreakdownDetails.json"),
     recount: path.join(outputDir, "RecountTable.json"),
+    buffs: path.join(outputDir, "BuffName.json"),
+    items: path.join(outputDir, "itemnames.json"),
+    monsters: path.join(outputDir, "monsternames.json"),
+    consumableBridge: path.join(outputDir, "ConsumableBuffBridge.json"),
     talentProbe: path.join(outputDir, "probing-reports", "TalentEffectModelProbe.json"),
+    classSpecProbe: path.join(outputDir, "probing-reports", "ClassSpecSkillModelProbe.json"),
     seasonTalentProbe: path.join(outputDir, "probing-reports", "SeasonTalentNodeProbe.json"),
     seasonRogueProbe: path.join(outputDir, "probing-reports", "SeasonRogueEntryProbe.json"),
     out: path.join(outputDir, "EffectSources.json"),
@@ -30,6 +35,17 @@ const DREAM_MARKERS = [
   /D\u00d1O on\u00edrico/gi,
   /Dano On\u00edrico/gi,
 ];
+const ACTIVATION_DESCRIPTION_MARKERS = [
+  /\bwhile\b/,
+  /\bduring\b/,
+  /\bthroughout\b/,
+  /\bactive\b/,
+  /\bduration\b/,
+  /\bwhen\b/,
+];
+const ACTIVATION_TRIGGER_STOPWORDS = new Set([
+  "healing",
+]);
 
 function parseArgs(argv) {
   const args = {
@@ -39,7 +55,12 @@ function parseArgs(argv) {
     factors: "",
     breakdown: "",
     recount: "",
+    buffs: "",
+    items: "",
+    monsters: "",
+    consumableBridge: "",
     talentProbe: "",
+    classSpecProbe: "",
     seasonTalentProbe: "",
     seasonRogueProbe: "",
     out: "",
@@ -67,8 +88,23 @@ function parseArgs(argv) {
     } else if (arg === "--recount" && next) {
       args.recount = path.resolve(next);
       index += 1;
+    } else if (arg === "--buffs" && next) {
+      args.buffs = path.resolve(next);
+      index += 1;
+    } else if (arg === "--items" && next) {
+      args.items = path.resolve(next);
+      index += 1;
+    } else if (arg === "--monsters" && next) {
+      args.monsters = path.resolve(next);
+      index += 1;
+    } else if (arg === "--consumable-bridge" && next) {
+      args.consumableBridge = path.resolve(next);
+      index += 1;
     } else if (arg === "--talent-probe" && next) {
       args.talentProbe = path.resolve(next);
+      index += 1;
+    } else if (arg === "--class-spec-probe" && next) {
+      args.classSpecProbe = path.resolve(next);
       index += 1;
     } else if (arg === "--season-talent-probe" && next) {
       args.seasonTalentProbe = path.resolve(next);
@@ -83,7 +119,12 @@ function parseArgs(argv) {
   args.factors ||= defaults.factors;
   args.breakdown ||= defaults.breakdown;
   args.recount ||= defaults.recount;
+  args.buffs ||= defaults.buffs;
+  args.items ||= defaults.items;
+  args.monsters ||= defaults.monsters;
+  args.consumableBridge ||= defaults.consumableBridge;
   args.talentProbe ||= defaults.talentProbe;
+  args.classSpecProbe ||= defaults.classSpecProbe;
   args.seasonTalentProbe ||= defaults.seasonTalentProbe;
   args.seasonRogueProbe ||= defaults.seasonRogueProbe;
   args.out ||= defaults.out;
@@ -102,7 +143,12 @@ function printHelp() {
   console.log("  --factors <path>              SeasonPhantomFactors.json input.");
   console.log("  --breakdown <path>            SkillBreakdownDetails.json input.");
   console.log("  --recount <path>              RecountTable.json input.");
+  console.log("  --buffs <path>                BuffName.json input.");
+  console.log("  --items <path>                itemnames.json input.");
+  console.log("  --monsters <path>             monsternames.json input.");
+  console.log("  --consumable-bridge <path>    ConsumableBuffBridge.json input.");
   console.log("  --talent-probe <path>         TalentEffectModelProbe.json input.");
+  console.log("  --class-spec-probe <path>     ClassSpecSkillModelProbe.json input.");
   console.log("  --season-talent-probe <path>  SeasonTalentNodeProbe.json input.");
   console.log("  --season-rogue-probe <path>   SeasonRogueEntryProbe.json input.");
 }
@@ -198,6 +244,358 @@ function normalizedNames(names, fallback = "") {
   return out;
 }
 
+function mergeNameMaps(target, incoming) {
+  const merged = { ...(target ?? {}) };
+  for (const [locale, value] of Object.entries(incoming ?? {})) {
+    const text = String(value || "").trim();
+    if (text && !merged[locale]) merged[locale] = text;
+  }
+  return Object.keys(merged).length ? merged : undefined;
+}
+
+function normalizeActivationText(value) {
+  return String(value ?? "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function localeText(values, locale) {
+  if (!values) return "";
+  if (typeof values === "string") return values;
+  if (Array.isArray(values)) {
+    return values.map((entry) => localeText(entry, locale)).filter(Boolean).join(" ");
+  }
+  return values[locale]
+    ?? values.en
+    ?? values["zh-CN"]
+    ?? Object.values(values).find((entry) => typeof entry === "string" && entry.trim())
+    ?? "";
+}
+
+function entityNames(entity, fallback = "") {
+  return normalizedNames(entity?.names ?? entity?.Names, entity?.name ?? entity?.Name ?? fallback);
+}
+
+function sourceHasBuffIndex(builder, buffId) {
+  return Boolean(builder.effectSourcesById[`buff-source:${buffId}`]
+    || (builder.buffIdToEffectSourceIds[buffId] ?? []).length);
+}
+
+const BATTLE_IMAGINE_PREFIXES = [
+  /^Battle Imagine\s*[-:–]\s*/i,
+  /^Stunt Battle Imagine\s*[-:–]\s*/i,
+  /^Arcane Battle Imagine\s*[-:–]\s*/i,
+  /^Battle Fantasy\s*[-:–]\s*/i,
+  /^Imagine de combat\s*[-:–]\s*/i,
+  /^Kampfvorstellung\s*[-:–]\s*/i,
+  /^Imagine de batalla\s*:\s*/i,
+  /^Imaginar de Batalha\s*[-:–]\s*/i,
+  /^战斗幻想[·・]\s*/,
+  /^戰鬥幻想[·・]\s*/,
+  /^バトルイマジン[・･]\s*/,
+  /^배틀\s*이매진[・･]\s*/,
+];
+
+const MONSTER_OWNER_PREFIXES = [
+  /^\[?Boss\]?\s*[-:–]\s*/i,
+  /^Boss\s*[:：]\s*/i,
+  /^Elite\s*[-:–]\s*/i,
+  /^\[首领\]\s*/,
+  /^\[首領\]\s*/,
+  /^首领[·・]\s*/,
+  /^首領[·・]\s*/,
+  /^精英[·・]\s*/,
+  /^ボス[・･]\s*/,
+  /^보스[・･]\s*/,
+  /^Jefe\s*:\s*/i,
+  /^Chefe\s*[:：–-]\s*/i,
+];
+
+const OWNER_SUFFIXES = [
+  /\s*[-:：–]\s*Resonance$/i,
+  /\s*[-:：–]\s*Résonance$/i,
+  /\s*[-:：–]\s*Ressonância$/i,
+  /\s*[-:：–]\s*共鸣$/,
+  /\s*[-:：–]\s*共鳴$/,
+  /^共鸣/,
+  /^共鳴/,
+];
+
+function stripWithPatterns(value, patterns) {
+  let text = String(value || "").trim();
+  for (const pattern of patterns) {
+    text = text.replace(pattern, "").trim();
+  }
+  return text;
+}
+
+function stripBattleImaginePrefix(value) {
+  return stripWithPatterns(value, BATTLE_IMAGINE_PREFIXES);
+}
+
+function stripOwnerDecorations(value) {
+  return stripWithPatterns(value, [...MONSTER_OWNER_PREFIXES, ...OWNER_SUFFIXES]);
+}
+
+function normalizeOwnerKey(value) {
+  return stripOwnerDecorations(stripBattleImaginePrefix(value))
+    .toLowerCase()
+    .replace(/[\s"'“”‘’`]+/g, "")
+    .replace(/[·・:：/()（）\[\]【】]/g, "")
+    .trim();
+}
+
+function localizedOwnerName(record, locale) {
+  return record?.ownerNames?.[locale]
+    || record?.ownerNames?.en
+    || record?.ownerNames?.["zh-CN"]
+    || record?.ownerNames?.design
+    || "";
+}
+
+function ownerRecordSort(left, right) {
+  return left.priority - right.priority
+    || String(left.sourceId ?? "").localeCompare(String(right.sourceId ?? ""));
+}
+
+function chooseOwnerRecord(records) {
+  return [...records].sort(ownerRecordSort)[0] ?? null;
+}
+
+function addOwnerAlias(index, alias, record) {
+  const key = normalizeOwnerKey(alias);
+  if (!key) return;
+  record.aliases.add(key);
+  const existing = index.exact.get(key) ?? [];
+  existing.push(record);
+  index.exact.set(key, existing);
+}
+
+function addOwnerRecord(index, record) {
+  const existing = index.records.find((row) =>
+    row.source === record.source && String(row.sourceId ?? "") === String(record.sourceId ?? "")
+  );
+  const target = existing ?? record;
+  if (!existing) index.records.push(target);
+
+  for (const value of Object.values(record.ownerNames ?? {})) {
+    addOwnerAlias(index, value, target);
+  }
+}
+
+function itemOwnerNames(row) {
+  const rawNames = normalizedNames(row.Names, row.NameDesign ?? row.Name);
+  const names = {};
+  for (const [locale, value] of Object.entries(rawNames)) {
+    const stripped = stripBattleImaginePrefix(value);
+    if ((stripped && stripped !== value) || /^Battle Imagine/i.test(String(value))) {
+      names[locale] = stripped;
+    }
+  }
+  return Object.keys(names).length ? names : null;
+}
+
+function monsterOwnerNames(row) {
+  const rawNames = normalizedNames(row.Names, row.Name ?? row.NameDesign);
+  const names = {};
+  for (const [locale, value] of Object.entries(rawNames)) {
+    const stripped = stripOwnerDecorations(value);
+    if (stripped) names[locale] = stripped;
+  }
+  return Object.keys(names).length ? names : null;
+}
+
+function buildImagineOwnerIndex(items, monsters) {
+  const index = { exact: new Map(), records: [], battleImagineRecords: 0, monsterFallbackRecords: 0 };
+  for (const row of Array.isArray(items) ? items : Object.values(items ?? {})) {
+    const iconPath = String(row.IconPath ?? "");
+    const namesText = Object.values(row.Names ?? {}).join(" ");
+    const isBattleImagine = iconPath.includes("skill_aoyi_product_icon")
+      || BATTLE_IMAGINE_PREFIXES.some((pattern) => pattern.test(namesText) || pattern.test(String(row.NameDesign ?? "")));
+    if (!isBattleImagine) continue;
+    const ownerNames = itemOwnerNames(row);
+    if (!ownerNames) continue;
+    addOwnerRecord(index, {
+      source: "itemnames",
+      sourceId: row.Id,
+      priority: 0,
+      ownerNames,
+      aliases: new Set(),
+    });
+    index.battleImagineRecords += 1;
+  }
+
+  for (const row of Object.values(monsters ?? {})) {
+    const ownerNames = monsterOwnerNames(row);
+    if (!ownerNames) continue;
+    addOwnerRecord(index, {
+      source: "monsternames",
+      sourceId: row.Id,
+      priority: 1,
+      ownerNames,
+      aliases: new Set(),
+    });
+    index.monsterFallbackRecords += 1;
+  }
+
+  return index;
+}
+
+function resolveOwnerRecord(index, token) {
+  const key = normalizeOwnerKey(token);
+  if (!key) return null;
+  const exact = index.exact.get(key);
+  if (exact?.length) {
+    return { record: chooseOwnerRecord(exact), matchKind: "exact" };
+  }
+
+  const matches = [];
+  for (const record of index.records) {
+    for (const alias of record.aliases) {
+      if (alias.length < 2) continue;
+      if (alias.includes(key) || key.includes(alias)) {
+        matches.push({ record, alias });
+        break;
+      }
+    }
+  }
+  if (!matches.length) return null;
+  matches.sort((left, right) =>
+    left.record.priority - right.record.priority
+    || left.alias.length - right.alias.length
+    || String(left.record.sourceId ?? "").localeCompare(String(right.record.sourceId ?? ""))
+  );
+  return { record: matches[0].record, matchKind: "contains" };
+}
+
+function splitDelimitedOwner(value) {
+  const text = String(value || "").trim();
+  const parts = text.split(/\s*[-－—–]\s*/).map((part) => part.trim()).filter(Boolean);
+  if (parts.length < 2) return null;
+  return {
+    ownerToken: parts[0],
+    suffix: parts.slice(1).join(" - "),
+    matchKind: "delimiter",
+  };
+}
+
+function splitOwnerPrefix(value, ownerIndex) {
+  const text = String(value || "").trim();
+  const normalized = normalizeOwnerKey(text);
+  if (!normalized) return null;
+  const matches = [];
+  for (const record of ownerIndex.records) {
+    for (const alias of record.aliases) {
+      if (alias.length < 2) continue;
+      if (normalized.startsWith(alias)) {
+        const visibleAlias = Object.values(record.ownerNames ?? {})
+          .find((name) => normalizeOwnerKey(name) === alias);
+        matches.push({ record, alias, visibleAlias });
+        break;
+      }
+    }
+  }
+  if (!matches.length) return null;
+  matches.sort((left, right) =>
+    right.alias.length - left.alias.length
+    || left.record.priority - right.record.priority
+    || String(left.record.sourceId ?? "").localeCompare(String(right.record.sourceId ?? ""))
+  );
+  const match = matches[0];
+  const ownerToken = match.visibleAlias ?? localizedOwnerName(match.record, "zh-CN");
+  const suffix = ownerToken && text.startsWith(ownerToken)
+    ? text.slice(ownerToken.length).trim()
+    : text;
+  return {
+    ownerToken,
+    suffix,
+    matchKind: "prefix",
+    owner: { record: match.record, matchKind: "prefix" },
+  };
+}
+
+function splitOwnerFromDesign(value, ownerIndex) {
+  const delimited = splitDelimitedOwner(value);
+  if (delimited) {
+    const owner = resolveOwnerRecord(ownerIndex, delimited.ownerToken);
+    if (owner) return { ...delimited, owner };
+  }
+  const prefixed = splitOwnerPrefix(value, ownerIndex);
+  if (prefixed) return prefixed;
+  return null;
+}
+
+function isImagineBuffDetail(detail) {
+  return [
+    detail.Category,
+    detail.SourceKind,
+    detail.SourceType,
+    detail.SourceRole,
+    detail.CategoryLabel,
+    detail.Badge,
+    detail.Reason,
+    detail.ParentRecountName,
+  ].some((value) => /imagine|arcane/i.test(String(value ?? "")));
+}
+
+function shouldPrefixName(baseName, ownerName) {
+  const baseKey = normalizeOwnerKey(baseName);
+  const ownerKey = normalizeOwnerKey(ownerName);
+  return Boolean(baseKey && ownerKey && !baseKey.includes(ownerKey));
+}
+
+function ownerQualifiedNames(baseNames, ownerMatch) {
+  if (!ownerMatch?.owner?.record) return baseNames;
+  const ownerNames = ownerMatch.owner.record.ownerNames;
+  const out = {};
+  for (const locale of LOCALES) {
+    const baseName = baseNames?.[locale];
+    if (!baseName) continue;
+    const ownerName = localizedOwnerName(ownerMatch.owner.record, locale);
+    out[locale] = shouldPrefixName(baseName, ownerName)
+      ? `${ownerName} - ${baseName}`
+      : baseName;
+  }
+
+  const designSuffix = ownerMatch.suffix || baseNames?.design;
+  const designOwner = ownerMatch.ownerToken || localizedOwnerName(ownerMatch.owner.record, "zh-CN");
+  if (designOwner && designSuffix) {
+    out.design = `${designOwner} - ${designSuffix}`;
+  } else if (baseNames?.design) {
+    out.design = baseNames.design;
+  }
+
+  if (!Object.keys(out).length) return baseNames;
+  return mergeNameMaps(out, baseNames);
+}
+
+function buffSourceNamesFromDetail(detail, buffSourceId, ownerIndex) {
+  const baseNames = normalizedNames(
+    detail.LinkedNames ?? detail.DisplayNames ?? detail.DamageNames,
+    detail.LinkedName ?? detail.DisplayName ?? detail.DamageName ?? `Buff ${buffSourceId}`,
+  );
+  if (!isImagineBuffDetail(detail)) return baseNames;
+  const designText = baseNames.design ?? detail.LinkedNames?.design ?? detail.DisplayNames?.design ?? detail.DamageNames?.design;
+  const ownerMatch = splitOwnerFromDesign(designText, ownerIndex);
+  return ownerQualifiedNames(baseNames, ownerMatch);
+}
+
+function buffSourceNamesFromBuffRow(row, ownerIndex) {
+  const buffId = toNumber(row.Id);
+  if (buffId === null) return null;
+  const baseNames = normalizedNames(row.Names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`);
+  const designText = baseNames.design ?? row.DesignName ?? row.NameDesign;
+  const ownerMatch = splitOwnerFromDesign(designText, ownerIndex);
+  if (!ownerMatch) return null;
+  return {
+    names: ownerQualifiedNames(baseNames, ownerMatch),
+    ownerMatch,
+  };
+}
+
 class EffectSourceBuilder {
   constructor(recountRows) {
     this.effectSourcesById = {};
@@ -226,6 +624,7 @@ class EffectSourceBuilder {
       descriptions: source.descriptions,
       cleanDescriptions: source.cleanDescriptions,
       modifierEvidence: source.modifierEvidence,
+      effectComponents: source.effectComponents,
       targets: [],
       evidence: [],
     };
@@ -237,7 +636,13 @@ class EffectSourceBuilder {
     ]);
     existing.targets = mergeTargets(existing.targets, source.targets ?? []);
     existing.evidence = mergeEvidence(existing.evidence, source.evidence ?? []);
+    existing.effectComponents = mergeEffectComponents(existing.effectComponents, source.effectComponents ?? []);
     existing.modifierEvidence = existing.modifierEvidence ?? source.modifierEvidence;
+    existing.sourceNames = mergeNameMaps(existing.sourceNames, source.sourceNames);
+    if ((!existing.sourceName || /^Buff \d+$/i.test(existing.sourceName)) && source.sourceName) {
+      existing.sourceName = source.sourceName;
+    }
+    existing.iconPath ||= source.iconPath;
 
     this.effectSourcesById[sourceId] = stripUndefined(existing);
 
@@ -304,6 +709,32 @@ function mergeEvidence(left, right) {
   return [...byKey.values()];
 }
 
+function mergeEffectComponents(left, right) {
+  const byKey = new Map();
+  for (const component of [...(left ?? []), ...(right ?? [])]) {
+    if (!component) continue;
+    const key = component.componentKey
+      ?? component.label
+      ?? JSON.stringify(component);
+    byKey.set(String(key), stripUndefined(component));
+  }
+  return [...byKey.values()].sort((a, b) =>
+    Number(a.componentOrder ?? 999) - Number(b.componentOrder ?? 999)
+      || String(a.componentKey ?? "").localeCompare(String(b.componentKey ?? "")),
+  );
+}
+
+function mergeRuntimeDetection(left, right) {
+  const parts = [];
+  for (const value of [left, right]) {
+    for (const part of String(value ?? "").split("-or-")) {
+      const text = part.trim();
+      if (text && !parts.includes(text)) parts.push(text);
+    }
+  }
+  return parts.length ? parts.join("-or-") : undefined;
+}
+
 function addIndex(index, rawId, sourceId) {
   const id = toNumber(rawId);
   if (id === null) return;
@@ -341,6 +772,180 @@ function buildRecountNameIndex(recountRows) {
     }
   }
   return index;
+}
+
+function isBuffSourceId(sourceId) {
+  return String(sourceId ?? "").startsWith("buff-source:");
+}
+
+function hasEnglishSourceName(source) {
+  return Boolean(source?.sourceNames?.en);
+}
+
+function isDesignOnlyBuffSource(sourceId, source) {
+  return isBuffSourceId(sourceId) && !hasEnglishSourceName(source);
+}
+
+function sourceMergePriority(sourceId, source) {
+  if (String(sourceId).startsWith("phantom-factor:")) return 100;
+  if (String(sourceId).startsWith("talent:") || source?.sourceType === "talent") return 90;
+  if (String(sourceId).startsWith("season-talent:")) return 80;
+  if (String(sourceId).startsWith("season-rogue:")) return 75;
+  if (source?.sourceKind === "consumable") return 70;
+  return 10;
+}
+
+function findLocalizedSiblingSource(builder, sourceId, source) {
+  const candidateIds = uniqueStrings(
+    (source.buffIds ?? [])
+      .flatMap((buffId) => builder.buffIdToEffectSourceIds[String(buffId)] ?? []),
+  );
+  return candidateIds
+    .filter((candidateId) => candidateId !== sourceId && !isBuffSourceId(candidateId))
+    .map((candidateId) => ({
+      candidateId,
+      source: builder.effectSourcesById[candidateId],
+    }))
+    .filter((candidate) => hasEnglishSourceName(candidate.source))
+    .sort((left, right) =>
+      sourceMergePriority(right.candidateId, right.source)
+        - sourceMergePriority(left.candidateId, left.source)
+      || left.candidateId.localeCompare(right.candidateId),
+    )[0];
+}
+
+function sourceRecountRows(builder, source) {
+  const rowById = new Map(builder.recountRows.map((row) => [String(row.recountId), row]));
+  return uniqueNumbers(
+    (source.targets ?? []).flatMap((target) => [target.recountId, target.parentRecountId]),
+  )
+    .map((recountId) => rowById.get(String(recountId)))
+    .filter((row) => row?.recountNames?.en);
+}
+
+function mergeDesignOnlyBuffSource(builder, sourceId, targetId) {
+  const source = builder.effectSourcesById[sourceId];
+  const target = builder.effectSourcesById[targetId];
+  if (!source || !target) return false;
+
+  target.buffIds = uniqueNumbers([...(target.buffIds ?? []), ...(source.buffIds ?? [])]);
+  target.classGateIds = uniqueNumbers([...(target.classGateIds ?? []), ...(source.classGateIds ?? [])]);
+  target.targets = mergeTargets(target.targets, source.targets);
+  target.evidence = mergeEvidence(target.evidence, [
+    ...(source.evidence ?? []),
+    {
+      source: "EffectSources.gen",
+      relationshipKind: "collapsed-design-only-buff-source",
+      evidenceStatus: "same-runtime-buff-id-has-localized-generated-source",
+      fromSourceId: sourceId,
+      intoSourceId: targetId,
+      buffIds: source.buffIds,
+      designName: source.sourceNames?.design ?? source.sourceName,
+    },
+  ]);
+  target.sourceNames = mergeNameMaps(target.sourceNames, source.sourceNames);
+  target.runtimeDetection = mergeRuntimeDetection(target.runtimeDetection, source.runtimeDetection);
+  target.iconPath ||= source.iconPath;
+
+  builder.effectSourcesById[targetId] = stripUndefined(target);
+  delete builder.effectSourcesById[sourceId];
+  return true;
+}
+
+function applyRecountNameFallback(builder, sourceId, source) {
+  const recountRows = sourceRecountRows(builder, source);
+  if (recountRows.length !== 1) return false;
+
+  const [recountRow] = recountRows;
+  source.sourceNames = mergeNameMaps(source.sourceNames, recountRow.recountNames);
+  source.sourceName = preferredName(source.sourceNames, source.sourceName);
+  source.evidence = mergeEvidence(source.evidence, [{
+    source: "EffectSources.gen",
+    relationshipKind: "design-only-buff-source-recount-name-fallback",
+    evidenceStatus: "unique-localized-parent-recount-row",
+    recountId: recountRow.recountId,
+    recountName: recountRow.recountName,
+    buffIds: source.buffIds,
+    designName: source.sourceNames?.design,
+  }]);
+  builder.effectSourcesById[sourceId] = stripUndefined(source);
+  return true;
+}
+
+function applyUnmappedBuffPlaceholder(builder, sourceId, source) {
+  const buffId = toNumber(source.sourceEntityId) ?? toNumber(source.buffIds?.[0]);
+  if (buffId === null) return false;
+  source.sourceNames = {
+    ...(source.sourceNames ?? {}),
+    en: `Unmapped Buff ${buffId}`,
+  };
+  source.sourceName = source.sourceNames.en;
+  source.evidence = mergeEvidence(source.evidence, [{
+    source: "EffectSources.gen",
+    relationshipKind: "design-only-buff-source-unmapped-placeholder",
+    evidenceStatus: "no-localized-sibling-or-unique-recount-row",
+    buffSourceId: buffId,
+    designName: source.sourceNames?.design,
+  }]);
+  builder.effectSourcesById[sourceId] = stripUndefined(source);
+  return true;
+}
+
+function rebuildSourceIndexes(builder) {
+  builder.buffIdToEffectSourceIds = {};
+  builder.damageIdToEffectSourceIds = {};
+  builder.recountIdToEffectSourceIds = {};
+
+  for (const [sourceId, source] of Object.entries(builder.effectSourcesById)) {
+    for (const buffId of source.buffIds ?? []) {
+      addIndex(builder.buffIdToEffectSourceIds, buffId, sourceId);
+    }
+    for (const target of source.targets ?? []) {
+      if (target.targetKind === "damage" && target.damageId) {
+        addIndex(builder.damageIdToEffectSourceIds, target.damageId, sourceId);
+      } else if (target.targetKind === "recount" && target.recountId) {
+        addIndex(builder.recountIdToEffectSourceIds, target.recountId, sourceId);
+      }
+    }
+  }
+}
+
+function postProcessDesignOnlyBuffSources(builder) {
+  const summary = {
+    collapsedDesignOnlyBuffSources: 0,
+    recountNamedDesignOnlyBuffSources: 0,
+    unresolvedDesignOnlyBuffSources: 0,
+    placeholderNamedDesignOnlyBuffSources: 0,
+  };
+
+  for (const [sourceId, source] of Object.entries({ ...builder.effectSourcesById })) {
+    if (!isDesignOnlyBuffSource(sourceId, source)) continue;
+    const sibling = findLocalizedSiblingSource(builder, sourceId, source);
+    if (sibling && mergeDesignOnlyBuffSource(builder, sourceId, sibling.candidateId)) {
+      summary.collapsedDesignOnlyBuffSources += 1;
+    }
+  }
+
+  rebuildSourceIndexes(builder);
+
+  for (const [sourceId, source] of Object.entries(builder.effectSourcesById)) {
+    if (!isDesignOnlyBuffSource(sourceId, source)) continue;
+    if (applyRecountNameFallback(builder, sourceId, source)) {
+      summary.recountNamedDesignOnlyBuffSources += 1;
+    }
+  }
+
+  for (const [sourceId, source] of Object.entries(builder.effectSourcesById)) {
+    if (isDesignOnlyBuffSource(sourceId, source)) {
+      summary.unresolvedDesignOnlyBuffSources += 1;
+      if (applyUnmappedBuffPlaceholder(builder, sourceId, source)) {
+        summary.placeholderNamedDesignOnlyBuffSources += 1;
+      }
+    }
+  }
+
+  rebuildSourceIndexes(builder);
+  builder.postProcessSummary = summary;
 }
 
 function addPhantomFactors(builder, factorData) {
@@ -426,13 +1031,275 @@ function addRecountTalentLinks(builder, recountRows) {
   }
 }
 
-function addSkillBreakdownLinks(builder, breakdown) {
+function addImagineBuffCatalog(builder, buffRows, ownerIndex) {
+  for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
+    const buffId = toNumber(row.Id);
+    if (buffId === null) continue;
+    const qualified = buffSourceNamesFromBuffRow(row, ownerIndex);
+    if (!qualified) continue;
+    if (qualified.ownerMatch.owner.record.source !== "itemnames") continue;
+    builder.upsertSource({
+      sourceId: `buff-source:${buffId}`,
+      sourceKind: "imagine",
+      sourceType: "imagine-buff",
+      sourceEntityId: buffId,
+      sourceName: preferredName(qualified.names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`),
+      sourceNames: qualified.names,
+      iconPath: row.IconPath,
+      runtimeDetection: "active-buff",
+      sourceTable: "BuffName",
+      buffIds: [buffId],
+      evidence: [stripUndefined({
+        source: "BuffName",
+        buffSourceId: buffId,
+        ownerNameSource: qualified.ownerMatch.owner.record.source,
+        ownerSourceId: qualified.ownerMatch.owner.record.sourceId,
+        ownerMatchKind: qualified.ownerMatch.owner.matchKind,
+        ownerToken: qualified.ownerMatch.ownerToken,
+        designName: row.DesignName ?? row.NameDesign,
+      })],
+    });
+  }
+}
+
+function consumableBuffKind(row) {
+  const buffId = toNumber(row.Id);
+  if (buffId === null) return null;
+  const iconPath = String(row.IconPath ?? "");
+  const name = preferredName(
+    normalizedNames(row.Names, row.Name ?? row.NameDesign ?? row.DesignName),
+    row.Name ?? row.NameDesign ?? row.DesignName ?? "",
+  ).toLowerCase();
+  if (
+    buffId >= 2032000
+    && buffId < 2033000
+    && iconPath === "ui/atlas/buff/buff_food_up"
+    && name === "cuisine"
+  ) {
+    return "food";
+  }
+  if (
+    buffId >= 2033000
+    && buffId < 2034000
+    && iconPath === "ui/atlas/buff/buff_agentia_up"
+    && name === "potion"
+  ) {
+    return "potion";
+  }
+  return null;
+}
+
+function buildItemIdIndex(items) {
+  const byId = new Map();
+  for (const row of Array.isArray(items) ? items : Object.values(items ?? {})) {
+    const itemId = toNumber(row.Id);
+    if (itemId === null) continue;
+    byId.set(itemId, row);
+  }
+  return byId;
+}
+
+function consumableItemCandidate(buffId, kind, itemById) {
+  const suffix = buffId % 1000;
+  const itemId = (kind === "food" ? 1012000 : 1015000) + suffix;
+  const row = itemById.get(itemId);
+  if (!row) return null;
+  const iconPath = String(row.IconPath ?? "");
+  const nameText = [
+    row.NameDesign,
+    row.Name,
+    ...Object.values(row.Names ?? {}),
+  ].filter(Boolean).join(" ");
+  if (kind === "food") {
+    if (iconPath.includes("cuisine") || /skewer|stew|juice|soup|fish|meal|food|toast|hotpot|pan-seared/i.test(nameText)) {
+      return { itemId, row };
+    }
+  } else if (/syrup|pastille|serum|drop|potion|agentia/i.test(`${iconPath} ${nameText}`)) {
+    return { itemId, row };
+  }
+  return null;
+}
+
+function translateFoodDesignName(rawName) {
+  let text = String(rawName || "").trim();
+  if (!text) return "";
+  const replacements = [
+    ["生命恢复", "HP Regen"],
+    ["精英增伤", "DMG to Elites"],
+    ["精英减伤", "Elite DMG Reduction"],
+    ["物攻", "ATK"],
+    ["魔攻", "MATK"],
+    ["护甲", "Armor"],
+    ["耐力", "Stamina"],
+    ["生命", "HP"],
+  ];
+  for (const [from, to] of replacements) {
+    text = text.replaceAll(from, to);
+  }
+  text = text.replace(/\+/g, " + ");
+  text = text.replace(/Lv(\d+)/g, "Lv.$1");
+  text = text.replace(/([A-Za-z])Lv\./g, "$1 Lv.");
+  text = text.replace(/\s+/g, " ").trim();
+  return /^[\x00-\x7F]+$/.test(text) ? text : "";
+}
+
+function effectComponentForFoodLabel(label, order) {
+  const cleanLabel = String(label || "").replace(/\bLv\.\d+\b/gi, "").trim();
+  const key = cleanLabel.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  if (!cleanLabel || !key) return null;
+
+  if (/^dmg to elites$/i.test(cleanLabel)) {
+    return {
+      componentKey: key,
+      componentOrder: order,
+      label: cleanLabel,
+      effectClass: "damage-modifier",
+      direction: "damage-dealt",
+      contributionScope: "targeted",
+      targetPredicate: { monsterRankAtLeast: "elite" },
+      predicateTags: ["direction.damage-dealt", "target.elite-or-stronger"],
+    };
+  }
+
+  if (/^elite dmg reduction$/i.test(cleanLabel)) {
+    return {
+      componentKey: key,
+      componentOrder: order,
+      label: cleanLabel,
+      effectClass: "damage-reduction",
+      direction: "damage-taken",
+      contributionScope: "incoming",
+      attackerPredicate: { monsterRankAtLeast: "elite" },
+      predicateTags: ["attacker.elite-or-stronger", "direction.damage-taken-or-defense"],
+    };
+  }
+
+  const statKinds = new Map([
+    ["ATK", "offense-stat"],
+    ["MATK", "offense-stat"],
+    ["Armor", "defense-stat"],
+    ["Stamina", "resource-stat"],
+    ["HP", "resource-stat"],
+    ["HP Regen", "resource-stat"],
+  ]);
+  const statKind = statKinds.get(cleanLabel);
+  if (statKind) {
+    return {
+      componentKey: key,
+      componentOrder: order,
+      label: cleanLabel,
+      effectClass: statKind,
+      direction: "stat",
+      stat: cleanLabel,
+      contributionScope: "global",
+      predicateTags: ["scope.global"],
+    };
+  }
+
+  return {
+    componentKey: key,
+    componentOrder: order,
+    label: cleanLabel,
+    effectClass: "unknown-effect",
+    contributionScope: "unknown",
+    predicateTags: ["needs.effect-component-classification"],
+  };
+}
+
+function parseFoodEffectComponents(effectNameEn) {
+  const clean = String(effectNameEn || "").replace(/\bLv\.\d+\b/gi, "").trim();
+  if (!clean) return [];
+  return clean
+    .split(/\s+\+\s+/)
+    .map((part, index) => effectComponentForFoodLabel(part, index + 1))
+    .filter(Boolean);
+}
+
+function foodBuffEffectNames(row) {
+  const names = normalizedNames(row.Names, row.Name ?? row.NameDesign ?? row.DesignName ?? "Cuisine");
+  const effectName = translateFoodDesignName(row.DesignName ?? row.Names?.design ?? "");
+  if (effectName) {
+    names.en = `${names.en || "Cuisine"} - ${effectName}`;
+  }
+  return names;
+}
+
+function addConsumableBuffCatalog(builder, buffRows, items, consumableBridge) {
+  const itemById = buildItemIdIndex(items);
+  const foodBridgeByBuffId = consumableBridge?.foodBuffSourcesByBuffId ?? {};
+  for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
+    const buffId = toNumber(row.Id);
+    if (buffId === null) continue;
+    const kind = consumableBuffKind(row);
+    if (!kind) continue;
+
+    const bridgeSource = kind === "food" ? foodBridgeByBuffId[String(buffId)] : null;
+    const itemCandidate = kind === "potion" ? consumableItemCandidate(buffId, kind, itemById) : null;
+    const fallbackFoodEffectName = kind === "food"
+      ? translateFoodDesignName(row.DesignName ?? row.Names?.design ?? "")
+      : "";
+    const effectComponents = bridgeSource?.effectComponents
+      ?? (fallbackFoodEffectName ? parseFoodEffectComponents(fallbackFoodEffectName) : []);
+    const sourceNames = bridgeSource
+      ? normalizedNames(bridgeSource.sourceNames, bridgeSource.sourceName ?? row.NameDesign ?? "Cuisine")
+      : itemCandidate
+      ? normalizedNames(itemCandidate.row.Names, itemCandidate.row.Name ?? itemCandidate.row.NameDesign ?? row.NameDesign)
+      : kind === "food"
+      ? foodBuffEffectNames(row)
+      : normalizedNames(row.Names, row.Name ?? row.NameDesign ?? row.DesignName ?? "Potion");
+    builder.upsertSource({
+      sourceId: `buff-source:${buffId}`,
+      sourceKind: "consumable",
+      sourceType: kind === "food" ? "food-buff" : "potion-buff",
+      sourceEntityId: buffId,
+      sourceName: preferredName(sourceNames, kind === "food" ? "Cuisine" : "Potion"),
+      sourceNames,
+      iconPath: row.IconPath,
+      runtimeDetection: "active-buff",
+      sourceTable: "BuffName",
+      buffIds: [buffId],
+      effectComponents,
+      evidence: [stripUndefined({
+        source: bridgeSource
+          ? "ConsumableBuffBridge.food-item-use-table"
+          : itemCandidate
+          ? "BuffName.itemnames-consumable-id-family"
+          : "BuffName.consumable-buff-icon",
+        buffSourceId: buffId,
+        consumableKind: kind,
+        foodBuffBaseIds: bridgeSource?.buffBaseIds,
+        foodEffectName: bridgeSource?.effectNameEn,
+        foodEffectDesignName: bridgeSource?.effectDesignName,
+        foodEffectComponents: effectComponents,
+        candidateItemCount: bridgeSource?.candidateItemCount,
+        candidateItemIds: bridgeSource?.candidateItemIds,
+        candidateItemNames: bridgeSource?.candidateItemNames,
+        foodBridgeSelectionMethods: bridgeSource?.selectionMethods,
+        itemId: itemCandidate?.itemId,
+        itemName: itemCandidate?.row?.Names?.en ?? itemCandidate?.row?.NameDesign,
+        itemIconPath: itemCandidate?.row?.IconPath,
+        buffName: row.Names?.en ?? row.NameDesign ?? row.Name,
+        buffIconPath: row.IconPath,
+        buffSourceOffset: row.SourceOffset,
+        itemSourceOffset: itemCandidate?.row?.SourceOffset,
+        relationshipPolicy: bridgeSource
+          ? bridgeSource.relationshipPolicy
+          : itemCandidate
+          ? "Exact consumable label is used only when itemnames and BuffName share the same final-three-digit id family in the food/potion runtime buff range."
+          : "Runtime buff is exposed as a generic food/potion buff because no exact item row was proven from the current game files.",
+      })],
+    });
+  }
+}
+
+function addSkillBreakdownLinks(builder, breakdown, ownerIndex) {
   for (const detail of Object.values(breakdown ?? {})) {
     const damageId = toNumber(detail.Id);
     if (damageId === null) continue;
     const parentRecountId = toNumber(detail.ParentRecountId);
     const parentTalentId = toNumber(detail.ParentTalentId);
     const sourceTalentId = toNumber(detail.SourceTalentId);
+    const buffSourceId = toNumber(detail.BuffSourceId);
 
     if (parentTalentId !== null) {
       builder.upsertSource({
@@ -480,6 +1347,55 @@ function addSkillBreakdownLinks(builder, breakdown) {
         }],
       });
     }
+
+    if (detail.IsBuffSource && buffSourceId !== null) {
+      const sourceNames = buffSourceNamesFromDetail(detail, buffSourceId, ownerIndex);
+      const targets = [
+        {
+          targetKind: "damage",
+          damageId,
+          relationshipKind: "buff-source-damage-row",
+          evidenceSource: "SkillBreakdownDetails.BuffSourceId",
+          evidenceStatus: "current-production-buff-source-bridge",
+          parentRecountId,
+          parentRecountName: detail.ParentRecountName,
+          category: detail.Category,
+        },
+      ];
+      if (parentRecountId !== null) {
+        targets.push({
+          targetKind: "recount",
+          recountId: parentRecountId,
+          recountName: detail.ParentRecountName,
+          relationshipKind: "buff-source-recount-row",
+          evidenceSource: "SkillBreakdownDetails.BuffSourceId",
+          evidenceStatus: "current-production-buff-source-bridge",
+          category: detail.Category,
+        });
+      }
+
+      builder.upsertSource({
+        sourceId: `buff-source:${buffSourceId}`,
+        sourceKind: detail.SourceKind ?? detail.Category ?? "buff-source",
+        sourceType: detail.SourceType ?? detail.SourceRole ?? "buff-source",
+        sourceEntityId: buffSourceId,
+        sourceName: preferredName(sourceNames, detail.LinkedName ?? detail.DisplayName ?? detail.DamageName ?? `Buff ${buffSourceId}`),
+        sourceNames,
+        iconPath: detail.IconPath ?? detail.LinkedBuffIconPath ?? detail.ParentBaseSkillIconPath,
+        runtimeDetection: "active-buff",
+        sourceTable: "SkillBreakdownDetails",
+        buffIds: uniqueNumbers([buffSourceId, detail.LinkedBuffId, detail.LinkedId]),
+        targets,
+        evidence: [{
+          source: "SkillBreakdownDetails",
+          buffSourceId,
+          linkedSource: detail.LinkedSource,
+          linkedId: detail.LinkedId,
+          category: detail.Category,
+          reason: detail.Reason,
+        }],
+      });
+    }
   }
 }
 
@@ -512,6 +1428,209 @@ function addTalentProbeCatalog(builder, talentProbe) {
         descriptionId: row.descriptionId,
       }],
     });
+  }
+}
+
+function addClassSpecSharedBuffAliases(builder, classSpecProbe) {
+  for (const group of classSpecProbe?.sharedLocalizedNames ?? []) {
+    const entities = Array.isArray(group.entities) ? group.entities : [];
+    const talentRows = entities
+      .filter((entity) => entity?.type === "talent-passive")
+      .map((entity) => ({
+        ...entity,
+        id: toNumber(entity.id),
+      }))
+      .filter((entity) => entity.id !== null);
+    const buffIds = uniqueNumbers(
+      entities
+        .filter((entity) => entity?.type === "buff")
+        .map((entity) => entity.id),
+    );
+    if (talentRows.length === 0 || buffIds.length === 0) continue;
+
+    for (const talent of talentRows) {
+      const sourceId = `talent:${talent.id}`;
+      const existing = builder.effectSourcesById[sourceId];
+      if (!existing) continue;
+      const aliasBuffIds = buffIds.filter((buffId) => !(existing.buffIds ?? []).includes(buffId));
+      if (aliasBuffIds.length === 0) continue;
+      builder.upsertSource({
+        sourceId,
+        sourceKind: existing.sourceKind ?? "talent-passive",
+        sourceType: existing.sourceType ?? "talent",
+        sourceEntityId: talent.id,
+        sourceName: existing.sourceName ?? talent.name,
+        sourceNames: talent.names,
+        iconPath: existing.iconPath ?? talent.iconPath,
+        runtimeDetection: existing.runtimeDetection ?? "row-observed-or-active-buff",
+        sourceTable: "ClassSpecSkillModelProbe.sharedLocalizedNames",
+        buffIds: aliasBuffIds,
+        evidence: [stripUndefined({
+          source: "ClassSpecSkillModelProbe.sharedLocalizedNames",
+          nameKey: group.nameKey,
+          displayName: group.displayName,
+          linkedBuffIds: aliasBuffIds,
+          relationshipPolicy:
+            "Exact localized name groups are used as runtime buff aliases only; they do not imply a damage formula.",
+        })],
+      });
+    }
+  }
+}
+
+function buildClassSpecActivationTriggers(builder, classSpecProbe) {
+  const triggers = [];
+  for (const group of classSpecProbe?.sharedLocalizedNames ?? []) {
+    const entities = Array.isArray(group.entities) ? group.entities : [];
+    const baseSkills = entities
+      .filter((entity) => entity?.type === "base-skill")
+      .map((entity) => ({ ...entity, id: toNumber(entity.id) }))
+      .filter((entity) => entity.id !== null);
+    const buffIds = uniqueNumbers(
+      entities
+        .filter((entity) => entity?.type === "buff")
+        .map((entity) => entity.id),
+    ).filter((buffId) => sourceHasBuffIndex(builder, buffId));
+    if (baseSkills.length === 0 || buffIds.length === 0) continue;
+
+    let names = normalizedNames(group.names, group.displayName ?? group.nameKey);
+    for (const entity of [...baseSkills, ...entities.filter((entry) => entry?.type === "buff")]) {
+      names = mergeNameMaps(names, entityNames(entity, group.displayName ?? group.nameKey));
+    }
+    const englishName = normalizeActivationText(localeText(names, "en") || group.displayName || group.nameKey);
+    if (ACTIVATION_TRIGGER_STOPWORDS.has(englishName)) continue;
+
+    triggers.push({
+      nameKey: group.nameKey,
+      displayName: group.displayName ?? preferredName(names, group.nameKey),
+      names,
+      baseSkillIds: uniqueNumbers(baseSkills.map((entity) => entity.id)),
+      buffIds,
+    });
+  }
+  return triggers;
+}
+
+function descriptionActivationMatch(row, trigger) {
+  const matchedLocales = [];
+  for (const locale of LOCALES) {
+    const triggerText = normalizeActivationText(localeText(trigger.names, locale));
+    if (triggerText.length < 4) continue;
+    const descriptionText = normalizeActivationText([
+      localeText(row.cleanDescriptions, locale),
+      localeText(row.descriptions, locale),
+      localeText(row.descriptionLinkTexts, locale),
+    ].filter(Boolean).join(" "));
+    if (!descriptionText.includes(triggerText)) continue;
+    if (!ACTIVATION_DESCRIPTION_MARKERS.some((marker) => marker.test(descriptionText))) continue;
+    matchedLocales.push(locale);
+  }
+  if (matchedLocales.length === 0) return null;
+  return {
+    matchKind: "description-activation-phrase",
+    matchedLocales,
+  };
+}
+
+function nameStemActivationMatch(row, trigger) {
+  const triggerText = normalizeActivationText(localeText(trigger.names, "en"));
+  const sourceText = normalizeActivationText(localeText(row.names, "en") || row.name);
+  if (triggerText.length < 4 || sourceText.length < 4) return null;
+  if (sourceText === triggerText) return null;
+  if (!sourceText.startsWith(triggerText)) return null;
+  return {
+    matchKind: "name-stem-prefix",
+    matchedLocales: ["en"],
+  };
+}
+
+function findActivationAliasMatch(row, trigger) {
+  return descriptionActivationMatch(row, trigger) ?? nameStemActivationMatch(row, trigger);
+}
+
+function triggerSourceIdsForActivationAlias(builder, trigger) {
+  return uniqueStrings(
+    trigger.buffIds.flatMap((buffId) => builder.buffIdToEffectSourceIds[String(buffId)] ?? []),
+  ).filter((sourceId) => sourceId.startsWith("buff-source:"));
+}
+
+function addClassSpecActivationAliases(builder, classSpecProbe, talentProbe) {
+  const triggers = buildClassSpecActivationTriggers(builder, classSpecProbe);
+  if (triggers.length === 0) return;
+
+  for (const row of talentProbe?.talentRows ?? []) {
+    const talentId = toNumber(row.id);
+    if (talentId === null) continue;
+    const sourceId = `talent:${talentId}`;
+    const existing = builder.effectSourcesById[sourceId];
+    if (!existing) continue;
+
+    for (const trigger of triggers) {
+      const existingBuffIds = uniqueNumbers(existing.buffIds ?? []);
+      const aliasBuffIds = trigger.buffIds
+        .filter((buffId) => !existingBuffIds.includes(buffId));
+      if (aliasBuffIds.length === 0) continue;
+      const match = findActivationAliasMatch(row, trigger);
+      if (!match) continue;
+
+      builder.upsertSource({
+        sourceId,
+        sourceKind: existing.sourceKind ?? "talent-passive",
+        sourceType: existing.sourceType ?? "talent",
+        sourceEntityId: talentId,
+        sourceName: existing.sourceName ?? row.name,
+        sourceNames: existing.sourceNames ?? row.names,
+        iconPath: existing.iconPath ?? row.iconPath,
+        runtimeDetection: existing.runtimeDetection ?? "row-observed-or-active-buff",
+        sourceTable: "ClassSpecSkillModelProbe.sharedLocalizedNames",
+        buffIds: aliasBuffIds,
+        evidence: [stripUndefined({
+          source: "ClassSpecSkillModelProbe.sharedLocalizedNames.activationAlias",
+          matchKind: match.matchKind,
+          matchedLocales: match.matchedLocales,
+          triggerNameKey: trigger.nameKey,
+          triggerDisplayName: trigger.displayName,
+          triggerBaseSkillIds: trigger.baseSkillIds,
+          linkedBuffIds: aliasBuffIds,
+          talentId,
+          talentName: existing.sourceName ?? row.name,
+          relationshipPolicy:
+            "Activation aliases map a talent/passive source row to the runtime buff window that enables it. They only expose uptime; they do not imply a damage formula.",
+        })],
+      });
+
+      const childBuffIds = existingBuffIds.filter((buffId) => !trigger.buffIds.includes(buffId));
+      if (childBuffIds.length > 0) {
+        for (const triggerSourceId of triggerSourceIdsForActivationAlias(builder, trigger)) {
+          const triggerSource = builder.effectSourcesById[triggerSourceId];
+          builder.upsertSource({
+            sourceId: triggerSourceId,
+            sourceKind: triggerSource?.sourceKind ?? "buff-source",
+            sourceType: triggerSource?.sourceType ?? "activation-buff",
+            sourceEntityId: triggerSource?.sourceEntityId,
+            sourceName: triggerSource?.sourceName ?? trigger.displayName,
+            sourceNames: triggerSource?.sourceNames ?? trigger.names,
+            iconPath: triggerSource?.iconPath,
+            runtimeDetection: triggerSource?.runtimeDetection ?? "active-buff",
+            sourceTable: "ClassSpecSkillModelProbe.sharedLocalizedNames",
+            buffIds: childBuffIds,
+            evidence: [stripUndefined({
+              source: "ClassSpecSkillModelProbe.sharedLocalizedNames.activationTriggerAlias",
+              matchKind: match.matchKind,
+              matchedLocales: match.matchedLocales,
+              triggerNameKey: trigger.nameKey,
+              triggerDisplayName: trigger.displayName,
+              triggerBuffIds: trigger.buffIds,
+              linkedChildBuffIds: childBuffIds,
+              talentId,
+              talentName: existing.sourceName ?? row.name,
+              relationshipPolicy:
+                "If a child talent/passive buff is observed, the parent activation buff can also be treated as active for uptime reporting. This exposes the activation window only; it does not imply formula semantics.",
+            })],
+          });
+        }
+      }
+    }
   }
 }
 
@@ -819,18 +1938,29 @@ function main() {
   const factorData = readJson(args.factors, {});
   const breakdown = readJson(args.breakdown, {});
   const recount = readJson(args.recount, {});
+  const buffs = readJson(args.buffs, []);
+  const items = readJson(args.items, []);
+  const monsters = readJson(args.monsters, {});
+  const consumableBridge = readJson(args.consumableBridge, {});
   const talentProbe = readJson(args.talentProbe, {});
+  const classSpecProbe = readJson(args.classSpecProbe, {});
   const seasonTalentProbe = readJson(args.seasonTalentProbe, {});
   const seasonRogueProbe = readJson(args.seasonRogueProbe, {});
   const recountRows = collectRecountRows(recount);
+  const imagineOwnerIndex = buildImagineOwnerIndex(items, monsters);
 
   const builder = new EffectSourceBuilder(recountRows);
   addPhantomFactors(builder, factorData);
   addTalentProbeCatalog(builder, talentProbe);
+  addClassSpecSharedBuffAliases(builder, classSpecProbe);
   addRecountTalentLinks(builder, recountRows);
-  addSkillBreakdownLinks(builder, breakdown);
+  addImagineBuffCatalog(builder, buffs, imagineOwnerIndex);
+  addConsumableBuffCatalog(builder, buffs, items, consumableBridge);
+  addSkillBreakdownLinks(builder, breakdown, imagineOwnerIndex);
+  addClassSpecActivationAliases(builder, classSpecProbe, talentProbe);
   addSeasonTalentNodes(builder, seasonTalentProbe);
   addSeasonRogueEntries(builder, seasonRogueProbe);
+  postProcessDesignOnlyBuffSources(builder);
 
   const effectSourceIds = Object.keys(builder.effectSourcesById).sort((a, b) => a.localeCompare(b));
   const data = {
@@ -840,11 +1970,22 @@ function main() {
         factors: path.relative(repoRoot, args.factors).replaceAll("\\", "/"),
         breakdown: path.relative(repoRoot, args.breakdown).replaceAll("\\", "/"),
         recount: path.relative(repoRoot, args.recount).replaceAll("\\", "/"),
+        buffs: path.relative(repoRoot, args.buffs).replaceAll("\\", "/"),
+        items: path.relative(repoRoot, args.items).replaceAll("\\", "/"),
+        monsters: path.relative(repoRoot, args.monsters).replaceAll("\\", "/"),
+        consumableBridge: path.relative(repoRoot, args.consumableBridge).replaceAll("\\", "/"),
         talentProbe: path.relative(repoRoot, args.talentProbe).replaceAll("\\", "/"),
+        classSpecProbe: path.relative(repoRoot, args.classSpecProbe).replaceAll("\\", "/"),
         seasonTalentProbe: path.relative(repoRoot, args.seasonTalentProbe).replaceAll("\\", "/"),
         seasonRogueProbe: path.relative(repoRoot, args.seasonRogueProbe).replaceAll("\\", "/"),
       },
+      battleImagineOwnerNames: imagineOwnerIndex.battleImagineRecords,
+      monsterOwnerNameFallbacks: imagineOwnerIndex.monsterFallbackRecords,
       effectSources: effectSourceIds.length,
+      consumableBuffSources: effectSourceIds.filter((id) =>
+        builder.effectSourcesById[id]?.sourceKind === "consumable",
+      ).length,
+      foodConsumableBridgeMappedSources: Object.keys(consumableBridge?.foodBuffSourcesByBuffId ?? {}).length,
       activeBuffDetectableSources: effectSourceIds.filter((id) =>
         builder.effectSourcesById[id]?.runtimeDetection?.includes("active-buff")
         && builder.effectSourcesById[id]?.buffIds?.length,
@@ -855,6 +1996,7 @@ function main() {
       sourcesWithModifierEvidence: effectSourceIds.filter((id) =>
         builder.effectSourcesById[id]?.modifierEvidence,
       ).length,
+      designOnlyBuffSourcePostProcess: builder.postProcessSummary,
       relationshipPolicy:
         "This file is an evidence index. It exposes affected-by/produced-by relationships only; it does not calculate damage contribution unless a later source proves formula semantics and runtime selection.",
     },

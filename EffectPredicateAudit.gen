@@ -1,0 +1,410 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const rootDir = __dirname;
+const outputDir = path.join(rootDir, "output");
+const reportDir = path.join(outputDir, "probing-reports");
+
+if (process.argv.includes("--help")) {
+  console.log("Usage: node EffectPredicateAudit.gen");
+  console.log("Reads generated effect-source outputs and writes output/probing-reports/EffectPredicateAudit.{json,md}.");
+  process.exit(0);
+}
+
+function readJson(relativePath, fallback = null) {
+  const file = path.join(rootDir, relativePath);
+  if (!fs.existsSync(file)) {
+    return fallback;
+  }
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function ensureDir(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+function cleanText(value) {
+  if (value == null) {
+    return "";
+  }
+  if (typeof value === "string") {
+    return value.replace(/<[^>]+>/g, " ").replace(/\{\*[^}]+\*\}/g, " ").replace(/\s+/g, " ").trim();
+  }
+  if (Array.isArray(value)) {
+    return value.map(cleanText).filter(Boolean).join(" | ");
+  }
+  if (typeof value === "object") {
+    return Object.values(value).map(cleanText).filter(Boolean).join(" | ");
+  }
+  return String(value);
+}
+
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && value !== "") {
+      return value;
+    }
+  }
+  return undefined;
+}
+
+function compactText(parts) {
+  const seen = new Set();
+  const out = [];
+  for (const part of parts.flatMap((value) => cleanText(value).split(" | "))) {
+    const text = part.trim();
+    if (!text || seen.has(text)) {
+      continue;
+    }
+    seen.add(text);
+    out.push(text);
+  }
+  return out.join(" | ");
+}
+
+function classify(record) {
+  const haystack = `${record.name || ""} ${record.iconPath || ""} ${record.text || ""}`.toLowerCase();
+  const tags = new Set();
+  const notes = [];
+  const components = Array.isArray(record.effectComponents) ? record.effectComponents : [];
+  for (const component of components) {
+    for (const tag of component?.predicateTags ?? []) {
+      tags.add(tag);
+    }
+  }
+  if (components.length > 1) {
+    tags.add("effect.compound-components");
+    notes.push("This source has split effect components; parser attribution should apply predicates per component, not to the whole source row.");
+  }
+
+  const hasElite = /elite|elites|stronger enem|精英|首领/.test(haystack);
+  const hasBossIconHint = /boss|damboss|ridiculeconversion/.test(haystack);
+  const hasCompanion = /companion|companions|summon|summons|wild wolf|beast|petdam|petbig|skyhit|falconry|召唤|宠物|驭兽/.test(haystack);
+  const hasDefensive = /reduction|reduce|reduces|armor \+ elite|dmg reduction|damage taken|shield|block|final protection|减伤|护甲|防御|格挡/.test(haystack);
+  const hasOffensive = /dmg to|dmg dealt|deal .*dmg|deals .*dmg|damage is increased|dream dmg|skill damage|atk \+ dmg|matk \+ dmg|damage bonus|special attack|增伤|伤害|攻击/.test(haystack);
+  const hasTimed = /duration|lasting|lasts|for \d+(?:\.\d+)?s|for \d+(?:\.\d+)? seconds|持续|秒/.test(haystack);
+  const hasStack = /stack|stacks|stacking|层/.test(haystack);
+  const hasFocus = /while focus is active|focus is active|during focus|focus state|精神凝聚|集中/.test(haystack);
+  const hasTargetedSkill = Array.isArray(record.targets) && record.targets.length > 0;
+
+  if (hasElite) {
+    tags.add("target.elite-or-stronger");
+  }
+  if (hasBossIconHint && !hasElite) {
+    tags.add("target.boss-or-elite-suspect");
+    notes.push("Boss/elite hint came from name/icon text; needs description or runtime target predicate proof.");
+  }
+  if (hasCompanion) {
+    tags.add("source.companion-or-summon");
+  }
+  if (hasOffensive) {
+    tags.add("direction.damage-dealt");
+  }
+  if (hasDefensive) {
+    tags.add("direction.damage-taken-or-defense");
+  }
+  if (hasTimed) {
+    tags.add("window.timed");
+  }
+  if (hasStack) {
+    tags.add("window.stack-state");
+  }
+  if (hasFocus) {
+    tags.add("activation.focus-state");
+  }
+  if (hasTargetedSkill) {
+    tags.add("scope.skill-or-recount-targeted");
+  }
+  if (record.sourceKind === "talent-passive" && !record.descriptionTextCaptured) {
+    tags.add("needs.description-extraction");
+    notes.push("Talent row currently lacks captured UI description text; name/icon/buff evidence is not enough for exact semantics.");
+  }
+  if (record.sourceKind === "module-buff-catalog" && !record.descriptionTextCaptured) {
+    tags.add("needs.module-description-extraction");
+    notes.push("Module buff row has name/icon evidence only; module level effect text is not captured yet.");
+  }
+
+  return { tags: [...tags].sort(), notes };
+}
+
+function pushRecord(records, record) {
+  const text = compactText(record.textParts || []);
+  const normalized = {
+    family: record.family,
+    sourcePath: record.sourcePath,
+    id: String(record.id),
+    name: firstDefined(record.name, record.names?.en, record.names?.design, record.designName, record.id),
+    sourceKind: record.sourceKind,
+    sourceType: record.sourceType,
+    iconPath: record.iconPath,
+    buffIds: record.buffIds || [],
+    effectComponents: Array.isArray(record.effectComponents) ? record.effectComponents : [],
+    targetCount: Array.isArray(record.targets) ? record.targets.length : 0,
+    targets: (record.targets || []).slice(0, 12),
+    descriptionTextCaptured: Boolean(record.descriptionTextCaptured),
+    text
+  };
+  const classified = classify(normalized);
+  if (classified.tags.length === 0) {
+    return;
+  }
+  records.push({
+    ...normalized,
+    predicateTags: classified.tags,
+    componentSummary: normalized.effectComponents.map((component) => ({
+      label: component.label,
+      effectClass: component.effectClass,
+      direction: component.direction,
+      contributionScope: component.contributionScope,
+      predicateTags: component.predicateTags || []
+    })),
+    notes: classified.notes
+  });
+}
+
+function targetSummary(targets) {
+  return (targets || []).map((target) => ({
+    kind: target.targetKind,
+    relationshipKind: target.relationshipKind,
+    name: firstDefined(target.recountName, target.skillName, target.damageName, target.targetText, target.matchedText),
+    damageId: target.damageId,
+    recountId: target.recountId
+  }));
+}
+
+const records = [];
+
+const effectSources = readJson("output/EffectSources.json", {});
+for (const source of Object.values(effectSources.effectSourcesById || {})) {
+  pushRecord(records, {
+    family: "EffectSources",
+    sourcePath: "output/EffectSources.json",
+    id: source.sourceId,
+    name: source.sourceName,
+    names: source.sourceNames,
+    sourceKind: source.sourceKind,
+    sourceType: source.sourceType,
+    iconPath: source.iconPath,
+    buffIds: source.buffIds,
+    effectComponents: source.effectComponents,
+    targets: targetSummary(source.targets),
+    descriptionTextCaptured: Boolean(source.descriptions || source.cleanDescriptions),
+    textParts: [
+      source.sourceName,
+      source.sourceNames,
+      source.iconPath,
+      (source.evidence || []).map((evidence) => [
+        evidence.foodEffectName,
+        evidence.foodEffectDesignName,
+        evidence.candidateItemNames,
+        evidence.reason,
+        evidence.relationshipPolicy
+      ])
+    ]
+  });
+}
+
+const factors = readJson("output/SeasonPhantomFactors.json", {});
+for (const factor of Object.values(factors.factorsByBuffId || {})) {
+  const gradeRows = factor.modifierEvidence?.gradeRows || [];
+  pushRecord(records, {
+    family: "SeasonPhantomFactors",
+    sourcePath: "output/SeasonPhantomFactors.json",
+    id: `phantom-factor:${factor.buffId}`,
+    name: factor.familyName,
+    names: factor.familyNames,
+    sourceKind: "phantom-factor",
+    sourceType: "season-phantom-factor",
+    iconPath: factor.iconPath,
+    buffIds: [factor.buffId],
+    targets: [
+      ...Object.values(factor.affectedDamageEvidence || {}).map((target) => ({
+        kind: "damage",
+        relationshipKind: target.relationshipKind,
+        name: target.matchedText || target.targetText,
+        damageId: target.damageId
+      })),
+      ...Object.values(factor.affectedRecountEvidence || {}).map((target) => ({
+        kind: "recount",
+        relationshipKind: target.relationshipKind,
+        name: firstDefined(target.recountName, target.matchedText, target.targetText),
+        recountId: target.recountId
+      }))
+    ],
+    descriptionTextCaptured: Boolean(factor.cleanDescriptions),
+    textParts: [
+      factor.familyName,
+      factor.familyNames,
+      factor.cleanDescriptions,
+      gradeRows.slice(0, 2).map((row) => row.cleanResolvedDescription),
+      gradeRows.slice(-2).map((row) => row.cleanResolvedDescription)
+    ]
+  });
+}
+
+const consumables = readJson("output/ConsumableBuffBridge.json", {});
+for (const source of Object.values(consumables.foodBuffSourcesByBuffId || {})) {
+  pushRecord(records, {
+    family: "ConsumableBuffBridge",
+    sourcePath: "output/ConsumableBuffBridge.json",
+    id: `food-buff:${source.buffId}`,
+    name: source.sourceName,
+    names: source.sourceNames,
+    sourceKind: "consumable",
+    sourceType: "food-buff",
+    iconPath: source.iconPath,
+    buffIds: [source.buffId],
+    effectComponents: source.effectComponents,
+    targets: [],
+    descriptionTextCaptured: Boolean(source.effectNameEn || source.effectDesignName),
+    textParts: [
+      source.sourceName,
+      source.sourceNames,
+      source.effectNameEn,
+      source.effectDesignName,
+      source.candidateItemNames
+    ]
+  });
+}
+
+const buffNamesRaw = readJson("output/BuffName.json", []);
+const buffNames = Array.isArray(buffNamesRaw) ? buffNamesRaw : Object.values(buffNamesRaw);
+for (const buff of buffNames) {
+  const iconPath = buff.IconPath || buff.iconPath;
+  if (!/ui\/atlas\/mod_effect\//i.test(iconPath || "")) {
+    continue;
+  }
+  pushRecord(records, {
+    family: "ModuleBuffCatalog",
+    sourcePath: "output/BuffName.json",
+    id: `module-buff:${buff.Id ?? buff.id}`,
+    name: firstDefined(buff.Name, buff.name, buff.Names?.en, buff.names?.en, buff.NameDesign),
+    names: buff.Names || buff.names,
+    sourceKind: "module-buff-catalog",
+    sourceType: "module-buff",
+    iconPath,
+    buffIds: [buff.Id ?? buff.id].filter((value) => value != null),
+    targets: [],
+    descriptionTextCaptured: false,
+    textParts: [buff.Name, buff.name, buff.Names || buff.names, buff.NameDesign, iconPath]
+  });
+}
+
+const talentProbe = readJson("output/probing-reports/TalentEffectModelProbe.json", {});
+for (const talent of talentProbe.talentRows || []) {
+  pushRecord(records, {
+    family: "TalentEffectModelProbe",
+    sourcePath: "output/probing-reports/TalentEffectModelProbe.json",
+    id: `talent:${talent.id}`,
+    name: talent.name,
+    names: talent.names,
+    sourceKind: "talent-passive",
+    sourceType: "talent",
+    iconPath: talent.iconPath,
+    buffIds: (talent.buffEffectRecords || []).map((record) => record.buffId).filter((value) => value != null),
+    targets: [],
+    descriptionTextCaptured: Boolean(talent.description || talent.cleanDescription || talent.descriptions),
+    textParts: [
+      talent.name,
+      talent.names,
+      talent.designName,
+      talent.iconPath,
+      (talent.buffEffectRecords || []).map((record) => [record.buffRow?.name, record.buffRow?.names])
+    ]
+  });
+}
+
+const byTag = {};
+for (const record of records) {
+  for (const tag of record.predicateTags) {
+    byTag[tag] = (byTag[tag] || 0) + 1;
+  }
+}
+
+const byFamily = {};
+for (const record of records) {
+  byFamily[record.family] = (byFamily[record.family] || 0) + 1;
+}
+
+const interesting = records
+  .filter((record) => (
+    record.predicateTags.includes("target.elite-or-stronger") ||
+    record.predicateTags.includes("target.boss-or-elite-suspect") ||
+    record.predicateTags.includes("source.companion-or-summon") ||
+    record.predicateTags.includes("needs.module-description-extraction") ||
+    record.predicateTags.includes("needs.description-extraction")
+  ))
+  .sort((a, b) => a.family.localeCompare(b.family) || a.name.localeCompare(b.name) || a.id.localeCompare(b.id));
+
+const report = {
+  summary: {
+    generatedAt: new Date().toISOString(),
+    sourceFiles: [
+      "output/EffectSources.json",
+      "output/SeasonPhantomFactors.json",
+      "output/ConsumableBuffBridge.json",
+      "output/BuffName.json",
+      "output/probing-reports/TalentEffectModelProbe.json"
+    ],
+    recordCount: records.length,
+    interestingRecordCount: interesting.length,
+    tagCounts: Object.fromEntries(Object.entries(byTag).sort((a, b) => a[0].localeCompare(b[0]))),
+    familyCounts: Object.fromEntries(Object.entries(byFamily).sort((a, b) => a[0].localeCompare(b[0])))
+  },
+  notes: [
+    "This report is an audit surface, not parser formula truth.",
+    "description-extraction tags mean the current generated row is likely useful but lacks the UI description needed to prove exact semantics.",
+    "target.elite-or-stronger rows require runtime target monster type before attribution can be exact.",
+    "source.companion-or-summon rows require raw attacker/top-summoner evidence before attribution can distinguish player casts from companion/summon hits."
+  ],
+  records: interesting
+};
+
+ensureDir(reportDir);
+fs.writeFileSync(path.join(reportDir, "EffectPredicateAudit.json"), `${JSON.stringify(report, null, 2)}\n`);
+
+const md = [
+  "# Effect Predicate Audit",
+  "",
+  "This report flags generated effect sources that likely need extra runtime predicates before modifier attribution can be trusted.",
+  "",
+  "## Summary",
+  "",
+  `- Records flagged: ${report.summary.recordCount}`,
+  `- Interesting records: ${report.summary.interestingRecordCount}`,
+  "",
+  "### Tag Counts",
+  "",
+  ...Object.entries(report.summary.tagCounts).map(([tag, count]) => `- ${tag}: ${count}`),
+  "",
+  "### Family Counts",
+  "",
+  ...Object.entries(report.summary.familyCounts).map(([family, count]) => `- ${family}: ${count}`),
+  "",
+  "## Representative Rows",
+  "",
+  ...interesting.slice(0, 120).map((record) => [
+    `### ${record.name} (${record.id})`,
+    "",
+    `- Family: ${record.family}`,
+    `- Kind: ${record.sourceKind} / ${record.sourceType || ""}`.trim(),
+    `- Tags: ${record.predicateTags.join(", ")}`,
+    record.buffIds.length ? `- Buff ids: ${record.buffIds.join(", ")}` : "",
+    record.componentSummary?.length
+      ? `- Components: ${record.componentSummary.map((component) =>
+        `${component.label} [${component.effectClass || "unknown"}; ${(component.predicateTags || []).join(", ") || "no predicates"}]`
+      ).join(" / ")}`
+      : "",
+    record.iconPath ? `- Icon: ${record.iconPath}` : "",
+    record.targetCount ? `- Target count: ${record.targetCount}` : "",
+    record.notes.length ? `- Notes: ${record.notes.join(" ")}` : "",
+    record.text ? `- Text: ${record.text.slice(0, 420)}` : ""
+  ].filter(Boolean).join("\n")),
+  ""
+].join("\n");
+fs.writeFileSync(path.join(reportDir, "EffectPredicateAudit.md"), md);
+
+console.log(`Wrote ${path.relative(process.cwd(), path.join(reportDir, "EffectPredicateAudit.json"))}`);
+console.log(`Wrote ${path.relative(process.cwd(), path.join(reportDir, "EffectPredicateAudit.md"))}`);
+console.log(`Flagged ${records.length} predicate-sensitive rows (${interesting.length} high-interest).`);
