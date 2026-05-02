@@ -2,6 +2,20 @@
 const path = require("node:path");
 
 const DEFAULT_MONSTER_ROW_SIZE = 240;
+const LOCALES = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+const UNKNOWN_MONSTER_LABELS = Object.freeze({
+  en: "Unknown Monster",
+  "zh-CN": "\u672a\u77e5\u602a\u7269",
+  "zh-TW": "\u672a\u77e5\u602a\u7269",
+  ja: "\u4e0d\u660e\u30e2\u30f3\u30b9\u30bf\u30fc",
+  "ko-KR": "\uc54c \uc218 \uc5c6\ub294 \ubaac\uc2a4\ud130",
+  fr: "Monstre inconnu",
+  de: "Unbekanntes Monster",
+  es: "Monstruo desconocido",
+  "pt-BR": "Monstro desconhecido",
+  th: "\u0e21\u0e2d\u0e19\u0e2a\u0e40\u0e15\u0e2d\u0e23\u0e4c\u0e44\u0e21\u0e48\u0e17\u0e23\u0e32\u0e1a\u0e0a\u0e37\u0e48\u0e2d",
+  id: "Monster Tidak Dikenal",
+});
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -51,7 +65,9 @@ Notes:
 
   for (const row of rawRows) {
     const localeEntries = collectLocalizedMonsterNameEntries(row.nameId, localizationTables);
-    const names = buildLocaleTextObject(localeEntries, { includeDesign: false });
+    const localizedNames = buildLocaleTextObject(localeEntries, { includeDesign: false });
+    const hasSuspiciousName = isSuspiciousPlaceholderMap(localizedNames);
+    const names = hasSuspiciousName ? localizedUnknownMonsterNames(row.id) : localizedNames;
     const preferredName = choosePreferredLocaleText(names);
     if (!preferredName) {
       continue;
@@ -64,6 +80,7 @@ Notes:
       Names: names,
       MonsterType: row.monsterType,
       Source: "MonsterTable",
+      ...(hasSuspiciousName ? { NamePlaceholder: "suspicious-localization-placeholder" } : {}),
       SourceOffset: row.offset
     };
   }
@@ -150,6 +167,24 @@ function collectLocalizedMonsterNameEntries(nameId, localizationTables) {
 
 function looksLikeMonsterDescription(text) {
   return text.length > 120 || /<br>|<style=|\{\*/i.test(text);
+}
+
+function localizedUnknownMonsterNames(monsterId) {
+  const out = {};
+  for (const localeId of LOCALES) {
+    out[localeId] = `${UNKNOWN_MONSTER_LABELS[localeId] ?? UNKNOWN_MONSTER_LABELS.en} ${monsterId}`;
+  }
+  return out;
+}
+
+function isSuspiciousPlaceholderMap(names) {
+  const values = Object.values(names || {}).map((value) => String(value || "").trim()).filter(Boolean);
+  return values.length > 0 && values.every(isSuspiciousPlaceholderText);
+}
+
+function isSuspiciousPlaceholderText(value) {
+  const text = String(value || "").replace(/\s+/g, "");
+  return Boolean(text) && /^[?\uFF1F\uFFFD]+$/.test(text);
 }
 
 function compareNumericStrings(left, right) {

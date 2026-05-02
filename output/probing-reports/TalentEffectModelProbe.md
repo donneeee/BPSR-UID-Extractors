@@ -5,15 +5,18 @@ This is a worklist/report only. It separates direct game-file evidence from prob
 ## Summary
 
 - talentPassiveRows: 646
-- talentRowsWithDescriptions: 93
-- descriptionLinkTextRefs: 24
+- talentRowsWithDescriptions: 611
+- talentRowsWithBuffDescriptionReferences: 582
+- talentRowsUsingBuffDescriptionReference: 518
+- buffDescriptionReferenceRows: 1237
+- descriptionLinkTextRefs: 793
 - opcode3BuffRecords: 591
 - opcode6SkillPairRecords: 15
-- skillRowsWithAnyTalentEvidence: 38
+- skillRowsWithAnyTalentEvidence: 154
 - skillRowsWithOpcode6PairEvidence: 28
-- skillRowsWithDescriptionLinkTextEvidence: 21
+- skillRowsWithDescriptionLinkTextEvidence: 150
 - skillRowsWithFormulaBuffEvidence: 3
-- recountRowsWithProbeEvidence: 61
+- recountRowsWithProbeEvidence: 110
 - recountRowsWithCurrentProductionTalentLinks: 44
 - seasonTalentNodeRows: 116
 - seasonTalentNodeGroups: 12
@@ -29,7 +32,7 @@ This is a worklist/report only. It separates direct game-file evidence from prob
 - seasonPhantomFactorRowsWithDescriptions: 1470
 - seasonPhantomFactorRowsWithClassGate: 1360
 - seasonPhantomFactorClassGateIds: 1,2,4,5,9,11,12,13
-- strictRuntimeStatus: probe-only
+- strictRuntimeStatus: source-evidence-probe
 
 ## Season Talent Node Trees
 
@@ -107,13 +110,13 @@ Source report: output/probing-reports/SeasonPhantomFactorProbe.json
 ### 1714 Iaido Slash
 - Recount rows: 49 Iaido Slash
 - Opcode 6 skill-pair mentions: 157 Moonstrike Spec
-- Description linktext mentions: none
+- Description linktext mentions: 105 Iaido Mastery; 109 Thunder Reversal; 110 Vacuum Slash; 112 Flash Frenzy Blade; 113 Bladewind Domain; 130 Iaido Slash Spec; 132 Flash Sharp Strike; 143 Violent Slash; 149 Blade Intent Thunderstrike; 151 Break Slash; 153 Instant Slash
 - Formula/buff matches: none
 
 ### 1715 Moonstrike
 - Recount rows: 50 Moonstrike
 - Opcode 6 skill-pair mentions: 157 Moonstrike Spec
-- Description linktext mentions: 157 Moonstrike Spec
+- Description linktext mentions: 157 Moonstrike Spec; 162 Chaos Breaker; 166 Moonstrike Sharp Strike
 - Formula/buff matches: none
 
 ## Opcode 6 Skill Pair Examples
@@ -136,16 +139,33 @@ Source report: output/probing-reports/SeasonPhantomFactorProbe.json
 
 ## Description Linktext Examples
 
+- 1348 Absolute Center Stage: 1610 Center Stage
+- 1366 Absolute Center Stage: 1610 Center Stage
+- 1213 Aegis Ward's Anthem: 1565 Aegis Ward
+- 1215 Aegis Ward's Retribution: 1170 Block; 1565 Aegis Ward
+- 419 Air Dance Strike: 1152 Sharp; 1159 Typhoon: Sharp Impact; 1521 Sharp Impact; 1553 Galeform
+- 944 Amplified Earthfort: 1123 Weakness Strike; 1124 Amplified Earthfort
+- 506 Arcane of Green: 1526 Wild Bloom; 1529 Feral Seed; 1530 Infusion; 1593 Stag Charge
+- 1148 Arrow of Light: 1142 Lightseeker Arrow; 1550 Arrow Rain
+- 1138 Arrow Rain Acceleration: 1550 Arrow Rain
+- 1220 Ascension of the Lightforged Barrier: 1175 Lightforged Barrier; 1564 Judgment
 - 434 Battle Cry: 1152 Sharp; 1525 Typhoon Cleave
+- 1105 Battle Howl: 1549 Wildcall
+- 1137 Beast Tidal Power: 1580 Torrent Volley; 1602 Lumi Torrent
+- 455 Bird Advancement: 1524 Falcon Toss
+- 100 Blade Intent: 1167 Blade Intent
+- 160 Blade Intent - Rare: 1167 Blade Intent
+- 156 Blade Intent Recovery: 1167 Blade Intent
+- 149 Blade Intent Thunderstrike: 1100 Thunderstrike; 1167 Blade Intent; 1500 Iaido Slash
+- 113 Bladewind Domain: 1099 Bladewind Domain; 1500 Iaido Slash; 1502 Oblivion Combo; 1556 Overdrive
+- 1314 Blazing Heal: 1614 Heroic Melody
+- 217 Blizzard Dual Lances: 1512 Frost Lance; 1513 Blizzard
+- 935 Block Blessing: 1170 Block; 1539 Granite Fury
+- 906 Block Recovery: 1126 Lucky Block; 1170 Block
+- 957 Block Shelter: 1126 Lucky Block; 1539 Granite Fury
 - 930 Block Spec: 1126 Lucky Block; 1538 Countercrush
 - 535 Bloomheal: 1531 Divine Circle Bloom; 1552 Bloomheal
-- 1330 Concert Circuit: 1579 Rock the Stage; 1613 Concert Circuit
-- 342 Crimson Expertise Spec: 1626 Wildfire Dance
-- 1129 Falconry Spec: 1547 Double Arrow
-- 212 Frostbeam Spec: 1161 Frost Crystal; 1509 Frostbeam; 1515 Permafrost
-- 1329 Infinite Rhapsody: 1579 Rock the Stage; 1612 Infinite Rhapsody
-- 531 Lifebind Spec: 1108 Regen Bud; 1527 Life Bloom
-- 157 Moonstrike Spec: 1167 Blade Intent; 1507 Moonstrike
-- 1218 Shield Spec: 1566 Vanguard Strike
-- 432 Skyward Spec: 1152 Sharp; 1520 Skyfall
-- 533 Vital Surge: 1531 Divine Circle Bloom; 1551 Vital Surge
+- 561 Blooming Reincarnation: 1527 Life Bloom
+- 1253 Bold Fearless: 1176 Vanguard Hunt; 1559 Sacred Blade; 1564 Judgment; 1566 Vanguard Strike
+- 945 Boulder Shield: 1542 Stoneform
+- 225 Boundless Frost: 1161 Frost Crystal; 1509 Frostbeam

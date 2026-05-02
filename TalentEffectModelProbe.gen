@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const TALENT_PASSIVE_TABLE_HASH = 3345237628;
+const BUFF_DESCRIPTION_REFERENCE_TABLE_HASH = 4192598123;
 const STRING_POOL = 6;
 const INT_POOL = 1;
 
@@ -39,10 +40,10 @@ Options:
   --markdown <path>    Optional Markdown summary output path.
 
 Notes:
-  This is a probe report only. It does not feed runtime labels and does not
-  claim that text mentions, skill-pair records, or shared names are ownership.
-  The report keeps each evidence type separate so the next production bridge
-  can be promoted only after the game-file semantics are proven.
+  This is a source-evidence probe. EffectSources consumes the promoted
+  talent/passive source and description evidence, but this report does not
+  infer selected player talents, source ownership, or formula contribution.
+  Text mentions, skill-pair records, and shared names remain separate evidence.
 `
     );
     process.exit(0);
@@ -56,10 +57,16 @@ Notes:
   const lookups = buildLookups(generated);
   const skillIds = new Set([...lookups.skillsById.keys()].map(Number));
   const buffIds = new Set([...lookups.buffsById.keys()].map(Number));
+  const buffDescriptionRefs = collectBuffDescriptionRefs(containerDir, metaEntries, localizationTables, {
+    buildLocaleTextObject,
+    readCtbTableByHash,
+    readU32
+  });
 
   const talentRows = collectTalentRows(containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    buffDescriptionRefs,
     readCtbString,
     readCtbTableByHash,
     readU32,
@@ -80,16 +87,18 @@ Notes:
     recountEvidenceIndex,
     seasonTalentNodes,
     seasonRogueEntries,
-    seasonPhantomFactors
+    seasonPhantomFactors,
+    buffDescriptionRefs
   );
   const report = {
     summary,
     notes: [
-      "Status: probe-only. No fields from this report are consumed by runtime display code.",
+      "Status: source-evidence probe. EffectSources consumes promoted talent/passive source and description evidence from this report.",
       "CTB:3345237628 rows are reported as talent/passive/spec source rows.",
       "Seasonal Slumbering Dream Psychoscope node rows are included from SeasonTalentNodeProbe.json as a separate talent-like source family.",
       "Seasonal rogue-like entry buffs are included from SeasonRogueEntryProbe.json as a separate dungeon-entry source family.",
       "Seasonal Deep-Slumber Psychoscope Phantom Factors are included from SeasonPhantomFactorProbe.json as a separate factor source family.",
+      "CTB:4192598123 maps runtime buff ids to localized description ids for talent rows whose direct description id is empty.",
       "Description linktext entries are exact game-localized text references, but linktext ids are not treated as SkillTable ids.",
       "Opcode 3 field+36 records are reported as buff/effect records.",
       "Opcode 6 field+36 records are reported as ordered SkillTable id pairs, not ownership and not source attribution.",
@@ -105,6 +114,7 @@ Notes:
 
   console.log(`Talent/passive CTB rows: ${summary.talentPassiveRows}`);
   console.log(`Rows with descriptions: ${summary.talentRowsWithDescriptions}`);
+  console.log(`Buff description refs: ${summary.buffDescriptionReferenceRows}`);
   console.log(`Description linktext refs: ${summary.descriptionLinkTextRefs}`);
   console.log(`Opcode 3 buff records: ${summary.opcode3BuffRecords}`);
   console.log(`Opcode 6 skill pair records: ${summary.opcode6SkillPairRecords}`);
@@ -160,6 +170,7 @@ function collectTalentRows(containerDir, metaEntries, localizationTables, helper
   const {
     buildLocaleTextObject,
     choosePreferredLocaleText,
+    buffDescriptionRefs,
     readCtbString,
     readCtbTableByHash,
     readU32,
@@ -190,11 +201,11 @@ function collectTalentRows(containerDir, metaEntries, localizationTables, helper
       includeDesign: false
     });
     const name = choosePreferredLocaleText(names);
-    const descriptions = buildLocaleTextObject(
+    const directDescriptions = buildLocaleTextObject(
       collectLocalizedTextEntries(descriptionId, localizationTables),
       { includeDesign: false }
     );
-    const description = choosePreferredLocaleText(descriptions);
+    const directCleanDescriptions = cleanDescriptionsByLocale(directDescriptions);
     const designName = readCtbString(table, STRING_POOL, designOffset, { allowZero: false });
     const iconPath = readCtbString(table, STRING_POOL, iconOffset, { allowZero: false });
     if (!id || !name) {
@@ -208,6 +219,19 @@ function collectTalentRows(containerDir, metaEntries, localizationTables, helper
     });
     const skillPairRecords = effectRecords.filter((record) => record.kind === "opcode-6-skill-pair");
     const buffEffectRecords = effectRecords.filter((record) => record.kind === "opcode-3-buff-record");
+    const descriptionReferenceRecords = collectBuffDescriptionReferenceRecords(
+      buffEffectRecords,
+      buffDescriptionRefs
+    );
+    const selectedDescription = chooseTalentDescriptionSource({
+      directDescriptionId: descriptionId,
+      directDescriptions,
+      directCleanDescriptions,
+      descriptionReferenceRecords
+    });
+    const descriptions = selectedDescription.descriptions;
+    const cleanDescriptions = selectedDescription.cleanDescriptions;
+    const description = choosePreferredLocaleText(descriptions);
     const descriptionLinkTexts = collectDescriptionLinkTexts(descriptions);
 
     rows.push(stripEmpty({
@@ -217,11 +241,15 @@ function collectTalentRows(containerDir, metaEntries, localizationTables, helper
       name,
       names,
       nameId,
-      descriptionId,
+      directDescriptionId: descriptionId,
+      descriptionId: selectedDescription.descriptionId,
+      descriptionSourceTable: selectedDescription.sourceTable,
+      descriptionSourceBuffId: selectedDescription.buffId,
       description,
       descriptions,
-      cleanDescriptions: cleanDescriptionsByLocale(descriptions),
+      cleanDescriptions,
       descriptionLinkTexts,
+      descriptionReferenceRecords,
       designName,
       iconPath,
       iconPathOffset: iconOffset,
@@ -252,6 +280,119 @@ function collectLocalizedTextEntries(textId, localizationTables) {
     }
   }
   return entries;
+}
+
+function collectBuffDescriptionRefs(containerDir, metaEntries, localizationTables, helpers) {
+  const { buildLocaleTextObject, readCtbTableByHash, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTableByHash(
+      containerDir,
+      metaEntries,
+      BUFF_DESCRIPTION_REFERENCE_TABLE_HASH,
+      `CTB:${BUFF_DESCRIPTION_REFERENCE_TABLE_HASH}`
+    );
+  } catch {
+    return new Map();
+  }
+
+  const byBuffId = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const buffId = readU32(table.data, rowOffset);
+    const descriptionId = readU32(table.data, rowOffset + 4);
+    if (!buffId || !descriptionId) {
+      continue;
+    }
+    const descriptions = buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables),
+      { includeDesign: false }
+    );
+    const cleanDescriptions = cleanDescriptionsByLocale(descriptions);
+    if (!hasLocaleText(descriptions) && !hasLocaleText(cleanDescriptions)) {
+      continue;
+    }
+    const record = stripEmpty({
+      sourceTable: `CTB:${BUFF_DESCRIPTION_REFERENCE_TABLE_HASH}`,
+      sourceOffset: table.entry.offset + rowOffset,
+      buffId,
+      descriptionId,
+      descriptions,
+      cleanDescriptions,
+      descriptionLinkTexts: collectDescriptionLinkTexts(descriptions)
+    });
+    const rows = byBuffId.get(buffId) || [];
+    rows.push(record);
+    byBuffId.set(buffId, rows);
+  }
+
+  for (const rows of byBuffId.values()) {
+    rows.sort((left, right) =>
+      Number(left.descriptionId) - Number(right.descriptionId) ||
+      Number(left.sourceOffset) - Number(right.sourceOffset)
+    );
+  }
+  return byBuffId;
+}
+
+function collectBuffDescriptionReferenceRecords(buffEffectRecords, buffDescriptionRefs) {
+  const records = [];
+  const seen = new Set();
+  for (const effectRecord of buffEffectRecords || []) {
+    const buffId = Number(effectRecord?.buffId);
+    if (!Number.isFinite(buffId) || !buffId) {
+      continue;
+    }
+    for (const ref of buffDescriptionRefs?.get(buffId) || []) {
+      const key = `${buffId}:${ref.descriptionId}`;
+      if (seen.has(key)) {
+        continue;
+      }
+      seen.add(key);
+      records.push(stripEmpty({
+        ...ref,
+        effectRecordOffset: effectRecord.recordOffset,
+        effectRecordValue: effectRecord.value
+      }));
+    }
+  }
+  return records;
+}
+
+function chooseTalentDescriptionSource({
+  directDescriptionId,
+  directDescriptions,
+  directCleanDescriptions,
+  descriptionReferenceRecords
+}) {
+  if (hasLocaleText(directDescriptions) || hasLocaleText(directCleanDescriptions)) {
+    return {
+      descriptionId: directDescriptionId,
+      sourceTable: `CTB:${TALENT_PASSIVE_TABLE_HASH}`,
+      descriptions: directDescriptions,
+      cleanDescriptions: directCleanDescriptions
+    };
+  }
+
+  const record = (descriptionReferenceRecords || []).find((candidate) =>
+    hasLocaleText(candidate.descriptions) || hasLocaleText(candidate.cleanDescriptions)
+  );
+  if (record) {
+    return {
+      descriptionId: record.descriptionId,
+      sourceTable: record.sourceTable,
+      buffId: record.buffId,
+      descriptions: record.descriptions,
+      cleanDescriptions: record.cleanDescriptions
+    };
+  }
+
+  return {
+    descriptionId: directDescriptionId,
+    sourceTable: `CTB:${TALENT_PASSIVE_TABLE_HASH}`,
+    descriptions: directDescriptions,
+    cleanDescriptions: directCleanDescriptions
+  };
 }
 
 function collectDescriptionLinkTexts(descriptions) {
@@ -841,11 +982,25 @@ function seasonPhantomFactorGradeSummary(row) {
   });
 }
 
-function buildSummary(talentRows, skillEvidenceIndex, recountEvidenceIndex, seasonTalentNodes, seasonRogueEntries, seasonPhantomFactors) {
+function buildSummary(
+  talentRows,
+  skillEvidenceIndex,
+  recountEvidenceIndex,
+  seasonTalentNodes,
+  seasonRogueEntries,
+  seasonPhantomFactors,
+  buffDescriptionRefs
+) {
   const skillRowsWithAnyTalentEvidence = (skillEvidenceIndex || []).filter(hasAnyTalentEvidence).length;
+  const buffDescriptionReferenceRows = sum([...buffDescriptionRefs.values()].map((rows) => rows.length));
   return {
     talentPassiveRows: talentRows.length,
     talentRowsWithDescriptions: talentRows.filter((row) => row.description).length,
+    talentRowsWithBuffDescriptionReferences: talentRows.filter((row) => row.descriptionReferenceRecords?.length).length,
+    talentRowsUsingBuffDescriptionReference: talentRows.filter((row) =>
+      row.descriptionSourceTable === `CTB:${BUFF_DESCRIPTION_REFERENCE_TABLE_HASH}`
+    ).length,
+    buffDescriptionReferenceRows,
     descriptionLinkTextRefs: sum(talentRows.map((row) => row.descriptionLinkTexts?.length || 0)),
     opcode3BuffRecords: sum(talentRows.map((row) => row.buffEffectRecords?.length || 0)),
     opcode6SkillPairRecords: sum(talentRows.map((row) => row.skillPairRecords?.length || 0)),
@@ -869,7 +1024,7 @@ function buildSummary(talentRows, skillEvidenceIndex, recountEvidenceIndex, seas
     seasonPhantomFactorRowsWithDescriptions: seasonPhantomFactors?.summary?.rowsWithResolvedDescription || 0,
     seasonPhantomFactorRowsWithClassGate: seasonPhantomFactors?.summary?.rowsWithClassGate || 0,
     seasonPhantomFactorClassGateIds: seasonPhantomFactors?.summary?.classGateIds || [],
-    strictRuntimeStatus: "probe-only"
+    strictRuntimeStatus: "source-evidence-probe"
   };
 }
 
@@ -1079,6 +1234,10 @@ function preferredLocaleText(values) {
     }
   }
   return Object.values(values || {}).find(Boolean) || "";
+}
+
+function hasLocaleText(values) {
+  return Object.values(values || {}).some((value) => String(value || "").trim());
 }
 
 function objectValues(value) {

@@ -23,6 +23,19 @@ function buildDefaultPaths(outputDir) {
 }
 
 const LOCALES = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+const UNMAPPED_BUFF_LABELS = Object.freeze({
+  en: "Unmapped Buff",
+  "zh-CN": "\u672a\u6620\u5c04\u589e\u76ca",
+  "zh-TW": "\u672a\u5c0d\u61c9\u589e\u76ca",
+  ja: "\u672a\u30de\u30c3\u30d4\u30f3\u30b0\u30d0\u30d5",
+  "ko-KR": "\ub9e4\ud551\ub418\uc9c0 \uc54a\uc740 \ubc84\ud504",
+  fr: "Buff non mapp\u00e9",
+  de: "Nicht zugeordneter Buff",
+  es: "Mejora sin asignar",
+  "pt-BR": "B\u00f4nus n\u00e3o mapeado",
+  th: "\u0e1a\u0e31\u0e1f\u0e17\u0e35\u0e48\u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e41\u0e21\u0e1b",
+  id: "Buff belum dipetakan",
+});
 const DREAM_MARKERS = [
   /Dream(?:scape)? DMG/gi,
   /\u68a6\u5883\u4f24\u5bb3/g,
@@ -251,6 +264,10 @@ function mergeNameMaps(target, incoming) {
     if (text && !merged[locale]) merged[locale] = text;
   }
   return Object.keys(merged).length ? merged : undefined;
+}
+
+function mergeDescriptionMaps(target, incoming) {
+  return mergeNameMaps(target, incoming);
 }
 
 function normalizeActivationText(value) {
@@ -639,10 +656,14 @@ class EffectSourceBuilder {
     existing.effectComponents = mergeEffectComponents(existing.effectComponents, source.effectComponents ?? []);
     existing.modifierEvidence = existing.modifierEvidence ?? source.modifierEvidence;
     existing.sourceNames = mergeNameMaps(existing.sourceNames, source.sourceNames);
+    existing.descriptions = mergeDescriptionMaps(existing.descriptions, source.descriptions);
+    existing.cleanDescriptions = mergeDescriptionMaps(existing.cleanDescriptions, source.cleanDescriptions);
     if ((!existing.sourceName || /^Buff \d+$/i.test(existing.sourceName)) && source.sourceName) {
       existing.sourceName = source.sourceName;
     }
     existing.iconPath ||= source.iconPath;
+    existing.sourceTable ||= source.sourceTable;
+    existing.runtimeDetection ||= source.runtimeDetection;
 
     this.effectSourcesById[sourceId] = stripUndefined(existing);
 
@@ -876,19 +897,28 @@ function applyUnmappedBuffPlaceholder(builder, sourceId, source) {
   const buffId = toNumber(source.sourceEntityId) ?? toNumber(source.buffIds?.[0]);
   if (buffId === null) return false;
   source.sourceNames = {
+    ...localizedUnmappedBuffNames(buffId),
     ...(source.sourceNames ?? {}),
-    en: `Unmapped Buff ${buffId}`,
   };
-  source.sourceName = source.sourceNames.en;
+  source.sourceName = preferredName(source.sourceNames, `Unmapped Buff ${buffId}`);
   source.evidence = mergeEvidence(source.evidence, [{
     source: "EffectSources.gen",
     relationshipKind: "design-only-buff-source-unmapped-placeholder",
     evidenceStatus: "no-localized-sibling-or-unique-recount-row",
     buffSourceId: buffId,
     designName: source.sourceNames?.design,
+    placeholderLocales: LOCALES,
   }]);
   builder.effectSourcesById[sourceId] = stripUndefined(source);
   return true;
+}
+
+function localizedUnmappedBuffNames(buffId) {
+  const out = {};
+  for (const localeId of LOCALES) {
+    out[localeId] = `${UNMAPPED_BUFF_LABELS[localeId] ?? UNMAPPED_BUFF_LABELS.en} ${buffId}`;
+  }
+  return out;
 }
 
 function rebuildSourceIndexes(builder) {
@@ -1417,7 +1447,9 @@ function addTalentProbeCatalog(builder, talentProbe) {
       descriptions: row.descriptions,
       cleanDescriptions: row.cleanDescriptions,
       modifierEvidence: buildDescriptionModifierEvidence({
-        source: "TalentEffectModelProbe.talentRows",
+        source: row.descriptionSourceTable && row.descriptionSourceTable !== row.sourceTable
+          ? "TalentEffectModelProbe.talentRows.buffDescriptionReference"
+          : "TalentEffectModelProbe.talentRows",
         valueStatus: "fixed-description-text",
         descriptionId: row.descriptionId,
         cleanDescriptions: row.cleanDescriptions,
@@ -1426,6 +1458,14 @@ function addTalentProbeCatalog(builder, talentProbe) {
         source: "TalentEffectModelProbe.talentRows",
         sourceOffset: row.sourceOffset,
         descriptionId: row.descriptionId,
+        descriptionSourceTable: row.descriptionSourceTable,
+        descriptionSourceBuffId: row.descriptionSourceBuffId,
+        descriptionReferenceRecords: (row.descriptionReferenceRecords ?? []).map((record) => stripUndefined({
+          sourceTable: record.sourceTable,
+          sourceOffset: record.sourceOffset,
+          buffId: record.buffId,
+          descriptionId: record.descriptionId,
+        })),
       }],
     });
   }
