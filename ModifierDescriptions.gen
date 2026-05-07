@@ -1,0 +1,385 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const {
+  prepareRecountEntry,
+  sourceRuleIdForRecountEntry,
+} = require("./modifier-table-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    sourceIndexPath: "",
+    effectSourcesPath: "",
+    recountPath: "",
+    skillCooldownsPath: "",
+    outPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--source-index" && next) {
+      args.sourceIndexPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--effect-sources" && next) {
+      args.effectSourcesPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--recount" && next) {
+      args.recountPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--skill-cooldowns" && next) {
+      args.skillCooldownsPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.sourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.effectSourcesPath ||= path.join(args.outputDir, "EffectSources.json");
+  args.recountPath ||= path.join(args.outputDir, "RecountTable.json");
+  args.skillCooldownsPath ||= path.join(args.outputDir, "SkillCooldowns.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierDescriptions.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierDescriptions.gen - export lazy modifier display descriptions.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>              Output JSON file path.");
+  console.log("  --output-dir <path>       Output directory override.");
+  console.log("  --dry-run                 Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --source-index <path>     ModifierSourceIndex.json input.");
+  console.log("  --effect-sources <path>   EffectSources.json input for owner-skill descriptions.");
+  console.log("  --recount <path>          RecountTable.json input for owner-skill bridges.");
+  console.log("  --skill-cooldowns <path>  SkillCooldowns.json input for owner-skill descriptions.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function cleanText(value) {
+  const text = String(value || "").trim();
+  return text || undefined;
+}
+
+function cleanDescriptions(map) {
+  if (!map || typeof map !== "object") return undefined;
+  const out = {};
+  for (const [locale, value] of Object.entries(map)) {
+    const text = cleanText(value);
+    if (text) out[locale] = text;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function jsonRows(data) {
+  if (Array.isArray(data)) return data;
+  if (!data || typeof data !== "object") return [];
+  if (Array.isArray(data.rows)) return data.rows;
+  return Object.values(data).filter((value) => value && typeof value === "object" && !Array.isArray(value));
+}
+
+function localizedCandidates(map, fallback) {
+  return [
+    map?.en,
+    map?.["zh-CN"],
+    map?.design,
+    fallback,
+    ...Object.values(map ?? {}),
+  ]
+    .map((value) => String(value || "").trim())
+    .filter(Boolean);
+}
+
+function normalizeName(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function finitePositiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function descriptionEntryFromSkillCooldown(skill) {
+  if (!skill || typeof skill !== "object") return undefined;
+  const descriptions = cleanDescriptions(skill.descriptions ?? skill.Descriptions);
+  const description = cleanText(skill.description ?? skill.Description)
+    || descriptions?.en
+    || descriptions?.["zh-CN"]
+    || Object.values(descriptions ?? {}).find((value) => cleanText(value));
+  if (!description && !descriptions) return undefined;
+  return stripUndefined({ description, descriptions });
+}
+
+function buildSkillDescriptionIndex(skillCooldowns) {
+  const bySkillId = new Map();
+  const skillRows = skillCooldowns?.skillCooldownsBySkillId && typeof skillCooldowns.skillCooldownsBySkillId === "object"
+    ? Object.values(skillCooldowns.skillCooldownsBySkillId)
+    : jsonRows(skillCooldowns);
+
+  for (const skill of skillRows) {
+    const skillId = finitePositiveNumber(skill.skillId ?? skill.SkillId ?? skill.id ?? skill.Id);
+    if (skillId === null || bySkillId.has(skillId)) continue;
+    const description = descriptionEntryFromSkillCooldown(skill);
+    if (description) bySkillId.set(skillId, description);
+  }
+
+  return bySkillId;
+}
+
+function buildRecountDescriptionIndex(recountTable, skillDescriptionsById) {
+  const byRecountId = new Map();
+  const byName = new Map();
+
+  for (const row of jsonRows(recountTable)) {
+    const recountId = finitePositiveNumber(row.Id ?? row.id);
+    const skillId = finitePositiveNumber(
+      row.LinkedBaseSkillId
+        ?? row.linkedBaseSkillId
+        ?? row.SkillId
+        ?? row.skillId,
+    );
+    if (skillId === null) continue;
+    const description = skillDescriptionsById.get(skillId);
+    if (!description) continue;
+
+    if (recountId !== null && !byRecountId.has(recountId)) byRecountId.set(recountId, description);
+    for (const name of localizedCandidates(row.Names ?? row.names, row.Name ?? row.name ?? row.RecountName ?? row.recountName)) {
+      const key = normalizeName(name);
+      if (key && !byName.has(key)) byName.set(key, description);
+    }
+    for (const name of localizedCandidates(row.LinkedBaseSkillNames ?? row.linkedBaseSkillNames, row.LinkedBaseSkillName ?? row.linkedBaseSkillName)) {
+      const key = normalizeName(name);
+      if (key && !byName.has(key)) byName.set(key, description);
+    }
+  }
+
+  return { byRecountId, byName };
+}
+
+function ownerNamePrefixes(entry) {
+  const prefixes = new Set();
+  const names = {
+    ...(entry.sourceNames ?? {}),
+    ...(entry.sourceName ? { en: entry.sourceName } : {}),
+  };
+
+  for (const value of Object.values(names)) {
+    const text = cleanText(value);
+    if (!text) continue;
+    const separatorIndex = text.indexOf(" - ");
+    if (separatorIndex <= 0) continue;
+    prefixes.add(text.slice(0, separatorIndex).trim());
+  }
+
+  return [...prefixes].filter(Boolean);
+}
+
+function descriptionFromRecount(entry, recountDescriptions) {
+  for (const recountId of entry.targetRecountIds ?? []) {
+    const id = finitePositiveNumber(recountId);
+    const description = id !== null ? recountDescriptions.byRecountId.get(id) : undefined;
+    if (description) return description;
+  }
+
+  if (entry.sourceKind !== "imagine") return undefined;
+  for (const prefix of ownerNamePrefixes(entry)) {
+    const description = recountDescriptions.byName.get(normalizeName(prefix));
+    if (description) return description;
+  }
+
+  return undefined;
+}
+
+function baseSourceId(sourceId) {
+  return String(sourceId || "").split("|")[0];
+}
+
+function descriptionFromEffectSourceOwner(entry, effectSourcesById, skillDescriptionsById) {
+  const source = effectSourcesById[baseSourceId(entry.sourceId)];
+  if (!source) return undefined;
+  for (const evidence of source.evidence ?? []) {
+    const ownerSourceId = finitePositiveNumber(evidence?.ownerSourceId ?? evidence?.ownerSkillId);
+    if (ownerSourceId === null) continue;
+    const description = skillDescriptionsById.get(ownerSourceId);
+    if (description) return description;
+  }
+  return undefined;
+}
+
+function descriptionFromEffectSourceEvidence(entry, effectSourcesById, recountDescriptions, skillDescriptionsById) {
+  const source = effectSourcesById[baseSourceId(entry.sourceId)];
+  if (!source) return undefined;
+  for (const evidence of source.evidence ?? []) {
+    const recountId = finitePositiveNumber(evidence?.recountId);
+    const recountDescription = recountId !== null
+      ? recountDescriptions.byRecountId.get(recountId)
+      : undefined;
+    if (recountDescription) return recountDescription;
+
+    const ownerSourceId = finitePositiveNumber(evidence?.ownerSourceId ?? evidence?.ownerSkillId);
+    const ownerDescription = ownerSourceId !== null
+      ? skillDescriptionsById.get(ownerSourceId)
+      : undefined;
+    if (ownerDescription) return ownerDescription;
+
+    for (const skillIdValue of evidence?.triggerBaseSkillIds ?? []) {
+      const skillId = finitePositiveNumber(skillIdValue);
+      const skillDescription = skillId !== null
+        ? skillDescriptionsById.get(skillId)
+        : undefined;
+      if (skillDescription) return skillDescription;
+    }
+  }
+  return undefined;
+}
+
+function stripUndefined(value) {
+  if (Array.isArray(value)) return value.map(stripUndefined);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const [key, inner] of Object.entries(value)) {
+    if (inner === undefined) continue;
+    if (Array.isArray(inner) && inner.length === 0) continue;
+    if (inner && typeof inner === "object" && !Array.isArray(inner)) {
+      const stripped = stripUndefined(inner);
+      if (Object.keys(stripped).length === 0) continue;
+      out[key] = stripped;
+      continue;
+    }
+    out[key] = inner;
+  }
+  return out;
+}
+
+function buildDescriptions(sourceIndex, recountDescriptions, effectSourcesById, skillDescriptionsById) {
+  const sourcesByRuleId = {};
+  const sourceRuleIdsBySourceId = {};
+  let scannedEntries = 0;
+  let sourcesWithDirectDescriptions = 0;
+  let sourcesWithRecountDescriptions = 0;
+  let sourcesWithEffectOwnerDescriptions = 0;
+  let sourcesWithEffectEvidenceDescriptions = 0;
+
+  for (const entries of Object.values(sourceIndex.byBuffId ?? {})) {
+    for (const entry of entries ?? []) {
+      scannedEntries += 1;
+      const sourceId = String(entry.sourceId || "").trim();
+      if (!sourceId) continue;
+      const { entry: recountEntry } = prepareRecountEntry(entry);
+      const sourceRuleId = sourceRuleIdForRecountEntry(recountEntry);
+      if (sourcesByRuleId[sourceRuleId]) {
+        sourceRuleIdsBySourceId[sourceId] ||= [];
+        if (!sourceRuleIdsBySourceId[sourceId].includes(sourceRuleId)) {
+          sourceRuleIdsBySourceId[sourceId].push(sourceRuleId);
+        }
+        continue;
+      }
+
+      const descriptions = cleanDescriptions(entry.descriptions);
+      const description = cleanText(entry.description)
+        || descriptions?.en
+        || descriptions?.["zh-CN"]
+        || Object.values(descriptions ?? {}).find((value) => cleanText(value));
+      const sourceDescription = description || descriptions
+        ? stripUndefined({ description, descriptions })
+        : descriptionFromRecount(entry, recountDescriptions);
+      const effectOwnerDescription = sourceDescription
+        ? undefined
+        : descriptionFromEffectSourceOwner(entry, effectSourcesById, skillDescriptionsById);
+      const effectEvidenceDescription = sourceDescription || effectOwnerDescription
+        ? undefined
+        : descriptionFromEffectSourceEvidence(entry, effectSourcesById, recountDescriptions, skillDescriptionsById);
+      const resolvedDescription = sourceDescription ?? effectOwnerDescription ?? effectEvidenceDescription;
+      if (!resolvedDescription) continue;
+      if (description || descriptions) {
+        sourcesWithDirectDescriptions += 1;
+      } else if (sourceDescription) {
+        sourcesWithRecountDescriptions += 1;
+      } else if (effectOwnerDescription) {
+        sourcesWithEffectOwnerDescriptions += 1;
+      } else {
+        sourcesWithEffectEvidenceDescriptions += 1;
+      }
+
+      sourcesByRuleId[sourceRuleId] = resolvedDescription;
+      sourceRuleIdsBySourceId[sourceId] ||= [];
+      if (!sourceRuleIdsBySourceId[sourceId].includes(sourceRuleId)) {
+        sourceRuleIdsBySourceId[sourceId].push(sourceRuleId);
+      }
+    }
+  }
+
+  for (const key of Object.keys(sourceRuleIdsBySourceId)) {
+    sourceRuleIdsBySourceId[key].sort((left, right) => left.localeCompare(right));
+  }
+
+  return {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    sourcesByRuleId,
+    sourceRuleIdsBySourceId,
+    stats: {
+      scannedEntries,
+      sourcesWithDescriptions: Object.keys(sourcesByRuleId).length,
+      sourceIdsWithDescriptions: Object.keys(sourceRuleIdsBySourceId).length,
+      sourcesWithDirectDescriptions,
+      sourcesWithRecountDescriptions,
+      sourcesWithEffectOwnerDescriptions,
+      sourcesWithEffectEvidenceDescriptions,
+    },
+  };
+}
+
+const args = parseArgs(process.argv.slice(2));
+if (args.help) {
+  printHelp();
+  process.exit(0);
+}
+
+const sourceIndex = readJson(args.sourceIndexPath);
+const effectSources = readJson(args.effectSourcesPath);
+const recountTable = readJson(args.recountPath);
+const skillCooldowns = readJson(args.skillCooldownsPath);
+const skillDescriptionsById = buildSkillDescriptionIndex(skillCooldowns);
+const output = buildDescriptions(
+  sourceIndex,
+  buildRecountDescriptionIndex(recountTable, skillDescriptionsById),
+  effectSources.effectSourcesById ?? {},
+  skillDescriptionsById,
+);
+if (args.dryRun) {
+  console.log(`Dry run: modifier descriptions sources ${output.stats.sourcesWithDescriptions.toLocaleString()}`);
+  console.log(`Dry run: would write ${args.outPath}`);
+} else {
+  writeJson(args.outPath, output);
+  console.log(`Modifier descriptions sources: ${output.stats.sourcesWithDescriptions.toLocaleString()}`);
+  console.log(`Wrote ${args.outPath}`);
+}

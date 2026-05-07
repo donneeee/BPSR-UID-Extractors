@@ -1,0 +1,623 @@
+#!/usr/bin/env node
+const crypto = require("node:crypto");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    sourceIndexPath: "",
+    buffNamePath: "",
+    recountTablePath: "",
+    outPath: "",
+    relationshipOutPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--source-index" && next) {
+      args.sourceIndexPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--buff-name" && next) {
+      args.buffNamePath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--recount-table" && next) {
+      args.recountTablePath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--relationship-out" && next) {
+      args.relationshipOutPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.sourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.buffNamePath ||= path.join(args.outputDir, "BuffName.json");
+  args.recountTablePath ||= path.join(args.outputDir, "RecountTable.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierRecountTable.json");
+  args.relationshipOutPath ||= path.join(args.outputDir, "ModifierRelationshipTable.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierRecountTable.gen - compile modifier report source rules into a compact recount table.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>              Output JSON file path.");
+  console.log("  --output-dir <path>       Output directory override.");
+  console.log("  --dry-run                 Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --source-index <path>     ModifierSourceIndex.json input.");
+  console.log("  --buff-name <path>        BuffName.json input for sibling runtime aliases.");
+  console.log("  --recount-table <path>    RecountTable.json input for recount target expansion.");
+  console.log("  --relationship-out <path> ModifierRelationshipTable.json sidecar output.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function stableClone(value) {
+  if (Array.isArray(value)) return value.map(stableClone);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const key of Object.keys(value).sort()) {
+    const child = stableClone(value[key]);
+    if (child !== undefined) out[key] = child;
+  }
+  return out;
+}
+
+function hashEntry(entry) {
+  const stable = JSON.stringify(stableClone(entry));
+  return crypto.createHash("sha1").update(stable).digest("hex").slice(0, 12);
+}
+
+function toPositiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function sortedNumbers(values) {
+  return [...new Set(Array.from(values || []).map(toPositiveNumber).filter((value) => value !== null))]
+    .sort((left, right) => left - right);
+}
+
+function sortedStrings(values) {
+  return [...new Set(Array.from(values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function stripUndefined(value) {
+  if (Array.isArray(value)) return value.map(stripUndefined);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const [key, inner] of Object.entries(value)) {
+    if (inner === undefined || inner === null) continue;
+    if (Array.isArray(inner) && inner.length === 0) continue;
+    if (inner && typeof inner === "object" && !Array.isArray(inner)) {
+      const stripped = stripUndefined(inner);
+      if (Object.keys(stripped).length === 0) continue;
+      out[key] = stripped;
+      continue;
+    }
+    out[key] = inner;
+  }
+  return out;
+}
+
+function uidEdgeKey(edge) {
+  return [
+    edge.edgeKind,
+    edge.uidKind,
+    edge.uid,
+    edge.role,
+    edge.scope,
+    edge.source,
+    edge.status,
+    edge.relationshipKind,
+    edge.parentUidKind,
+    edge.parentUid,
+    edge.componentKey,
+    edge.componentClass,
+    edge.direction,
+    edge.contributionScope,
+    edge.valueScope,
+    ...(edge.formulaTermIds || []),
+    ...(edge.contributionGroups || []),
+    ...(edge.predicateTags || []),
+  ].map((value) => String(value ?? "")).join("|");
+}
+
+function normalizeUidEdge(edge) {
+  if (!edge || typeof edge !== "object") return null;
+  const uid = edge.uid;
+  if (uid === undefined || uid === null || uid === "") return null;
+  const normalized = stripUndefined({
+    edgeKind: edge.edgeKind,
+    uidKind: edge.uidKind,
+    uid,
+    role: edge.role,
+    scope: edge.scope,
+    source: edge.source,
+    status: edge.status,
+    relationshipKind: edge.relationshipKind,
+    parentUidKind: edge.parentUidKind,
+    parentUid: edge.parentUid,
+    componentKey: edge.componentKey,
+    componentClass: edge.componentClass,
+    direction: edge.direction,
+    contributionScope: edge.contributionScope,
+    valueScope: edge.valueScope,
+    formulaTermIds: sortedStrings(edge.formulaTermIds),
+    contributionGroups: sortedStrings(edge.contributionGroups),
+    predicateTags: sortedStrings(edge.predicateTags),
+  });
+  return normalized.edgeKind && normalized.uidKind ? normalized : null;
+}
+
+function finalizeUidEdges(edges) {
+  const byKey = new Map();
+  for (const edge of edges || []) {
+    const normalized = normalizeUidEdge(edge);
+    if (normalized) byKey.set(uidEdgeKey(normalized), normalized);
+  }
+  return [...byKey.values()].sort((left, right) => uidEdgeKey(left).localeCompare(uidEdgeKey(right)));
+}
+
+function targetUidEdges(entry, originalEdges) {
+  const edges = [...(originalEdges || [])];
+  for (const damageId of sortedNumbers(entry.targetDamageIds)) {
+    edges.push({
+      edgeKind: "target-damage-row",
+      uidKind: "damage",
+      uid: damageId,
+      role: "target",
+      source: "ModifierRecountTable.targetDamageIds",
+    });
+  }
+  for (const recountId of sortedNumbers(entry.targetRecountIds)) {
+    edges.push({
+      edgeKind: "target-recount-row",
+      uidKind: "recount",
+      uid: recountId,
+      role: "target",
+      source: "ModifierRecountTable.targetRecountIds",
+    });
+  }
+  return finalizeUidEdges(edges);
+}
+
+function localizedEntryNames(entry) {
+  return [
+    entry.sourceName,
+    ...Object.values(entry.sourceNames || {}),
+  ].map((value) => String(value || "").trim()).filter(Boolean);
+}
+
+function isOwnerQualifiedSource(entry) {
+  return localizedEntryNames(entry).some((value) => /\s+-\s+|!|！/.test(value));
+}
+
+function displayOwnerKind(entry) {
+  if (entry.sourceKind === "imagine" && !isOwnerQualifiedSource(entry)) return "battle-imagine";
+  return undefined;
+}
+
+function providerAggregation(entry) {
+  if (entry.sourceKind === "observed-buff") return "source-uid";
+  return "actor-kind";
+}
+
+function recountDamageIdsByRecountId(recountTable) {
+  const out = new Map();
+  for (const row of Object.values(recountTable || {})) {
+    const recountId = toPositiveNumber(row?.Id ?? row?.id);
+    if (recountId === null) continue;
+    const damageIds = sortedNumbers(row?.DamageId ?? row?.damageIds ?? row?.damageId);
+    if (damageIds.length > 0) out.set(recountId, damageIds);
+  }
+  return out;
+}
+
+function expandTargetDamageIds(entry, recountDamageIdsById) {
+  const damageIds = new Set(sortedNumbers(entry.targetDamageIds));
+  for (const recountId of sortedNumbers(entry.targetRecountIds)) {
+    for (const damageId of recountDamageIdsById.get(recountId) || []) {
+      damageIds.add(damageId);
+    }
+  }
+  return sortedNumbers(damageIds);
+}
+
+function compactEntry(entry, recountDamageIdsById) {
+  const out = {};
+  for (const key of [
+    "sourceId",
+    "sourceKind",
+    "sourceType",
+    "sourceEntityId",
+    "runtimeDetection",
+    "buffIds",
+    "evidence",
+    "reportPolicy",
+    "sourceIndexReportPolicy",
+    "runtimeReportReason",
+    "rowPolicy",
+    "contributionStatus",
+    "contributionGroups",
+    "predicateTags",
+    "relationshipKinds",
+    "componentClasses",
+    "attributionModel",
+    "talentOwnership",
+    "uidEdges",
+    "targetDamageIds",
+    "targetRecountIds",
+    "providerAggregation",
+  ]) {
+    if (entry[key] !== undefined) out[key] = entry[key];
+  }
+  out.providerAggregation ||= providerAggregation(out);
+  out.buffIds = sortedNumbers(out.buffIds);
+  out.targetDamageIds = expandTargetDamageIds(out, recountDamageIdsById);
+  out.targetRecountIds = sortedNumbers(out.targetRecountIds);
+  out.evidence = [...new Set(out.evidence || [])].sort();
+  out.uidEdges = targetUidEdges(out, out.uidEdges);
+  return out;
+}
+
+function hasStaticTargets(entry) {
+  return sortedNumbers(entry.targetDamageIds).length > 0 || sortedNumbers(entry.targetRecountIds).length > 0;
+}
+
+const NON_STATIC_RUNTIME_SOURCE_KINDS = new Set([
+  "active-skill",
+  "buff-proc",
+  "consumable",
+  "imagine",
+  "lucky-strike",
+  "runtime-buff",
+  "set-effect",
+  "skill-proc",
+]);
+
+const BROAD_EVIDENCE_SOURCE_KINDS = new Set([
+  "phantom-factor",
+  "season-rogue-entry",
+  "season-talent-node",
+  "talent-passive",
+  "talent-skill",
+]);
+
+const RUNTIME_WINDOW_ROW_POLICIES = new Set([
+  "formula",
+  "timing",
+  "uptime",
+]);
+
+const RUNTIME_WINDOW_GROUPS = new Set([
+  "baseAttack",
+  "critical",
+  "elemental",
+  "genericDamage",
+  "hitTiming",
+  "targetMitigation",
+  "versatility",
+]);
+
+const RUNTIME_WINDOW_SOURCE_KINDS = new Set([
+  "active-skill",
+  "consumable",
+  "imagine",
+  "phantom-factor",
+  "runtime-buff",
+  "season-rogue-entry",
+  "season-talent-node",
+  "set-effect",
+  "talent-passive",
+  "talent-skill",
+]);
+
+function effectiveReportPolicy(entry) {
+  const sourcePolicy = entry.reportPolicy || "include";
+  const status = entry.contributionStatus || "unknown";
+  const sourceKind = entry.sourceKind || "effect-source";
+  const sourceType = entry.sourceType || "";
+  const rowPolicy = entry.rowPolicy || "unknown";
+  const componentClasses = new Set(entry.componentClasses || []);
+
+  if (sourcePolicy === "ignore") {
+    return { policy: "ignore", reason: "source-index-ignore" };
+  }
+
+  if (status === "defensive-or-non-damage" || rowPolicy === "defensive") {
+    return { policy: "ignore", reason: "defensive-or-non-damage" };
+  }
+
+  if (sourceType === "imagine-icd") {
+    return { policy: "ignore", reason: "internal-cooldown-marker" };
+  }
+
+  if (componentClasses.has("damage-reduction") || componentClasses.has("defense-stat")) {
+    return { policy: "ignore", reason: "defensive-component" };
+  }
+
+  if (sourcePolicy === "debug-only") {
+    return { policy: "debug-only", reason: "source-index-debug-only" };
+  }
+
+  if (hasStaticTargets(entry)) {
+    return { policy: "include", reason: "static-target-map" };
+  }
+
+  if (BROAD_EVIDENCE_SOURCE_KINDS.has(sourceKind)) {
+    return { policy: "debug-only", reason: "broad-source-needs-static-map" };
+  }
+
+  if (NON_STATIC_RUNTIME_SOURCE_KINDS.has(sourceKind)) {
+    return { policy: "include", reason: "direct-runtime-source" };
+  }
+
+  return { policy: "debug-only", reason: "unmapped-runtime-source" };
+}
+
+function entryContributionGroups(entry) {
+  return [
+    ...(entry.contributionGroups || []),
+    ...(entry.attributionModel?.contributionGroups || []),
+  ].filter(Boolean);
+}
+
+function isRuntimeWindowTransportEntry(entry) {
+  const rowPolicy = entry.rowPolicy || "unknown";
+  if (!RUNTIME_WINDOW_ROW_POLICIES.has(rowPolicy)) return false;
+  if (hasStaticTargets(entry)) return false;
+
+  const groups = entryContributionGroups(entry);
+  if (groups.some((group) => RUNTIME_WINDOW_GROUPS.has(group))) return true;
+
+  if (rowPolicy === "uptime") {
+    const sourceKind = entry.sourceKind || "";
+    const sourceType = String(entry.sourceType || "").toLowerCase();
+    return RUNTIME_WINDOW_SOURCE_KINDS.has(sourceKind)
+      || sourceType.includes("buff")
+      || sourceType.includes("debuff");
+  }
+
+  return false;
+}
+
+function localizedBuffName(row) {
+  return String(
+    row?.Names?.en
+      || row?.Names?.["zh-CN"]
+      || row?.Name
+      || "",
+  ).trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function buildSiblingBuffAliases(buffRows, byBuffId, sourcesById, reportableBuffIds, ignoredBuffIds) {
+  const groups = new Map();
+  for (const row of buffRows || []) {
+    const id = toPositiveNumber(row?.Id ?? row?.id);
+    const name = localizedBuffName(row);
+    if (id === null || !name) continue;
+    const family = Math.floor(id / 10);
+    const key = `${family}:${name}`;
+    const ids = groups.get(key) || [];
+    ids.push(id);
+    groups.set(key, ids);
+  }
+
+  let aliasBuffIds = 0;
+  let aliasRefs = 0;
+  for (const ids of groups.values()) {
+    const uniqueIds = sortedNumbers(ids);
+    if (uniqueIds.length < 2) continue;
+    const reportableSourceIdsByBuffId = new Map();
+    const sourceIds = new Set();
+    for (const id of uniqueIds) {
+      const currentSourceIds = [];
+      for (const sourceId of byBuffId[String(id)] || []) {
+        const entry = sourcesById[sourceId];
+        if (!entry) continue;
+        if (entry.reportPolicy === "include" || isRuntimeWindowTransportEntry(entry)) {
+          currentSourceIds.push(sourceId);
+          sourceIds.add(sourceId);
+        }
+      }
+      reportableSourceIdsByBuffId.set(id, currentSourceIds);
+    }
+    if (sourceIds.size === 0) continue;
+
+    const sortedSourceIds = [...sourceIds].sort();
+    for (const id of uniqueIds) {
+      if (ignoredBuffIds.has(id)) continue;
+      if ((reportableSourceIdsByBuffId.get(id) || []).length > 0) continue;
+      const key = String(id);
+      const existing = new Set(byBuffId[key] || []);
+      let added = 0;
+      for (const sourceId of sortedSourceIds) {
+        if (existing.has(sourceId)) continue;
+        existing.add(sourceId);
+        added += 1;
+      }
+      if (added === 0) continue;
+      byBuffId[key] = [...existing].sort();
+      reportableBuffIds.add(id);
+      aliasBuffIds += 1;
+      aliasRefs += added;
+    }
+  }
+
+  return { aliasBuffIds, aliasRefs };
+}
+
+function relationshipEdgeStats(relationshipsByRuleId) {
+  const uidEdgeKindCounts = {};
+  const uidEdgeRoleCounts = {};
+  let uidEdges = 0;
+  for (const source of Object.values(relationshipsByRuleId)) {
+    for (const edge of source.uidEdges || []) {
+      uidEdges += 1;
+      uidEdgeKindCounts[edge.edgeKind] = (uidEdgeKindCounts[edge.edgeKind] || 0) + 1;
+      uidEdgeRoleCounts[edge.role || "unknown"] = (uidEdgeRoleCounts[edge.role || "unknown"] || 0) + 1;
+    }
+  }
+  return {
+    sourceRules: Object.keys(relationshipsByRuleId).length,
+    uidEdges,
+    uidEdgeKindCounts,
+    uidEdgeRoleCounts,
+  };
+}
+
+function buildRecountTable(sourceIndex, buffRows, recountTable) {
+  const recountDamageIdsById = recountDamageIdsByRecountId(recountTable);
+  const sourcesById = {};
+  const relationshipsByRuleId = {};
+  const byBuffId = {};
+  const reportableBuffIds = new Set();
+  const debugBuffIds = new Set();
+  const ignoredBuffIds = new Set(sortedNumbers(sourceIndex.ignoredBuffIds));
+  const policyCounts = {};
+  const sourceIndexPolicyCounts = {};
+  const reportReasonCounts = {};
+  const rowPolicyCounts = {};
+
+  for (const [buffIdText, rawEntries] of Object.entries(sourceIndex.byBuffId || {})) {
+    const buffId = toPositiveNumber(buffIdText);
+    if (buffId === null) continue;
+    const entryIds = [];
+    for (const rawEntry of rawEntries || []) {
+      const hashTargetDamageIds = sortedNumbers(rawEntry?.targetDamageIds);
+      const entry = compactEntry(rawEntry || {}, recountDamageIdsById);
+      const sourceIndexPolicy = entry.reportPolicy || "include";
+      const effective = effectiveReportPolicy(entry);
+      entry.sourceIndexReportPolicy = sourceIndexPolicy;
+      entry.reportPolicy = effective.policy;
+      entry.runtimeReportReason = effective.reason;
+      const policy = entry.reportPolicy;
+      const rowPolicy = entry.rowPolicy || "unknown";
+      sourceIndexPolicyCounts[sourceIndexPolicy] = (sourceIndexPolicyCounts[sourceIndexPolicy] || 0) + 1;
+      policyCounts[policy] = (policyCounts[policy] || 0) + 1;
+      reportReasonCounts[effective.reason] = (reportReasonCounts[effective.reason] || 0) + 1;
+      rowPolicyCounts[rowPolicy] = (rowPolicyCounts[rowPolicy] || 0) + 1;
+      if (policy === "ignore") {
+        ignoredBuffIds.add(buffId);
+      } else if (policy === "debug-only") {
+        debugBuffIds.add(buffId);
+        if (isRuntimeWindowTransportEntry(entry)) {
+          reportableBuffIds.add(buffId);
+        }
+      } else {
+        reportableBuffIds.add(buffId);
+      }
+
+      const entryId = `mrs:${hashEntry({
+        ...entry,
+        targetDamageIds: hashTargetDamageIds,
+        uidEdges: undefined,
+      })}`;
+      if (!relationshipsByRuleId[entryId]) {
+        relationshipsByRuleId[entryId] = stripUndefined({
+          sourceId: entry.sourceId,
+          uidEdges: entry.uidEdges,
+        });
+      }
+      const recountEntry = { ...entry };
+      delete recountEntry.uidEdges;
+      sourcesById[entryId] ||= recountEntry;
+      entryIds.push(entryId);
+    }
+    if (entryIds.length > 0) byBuffId[String(buffId)] = [...new Set(entryIds)].sort();
+  }
+  const aliasStats = buildSiblingBuffAliases(buffRows, byBuffId, sourcesById, reportableBuffIds, ignoredBuffIds);
+  const relationshipStats = relationshipEdgeStats(relationshipsByRuleId);
+
+  const tableStats = {
+    buffIds: Object.keys(byBuffId).length,
+    sourceRules: Object.keys(sourcesById).length,
+    sourceRuleRefs: Object.values(byBuffId).reduce((sum, refs) => sum + refs.length, 0),
+    reportableBuffIds: reportableBuffIds.size,
+    debugBuffIds: debugBuffIds.size,
+    ignoredBuffIds: ignoredBuffIds.size,
+    siblingAliasBuffIds: aliasStats.aliasBuffIds,
+    siblingAliasRefs: aliasStats.aliasRefs,
+    sourceIndexReportPolicyCounts: sourceIndexPolicyCounts,
+    reportPolicyCounts: policyCounts,
+    runtimeReportReasonCounts: reportReasonCounts,
+    rowPolicyCounts,
+    uidEdges: relationshipStats.uidEdges,
+    uidEdgeKindCounts: relationshipStats.uidEdgeKindCounts,
+    uidEdgeRoleCounts: relationshipStats.uidEdgeRoleCounts,
+  };
+
+  return {
+    table: {
+      schemaVersion: 1,
+      generatedBy: "ModifierRecountTable.gen",
+      sourcesById,
+      byBuffId,
+      reportableBuffIds: sortedNumbers(reportableBuffIds),
+      debugBuffIds: sortedNumbers(debugBuffIds),
+      ignoredBuffIds: sortedNumbers(ignoredBuffIds),
+      stats: tableStats,
+    },
+    relationshipTable: {
+      schemaVersion: 1,
+      generatedBy: "ModifierRecountTable.gen",
+      sourceTable: "ModifierRecountTable.json",
+      sourcesByRuleId: relationshipsByRuleId,
+      stats: relationshipStats,
+    },
+  };
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  const sourceIndex = readJson(args.sourceIndexPath);
+  const buffRows = fs.existsSync(args.buffNamePath) ? readJson(args.buffNamePath) : [];
+  const recountTable = fs.existsSync(args.recountTablePath) ? readJson(args.recountTablePath) : {};
+  const { table, relationshipTable } = buildRecountTable(sourceIndex, buffRows, recountTable);
+  if (!args.dryRun) {
+    writeJson(args.outPath, table);
+    writeJson(args.relationshipOutPath, relationshipTable);
+  }
+  console.log(JSON.stringify({
+    out: args.outPath,
+    relationshipOut: args.relationshipOutPath,
+    dryRun: args.dryRun,
+    stats: table.stats,
+    relationshipStats: relationshipTable.stats,
+  }, null, 2));
+}
+
+main();

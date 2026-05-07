@@ -1,0 +1,666 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const { stripUndefined, sortedNumbers } = require("./modifier-table-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+const defaultDamageFormulaPath = path.resolve(
+  repoRoot,
+  "..",
+  "resonance-logs-global",
+  "parser-data",
+  "logic",
+  "DamageFormula.json",
+);
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    modifierRecountPath: "",
+    modifierClassificationPath: "",
+    damageFormulaPath: defaultDamageFormulaPath,
+    outPath: "",
+    runtimeOutPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-recount" && next) {
+      args.modifierRecountPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-classification" && next) {
+      args.modifierClassificationPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--damage-formula" && next) {
+      args.damageFormulaPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--runtime-out" && next) {
+      args.runtimeOutPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.modifierRecountPath ||= path.join(args.outputDir, "ModifierRecountTable.json");
+  args.modifierClassificationPath ||= path.join(args.outputDir, "ModifierClassificationTable.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierContributionTable.json");
+  args.runtimeOutPath ||= path.join(args.outputDir, "ModifierContributionRuntime.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierContributionTable.gen - classify modifier source rules for exact contribution or replay readiness.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>                       Output JSON file path.");
+  console.log("  --runtime-out <path>               Compact runtime JSON file path.");
+  console.log("  --output-dir <path>                Output directory override.");
+  console.log("  --dry-run                          Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --modifier-recount <path>          ModifierRecountTable.json input.");
+  console.log("  --modifier-classification <path>   ModifierClassificationTable.json input.");
+  console.log("  --damage-formula <path>            DamageFormula.json input.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? readJson(filePath) : fallback;
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function lowerSet(values) {
+  return new Set(uniqueStrings(values).map((value) => value.toLowerCase()));
+}
+
+function addIndex(index, key, value) {
+  const normalized = String(key || "").trim();
+  if (!normalized) return;
+  index[normalized] ||= [];
+  if (!index[normalized].includes(value)) index[normalized].push(value);
+}
+
+function countBy(values) {
+  const out = {};
+  for (const value of values || []) out[value] = (out[value] || 0) + 1;
+  return out;
+}
+
+function entryFormulaTermIds(entry) {
+  return uniqueStrings([
+    ...(entry.attributionModel?.formulaTermIds || []),
+    ...((entry.attributionModel?.components || []).flatMap((component) => component.formulaTermIds || [])),
+  ]);
+}
+
+function entryContributionGroups(entry) {
+  return uniqueStrings([
+    ...(entry.contributionGroups || []),
+    ...(entry.attributionModel?.contributionGroups || []),
+    ...((entry.attributionModel?.components || []).flatMap((component) => component.contributionGroups || [])),
+  ]);
+}
+
+function entryComponentClasses(entry) {
+  return uniqueStrings([
+    ...(entry.componentClasses || []),
+    ...((entry.attributionModel?.components || []).map((component) => component.effectClass)),
+  ]);
+}
+
+function entryPredicateTags(entry) {
+  return uniqueStrings([
+    ...(entry.predicateTags || []),
+    ...(entry.attributionModel?.predicateTags || []),
+    ...((entry.attributionModel?.components || []).flatMap((component) => component.predicateTags || [])),
+  ]);
+}
+
+function entryRelationshipKinds(entry) {
+  return uniqueStrings([
+    ...(entry.relationshipKinds || []),
+    ...(entry.attributionModel?.relationshipKinds || []),
+  ]);
+}
+
+function entryRequiredRuntimeEvidence(entry) {
+  return uniqueStrings([
+    ...(entry.attributionModel?.requiredRuntimeEvidence || []),
+    ...((entry.attributionModel?.components || []).flatMap((component) => component.requiredRuntimeEvidence || [])),
+  ]);
+}
+
+function entryValueTexts(entry) {
+  return uniqueStrings((entry.attributionModel?.components || []).flatMap((component) => component.valueTexts || []));
+}
+
+const FORMULA_AMOUNT_COMPONENT_CLASSES = new Set([
+  "critical-damage-stat",
+  "critical-stat",
+  "damage-modifier",
+  "elemental-damage",
+  "offense-stat",
+]);
+
+function parseComponentValueText(rawText) {
+  const text = String(rawText || "").trim();
+  if (!text) return null;
+  const matches = [...text.matchAll(/[+-]?\d+(?:\.\d+)?/g)];
+  if (matches.length !== 1) {
+    return stripUndefined({
+      rawText: text,
+      parseStatus: matches.length === 0 ? "no-number" : "multiple-numbers",
+    });
+  }
+
+  const value = Number(matches[0][0]);
+  if (!Number.isFinite(value)) {
+    return { rawText: text, parseStatus: "invalid-number" };
+  }
+
+  const unit = text.includes("%")
+    ? "percent"
+    : /(?:\d)\s*(?:s|sec|secs|second|seconds)\b/i.test(text)
+        || /(?:^|\s)(?:s|sec|secs|second|seconds)(?:\s|$)/i.test(text)
+        || text.includes("秒")
+      ? "seconds"
+      : "flat";
+  return stripUndefined({
+    rawText: text,
+    parseStatus: "parsed",
+    unit,
+    value,
+    decimalValue: unit === "percent" ? value / 100 : undefined,
+  });
+}
+
+function parsedValueIsFormulaAmount(parsedValue, component) {
+  if (!parsedValue || parsedValue.parseStatus !== "parsed") return false;
+  if (parsedValue.unit === "seconds") return false;
+  const effectClass = String(component.effectClass || "").trim();
+  if (!FORMULA_AMOUNT_COMPONENT_CLASSES.has(effectClass)) return false;
+  if (parsedValue.unit === "percent") return true;
+  return effectClass === "offense-stat" && Boolean(String(component.stat || "").trim());
+}
+
+function componentValueWithScope(scope, parsedValue, component, inferredFrom) {
+  return stripUndefined({
+    scope,
+    rawText: parsedValue.rawText,
+    unit: parsedValue.unit,
+    value: parsedValue.value,
+    decimalValue: parsedValue.decimalValue,
+    formulaAmount: parsedValueIsFormulaAmount(parsedValue, component) || undefined,
+    inferredFrom,
+  });
+}
+
+function scopedComponentValues(component, parsedValues) {
+  const parsed = parsedValues.filter((value) => value?.parseStatus === "parsed");
+  const explicitScope = ["owner", "party", "all"].includes(String(component.valueScope || ""))
+    ? String(component.valueScope)
+    : "";
+  if (parsed.length === 0) {
+    return {
+      valueResolution: "unparsed",
+      values: parsedValues.map((value) => stripUndefined({
+        scope: "unknown",
+        rawText: value?.rawText,
+        parseStatus: value?.parseStatus,
+      })),
+    };
+  }
+
+  if (parsed.length === 1 && parsedValues.length === 1) {
+    return {
+      valueResolution: "single",
+      values: [componentValueWithScope(explicitScope || "all", parsed[0], component, explicitScope ? "clause actor scope" : undefined)],
+    };
+  }
+
+  if (parsed.length === 2 && parsedValues.length === 2 && parsed.every((value) => value.unit === "percent")) {
+    const sorted = [...parsed].sort((left, right) => Math.abs(right.decimalValue || 0) - Math.abs(left.decimalValue || 0));
+    return {
+      valueResolution: "owner-party-split",
+      values: [
+        componentValueWithScope("owner", sorted[0], component, "larger percent value is owner/self"),
+        componentValueWithScope("party", sorted[1], component, "smaller percent value is party/other players"),
+      ],
+    };
+  }
+
+  return {
+    valueResolution: "ambiguous-multiple-values",
+    values: parsedValues.map((value) => value?.parseStatus === "parsed"
+      ? componentValueWithScope("ambiguous", value, component)
+      : stripUndefined({
+          scope: "unknown",
+          rawText: value?.rawText,
+          parseStatus: value?.parseStatus,
+        })),
+  };
+}
+
+function componentValueHints(entry) {
+  const hints = [];
+  for (const component of entry.attributionModel?.components || []) {
+    const valueTexts = uniqueStrings(component.valueTexts || []);
+    if (valueTexts.length === 0) continue;
+    const parsedValues = valueTexts.map(parseComponentValueText).filter(Boolean);
+    if (parsedValues.length === 0) continue;
+    const scoped = scopedComponentValues(component, parsedValues);
+    if (!scoped.values.some((value) => value?.formulaAmount)) continue;
+    hints.push(stripUndefined({
+      componentKey: component.componentKey,
+      label: component.label,
+      effectClass: component.effectClass,
+      contributionScope: component.contributionScope,
+      direction: component.direction,
+      stat: component.stat,
+      valueScope: component.valueScope,
+      formulaTermIds: uniqueStrings(component.formulaTermIds || []),
+      contributionGroups: uniqueStrings(component.contributionGroups || []),
+      predicateTags: uniqueStrings(component.predicateTags || []),
+      valueResolution: scoped.valueResolution,
+      values: scoped.values,
+    }));
+  }
+  return hints;
+}
+
+function hasAny(set, values) {
+  return values.some((value) => set.has(value.toLowerCase()));
+}
+
+function isDefensive(entry, classification, componentClasses) {
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const rowPolicy = String(entry.rowPolicy || "").toLowerCase();
+  const role = String(classification?.primaryRole || "").toLowerCase();
+  const classes = lowerSet(componentClasses);
+  return status === "defensive-or-non-damage"
+    || rowPolicy === "defensive"
+    || role === "defensive"
+    || classes.has("damage-reduction")
+    || classes.has("defense-stat")
+    || classes.has("healing")
+    || classes.has("shield");
+}
+
+function isTimingOnly(entry, groups) {
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const rowPolicy = String(entry.rowPolicy || "").toLowerCase();
+  const loweredGroups = lowerSet(groups);
+  const damageGroups = ["baseattack", "critical", "elemental", "genericdamage", "procdamage", "targetmitigation", "versatility"];
+  return status === "timing-only"
+    || rowPolicy === "timing"
+    || (loweredGroups.has("hittiming") && !hasAny(loweredGroups, damageGroups));
+}
+
+function isProducedDamage(entry, groups, componentClasses, relationshipKinds) {
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const loweredGroups = lowerSet(groups);
+  const loweredClasses = lowerSet(componentClasses);
+  const loweredRelationships = lowerSet(relationshipKinds);
+  return status === "proc-damage"
+    || loweredGroups.has("procdamage")
+    || loweredClasses.has("proc-damage")
+    || loweredRelationships.has("buff-source-damage-row")
+    || loweredRelationships.has("relationship.produced-damage-row");
+}
+
+function hasTargetMap(entry) {
+  return sortedNumbers(entry.targetDamageIds).length > 0
+    || sortedNumbers(entry.targetRecountIds).length > 0;
+}
+
+function requiredForFormulaTerms(formulaTermIds, groups) {
+  const terms = lowerSet(formulaTermIds);
+  const loweredGroups = lowerSet(groups);
+  const required = new Set([
+    "sourceRuleId active on hit",
+    "observed final hit value",
+    "hit timestamp",
+    "skill id",
+    "damage id",
+    "modifier value or component amount",
+  ]);
+
+  if (terms.has("primaryattack") || terms.has("refinedorelementalattack") || loweredGroups.has("baseattack")) {
+    required.add("attacker stat snapshot at hit time");
+    required.add("damage row ATK/MATK lane");
+  }
+  if (terms.has("critmultiplier") || loweredGroups.has("critical")) {
+    required.add("crit flag");
+    required.add("attacker crit-damage snapshot at hit time");
+  }
+  if (terms.has("versatilitydamagepct") || loweredGroups.has("versatility")) {
+    required.add("attacker versatility snapshot at hit time");
+  }
+  if (terms.has("elementaldamagepct") || loweredGroups.has("elemental")) {
+    required.add("damage element mapping by damage id");
+    required.add("attacker elemental damage snapshot at hit time");
+  }
+  if (terms.has("genericdamagepct") || loweredGroups.has("genericdamage")) {
+    required.add("target/source predicate evaluation");
+  }
+  if (terms.has("resistance") || terms.has("targetarmormitigation") || loweredGroups.has("targetmitigation")) {
+    required.add("target mitigation snapshot or validated same-hit baseline");
+  }
+  if (terms.has("skillmultiplier") || terms.has("flatdamage") || loweredGroups.has("skillcoefficient")) {
+    required.add("skill coefficient mapping by damage id");
+  }
+  if (loweredGroups.has("hittiming")) {
+    required.add("cast timeline or cooldown state");
+    required.add("cast timeline or per-hit window buckets");
+  }
+  return [...required].sort((left, right) => left.localeCompare(right));
+}
+
+function exactProducedEvidence(entry) {
+  return uniqueStrings([
+    "sourceRuleId active on hit",
+    "observed final hit value",
+    "damage id",
+    "target damage/recount id match",
+    "attacker uid",
+    "target uid",
+    ...entryRequiredRuntimeEvidence(entry),
+  ]);
+}
+
+function classifyContribution(entry, classification) {
+  const formulaTermIds = entryFormulaTermIds(entry);
+  const groups = entryContributionGroups(entry);
+  const componentClasses = entryComponentClasses(entry);
+  const predicateTags = entryPredicateTags(entry);
+  const relationshipKinds = entryRelationshipKinds(entry);
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const rowPolicy = String(entry.rowPolicy || "").toLowerCase();
+  const produced = isProducedDamage(entry, groups, componentClasses, relationshipKinds);
+  const targetMapped = hasTargetMap(entry);
+  const defensive = isDefensive(entry, classification, componentClasses);
+  const timing = isTimingOnly(entry, groups);
+  const valueTexts = entryValueTexts(entry);
+
+  if (defensive) {
+    return {
+      contributionMode: "defensive",
+      contributionTier: "non-damage",
+      confidence: "not-applicable",
+      formulaTermIds,
+      contributionGroups: groups,
+      componentClasses,
+      predicateTags,
+      relationshipKinds,
+      requiredRuntimeEvidence: [],
+      blockers: [],
+      notes: ["Defensive/support rows should feed tanked/healing/support reports, not outgoing damage contribution."],
+      valueTexts,
+    };
+  }
+
+  if (produced && targetMapped) {
+    return {
+      contributionMode: "exact-produced-damage",
+      contributionTier: "exact",
+      confidence: "exact",
+      formulaTermIds,
+      contributionGroups: groups,
+      componentClasses,
+      predicateTags,
+      relationshipKinds,
+      requiredRuntimeEvidence: exactProducedEvidence(entry),
+      blockers: [],
+      notes: [
+        "Contribution is packet-exact when the observed damage row matches this rule's generated target damage/recount map.",
+      ],
+      valueTexts,
+    };
+  }
+
+  if (formulaTermIds.length > 0 || status === "formula-ready-candidate") {
+    return {
+      contributionMode: "formula-replay-candidate",
+      contributionTier: "replay-required",
+      confidence: "needs-replay",
+      formulaTermIds,
+      contributionGroups: groups,
+      componentClasses,
+      predicateTags,
+      relationshipKinds,
+      requiredRuntimeEvidence: uniqueStrings([
+        ...requiredForFormulaTerms(formulaTermIds, groups),
+        ...entryRequiredRuntimeEvidence(entry),
+      ]),
+      blockers: [],
+      notes: [
+        "Final damage packets can only become net-added contribution after source-on/source-off formula replay validates the observed hit.",
+      ],
+      valueTexts,
+    };
+  }
+
+  if (timing) {
+    return {
+      contributionMode: "timing-only",
+      contributionTier: "timing",
+      confidence: "not-applicable",
+      formulaTermIds,
+      contributionGroups: groups,
+      componentClasses,
+      predicateTags,
+      relationshipKinds,
+      requiredRuntimeEvidence: uniqueStrings([
+        "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
+        ...entryRequiredRuntimeEvidence(entry),
+      ]),
+      blockers: [],
+      notes: ["Timing/cooldown/haste rows need a cast-counterfactual model before they can become damage contribution."],
+      valueTexts,
+    };
+  }
+
+  return {
+    contributionMode: "overlap-only",
+    contributionTier: "overlap-only",
+    confidence: "overlap-only",
+    formulaTermIds,
+    contributionGroups: groups,
+    componentClasses,
+    predicateTags,
+    relationshipKinds,
+    requiredRuntimeEvidence: entryRequiredRuntimeEvidence(entry),
+    blockers: uniqueStrings([
+      produced && !targetMapped ? "missing produced damage target map" : "",
+      status === "needs-component-classification" ? "needs component classification" : "",
+      status === "needs-source-localization" ? "needs source localization" : "",
+      rowPolicy === "uptime" || status === "uptime-only" ? "uptime window has no formula replay lane yet" : "",
+    ]),
+    notes: ["Current report value is affected-hit overlap only; it is not net-added damage."],
+    valueTexts,
+  };
+}
+
+function compactContribution(sourceRuleId, entry, classification) {
+  const model = classifyContribution(entry, classification);
+  const valueHints = componentValueHints(entry);
+  return stripUndefined({
+    sourceRuleId,
+    sourceId: entry.sourceId,
+    sourceKind: entry.sourceKind,
+    sourceType: entry.sourceType,
+    sourceEntityId: entry.sourceEntityId,
+    reportPolicy: entry.reportPolicy,
+    rowPolicy: entry.rowPolicy,
+    rowModel: classification?.rowModel,
+    primaryRole: classification?.primaryRole,
+    reportDomains: classification?.reportDomains,
+    offensiveKind: classification?.offensiveKind,
+    contributionStatus: entry.contributionStatus,
+    contributionMode: model.contributionMode,
+    contributionTier: model.contributionTier,
+    confidence: model.confidence,
+    formulaTermIds: model.formulaTermIds,
+    contributionGroups: model.contributionGroups,
+    componentClasses: model.componentClasses,
+    predicateTags: model.predicateTags,
+    relationshipKinds: model.relationshipKinds,
+    targetDamageIds: sortedNumbers(entry.targetDamageIds),
+    targetRecountIds: sortedNumbers(entry.targetRecountIds),
+    requiredRuntimeEvidence: model.requiredRuntimeEvidence,
+    blockers: model.blockers,
+    valueTexts: model.valueTexts,
+    componentValueHints: valueHints,
+    notes: model.notes,
+  });
+}
+
+function buildContributionTable(modifierRecount, modifierClassification, damageFormula) {
+  const sourcesByRuleId = {};
+  const byContributionMode = {};
+  const byContributionTier = {};
+  const byFormulaTermId = {};
+  const byContributionGroup = {};
+  const byRequiredRuntimeEvidence = {};
+  const classificationsByRuleId = modifierClassification.sourcesByRuleId || {};
+
+  for (const [sourceRuleId, entry] of Object.entries(modifierRecount.sourcesById || {})) {
+    const contribution = compactContribution(sourceRuleId, entry, classificationsByRuleId[sourceRuleId]);
+    sourcesByRuleId[sourceRuleId] = contribution;
+    addIndex(byContributionMode, contribution.contributionMode, sourceRuleId);
+    addIndex(byContributionTier, contribution.contributionTier, sourceRuleId);
+    for (const termId of contribution.formulaTermIds || []) addIndex(byFormulaTermId, termId, sourceRuleId);
+    for (const groupId of contribution.contributionGroups || []) addIndex(byContributionGroup, groupId, sourceRuleId);
+    for (const evidence of contribution.requiredRuntimeEvidence || []) addIndex(byRequiredRuntimeEvidence, evidence, sourceRuleId);
+  }
+
+  for (const index of [
+    byContributionMode,
+    byContributionTier,
+    byFormulaTermId,
+    byContributionGroup,
+    byRequiredRuntimeEvidence,
+  ]) {
+    for (const key of Object.keys(index)) index[key] = uniqueStrings(index[key]);
+  }
+
+  const sources = Object.values(sourcesByRuleId);
+  return {
+    schemaVersion: 1,
+    generatedBy: "ModifierContributionTable.gen",
+    generatedFrom: {
+      modifierRecountTable: "output/ModifierRecountTable.json",
+      modifierClassificationTable: "output/ModifierClassificationTable.json",
+      damageFormula: "resonance-logs-global/parser-data/logic/DamageFormula.json",
+    },
+    damageFormula: stripUndefined({
+      id: damageFormula.id,
+      status: damageFormula.status,
+      expression: damageFormula.formula?.perHitExpression,
+    }),
+    stats: {
+      sourceRules: sources.length,
+      contributionModeCounts: countBy(sources.map((source) => source.contributionMode)),
+      contributionTierCounts: countBy(sources.map((source) => source.contributionTier)),
+      exactProducedDamageRules: sources.filter((source) => source.contributionMode === "exact-produced-damage").length,
+      formulaReplayCandidateRules: sources.filter((source) => source.contributionMode === "formula-replay-candidate").length,
+      timingOnlyRules: sources.filter((source) => source.contributionMode === "timing-only").length,
+      overlapOnlyRules: sources.filter((source) => source.contributionMode === "overlap-only").length,
+    },
+    sourcesByRuleId,
+    byContributionMode,
+    byContributionTier,
+    byFormulaTermId,
+    byContributionGroup,
+    byRequiredRuntimeEvidence,
+  };
+}
+
+function runtimeContributionEntry(source) {
+  const includeReplayReadiness = source.contributionMode === "formula-replay-candidate";
+  return stripUndefined({
+    sourceRuleId: source.sourceRuleId,
+    sourceId: source.sourceId,
+    contributionMode: source.contributionMode,
+    contributionTier: source.contributionTier,
+    confidence: source.confidence,
+    formulaTermIds: includeReplayReadiness && source.formulaTermIds?.length ? source.formulaTermIds : undefined,
+    contributionGroups: includeReplayReadiness && source.contributionGroups?.length ? source.contributionGroups : undefined,
+    predicateTags: includeReplayReadiness && source.predicateTags?.length ? source.predicateTags : undefined,
+    requiredRuntimeEvidence: includeReplayReadiness && source.requiredRuntimeEvidence?.length
+      ? source.requiredRuntimeEvidence
+      : undefined,
+    blockers: includeReplayReadiness && source.blockers?.length ? source.blockers : undefined,
+    componentValueHints: includeReplayReadiness && source.componentValueHints?.length
+      ? source.componentValueHints
+      : undefined,
+    notes: includeReplayReadiness && source.notes?.length ? source.notes : undefined,
+  });
+}
+
+function buildRuntimeContributionTable(fullTable) {
+  const sourcesByRuleId = {};
+  for (const [sourceRuleId, source] of Object.entries(fullTable.sourcesByRuleId || {})) {
+    sourcesByRuleId[sourceRuleId] = runtimeContributionEntry(source);
+  }
+  return {
+    schemaVersion: 1,
+    generatedBy: "ModifierContributionTable.gen",
+    runtimeOf: "ModifierContributionTable.json",
+    stats: fullTable.stats,
+    sourcesByRuleId,
+  };
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  const modifierRecount = readJson(args.modifierRecountPath);
+  const modifierClassification = readOptionalJson(args.modifierClassificationPath, {});
+  const damageFormula = readOptionalJson(args.damageFormulaPath, {});
+  const table = buildContributionTable(modifierRecount, modifierClassification, damageFormula);
+  const runtimeTable = buildRuntimeContributionTable(table);
+
+  if (!args.dryRun) {
+    writeJson(args.outPath, table);
+    writeJson(args.runtimeOutPath, runtimeTable);
+  }
+  console.log(JSON.stringify({
+    out: args.outPath,
+    runtimeOut: args.runtimeOutPath,
+    dryRun: args.dryRun,
+    stats: table.stats,
+  }, null, 2));
+}
+
+main();

@@ -1,0 +1,366 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const TAG_NO_CD_REDUCE = 103;
+const CD_TEMP_ATTR_TYPES = new Map([
+  [100, "cooldown-reduce-pct"],
+  [101, "cooldown-reduce-flat"],
+  [103, "cooldown-accelerate-pct"],
+]);
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    displayPath,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbTable,
+    readJson,
+    readU32,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp(
+      "SkillCooldowns.gen - generate SkillCooldowns.json from game cooldown and temp-attr tables.",
+      `
+Options:
+  --logic-dir <path>        Parser logic JSON directory. Defaults to ../resonance-logs-global/parser-data/logic.
+
+Notes:
+  Reads SkillFightLevelTable.ctb directly for base PvE cooldowns, then enriches rows
+  with generated skillnames.json, SkillEffectTable.json tags, and TempAttrTable.json
+  cooldown-reduction/acceleration rules.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "SkillCooldowns.json");
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const logicDir = path.resolve(
+    args.logicDir || path.join(__dirname, "..", "resonance-logs-global", "parser-data", "logic")
+  );
+
+  const skillNames = readJson(path.join(paths.outputDir, "skillnames.json"), {});
+  const skillFightLogic = readOptionalJson(path.join(logicDir, "SkillFightLevelTable.json"), {});
+  const skillEffectLogic = readOptionalJson(path.join(logicDir, "SkillEffectTable.json"), {});
+  const tempAttrLogic = readOptionalJson(path.join(logicDir, "TempAttrTable.json"), {});
+
+  const ctbRows = collectSkillFightCooldownRows(containerDir, metaEntries, { readCtbTable, readU32 });
+  const byLevel = buildSkillCooldownsByLevel(ctbRows, skillFightLogic, skillEffectLogic, skillNames);
+  const bySkill = buildSkillCooldownsBySkill(byLevel);
+  const tempAttrRules = buildCooldownTempAttrRules(tempAttrLogic, skillNames, bySkill);
+
+  const data = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    cooldownUnits: "seconds",
+    sources: {
+      skillFightLevelTable: "SkillFightLevelTable.ctb",
+      skillFightLevelLogic: path.relative(paths.outputDir, path.join(logicDir, "SkillFightLevelTable.json")).replace(/\\/g, "/"),
+      skillEffectLogic: path.relative(paths.outputDir, path.join(logicDir, "SkillEffectTable.json")).replace(/\\/g, "/"),
+      tempAttrLogic: path.relative(paths.outputDir, path.join(logicDir, "TempAttrTable.json")).replace(/\\/g, "/"),
+      skillNames: "skillnames.json",
+    },
+    summary: {
+      skillLevels: Object.keys(byLevel).length,
+      skills: Object.keys(bySkill).length,
+      skillLevelsWithPveCooldown: Object.values(byLevel).filter((row) => row.pveCooldownSeconds > 0).length,
+      skillsWithPveCooldown: Object.values(bySkill).filter((row) => row.maxPveCooldownSeconds > 0).length,
+      noCdReduceSkillLevels: Object.values(byLevel).filter((row) => row.noCdReduce).length,
+      icdLockoutSkillLevels: Object.values(byLevel).filter((row) => row.icdLockoutSeconds > 0).length,
+      cooldownTempAttrRules: Object.keys(tempAttrRules.cooldownTempAttrRules).length,
+    },
+    skillCooldownsByLevelId: byLevel,
+    skillCooldownsBySkillId: bySkill,
+    cooldownTempAttrRules: tempAttrRules.cooldownTempAttrRules,
+    affectedSkillIdsByTempAttrId: tempAttrRules.affectedSkillIdsByTempAttrId,
+  };
+
+  maybeWriteJson(paths.out, data, args.dryRun);
+  console.log(
+    `${args.dryRun ? "Dry run: scanned" : "Generated"} ${displayPath(paths.out)} (${data.summary.skillLevels.toLocaleString()} skill levels, ${data.summary.cooldownTempAttrRules.toLocaleString()} cooldown temp-attr rules).`
+  );
+}
+
+function readOptionalJson(filePath, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    if (error && error.code === "ENOENT") return fallback;
+    throw error;
+  }
+}
+
+function readFloatLE(buffer, offset) {
+  if (offset < 0 || offset + 4 > buffer.length) return 0;
+  const value = buffer.readFloatLE(offset);
+  return Number.isFinite(value) ? value : 0;
+}
+
+function collectSkillFightCooldownRows(containerDir, metaEntries, helpers) {
+  const { readCtbTable, readU32 } = helpers;
+  const table = readCtbTable(containerDir, metaEntries, "SkillFightLevelTable.ctb");
+  const rows = [];
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const skillLevelId = readU32(table.data, rowOffset);
+    const skillId = readU32(table.data, rowOffset + 4);
+    const level = readU32(table.data, rowOffset + 8);
+    const skillEffectId = readU32(table.data, rowOffset + 12);
+    if (!skillLevelId || !skillId) continue;
+    rows.push({
+      skillLevelId,
+      skillId,
+      level: level || undefined,
+      skillEffectId: skillEffectId || undefined,
+      pveCooldownSeconds: readFloatLE(table.data, rowOffset + 28),
+      sourceOffset: table.entry.offset + rowOffset,
+    });
+  }
+  return rows;
+}
+
+function finiteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function finitePositiveNumber(value) {
+  const number = finiteNumber(value);
+  return number !== null && number > 0 ? number : null;
+}
+
+function numericArray(value) {
+  if (!Array.isArray(value)) return [];
+  return value.map(finiteNumber).filter((number) => number !== null);
+}
+
+function cleanText(value) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  return text || undefined;
+}
+
+function namesForSkill(skillNames, ids) {
+  for (const id of ids) {
+    const entry = skillNames[String(id)];
+    if (entry?.Names && Object.keys(entry.Names).length > 0) return entry.Names;
+    if (entry?.names && Object.keys(entry.names).length > 0) return entry.names;
+  }
+  return undefined;
+}
+
+function nameForSkill(skillNames, ids, fallback) {
+  for (const id of ids) {
+    const entry = skillNames[String(id)];
+    const name = cleanText(entry?.Name ?? entry?.name ?? entry?.NameDesign ?? entry?.nameDesign);
+    if (name) return name;
+    const names = entry?.Names ?? entry?.names;
+    const localized = cleanText(names?.en ?? names?.["zh-CN"] ?? names?.design);
+    if (localized) return localized;
+  }
+  return fallback;
+}
+
+function notesForSkill(skillNames, ids) {
+  for (const id of ids) {
+    const entry = skillNames[String(id)];
+    const notes = entry?.Notes ?? entry?.notes;
+    if (notes && Object.keys(notes).length > 0) return notes;
+  }
+  return undefined;
+}
+
+function iconForSkill(skillNames, ids) {
+  for (const id of ids) {
+    const entry = skillNames[String(id)];
+    const iconPath = cleanText(entry?.IconPath ?? entry?.iconPath);
+    if (iconPath) return iconPath;
+  }
+  return undefined;
+}
+
+function effectTagsForSkill(skillNames, ids) {
+  const tags = new Set();
+  for (const id of ids) {
+    const entry = skillNames[String(id)];
+    for (const tag of entry?.EffectTags ?? entry?.effectTags ?? []) {
+      if (tag) tags.add(String(tag));
+    }
+  }
+  return [...tags].sort();
+}
+
+function icdLockoutForSkill(skillNames, ids) {
+  for (const id of ids) {
+    const value = finitePositiveNumber(skillNames[String(id)]?.IcdLockoutSeconds ?? skillNames[String(id)]?.icdLockoutSeconds);
+    if (value !== null) return value;
+  }
+  return undefined;
+}
+
+function buildSkillCooldownsByLevel(ctbRows, skillFightLogic, skillEffectLogic, skillNames) {
+  const byLevel = {};
+  for (const ctbRow of ctbRows) {
+    const logicRow = skillFightLogic[String(ctbRow.skillLevelId)] ?? {};
+    const skillLevelId = finitePositiveNumber(logicRow.Id) ?? ctbRow.skillLevelId;
+    const skillId = finitePositiveNumber(logicRow.SkillId) ?? ctbRow.skillId;
+    const level = finitePositiveNumber(logicRow.Level) ?? ctbRow.level;
+    const skillEffectId = finitePositiveNumber(logicRow.SkillEffectId) ?? ctbRow.skillEffectId ?? skillLevelId;
+    const pveCooldownSeconds = finiteNumber(logicRow.PVECoolTime) ?? ctbRow.pveCooldownSeconds;
+    const abortSingTimeCooldownSeconds = finiteNumber(logicRow.AbortSingTimeCD);
+    const ids = [skillLevelId, skillId, skillEffectId].filter((value) => value !== undefined);
+    const tags = numericArray(skillEffectLogic[String(skillEffectId)]?.Tags);
+    const effectTags = effectTagsForSkill(skillNames, ids);
+    const icdLockoutSeconds = icdLockoutForSkill(skillNames, ids);
+    const entry = {
+      skillLevelId,
+      skillId,
+      ...(level !== undefined ? { level } : {}),
+      ...(skillEffectId !== undefined ? { skillEffectId } : {}),
+      name: nameForSkill(skillNames, ids, `Skill ${skillId}`),
+      ...(namesForSkill(skillNames, ids) ? { names: namesForSkill(skillNames, ids) } : {}),
+      ...(notesForSkill(skillNames, ids) ? { descriptions: notesForSkill(skillNames, ids) } : {}),
+      ...(iconForSkill(skillNames, ids) ? { iconPath: iconForSkill(skillNames, ids) } : {}),
+      pveCooldownSeconds: Math.max(0, pveCooldownSeconds ?? 0),
+      ...(abortSingTimeCooldownSeconds !== null && abortSingTimeCooldownSeconds > 0
+        ? { abortSingTimeCooldownSeconds }
+        : {}),
+      ...(Array.isArray(logicRow.CoolTimeOnBattleStart) && logicRow.CoolTimeOnBattleStart.length
+        ? { coolTimeOnBattleStart: logicRow.CoolTimeOnBattleStart }
+        : {}),
+      ...(Array.isArray(logicRow.RandomPVECoolTime) && logicRow.RandomPVECoolTime.length
+        ? { randomPveCoolTime: logicRow.RandomPVECoolTime }
+        : {}),
+      tags,
+      noCdReduce: tags.includes(TAG_NO_CD_REDUCE),
+      ...(effectTags.length ? { effectTags } : {}),
+      ...(icdLockoutSeconds !== undefined ? { icdLockoutSeconds } : {}),
+      sourceOffset: ctbRow.sourceOffset,
+    };
+    byLevel[String(skillLevelId)] = entry;
+  }
+  return sortObjectByNumericKey(byLevel);
+}
+
+function buildSkillCooldownsBySkill(byLevel) {
+  const bySkill = {};
+  for (const row of Object.values(byLevel)) {
+    const key = String(row.skillId);
+    const current = bySkill[key] ?? {
+      skillId: row.skillId,
+      name: row.name,
+      ...(row.names ? { names: row.names } : {}),
+      ...(row.descriptions ? { descriptions: row.descriptions } : {}),
+      ...(row.iconPath ? { iconPath: row.iconPath } : {}),
+      levelIds: [],
+      cooldownSecondsByLevel: {},
+      maxPveCooldownSeconds: 0,
+      minPveCooldownSeconds: null,
+      noCdReduce: false,
+      tags: [],
+      effectTags: [],
+    };
+    current.levelIds.push(row.skillLevelId);
+    if (row.level !== undefined) {
+      current.cooldownSecondsByLevel[String(row.level)] = row.pveCooldownSeconds;
+    }
+    current.maxPveCooldownSeconds = Math.max(current.maxPveCooldownSeconds, row.pveCooldownSeconds);
+    current.minPveCooldownSeconds = current.minPveCooldownSeconds === null
+      ? row.pveCooldownSeconds
+      : Math.min(current.minPveCooldownSeconds, row.pveCooldownSeconds);
+    current.noCdReduce = current.noCdReduce || row.noCdReduce;
+    current.tags = uniqueNumbers([...(current.tags ?? []), ...(row.tags ?? [])]);
+    current.effectTags = uniqueStrings([...(current.effectTags ?? []), ...(row.effectTags ?? [])]);
+    if (row.icdLockoutSeconds && !current.icdLockoutSeconds) {
+      current.icdLockoutSeconds = row.icdLockoutSeconds;
+    }
+    bySkill[key] = current;
+  }
+
+  for (const row of Object.values(bySkill)) {
+    row.levelIds = uniqueNumbers(row.levelIds);
+    if (row.minPveCooldownSeconds === null) row.minPveCooldownSeconds = 0;
+    if (!row.tags.length) delete row.tags;
+    if (!row.effectTags.length) delete row.effectTags;
+  }
+  return sortObjectByNumericKey(bySkill);
+}
+
+function buildCooldownTempAttrRules(tempAttrLogic, skillNames, bySkill) {
+  const cooldownTempAttrRules = {};
+  const affectedSkillIdsByTempAttrId = {};
+  const skills = Object.values(bySkill);
+  for (const [key, row] of Object.entries(tempAttrLogic)) {
+    const tempAttrId = finitePositiveNumber(row.Id) ?? finitePositiveNumber(key);
+    if (tempAttrId === null) continue;
+    const attrType = finiteNumber(row.AttrType);
+    const effect = attrType !== null ? CD_TEMP_ATTR_TYPES.get(attrType) : undefined;
+    if (!effect) continue;
+    const logicType = finiteNumber(row.LogicType) ?? -1;
+    const attrParams = uniqueNumbers(numericArray(row.AttrParams));
+    const ids = [tempAttrId];
+    const names = namesForSkill(skillNames, ids);
+    const affectedSkillIds = affectedSkillsForTempAttr(logicType, attrParams, skills);
+    const rule = {
+      tempAttrId,
+      attrType,
+      effect,
+      logicType,
+      attrParams,
+      name: nameForSkill(skillNames, ids, cleanText(row.Name) ?? `Temp Attr ${tempAttrId}`),
+      ...(names ? { names } : {}),
+      ...(cleanText(row.Desc) ? { description: cleanText(row.Desc) } : {}),
+      ...(logicType === 0 ? { affectsAllReducibleSkills: true } : { affectedSkillIds }),
+    };
+    cooldownTempAttrRules[String(tempAttrId)] = rule;
+    affectedSkillIdsByTempAttrId[String(tempAttrId)] = logicType === 0 ? ["__all_reducible__"] : affectedSkillIds;
+  }
+  return {
+    cooldownTempAttrRules: sortObjectByNumericKey(cooldownTempAttrRules),
+    affectedSkillIdsByTempAttrId: sortObjectByNumericKey(affectedSkillIdsByTempAttrId),
+  };
+}
+
+function affectedSkillsForTempAttr(logicType, attrParams, skills) {
+  if (logicType === 0) return [];
+  if (logicType === 1) {
+    const paramSet = new Set(attrParams);
+    return uniqueNumbers(skills.map((skill) => skill.skillId).filter((skillId) => paramSet.has(skillId)));
+  }
+  if (logicType === 3) {
+    const tagSet = new Set(attrParams);
+    return uniqueNumbers(
+      skills
+        .filter((skill) => (skill.tags ?? []).some((tag) => tagSet.has(tag)))
+        .map((skill) => skill.skillId)
+    );
+  }
+  return [];
+}
+
+function uniqueNumbers(values) {
+  return [...new Set(values.map(finiteNumber).filter((value) => value !== null))]
+    .sort((left, right) => left - right);
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.map((value) => String(value ?? "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function sortObjectByNumericKey(object) {
+  return Object.fromEntries(
+    Object.entries(object).sort((left, right) => Number(left[0]) - Number(right[0]))
+  );
+}

@@ -1,0 +1,658 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const {
+  CLASS_BUCKETS,
+  stripEmpty: stripUndefined,
+  uniqueNumbers,
+  uniqueStrings,
+} = require("./talent-model-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+
+const GENERIC_TERMS = new Set([
+  "active effect",
+  "attack dmg",
+  "basic attack",
+  "basic attacks",
+  "class skill",
+  "class skills",
+  "crit dmg",
+  "critical hits",
+  "dmg",
+  "duration",
+  "expertise skill",
+  "magic dmg",
+  "max hp",
+  "passive effect",
+  "photon energy",
+  "photon reforge",
+  "skill cd",
+  "special attack",
+  "strength",
+  "target",
+]);
+
+const DPS_PATTERNS = [
+  /\b(?:dmg|damage|atk|matk|attack|crit|critical|haste|lucky|luck|mastery|versatility)\b/i,
+  /\b(?:armor|defen[cs]e|resistance|penetration|elemental|strength|intellect|agility)\b/i,
+  /\b(?:cooldown|cd|energy|resource|combo|stack|proc|trigger|chance|summon|companion|wolf|falcon)\b/i,
+  /\b(?:skill|strike|slash|arrow|bolt|blast|barrage|shot|thrust|flame|frost|ice|storm|light)\b/i,
+];
+
+const DEFENSIVE_PATTERNS = [
+  /\b(?:hp|shield|barrier|heal|healing|lifesteal|damage taken|dmg taken|reduction|resistance \+)\b/i,
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    displayPath,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+
+  const parsedArgs = parseArgs(process.argv.slice(2), {
+    talentProbe: path.join(defaultOutputDir, "probing-reports", "TalentEffectModelProbe.json"),
+    classSpecProbe: path.join(defaultOutputDir, "probing-reports", "ClassSpecSkillModelProbe.json"),
+    classLabels: path.join(defaultOutputDir, "class-labels.json"),
+    markdown: "",
+  });
+
+  if (parsedArgs.help) {
+    printHelp(
+      "TalentSpecOwnership.gen - classify talent/passive rows by class bucket and conservative spec ownership evidence.",
+      `
+Options:
+  --talent-probe <path>       TalentEffectModelProbe.json input.
+  --class-spec-probe <path>   ClassSpecSkillModelProbe.json input.
+  --class-labels <path>       class-labels.json input.
+  --out <path>                Output JSON path.
+  --markdown <path>           Optional Markdown summary output path.
+
+Notes:
+  This generator does not decide which talents a live player selected. It
+  creates parser metadata and a worklist from game-file evidence so runtime
+  filtering can distinguish class-wide rows, spec-exclusive rows, and ambiguous
+  rows without hard-coded per-spec blacklists.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolveOutputPaths(parsedArgs, resolvePaths);
+  const talentProbe = readOptionalJson(paths.args.talentProbe, {});
+  const classSpecProbe = readOptionalJson(paths.args.classSpecProbe, {});
+  const classLabels = readOptionalJson(paths.args.classLabels, {});
+
+  const talentRows = (talentProbe.talentRows ?? [])
+    .filter((row) => Number.isFinite(Number(row?.id)))
+    .map((row) => ({ ...row, id: Number(row.id) }))
+    .sort((left, right) => left.id - right.id);
+  const talentById = new Map(talentRows.map((row) => [row.id, row]));
+
+  const specsById = buildSpecModel(talentById, classSpecProbe, classLabels);
+  const termUseByClass = buildSpecTermUseByClass(specsById);
+  const talentsById = {};
+  const classSummaries = buildClassSummaries(specsById, classLabels);
+
+  for (const row of talentRows) {
+    const classification = classifyTalent(row, specsById, termUseByClass, classLabels);
+    talentsById[String(row.id)] = classification;
+    const classSummary = classSummaries[String(classification.classId)];
+    if (classSummary) {
+      classSummary.talentIds.push(row.id);
+      classSummary.ownershipCounts[classification.ownershipKind] =
+        (classSummary.ownershipCounts[classification.ownershipKind] ?? 0) + 1;
+      if (classification.dpsRelevance.affectsDps) {
+        classSummary.dpsRelevantTalentIds.push(row.id);
+      }
+    }
+  }
+
+  for (const summary of Object.values(classSummaries)) {
+    summary.talentIds = uniqueNumbers(summary.talentIds);
+    summary.dpsRelevantTalentIds = uniqueNumbers(summary.dpsRelevantTalentIds);
+  }
+
+  const worklists = buildWorklists(talentsById);
+  const summary = buildSummary(talentsById, specsById, worklists);
+  const report = {
+    summary: {
+      source: "TalentSpecOwnership.gen",
+      generatedFrom: {
+        talentProbe: path.relative(repoRoot, paths.args.talentProbe).replaceAll("\\", "/"),
+        classSpecProbe: path.relative(repoRoot, paths.args.classSpecProbe).replaceAll("\\", "/"),
+        classLabels: path.relative(repoRoot, paths.args.classLabels).replaceAll("\\", "/"),
+      },
+      ...summary,
+    },
+    notes: [
+      "Class buckets come from the stable talent id hundreds bucket visible in CTB:3345237628.",
+      "Spec selector rows come from the same talent/passive table and are cross-checked with ClassSpecSkillModelProbe.",
+      "Spec-exclusive means one spec has strong description/link/skill-pair evidence and the sibling spec does not.",
+      "Spec-interaction means a row names or strongly references multiple specs; do not hard-filter it by a single spec.",
+      "Class-wide-candidate rows have no current spec evidence. They may be true class talents or unresolved until more game-file bridges are decoded.",
+      "Only high-confidence spec-exclusive rows are marked hardFilterEligible; all other rows should keep runtime/evidence gating.",
+    ],
+    classesById: classSummaries,
+    specsById: Object.fromEntries([...specsById.entries()].map(([id, spec]) => [String(id), spec])),
+    talentsById,
+    worklists,
+  };
+
+  console.log(`Talent/passive rows: ${summary.talentRows}`);
+  console.log(`Spec rows: ${summary.specRows}`);
+  console.log(`Spec-exclusive rows: ${summary.ownershipCounts["spec-exclusive"] ?? 0}`);
+  console.log(`Spec-interaction rows: ${summary.ownershipCounts["spec-interaction"] ?? 0}`);
+  console.log(`Class-wide candidates: ${summary.ownershipCounts["class-wide-candidate"] ?? 0}`);
+  console.log(`Ambiguous DPS worklist: ${worklists.ambiguousDpsTalentIds.length}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, report, Boolean(paths.args.dryRun));
+
+  const markdownPath = paths.args.markdown
+    ? path.resolve(paths.args.markdown)
+    : path.join(path.dirname(paths.out), "TalentSpecOwnership.md");
+  if (!paths.args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${displayPath(markdownPath)}`);
+  }
+}
+
+function resolveOutputPaths(args, resolvePaths) {
+  const paths = resolvePaths(args, "TalentSpecOwnership.json");
+  const usesDefaultTalentProbe = args.talentProbe === path.join(defaultOutputDir, "probing-reports", "TalentEffectModelProbe.json");
+  const usesDefaultClassSpecProbe = args.classSpecProbe === path.join(defaultOutputDir, "probing-reports", "ClassSpecSkillModelProbe.json");
+  const usesDefaultClassLabels = args.classLabels === path.join(defaultOutputDir, "class-labels.json");
+  return {
+    ...paths,
+    args: {
+      ...args,
+      talentProbe: path.resolve(usesDefaultTalentProbe ? path.join(paths.outputDir, "probing-reports", "TalentEffectModelProbe.json") : args.talentProbe),
+      classSpecProbe: path.resolve(usesDefaultClassSpecProbe ? path.join(paths.outputDir, "probing-reports", "ClassSpecSkillModelProbe.json") : args.classSpecProbe),
+      classLabels: path.resolve(usesDefaultClassLabels ? path.join(paths.outputDir, "class-labels.json") : args.classLabels),
+    },
+  };
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? JSON.parse(fs.readFileSync(filePath, "utf8")) : fallback;
+}
+
+function buildSpecModel(talentById, classSpecProbe, classLabels) {
+  const specs = new Map();
+  const probeSpecRows = new Map(
+    (classSpecProbe.talentSpecRows ?? [])
+      .filter((row) => Number.isFinite(Number(row?.id)))
+      .map((row) => [Number(row.id), row])
+  );
+
+  for (const [classIdText, bucket] of Object.entries(CLASS_BUCKETS)) {
+    const classId = Number(classIdText);
+    for (const specId of bucket.specIds) {
+      const talentRow = talentById.get(specId) ?? {};
+      const probeRow = probeSpecRows.get(specId) ?? {};
+      const row = Object.keys(talentRow).length ? talentRow : probeRow;
+      const specNameKey = bucket.specNames[specId] ?? stripSpecSuffix(row.name || `Spec ${specId}`);
+      const names = mergeNameMaps(classLabels[`spec.${specNameKey}`], row.names);
+      const anchorTerms = collectSpecAnchorTerms(row);
+      specs.set(specId, stripUndefined({
+        specId,
+        classId,
+        className: bucket.className,
+        classNames: classLabels[`class.${bucket.className}`],
+        specNameKey,
+        specName: names?.en || stripSpecSuffix(row.name) || specNameKey,
+        specNames: names,
+        selectorTalentId: specId,
+        selectorBuffIds: uniqueNumbers((row.buffEffectRecords ?? []).map((record) => record.buffId)),
+        replacementSkillIds: uniqueNumbers((row.skillPairRecords ?? []).map((record) => record.secondSkillTableId)),
+        replacementSkillNames: uniqueStrings(
+          (row.skillPairRecords ?? []).flatMap((record) => [
+            record.secondSkillTableRow?.name,
+            record.secondSkillTableRow?.names?.en,
+          ])
+        ),
+        anchorTerms: [...anchorTerms].sort((a, b) => a.localeCompare(b)),
+        evidence: [{
+          source: row.sourceTable || "CTB:3345237628",
+          sourceOffset: row.sourceOffset,
+          descriptionId: row.descriptionId,
+          classBucket: classId,
+        }],
+      }));
+    }
+  }
+
+  return specs;
+}
+
+function collectSpecAnchorTerms(row) {
+  const terms = new Set();
+  addTerm(terms, stripSpecSuffix(row?.name));
+  for (const value of Object.values(row?.names ?? {})) {
+    addTerm(terms, stripSpecSuffix(value));
+  }
+  for (const link of row?.descriptionLinkTexts ?? []) {
+    addTerm(terms, link.label);
+    for (const value of Object.values(link.labels ?? {})) addTerm(terms, value);
+  }
+  for (const record of row?.skillPairRecords ?? []) {
+    addTerm(terms, record.secondSkillTableRow?.name);
+    for (const value of Object.values(record.secondSkillTableRow?.names ?? {})) addTerm(terms, value);
+  }
+  for (const term of extractStyledTerms(row?.description)) {
+    addTerm(terms, term);
+  }
+  return terms;
+}
+
+function buildSpecTermUseByClass(specsById) {
+  const byClass = new Map();
+  for (const spec of specsById.values()) {
+    if (!byClass.has(spec.classId)) byClass.set(spec.classId, new Map());
+    const termUse = byClass.get(spec.classId);
+    for (const term of spec.anchorTerms ?? []) {
+      const normalized = normalizeTerm(term);
+      if (!normalized || GENERIC_TERMS.has(normalized)) continue;
+      const bucket = termUse.get(normalized) ?? new Set();
+      bucket.add(spec.specId);
+      termUse.set(normalized, bucket);
+    }
+  }
+  return byClass;
+}
+
+function buildClassSummaries(specsById, classLabels) {
+  const classes = {};
+  for (const [classIdText, bucket] of Object.entries(CLASS_BUCKETS)) {
+    const classId = Number(classIdText);
+    classes[String(classId)] = {
+      classId,
+      className: bucket.className,
+      classNames: classLabels[`class.${bucket.className}`],
+      specIds: bucket.specIds,
+      specs: bucket.specIds.map((specId) => {
+        const spec = specsById.get(specId);
+        return {
+          specId,
+          specNameKey: spec?.specNameKey,
+          specName: spec?.specName,
+          specNames: spec?.specNames,
+        };
+      }),
+      talentIds: [],
+      dpsRelevantTalentIds: [],
+      ownershipCounts: {},
+    };
+  }
+  return classes;
+}
+
+function classifyTalent(row, specsById, termUseByClass, classLabels) {
+  const talentId = Number(row.id);
+  const classId = talentClassId(talentId);
+  const classBucket = CLASS_BUCKETS[classId];
+  const classSpecs = [...specsById.values()].filter((spec) => spec.classId === classId);
+  const cleanDescription = cleanMarkup(row.description ?? row.cleanDescription ?? "");
+  const normalizedDescription = normalizeTerm(cleanDescription);
+  const talentTerms = collectTalentTerms(row);
+  const scores = [];
+  const evidence = [];
+  const isSpecSelector = specsById.has(talentId);
+
+  for (const spec of classSpecs) {
+    const specEvidence = [];
+    let score = 0;
+    const directNames = uniqueStrings([
+      spec.specName,
+      spec.specNameKey,
+      ...(Object.values(spec.specNames ?? {})),
+    ]).map(stripSpecSuffix).filter(Boolean);
+    for (const directName of directNames) {
+      const normalizedName = normalizeTerm(directName);
+      if (!normalizedName || normalizedName.length < 4) continue;
+      if (
+        normalizedDescription.includes(`${normalizedName} spec`)
+        || normalizedDescription.includes(`${normalizedName} specialization`)
+      ) {
+        score += 90;
+        specEvidence.push({
+          kind: "description-spec-name",
+          specId: spec.specId,
+          matched: directName,
+          weight: 90,
+        });
+        break;
+      }
+    }
+
+    const termUse = termUseByClass.get(classId) ?? new Map();
+    for (const term of talentTerms) {
+      const normalized = normalizeTerm(term);
+      if (!normalized || GENERIC_TERMS.has(normalized)) continue;
+      const usedBy = termUse.get(normalized);
+      if (!usedBy || !usedBy.has(spec.specId)) continue;
+      const isUniqueToSpec = usedBy.size === 1;
+      const weight = isUniqueToSpec ? 34 : 8;
+      score += weight;
+      specEvidence.push({
+        kind: isUniqueToSpec ? "unique-spec-anchor-term" : "shared-spec-anchor-term",
+        specId: spec.specId,
+        matched: term,
+        weight,
+        sharedSpecIds: isUniqueToSpec ? undefined : [...usedBy].sort((a, b) => a - b),
+      });
+    }
+
+    if (isSpecSelector && spec.specId === talentId) {
+      score += 200;
+      specEvidence.push({
+        kind: "selector-talent-id",
+        specId: spec.specId,
+        weight: 200,
+      });
+    }
+
+    if (score > 0) {
+      scores.push({
+        specId: spec.specId,
+        specNameKey: spec.specNameKey,
+        specName: spec.specName,
+        score,
+        evidence: specEvidence,
+      });
+      evidence.push(...specEvidence);
+    }
+  }
+
+  scores.sort((left, right) => right.score - left.score || left.specId - right.specId);
+  const dpsRelevance = classifyDpsRelevance(row);
+  const top = scores[0];
+  const second = scores[1];
+  const strongScores = scores.filter((score) => score.score >= 55);
+  let ownershipKind = "class-wide-candidate";
+  let ownershipStatus = "unresolved-class-bucket";
+  let confidence = 0;
+  let specIds = [];
+
+  if (isSpecSelector) {
+    ownershipKind = "spec-selector";
+    ownershipStatus = "game-file-spec-selector";
+    confidence = 100;
+    specIds = [talentId];
+  } else if (strongScores.length > 1) {
+    ownershipKind = "spec-interaction";
+    ownershipStatus = "references-multiple-specs";
+    confidence = Math.min(95, strongScores[0].score);
+    specIds = strongScores.map((score) => score.specId).sort((a, b) => a - b);
+  } else if (top && top.score >= 72 && (!second || top.score - second.score >= 34)) {
+    ownershipKind = "spec-exclusive";
+    ownershipStatus = "high-confidence";
+    confidence = Math.min(99, top.score);
+    specIds = [top.specId];
+  } else if (top && top.score >= 38 && (!second || top.score - second.score >= 20)) {
+    ownershipKind = "spec-leaning";
+    ownershipStatus = "medium-confidence";
+    confidence = Math.min(75, top.score);
+    specIds = [top.specId];
+  } else if (top) {
+    ownershipKind = "ambiguous";
+    ownershipStatus = "needs-review";
+    confidence = Math.min(60, top.score);
+    specIds = scores.map((score) => score.specId).sort((a, b) => a - b);
+  }
+
+  const specModels = specIds.map((specId) => specsById.get(specId)).filter(Boolean);
+  const sourceBuffIds = uniqueNumbers((row.buffEffectRecords ?? []).map((record) => record.buffId));
+  return stripUndefined({
+    talentId,
+    name: row.name,
+    names: row.names,
+    classId,
+    className: classBucket?.className,
+    classNames: classLabels[`class.${classBucket?.className}`],
+    ownershipKind,
+    ownershipStatus,
+    confidence,
+    hardFilterEligible: ownershipKind === "spec-exclusive" && ownershipStatus === "high-confidence",
+    specIds,
+    specNameKeys: specModels.map((spec) => spec.specNameKey),
+    specNames: specModels.map((spec) => spec.specName),
+    sourceBuffIds,
+    linkedSkillTerms: [...talentTerms].sort((a, b) => a.localeCompare(b)),
+    dpsRelevance,
+    scores,
+    evidence: mergeEvidence(evidence),
+  });
+}
+
+function talentClassId(talentId) {
+  if (!Number.isFinite(talentId)) return null;
+  if (talentId >= 1000) return Math.floor(talentId / 100);
+  return Math.floor(talentId / 100);
+}
+
+function collectTalentTerms(row) {
+  const terms = new Set();
+  addTerm(terms, row?.name);
+  for (const link of row?.descriptionLinkTexts ?? []) {
+    addTerm(terms, link.label);
+    for (const value of Object.values(link.labels ?? {})) addTerm(terms, value);
+  }
+  for (const record of row?.skillPairRecords ?? []) {
+    addTerm(terms, record.firstSkillTableRow?.name);
+    addTerm(terms, record.secondSkillTableRow?.name);
+    for (const value of Object.values(record.firstSkillTableRow?.names ?? {})) addTerm(terms, value);
+    for (const value of Object.values(record.secondSkillTableRow?.names ?? {})) addTerm(terms, value);
+  }
+  for (const record of row?.linkedRecountRows ?? []) {
+    addTerm(terms, record.recountName);
+    for (const value of Object.values(record.recountNames ?? {})) addTerm(terms, value);
+  }
+  for (const term of extractStyledTerms(row?.description)) {
+    addTerm(terms, term);
+  }
+  return terms;
+}
+
+function extractStyledTerms(description) {
+  const terms = [];
+  const text = String(description || "");
+  const styleRegex = /<style[^>]*>([^<>]{3,80})<\/style>/gi;
+  let match;
+  while ((match = styleRegex.exec(text))) {
+    terms.push(cleanMarkup(match[1]));
+  }
+  return terms;
+}
+
+function addTerm(set, value) {
+  const cleaned = cleanMarkup(value);
+  const normalized = normalizeTerm(cleaned);
+  if (!normalized || normalized.length < 3 || GENERIC_TERMS.has(normalized)) return;
+  if (/^\d+(?:\.\d+)?%?$/.test(normalized)) return;
+  if (normalized.length > 48) return;
+  set.add(cleaned.trim());
+}
+
+function stripSpecSuffix(value) {
+  return String(value || "")
+    .replace(/\bSpecialization\b/gi, "")
+    .replace(/\bSpec\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function cleanMarkup(value) {
+  return String(value || "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeTerm(value) {
+  return cleanMarkup(value)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}%+ -]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function classifyDpsRelevance(row) {
+  const text = cleanMarkup([
+    row?.name,
+    row?.description,
+    ...Object.values(row?.names ?? {}),
+  ].filter(Boolean).join(" "));
+  const reasons = [];
+  for (const pattern of DPS_PATTERNS) {
+    if (pattern.test(text)) {
+      reasons.push(String(pattern));
+    }
+  }
+  const defensiveReasons = [];
+  for (const pattern of DEFENSIVE_PATTERNS) {
+    if (pattern.test(text)) defensiveReasons.push(String(pattern));
+  }
+  const affectsDps = reasons.length > 0;
+  return {
+    affectsDps,
+    status: affectsDps
+      ? (defensiveReasons.length ? "combat-effect-mixed-or-offensive" : "combat-effect-offensive-or-timing")
+      : (defensiveReasons.length ? "defensive-or-healing-only" : "unknown-or-noncombat"),
+    reasons: reasons.slice(0, 6),
+    defensiveReasons: defensiveReasons.slice(0, 4),
+  };
+}
+
+function buildWorklists(talentsById) {
+  const rows = Object.values(talentsById);
+  const dpsRows = rows.filter((row) => row.dpsRelevance.affectsDps);
+  const bySpec = {};
+  for (const row of dpsRows.filter((entry) => entry.ownershipKind === "spec-exclusive")) {
+    const specId = row.specIds?.[0];
+    if (!specId) continue;
+    const bucket = bySpec[String(specId)] ?? [];
+    bucket.push(row.talentId);
+    bySpec[String(specId)] = bucket;
+  }
+  for (const [specId, ids] of Object.entries(bySpec)) {
+    bySpec[specId] = uniqueNumbers(ids);
+  }
+  return {
+    hardFilterEligibleTalentIds: uniqueNumbers(rows.filter((row) => row.hardFilterEligible).map((row) => row.talentId)),
+    ambiguousDpsTalentIds: uniqueNumbers(dpsRows.filter((row) => row.ownershipKind === "ambiguous").map((row) => row.talentId)),
+    specLeaningDpsTalentIds: uniqueNumbers(dpsRows.filter((row) => row.ownershipKind === "spec-leaning").map((row) => row.talentId)),
+    classWideCandidateDpsTalentIds: uniqueNumbers(dpsRows.filter((row) => row.ownershipKind === "class-wide-candidate").map((row) => row.talentId)),
+    specExclusiveDpsTalentIdsBySpec: bySpec,
+  };
+}
+
+function buildSummary(talentsById, specsById, worklists) {
+  const rows = Object.values(talentsById);
+  const ownershipCounts = {};
+  for (const row of rows) {
+    ownershipCounts[row.ownershipKind] = (ownershipCounts[row.ownershipKind] ?? 0) + 1;
+  }
+  const dpsRows = rows.filter((row) => row.dpsRelevance.affectsDps);
+  return {
+    talentRows: rows.length,
+    specRows: specsById.size,
+    classBuckets: Object.keys(CLASS_BUCKETS).length,
+    dpsRelevantRows: dpsRows.length,
+    ownershipCounts,
+    hardFilterEligibleRows: worklists.hardFilterEligibleTalentIds.length,
+    dpsRowsNeedingReview: uniqueNumbers([
+      ...worklists.ambiguousDpsTalentIds,
+      ...worklists.specLeaningDpsTalentIds,
+    ]).length,
+    generationPolicy:
+      "Ownership is conservative metadata. Runtime selected-talent/passive evidence should remain authoritative; hard filtering is only safe for high-confidence spec-exclusive rows.",
+  };
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Talent Spec Ownership");
+  lines.push("");
+  lines.push("Conservative class/spec ownership metadata for talent/passive rows.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.summary || {})) {
+    if (typeof value === "object") {
+      lines.push(`- ${key}: ${JSON.stringify(value)}`);
+    } else {
+      lines.push(`- ${key}: ${value}`);
+    }
+  }
+  lines.push("");
+  lines.push("## Class Buckets");
+  lines.push("");
+  for (const klass of Object.values(report.classesById || {})) {
+    const specs = (klass.specs || []).map((spec) => `${spec.specId} ${spec.specName}`).join(", ");
+    lines.push(`- ${klass.classId} ${klass.className}: ${klass.talentIds.length} talents; specs ${specs}; ownership ${JSON.stringify(klass.ownershipCounts)}`);
+  }
+  lines.push("");
+  lines.push("## DPS Rows Needing Review");
+  lines.push("");
+  const reviewIds = uniqueNumbers([
+    ...(report.worklists?.ambiguousDpsTalentIds ?? []),
+    ...(report.worklists?.specLeaningDpsTalentIds ?? []),
+  ]).slice(0, 80);
+  for (const id of reviewIds) {
+    const row = report.talentsById?.[String(id)];
+    if (!row) continue;
+    lines.push(`- ${id} ${row.name}: ${row.ownershipKind}; scores ${formatScores(row.scores)}`);
+  }
+  lines.push("");
+  lines.push("## Hard Filter Eligible");
+  lines.push("");
+  for (const id of (report.worklists?.hardFilterEligibleTalentIds ?? []).slice(0, 120)) {
+    const row = report.talentsById?.[String(id)];
+    if (!row) continue;
+    lines.push(`- ${id} ${row.name}: ${row.specNames?.join(", ") || row.specIds?.join(", ")} (${row.confidence})`);
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function formatScores(scores) {
+  return (scores || [])
+    .slice(0, 3)
+    .map((score) => `${score.specName}:${score.score}`)
+    .join(", ");
+}
+
+function mergeEvidence(evidence) {
+  const seen = new Set();
+  const out = [];
+  for (const row of evidence || []) {
+    const key = `${row.kind}|${row.specId}|${row.matched || ""}|${row.weight}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(stripUndefined(row));
+  }
+  return out;
+}
+
+function mergeNameMaps(...maps) {
+  const out = {};
+  for (const map of maps) {
+    for (const [locale, value] of Object.entries(map || {})) {
+      if (value && !out[locale]) out[locale] = value;
+    }
+  }
+  return Object.keys(out).length ? out : undefined;
+}

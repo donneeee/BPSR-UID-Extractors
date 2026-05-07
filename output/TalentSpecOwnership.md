@@ -1,0 +1,205 @@
+# Talent Spec Ownership
+
+Conservative class/spec ownership metadata for talent/passive rows.
+
+## Summary
+
+- source: TalentSpecOwnership.gen
+- generatedFrom: {"talentProbe":"output/probing-reports/TalentEffectModelProbe.json","classSpecProbe":"output/probing-reports/ClassSpecSkillModelProbe.json","classLabels":"output/class-labels.json"}
+- talentRows: 646
+- specRows: 18
+- classBuckets: 9
+- dpsRelevantRows: 553
+- ownershipCounts: {"class-wide-candidate":394,"spec-exclusive":152,"spec-interaction":20,"spec-selector":18,"spec-leaning":7,"ambiguous":55}
+- hardFilterEligibleRows: 152
+- dpsRowsNeedingReview: 51
+- generationPolicy: Ownership is conservative metadata. Runtime selected-talent/passive evidence should remain authoritative; hard filtering is only safe for high-confidence spec-exclusive rows.
+
+## Class Buckets
+
+- 1 Stormblade: 69 talents; specs 130 Iaido, 157 Moonstrike; ownership {"spec-exclusive":28,"class-wide-candidate":33,"spec-interaction":4,"spec-selector":2,"spec-leaning":2}
+- 2 Frost Mage: 68 talents; specs 212 Frostbeam, 233 Icicle; ownership {"ambiguous":13,"class-wide-candidate":19,"spec-interaction":6,"spec-exclusive":25,"spec-leaning":3,"spec-selector":2}
+- 3 Flame Berserker: 67 talents; specs 312 Formless Expertise Spec, 342 Crimson Expertise Spec; ownership {"class-wide-candidate":64,"spec-exclusive":1,"spec-selector":2}
+- 4 Wind Knight: 68 talents; specs 432 Skyward, 433 Vanguard; ownership {"class-wide-candidate":38,"ambiguous":9,"spec-exclusive":18,"spec-selector":2,"spec-interaction":1}
+- 5 Verdant Oracle: 70 talents; specs 510 Smite, 531 Lifebind; ownership {"class-wide-candidate":32,"spec-exclusive":27,"spec-selector":2,"spec-interaction":5,"ambiguous":4}
+- 9 Heavy Guardian: 67 talents; specs 930 Block, 931 Earthfort; ownership {"class-wide-candidate":45,"spec-exclusive":12,"ambiguous":7,"spec-interaction":1,"spec-selector":2}
+- 11 Marksman: 67 talents; specs 1126 Wildpack, 1129 Falconry; ownership {"spec-interaction":2,"class-wide-candidate":37,"spec-exclusive":13,"ambiguous":11,"spec-leaning":2,"spec-selector":2}
+- 12 Shield Knight: 67 talents; specs 1208 Recovery, 1218 Shield; ownership {"class-wide-candidate":46,"ambiguous":11,"spec-selector":2,"spec-exclusive":8}
+- 13 Beat Performer: 68 talents; specs 1308 Dissonance, 1317 Concerto; ownership {"class-wide-candidate":45,"spec-selector":2,"spec-exclusive":20,"spec-interaction":1}
+
+## DPS Rows Needing Review
+
+- 169 Raijin Dash Charge: spec-leaning; scores Iaido:68
+- 200 Cold Intent - Sharp: ambiguous; scores Frostbeam:34
+- 208 Frost Explosion: spec-leaning; scores Icicle:68
+- 209 Ice Crystal Expansion: ambiguous; scores Frostbeam:34
+- 210 Ice Shard Pact: ambiguous; scores Frostbeam:34
+- 214 Snow Shadow: ambiguous; scores Frostbeam:34
+- 220 Shattering Strike: spec-leaning; scores Icicle:68
+- 221 Glacier fury: spec-leaning; scores Frostbeam:68
+- 229 Instant Cooling: ambiguous; scores Frostbeam:34
+- 230 Cold Stream: ambiguous; scores Frostbeam:34
+- 238 Cold Intent - Flow: ambiguous; scores Frostbeam:34
+- 258 Law of Energy Surge: ambiguous; scores Icicle:34
+- 259 Power of Ice Crystals: ambiguous; scores Frostbeam:34
+- 260 Ice Crystal Recovery: ambiguous; scores Frostbeam:34
+- 266 Intellect Ice Crystal: ambiguous; scores Frostbeam:34
+- 268 Sharp Ice Arrow: ambiguous; scores Icicle:34
+- 270 Ice Crystal Expansion: ambiguous; scores Frostbeam:34
+- 403 Sharp: ambiguous; scores Skyward:48, Vanguard:48
+- 411 Zephyr Waltz Agility: ambiguous; scores Skyward:48, Vanguard:48
+- 525 Natural Bloom: ambiguous; scores Smite:34
+- 550 Breath of Symbiosis: ambiguous; scores Smite:34
+- 913 Fortune Bastion: ambiguous; scores Block:34
+- 920 Breath of Stone: ambiguous; scores Earthfort:34
+- 923 Shattering Rageblow: ambiguous; scores Block:34
+- 929 Rage Awakening: ambiguous; scores Earthfort:34
+- 935 Block Blessing: ambiguous; scores Block:34
+- 947 Recovery: ambiguous; scores Earthfort:34
+- 1105 Battle Howl: ambiguous; scores Wildpack:34
+- 1106 Direwolf's Hunger: ambiguous; scores Wildpack:34
+- 1108 Phantom Wolfstrike: spec-leaning; scores Wildpack:68
+- 1109 Direwolf Bite: spec-leaning; scores Wildpack:68
+- 1116 Swift: ambiguous; scores Falconry:34
+- 1118 Falcon Raid: ambiguous; scores Falconry:34
+- 1119 Meteor: ambiguous; scores Falconry:34
+- 1121 Falcon's Heart: ambiguous; scores Falconry:34
+- 1130 Wolf Dancer: ambiguous; scores Wildpack:34
+- 1142 Wolf Evolution: ambiguous; scores Wildpack:34
+- 1150 Wolf's Bite: ambiguous; scores Wildpack:34
+- 1152 Steel Beak: ambiguous; scores Falconry:34
+- 1158 Falcon Break: ambiguous; scores Falconry:34
+- 1203 Ring of Judgment: ambiguous; scores Shield:34
+- 1219 Light Barrier: ambiguous; scores Shield:34
+- 1220 Ascension of the Lightforged Barrier: ambiguous; scores Shield:34
+- 1222 Holy Strike: ambiguous; scores Shield:34
+- 1224 Determination Slash: ambiguous; scores Shield:34
+- 1226 Ruthless Rewind: ambiguous; scores Shield:34
+- 1227 Divine Circle Resonance: ambiguous; scores Shield:34
+- 1259 Divine Guard: ambiguous; scores Shield:34
+- 1260 Judgment Improvement: ambiguous; scores Shield:34
+- 1262 Overflow Healwall: ambiguous; scores Shield:34
+- 1265 Resolved to Return: ambiguous; scores Shield:34
+
+## Hard Filter Eligible
+
+- 100 Blade Intent: Moonstrike (99)
+- 105 Iaido Mastery: Iaido (99)
+- 107 Zen Moment: Moonstrike (99)
+- 108 Thunder Sigil Charm: Iaido (99)
+- 110 Vacuum Slash: Iaido (99)
+- 112 Flash Frenzy Blade: Iaido (99)
+- 113 Bladewind Domain: Iaido (99)
+- 115 Breath of Mark: Iaido (99)
+- 121 Moonstrike Delay: Moonstrike (99)
+- 129 Iai Thunder Dance: Iaido (99)
+- 132 Flash Sharp Strike: Iaido (99)
+- 133 Rapid Thunder Assault: Iaido (99)
+- 136 Thunder Sigil Charm: Iaido (99)
+- 139 Infinite Thunder: Iaido (99)
+- 140 Thunder Sigil Rewind: Iaido (99)
+- 143 Violent Slash: Iaido (99)
+- 145 Dual Blade Intent: Moonstrike (99)
+- 146 Thunder Sigil Affinity: Iaido (99)
+- 150 Thunder Sigil Charm: Iaido (99)
+- 151 Break Slash: Iaido (99)
+- 153 Instant Slash: Iaido (99)
+- 156 Blade Intent Recovery: Moonstrike (99)
+- 160 Blade Intent - Rare: Moonstrike (99)
+- 162 Chaos Breaker: Moonstrike (99)
+- 166 Moonstrike Sharp Strike: Moonstrike (99)
+- 167 Thunder Sigil Charm: Iaido (99)
+- 168 Thunder Rune Mastery: Moonstrike (99)
+- 172 Thunder Sigil Rewind: Iaido (99)
+- 204 Breath of Frost: Frostbeam (99)
+- 206 Tide Mastery: Frostbeam (99)
+- 207 Crystal Resonance: Frostbeam (99)
+- 211 Cold Wind Convergence: Frostbeam (99)
+- 216 Frozen Stars: Icicle (99)
+- 217 Blizzard Dual Lances: Icicle (99)
+- 222 Icicle Volley: Icicle (99)
+- 225 Boundless Frost: Frostbeam (99)
+- 231 Frostjade Staff: Frostbeam (99)
+- 235 Cold Pulse: Frostbeam (99)
+- 240 Endless Cold: Frostbeam (99)
+- 245 Deep Cold Magic Spear: Icicle (99)
+- 247 Frost Lance Crit: Icicle (99)
+- 248 Infusion Sublimation: Frostbeam (99)
+- 249 Deadly Frost Lance: Icicle (99)
+- 250 Critical Cold: Frostbeam (99)
+- 253 Frost Crystal Empowerment: Frostbeam (99)
+- 256 Cold Retention: Frostbeam (99)
+- 257 Frost Revelation: Frostbeam (99)
+- 261 Rapid Ice Arrow: Frostbeam (99)
+- 262 Endless Tide: Frostbeam (99)
+- 263 Frost Tide: Frostbeam (99)
+- 264 Ray Mastery I: Frostbeam (99)
+- 267 Quick Chant: Frostbeam (99)
+- 269 Ray's Swan Song: Frostbeam (99)
+- 303 Crimson Lotus: Formless Expertise Spec (90)
+- 406 Wind Tear: Vanguard (99)
+- 407 Quickshot Meteor: Vanguard (99)
+- 410 Swift Blade: Vanguard (99)
+- 416 Spear Thrust: Skyward (99)
+- 419 Air Dance Strike: Skyward (82)
+- 422 Chasing Step: Skyward (99)
+- 438 Sharp: Skyward (82)
+- 440 Wind Spiral: Vanguard (99)
+- 441 Vigor Spike: Skyward (74)
+- 442 Fearless Gale: Vanguard (99)
+- 444 Rapid Drake Cannon: Vanguard (99)
+- 449 Breath of Wind: Vanguard (99)
+- 460 Skyfall: Skyward (99)
+- 462 Exceptional Elegance: Skyward (99)
+- 464 Instant Edge Break Style: Skyward (82)
+- 466 Sharp Pursuit: Skyward (82)
+- 469 Sharp Echo: Skyward (99)
+- 470 Kamikaze Luck: Skyward (82)
+- 503 Regen Bud: Lifebind (99)
+- 504 Breath of Buds: Lifebind (99)
+- 505 Nature Shield: Smite (99)
+- 506 Arcane of Green: Smite (99)
+- 508 Wild Blessing: Smite (99)
+- 509 Flourish: Smite (99)
+- 512 Final Bloomwheel: Smite (99)
+- 516 Healing Infusion: Lifebind (99)
+- 518 Verdant Duet: Lifebind (99)
+- 519 Floral Whisper: Lifebind (99)
+- 521 Nourish Essence: Lifebind (99)
+- 528 Bud Acquisition: Lifebind (99)
+- 538 Regeneration Bud: Lifebind (99)
+- 540 Shelter: Smite (99)
+- 541 Pulse Breath: Smite (99)
+- 543 Wild Protection: Smite (99)
+- 546 Pulse Duality: Smite (99)
+- 547 Swift Shelter: Smite (99)
+- 548 Pulse Retrospect: Smite (99)
+- 549 Swift Bud: Lifebind (99)
+- 552 Pulse Echo: Smite (99)
+- 554 Verdant Impact: Smite (99)
+- 558 Life Bloom: Lifebind (99)
+- 559 Vitality: Lifebind (99)
+- 560 Flourishing Progress: Lifebind (99)
+- 561 Blooming Reincarnation: Lifebind (99)
+- 567 Bud to Blossom: Lifebind (99)
+- 906 Block Recovery: Block (99)
+- 907 Countercrush: Block (99)
+- 914 Slam Shelter: Earthfort (99)
+- 917 Smash Support: Earthfort (99)
+- 922 Shield Echo: Earthfort (99)
+- 934 Sandstone Shock: Block (99)
+- 956 Rampart Fury: Block (99)
+- 957 Block Shelter: Block (99)
+- 958 Sand Block: Block (99)
+- 963 Rampart Fortitude: Block (99)
+- 968 Counter Storm: Block (99)
+- 969 Rock Luck: Block (99)
+- 1103 Wolf Pact: Wildpack (99)
+- 1110 Demon Wolf Twin: Wildpack (99)
+- 1111 Photon Reforge Lore: Wildpack (99)
+- 1114 Tracer Arrows: Wildpack (99)
+- 1120 Piercing Shot: Falconry (99)
+- 1122 Lightfall: Falconry (99)
+- 1136 Wolf Sharp Strike: Wildpack (99)
+- 1140 Wolf Fang Pact: Wildpack (99)
+- 1144 Lumi Torrent: Wildpack (99)

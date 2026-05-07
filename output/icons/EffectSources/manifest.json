@@ -1,8 +1,8 @@
 {
-  "GeneratedAt": "2026-05-01T19:02:51.467Z",
+  "GeneratedAt": "2026-05-06T04:09:13.619Z",
   "SourceGroup": "EffectSources",
   "OutputDir": "output/icons/EffectSources",
-  "AssetCount": 1049,
+  "AssetCount": 1059,
   "Assets": [
     {
       "AssetId": "EffectSources|Sprite|1447258277|buff_abnormal_green_icon|EffectSources/buff_abnormal_green_icon.png",
@@ -30,7 +30,7 @@
         },
         {
           "Id": "buff-source:683624",
-          "Name": "Airona - HP Regen"
+          "Name": "HP Regen"
         },
         {
           "Id": "buff-source:990825",
@@ -80,7 +80,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110100",
-          "Name": "Iron Fang - Healing Prohibition"
+          "Name": "Arcane! Infernal Thrust - Healing Prohibition"
         },
         {
           "Id": "buff-source:881076",
@@ -115,7 +115,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:821034.iconPath",
+      "Field": "effectSourcesById.buff-source:2110050.iconPath",
       "Value": "ui/atlas/debuff/buff_abnormal_icon_02",
       "Address": "ui/atlas/debuff/buff_abnormal_icon_02",
       "AddressHash": 512514690,
@@ -124,15 +124,27 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_abnormal_icon_02.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 5,
       "Rows": [
+        {
+          "Id": "buff-source:2110050",
+          "Name": "Element Stasis"
+        },
+        {
+          "Id": "buff-source:2110055",
+          "Name": "Exhausted: Flame Devour"
+        },
+        {
+          "Id": "buff-source:2110056",
+          "Name": "Time Stasis"
+        },
+        {
+          "Id": "buff-source:2110057",
+          "Name": "Weakened: Wish Sealed"
+        },
         {
           "Id": "buff-source:821034",
           "Name": "Dimensional corrosion"
-        },
-        {
-          "Id": "buff-source:990424",
-          "Name": "Lizardman King - Chanting prohibited"
         }
       ],
       "AtlasAddress": "ui/atlas/debuff",
@@ -140,8 +152,11 @@
       "SpriteName": "buff_abnormal_icon_02",
       "SpriteAddress": 2592231880,
       "Fields": [
-        "effectSourcesById.buff-source:821034.iconPath",
-        "effectSourcesById.buff-source:990424.iconPath"
+        "effectSourcesById.buff-source:2110050.iconPath",
+        "effectSourcesById.buff-source:2110055.iconPath",
+        "effectSourcesById.buff-source:2110056.iconPath",
+        "effectSourcesById.buff-source:2110057.iconPath",
+        "effectSourcesById.buff-source:821034.iconPath"
       ],
       "Values": [
         "ui/atlas/debuff/buff_abnormal_icon_02"
@@ -163,7 +178,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:681838.iconPath",
+      "Field": "effectSourcesById.buff-source:27007.iconPath",
       "Value": "ui/atlas/buff/buff_abnormal_img_icon",
       "Address": "ui/atlas/buff/buff_abnormal_img_icon",
       "AddressHash": 2047329081,
@@ -175,8 +190,8 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "buff-source:681838",
-          "Name": "Airona Transformation - Pure Model"
+          "Id": "buff-source:27007",
+          "Name": "Permafrost"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -218,7 +233,7 @@
         },
         {
           "Id": "buff-source:990603",
-          "Name": "Venobzzar Incubator - Poisoned"
+          "Name": "Poisoned"
         }
       ],
       "AtlasAddress": "ui/atlas/debuff",
@@ -250,7 +265,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3200027.iconPath",
+      "Field": "effectSourcesById.buff-source:2200051.iconPath",
       "Value": "ui/atlas/buff/buff_add_electricity",
       "Address": "ui/atlas/buff/buff_add_electricity",
       "AddressHash": 2047329081,
@@ -259,15 +274,11 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_add_electricity.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 4,
+      "RefCount": 3,
       "Rows": [
         {
-          "Id": "buff-source:3200027",
-          "Name": "Muku Vanguard - Thunder Infusion"
-        },
-        {
-          "Id": "buff-source:681837",
-          "Name": "Void Tina Transformation - Locked Blade"
+          "Id": "buff-source:2200051",
+          "Name": "Overdrive"
         },
         {
           "Id": "buff-source:835067",
@@ -283,8 +294,7 @@
       "SpriteName": "buff_add_electricity",
       "SpriteAddress": 323636851,
       "Fields": [
-        "effectSourcesById.buff-source:3200027.iconPath",
-        "effectSourcesById.buff-source:681837.iconPath",
+        "effectSourcesById.buff-source:2200051.iconPath",
         "effectSourcesById.buff-source:835067.iconPath",
         "effectSourcesById.buff-source:880810.iconPath"
       ],
@@ -338,37 +348,37 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "EffectSources|Sprite|1447258277|buff_add_wind|EffectSources/buff_add_wind.png",
+      "AssetId": "EffectSources|Sprite|1337047534|buff_agentia_down|EffectSources/buff_agentia_down.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3200024.iconPath",
-      "Value": "ui/atlas/buff/buff_add_wind",
-      "Address": "ui/atlas/buff/buff_add_wind",
-      "AddressHash": 2047329081,
-      "BundleHash": 1447258277,
+      "Field": "effectSourcesById.buff-source:2110026.iconPath",
+      "Value": "ui/atlas/debuff/buff_agentia_down",
+      "Address": "ui/atlas/debuff/buff_agentia_down",
+      "AddressHash": 512514690,
+      "BundleHash": 1337047534,
       "ResourceType": "Sprite",
       "MatchKind": "atlas-sprite-address",
-      "PngFile": "EffectSources/buff_add_wind.png",
+      "PngFile": "EffectSources/buff_agentia_down.png",
       "RequiresProbePixelMatch": false,
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "buff-source:3200024",
-          "Name": "Storm Goblin King - Storm Blessing"
+          "Id": "buff-source:2110026",
+          "Name": "Stunt! Boarrier Rush - Wound"
         }
       ],
-      "AtlasAddress": "ui/atlas/buff",
-      "AtlasHash": 2047329081,
-      "SpriteName": "buff_add_wind",
-      "SpriteAddress": 3765550180,
+      "AtlasAddress": "ui/atlas/debuff",
+      "AtlasHash": 512514690,
+      "SpriteName": "buff_agentia_down",
+      "SpriteAddress": 609079907,
       "PngExported": true,
-      "PngWidth": 49,
-      "PngHeight": 59,
+      "PngWidth": 51,
+      "PngHeight": 57,
       "PngMode": "RGBA",
-      "PixelSha256": "8051ec0cb2edea3035f27c8f3643b2f8b0d7c1c13bbaf441af8b91d0c5248ddd",
-      "ObjectPathId": "7800918135607765176",
-      "SelectedObjectName": "buff_add_wind",
+      "PixelSha256": "247baeeda1a52d95d1d3f84018ba032c7909f183527d2ecaf14aacdb540248d9",
+      "ObjectPathId": "4649586770840893218",
+      "SelectedObjectName": "buff_agentia_down",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -385,7 +395,7 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_agentia_up.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 217,
+      "RefCount": 216,
       "Rows": [
         {
           "Id": "buff-source:2033011",
@@ -1008,8 +1018,7 @@
         "effectSourcesById.buff-source:2033185.iconPath",
         "effectSourcesById.buff-source:2033185.evidence.0.buffIconPath",
         "effectSourcesById.buff-source:2033186.iconPath",
-        "effectSourcesById.buff-source:2033186.evidence.0.buffIconPath",
-        "effectSourcesById.buff-source:681836.iconPath"
+        "effectSourcesById.buff-source:2033186.evidence.0.buffIconPath"
       ],
       "Values": [
         "ui/atlas/buff/buff_agentia_up"
@@ -1031,7 +1040,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:2110062.iconPath",
+      "Field": "effectSourcesById.buff-source:2110024.iconPath",
       "Value": "ui/atlas/hud/buff/buff_blue_atk",
       "Address": "ui/atlas/hud/buff_blue_atk",
       "AddressHash": 3185659383,
@@ -1040,15 +1049,31 @@
       "MatchKind": "sprite-name",
       "PngFile": "EffectSources/buff_blue_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 6,
       "Rows": [
         {
-          "Id": "buff-source:2110062",
-          "Name": "Roar Command"
+          "Id": "buff-source:2110024",
+          "Name": "Stunt! Super Critical - Super Critical"
         },
         {
-          "Id": "buff-source:990215",
-          "Name": "Muku Chief - Power of Muku"
+          "Id": "buff-source:2110062",
+          "Name": "Goblin Axe - Roar Command"
+        },
+        {
+          "Id": "buff-source:2110077",
+          "Name": "Intimidation"
+        },
+        {
+          "Id": "buff-source:2110095",
+          "Name": "Stunt! Super Critical - Crit Enhancement"
+        },
+        {
+          "Id": "buff-source:2110132",
+          "Name": "Lucky Crit"
+        },
+        {
+          "Id": "buff-source:31201",
+          "Name": "Galeform"
         }
       ],
       "AtlasAddress": "ui/atlas/hud",
@@ -1056,8 +1081,12 @@
       "SpriteName": "buff_blue_atk",
       "SpriteAddress": 1737416673,
       "Fields": [
+        "effectSourcesById.buff-source:2110024.iconPath",
         "effectSourcesById.buff-source:2110062.iconPath",
-        "effectSourcesById.buff-source:990215.iconPath"
+        "effectSourcesById.buff-source:2110077.iconPath",
+        "effectSourcesById.buff-source:2110095.iconPath",
+        "effectSourcesById.buff-source:2110132.iconPath",
+        "effectSourcesById.buff-source:31201.iconPath"
       ],
       "Values": [
         "ui/atlas/hud/buff/buff_blue_atk"
@@ -1079,7 +1108,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:2110084.iconPath",
+      "Field": "effectSourcesById.buff-source:2110068.iconPath",
       "Value": "ui/atlas/hud/buff/buff_blue_def",
       "Address": "ui/atlas/hud/buff_blue_def",
       "AddressHash": 3185659383,
@@ -1088,8 +1117,12 @@
       "MatchKind": "sprite-name",
       "PngFile": "EffectSources/buff_blue_def.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 8,
+      "RefCount": 12,
       "Rows": [
+        {
+          "Id": "buff-source:2110068",
+          "Name": "Arcane! Shrine Field - Protective Field"
+        },
         {
           "Id": "buff-source:2110084",
           "Name": "Shield of Flowing Fire"
@@ -1103,20 +1136,32 @@
           "Name": "Shield"
         },
         {
-          "Id": "buff-source:3200003",
-          "Name": "Iron Fang - Survival Instinct"
-        },
-        {
           "Id": "buff-source:50024",
           "Name": "Shield"
+        },
+        {
+          "Id": "buff-source:50057",
+          "Name": "Stoneform"
+        },
+        {
+          "Id": "buff-source:50058",
+          "Name": "Brave Bastion"
         },
         {
           "Id": "buff-source:55405",
           "Name": "Aegis Ward"
         },
         {
+          "Id": "buff-source:55413",
+          "Name": "Radiance"
+        },
+        {
+          "Id": "buff-source:55414",
+          "Name": "Radiance"
+        },
+        {
           "Id": "buff-source:851383",
-          "Name": "Airona - Radiant shield"
+          "Name": "Radiant shield"
         },
         {
           "Id": "buff-source:881836",
@@ -1128,12 +1173,16 @@
       "SpriteName": "buff_blue_def",
       "SpriteAddress": 1737419440,
       "Fields": [
+        "effectSourcesById.buff-source:2110068.iconPath",
         "effectSourcesById.buff-source:2110084.iconPath",
         "effectSourcesById.buff-source:21422.iconPath",
         "effectSourcesById.buff-source:2404211.iconPath",
-        "effectSourcesById.buff-source:3200003.iconPath",
         "effectSourcesById.buff-source:50024.iconPath",
+        "effectSourcesById.buff-source:50057.iconPath",
+        "effectSourcesById.buff-source:50058.iconPath",
         "effectSourcesById.buff-source:55405.iconPath",
+        "effectSourcesById.buff-source:55413.iconPath",
+        "effectSourcesById.buff-source:55414.iconPath",
         "effectSourcesById.buff-source:851383.iconPath",
         "effectSourcesById.buff-source:881836.iconPath"
       ],
@@ -1268,7 +1317,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:681835.iconPath",
+      "Field": "effectSourcesById.buff-source:2110102.iconPath",
       "Value": "ui/atlas/hud/buff/buff_blue_lucky",
       "Address": "ui/atlas/hud/buff_blue_lucky",
       "AddressHash": 3185659383,
@@ -1280,8 +1329,8 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "buff-source:681835",
-          "Name": "Void Tina Transformation - Pure Model"
+          "Id": "buff-source:2110102",
+          "Name": "Wind Goblin King - Lucky enhancement"
         }
       ],
       "AtlasAddress": "ui/atlas/hud",
@@ -1302,7 +1351,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:2110103.iconPath",
+      "Field": "effectSourcesById.buff-source:2110060.iconPath",
       "Value": "ui/atlas/hud/buff/buff_blue_movespeed",
       "Address": "ui/atlas/hud/buff_blue_movespeed",
       "AddressHash": 3185659383,
@@ -1311,11 +1360,15 @@
       "MatchKind": "sprite-name",
       "PngFile": "EffectSources/buff_blue_movespeed.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
         {
+          "Id": "buff-source:2110060",
+          "Name": "Swift Vortex"
+        },
+        {
           "Id": "buff-source:2110103",
-          "Name": "Celestial Flier - Azure Gale"
+          "Name": "Arcane! Azure Gale - Azure Gale"
         },
         {
           "Id": "buff-source:960404",
@@ -1327,6 +1380,7 @@
       "SpriteName": "buff_blue_movespeed",
       "SpriteAddress": 405762953,
       "Fields": [
+        "effectSourcesById.buff-source:2110060.iconPath",
         "effectSourcesById.buff-source:2110103.iconPath",
         "effectSourcesById.buff-source:960404.iconPath"
       ],
@@ -2287,40 +2341,6 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "EffectSources|Sprite|1447258277|buff_icon06|EffectSources/buff_icon06.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "EffectSources.json",
-      "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:5001920.iconPath",
-      "Value": "ui/atlas/buff/buff_icon06",
-      "Address": "ui/atlas/buff/buff_icon06",
-      "AddressHash": 2047329081,
-      "BundleHash": 1447258277,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "EffectSources/buff_icon06.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:5001920",
-          "Name": "Olvera's Blessing"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/buff",
-      "AtlasHash": 2047329081,
-      "SpriteName": "buff_icon06",
-      "SpriteAddress": 3368385657,
-      "PngExported": true,
-      "PngWidth": 49,
-      "PngHeight": 59,
-      "PngMode": "RGBA",
-      "PixelSha256": "0d914879f023b250582c0c52f176b2ab42c20958d7f3693a40815e337a4c4f20",
-      "ObjectPathId": "3268563017217759061",
-      "SelectedObjectName": "buff_icon06",
-      "SelectedObjectType": "Sprite"
-    },
-    {
       "AssetId": "EffectSources|Sprite|1447258277|buff_icon08|EffectSources/buff_icon08.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
@@ -2406,7 +2426,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110129",
-          "Name": "Emerald Caprahorn - Haste Specialization"
+          "Name": "Stunt! Twin Fangs - Haste Specialization"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -2420,40 +2440,6 @@
       "PixelSha256": "8ed171810b5717b94b2bf3f437ec9158b62159e748f1201e67e03330cbabde9b",
       "ObjectPathId": "2678844070223688884",
       "SelectedObjectName": "buff_icon100",
-      "SelectedObjectType": "Sprite"
-    },
-    {
-      "AssetId": "EffectSources|Sprite|1447258277|buff_icon111|EffectSources/buff_icon111.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "EffectSources.json",
-      "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:5001921.iconPath",
-      "Value": "ui/atlas/buff/buff_icon111",
-      "Address": "ui/atlas/buff/buff_icon111",
-      "AddressHash": 2047329081,
-      "BundleHash": 1447258277,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "EffectSources/buff_icon111.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:5001921",
-          "Name": "Tina's Blessing"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/buff",
-      "AtlasHash": 2047329081,
-      "SpriteName": "buff_icon111",
-      "SpriteAddress": 3782545254,
-      "PngExported": true,
-      "PngWidth": 49,
-      "PngHeight": 59,
-      "PngMode": "RGBA",
-      "PixelSha256": "9a3601e8de1a9750b54cc8bd1d0a7a28f1a3ce47adc0b47b460c4a9720f67777",
-      "ObjectPathId": "7912745329572909674",
-      "SelectedObjectName": "buff_icon111",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -2495,7 +2481,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3210101.iconPath",
+      "Field": "effectSourcesById.buff-source:2110108.iconPath",
       "Value": "ui/atlas/buff/buff_icon133",
       "Address": "ui/atlas/buff/buff_icon133",
       "AddressHash": 2047329081,
@@ -2504,17 +2490,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_icon133.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
+          "Id": "buff-source:2110108",
+          "Name": "Goblin Sword - Enhanced Block"
+        },
+        {
           "Id": "buff-source:3210101",
-          "Name": "Muku King - Muku's Protection"
+          "Name": "Muku's Protection"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_icon133",
       "SpriteAddress": 3782545322,
+      "Fields": [
+        "effectSourcesById.buff-source:2110108.iconPath",
+        "effectSourcesById.buff-source:3210101.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon133"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -2612,6 +2612,40 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_icon143|EffectSources/buff_icon143.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110122.iconPath",
+      "Value": "ui/atlas/buff/buff_icon143",
+      "Address": "ui/atlas/buff/buff_icon143",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_icon143.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:2110122",
+          "Name": "Blackstone Sergeant - Sergeant's Motivation"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon143",
+      "SpriteAddress": 3782545355,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "d9d09d161da8e8cefb53b50bfb78c12e3d8738f154f1f1595996e7d0d7cdba1c",
+      "ObjectPathId": "2393506001794201813",
+      "SelectedObjectName": "buff_icon143",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "EffectSources|Sprite|1447258277|buff_icon144|EffectSources/buff_icon144.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
@@ -2625,31 +2659,17 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_icon144.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 1,
       "Rows": [
         {
           "Id": "buff-source:2110121",
-          "Name": "Crimson Foxen - Phantom Rally"
-        },
-        {
-          "Id": "buff-source:3210121",
-          "Name": "Crimson Foxen - Pet Frenzy"
+          "Name": "Arcane! Phantom Ambush - Phantom Rally"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_icon144",
       "SpriteAddress": 3782545356,
-      "Fields": [
-        "effectSourcesById.buff-source:2110121.iconPath",
-        "effectSourcesById.buff-source:3210121.iconPath"
-      ],
-      "Values": [
-        "ui/atlas/buff/buff_icon144"
-      ],
-      "SourceFiles": [
-        "EffectSources.json"
-      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -2657,6 +2677,40 @@
       "PixelSha256": "b062ec2c7c72fc003fb55f2ef387c72361ff0bf7aa3daa835b496ea595cbbb2f",
       "ObjectPathId": "5273296082802686037",
       "SelectedObjectName": "buff_icon144",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_icon150|EffectSources/buff_icon150.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:55330.iconPath",
+      "Value": "ui/atlas/buff/buff_icon150",
+      "Address": "ui/atlas/buff/buff_icon150",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_icon150.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:55330",
+          "Name": "Fierce Strike"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon150",
+      "SpriteAddress": 3782545385,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "924aa0ca48d13e0976ecda18a851b097e78075c8fde63775a84a9b7e8907cfa4",
+      "ObjectPathId": "-3145133717339131335",
+      "SelectedObjectName": "buff_icon150",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -2677,7 +2731,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110131",
-          "Name": "Healing Spell"
+          "Name": "Goblin Mage - Healing Spell"
         },
         {
           "Id": "buff-source:3200034",
@@ -2708,6 +2762,88 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_icon18|EffectSources/buff_icon18.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110109.iconPath",
+      "Value": "ui/atlas/buff/buff_icon18",
+      "Address": "ui/atlas/buff/buff_icon18",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_icon18.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "buff-source:2110109",
+          "Name": "Goblin Crossbow - Lucky Goblin"
+        },
+        {
+          "Id": "buff-source:2110119",
+          "Name": "Cabbage Is the Best"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon18",
+      "SpriteAddress": 3368385692,
+      "Fields": [
+        "effectSourcesById.buff-source:2110109.iconPath",
+        "effectSourcesById.buff-source:2110119.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon18"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "97bde01f0efd942bf2933b1c35724f1d38f6a19d5f9cf5e787b7287e1924df48",
+      "ObjectPathId": "-7909625903203653417",
+      "SelectedObjectName": "buff_icon18",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_icon22|EffectSources/buff_icon22.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:55333.iconPath",
+      "Value": "ui/atlas/buff/buff_icon22",
+      "Address": "ui/atlas/buff/buff_icon22",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_icon22.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:55333",
+          "Name": "Encore"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon22",
+      "SpriteAddress": 3368385719,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "6db548128a45bf95d34098a89fa4dfaab7ac52d92ee25b5fb9ee932607148059",
+      "ObjectPathId": "1472380432504903133",
+      "SelectedObjectName": "buff_icon22",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "EffectSources|Sprite|1447258277|buff_icon32|EffectSources/buff_icon32.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
@@ -2725,7 +2861,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110107",
-          "Name": "Boarrier Tyrant - Enhanced Special Attack"
+          "Name": "Stunt! Boarrier Rush - Enhanced Special Attack"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -2780,7 +2916,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3210141.iconPath",
+      "Field": "effectSourcesById.buff-source:2110110.iconPath",
       "Value": "ui/atlas/buff/buff_icon47",
       "Address": "ui/atlas/buff/buff_icon47",
       "AddressHash": 2047329081,
@@ -2792,8 +2928,8 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "buff-source:3210141",
-          "Name": "Flamehorn - Absolute Luck"
+          "Id": "buff-source:2110110",
+          "Name": "Murloc's Luck"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -2827,7 +2963,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110117",
-          "Name": "Fafala - Caprahorn Shield"
+          "Name": "Arcane! Guardian's Boundary - Caprahorn Shield"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -2895,7 +3031,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110114",
-          "Name": "Dorothy Aid"
+          "Name": "Arcane! Illusion Resonance - Dorothy Aid"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -2960,37 +3096,138 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "EffectSources|Sprite|1447258277|buff_passive_icon_general_dps_icedamgeup|EffectSources/buff_passive_icon_general_dps_icedamgeup.png",
+      "AssetId": "EffectSources|Sprite|1447258277|buff_icon76|EffectSources/buff_icon76.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3210091.iconPath",
-      "Value": "ui/atlas/buff/buff_passive_icon_general_dps_icedamgeup",
-      "Address": "ui/atlas/buff/buff_passive_icon_general_dps_icedamgeup",
+      "Field": "effectSourcesById.buff-source:2206421.iconPath",
+      "Value": "ui/atlas/buff/buff_icon76",
+      "Address": "ui/atlas/buff/buff_icon76",
       "AddressHash": 2047329081,
       "BundleHash": 1447258277,
       "ResourceType": "Sprite",
       "MatchKind": "atlas-sprite-address",
-      "PngFile": "EffectSources/buff_passive_icon_general_dps_icedamgeup.png",
+      "PngFile": "EffectSources/buff_icon76.png",
       "RequiresProbePixelMatch": false,
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "buff-source:3210091",
-          "Name": "Lizardman King - Tidal Force"
+          "Id": "buff-source:2206421",
+          "Name": "Scorching Heat"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
-      "SpriteName": "buff_passive_icon_general_dps_icedamgeup",
-      "SpriteAddress": 3978388259,
+      "SpriteName": "buff_icon76",
+      "SpriteAddress": 3368385888,
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "38cefd3766f9cbc6b4a325018bbdd69665daa06dbb9d2c32f2147bb0f97c007d",
-      "ObjectPathId": "4434475987923273129",
-      "SelectedObjectName": "buff_passive_icon_general_dps_icedamgeup",
+      "PixelSha256": "1a809d832d4210938f87adc41e4bb2c4e23fe87429eb0ee34895a41a45c7b21d",
+      "ObjectPathId": "5868701287325723997",
+      "SelectedObjectName": "buff_icon76",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_icon78|EffectSources/buff_icon78.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110125.iconPath",
+      "Value": "ui/atlas/buff/buff_icon78",
+      "Address": "ui/atlas/buff/buff_icon78",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_icon78.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "buff-source:2110125",
+          "Name": "Highland Lizard King - Highland Blood"
+        },
+        {
+          "Id": "buff-source:2110127",
+          "Name": "Blade Intent Surge"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_icon78",
+      "SpriteAddress": 3368385890,
+      "Fields": [
+        "effectSourcesById.buff-source:2110125.iconPath",
+        "effectSourcesById.buff-source:2110127.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon78"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "ac3e8bd1b46a0e6ad96866a98baf0d97f72ec75933de377ec0248fbe40d8c970",
+      "ObjectPathId": "-2560800184268380271",
+      "SelectedObjectName": "buff_icon78",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_passive_icon_dps_crit04|EffectSources/buff_passive_icon_dps_crit04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110065.iconPath",
+      "Value": "ui/atlas/buff/buff_passive_icon_dps_crit04",
+      "Address": "ui/atlas/buff/buff_passive_icon_dps_crit04",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_passive_icon_dps_crit04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "buff-source:2110065",
+          "Name": "Arcane! Blazing Axe - Fiery Battle Will"
+        },
+        {
+          "Id": "buff-source:43201",
+          "Name": "Stormflash"
+        },
+        {
+          "Id": "buff-source:960212",
+          "Name": "Overload"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_passive_icon_dps_crit04",
+      "SpriteAddress": 2111667112,
+      "Fields": [
+        "effectSourcesById.buff-source:2110065.iconPath",
+        "effectSourcesById.buff-source:43201.iconPath",
+        "effectSourcesById.buff-source:960212.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_passive_icon_dps_crit04"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "f0736b164ebcce0877e9550b0c95e086e886f0141e4195546b671785c035c004",
+      "ObjectPathId": "-5330410982362793317",
+      "SelectedObjectName": "buff_passive_icon_dps_crit04",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -2998,7 +3235,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3200023.iconPath",
+      "Field": "effectSourcesById.buff-source:2110075.iconPath",
       "Value": "ui/atlas/buff/buff_passive_icon_general_dps_lightenergycost",
       "Address": "ui/atlas/buff/buff_passive_icon_general_dps_lightenergycost",
       "AddressHash": 2047329081,
@@ -3007,17 +3244,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_passive_icon_general_dps_lightenergycost.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
-          "Id": "buff-source:3200023",
-          "Name": "Great Warhog - Light Blessing"
+          "Id": "buff-source:2110075",
+          "Name": "Breaking Out of the Cocoon"
+        },
+        {
+          "Id": "buff-source:2110076",
+          "Name": "Breaking Out of the Cocoon"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_passive_icon_general_dps_lightenergycost",
       "SpriteAddress": 1003200618,
+      "Fields": [
+        "effectSourcesById.buff-source:2110075.iconPath",
+        "effectSourcesById.buff-source:2110076.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_passive_icon_general_dps_lightenergycost"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -3025,6 +3276,40 @@
       "PixelSha256": "8cd81477e68714db1cccdcd2f73c10f99e4a72cbf9de1a40af56b8e626b9edf4",
       "ObjectPathId": "201905957019605480",
       "SelectedObjectName": "buff_passive_icon_general_dps_lightenergycost",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_passive_icon_general_dps_pursue|EffectSources/buff_passive_icon_general_dps_pursue.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110042.iconPath",
+      "Value": "ui/atlas/buff/buff_passive_icon_general_dps_pursue",
+      "Address": "ui/atlas/buff/buff_passive_icon_general_dps_pursue",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_passive_icon_general_dps_pursue.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:2110042",
+          "Name": "Arcane! Phantom Ambush - Haste"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_passive_icon_general_dps_pursue",
+      "SpriteAddress": 227850931,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "1b798f6a7ea3b23ac16efc8f939cdb6e3b2e0b1993b602c282a387e2dd10741c",
+      "ObjectPathId": "6462059645409661485",
+      "SelectedObjectName": "buff_passive_icon_general_dps_pursue",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -3045,7 +3330,7 @@
       "Rows": [
         {
           "Id": "buff-source:30501",
-          "Name": "Tina - Inspire"
+          "Name": "Inspire"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -3059,6 +3344,40 @@
       "PixelSha256": "7fde8df5a775f8b675a74f706af33a8bc0d526a762409d2f953548d907852633",
       "ObjectPathId": "931635612175330511",
       "SelectedObjectName": "buff_passive_icon_general_dps_ruthless",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_passive_icon_general_dps_sharpspeed|EffectSources/buff_passive_icon_general_dps_sharpspeed.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:31301.iconPath",
+      "Value": "ui/atlas/buff/buff_passive_icon_general_dps_sharpspeed",
+      "Address": "ui/atlas/buff/buff_passive_icon_general_dps_sharpspeed",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_passive_icon_general_dps_sharpspeed.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:31301",
+          "Name": "Aegis Gale"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_passive_icon_general_dps_sharpspeed",
+      "SpriteAddress": 68166718,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "115ae333b842b06c13b745749aaefc15be42605c95a4e54c53b86db55166a183",
+      "ObjectPathId": "-871888983606566917",
+      "SelectedObjectName": "buff_passive_icon_general_dps_sharpspeed",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -3079,7 +3398,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110118",
-          "Name": "Fafala - Edge of Defense"
+          "Name": "Arcane! Guardian's Boundary - Edge of Defense"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -3164,11 +3483,59 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "EffectSources|Sprite|2990205475|buff_red_atk|EffectSources/buff_red_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110070.iconPath",
+      "Value": "ui/atlas/hud/debuff/buff_red_atk",
+      "Address": "ui/atlas/hud/buff_red_atk",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "EffectSources/buff_red_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "buff-source:2110070",
+          "Name": "Demoralizing Roar"
+        },
+        {
+          "Id": "buff-source:2110078",
+          "Name": "Shock Defense Break"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "buff_red_atk",
+      "SpriteAddress": 2814347869,
+      "Fields": [
+        "effectSourcesById.buff-source:2110070.iconPath",
+        "effectSourcesById.buff-source:2110078.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/debuff/buff_red_atk"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "b8972b64c15be5ffb47fcd964e61bc75f3ce179f812183e21cd5365b5cd5e832",
+      "ObjectPathId": "3284302867017518745",
+      "SelectedObjectName": "buff_red_atk",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "EffectSources|Sprite|2990205475|buff_red_def|EffectSources/buff_red_def.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:2110111.iconPath",
+      "Field": "effectSourcesById.buff-source:2110069.iconPath",
       "Value": "ui/atlas/hud/debuff/buff_red_def",
       "Address": "ui/atlas/hud/buff_red_def",
       "AddressHash": 3185659383,
@@ -3177,11 +3544,19 @@
       "MatchKind": "sprite-name",
       "PngFile": "EffectSources/buff_red_def.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 4,
       "Rows": [
         {
+          "Id": "buff-source:2110069",
+          "Name": "Tetanus"
+        },
+        {
           "Id": "buff-source:2110111",
-          "Name": "Rorola - Enchantment"
+          "Name": "Arcane! Divine Reliance - Enchantment"
+        },
+        {
+          "Id": "buff-source:700086",
+          "Name": "Rend"
         },
         {
           "Id": "buff-source:883207",
@@ -3193,7 +3568,9 @@
       "SpriteName": "buff_red_def",
       "SpriteAddress": 2814350636,
       "Fields": [
+        "effectSourcesById.buff-source:2110069.iconPath",
         "effectSourcesById.buff-source:2110111.iconPath",
+        "effectSourcesById.buff-source:700086.iconPath",
         "effectSourcesById.buff-source:883207.iconPath"
       ],
       "Values": [
@@ -3216,7 +3593,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:828108.iconPath",
+      "Field": "effectSourcesById.buff-source:510573.iconPath",
       "Value": "ui/atlas/hud/debuff/buff_red_hp",
       "Address": "ui/atlas/hud/buff_red_hp",
       "AddressHash": 3185659383,
@@ -3225,8 +3602,12 @@
       "MatchKind": "sprite-name",
       "PngFile": "EffectSources/buff_red_hp.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 7,
+      "RefCount": 8,
       "Rows": [
+        {
+          "Id": "buff-source:510573",
+          "Name": "Bleed"
+        },
         {
           "Id": "buff-source:828108",
           "Name": "Erosion Bloom Wound"
@@ -3261,6 +3642,7 @@
       "SpriteName": "buff_red_hp",
       "SpriteAddress": 605885589,
       "Fields": [
+        "effectSourcesById.buff-source:510573.iconPath",
         "effectSourcesById.buff-source:828108.iconPath",
         "effectSourcesById.buff-source:828123.iconPath",
         "effectSourcesById.buff-source:855179.iconPath",
@@ -3353,40 +3735,40 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "EffectSources|Sprite|1447258277|buff_talent_passive_icon_general_dps_sharpup|EffectSources/buff_talent_passive_icon_general_dps_sharpup.png",
+      "AssetId": "EffectSources|Sprite|1447258277|buff_talent_skill_300001|EffectSources/buff_talent_skill_300001.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3210011.iconPath",
-      "Value": "ui/atlas/buff/buff_talent_passive_icon_general_dps_sharpup",
-      "Address": "ui/atlas/buff/buff_talent_passive_icon_general_dps_sharpup",
+      "Field": "effectSourcesById.buff-source:2110126.iconPath",
+      "Value": "ui/atlas/buff/buff_talent_skill_300001",
+      "Address": "ui/atlas/buff/buff_talent_skill_300001",
       "AddressHash": 2047329081,
       "BundleHash": 1447258277,
       "ResourceType": "Sprite",
       "MatchKind": "atlas-sprite-address",
-      "PngFile": "EffectSources/buff_talent_passive_icon_general_dps_sharpup.png",
+      "PngFile": "EffectSources/buff_talent_skill_300001.png",
       "RequiresProbePixelMatch": false,
       "RefCount": 2,
       "Rows": [
         {
-          "Id": "buff-source:3210011",
-          "Name": "Power of the Frost Ogre"
+          "Id": "buff-source:2110126",
+          "Name": "Versatility Specialization"
         },
         {
-          "Id": "buff-source:990811",
-          "Name": "Goblin Shaman - Well-Healed"
+          "Id": "buff-source:2110128",
+          "Name": "Foxen - Mastery Specialization"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
-      "SpriteName": "buff_talent_passive_icon_general_dps_sharpup",
-      "SpriteAddress": 10500249,
+      "SpriteName": "buff_talent_skill_300001",
+      "SpriteAddress": 1830061715,
       "Fields": [
-        "effectSourcesById.buff-source:3210011.iconPath",
-        "effectSourcesById.buff-source:990811.iconPath"
+        "effectSourcesById.buff-source:2110126.iconPath",
+        "effectSourcesById.buff-source:2110128.iconPath"
       ],
       "Values": [
-        "ui/atlas/buff/buff_talent_passive_icon_general_dps_sharpup"
+        "ui/atlas/buff/buff_talent_skill_300001"
       ],
       "SourceFiles": [
         "EffectSources.json"
@@ -3395,9 +3777,9 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "07828120492dfa5c6ef13675f19356212d68d9c11be8e6e88feb90542bd7e5a8",
-      "ObjectPathId": "-8751401697250863624",
-      "SelectedObjectName": "buff_talent_passive_icon_general_dps_sharpup",
+      "PixelSha256": "ad1a260242de8dd44f8e4cc8342f414d884c477a7d07f620cc02dfdc1431bd9a",
+      "ObjectPathId": "3928582440410015275",
+      "SelectedObjectName": "buff_talent_skill_300001",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -3418,7 +3800,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110101",
-          "Name": "Void Bzzar"
+          "Name": "Stunt! Transform into Bee - Void Bzzar"
         },
         {
           "Id": "buff-source:55223",
@@ -3449,11 +3831,93 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_talent_skill_360102|EffectSources/buff_talent_skill_360102.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2100151.iconPath",
+      "Value": "ui/atlas/buff/buff_talent_skill_360102",
+      "Address": "ui/atlas/buff/buff_talent_skill_360102",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_talent_skill_360102.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "buff-source:2100151",
+          "Name": "True Sight"
+        },
+        {
+          "Id": "buff-source:2205561",
+          "Name": "Azure Sever"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_talent_skill_360102",
+      "SpriteAddress": 1837178331,
+      "Fields": [
+        "effectSourcesById.buff-source:2100151.iconPath",
+        "effectSourcesById.buff-source:2205561.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_talent_skill_360102"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "e0693ac827f2570b481f27d18ebcaf90750fed617278bc016ba2fdaadaa0451e",
+      "ObjectPathId": "-8121695385194926691",
+      "SelectedObjectName": "buff_talent_skill_360102",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "EffectSources|Sprite|1447258277|buff_talent_skill_360105|EffectSources/buff_talent_skill_360105.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2110053.iconPath",
+      "Value": "ui/atlas/buff/buff_talent_skill_360105",
+      "Address": "ui/atlas/buff/buff_talent_skill_360105",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/buff_talent_skill_360105.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:2110053",
+          "Name": "Arcane! Pulse Benediction - Mastery Increase"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_talent_skill_360105",
+      "SpriteAddress": 1837178334,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "59b60f065fee2fa25e6a499a11f5bddc37fbf6bc99687e52ac77421403fcfbce",
+      "ObjectPathId": "1823713201894588300",
+      "SelectedObjectName": "buff_talent_skill_360105",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "EffectSources|Sprite|1447258277|buff_talent_skill_370101|EffectSources/buff_talent_skill_370101.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:973088.iconPath",
+      "Field": "effectSourcesById.buff-source:2110034.iconPath",
       "Value": "ui/atlas/buff/buff_talent_skill_370101",
       "Address": "ui/atlas/buff/buff_talent_skill_370101",
       "AddressHash": 2047329081,
@@ -3462,17 +3926,36 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/buff_talent_skill_370101.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 3,
       "Rows": [
         {
-          "Id": "buff-source:973088",
-          "Name": "Airona - Mangan Transform - Improvised"
+          "Id": "buff-source:2110034",
+          "Name": "Arcane! Time Decree - Lower CD"
+        },
+        {
+          "Id": "buff-source:21412",
+          "Name": "Fast Growth"
+        },
+        {
+          "Id": "buff-source:972026",
+          "Name": "Frostbeam"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_talent_skill_370101",
       "SpriteAddress": 1838364251,
+      "Fields": [
+        "effectSourcesById.buff-source:2110034.iconPath",
+        "effectSourcesById.buff-source:21412.iconPath",
+        "effectSourcesById.buff-source:972026.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_talent_skill_370101"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -6137,40 +6620,6 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "EffectSources|Sprite|1337047534|debuff_icon_20|EffectSources/debuff_icon_20.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "EffectSources.json",
-      "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:705020.iconPath",
-      "Value": "ui/atlas/debuff/debuff_icon_20",
-      "Address": "ui/atlas/debuff/debuff_icon_20",
-      "AddressHash": 512514690,
-      "BundleHash": 1337047534,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "EffectSources/debuff_icon_20.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:705020",
-          "Name": "Crimson Foxen - Firebringer"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/debuff",
-      "AtlasHash": 512514690,
-      "SpriteName": "debuff_icon_20",
-      "SpriteAddress": 1266048038,
-      "PngExported": true,
-      "PngWidth": 51,
-      "PngHeight": 59,
-      "PngMode": "RGBA",
-      "PixelSha256": "b118a7831b9521fe5e9d66468cb438509615f54b10825f13d36530fbfa90e1f9",
-      "ObjectPathId": "3157023957711429111",
-      "SelectedObjectName": "debuff_icon_20",
-      "SelectedObjectType": "Sprite"
-    },
-    {
       "AssetId": "EffectSources|Sprite|1337047534|debuff_icon_3|EffectSources/debuff_icon_3.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
@@ -6280,31 +6729,17 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/debuff_icon_4.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 1,
       "Rows": [
         {
           "Id": "buff-source:705001",
-          "Name": "Frost Ogre - Frozen Gale"
-        },
-        {
-          "Id": "buff-source:705002",
-          "Name": "Frost Ogre - Frozen"
+          "Name": "Frozen Gale"
         }
       ],
       "AtlasAddress": "ui/atlas/debuff",
       "AtlasHash": 512514690,
       "SpriteName": "debuff_icon_4",
       "SpriteAddress": 3682579768,
-      "Fields": [
-        "effectSourcesById.buff-source:705001.iconPath",
-        "effectSourcesById.buff-source:705002.iconPath"
-      ],
-      "Values": [
-        "ui/atlas/debuff/debuff_icon_4"
-      ],
-      "SourceFiles": [
-        "EffectSources.json"
-      ],
       "PngExported": true,
       "PngWidth": 51,
       "PngHeight": 59,
@@ -6387,7 +6822,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:882842.iconPath",
+      "Field": "effectSourcesById.buff-source:827259.iconPath",
       "Value": "ui/atlas/debuff/debuff_icon_83",
       "Address": "ui/atlas/debuff/debuff_icon_83",
       "AddressHash": 512514690,
@@ -6396,8 +6831,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/debuff_icon_83.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
+        {
+          "Id": "buff-source:827259",
+          "Name": "Fracture"
+        },
         {
           "Id": "buff-source:882842",
           "Name": "Soul Shock"
@@ -6407,6 +6846,16 @@
       "AtlasHash": 512514690,
       "SpriteName": "debuff_icon_83",
       "SpriteAddress": 1266048239,
+      "Fields": [
+        "effectSourcesById.buff-source:827259.iconPath",
+        "effectSourcesById.buff-source:882842.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/debuff/debuff_icon_83"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 51,
       "PngHeight": 59,
@@ -17880,6 +18329,40 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "EffectSources|Sprite|1300425262|mod_effect_icon_024|EffectSources/mod_effect_icon_024.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:2302320.iconPath",
+      "Value": "ui/atlas/mod_effect/mod_effect_icon_024",
+      "Address": "ui/atlas/mod_effect/mod_effect_icon_024",
+      "AddressHash": 3564913090,
+      "BundleHash": 1300425262,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "EffectSources/mod_effect_icon_024.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:2302320",
+          "Name": "First Aid"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/mod_effect",
+      "AtlasHash": 3564913090,
+      "SpriteName": "mod_effect_icon_024",
+      "SpriteAddress": 430986458,
+      "PngExported": true,
+      "PngWidth": 80,
+      "PngHeight": 80,
+      "PngMode": "RGBA",
+      "PixelSha256": "92a3e5bb5717195304da295bdcea7a2d57cd628eecb2366e15c722b9852baaed",
+      "ObjectPathId": "-1645131234660411843",
+      "SelectedObjectName": "mod_effect_icon_024",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "EffectSources|Sprite|1300425262|mod_effect_icon_035|EffectSources/mod_effect_icon_035.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
@@ -25367,7 +25850,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.season-talent-node:1101.iconPath",
+      "Field": "effectSourcesById.buff-source:3002210.iconPath",
       "Value": "ui/atlas/season_talent/s2talent02_01",
       "Address": "ui/atlas/season_talent/s2talent02_01",
       "AddressHash": 560643590,
@@ -25376,8 +25859,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/s2talent02_01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
+        {
+          "Id": "buff-source:3002210",
+          "Name": "Phantom Execution"
+        },
         {
           "Id": "season-talent-node:1101",
           "Name": "Phantom Execution"
@@ -25387,6 +25874,16 @@
       "AtlasHash": 560643590,
       "SpriteName": "s2talent02_01",
       "SpriteAddress": 3089748132,
+      "Fields": [
+        "effectSourcesById.buff-source:3002210.iconPath",
+        "effectSourcesById.season-talent-node:1101.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/season_talent/s2talent02_01"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 160,
       "PngHeight": 147,
@@ -25469,7 +25966,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.season-talent-node:1201.iconPath",
+      "Field": "effectSourcesById.buff-source:3002410.iconPath",
       "Value": "ui/atlas/season_talent/s2talent03_01",
       "Address": "ui/atlas/season_talent/s2talent03_01",
       "AddressHash": 560643590,
@@ -25478,8 +25975,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/s2talent03_01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
+        {
+          "Id": "buff-source:3002410",
+          "Name": "Phantom Arrow"
+        },
         {
           "Id": "season-talent-node:1201",
           "Name": "Phantom Arrow"
@@ -25489,6 +25990,16 @@
       "AtlasHash": 560643590,
       "SpriteName": "s2talent03_01",
       "SpriteAddress": 3089784069,
+      "Fields": [
+        "effectSourcesById.buff-source:3002410.iconPath",
+        "effectSourcesById.season-talent-node:1201.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/season_talent/s2talent03_01"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 155,
       "PngHeight": 160,
@@ -25775,7 +26286,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.season-talent-node:1601.iconPath",
+      "Field": "effectSourcesById.buff-source:3003210.iconPath",
       "Value": "ui/atlas/season_talent/s2talent07_01",
       "Address": "ui/atlas/season_talent/s2talent07_01",
       "AddressHash": 560643590,
@@ -25784,8 +26295,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/s2talent07_01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
+        {
+          "Id": "buff-source:3003210",
+          "Name": "Shattered Illusion"
+        },
         {
           "Id": "season-talent-node:1601",
           "Name": "Shattered Illusion"
@@ -25795,6 +26310,16 @@
       "AtlasHash": 560643590,
       "SpriteName": "s2talent07_01",
       "SpriteAddress": 3089927817,
+      "Fields": [
+        "effectSourcesById.buff-source:3003210.iconPath",
+        "effectSourcesById.season-talent-node:1601.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/season_talent/s2talent07_01"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 160,
       "PngHeight": 159,
@@ -26146,7 +26671,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110066",
-          "Name": "Earth Shield"
+          "Name": "Stunt! Earth Shield - Earth Shield"
         }
       ],
       "TextureName": "skill_aoyi_skill_icon_033",
@@ -26315,6 +26840,37 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "EffectSources|Texture2D|733105769|skill_icons_toy_snowlight|EffectSources/skill_icons_toy_snowlight.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "EffectSources.json",
+      "SourceGroup": "EffectSources",
+      "Field": "effectSourcesById.buff-source:960070.iconPath",
+      "Value": "ui/atlas/skill_toys/skill_icons_toy_snowlight",
+      "Address": "ui/textures/skill_toys/skill_icons_toy_snowlight",
+      "AddressHash": 3903607828,
+      "BundleHash": 733105769,
+      "ResourceType": "Texture2D",
+      "MatchKind": "basename-address",
+      "PngFile": "EffectSources/skill_icons_toy_snowlight.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:960070",
+          "Name": "Frostburst Skill"
+        }
+      ],
+      "TextureName": "skill_icons_toy_snowlight",
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "6682df04277c78d717fb8cc3c8f66348d20c4c7a817d6bede5e4e5a9ad8deb13",
+      "ObjectPathId": "5376478017669538654",
+      "SelectedObjectName": "skill_icons_toy_snowlight",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "EffectSources|Texture2D|3974986877|skill_vehicle_yacht_01|EffectSources/skill_vehicle_yacht_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
@@ -26332,7 +26888,7 @@
       "Rows": [
         {
           "Id": "buff-source:4601",
-          "Name": "引爆引燃Buff"
+          "Name": "Unmapped Buff 4601"
         }
       ],
       "TextureName": "skill_vehicle_yacht_01",
@@ -27939,7 +28495,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110123",
-          "Name": "Flamehorn - Flame of Luck"
+          "Name": "Arcane! Flame Spirit's Fortune - Flame of Luck"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -28921,11 +29477,11 @@
       "Rows": [
         {
           "Id": "buff-source:2110115",
-          "Name": "Boyce - Frostforce"
+          "Name": "Arcane! Allscape Sublimation - Frostforce"
         },
         {
           "Id": "buff-source:2110116",
-          "Name": "Boyce - Frostforce - EXT"
+          "Name": "Arcane! Allscape Sublimation - Frostforce - EXT"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -31553,7 +32109,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:2208130.iconPath",
+      "Field": "effectSourcesById.talent:312.iconPath",
       "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral",
       "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral",
       "AddressHash": 359924875,
@@ -31562,12 +32118,8 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/talent_passive_icon_general_dps_windspiral.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 3,
+      "RefCount": 2,
       "Rows": [
-        {
-          "Id": "buff-source:2208130",
-          "Name": "Tatta - Formless Expertise Spec"
-        },
         {
           "Id": "talent:312",
           "Name": "Formless Expertise Spec"
@@ -31582,7 +32134,6 @@
       "SpriteName": "talent_passive_icon_general_dps_windspiral",
       "SpriteAddress": 492176483,
       "Fields": [
-        "effectSourcesById.buff-source:2208130.iconPath",
         "effectSourcesById.talent:312.iconPath",
         "effectSourcesById.talent:413.iconPath"
       ],
@@ -32144,7 +32695,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:50049.iconPath",
+      "Field": "effectSourcesById.buff-source:2110061.iconPath",
       "Value": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
       "Address": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
       "AddressHash": 2047329081,
@@ -32153,8 +32704,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/talent_passive_icon_general_sup_grassarea.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
+        {
+          "Id": "buff-source:2110061",
+          "Name": "Arcane! Heart of Flame - Heart of Flames"
+        },
         {
           "Id": "buff-source:50049",
           "Name": "Sandshroud"
@@ -32164,6 +32719,16 @@
       "AtlasHash": 2047329081,
       "SpriteName": "talent_passive_icon_general_sup_grassarea",
       "SpriteAddress": 4290866526,
+      "Fields": [
+        "effectSourcesById.buff-source:2110061.iconPath",
+        "effectSourcesById.buff-source:50049.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/talent_passive_icon_general_sup_grassarea"
+      ],
+      "SourceFiles": [
+        "EffectSources.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -33020,7 +33585,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "EffectSources.json",
       "SourceGroup": "EffectSources",
-      "Field": "effectSourcesById.buff-source:3001170.iconPath",
+      "Field": "effectSourcesById.buff-source:3001030.iconPath",
       "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_grind",
       "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_grind",
       "AddressHash": 359924880,
@@ -33029,8 +33594,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "EffectSources/talent_passive_icon_general_tank_grind.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 3,
+      "RefCount": 4,
       "Rows": [
+        {
+          "Id": "buff-source:3001030",
+          "Name": "Void Aura"
+        },
         {
           "Id": "buff-source:3001170",
           "Name": "Void Corruption Fluctuation"
@@ -33049,6 +33618,7 @@
       "SpriteName": "talent_passive_icon_general_tank_grind",
       "SpriteAddress": 1611022150,
       "Fields": [
+        "effectSourcesById.buff-source:3001030.iconPath",
         "effectSourcesById.buff-source:3001170.iconPath",
         "effectSourcesById.buff-source:701002.iconPath",
         "effectSourcesById.talent:934.iconPath"
@@ -35170,7 +35740,7 @@
       "Rows": [
         {
           "Id": "buff-source:1601",
-          "Name": "水剑粒子显示"
+          "Name": "Unmapped Buff 1601"
         }
       ],
       "TextureName": "weapon_sf-01_skill_atk01",
@@ -40079,8 +40649,8 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-01T19:04:24.077Z",
-  "PngAssetCount": 1049,
+  "PngExportedAt": "2026-05-06T04:10:19.769Z",
+  "PngAssetCount": 1059,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

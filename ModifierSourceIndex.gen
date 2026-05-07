@@ -1,0 +1,717 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+const LOCALES = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+const IGNORED_MODIFIER_BUFF_IDS = [510072, 900122];
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    effectSourcesPath: "",
+    factorsPath: "",
+    outPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--effect-sources" && next) {
+      args.effectSourcesPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--factors" && next) {
+      args.factorsPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.effectSourcesPath ||= path.join(args.outputDir, "EffectSources.json");
+  args.factorsPath ||= path.join(args.outputDir, "SeasonPhantomFactors.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierSourceIndex.gen - export compact modifier report source index.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>              Output JSON file path.");
+  console.log("  --output-dir <path>       Output directory override.");
+  console.log("  --dry-run                 Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --effect-sources <path>   EffectSources.json input.");
+  console.log("  --factors <path>          SeasonPhantomFactors.json input.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function toPositiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(toPositiveNumber).filter((value) => value !== null))]
+    .sort((left, right) => left - right);
+}
+
+function pickLocalizedMap(...maps) {
+  for (const map of maps) {
+    if (!map || typeof map !== "object") continue;
+    const out = {};
+    for (const locale of LOCALES) {
+      const text = String(map[locale] || "").trim();
+      if (text) out[locale] = text;
+    }
+    if (Object.keys(out).length) return out;
+  }
+  return undefined;
+}
+
+function englishText(map, fallback = "") {
+  return String(map?.en || map?.["zh-CN"] || map?.design || fallback || "").trim();
+}
+
+function cleanDescriptionText(value) {
+  const cleaned = String(value || "")
+    .replace(/\u200b/g, "")
+    .replace(/<\/?style[^>]*>/g, "")
+    .replace(/\{\*[^}]*\*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return cleaned || undefined;
+}
+
+function pickDescriptionMap(...maps) {
+  const picked = pickLocalizedMap(...maps);
+  if (!picked) return undefined;
+  const out = {};
+  for (const [locale, value] of Object.entries(picked)) {
+    const text = cleanDescriptionText(value);
+    if (text) out[locale] = text;
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function descriptionFields(source) {
+  const descriptions = pickDescriptionMap(
+    source?.cleanDescriptions,
+    source?.modifierEvidence?.cleanDescriptions,
+    source?.modifierEvidence?.resolvedDescriptions,
+    source?.descriptions,
+  );
+  const description = cleanDescriptionText(source?.modifierEvidence?.cleanDescription)
+    || cleanDescriptionText(source?.modifierEvidence?.resolvedDescription)
+    || englishText(descriptions)
+    || undefined;
+  return stripUndefined({
+    description,
+    descriptions,
+  });
+}
+
+function targetIds(targets, kind, idField) {
+  return uniqueNumbers(
+    (targets || [])
+      .filter((target) => target.targetKind === kind || target[idField] !== undefined)
+      .map((target) => target[idField] ?? target.targetId),
+  );
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function uidKindForSourceEntity(source) {
+  const sourceKind = String(source?.sourceKind || "").toLowerCase();
+  const sourceType = String(source?.sourceType || "").toLowerCase();
+  const sourceId = String(source?.sourceId || "").toLowerCase();
+  if (sourceId.startsWith("talent:") || sourceKind.includes("talent") || sourceType === "talent") return "talent";
+  if (sourceId.startsWith("season-talent-node:") || sourceKind === "season-talent-node") return "season-talent-node";
+  if (sourceId.startsWith("season-rogue-entry:") || sourceKind === "season-rogue-entry") return "season-rogue-entry";
+  if (sourceId.startsWith("phantom-factor:") || sourceKind === "phantom-factor") return "buff";
+  if (sourceId.startsWith("buff-source:") || sourceType.includes("buff") || sourceType.includes("debuff")) return "buff";
+  if (sourceKind === "active-skill" || sourceType.includes("skill")) return "skill";
+  if (sourceKind === "consumable" || sourceType.includes("consumable")) return "item";
+  return "source";
+}
+
+function uidKindForLinkedSource(linkedSource) {
+  const text = String(linkedSource || "").toLowerCase();
+  if (text.includes("buff")) return "buff";
+  if (text.includes("recount")) return "recount";
+  if (text.includes("damage")) return "damage";
+  if (text.includes("talent")) return "talent";
+  if (text.includes("skill")) return "skill";
+  if (text.includes("item")) return "item";
+  return "source";
+}
+
+function addUidEdge(edges, edge) {
+  const uid = edge?.uid;
+  if (uid === undefined || uid === null || uid === "") return;
+  const normalized = stripUndefined({
+    edgeKind: edge.edgeKind,
+    uidKind: edge.uidKind,
+    uid,
+    role: edge.role,
+    scope: edge.scope,
+    source: edge.source,
+    status: edge.status,
+    relationshipKind: edge.relationshipKind,
+    parentUidKind: edge.parentUidKind,
+    parentUid: edge.parentUid,
+    componentKey: edge.componentKey,
+    componentClass: edge.componentClass,
+    direction: edge.direction,
+    contributionScope: edge.contributionScope,
+    valueScope: edge.valueScope,
+    formulaTermIds: uniqueStrings(edge.formulaTermIds),
+    contributionGroups: uniqueStrings(edge.contributionGroups),
+    predicateTags: uniqueStrings(edge.predicateTags),
+  });
+  if (!normalized.edgeKind || !normalized.uidKind) return;
+  edges.push(normalized);
+}
+
+function addNumberUidEdge(edges, value, edge) {
+  const uid = toPositiveNumber(value);
+  if (uid === null) return;
+  addUidEdge(edges, { ...edge, uid });
+}
+
+function addNumberUidEdges(edges, values, edge) {
+  for (const value of values || []) addNumberUidEdge(edges, value, edge);
+}
+
+function uidEdgeKey(edge) {
+  return [
+    edge.edgeKind,
+    edge.uidKind,
+    edge.uid,
+    edge.role,
+    edge.scope,
+    edge.source,
+    edge.status,
+    edge.relationshipKind,
+    edge.parentUidKind,
+    edge.parentUid,
+    edge.componentKey,
+    edge.componentClass,
+    edge.direction,
+    edge.contributionScope,
+    edge.valueScope,
+    ...(edge.formulaTermIds || []),
+    ...(edge.contributionGroups || []),
+    ...(edge.predicateTags || []),
+  ].map((value) => String(value ?? "")).join("|");
+}
+
+function finalizeUidEdges(edges) {
+  const byKey = new Map();
+  for (const edge of edges) byKey.set(uidEdgeKey(edge), edge);
+  return [...byKey.values()].sort((left, right) => uidEdgeKey(left).localeCompare(uidEdgeKey(right)));
+}
+
+function addTargetUidEdges(edges, targets) {
+  for (const target of targets || []) {
+    const evidenceSource = String(target?.evidenceSource || "").trim() || undefined;
+    const baseEdge = {
+      role: "target",
+      source: evidenceSource,
+      status: target?.evidenceStatus,
+      relationshipKind: target?.relationshipKind,
+    };
+    const damageId = toPositiveNumber(target?.damageId ?? (target?.targetKind === "damage" ? target?.targetId : undefined));
+    if (damageId !== null) {
+      addUidEdge(edges, {
+        ...baseEdge,
+        edgeKind: "target-damage-row",
+        uidKind: "damage",
+        uid: damageId,
+        parentUidKind: toPositiveNumber(target?.parentRecountId) !== null ? "recount" : undefined,
+        parentUid: toPositiveNumber(target?.parentRecountId) ?? undefined,
+      });
+    }
+    const recountId = toPositiveNumber(target?.recountId ?? (target?.targetKind === "recount" ? target?.targetId : undefined));
+    if (recountId !== null) {
+      addUidEdge(edges, {
+        ...baseEdge,
+        edgeKind: "target-recount-row",
+        uidKind: "recount",
+        uid: recountId,
+      });
+    }
+  }
+}
+
+function addEvidenceUidEdges(edges, evidence) {
+  const source = String(evidence?.source || "").trim() || undefined;
+  const status = evidence?.evidenceStatus ?? evidence?.ownershipStatus ?? evidence?.buffIdStatus;
+  const relationshipKind = evidence?.relationshipKind;
+  const base = { source, status, relationshipKind };
+
+  addNumberUidEdge(edges, evidence?.buffSourceId, { ...base, edgeKind: "source-buff", uidKind: "buff", role: "source" });
+  addNumberUidEdge(edges, evidence?.descriptionSourceBuffId, {
+    ...base,
+    edgeKind: "description-buff",
+    uidKind: "buff",
+    role: "evidence",
+  });
+  addNumberUidEdge(edges, evidence?.sourceConfigId, {
+    ...base,
+    edgeKind: "source-config-row",
+    uidKind: "source-config",
+    role: "source",
+  });
+  addNumberUidEdge(edges, evidence?.ownerSourceId, {
+    ...base,
+    edgeKind: "owner-source",
+    uidKind: evidence?.ownerNameSource === "skill_aoyi_icons" ? "skill-aoyi" : "source",
+    role: "owner",
+  });
+  addNumberUidEdge(edges, evidence?.ownerSkillEffectId, {
+    ...base,
+    edgeKind: "owner-skill-effect",
+    uidKind: "skill-effect",
+    role: "owner",
+  });
+  addNumberUidEdge(edges, evidence?.recountId, { ...base, edgeKind: "source-recount", uidKind: "recount", role: "source" });
+  addNumberUidEdge(edges, evidence?.talentId, { ...base, edgeKind: "source-talent", uidKind: "talent", role: "source" });
+  addNumberUidEdge(edges, evidence?.itemId, { ...base, edgeKind: "source-item", uidKind: "item", role: "source" });
+
+  const linkedId = toPositiveNumber(evidence?.linkedId);
+  if (linkedId !== null) {
+    addUidEdge(edges, {
+      ...base,
+      edgeKind: "linked-uid",
+      uidKind: uidKindForLinkedSource(evidence?.linkedSource),
+      uid: linkedId,
+      role: "evidence",
+    });
+  }
+
+  addNumberUidEdges(edges, evidence?.buffIds, { ...base, edgeKind: "evidence-buff", uidKind: "buff", role: "evidence" });
+  addNumberUidEdges(edges, evidence?.triggerBuffIds, {
+    ...base,
+    edgeKind: "activation-buff",
+    uidKind: "buff",
+    role: "runtime",
+  });
+  addNumberUidEdges(edges, evidence?.linkedBuffIds, {
+    ...base,
+    edgeKind: "linked-buff",
+    uidKind: "buff",
+    role: "evidence",
+  });
+  addNumberUidEdges(edges, evidence?.linkedChildBuffIds, {
+    ...base,
+    edgeKind: "linked-child-buff",
+    uidKind: "buff",
+    role: "evidence",
+  });
+  addNumberUidEdges(edges, evidence?.triggerBaseSkillIds, {
+    ...base,
+    edgeKind: "activation-skill",
+    uidKind: "skill",
+    role: "runtime",
+  });
+  addNumberUidEdges(edges, evidence?.foodBuffBaseIds, {
+    ...base,
+    edgeKind: "food-buff-base",
+    uidKind: "buff",
+    role: "evidence",
+  });
+  addNumberUidEdges(edges, evidence?.candidateItemIds, {
+    ...base,
+    edgeKind: "candidate-item",
+    uidKind: "item",
+    role: "evidence",
+  });
+  addNumberUidEdges(edges, evidence?.specIds, {
+    ...base,
+    edgeKind: "owner-spec",
+    uidKind: "spec",
+    role: "owner",
+  });
+
+  for (const field of ["fromSourceId", "intoSourceId"]) {
+    const sourceId = String(evidence?.[field] || "").trim();
+    if (!sourceId) continue;
+    addUidEdge(edges, {
+      ...base,
+      edgeKind: field === "fromSourceId" ? "merged-from-source" : "merged-into-source",
+      uidKind: "source-rule",
+      uid: sourceId,
+      role: "evidence",
+    });
+  }
+}
+
+function addFormulaUidEdges(edges, attributionModel) {
+  for (const component of attributionModel?.components || []) {
+    const formulaTermIds = uniqueStrings(component?.formulaTermIds);
+    if (formulaTermIds.length === 0) continue;
+    for (const termId of formulaTermIds) {
+      addUidEdge(edges, {
+        edgeKind: "formula-component",
+        uidKind: "formula-term",
+        uid: termId,
+        role: "formula",
+        scope: component?.valueScope || component?.contributionScope,
+        source: component?.inferenceSource,
+        componentKey: component?.componentKey,
+        componentClass: component?.effectClass,
+        direction: component?.direction,
+        contributionScope: component?.contributionScope,
+        valueScope: component?.valueScope,
+        formulaTermIds,
+        contributionGroups: component?.contributionGroups,
+        predicateTags: component?.predicateTags,
+      });
+    }
+  }
+}
+
+function modifierUidEdges(source, observedBuffId) {
+  const edges = [];
+  addNumberUidEdge(edges, observedBuffId, {
+    edgeKind: "observed-buff",
+    uidKind: "buff",
+    role: "runtime",
+    source: "ModifierSourceIndex.observedBuffId",
+  });
+  addNumberUidEdge(edges, source?.sourceEntityId, {
+    edgeKind: "source-entity",
+    uidKind: uidKindForSourceEntity(source),
+    role: "source",
+    source: "EffectSources.sourceEntityId",
+  });
+  addNumberUidEdges(edges, source?.buffIds, {
+    edgeKind: "runtime-buff-alias",
+    uidKind: "buff",
+    role: "runtime",
+    source: "EffectSources.buffIds",
+  });
+  addTargetUidEdges(edges, source?.targets);
+  for (const evidence of source?.evidence || []) {
+    if (evidence && typeof evidence === "object") addEvidenceUidEdges(edges, evidence);
+  }
+  addFormulaUidEdges(edges, source?.attributionModel);
+  return finalizeUidEdges(edges);
+}
+
+function factorUidEdges(buffId, factor, targetDamageIds, targetRecountIds) {
+  const edges = [];
+  addNumberUidEdge(edges, buffId, {
+    edgeKind: "observed-buff",
+    uidKind: "buff",
+    role: "runtime",
+    source: "SeasonPhantomFactors.buffId",
+  });
+  addNumberUidEdge(edges, factor?.buffId ?? buffId, {
+    edgeKind: "source-entity",
+    uidKind: "buff",
+    role: "source",
+    source: "SeasonPhantomFactors.buffId",
+  });
+  addNumberUidEdges(edges, targetDamageIds, {
+    edgeKind: "target-damage-row",
+    uidKind: "damage",
+    role: "target",
+    source: "SeasonPhantomFactors.affectedDamageIds",
+  });
+  addNumberUidEdges(edges, targetRecountIds, {
+    edgeKind: "target-recount-row",
+    uidKind: "recount",
+    role: "target",
+    source: "SeasonPhantomFactors.affectedRecountIds",
+  });
+  addFormulaUidEdges(edges, factor?.attributionModel);
+  return finalizeUidEdges(edges);
+}
+
+function attributionStatus(source) {
+  return source?.attributionModel?.status || "unknown";
+}
+
+function attributionGroups(source) {
+  return [...new Set(source?.attributionModel?.contributionGroups || [])].sort();
+}
+
+function attributionComponentClasses(source) {
+  const classes = [];
+  for (const component of source?.attributionModel?.components || []) {
+    if (component?.effectClass) classes.push(component.effectClass);
+  }
+  return [...new Set(classes)].sort();
+}
+
+function sourceReportPolicy(source, targetDamageIds, targetRecountIds) {
+  const status = attributionStatus(source);
+  const groups = new Set(attributionGroups(source));
+  const classes = new Set(attributionComponentClasses(source));
+  const hasStaticTargets = targetDamageIds.length > 0 || targetRecountIds.length > 0;
+  const sourceType = String(source.sourceType || "");
+
+  if (status === "defensive-or-non-damage") return "ignore";
+  if (sourceType === "imagine-icd") return "ignore";
+  if (classes.has("damage-reduction") || classes.has("defense-stat")) return "ignore";
+  if (!hasStaticTargets && status === "needs-source-localization") return "debug-only";
+
+  if (hasStaticTargets) return "include";
+  if (status === "formula-ready-candidate") return "include";
+  if (status === "timing-only") return "include";
+  if (status === "uptime-only" && (
+    groups.has("baseAttack")
+    || groups.has("critical")
+    || groups.has("elemental")
+    || groups.has("genericDamage")
+    || groups.has("versatility")
+    || groups.has("hitTiming")
+  )) return "include";
+
+  return "debug-only";
+}
+
+function compactAttributionModel(model) {
+  if (!model || typeof model !== "object") return undefined;
+  const compact = {
+    schemaVersion: model.schemaVersion,
+    damageFormulaId: model.damageFormulaId,
+    status: model.status,
+    confidence: model.confidence,
+    formulaTermIds: model.formulaTermIds,
+    contributionGroups: model.contributionGroups,
+    predicateTags: model.predicateTags,
+    relationshipKinds: model.relationshipKinds,
+    requiredRuntimeEvidence: model.requiredRuntimeEvidence,
+    components: (model.components || []).map((component) => stripUndefined({
+      componentKey: component.componentKey,
+      label: component.label,
+      effectClass: component.effectClass,
+      contributionScope: component.contributionScope,
+      direction: component.direction,
+      stat: component.stat,
+      valueScope: component.valueScope,
+      formulaTermIds: component.formulaTermIds,
+      contributionGroups: component.contributionGroups,
+      predicateTags: component.predicateTags,
+      valueTexts: component.valueTexts,
+    })),
+  };
+  return stripUndefined(compact);
+}
+
+function rowPolicy(source, targetDamageIds, targetRecountIds) {
+  const status = attributionStatus(source);
+  const groups = new Set(attributionGroups(source));
+  if (targetDamageIds.length > 0 || targetRecountIds.length > 0) return "static-target";
+  if (status === "timing-only" || groups.has("hitTiming")) return "timing";
+  if (status === "formula-ready-candidate") return "formula";
+  if (status === "proc-damage") return "proc";
+  if (status === "uptime-only") return "uptime";
+  if (status === "defensive-or-non-damage") return "defensive";
+  return "unknown";
+}
+
+function sourceToIndexEntry(source, observedBuffId) {
+  const targetDamageIds = targetIds(source.targets, "damage", "damageId");
+  const targetRecountIds = targetIds(source.targets, "recount", "recountId");
+  const sourceNames = pickLocalizedMap(source.sourceNames);
+  const sourceName = englishText(sourceNames, source.sourceName || `Buff ${observedBuffId}`);
+  const description = descriptionFields(source);
+  return stripUndefined({
+    sourceId: source.sourceId,
+    sourceKind: source.sourceKind || "effect-source",
+    sourceType: source.sourceType,
+    sourceEntityId: typeof source.sourceEntityId === "number" ? source.sourceEntityId : undefined,
+    sourceName,
+    sourceNames,
+    ...description,
+    iconPath: source.iconPath,
+    runtimeDetection: source.runtimeDetection,
+    buffIds: uniqueNumbers([observedBuffId, ...(source.buffIds || [])]),
+    evidence: [`generated:${source.sourceId}`],
+    reportPolicy: sourceReportPolicy(source, targetDamageIds, targetRecountIds),
+    rowPolicy: rowPolicy(source, targetDamageIds, targetRecountIds),
+    contributionStatus: attributionStatus(source),
+    contributionGroups: attributionGroups(source),
+    predicateTags: [...new Set(source.attributionModel?.predicateTags || [])].sort(),
+    relationshipKinds: [...new Set(source.attributionModel?.relationshipKinds || [])].sort(),
+    componentClasses: attributionComponentClasses(source),
+    attributionModel: compactAttributionModel(source.attributionModel),
+    uidEdges: modifierUidEdges(source, observedBuffId),
+    targetDamageIds,
+    targetRecountIds,
+  });
+}
+
+function factorToIndexEntry(buffId, factor) {
+  const sourceNames = pickLocalizedMap(factor.familyNames);
+  const targetDamageIds = uniqueNumbers(factor.affectedDamageIds || []);
+  const targetRecountIds = uniqueNumbers(factor.affectedRecountIds || []);
+  const description = descriptionFields(factor);
+  const source = {
+    sourceId: `phantom-factor:${buffId}`,
+    sourceKind: "phantom-factor",
+    sourceType: "season-phantom-factor",
+    sourceEntityId: factor.buffId ?? buffId,
+    sourceName: englishText(sourceNames, factor.familyName || `Buff ${buffId}`),
+    sourceNames,
+    ...description,
+    iconPath: factor.iconPath,
+    runtimeDetection: "active-buff",
+    buffIds: [buffId],
+    evidence: [`phantomFactor:${buffId}`],
+    reportPolicy: "include",
+    rowPolicy: targetDamageIds.length || targetRecountIds.length ? "static-target" : "uptime",
+    contributionStatus: "uptime-only",
+    contributionGroups: ["genericDamage"],
+    predicateTags: [],
+    relationshipKinds: [],
+    componentClasses: ["damage-modifier"],
+    attributionModel: {
+      schemaVersion: 1,
+      damageFormulaId: "community-damage-v1",
+      status: "uptime-only",
+      confidence: "low",
+      requiredRuntimeEvidence: ["modifier windows", "modifier to formula-term classification"],
+    },
+    uidEdges: factorUidEdges(buffId, factor, targetDamageIds, targetRecountIds),
+    targetDamageIds,
+    targetRecountIds,
+  };
+  return stripUndefined(source);
+}
+
+function stripUndefined(value) {
+  if (Array.isArray(value)) return value.map(stripUndefined);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const [key, inner] of Object.entries(value)) {
+    if (inner === undefined) continue;
+    if (Array.isArray(inner) && inner.length === 0) continue;
+    if (inner && typeof inner === "object" && !Array.isArray(inner)) {
+      const stripped = stripUndefined(inner);
+      if (Object.keys(stripped).length === 0) continue;
+      out[key] = stripped;
+    } else {
+      out[key] = inner;
+    }
+  }
+  return out;
+}
+
+function addEntry(index, buffId, entry) {
+  const key = String(buffId);
+  index.byBuffId[key] ||= [];
+  if (!index.byBuffId[key].some((existing) => existing.sourceId === entry.sourceId)) {
+    index.byBuffId[key].push(entry);
+  }
+}
+
+function buildIndex(effectSources, factors) {
+  const effectSourcesById = effectSources.effectSourcesById || {};
+  const buffIdToEffectSourceIds = effectSources.buffIdToEffectSourceIds || {};
+  const factorsByBuffId = factors.factorsByBuffId || {};
+  const index = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    ignoredBuffIds: IGNORED_MODIFIER_BUFF_IDS,
+    byBuffId: {},
+    stats: {},
+  };
+
+  for (const [buffIdText, sourceIds] of Object.entries(buffIdToEffectSourceIds)) {
+    const buffId = toPositiveNumber(buffIdText);
+    if (buffId === null || IGNORED_MODIFIER_BUFF_IDS.includes(buffId)) continue;
+    for (const sourceId of sourceIds || []) {
+      const source = effectSourcesById[sourceId];
+      if (!source) continue;
+      addEntry(index, buffId, sourceToIndexEntry(source, buffId));
+    }
+  }
+
+  for (const [buffIdText, factor] of Object.entries(factorsByBuffId)) {
+    const buffId = toPositiveNumber(buffIdText);
+    if (buffId === null || IGNORED_MODIFIER_BUFF_IDS.includes(buffId)) continue;
+    if (index.byBuffId[String(buffId)]?.length) continue;
+    addEntry(index, buffId, factorToIndexEntry(buffId, factor));
+  }
+
+  let entryCount = 0;
+  let uidEdgeCount = 0;
+  const policyCounts = {};
+  const rowPolicyCounts = {};
+  const uidEdgeKindCounts = {};
+  const uidEdgeRoleCounts = {};
+  for (const entries of Object.values(index.byBuffId)) {
+    for (const entry of entries) {
+      entryCount += 1;
+      policyCounts[entry.reportPolicy] = (policyCounts[entry.reportPolicy] || 0) + 1;
+      rowPolicyCounts[entry.rowPolicy] = (rowPolicyCounts[entry.rowPolicy] || 0) + 1;
+      for (const edge of entry.uidEdges || []) {
+        uidEdgeCount += 1;
+        uidEdgeKindCounts[edge.edgeKind] = (uidEdgeKindCounts[edge.edgeKind] || 0) + 1;
+        uidEdgeRoleCounts[edge.role || "unknown"] = (uidEdgeRoleCounts[edge.role || "unknown"] || 0) + 1;
+      }
+    }
+  }
+  index.stats = {
+    buffIds: Object.keys(index.byBuffId).length,
+    entries: entryCount,
+    reportPolicyCounts: policyCounts,
+    rowPolicyCounts,
+    uidEdges: uidEdgeCount,
+    uidEdgeKindCounts,
+    uidEdgeRoleCounts,
+  };
+  return index;
+}
+
+const args = parseArgs(process.argv.slice(2));
+if (args.help) {
+  printHelp();
+  process.exit(0);
+}
+
+const effectSources = readJson(args.effectSourcesPath);
+const factors = readJson(args.factorsPath);
+const index = buildIndex(effectSources, factors);
+if (args.dryRun) {
+  console.log(`Dry run: modifier index buff ids ${index.stats.buffIds.toLocaleString()}`);
+  console.log(`Dry run: modifier index entries ${index.stats.entries.toLocaleString()}`);
+  console.log(`Dry run: modifier index UID edges ${index.stats.uidEdges.toLocaleString()}`);
+  console.log(`Dry run: policies ${JSON.stringify(index.stats.reportPolicyCounts)}`);
+  console.log(`Dry run: would write ${args.outPath}`);
+} else {
+  writeJson(args.outPath, index);
+  console.log(`Modifier source index buff ids: ${index.stats.buffIds.toLocaleString()}`);
+  console.log(`Modifier source index entries: ${index.stats.entries.toLocaleString()}`);
+  console.log(`Modifier source index UID edges: ${index.stats.uidEdges.toLocaleString()}`);
+  console.log(`Wrote ${args.outPath}`);
+}

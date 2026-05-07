@@ -1,0 +1,766 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const STRING_POOL = 6;
+const SCHEMA_VERSION = 1;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    runtimeOut: "",
+    markdown: "",
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "SkillDamageChainBridge.gen - generate compact damage-id chain metadata for formula replay.",
+      `
+Options:
+  --runtime-out <path>   Compact runtime JSON path. Default: <output-dir>/SkillDamageChainRuntime.json
+  --markdown <path>      Optional Markdown audit summary path.
+
+Notes:
+  Reads generated DamageAttrIdName/RecountTable/SkillBreakdownDetails/skillnames
+  plus actual game SkillEffectTable.ctb and SkillFightLevelTable.ctb rows.
+  Numeric fields are exported as candidates only; this does not prove damage
+  formula coefficients or enable visible contribution math by itself.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = common.resolvePaths(args, "SkillDamageChainBridge.json");
+  const runtimeOut = path.resolve(args.runtimeOut || path.join(paths.outputDir, "SkillDamageChainRuntime.json"));
+  const markdownPath = args.markdown ? path.resolve(args.markdown) : "";
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+
+  const generated = {
+    damage: common.readJson(path.join(paths.outputDir, "DamageAttrIdName.json"), {}),
+    recount: common.readJson(path.join(paths.outputDir, "RecountTable.json"), {}),
+    breakdown: common.readJson(path.join(paths.outputDir, "SkillBreakdownDetails.json"), {}),
+    skills: common.readJson(path.join(paths.outputDir, "skillnames.json"), {}),
+  };
+
+  const ctb = {
+    damage: readOptionalCtb(common, containerDir, metaEntries, "DamageAttrTable.ctb"),
+    skillEffect: readOptionalCtb(common, containerDir, metaEntries, "SkillEffectTable.ctb"),
+    skillFight: readOptionalCtb(common, containerDir, metaEntries, "SkillFightLevelTable.ctb"),
+  };
+
+  const indexes = {
+    damageAttr: indexDamageAttrRows(ctb.damage, common),
+    effects: indexSkillEffectRows(ctb.skillEffect, common),
+    fights: indexSkillFightRows(ctb.skillFight, common),
+    recountByDamage: buildRecountByDamage(generated.recount),
+  };
+
+  const bridge = buildBridge(generated, indexes, paths);
+  const runtime = buildRuntimeBridge(bridge);
+
+  if (!args.dryRun) {
+    common.writeJson(paths.out, bridge);
+    common.writeJson(runtimeOut, runtime);
+    if (markdownPath) fs.writeFileSync(markdownPath, renderMarkdown(bridge), "utf8");
+  }
+
+  console.log(
+    `${args.dryRun ? "Dry run:" : "Generated"} ${Object.keys(bridge.damageChains).length.toLocaleString()} damage chains.`
+  );
+  console.log(`Rows needing allocation: ${bridge.summary.needsChainAllocation.toLocaleString()}`);
+  console.log(`Rows with coefficient candidates: ${bridge.summary.rowsWithCoefficientCandidates.toLocaleString()}`);
+  if (!args.dryRun) {
+    console.log(`Output: ${common.displayPath(paths.out)}`);
+    console.log(`Runtime: ${common.displayPath(runtimeOut)}`);
+    if (markdownPath) console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+  }
+}
+
+function readOptionalCtb(common, containerDir, metaEntries, tableName) {
+  try {
+    return common.readCtbTable(containerDir, metaEntries, tableName);
+  } catch {
+    return null;
+  }
+}
+
+function buildBridge(generated, indexes, paths) {
+  const damageChains = {};
+  const recountChains = buildRecountChains(generated.recount, indexes.recountByDamage);
+
+  for (const [damageId, damageRow] of Object.entries(generated.damage || {})) {
+    const breakdown = generated.breakdown[String(damageId)] || {};
+    const damageAttr = indexes.damageAttr.get(String(damageId)) || buildDamageAttrFallback(damageRow);
+    const recountParents = (indexes.recountByDamage.get(String(damageId)) || []).map((recount) =>
+      compactRecountParent(recount)
+    );
+    const linkedIds = buildLinkedIds({ damageRow, breakdown, damageAttr, recountParents });
+    const expandedLinkedIds = expandSkillLinkedIds(linkedIds, generated.skills);
+    const skillEffects = uniqueRows([
+      ...lookupRows(indexes.effects.byEffectId, expandedLinkedIds),
+      ...lookupRows(indexes.effects.bySkillId, expandedLinkedIds),
+    ]).map(compactSkillEffect);
+    const skillFights = groupSkillFightRows(
+      uniqueRows([
+        ...lookupRows(indexes.fights.byFightId, expandedLinkedIds),
+        ...lookupRows(indexes.fights.byEffectId, expandedLinkedIds),
+        ...lookupRows(indexes.fights.bySkillId, expandedLinkedIds),
+      ])
+    );
+    const coefficientCandidates = buildCoefficientCandidates(skillEffects);
+    const allocation = buildAllocationStatus(recountParents);
+
+    damageChains[String(damageId)] = stripEmpty({
+      damageId: numberOrString(damageId),
+      displayName: cleanText(breakdown.DisplayName || damageRow.Name || damageAttr.name),
+      names: compactNames(damageRow.Names || breakdown.DisplayNames),
+      category: cleanText(breakdown.Category || breakdown.SourceKind),
+      sourceRole: cleanText(breakdown.SourceRole || breakdown.SourceType),
+      damageKind: cleanText(damageRow.DamageKind || damageAttr.damageKind),
+      damageAttr,
+      recountParents,
+      allocation,
+      linkedIds: [...expandedLinkedIds].map(numberOrString).sort(sortIds),
+      linkedSource: cleanText(damageRow.LinkedSource || breakdown.LinkedSource),
+      linkedId: firstPositiveId(damageRow.LinkedId, breakdown.LinkedId, damageAttr.linkedId),
+      baseSkillId: firstPositiveId(breakdown.BaseSkillId, breakdown.ParentBaseSkillId),
+      recountOwnerSkillId: firstPositiveId(breakdown.RecountOwnerSkillId),
+      skillEffects,
+      skillFights,
+      coefficientCandidates,
+      formulaReadiness: classifyFormulaReadiness({ allocation, skillEffects, skillFights, coefficientCandidates }),
+      notes: buildNotes({ allocation, skillEffects, skillFights, coefficientCandidates }),
+    });
+  }
+
+  const summary = summarizeBridge(damageChains, recountChains);
+  return {
+    schemaVersion: SCHEMA_VERSION,
+    generatedAt: new Date().toISOString(),
+    generatedBy: "SkillDamageChainBridge.gen",
+    sources: {
+      gamePackage: paths.m0Path,
+      damageAttr: "DamageAttrIdName.json + DamageAttrTable.ctb",
+      recount: "RecountTable.json",
+      breakdown: "SkillBreakdownDetails.json",
+      skills: "skillnames.json",
+      skillEffect: "SkillEffectTable.ctb",
+      skillFight: "SkillFightLevelTable.ctb",
+    },
+    semantics: {
+      finalDamageAnchor: "runtime packets remain the source of truth for final damage totals",
+      coefficientCandidates: "static game-file numeric fields that must be replay-validated before contribution math",
+      chainAllocation: "multi-damage Recount parents must allocate the parent chain before per-skill base math is trusted",
+    },
+    summary,
+    recountChains,
+    damageChains,
+  };
+}
+
+function buildRuntimeBridge(bridge) {
+  const strings = [];
+  const stringIndex = new Map();
+  const intern = (value) => {
+    const text = cleanText(value);
+    if (!text) return 0;
+    if (!stringIndex.has(text)) {
+      stringIndex.set(text, strings.length + 1);
+      strings.push(text);
+    }
+    return stringIndex.get(text);
+  };
+  const damageChains = {};
+  for (const [damageId, row] of Object.entries(bridge.damageChains)) {
+    damageChains[damageId] = trimRuntimeRow([
+      (row.recountParents || []).map((parent) => parent.id),
+      allocationStatusCode(row.allocation?.status),
+      row.linkedId || 0,
+      intern(row.linkedSource),
+      intern(row.damageKind),
+      row.baseSkillId || 0,
+      row.recountOwnerSkillId || 0,
+      (row.coefficientCandidates || []).map((candidate) => [
+        candidate.effectId || 0,
+        candidate.skillId || 0,
+        candidate.value || 0,
+      ]),
+      (row.skillEffects || []).map((effect) => [
+        effect.effectId || 0,
+        effect.skillId || 0,
+        effect.valueAt16 || 0,
+        effect.typeAt20 || 0,
+        effect.targetAt24 || 0,
+        effect.paramAt28 || 0,
+      ]),
+      (row.skillFights || []).map((fight) => [
+        fight.skillId || 0,
+        fight.effectId || 0,
+        fight.minLevel || 0,
+        fight.maxLevel || 0,
+        fight.valuesAt28 || [],
+      ]),
+      row.formulaReadiness?.status === "candidate-ready-for-replay-validation" ? 1 : 0,
+      (row.formulaReadiness?.blockers || []).map(blockerCode).filter(Boolean),
+    ]);
+  }
+  return {
+    schemaVersion: SCHEMA_VERSION,
+    generatedAt: bridge.generatedAt,
+    generatedBy: "SkillDamageChainBridge.gen",
+    runtimeOf: "SkillDamageChainBridge.json",
+    encoding: {
+      damageChain:
+        "[recountIds, allocationStatus, linkedId, linkedSourceString, damageKindString, baseSkillId, recountOwnerSkillId, coefficientCandidates, skillEffects, skillFights, formulaReady, blockerCodes]",
+      allocationStatus: {
+        1: "single-damage-parent",
+        2: "needs-chain-allocation",
+        3: "multi-parent-damage",
+        4: "unowned-damage-row",
+      },
+      coefficientCandidate: "[effectId, skillId, valueAt16]",
+      skillEffect: "[effectId, skillId, valueAt16, typeAt20, targetAt24, paramAt28]",
+      skillFight: "[skillId, effectId, minLevel, maxLevel, valuesAt28]",
+      blockerCodes: {
+        1: "missing-recount-parent",
+        2: "needs-chain-allocation",
+        3: "missing-skill-effect-link",
+        4: "missing-skill-fight-link",
+        5: "missing-nonzero-static-effect-value",
+      },
+      stringTable: "1-based indexes into strings; 0 means absent",
+    },
+    summary: {
+      ...bridge.summary,
+      runtimeDamageRows: Object.keys(damageChains).length,
+      runtimeScope: "all-damage-rows",
+    },
+    strings,
+    recountChains: bridge.recountChains,
+    damageChains,
+  };
+}
+
+function trimRuntimeRow(row) {
+  const isDefault = (value) => {
+    if (Array.isArray(value)) return value.length === 0;
+    return value === 0 || value === "" || value === undefined || value === null;
+  };
+  let end = row.length;
+  while (end > 0 && isDefault(row[end - 1])) end -= 1;
+  return row.slice(0, end);
+}
+
+function allocationStatusCode(status) {
+  switch (status) {
+    case "single-damage-parent":
+      return 1;
+    case "needs-chain-allocation":
+      return 2;
+    case "multi-parent-damage":
+      return 3;
+    case "unowned-damage-row":
+      return 4;
+    default:
+      return 0;
+  }
+}
+
+function blockerCode(blocker) {
+  switch (blocker) {
+    case "missing-recount-parent":
+      return 1;
+    case "needs-chain-allocation":
+      return 2;
+    case "missing-skill-effect-link":
+      return 3;
+    case "missing-skill-fight-link":
+      return 4;
+    case "missing-nonzero-static-effect-value":
+      return 5;
+    default:
+      return 0;
+  }
+}
+
+function buildRecountChains(recountRows, recountByDamage) {
+  const out = {};
+  for (const [id, row] of Object.entries(recountRows || {})) {
+    const damageIds = numericArray(row.DamageId).map(numberOrString);
+    out[String(id)] = stripEmpty({
+      id: numberOrString(id),
+      name: cleanText(row.Name || row.RecountName),
+      damageIds,
+      linkedBaseSkillId: positiveId(row.LinkedBaseSkillId),
+      linkedTalentId: positiveId(row.LinkedTalentId),
+      allocationStatus: damageIds.length > 1 ? "multi-damage-parent" : "single-damage-parent",
+    });
+  }
+  for (const [damageId, parents] of recountByDamage.entries()) {
+    if (parents.length <= 1) continue;
+    for (const parent of parents) {
+      const entry = out[String(parent.Id)];
+      if (entry) entry.allocationStatus = "multi-parent-damage";
+      if (entry) entry.multiParentDamageIds = uniqueNumbers([...(entry.multiParentDamageIds || []), Number(damageId)]);
+    }
+  }
+  return out;
+}
+
+function buildRecountByDamage(recountRows) {
+  const out = new Map();
+  for (const row of Object.values(recountRows || {})) {
+    for (const damageId of numericArray(row.DamageId)) {
+      const key = String(damageId);
+      const rows = out.get(key) || [];
+      rows.push(row);
+      out.set(key, rows);
+    }
+  }
+  return out;
+}
+
+function compactRecountParent(row) {
+  const damageIds = numericArray(row.DamageId).map(numberOrString);
+  return stripEmpty({
+    id: positiveId(row.Id),
+    name: cleanText(row.Name || row.RecountName),
+    damageIds,
+    damageCount: damageIds.length,
+    linkedBaseSkillId: positiveId(row.LinkedBaseSkillId),
+    linkedTalentId: positiveId(row.LinkedTalentId),
+  });
+}
+
+function buildAllocationStatus(recountParents) {
+  if (!recountParents.length) {
+    return { status: "unowned-damage-row", needsChainAllocation: false, reason: "no RecountTable parent contains this damage id" };
+  }
+  if (recountParents.length > 1) {
+    return { status: "multi-parent-damage", needsChainAllocation: true, reason: "damage id appears under multiple Recount parents" };
+  }
+  const parent = recountParents[0];
+  if ((parent.damageCount || 0) > 1) {
+    return {
+      status: "needs-chain-allocation",
+      needsChainAllocation: true,
+      reason: "Recount parent contains multiple emitted damage ids",
+    };
+  }
+  return { status: "single-damage-parent", needsChainAllocation: false, reason: "single emitted damage id under one Recount parent" };
+}
+
+function buildLinkedIds({ damageRow, breakdown, damageAttr, recountParents }) {
+  const ids = new Set();
+  for (const value of [
+    damageRow.Id,
+    damageRow.LinkedId,
+    damageRow.LinkedSkillId,
+    damageRow.LinkedSkillEffectId,
+    damageRow.LinkedSkillFightId,
+    damageRow.LinkedSkillFightSkillId,
+    damageRow.LinkedSkillFightEffectId,
+    damageRow.LinkedSkillEffectSkillTableId,
+    damageRow.LinkedSkillTableId,
+    damageRow.LinkedBuffId,
+    breakdown.LinkedId,
+    breakdown.LinkedSkillId,
+    breakdown.LinkedSkillEffectId,
+    breakdown.LinkedSkillFightId,
+    breakdown.LinkedSkillFightSkillId,
+    breakdown.LinkedSkillFightEffectId,
+    breakdown.LinkedSkillEffectSkillTableId,
+    breakdown.LinkedSkillTableId,
+    breakdown.LinkedBuffId,
+    breakdown.BaseSkillId,
+    breakdown.ParentBaseSkillId,
+    breakdown.UnderlyingSkillId,
+    breakdown.RecountOwnerSkillId,
+    damageAttr?.linkedId,
+  ]) {
+    addId(ids, value);
+  }
+  for (const parent of recountParents) {
+    addId(ids, parent.linkedBaseSkillId);
+    addId(ids, parent.linkedTalentId);
+  }
+  return ids;
+}
+
+function expandSkillLinkedIds(seedIds, skillRows) {
+  const out = new Set(seedIds);
+  for (const id of [...seedIds]) {
+    const row = skillRows[String(id)];
+    for (const value of numericArray(row?.SkillEffectIds)) addId(out, value);
+    for (const value of numericArray(row?.LinkedIds)) addId(out, value);
+  }
+  return out;
+}
+
+function indexDamageAttrRows(table, common) {
+  const out = new Map();
+  if (!table) return out;
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const damageId = table.data.readBigUInt64LE(rowOffset).toString();
+    const name = common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 12), { allowZero: true });
+    const damageKind = common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 24), { allowZero: true });
+    const detailKind = common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 28), { allowZero: true });
+    out.set(damageId, stripEmpty({
+      rowIndex,
+      sourceOffset: table.entry.offset + rowOffset,
+      damageId: numberOrString(damageId),
+      name: cleanText(name),
+      linkedId: positiveId(common.readU32(table.data, rowOffset + 20)),
+      damageKind: cleanText(damageKind),
+      detailKind: cleanText(detailKind),
+    }));
+  }
+  return out;
+}
+
+function buildDamageAttrFallback(row) {
+  return stripEmpty({
+    damageId: positiveId(row.Id),
+    sourceOffset: positiveId(row.SourceOffset),
+    name: cleanText(row.NameDesign || row.Name),
+    linkedId: positiveId(row.LinkedId),
+    damageKind: cleanText(row.DamageKind),
+    detailKind: cleanText(row.DetailKind),
+  });
+}
+
+function indexSkillEffectRows(table, common) {
+  const byEffectId = new Map();
+  const bySkillId = new Map();
+  if (!table) return { byEffectId, bySkillId };
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const row = stripEmpty({
+      rowIndex,
+      sourceOffset: table.entry.offset + rowOffset,
+      effectId: positiveId(common.readU32(table.data, rowOffset)),
+      level: positiveId(common.readU32(table.data, rowOffset + 4)),
+      designName: cleanText(common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 8), { allowZero: true })),
+      skillId: positiveId(common.readU32(table.data, rowOffset + 12)),
+      valueAt16: readFloatLE(table.data, rowOffset + 16),
+      typeAt20: positiveId(common.readU32(table.data, rowOffset + 20)),
+      targetAt24: positiveId(common.readU32(table.data, rowOffset + 24)),
+      paramAt28: positiveId(common.readU32(table.data, rowOffset + 28)),
+    });
+    pushMapRow(byEffectId, row.effectId, row);
+    pushMapRow(bySkillId, row.skillId, row);
+  }
+  return { byEffectId, bySkillId };
+}
+
+function indexSkillFightRows(table, common) {
+  const byFightId = new Map();
+  const bySkillId = new Map();
+  const byEffectId = new Map();
+  if (!table) return { byFightId, bySkillId, byEffectId };
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const row = stripEmpty({
+      rowIndex,
+      sourceOffset: table.entry.offset + rowOffset,
+      fightId: positiveId(common.readU32(table.data, rowOffset)),
+      skillId: positiveId(common.readU32(table.data, rowOffset + 4)),
+      level: positiveId(common.readU32(table.data, rowOffset + 8)),
+      effectId: positiveId(common.readU32(table.data, rowOffset + 12)),
+      designName: cleanText(common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 16), { allowZero: true })),
+      valueAt28: readFloatLE(table.data, rowOffset + 28),
+    });
+    pushMapRow(byFightId, row.fightId, row);
+    pushMapRow(bySkillId, row.skillId, row);
+    pushMapRow(byEffectId, row.effectId, row);
+  }
+  return { byFightId, bySkillId, byEffectId };
+}
+
+function groupSkillFightRows(rows) {
+  const groups = new Map();
+  for (const row of rows) {
+    const key = `${row.skillId || ""}:${row.effectId || ""}`;
+    const group = groups.get(key) || {
+      skillId: row.skillId,
+      effectId: row.effectId,
+      designName: row.designName,
+      fightIds: [],
+      levels: [],
+      valuesAt28: [],
+      sourceOffsets: [],
+    };
+    if (row.fightId) group.fightIds.push(row.fightId);
+    if (row.level) group.levels.push(row.level);
+    if (Number.isFinite(row.valueAt28)) group.valuesAt28.push(row.valueAt28);
+    if (row.sourceOffset) group.sourceOffsets.push(row.sourceOffset);
+    if (!group.designName && row.designName) group.designName = row.designName;
+    groups.set(key, group);
+  }
+  return [...groups.values()].map((group) => stripEmpty({
+    skillId: group.skillId,
+    effectId: group.effectId,
+    designName: group.designName,
+    fightIdSamples: uniqueNumbers(group.fightIds).slice(0, 8),
+    fightCount: uniqueNumbers(group.fightIds).length,
+    minLevel: minNumber(group.levels),
+    maxLevel: maxNumber(group.levels),
+    valuesAt28: uniqueNumbers(group.valuesAt28).slice(0, 8),
+    sourceOffsetSamples: uniqueNumbers(group.sourceOffsets).slice(0, 4),
+  }));
+}
+
+function compactSkillEffect(row) {
+  return stripEmpty({
+    effectId: row.effectId,
+    skillId: row.skillId,
+    level: row.level,
+    designName: row.designName,
+    valueAt16: row.valueAt16,
+    typeAt20: row.typeAt20,
+    targetAt24: row.targetAt24,
+    paramAt28: row.paramAt28,
+    sourceOffset: row.sourceOffset,
+  });
+}
+
+function buildCoefficientCandidates(skillEffects) {
+  return skillEffects
+    .filter((row) => Number.isFinite(row.valueAt16) && row.valueAt16 !== 0)
+    .map((row) => stripEmpty({
+      table: "SkillEffectTable.ctb",
+      field: "valueAt16",
+      effectId: row.effectId,
+      skillId: row.skillId,
+      value: row.valueAt16,
+      evidence: "candidate-static-effect-value",
+    }));
+}
+
+function classifyFormulaReadiness({ allocation, skillEffects, skillFights, coefficientCandidates }) {
+  const blockers = [];
+  if (allocation.status === "unowned-damage-row") blockers.push("missing-recount-parent");
+  if (allocation.needsChainAllocation) blockers.push("needs-chain-allocation");
+  if (!skillEffects.length) blockers.push("missing-skill-effect-link");
+  if (!skillFights.length) blockers.push("missing-skill-fight-link");
+  if (!coefficientCandidates.length) blockers.push("missing-nonzero-static-effect-value");
+  if (!blockers.length) return { status: "candidate-ready-for-replay-validation", blockers: [] };
+  return { status: "blocked-or-evidence-only", blockers };
+}
+
+function buildNotes({ allocation, skillEffects, skillFights, coefficientCandidates }) {
+  const notes = [];
+  if (allocation.status === "unowned-damage-row") notes.push(allocation.reason);
+  if (allocation.needsChainAllocation) notes.push(allocation.reason);
+  if (!skillEffects.length) notes.push("no SkillEffectTable candidate linked by current UID chain");
+  if (!skillFights.length) notes.push("no SkillFightLevelTable candidate linked by current UID chain");
+  if (skillEffects.length && !coefficientCandidates.length) notes.push("SkillEffect candidates exist, but valueAt16 is zero or absent");
+  if (coefficientCandidates.length) notes.push("candidate values require replay validation against final packet damage");
+  return notes;
+}
+
+function summarizeBridge(damageChains, recountChains) {
+  const rows = Object.values(damageChains);
+  return {
+    damageRows: rows.length,
+    recountRows: Object.keys(recountChains).length,
+    rowsWithRecountParents: rows.filter((row) => row.recountParents?.length).length,
+    rowsWithSkillEffects: rows.filter((row) => row.skillEffects?.length).length,
+    rowsWithSkillFights: rows.filter((row) => row.skillFights?.length).length,
+    rowsWithCoefficientCandidates: rows.filter((row) => row.coefficientCandidates?.length).length,
+    rowsReadyForReplayValidation: rows.filter((row) => row.formulaReadiness?.status === "candidate-ready-for-replay-validation").length,
+    needsChainAllocation: rows.filter((row) => row.allocation?.needsChainAllocation).length,
+    singleDamageParents: rows.filter((row) => row.allocation?.status === "single-damage-parent").length,
+    unownedDamageRows: rows.filter((row) => row.allocation?.status === "unowned-damage-row").length,
+  };
+}
+
+function renderMarkdown(bridge) {
+  const rows = Object.values(bridge.damageChains)
+    .sort((left, right) => readinessScore(right) - readinessScore(left) || String(left.damageId).localeCompare(String(right.damageId)))
+    .slice(0, 120)
+    .map((row) => [
+      row.damageId,
+      row.displayName,
+      row.damageKind,
+      row.recountParents?.map((parent) => `${parent.id}:${parent.name}`).join("; "),
+      row.allocation?.status,
+      row.skillEffects?.slice(0, 3).map((effect) => `${effect.effectId}/${effect.skillId}:v16=${effect.valueAt16}`).join("; "),
+      row.skillFights?.slice(0, 3).map((fight) => `${fight.skillId}->${fight.effectId}:lv${fight.minLevel}-${fight.maxLevel}:v28=${fight.valuesAt28?.join("/")}`).join("; "),
+      row.coefficientCandidates?.map((candidate) => `${candidate.effectId}/${candidate.skillId}:${candidate.value}`).join("; "),
+      row.formulaReadiness?.blockers?.join("; "),
+    ]);
+  return [
+    "# Skill Damage Chain Bridge",
+    "",
+    `Generated: ${bridge.generatedAt}`,
+    "",
+    "## Summary",
+    "",
+    `- Damage rows: ${bridge.summary.damageRows}`,
+    `- Rows with Recount parents: ${bridge.summary.rowsWithRecountParents}`,
+    `- Rows with SkillEffect links: ${bridge.summary.rowsWithSkillEffects}`,
+    `- Rows with SkillFight links: ${bridge.summary.rowsWithSkillFights}`,
+    `- Rows with coefficient candidates: ${bridge.summary.rowsWithCoefficientCandidates}`,
+    `- Rows ready for replay validation: ${bridge.summary.rowsReadyForReplayValidation}`,
+    `- Rows needing chain allocation: ${bridge.summary.needsChainAllocation}`,
+    "",
+    "## Candidate Rows",
+    "",
+    markdownTable(
+      ["Damage", "Name", "Kind", "Recount", "Allocation", "SkillEffect", "SkillFight", "Coeff Candidates", "Blockers"],
+      rows
+    ),
+    "",
+    "## Boundary",
+    "",
+    "This bridge is static UID evidence for efficient replay work. Final totals still come from live packets, and candidate numeric fields remain untrusted until formula replay validates them.",
+    "",
+  ].join("\n");
+}
+
+function readinessScore(row) {
+  let score = 0;
+  if (!row.recountParents?.length) score -= 1000;
+  if (row.coefficientCandidates?.length) score += 100;
+  if (row.skillEffects?.length) score += 20;
+  if (row.skillFights?.length) score += 20;
+  if (row.allocation?.needsChainAllocation) score -= 10;
+  return score;
+}
+
+function readFloatLE(buffer, offset) {
+  if (offset < 0 || offset + 4 > buffer.length) return 0;
+  const value = buffer.readFloatLE(offset);
+  return Number.isFinite(value) ? Number(value.toFixed(6)) : 0;
+}
+
+function pushMapRow(map, id, row) {
+  const key = idKey(id);
+  if (!key) return;
+  const rows = map.get(key) || [];
+  rows.push(row);
+  map.set(key, rows);
+}
+
+function lookupRows(map, ids) {
+  const rows = [];
+  for (const id of ids || []) rows.push(...(map.get(String(id)) || []));
+  return rows;
+}
+
+function uniqueRows(rows) {
+  const seen = new Set();
+  const out = [];
+  for (const row of rows || []) {
+    const key = `${row.sourceOffset || row.rowIndex}:${row.effectId || row.fightId || row.skillId || ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(row);
+  }
+  return out;
+}
+
+function addId(set, value) {
+  const key = idKey(value);
+  if (key) set.add(key);
+}
+
+function idKey(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) return "";
+  return String(Math.trunc(number));
+}
+
+function positiveId(value) {
+  const key = idKey(value);
+  return key ? numberOrString(key) : undefined;
+}
+
+function firstPositiveId(...values) {
+  for (const value of values) {
+    const id = positiveId(value);
+    if (id !== undefined) return id;
+  }
+  return undefined;
+}
+
+function numericArray(value) {
+  const values = Array.isArray(value) ? value : value === undefined || value === null ? [] : [value];
+  return values.map((entry) => Number(entry)).filter((entry) => Number.isFinite(entry) && entry > 0).map((entry) => Math.trunc(entry));
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).filter((value) => Number.isFinite(Number(value))).map((value) => Number(value)))]
+    .sort((left, right) => left - right);
+}
+
+function minNumber(values) {
+  const numbers = uniqueNumbers(values);
+  return numbers.length ? numbers[0] : undefined;
+}
+
+function maxNumber(values) {
+  const numbers = uniqueNumbers(values);
+  return numbers.length ? numbers[numbers.length - 1] : undefined;
+}
+
+function numberOrString(value) {
+  const text = String(value ?? "");
+  if (/^\d+$/.test(text) && text.length < 15) return Number(text);
+  return text || undefined;
+}
+
+function sortIds(left, right) {
+  const leftNumber = Number(left);
+  const rightNumber = Number(right);
+  if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber) && leftNumber !== rightNumber) {
+    return leftNumber - rightNumber;
+  }
+  return String(left).localeCompare(String(right));
+}
+
+function cleanText(value) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  return text || undefined;
+}
+
+function compactNames(names) {
+  if (!names || typeof names !== "object") return undefined;
+  const out = {};
+  for (const key of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id", "design"]) {
+    const text = cleanText(names[key]);
+    if (text) out[key] = text;
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+
+function stripEmpty(value) {
+  if (Array.isArray(value)) return value.map(stripEmpty).filter((entry) => entry !== undefined);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const [key, entry] of Object.entries(value)) {
+    const clean = stripEmpty(entry);
+    if (clean === undefined || clean === null || clean === "") continue;
+    if (Array.isArray(clean) && clean.length === 0) continue;
+    if (typeof clean === "object" && !Array.isArray(clean) && Object.keys(clean).length === 0) continue;
+    out[key] = clean;
+  }
+  return out;
+}
+
+function markdownTable(headers, rows) {
+  const escape = (value) => String(value ?? "").replaceAll("|", "\\|").replace(/\s+/g, " ").trim();
+  return [
+    `| ${headers.join(" | ")} |`,
+    `| ${headers.map(() => "---").join(" | ")} |`,
+    ...rows.map((row) => `| ${row.map(escape).join(" | ")} |`),
+  ].join("\n");
+}

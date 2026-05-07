@@ -1,0 +1,881 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const { sortedNumbers, stripUndefined, toPositiveNumber } = require("./modifier-table-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    effectSourcesPath: "",
+    modifierSourceIndexPath: "",
+    modifierRecountPath: "",
+    modifierContributionRuntimePath: "",
+    talentSpecOwnershipPath: "",
+    outPath: "",
+    runtimeOutPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--effect-sources" && next) {
+      args.effectSourcesPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-source-index" && next) {
+      args.modifierSourceIndexPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-recount" && next) {
+      args.modifierRecountPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-contribution-runtime" && next) {
+      args.modifierContributionRuntimePath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--talent-spec-ownership" && next) {
+      args.talentSpecOwnershipPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--runtime-out" && next) {
+      args.runtimeOutPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.effectSourcesPath ||= path.join(args.outputDir, "EffectSources.json");
+  args.modifierSourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.modifierRecountPath ||= path.join(args.outputDir, "ModifierRecountTable.json");
+  args.modifierContributionRuntimePath ||= path.join(args.outputDir, "ModifierContributionRuntime.json");
+  args.talentSpecOwnershipPath ||= path.join(args.outputDir, "TalentSpecOwnership.json");
+  args.outPath ||= path.join(args.outputDir, "LuckyStrikeTable.json");
+  args.runtimeOutPath ||= path.join(args.outputDir, "LuckyStrikeRuntime.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("LuckyStrikeRuntime.gen - generate global Lucky/Luck source semantics for replay and audits.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>                           Full LuckyStrikeTable.json output path.");
+  console.log("  --runtime-out <path>                   Compact LuckyStrikeRuntime.json output path.");
+  console.log("  --output-dir <path>                    Output directory override.");
+  console.log("  --dry-run                              Scan and report without writing.");
+  console.log("");
+  console.log("Inputs:");
+  console.log("  --effect-sources <path>                EffectSources.json input.");
+  console.log("  --modifier-source-index <path>         ModifierSourceIndex.json input.");
+  console.log("  --modifier-recount <path>              ModifierRecountTable.json input.");
+  console.log("  --modifier-contribution-runtime <path> ModifierContributionRuntime.json input.");
+  console.log("  --talent-spec-ownership <path>         TalentSpecOwnership.json input.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? readJson(filePath) : fallback;
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function localizedMap(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const out = {};
+  for (const [locale, text] of Object.entries(value)) {
+    const trimmed = String(text || "").trim();
+    if (trimmed) out[locale] = trimmed;
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+
+function localizedText(map, fallback = "") {
+  if (!map || typeof map !== "object" || Array.isArray(map)) return String(fallback || "");
+  return map.en
+    || map.design
+    || Object.values(map).find((value) => typeof value === "string" && value.trim())
+    || fallback
+    || "";
+}
+
+function mergeLocalizedMaps(...maps) {
+  const out = {};
+  for (const map of maps) {
+    for (const [locale, value] of Object.entries(localizedMap(map) || {})) {
+      out[locale] ||= value;
+    }
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+
+function cleanText(value) {
+  return String(value || "")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\{[^}]*\}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function textFragments(row) {
+  return uniqueStrings([
+    row.sourceName,
+    row.description,
+    row.cleanDescription,
+    row.modifierEvidence?.cleanDescription,
+    row.modifierEvidence?.resolvedDescription,
+    ...(Object.values(row.sourceNames || {})),
+    ...(Object.values(row.descriptions || {})),
+    ...(Object.values(row.cleanDescriptions || {})),
+    ...(Object.values(row.modifierEvidence?.cleanDescriptions || {})),
+    ...(Object.values(row.modifierEvidence?.resolvedDescriptions || {})),
+  ].map(cleanText));
+}
+
+function splitClauses(text) {
+  return cleanText(text)
+    .replace(/(\d)\.(\d)/g, "$1__DOT__$2")
+    .split(/[.!?;\u3002\uff01\uff1f\uff1b\n]+/g)
+    .map((clause) => clause.replaceAll("__DOT__", ".").trim())
+    .filter(Boolean);
+}
+
+function addIndex(index, key, value) {
+  const normalized = String(key || "").trim();
+  if (!normalized) return;
+  index[normalized] ||= [];
+  if (!index[normalized].includes(value)) index[normalized].push(value);
+}
+
+function countBy(values) {
+  const out = {};
+  for (const value of values || []) out[value] = (out[value] || 0) + 1;
+  return Object.fromEntries(Object.entries(out).sort((left, right) => left[0].localeCompare(right[0])));
+}
+
+function inferTalentId(row) {
+  const sourceId = String(row.sourceId || "");
+  const talentMatch = sourceId.match(/^talent:(\d+)$/);
+  if (talentMatch) return Number(talentMatch[1]);
+  if (String(row.sourceType || "").toLowerCase() === "talent") return toPositiveNumber(row.sourceEntityId);
+  return null;
+}
+
+function ownershipFor(row, talentOwnership) {
+  const talentId = inferTalentId(row);
+  const ownership = talentId ? talentOwnership.talentsById?.[String(talentId)] : undefined;
+  const direct = row.talentOwnership || {};
+  return stripUndefined({
+    talentId: ownership?.talentId ?? direct.talentId ?? talentId ?? undefined,
+    classId: ownership?.classId ?? direct.classId,
+    className: ownership?.className ?? direct.className,
+    classNames: ownership?.classNames ?? direct.classNames,
+    ownershipKind: ownership?.ownershipKind ?? direct.ownershipKind,
+    ownershipStatus: ownership?.ownershipStatus ?? direct.ownershipStatus,
+    ownerSpecIds: sortedNumbers(ownership?.specIds ?? direct.ownerSpecIds ?? direct.specIds),
+    ownerSpecNames: uniqueStrings(ownership?.specNames ?? direct.ownerSpecNames ?? direct.specNames),
+    hardFilterEligible: ownership?.hardFilterEligible ?? direct.hardFilterEligible,
+  });
+}
+
+function makeCollector(sourceId) {
+  return {
+    sourceId,
+    sourceRuleIds: new Set(),
+    sourceKinds: new Set(),
+    sourceTypes: new Set(),
+    sourceEntityIds: new Set(),
+    sourceNames: {},
+    descriptions: {},
+    descriptionTexts: new Set(),
+    iconPaths: new Set(),
+    runtimeDetections: new Set(),
+    buffIds: new Set(),
+    targetDamageIds: new Set(),
+    targetRecountIds: new Set(),
+    reportPolicies: new Set(),
+    rowPolicies: new Set(),
+    contributionStatuses: new Set(),
+    contributionModes: new Set(),
+    contributionTiers: new Set(),
+    contributionGroups: new Set(),
+    componentClasses: new Set(),
+    predicateTags: new Set(),
+    relationshipKinds: new Set(),
+    requiredRuntimeEvidence: new Set(),
+    evidenceSources: new Set(),
+    inputSources: new Set(),
+    rawRows: [],
+  };
+}
+
+function addSet(set, values) {
+  for (const value of values || []) {
+    const text = String(value || "").trim();
+    if (text) set.add(text);
+  }
+}
+
+function addNumberSet(set, values) {
+  for (const value of values || []) {
+    const number = toPositiveNumber(value);
+    if (number !== null) set.add(number);
+  }
+}
+
+function normalizeTargets(row) {
+  const targetDamageIds = sortedNumbers(row.targetDamageIds);
+  const targetRecountIds = sortedNumbers(row.targetRecountIds);
+  for (const target of row.targets || []) {
+    const damageId = toPositiveNumber(target.damageId);
+    const recountId = toPositiveNumber(target.recountId ?? target.parentRecountId);
+    if (damageId !== null) targetDamageIds.push(damageId);
+    if (recountId !== null) targetRecountIds.push(recountId);
+  }
+  return {
+    targetDamageIds: sortedNumbers(targetDamageIds),
+    targetRecountIds: sortedNumbers(targetRecountIds),
+  };
+}
+
+function mergeRow(collectors, row, inputSource, context = {}) {
+  const sourceId = String(row.sourceId || context.sourceId || "").trim();
+  if (!sourceId) return;
+  const collector = collectors.get(sourceId) || makeCollector(sourceId);
+  collectors.set(sourceId, collector);
+
+  collector.inputSources.add(inputSource);
+  if (context.sourceRuleId) collector.sourceRuleIds.add(String(context.sourceRuleId));
+  if (context.buffId) collector.buffIds.add(Number(context.buffId));
+
+  addSet(collector.sourceKinds, [row.sourceKind]);
+  addSet(collector.sourceTypes, [row.sourceType]);
+  addNumberSet(collector.sourceEntityIds, [row.sourceEntityId]);
+  Object.assign(collector.sourceNames, mergeLocalizedMaps(row.sourceNames, row.names) || {});
+  if (row.sourceName) collector.sourceNames.en ||= String(row.sourceName).trim();
+  Object.assign(collector.descriptions, mergeLocalizedMaps(
+    row.descriptions,
+    row.cleanDescriptions,
+    row.modifierEvidence?.cleanDescriptions,
+    row.modifierEvidence?.resolvedDescriptions,
+  ) || {});
+  for (const text of textFragments(row)) collector.descriptionTexts.add(text);
+  addSet(collector.iconPaths, [row.iconPath]);
+  addSet(collector.runtimeDetections, [row.runtimeDetection]);
+  addNumberSet(collector.buffIds, row.buffIds);
+  const targets = normalizeTargets(row);
+  addNumberSet(collector.targetDamageIds, targets.targetDamageIds);
+  addNumberSet(collector.targetRecountIds, targets.targetRecountIds);
+  addSet(collector.reportPolicies, [row.reportPolicy]);
+  addSet(collector.rowPolicies, [row.rowPolicy]);
+  addSet(collector.contributionStatuses, [row.contributionStatus, row.attributionModel?.status]);
+  addSet(collector.contributionGroups, [
+    ...(row.contributionGroups || []),
+    ...(row.attributionModel?.contributionGroups || []),
+    ...((row.attributionModel?.components || []).flatMap((component) => component.contributionGroups || [])),
+  ]);
+  addSet(collector.componentClasses, [
+    ...(row.componentClasses || []),
+    ...((row.attributionModel?.components || []).map((component) => component.effectClass)),
+  ]);
+  addSet(collector.predicateTags, [
+    ...(row.predicateTags || []),
+    ...(row.attributionModel?.predicateTags || []),
+    ...((row.attributionModel?.components || []).flatMap((component) => component.predicateTags || [])),
+  ]);
+  addSet(collector.relationshipKinds, [
+    ...(row.relationshipKinds || []),
+    ...(row.attributionModel?.relationshipKinds || []),
+  ]);
+  addSet(collector.requiredRuntimeEvidence, [
+    ...(row.attributionModel?.requiredRuntimeEvidence || []),
+    ...((row.attributionModel?.components || []).flatMap((component) => component.requiredRuntimeEvidence || [])),
+  ]);
+  addSet(collector.evidenceSources, row.evidence);
+  collector.rawRows.push(row);
+}
+
+function mergeContributionRuntime(collectors, contributionRuntime) {
+  for (const [sourceRuleId, row] of Object.entries(contributionRuntime.sourcesByRuleId || {})) {
+    const sourceId = String(row.sourceId || "").trim();
+    if (!sourceId) continue;
+    const collector = collectors.get(sourceId) || makeCollector(sourceId);
+    collectors.set(sourceId, collector);
+    collector.sourceRuleIds.add(sourceRuleId);
+    addSet(collector.contributionModes, [row.contributionMode]);
+    addSet(collector.contributionTiers, [row.contributionTier]);
+    addSet(collector.contributionGroups, row.contributionGroups);
+    addSet(collector.predicateTags, row.predicateTags);
+    addSet(collector.requiredRuntimeEvidence, row.requiredRuntimeEvidence);
+    addSet(collector.evidenceSources, ["ModifierContributionRuntime"]);
+  }
+}
+
+function clauseIsLuckyRelated(clause) {
+  return /\bluck\b|\blucky\b/i.test(clause);
+}
+
+function rowIsLuckyRelated(row) {
+  if (String(row.sourceKind || "").toLowerCase() === "lucky-strike") return true;
+  if (String(row.sourceType || "").toLowerCase() === "lucky-strike") return true;
+  const text = [
+    row.sourceId,
+    row.sourceKind,
+    row.sourceType,
+    row.sourceName,
+    ...(Object.values(row.sourceNames || {})),
+    row.description,
+    ...(Object.values(row.descriptions || {})),
+    ...(row.contributionGroups || []),
+    ...(row.componentClasses || []),
+  ].map(cleanText).join(" ");
+  return clauseIsLuckyRelated(text);
+}
+
+function percentValues(clause, defaultPolarity) {
+  const values = [];
+  for (const match of clause.matchAll(/([+-]?\d+(?:\.\d+)?)\s*%/g)) {
+    let value = Number(match[1]);
+    if (!Number.isFinite(value)) continue;
+    const rawText = match[0];
+    const explicitSign = /^[+-]/.test(match[1]);
+    if (!explicitSign && defaultPolarity === "decrease") value = -Math.abs(value);
+    if (!explicitSign && defaultPolarity === "increase") value = Math.abs(value);
+    values.push({
+      rawText,
+      unit: "percent",
+      value,
+      decimalValue: value / 100,
+      polarity: value < 0 ? "decrease" : value > 0 ? "increase" : "set",
+    });
+  }
+  return values;
+}
+
+function countRanges(clause) {
+  const ranges = [];
+  for (const match of clause.matchAll(/\b(\d+)\s*(?:to|-|~)\s*(\d+)\b/gi)) {
+    const min = Number(match[1]);
+    const max = Number(match[2]);
+    if (Number.isFinite(min) && Number.isFinite(max)) {
+      ranges.push({
+        rawText: match[0],
+        unit: "count",
+        min: Math.min(min, max),
+        max: Math.max(min, max),
+      });
+    }
+  }
+  return ranges;
+}
+
+function defaultPolarity(clause) {
+  if (/\b(?:reduce|reduced|reduces|decrease|decreased|decreases|lower|lowered|lowers|penalty|less)\b/i.test(clause)) {
+    return "decrease";
+  }
+  if (/\b(?:increase|increased|increases|boost|boosted|boosts|gain|gains|add|adds|additional|higher)\b/i.test(clause)) {
+    return "increase";
+  }
+  return "set";
+}
+
+function valueScope(clause) {
+  if (/\b(?:self|owner|caster|yourself|you)\b/i.test(clause)) return "owner";
+  if (/\b(?:party|teammate|teammates|ally|allies|nearby players|other players)\b/i.test(clause)) return "party";
+  if (/\b(?:target|enemy|enemies)\b/i.test(clause)) return "target";
+  return "all";
+}
+
+function scopeValues(values, clause) {
+  if (values.length === 2 && /\b(?:every|per|each)\s+\d+(?:\.\d+)?\s*%\s+luck\b/i.test(clause)) {
+    return [
+      { ...values[0], scope: "luck-input", inferredFrom: "Luck conversion input" },
+      { ...values[1], scope: "effect-output", inferredFrom: "Luck conversion output" },
+    ];
+  }
+  if (values.length !== 2) {
+    const scope = valueScope(clause);
+    return values.map((value) => ({ ...value, scope }));
+  }
+  if (values.every((value) => value.unit === "percent")) {
+    const sorted = [...values].sort((left, right) => Math.abs(right.decimalValue || 0) - Math.abs(left.decimalValue || 0));
+    return [
+      { ...sorted[0], scope: "owner", inferredFrom: "larger percent value is owner/self" },
+      { ...sorted[1], scope: "party", inferredFrom: "smaller percent value is party/other players" },
+    ];
+  }
+  return values.map((value) => ({ ...value, scope: valueScope(clause) }));
+}
+
+function term(termId, clause, values = [], ranges = []) {
+  return stripUndefined({
+    termId,
+    evidenceText: clause,
+    values: scopeValues(values, clause),
+    ranges,
+    confidence: "description-pattern",
+  });
+}
+
+function classifyClause(clause) {
+  if (!clauseIsLuckyRelated(clause)) return [];
+  const polarity = defaultPolarity(clause);
+  const percents = percentValues(clause, polarity);
+  const ranges = countRanges(clause);
+  const terms = [];
+  const hasLuckyStrike = /\blucky\s+(?:strike|hit)\b/i.test(clause);
+  const hasLuckyBlock = /\blucky\s+block\b/i.test(clause);
+  const hasLuckChance = /\bluck\s+chance\b/i.test(clause);
+  const hasLuckEntry = /["']?luck["']?\s+entr(?:y|ies)\b/i.test(clause);
+  const hasLuckStat = /\bluck\b/i.test(clause) && !hasLuckEntry;
+  const hasLuckyMechanic = hasLuckyStrike || hasLuckyBlock;
+
+  if (/\b(?:cannot|can no longer|no longer|does not|disable|disabled|without)\b/i.test(clause)
+      && hasLuckyMechanic
+      && /\b(?:trigger|proc|activate|lucky)\b/i.test(clause)) {
+    terms.push(term("disableLucky", clause, percents, ranges));
+  }
+
+  if (/\b(?:guaranteed|always|must)\b/i.test(clause)
+      && hasLuckyMechanic) {
+    terms.push(term("guaranteedLucky", clause, percents, ranges));
+  }
+
+  if (hasLuckEntry && /\b(?:obtain|obtaining|drop|drops|quality|epic|guaranteed)\b/i.test(clause)) {
+    terms.push(term("luckEntryAcquisition", clause, [], ranges));
+  }
+
+  if (hasLuckEntry && /\b(?:dmg|damage|final|dealt)\b/i.test(clause)) {
+    terms.push(term("luckEntryDamageScaling", clause, percents, ranges));
+  }
+
+  if (/\b(?:chance|rate|probability)\b/i.test(clause)
+      && hasLuckyStrike
+      && !/\b(?:crit|critical)\b/i.test(clause)) {
+    terms.push(term("luckyChancePct", clause, percents, ranges));
+  } else if (hasLuckChance && !hasLuckEntry) {
+    terms.push(term("luckChancePct", clause, percents, ranges));
+  }
+
+  if (/\b(?:multiplier|multi)\b/i.test(clause)
+      && hasLuckyStrike) {
+    terms.push(term("luckyMultiplierPct", clause, percents, ranges));
+  }
+
+  if (/\b(?:final|dealt)\b/i.test(clause)
+      && /\b(?:dmg|damage)\b/i.test(clause)
+      && hasLuckyStrike) {
+    terms.push(term("luckyFinalDamagePct", clause, percents, ranges));
+  } else if (/\b(?:dmg|damage)\b/i.test(clause)
+      && hasLuckyStrike
+      && !/\b(?:multiplier|multi)\b/i.test(clause)
+      && percents.length > 0) {
+    terms.push(term("luckyDamagePct", clause, percents, ranges));
+  } else if (hasLuckStat && !hasLuckyStrike && /\b(?:dmg|damage|final|dealt)\b/i.test(clause)) {
+    terms.push(term("luckStatDamageScaling", clause, percents, ranges));
+  }
+
+  if (hasLuckStat && hasLuckyStrike && /\b(?:every|per|based on|scales? with|converted?|grants?)\b/i.test(clause)) {
+    terms.push(term("luckToLuckyScaling", clause, percents, ranges));
+  } else if (hasLuckStat && /\b(?:luck\s*(?:\+|increases?|grants?)|increases?\s+luck|every|per|based on)\b/i.test(clause)) {
+    terms.push(term("luckStatPct", clause, percents, ranges));
+  } else if (hasLuckStat && /\b(?:high|higher|allows?|yield|yields)\b/i.test(clause)) {
+    terms.push(term("luckStatBehavior", clause, percents, ranges));
+  }
+
+  if (/\b(?:crit|critical)\b/i.test(clause)
+      && hasLuckyMechanic) {
+    terms.push(term("luckyCritInteraction", clause, percents, ranges));
+  }
+
+  if (/\b(?:trigger|triggers|proc|procs|activate|activates|land|lands)\b/i.test(clause)
+      && hasLuckyMechanic) {
+    const id = hasLuckyBlock ? "luckyBlockTrigger" : "luckyTrigger";
+    terms.push(term(id, clause, percents, ranges));
+  }
+
+  if (/\b(?:cooldown|cd|resource|energy|haste|duration|seconds?|stacks?)\b/i.test(clause)
+      && hasLuckyMechanic) {
+    terms.push(term("luckyTimingOrResource", clause, percents, ranges));
+  }
+
+  if (terms.length === 0 && hasLuckyMechanic) {
+    terms.push(term("luckyEvidence", clause, percents, ranges));
+  } else if (terms.length === 0 && hasLuckStat) {
+    terms.push(term("luckEvidence", clause, percents, ranges));
+  } else if (terms.length === 0 && hasLuckEntry) {
+    terms.push(term("luckEntryEvidence", clause, percents, ranges));
+  }
+
+  const byKey = new Map();
+  for (const item of terms) {
+    const key = `${item.termId}:${item.evidenceText}`;
+    if (!byKey.has(key)) byKey.set(key, item);
+  }
+  return [...byKey.values()];
+}
+
+function mergeTerms(terms) {
+  const byKey = new Map();
+  for (const raw of terms) {
+    const key = `${raw.termId}:${raw.evidenceText}`;
+    const current = byKey.get(key);
+    if (!current) {
+      byKey.set(key, raw);
+      continue;
+    }
+    current.values = uniqueObjects([...(current.values || []), ...(raw.values || [])]);
+    current.ranges = uniqueObjects([...(current.ranges || []), ...(raw.ranges || [])]);
+  }
+  return [...byKey.values()].sort((left, right) =>
+    left.termId.localeCompare(right.termId) || left.evidenceText.localeCompare(right.evidenceText)
+  );
+}
+
+function uniqueObjects(values) {
+  const byKey = new Map();
+  for (const value of values || []) byKey.set(JSON.stringify(value), value);
+  return [...byKey.values()];
+}
+
+function baseExactTerm(collector) {
+  const sourceKind = [...collector.sourceKinds].some((kind) => String(kind).toLowerCase() === "lucky-strike");
+  const sourceType = [...collector.sourceTypes].some((kind) => String(kind).toLowerCase() === "lucky-strike");
+  if (!sourceKind && !sourceType) return null;
+  if (collector.targetDamageIds.size === 0 && collector.targetRecountIds.size === 0) return null;
+  return {
+    termId: "exactLuckyDamage",
+    evidenceText: "Lucky Strike damage row is packet-emitted and target-mapped by generated damage/recount IDs.",
+    confidence: "target-map",
+  };
+}
+
+function classificationTexts(sourceName, description, sourceNames, descriptions, collector) {
+  const primaryDescriptions = uniqueStrings([
+    description,
+    descriptions?.en,
+    descriptions?.design,
+  ].map(cleanText));
+  if (primaryDescriptions.some(clauseIsLuckyRelated)) return primaryDescriptions;
+  const primaryNames = uniqueStrings([
+    sourceName,
+    sourceNames?.en,
+    sourceNames?.design,
+  ].map(cleanText));
+  if (primaryNames.some(clauseIsLuckyRelated)) return primaryNames;
+  return [...collector.descriptionTexts].filter(clauseIsLuckyRelated).slice(0, 3);
+}
+
+const EXPECTED_VALUE_TERMS = new Set([
+  "luckChancePct",
+  "luckEntryDamageScaling",
+  "luckStatDamageScaling",
+  "luckStatPct",
+  "luckToLuckyScaling",
+  "luckyChancePct",
+  "luckyDamagePct",
+  "luckyFinalDamagePct",
+  "luckyMultiplierPct",
+]);
+
+const BEHAVIOR_TERMS = new Set([
+  "disableLucky",
+  "guaranteedLucky",
+  "luckEntryAcquisition",
+  "luckEntryEvidence",
+  "luckEvidence",
+  "luckStatBehavior",
+  "luckyBlockTrigger",
+  "luckyCritInteraction",
+  "luckyEvidence",
+  "luckyTimingOrResource",
+  "luckyTrigger",
+]);
+
+function formulaPolicy(terms) {
+  const ids = new Set(terms.map((item) => item.termId));
+  if (ids.has("exactLuckyDamage")) return "exact-produced-damage";
+  if ([...ids].some((id) => EXPECTED_VALUE_TERMS.has(id))) return "expected-value-candidate";
+  if ([...ids].some((id) => BEHAVIOR_TERMS.has(id))) return "behavior-only";
+  return "evidence-only";
+}
+
+function requiredRuntimeEvidence(terms, baseEvidence) {
+  const ids = new Set(terms.map((item) => item.termId));
+  const evidence = new Set(baseEvidence || []);
+  if (ids.has("exactLuckyDamage")) {
+    addSet(evidence, [
+      "attacker uid",
+      "damage id",
+      "observed final lucky hit value",
+      "produced damage row id",
+      "target uid",
+    ]);
+  }
+  if ([...ids].some((id) => EXPECTED_VALUE_TERMS.has(id))) {
+    addSet(evidence, [
+      "active source window at hit time",
+      "attacker uid",
+      "crit flag",
+      "damage id",
+      "lucky flag or exact lucky packet",
+      "observed final hit value",
+      "parent hit pairing proof",
+      "target uid",
+    ]);
+  }
+  if (ids.has("luckStatPct") || ids.has("luckStatDamageScaling") || ids.has("luckToLuckyScaling")) {
+    evidence.add("attacker Luck snapshot at hit time");
+  }
+  if (ids.has("luckyChancePct")) {
+    evidence.add("lucky chance source amount");
+  }
+  if (ids.has("luckChancePct")) {
+    evidence.add("Luck chance source amount");
+  }
+  if (ids.has("luckyMultiplierPct") || ids.has("luckyDamagePct") || ids.has("luckyFinalDamagePct")) {
+    evidence.add("lucky multiplier or final-damage amount");
+  }
+  if (ids.has("luckEntryDamageScaling") || ids.has("luckStatDamageScaling")) {
+    evidence.add("Luck-scaled damage source amount");
+  }
+  if ([...ids].some((id) => BEHAVIOR_TERMS.has(id))) {
+    evidence.add("source-specific trigger predicate");
+  }
+  return uniqueStrings([...evidence]);
+}
+
+function sourceFromCollector(collector, talentOwnership) {
+  const raw = collector.rawRows.find(rowIsLuckyRelated) || collector.rawRows[0] || {};
+  const ownership = ownershipFor(raw, talentOwnership);
+  const sourceNames = localizedMap(collector.sourceNames);
+  const descriptions = localizedMap(collector.descriptions);
+  const sourceName = localizedText(sourceNames, raw.sourceName || collector.sourceId);
+  const description = localizedText(descriptions, "") || undefined;
+  const clauseTerms = [];
+  for (const text of classificationTexts(sourceName, description, sourceNames, descriptions, collector)) {
+    for (const clause of splitClauses(text)) clauseTerms.push(...classifyClause(clause));
+  }
+  const exactTerm = baseExactTerm(collector);
+  if (exactTerm) clauseTerms.push(exactTerm);
+  const terms = mergeTerms(clauseTerms);
+  const policy = formulaPolicy(terms);
+  return stripUndefined({
+    sourceId: collector.sourceId,
+    sourceKind: [...collector.sourceKinds][0],
+    sourceType: [...collector.sourceTypes][0],
+    sourceEntityId: [...collector.sourceEntityIds][0],
+    sourceName,
+    sourceNames,
+    description,
+    descriptions,
+    iconPath: [...collector.iconPaths][0],
+    runtimeDetection: [...collector.runtimeDetections][0],
+    buffIds: sortedNumbers(collector.buffIds),
+    sourceRuleIds: uniqueStrings([...collector.sourceRuleIds]),
+    targetDamageIds: sortedNumbers(collector.targetDamageIds),
+    targetRecountIds: sortedNumbers(collector.targetRecountIds),
+    reportPolicies: uniqueStrings([...collector.reportPolicies]),
+    rowPolicies: uniqueStrings([...collector.rowPolicies]),
+    contributionStatuses: uniqueStrings([...collector.contributionStatuses]),
+    contributionModes: uniqueStrings([...collector.contributionModes]),
+    contributionTiers: uniqueStrings([...collector.contributionTiers]),
+    contributionGroups: uniqueStrings([...collector.contributionGroups]),
+    componentClasses: uniqueStrings([...collector.componentClasses]),
+    predicateTags: uniqueStrings([...collector.predicateTags]),
+    relationshipKinds: uniqueStrings([...collector.relationshipKinds]),
+    formulaPolicy: policy,
+    luckyTerms: terms,
+    requiredRuntimeEvidence: requiredRuntimeEvidence(terms, collector.requiredRuntimeEvidence),
+    ownership,
+    inputSources: uniqueStrings([...collector.inputSources]),
+    evidenceSources: uniqueStrings([...collector.evidenceSources]),
+  });
+}
+
+function buildCollectors(inputs) {
+  const collectors = new Map();
+
+  for (const row of Object.values(inputs.effectSources.effectSourcesById || {})) {
+    if (!rowIsLuckyRelated(row)) continue;
+    mergeRow(collectors, row, "EffectSources");
+  }
+
+  for (const [buffId, rows] of Object.entries(inputs.modifierSourceIndex.byBuffId || {})) {
+    for (const row of rows || []) {
+      if (!rowIsLuckyRelated(row)) continue;
+      mergeRow(collectors, row, "ModifierSourceIndex", { buffId });
+    }
+  }
+
+  for (const [sourceRuleId, row] of Object.entries(inputs.modifierRecount.sourcesById || {})) {
+    if (!rowIsLuckyRelated(row)) continue;
+    mergeRow(collectors, row, "ModifierRecountTable", { sourceRuleId });
+  }
+
+  mergeContributionRuntime(collectors, inputs.modifierContributionRuntime);
+  return collectors;
+}
+
+function runtimeSource(source) {
+  return stripUndefined({
+    sourceId: source.sourceId,
+    sourceKind: source.sourceKind,
+    sourceType: source.sourceType,
+    sourceEntityId: source.sourceEntityId,
+    sourceName: source.sourceName,
+    sourceNames: source.sourceNames,
+    description: source.description,
+    iconPath: source.iconPath,
+    buffIds: source.buffIds,
+    sourceRuleIds: source.sourceRuleIds,
+    targetDamageIds: source.targetDamageIds,
+    targetRecountIds: source.targetRecountIds,
+    formulaPolicy: source.formulaPolicy,
+    luckyTerms: source.luckyTerms?.map((item) => stripUndefined({
+      termId: item.termId,
+      values: item.values,
+      ranges: item.ranges,
+      confidence: item.confidence,
+    })),
+    requiredRuntimeEvidence: source.requiredRuntimeEvidence,
+    ownership: source.ownership,
+  });
+}
+
+function buildIndexes(sourcesById) {
+  const byBuffId = {};
+  const byTermId = {};
+  const byFormulaPolicy = {};
+  const byClassId = {};
+  const bySpecId = {};
+  for (const source of Object.values(sourcesById)) {
+    for (const buffId of source.buffIds || []) addIndex(byBuffId, buffId, source.sourceId);
+    addIndex(byFormulaPolicy, source.formulaPolicy, source.sourceId);
+    for (const termRow of source.luckyTerms || []) addIndex(byTermId, termRow.termId, source.sourceId);
+    if (source.ownership?.classId) addIndex(byClassId, source.ownership.classId, source.sourceId);
+    for (const specId of source.ownership?.ownerSpecIds || []) addIndex(bySpecId, specId, source.sourceId);
+  }
+  for (const index of [byBuffId, byTermId, byFormulaPolicy, byClassId, bySpecId]) {
+    for (const key of Object.keys(index)) index[key] = uniqueStrings(index[key]);
+  }
+  return { byBuffId, byTermId, byFormulaPolicy, byClassId, bySpecId };
+}
+
+function buildTable(inputs) {
+  const collectors = buildCollectors(inputs);
+  const sourcesById = {};
+  for (const [sourceId, collector] of collectors) {
+    const source = sourceFromCollector(collector, inputs.talentSpecOwnership);
+    if (!source.luckyTerms?.length) continue;
+    sourcesById[sourceId] = source;
+  }
+
+  const indexes = buildIndexes(sourcesById);
+  const sources = Object.values(sourcesById);
+  const contributionRuntimeLuckyRows = Object.values(inputs.modifierContributionRuntime.sourcesByRuleId || {})
+    .filter((row) => rowIsLuckyRelated(row)).length;
+
+  return {
+    schemaVersion: 1,
+    generatedBy: "LuckyStrikeRuntime.gen",
+    generatedAt: new Date().toISOString(),
+    generatedFrom: {
+      effectSources: "output/EffectSources.json",
+      modifierSourceIndex: "output/ModifierSourceIndex.json",
+      modifierRecountTable: "output/ModifierRecountTable.json",
+      modifierContributionRuntime: "output/ModifierContributionRuntime.json",
+      talentSpecOwnership: "output/TalentSpecOwnership.json",
+    },
+    semantics: {
+      exactLuckyDamage:
+        "Sources with exactLuckyDamage are produced lucky damage packets with generated target damage/recount IDs.",
+      expectedValueCandidate:
+        "Lucky Strike chance/multiplier/final-damage terms and Luck stat/entry damage-scaling terms are not net contribution until the relevant proc or source formula is proven per hit.",
+      globalOwnership:
+        "Class/spec ownership is copied from generated talent ownership when available; encounter samples validate the table but do not create global rules.",
+      ownerPartySplit:
+        "When a source description exposes two percent values and no better actor scope, the larger absolute percent is treated as owner/self and the smaller as party/other players.",
+    },
+    stats: {
+      sources: sources.length,
+      buffIds: Object.keys(indexes.byBuffId).length,
+      sourceKindCounts: countBy(sources.map((source) => source.sourceKind || "unknown")),
+      formulaPolicyCounts: countBy(sources.map((source) => source.formulaPolicy || "unknown")),
+      termCounts: countBy(sources.flatMap((source) => (source.luckyTerms || []).map((item) => item.termId))),
+      classScopedSources: sources.filter((source) => source.ownership?.classId).length,
+      specScopedSources: sources.filter((source) => source.ownership?.ownerSpecIds?.length).length,
+      contributionRuntimeLuckyRows,
+    },
+    sourcesById,
+    ...indexes,
+  };
+}
+
+function buildRuntimeTable(table) {
+  const sourcesById = {};
+  for (const [sourceId, source] of Object.entries(table.sourcesById || {})) {
+    sourcesById[sourceId] = runtimeSource(source);
+  }
+  return {
+    schemaVersion: 1,
+    generatedBy: "LuckyStrikeRuntime.gen",
+    runtimeOf: "LuckyStrikeTable.json",
+    stats: table.stats,
+    semantics: table.semantics,
+    sourcesById,
+    byBuffId: table.byBuffId,
+    byTermId: table.byTermId,
+    byFormulaPolicy: table.byFormulaPolicy,
+    byClassId: table.byClassId,
+    bySpecId: table.bySpecId,
+  };
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+  const inputs = {
+    effectSources: readJson(args.effectSourcesPath),
+    modifierSourceIndex: readJson(args.modifierSourceIndexPath),
+    modifierRecount: readJson(args.modifierRecountPath),
+    modifierContributionRuntime: readOptionalJson(args.modifierContributionRuntimePath, {}),
+    talentSpecOwnership: readOptionalJson(args.talentSpecOwnershipPath, {}),
+  };
+  const table = buildTable(inputs);
+  const runtime = buildRuntimeTable(table);
+  if (!args.dryRun) {
+    writeJson(args.outPath, table);
+    writeJson(args.runtimeOutPath, runtime);
+  }
+  console.log(JSON.stringify({
+    out: args.outPath,
+    runtimeOut: args.runtimeOutPath,
+    dryRun: args.dryRun,
+    stats: table.stats,
+  }, null, 2));
+}
+
+main();

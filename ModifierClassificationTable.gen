@@ -1,0 +1,611 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    modifierRecountPath: "",
+    modifierSourceIndexPath: "",
+    effectSourcesPath: "",
+    talentOwnershipPath: "",
+    outPath: "",
+    runtimeOutPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-recount" && next) {
+      args.modifierRecountPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-source-index" && next) {
+      args.modifierSourceIndexPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--effect-sources" && next) {
+      args.effectSourcesPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--talent-ownership" && next) {
+      args.talentOwnershipPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--runtime-out" && next) {
+      args.runtimeOutPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.modifierRecountPath ||= path.join(args.outputDir, "ModifierRecountTable.json");
+  args.modifierSourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.effectSourcesPath ||= path.join(args.outputDir, "EffectSources.json");
+  args.talentOwnershipPath ||= path.join(args.outputDir, "TalentSpecOwnership.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierClassificationTable.json");
+  args.runtimeOutPath ||= path.join(args.outputDir, "ModifierClassificationRuntime.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierClassificationTable.gen - join modifier source rules into a UID-first report classification table.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>                    Output JSON file path.");
+  console.log("  --runtime-out <path>            Compact runtime JSON file path.");
+  console.log("  --output-dir <path>             Output directory override.");
+  console.log("  --dry-run                       Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --modifier-recount <path>       ModifierRecountTable.json input.");
+  console.log("  --modifier-source-index <path>  ModifierSourceIndex.json input.");
+  console.log("  --effect-sources <path>         EffectSources.json input.");
+  console.log("  --talent-ownership <path>       TalentSpecOwnership.json input.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? readJson(filePath) : fallback;
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function toPositiveNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(toPositiveNumber).filter((value) => value !== null))]
+    .sort((left, right) => left - right);
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function stripUndefined(value) {
+  if (Array.isArray(value)) return value.map(stripUndefined);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const [key, inner] of Object.entries(value)) {
+    if (inner === undefined || inner === null) continue;
+    if (Array.isArray(inner) && inner.length === 0) continue;
+    if (inner && typeof inner === "object" && !Array.isArray(inner)) {
+      const stripped = stripUndefined(inner);
+      if (Object.keys(stripped).length === 0) continue;
+      out[key] = stripped;
+    } else {
+      out[key] = inner;
+    }
+  }
+  return out;
+}
+
+function countBy(items) {
+  const counts = {};
+  for (const item of items || []) counts[item] = (counts[item] || 0) + 1;
+  return counts;
+}
+
+function lowerSet(values) {
+  return new Set((values || []).map((value) => String(value || "").trim().toLowerCase()).filter(Boolean));
+}
+
+function entryGroups(entry) {
+  return uniqueStrings([
+    ...(entry.contributionGroups || []),
+    ...(entry.attributionModel?.contributionGroups || []),
+    ...((entry.attributionModel?.components || []).flatMap((component) => component.contributionGroups || [])),
+  ]);
+}
+
+function entryComponentClasses(entry) {
+  return uniqueStrings([
+    ...(entry.componentClasses || []),
+    ...((entry.attributionModel?.components || []).map((component) => component.effectClass)),
+  ]);
+}
+
+function entryPredicateTags(entry) {
+  return uniqueStrings([
+    ...(entry.predicateTags || []),
+    ...(entry.attributionModel?.predicateTags || []),
+    ...((entry.attributionModel?.components || []).flatMap((component) => component.predicateTags || [])),
+  ]);
+}
+
+function entryText(entry) {
+  return [
+    entry.sourceKind,
+    entry.sourceType,
+    entry.sourceName,
+    entry.description,
+    entry.contributionStatus,
+    ...entryGroups(entry),
+    ...entryComponentClasses(entry),
+    ...entryPredicateTags(entry),
+  ].join(" ").toLowerCase();
+}
+
+function hasAny(set, values) {
+  return values.some((value) => set.has(value));
+}
+
+const OFFENSIVE_GROUPS = [
+  "baseattack",
+  "critical",
+  "elemental",
+  "genericdamage",
+  "procdamage",
+  "targetmitigation",
+  "versatility",
+];
+
+const OFFENSIVE_CLASSES = [
+  "atk",
+  "base-attack",
+  "critical",
+  "damage-modifier",
+  "elemental-damage",
+  "generic-damage",
+  "proc-damage",
+  "target-mitigation",
+];
+
+const DEFENSIVE_CLASSES = [
+  "damage-reduction",
+  "defense-stat",
+  "healing",
+  "shield",
+];
+
+const SUPPORT_GROUPS = [
+  "cooldown",
+  "cooldownresource",
+  "hitTiming",
+  "hittiming",
+  "resource",
+];
+
+function classifyRole(entry) {
+  const groups = lowerSet(entryGroups(entry));
+  const classes = lowerSet(entryComponentClasses(entry));
+  const text = entryText(entry);
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const offensive = hasAny(groups, OFFENSIVE_GROUPS)
+    || hasAny(classes, OFFENSIVE_CLASSES)
+    || status === "formula-ready-candidate"
+    || status === "proc-damage"
+    || /\b(?:atk|matk|crit|damage|dmg|elemental|armor|resistance|penetration)\b/.test(text);
+  const defensive = hasAny(classes, DEFENSIVE_CLASSES)
+    || status === "defensive-or-non-damage"
+    || /\b(?:damage taken|dmg taken|shield|heal|healing|hp recovery|resistance \+|armor \+|defense \+)\b/.test(text);
+  const support = hasAny(groups, SUPPORT_GROUPS)
+    || /\b(?:cooldown|cd |resource|energy|haste|attack spd|animation|party|ally|allies)\b/.test(text);
+  const utility = /\b(?:icd|lockout|cannot be affected|same type|internal cooldown)\b/.test(text);
+
+  if (offensive && defensive) return "supportive";
+  if (offensive) return "offensive";
+  if (defensive) return "defensive";
+  if (support) return "supportive";
+  if (utility) return "utility";
+  return "unknown";
+}
+
+function classifyDomains(entry, primaryRole) {
+  const domains = new Set();
+  const groups = lowerSet(entryGroups(entry));
+  const classes = lowerSet(entryComponentClasses(entry));
+  const text = entryText(entry);
+
+  if (primaryRole === "offensive" || primaryRole === "supportive") domains.add("damage");
+  if (primaryRole === "defensive" || classes.has("damage-reduction") || classes.has("defense-stat")) domains.add("tanked");
+  if (classes.has("healing") || classes.has("shield") || /\b(?:heal|healing|shield|hp recovery)\b/.test(text)) domains.add("healing");
+  if (primaryRole === "supportive" || hasAny(groups, SUPPORT_GROUPS)) domains.add("support");
+  if (primaryRole === "utility") domains.add("utility");
+
+  if (domains.size === 0) domains.add("unknown");
+  return [...domains].sort();
+}
+
+function classifyRowModel(entry) {
+  const rowPolicy = String(entry.rowPolicy || "").toLowerCase();
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const sourceType = String(entry.sourceType || "").toLowerCase();
+  const text = entryText(entry);
+  if (sourceType.includes("icd") || /\b(?:icd|lockout|cannot be affected|same type)\b/.test(text)) return "utility-lockout";
+  if (rowPolicy === "static-target") return "static-target";
+  if (rowPolicy === "proc" || status === "proc-damage") return "proc-damage";
+  if (rowPolicy === "timing" || status === "timing-only") return "timing-window";
+  if (rowPolicy === "formula" || rowPolicy === "uptime") return "runtime-window";
+  if (rowPolicy === "defensive") return "defensive-window";
+  return "unknown";
+}
+
+function classifyOffensiveKind(entry, rowModel) {
+  const kind = String(entry.sourceKind || "").toLowerCase();
+  const type = String(entry.sourceType || "").toLowerCase();
+  const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
+  const groups = lowerSet(entryGroups(entry));
+  if (kind === "talent-passive") return "passive-talent-buff";
+  if (kind === "talent-skill") return "talent-skill";
+  if (kind === "consumable") return "consumable";
+  if (kind === "imagine") return type.includes("debuff") ? "imagine-debuff" : "imagine-buff";
+  if (kind === "phantom-factor" || type.includes("phantom-factor")) return "phantom-factor";
+  if (kind === "set-effect") return "set-effect";
+  if (kind === "active-skill") return "active-skill-window";
+  if (kind === "season-talent-node") return "season-talent-node";
+  if (kind === "season-rogue-entry") return "season-rogue-entry";
+  if (rowModel === "proc-damage" || status === "proc-damage" || groups.has("procdamage")) return "produced-proc";
+  if (type.includes("debuff")) return "target-debuff";
+  if (type.includes("buff")) return "active-buff";
+  return "unknown";
+}
+
+function allSpecIdsForClass(talentOwnership, classId) {
+  const summary = talentOwnership.classesById?.[String(classId)];
+  return uniqueNumbers(summary?.specIds || (summary?.specs || []).map((spec) => spec.specId));
+}
+
+function ownershipForEntry(entry, talentOwnership) {
+  const sourceOwnership = entry.talentOwnership || {};
+  const talentId = String(entry.sourceEntityId || "").trim();
+  const tableOwnership = talentId ? talentOwnership.talentsById?.[talentId] : undefined;
+  const ownership = { ...tableOwnership, ...sourceOwnership };
+  const classId = toPositiveNumber(ownership.classId);
+  const allowedSpecIds = uniqueNumbers(ownership.specIds || []);
+  const classSpecIds = classId ? allSpecIdsForClass(talentOwnership, classId) : [];
+  const hardFilterEligible = Boolean(ownership.hardFilterEligible);
+  const blacklistedSpecIds = hardFilterEligible && allowedSpecIds.length > 0
+    ? classSpecIds.filter((specId) => !allowedSpecIds.includes(specId))
+    : [];
+  if (!classId && allowedSpecIds.length === 0 && !ownership.ownershipKind) return undefined;
+  return stripUndefined({
+    classId: classId || undefined,
+    className: ownership.className,
+    classNames: ownership.classNames,
+    ownershipKind: ownership.ownershipKind,
+    ownershipStatus: ownership.ownershipStatus,
+    confidence: ownership.confidence,
+    hardFilterEligible,
+    allowedSpecIds,
+    blacklistedSpecIds,
+    dpsRelevance: ownership.dpsRelevance,
+    parserPolicy: ownership.parserPolicy,
+  });
+}
+
+function compactEntryClassification(sourceRuleId, entry, talentOwnership) {
+  const groups = entryGroups(entry);
+  const componentClasses = entryComponentClasses(entry);
+  const predicateTags = entryPredicateTags(entry);
+  const relationshipKinds = uniqueStrings(entry.relationshipKinds || []);
+  const primaryRole = classifyRole({ ...entry, contributionGroups: groups, componentClasses, predicateTags });
+  const reportDomains = classifyDomains({ ...entry, contributionGroups: groups, componentClasses, predicateTags }, primaryRole);
+  const rowModel = classifyRowModel({ ...entry, contributionGroups: groups, componentClasses, predicateTags });
+  const offensiveKind = classifyOffensiveKind({ ...entry, contributionGroups: groups, componentClasses, predicateTags }, rowModel);
+  return stripUndefined({
+    sourceRuleId,
+    sourceId: entry.sourceId,
+    sourceKind: entry.sourceKind,
+    sourceType: entry.sourceType,
+    sourceEntityId: entry.sourceEntityId,
+    sourceName: entry.sourceName,
+    sourceNames: entry.sourceNames,
+    iconPath: entry.iconPath,
+    runtimeDetection: entry.runtimeDetection,
+    buffIds: uniqueNumbers(entry.buffIds),
+    targetDamageIds: uniqueNumbers(entry.targetDamageIds),
+    targetRecountIds: uniqueNumbers(entry.targetRecountIds),
+    reportPolicy: entry.reportPolicy,
+    sourceIndexReportPolicy: entry.sourceIndexReportPolicy,
+    runtimeReportReason: entry.runtimeReportReason,
+    providerAggregation: entry.providerAggregation,
+    displayOwnerKind: entry.displayOwnerKind,
+    rowPolicy: entry.rowPolicy,
+    rowModel,
+    primaryRole,
+    reportDomains,
+    offensiveKind,
+    contributionStatus: entry.contributionStatus,
+    contributionGroups: groups,
+    componentClasses,
+    predicateTags,
+    relationshipKinds,
+    classificationTags: uniqueStrings([
+      primaryRole,
+      rowModel,
+      offensiveKind,
+      entry.providerAggregation,
+      entry.displayOwnerKind,
+      ...reportDomains.map((domain) => `domain:${domain}`),
+    ]),
+    attributionModel: entry.attributionModel ? {
+      status: entry.attributionModel.status,
+      confidence: entry.attributionModel.confidence,
+      formulaTermIds: entry.attributionModel.formulaTermIds,
+      contributionGroups: entry.attributionModel.contributionGroups,
+      predicateTags: entry.attributionModel.predicateTags,
+      relationshipKinds: entry.attributionModel.relationshipKinds,
+      requiredRuntimeEvidence: entry.attributionModel.requiredRuntimeEvidence,
+    } : undefined,
+    ownership: ownershipForEntry(entry, talentOwnership),
+  });
+}
+
+function addIndex(index, key, value) {
+  if (key === undefined || key === null || key === "") return;
+  const normalized = String(key);
+  index[normalized] ||= [];
+  if (!index[normalized].includes(value)) index[normalized].push(value);
+}
+
+function buildSpecIndexes(classesById, specsById, sourcesByRuleId) {
+  const classes = {};
+  const specs = {};
+
+  for (const [classId, classRow] of Object.entries(classesById || {})) {
+    const row = stripUndefined({
+      classId: toPositiveNumber(classId) || classRow.classId,
+      className: classRow.className,
+      classNames: classRow.classNames,
+      specIds: uniqueNumbers(classRow.specIds || (classRow.specs || []).map((spec) => spec.specId)),
+    });
+    classes[classId] = {
+      ...row,
+      sourceRuleIds: [],
+      offensiveSourceRuleIds: [],
+      defensiveSourceRuleIds: [],
+      supportiveSourceRuleIds: [],
+      utilitySourceRuleIds: [],
+    };
+  }
+
+  for (const [specId, specRow] of Object.entries(specsById || {})) {
+    const row = stripUndefined({
+      specId: toPositiveNumber(specId) || specRow.specId,
+      classId: specRow.classId,
+      className: specRow.className,
+      specNameKey: specRow.specNameKey,
+      specName: specRow.specName,
+      specNames: specRow.specNames,
+    });
+    specs[specId] = {
+      ...row,
+      allowedSourceRuleIds: [],
+      blacklistedSourceRuleIds: [],
+    };
+  }
+
+  for (const [sourceRuleId, source] of Object.entries(sourcesByRuleId)) {
+    const ownership = source.ownership;
+    const classId = ownership?.classId;
+    if (classId !== undefined && classes[String(classId)]) {
+      const classRow = classes[String(classId)];
+      classRow.sourceRuleIds.push(sourceRuleId);
+      if (source.primaryRole === "offensive") classRow.offensiveSourceRuleIds.push(sourceRuleId);
+      if (source.primaryRole === "defensive") classRow.defensiveSourceRuleIds.push(sourceRuleId);
+      if (source.primaryRole === "supportive") classRow.supportiveSourceRuleIds.push(sourceRuleId);
+      if (source.primaryRole === "utility") classRow.utilitySourceRuleIds.push(sourceRuleId);
+    }
+    for (const specId of ownership?.allowedSpecIds || []) {
+      if (specs[String(specId)]) specs[String(specId)].allowedSourceRuleIds.push(sourceRuleId);
+    }
+    for (const specId of ownership?.blacklistedSpecIds || []) {
+      if (specs[String(specId)]) specs[String(specId)].blacklistedSourceRuleIds.push(sourceRuleId);
+    }
+  }
+
+  for (const row of Object.values(classes)) {
+    row.sourceRuleIds = uniqueStrings(row.sourceRuleIds);
+    row.offensiveSourceRuleIds = uniqueStrings(row.offensiveSourceRuleIds);
+    row.defensiveSourceRuleIds = uniqueStrings(row.defensiveSourceRuleIds);
+    row.supportiveSourceRuleIds = uniqueStrings(row.supportiveSourceRuleIds);
+    row.utilitySourceRuleIds = uniqueStrings(row.utilitySourceRuleIds);
+  }
+  for (const row of Object.values(specs)) {
+    row.allowedSourceRuleIds = uniqueStrings(row.allowedSourceRuleIds);
+    row.blacklistedSourceRuleIds = uniqueStrings(row.blacklistedSourceRuleIds);
+  }
+  return { classesById: classes, specsById: specs };
+}
+
+function sourceIndexEntriesBySourceId(modifierSourceIndex) {
+  const bySourceId = new Map();
+  for (const entries of Object.values(modifierSourceIndex.byBuffId || {})) {
+    for (const entry of entries || []) {
+      const sourceId = String(entry.sourceId || "").trim();
+      if (sourceId && !bySourceId.has(sourceId)) bySourceId.set(sourceId, entry);
+    }
+  }
+  return bySourceId;
+}
+
+function enrichEntryFromSourceIndex(entry, sourceIndexBySourceId) {
+  const sourceIndexEntry = sourceIndexBySourceId.get(entry.sourceId);
+  if (!sourceIndexEntry) return entry;
+  return {
+    ...sourceIndexEntry,
+    ...entry,
+    description: entry.description ?? sourceIndexEntry.description,
+    descriptions: entry.descriptions ?? sourceIndexEntry.descriptions,
+  };
+}
+
+function buildClassificationTable(modifierRecount, modifierSourceIndex, effectSources, talentOwnership) {
+  const sourcesByRuleId = {};
+  const byBuffId = {};
+  const bySourceId = {};
+  const bySourceEntityId = {};
+  const byRole = {};
+  const byReportDomain = {};
+  const byRowModel = {};
+  const sourceIndexBySourceId = sourceIndexEntriesBySourceId(modifierSourceIndex);
+
+  for (const [sourceRuleId, entry] of Object.entries(modifierRecount.sourcesById || {})) {
+    const classificationEntry = enrichEntryFromSourceIndex(entry, sourceIndexBySourceId);
+    const classification = compactEntryClassification(sourceRuleId, classificationEntry, talentOwnership);
+    sourcesByRuleId[sourceRuleId] = classification;
+    addIndex(bySourceId, classification.sourceId, sourceRuleId);
+    addIndex(bySourceEntityId, classification.sourceEntityId, sourceRuleId);
+    addIndex(byRole, classification.primaryRole, sourceRuleId);
+    addIndex(byRowModel, classification.rowModel, sourceRuleId);
+    for (const domain of classification.reportDomains || []) addIndex(byReportDomain, domain, sourceRuleId);
+    for (const buffId of classification.buffIds || []) addIndex(byBuffId, buffId, sourceRuleId);
+  }
+
+  for (const index of [byBuffId, bySourceId, bySourceEntityId, byRole, byReportDomain, byRowModel]) {
+    for (const key of Object.keys(index)) index[key] = uniqueStrings(index[key]);
+  }
+
+  const specIndexes = buildSpecIndexes(
+    talentOwnership.classesById || {},
+    talentOwnership.specsById || {},
+    sourcesByRuleId,
+  );
+
+  const sources = Object.values(sourcesByRuleId);
+  return {
+    schemaVersion: 1,
+    generatedBy: "ModifierClassificationTable.gen",
+    generatedFrom: {
+      modifierRecountTable: "output/ModifierRecountTable.json",
+      modifierSourceIndex: "output/ModifierSourceIndex.json",
+      effectSources: "output/EffectSources.json",
+      talentSpecOwnership: "output/TalentSpecOwnership.json",
+    },
+    stats: {
+      sourceRules: sources.length,
+      buffIds: Object.keys(byBuffId).length,
+      sourceEntityIds: Object.keys(bySourceEntityId).length,
+      modifierSourceIndexBuffIds: Object.keys(modifierSourceIndex.byBuffId || {}).length,
+      effectSources: Object.keys(effectSources.effectSourcesById || {}).length,
+      roleCounts: countBy(sources.map((source) => source.primaryRole)),
+      rowModelCounts: countBy(sources.map((source) => source.rowModel)),
+      reportDomainCounts: countBy(sources.flatMap((source) => source.reportDomains || [])),
+      reportPolicyCounts: countBy(sources.map((source) => source.reportPolicy || "include")),
+      hardSpecFilterSources: sources.filter((source) => (source.ownership?.blacklistedSpecIds || []).length > 0).length,
+    },
+    sourcesByRuleId,
+    byBuffId,
+    bySourceId,
+    bySourceEntityId,
+    byRole,
+    byReportDomain,
+    byRowModel,
+    classesById: specIndexes.classesById,
+    specsById: specIndexes.specsById,
+  };
+}
+
+function runtimeOwnership(ownership) {
+  if (!ownership) return undefined;
+  return stripUndefined({
+    classId: ownership.classId,
+    className: ownership.className,
+    ownershipKind: ownership.ownershipKind,
+    ownershipStatus: ownership.ownershipStatus,
+    confidence: ownership.confidence,
+    hardFilterEligible: ownership.hardFilterEligible,
+    allowedSpecIds: ownership.allowedSpecIds,
+    blacklistedSpecIds: ownership.blacklistedSpecIds,
+  });
+}
+
+function buildRuntimeClassificationTable(table) {
+  const sourcesByRuleId = {};
+  for (const [sourceRuleId, source] of Object.entries(table.sourcesByRuleId || {})) {
+    sourcesByRuleId[sourceRuleId] = stripUndefined({
+      sourceRuleId,
+      rowModel: source.rowModel,
+      primaryRole: source.primaryRole,
+      reportDomains: source.reportDomains,
+      offensiveKind: source.offensiveKind,
+      classificationTags: source.classificationTags,
+      providerAggregation: source.providerAggregation,
+      displayOwnerKind: source.displayOwnerKind,
+      ownership: runtimeOwnership(source.ownership),
+    });
+  }
+  return {
+    schemaVersion: 1,
+    generatedBy: "ModifierClassificationTable.gen",
+    generatedFrom: table.generatedFrom,
+    stats: {
+      sourceRules: Object.keys(sourcesByRuleId).length,
+      roleCounts: table.stats.roleCounts,
+      rowModelCounts: table.stats.rowModelCounts,
+      reportDomainCounts: table.stats.reportDomainCounts,
+      hardSpecFilterSources: table.stats.hardSpecFilterSources,
+    },
+    sourcesByRuleId,
+  };
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  const modifierRecount = readJson(args.modifierRecountPath);
+  const modifierSourceIndex = readOptionalJson(args.modifierSourceIndexPath, {});
+  const effectSources = readOptionalJson(args.effectSourcesPath, {});
+  const talentOwnership = readOptionalJson(args.talentOwnershipPath, {});
+  const table = buildClassificationTable(modifierRecount, modifierSourceIndex, effectSources, talentOwnership);
+  const runtimeTable = buildRuntimeClassificationTable(table);
+
+  if (!args.dryRun) {
+    writeJson(args.outPath, table);
+    writeJson(args.runtimeOutPath, runtimeTable);
+  }
+  console.log(JSON.stringify({
+    out: args.outPath,
+    runtimeOut: args.runtimeOutPath,
+    dryRun: args.dryRun,
+    stats: table.stats,
+    runtimeStats: runtimeTable.stats,
+  }, null, 2));
+}
+
+main();

@@ -1,0 +1,1003 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const INT_POOL = 1;
+const STRING_POOL = 6;
+const DEFAULT_MAX_ROWS = 120;
+const DEFAULT_MAX_TABLES = 80;
+
+const KNOWN_TABLES = [
+  "DamageAttrTable.ctb",
+  "RecountTable.ctb",
+  "SkillEffectTable.ctb",
+  "SkillFightLevelTable.ctb",
+  "SkillTable.ctb",
+  "BuffTable.ctb",
+  "ModEffectTable.ctb",
+  "FightAttrTable.ctb",
+  "TempAttrTable.ctb",
+  "BasicAttrTable.ctb",
+];
+
+const FORMULA_TABLE_NAME_CANDIDATES = [
+  "DamageFormulaTable.ctb",
+  "SkillDamageFormulaTable.ctb",
+  "SkillFormulaTable.ctb",
+  "SkillDamageTable.ctb",
+  "SkillDamageCalcTable.ctb",
+  "DamageCalculateTable.ctb",
+  "DamageCoefficientTable.ctb",
+  "SkillRatioTable.ctb",
+  "SkillDamageRatioTable.ctb",
+  "DamageRatioTable.ctb",
+  "DamageParamTable.ctb",
+  "SkillParamTable.ctb",
+  "FightFormulaTable.ctb",
+  "BattleFormulaTable.ctb",
+  "HurtFormulaTable.ctb",
+  "AttackFormulaTable.ctb",
+  "SkillValueTable.ctb",
+  "SkillLevelTable.ctb",
+  "ValueCalTable.ctb",
+  "DamageValueCalTable.ctb",
+  "SkillValueCalTable.ctb",
+  "CoefficientTable.ctb",
+  "AttrFormulaTable.ctb",
+  "FightAttrTable.ctb",
+  "TempAttrTable.ctb",
+  "BasicAttrTable.ctb",
+];
+
+const TEXT_PATTERNS = [
+  /formula|valuecal|coefficient|multiplier|modifier|ratio|calc(?:ulate|ulation)?/i,
+  /\bdmg\b|damage|attack|atk|skill damage|dream(?:scape)? dmg/i,
+  /percent|rate|bonus|increase|decrease|stack|duration|interval|cooldown/i,
+  /[\u4f24\u50b7]\u5bb3|\u30c0\u30e1\u30fc\u30b8|\ub300\ubbf8\uc9c0|\ud53c\ud574/u,
+  /\u500d\u7387|\u7cfb\u6570|\u4fc2\u6578|\u52a0\u6210|\u63d0\u5347|\u589e\u52a0/u,
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const appRoot = path.resolve(__dirname, "..", "resonance-logs-global");
+  const args = common.parseArgs(process.argv.slice(2), {
+    ledger: path.join(appRoot, "DEV_exports", "skill-base-hit-ledger.json"),
+    markdown: "",
+    maxRows: DEFAULT_MAX_ROWS,
+    maxTables: DEFAULT_MAX_TABLES,
+    allCtb: "",
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "SkillCoefficientSurfaceProbe.gen - scan actual game CTB rows around observed skill/base-hit damage ids.",
+      `
+Options:
+  --ledger <path>     Skill base-hit ledger input. Default: ../resonance-logs-global/DEV_exports/skill-base-hit-ledger.json
+  --markdown <path>   Markdown report path. Default: sibling .md next to --out
+  --max-rows <n>      Max row samples per section. Default: ${DEFAULT_MAX_ROWS}
+  --max-tables <n>    Max table summaries. Default: ${DEFAULT_MAX_TABLES}
+  --all-ctb true      Also scan every CTB-like package entry. Default: false
+
+Notes:
+  This probe reads the actual game CTB package files. It does not prove a
+  damage formula by itself; it finds coefficient/value-cal surfaces to turn
+  final-hit anchored samples into a real base-hit derivation model.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = common.resolvePaths(args, path.join("probing-reports", "SkillCoefficientSurfaceProbe.json"));
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const generated = loadGenerated(paths.outputDir, appRoot);
+  const ledger = readJson(path.resolve(args.ledger), { damageRows: [] });
+  const targets = buildTargets(ledger, generated);
+  const includeAllCtb = args.allCtb === "true" || args.allCtb === "1";
+  const tablePlans = buildTablePlans(metaEntries, common, paths.outputDir, includeAllCtb);
+  const maxRows = Number(args.maxRows) || DEFAULT_MAX_ROWS;
+  const maxTables = Number(args.maxTables) || DEFAULT_MAX_TABLES;
+
+  const tableReports = [];
+  for (const plan of tablePlans) {
+    let table;
+    try {
+      table = plan.tableName
+        ? common.readCtbTable(containerDir, metaEntries, plan.tableName)
+        : common.readCtbTableByHash(containerDir, metaEntries, plan.hash, plan.label);
+    } catch {
+      continue;
+    }
+    const report = scanTable(table, targets, common, maxRows);
+    if (report.targetRowCount || report.formulaLikeStringCount || report.interestingFloatFieldCount) {
+      tableReports.push({
+        ...report,
+        label: plan.label,
+        tableName: table.tableName,
+        hash: table.key,
+        packageIndex: table.entry.index,
+        packageOffset: table.entry.offset,
+        packageLength: table.entry.length,
+      });
+    }
+  }
+
+  const focusedRows = tableReports
+    .flatMap((table) => table.rows.map((row) => ({ table: table.label, ...row })))
+    .sort((left, right) => rowScore(right) - rowScore(left) || String(left.table).localeCompare(String(right.table)))
+    .slice(0, maxRows);
+  const chainCandidates = buildChainCandidates(ledger, generated, containerDir, metaEntries, common);
+  const chainSummary = summarizeChains(chainCandidates);
+
+  const report = {
+    generatedAt: new Date().toISOString(),
+    gamePackage: paths.m0Path,
+    ledger: path.resolve(args.ledger),
+    targetSummary: summarizeTargets(targets),
+    summary: {
+      tablesScanned: tablePlans.length,
+      tablesWithTargetRows: tableReports.filter((table) => table.targetRowCount).length,
+      targetRowsFound: sum(tableReports.map((table) => table.targetRowCount)),
+      formulaLikeStringsInScannedTables: sum(tableReports.map((table) => table.formulaLikeStringCount)),
+      focusedRows: focusedRows.length,
+      chainCandidates: chainCandidates.length,
+    },
+    chainSummary,
+    keyFindings: buildKeyFindings(tableReports, focusedRows),
+    tableReports: tableReports
+      .sort((left, right) => tableScore(right) - tableScore(left) || left.label.localeCompare(right.label))
+      .slice(0, maxTables),
+    focusedRows,
+    chainCandidates,
+  };
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "SkillCoefficientSurfaceProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(paths.out), { recursive: true });
+    fs.writeFileSync(paths.out, JSON.stringify(report, null, 2));
+    fs.writeFileSync(markdownPath, renderMarkdown(report, maxRows));
+  }
+
+  console.log(`Game package: ${paths.m0Path}`);
+  console.log(`Target damage ids: ${targets.damageIds.size}`);
+  console.log(`Target skill ids: ${targets.skillIds.size}`);
+  console.log(`Target buff ids: ${targets.buffIds.size}`);
+  console.log(`Tables scanned: ${report.summary.tablesScanned}`);
+  console.log(`Target rows found: ${report.summary.targetRowsFound}`);
+  console.log(`Output: ${common.displayPath(paths.out)}`);
+  console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+}
+
+function readJson(filePath, fallback = null) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
+function loadGenerated(outputDir, appRoot) {
+  const appGeneratedDir = path.join(appRoot, "parser-data", "generated");
+  const readGenerated = (fileName, fallback) =>
+    readJson(path.join(outputDir, fileName), readJson(path.join(appGeneratedDir, fileName), fallback));
+  return {
+    recount: readGenerated("RecountTable.json", {}),
+    damage: readGenerated("DamageAttrIdName.json", {}),
+    breakdown: readGenerated("SkillBreakdownDetails.json", {}),
+    skills: readGenerated("skillnames.json", {}),
+  };
+}
+
+function buildTargets(ledger, generated) {
+  const targets = {
+    damageIds: new Set(),
+    damageBigIds: new Set(),
+    damageLowIds: new Set(),
+    recountIds: new Set(),
+    skillIds: new Set(),
+    buffIds: new Set(),
+    linkedIds: new Set(),
+    names: new Set(),
+    byIdReason: new Map(),
+  };
+
+  for (const row of Array.isArray(ledger?.damageRows) ? ledger.damageRows : []) {
+    addDamageId(targets, row.damageId, `ledger damage row ${row.displayName || row.damageId}`);
+    addManyDamageIds(targets, row.recountSiblingDamageIds, `recount siblings for ${row.displayName || row.damageId}`);
+    addMany(targets.recountIds, row.parentRecountIds, targets, "ledger recount parent");
+    addId(targets.skillIds, row.parentBaseSkillId, targets, "ledger parent base skill");
+    addId(targets.skillIds, row.underlyingSkillId, targets, "ledger underlying skill");
+    addLinkedId(row.linkedId, row.linkedSource, row.category, targets);
+    addName(targets, row.displayName);
+    addName(targets, row.parentBaseSkillName);
+    addName(targets, row.underlyingSkillName);
+    for (const name of row.parentRecountNames ?? []) addName(targets, name);
+  }
+
+  for (const damageId of [...targets.damageIds]) {
+    const damage = generated.damage[String(damageId)];
+    addGeneratedLinkedFields(damage, targets, `DamageAttr ${damageId}`);
+    const detail = generated.breakdown[String(damageId)];
+    addGeneratedLinkedFields(detail, targets, `SkillBreakdown ${damageId}`);
+    addName(targets, detail?.DisplayName);
+    addName(targets, damage?.Name);
+  }
+
+  for (const recountId of [...targets.recountIds]) {
+    const row = generated.recount[String(recountId)];
+    addManyDamageIds(targets, row?.DamageId, `RecountTable ${recountId}`);
+    addId(targets.skillIds, row?.LinkedBaseSkillId, targets, `RecountTable ${recountId} base skill`);
+    addId(targets.skillIds, row?.LinkedTalentId, targets, `RecountTable ${recountId} linked talent`);
+    addName(targets, row?.Name);
+  }
+
+  for (const skillId of [...targets.skillIds]) {
+    const row = generated.skills[String(skillId)];
+    addMany(targets.skillIds, row?.SkillEffectIds, targets, `skill ${skillId} effect ids`);
+    addMany(targets.linkedIds, row?.LinkedIds, targets, `skill ${skillId} linked ids`);
+    addName(targets, row?.Name);
+  }
+
+  return targets;
+}
+
+function addGeneratedLinkedFields(row, targets, reason) {
+  if (!row || typeof row !== "object") return;
+  for (const [key, value] of Object.entries(row)) {
+    if (!/Id$|Ids$/.test(key)) continue;
+    if (key.includes("Damage")) {
+      addManyDamageIds(targets, Array.isArray(value) ? value : [value], `${reason}.${key}`);
+    } else if (key.includes("Buff")) {
+      addMany(targets.buffIds, Array.isArray(value) ? value : [value], targets, `${reason}.${key}`);
+    } else if (key.includes("Skill") || key.includes("Talent")) {
+      addMany(targets.skillIds, Array.isArray(value) ? value : [value], targets, `${reason}.${key}`);
+    } else {
+      addMany(targets.linkedIds, Array.isArray(value) ? value : [value], targets, `${reason}.${key}`);
+    }
+  }
+}
+
+function addLinkedId(value, source, category, targets) {
+  const text = `${source || ""} ${category || ""}`.toLowerCase();
+  if (text.includes("buff")) addId(targets.buffIds, value, targets, "ledger linked buff");
+  else if (text.includes("skill") || text.includes("talent")) addId(targets.skillIds, value, targets, "ledger linked skill");
+  else addId(targets.linkedIds, value, targets, "ledger linked id");
+}
+
+function addMany(set, values, targets, reason) {
+  for (const value of Array.isArray(values) ? values : []) addId(set, value, targets, reason);
+}
+
+function addId(set, value, targets, reason) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) return;
+  const key = String(Math.trunc(number));
+  set.add(key);
+  if (targets) rememberReason(targets, key, reason);
+}
+
+function addDamageId(targets, value, reason) {
+  const text = value === null || value === undefined ? "" : String(value);
+  if (!/^\d+$/.test(text)) return;
+  targets.damageIds.add(text);
+  targets.damageBigIds.add(BigInt(text).toString());
+  const low = Number(BigInt(text) & 0xffffffffn);
+  targets.damageLowIds.add(String(low));
+  rememberReason(targets, text, reason);
+}
+
+function addManyDamageIds(targets, values, reason) {
+  for (const value of Array.isArray(values) ? values : []) addDamageId(targets, value, reason);
+}
+
+function addName(targets, value) {
+  const text = String(value || "").replace(/\s+/g, " ").trim();
+  if (text && text.length >= 3) targets.names.add(text.toLowerCase());
+}
+
+function rememberReason(targets, id, reason) {
+  if (!reason) return;
+  const key = String(id);
+  const reasons = targets.byIdReason.get(key) ?? [];
+  if (!reasons.includes(reason)) reasons.push(reason);
+  targets.byIdReason.set(key, reasons.slice(0, 6));
+}
+
+function buildTablePlans(metaEntries, common, outputDir, includeAllCtb = false) {
+  const plans = new Map();
+  for (const tableName of [...KNOWN_TABLES, ...FORMULA_TABLE_NAME_CANDIDATES]) {
+    const hash = common.hash33(tableName);
+    if (metaEntries.has(hash)) plans.set(String(hash), { hash, tableName, label: tableName });
+  }
+  loadFormulaSurfacePlans(plans, outputDir);
+  if (!includeAllCtb) return [...plans.values()];
+  for (const [hash, entry] of metaEntries.entries()) {
+    if (entry?.type !== 0) continue;
+    if (!plans.has(String(hash))) plans.set(String(hash), { hash, tableName: "", label: `CTB:${hash}` });
+  }
+  return [...plans.values()];
+}
+
+function loadFormulaSurfacePlans(plans, outputDir, limit = 60) {
+  const report = readJson(path.join(outputDir, "probing-reports", "FormulaSurfaceProbe.json"), null);
+  const rows = report?.ctbScan?.topScoredTables;
+  if (!Array.isArray(rows)) return;
+  for (const row of rows.slice(0, limit)) {
+    const hash = Number(row.key);
+    if (!Number.isFinite(hash) || plans.has(String(hash))) continue;
+    plans.set(String(hash), { hash, tableName: "", label: row.label || `CTB:${hash}` });
+  }
+}
+
+function scanTable(table, targets, common, maxRows) {
+  const rows = [];
+  let targetRowCount = 0;
+  let formulaLikeStringCount = 0;
+  const floatFields = new Map();
+
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const row = scanRow(table, rowIndex, rowOffset, targets, common);
+    for (const text of row.strings) {
+      if (isFormulaLikeText(text.text)) formulaLikeStringCount += 1;
+    }
+    for (const field of row.floatFields) {
+      const stat = floatFields.get(field.fieldOffset) ?? { fieldOffset: field.fieldOffset, count: 0, samples: [] };
+      stat.count += 1;
+      if (stat.samples.length < 8 && !stat.samples.includes(field.value)) stat.samples.push(field.value);
+      floatFields.set(field.fieldOffset, stat);
+    }
+    if (row.matches.length || row.arrayMatches.length || row.u64Matches.length || row.stringMatches.length) {
+      targetRowCount += 1;
+      if (rows.length < maxRows) rows.push(row);
+    }
+  }
+
+  const interestingFloatFields = [...floatFields.values()]
+    .filter((field) => field.count >= Math.max(2, Math.floor(table.rowCount * 0.01)))
+    .sort((left, right) => right.count - left.count)
+    .slice(0, 12);
+
+  return {
+    targetRowCount,
+    rowCount: table.rowCount,
+    rowSize: table.rowSize,
+    formulaLikeStringCount,
+    interestingFloatFieldCount: interestingFloatFields.length,
+    interestingFloatFields,
+    rows,
+  };
+}
+
+function buildChainCandidates(ledger, generated, containerDir, metaEntries, common) {
+  const damageTable = readKnownCtb(containerDir, metaEntries, common, "DamageAttrTable.ctb");
+  const skillEffectTable = readKnownCtb(containerDir, metaEntries, common, "SkillEffectTable.ctb");
+  const skillFightTable = readKnownCtb(containerDir, metaEntries, common, "SkillFightLevelTable.ctb");
+
+  const damageById = indexDamageAttrRows(damageTable, common);
+  const effects = indexSkillEffectRows(skillEffectTable, common);
+  const fights = indexSkillFightRows(skillFightTable, common);
+  const chains = [];
+
+  for (const ledgerRow of Array.isArray(ledger?.damageRows) ? ledger.damageRows : []) {
+    const damageId = String(ledgerRow.damageId ?? "");
+    if (!damageId) continue;
+    const breakdown = generated.breakdown[String(damageId)] ?? {};
+    const generatedDamage = generated.damage[String(damageId)] ?? {};
+    const damageAttr = damageById.get(damageId) ?? null;
+    const linkedIds = new Set();
+    addChainId(linkedIds, ledgerRow.linkedId);
+    addChainId(linkedIds, damageAttr?.linkedId);
+    addChainId(linkedIds, generatedDamage.LinkedId);
+    addChainId(linkedIds, breakdown.LinkedId);
+    addChainId(linkedIds, breakdown.LinkedSkillId);
+    addChainId(linkedIds, breakdown.LinkedSkillEffectId);
+    addChainId(linkedIds, breakdown.LinkedSkillFightId);
+    addChainId(linkedIds, breakdown.LinkedSkillFightEffectId);
+    addChainId(linkedIds, breakdown.LinkedSkillFightSkillId);
+    addChainId(linkedIds, breakdown.LinkedSkillEffectSkillTableId);
+    addChainId(linkedIds, breakdown.LinkedSkillTableId);
+    addChainId(linkedIds, ledgerRow.parentBaseSkillId);
+    addChainId(linkedIds, ledgerRow.underlyingSkillId);
+    addChainId(linkedIds, breakdown.BaseSkillId);
+    addChainId(linkedIds, breakdown.ParentBaseSkillId);
+    addChainId(linkedIds, breakdown.UnderlyingSkillId);
+    addChainId(linkedIds, breakdown.RecountOwnerSkillId);
+
+    const skillEffects = uniqueRows([
+      ...lookupRows(effects.byEffectId, linkedIds),
+      ...lookupRows(effects.bySkillId, linkedIds),
+    ]).slice(0, 12);
+    const skillFights = uniqueRows([
+      ...lookupRows(fights.byFightId, linkedIds),
+      ...lookupRows(fights.byEffectId, linkedIds),
+      ...lookupRows(fights.bySkillId, linkedIds),
+    ]).slice(0, 24);
+    const coefficientCandidates = skillEffects
+      .filter((row) => Number.isFinite(row.floatAt16) && row.floatAt16 !== 0)
+      .map((row) => ({
+        table: "SkillEffectTable.ctb",
+        field: "floatAt16",
+        effectId: row.effectId,
+        skillId: row.skillId,
+        designName: row.designName,
+        value: row.floatAt16,
+      }))
+      .slice(0, 8);
+
+    chains.push({
+      damageId,
+      displayName: ledgerRow.displayName || breakdown.DisplayName || generatedDamage.Name || "",
+      category: ledgerRow.category || breakdown.Category || "",
+      finalDamageAnchor: {
+        hits: ledgerRow.hits ?? 0,
+        totalValue: ledgerRow.totalValue ?? 0,
+        effectiveTotal: ledgerRow.effectiveTotal ?? 0,
+      },
+      recountParents: (ledgerRow.parentRecountIds ?? []).map((id) => {
+        const recount = generated.recount[String(id)] ?? {};
+        return {
+          id,
+          name: recount.Name || recount.RecountName || "",
+          damageIds: Array.isArray(recount.DamageId) ? recount.DamageId : [],
+          linkedBaseSkillId: recount.LinkedBaseSkillId ?? null,
+        };
+      }),
+      damageAttr,
+      generatedBreakdown: compactBreakdown(breakdown),
+      linkedIds: [...linkedIds].sort((left, right) => Number(left) - Number(right)),
+      skillEffects,
+      skillFights,
+      coefficientCandidates,
+      notes: buildChainNotes(ledgerRow, damageAttr, skillEffects, skillFights, coefficientCandidates),
+    });
+  }
+
+  return chains.sort((left, right) => {
+    const valueDelta = Number(right.finalDamageAnchor.effectiveTotal || 0) - Number(left.finalDamageAnchor.effectiveTotal || 0);
+    if (valueDelta) return valueDelta;
+    return String(left.displayName).localeCompare(String(right.displayName));
+  });
+}
+
+function readKnownCtb(containerDir, metaEntries, common, tableName) {
+  try {
+    return common.readCtbTable(containerDir, metaEntries, tableName);
+  } catch {
+    return null;
+  }
+}
+
+function indexDamageAttrRows(table, common) {
+  const map = new Map();
+  if (!table) return map;
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const shape = knownShapeForRow(table, rowOffset, common);
+    if (!shape.damageId) continue;
+    map.set(String(shape.damageId), {
+      rowIndex,
+      damageId: shape.damageId,
+      name: shape.directName || "",
+      linkedId: shape.linkedId || null,
+      damageKind: shape.damageKind || "",
+      detailKind: shape.detailKind || "",
+    });
+  }
+  return map;
+}
+
+function indexSkillEffectRows(table, common) {
+  const byEffectId = new Map();
+  const bySkillId = new Map();
+  if (!table) return { byEffectId, bySkillId };
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const shape = knownShapeForRow(table, rowOffset, common);
+    const row = {
+      rowIndex,
+      effectId: shape.effectId,
+      level: shape.level,
+      designName: shape.designName || "",
+      skillId: shape.skillId,
+      floatAt16: shape.floatAt16,
+      u32At20: shape.u32At20,
+      u32At24: shape.u32At24,
+      u32At28: shape.u32At28,
+    };
+    pushMapRow(byEffectId, row.effectId, row);
+    pushMapRow(bySkillId, row.skillId, row);
+  }
+  return { byEffectId, bySkillId };
+}
+
+function indexSkillFightRows(table, common) {
+  const byFightId = new Map();
+  const bySkillId = new Map();
+  const byEffectId = new Map();
+  if (!table) return { byFightId, bySkillId, byEffectId };
+  for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const shape = knownShapeForRow(table, rowOffset, common);
+    const row = {
+      rowIndex,
+      fightId: shape.fightId,
+      skillId: shape.skillId,
+      level: shape.level,
+      effectId: shape.effectId,
+      designName: shape.designName || "",
+      floatAt28: shape.floatAt28,
+    };
+    pushMapRow(byFightId, row.fightId, row);
+    pushMapRow(bySkillId, row.skillId, row);
+    pushMapRow(byEffectId, row.effectId, row);
+  }
+  return { byFightId, bySkillId, byEffectId };
+}
+
+function pushMapRow(map, id, row) {
+  const key = idKey(id);
+  if (!key) return;
+  const rows = map.get(key) ?? [];
+  rows.push(row);
+  map.set(key, rows);
+}
+
+function addChainId(set, value) {
+  const key = idKey(value);
+  if (key) set.add(key);
+}
+
+function idKey(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) return "";
+  return String(Math.trunc(number));
+}
+
+function lookupRows(map, ids) {
+  const rows = [];
+  for (const id of ids) rows.push(...(map.get(String(id)) ?? []));
+  return rows;
+}
+
+function uniqueRows(rows) {
+  const seen = new Set();
+  const out = [];
+  for (const row of rows) {
+    const key = `${row.rowIndex}:${row.effectId ?? row.fightId ?? row.skillId ?? ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(row);
+  }
+  return out;
+}
+
+function compactBreakdown(row) {
+  return {
+    displayName: row.DisplayName || "",
+    sourceRole: row.SourceRole || "",
+    linkedSource: row.LinkedSource || "",
+    linkedId: row.LinkedId ?? null,
+    linkedSkillId: row.LinkedSkillId ?? null,
+    linkedSkillEffectId: row.LinkedSkillEffectId ?? null,
+    linkedSkillFightId: row.LinkedSkillFightId ?? null,
+    baseSkillId: row.BaseSkillId ?? null,
+    parentBaseSkillId: row.ParentBaseSkillId ?? null,
+    recountOwnerSkillId: row.RecountOwnerSkillId ?? null,
+  };
+}
+
+function buildChainNotes(ledgerRow, damageAttr, skillEffects, skillFights, coefficientCandidates) {
+  const notes = [];
+  if (!damageAttr) notes.push("no exact DamageAttr row matched this emitted damage id");
+  if (!coefficientCandidates.length) notes.push("no non-zero SkillEffectTable.floatAt16 candidate yet");
+  if (Array.isArray(ledgerRow.recountSiblingDamageIds) && ledgerRow.recountSiblingDamageIds.length > 1) {
+    notes.push("multi-damage recount parent needs chain allocation before per-skill base math");
+  }
+  if (skillEffects.length && !coefficientCandidates.length) notes.push("SkillEffect row exists but its candidate coefficient field is zero");
+  if (skillFights.length) notes.push("SkillFight rows provide level/effect linkage; floatAt28 may be cooldown or timing until schema is proven");
+  return notes;
+}
+
+function summarizeChains(chains) {
+  return {
+    total: chains.length,
+    exactDamageAttrRows: chains.filter((chain) => chain.damageAttr).length,
+    skillEffectRows: chains.filter((chain) => chain.skillEffects.length).length,
+    skillFightRows: chains.filter((chain) => chain.skillFights.length).length,
+    coefficientCandidateRows: chains.filter((chain) => chain.coefficientCandidates.length).length,
+    multiDamageRecountRows: chains.filter((chain) => chain.notes.includes("multi-damage recount parent needs chain allocation before per-skill base math")).length,
+  };
+}
+
+function scanRow(table, rowIndex, rowOffset, targets, common) {
+  const row = {
+    rowIndex,
+    absoluteOffset: table.entry.offset + rowOffset,
+    knownShape: knownShapeForRow(table, rowOffset, common),
+    matches: [],
+    u64Matches: [],
+    arrayMatches: [],
+    stringMatches: [],
+    floatFields: [],
+    strings: [],
+  };
+  const intPool = table.pools.get(INT_POOL);
+
+  for (let fieldOffset = 0; fieldOffset + 4 <= table.rowSize; fieldOffset += 4) {
+    const absolute = rowOffset + fieldOffset;
+    const u32 = common.readU32(table.data, absolute) ?? 0;
+    const kinds = classifyU32(u32, targets, table.tableName);
+    if (kinds.length) row.matches.push({ fieldOffset, value: u32, kinds, reasons: reasonsForValue(u32, targets) });
+
+    const floatValue = table.data.readFloatLE(absolute);
+    if (isInterestingFloat(floatValue)) row.floatFields.push({ fieldOffset, value: roundFloat(floatValue) });
+
+    const text = common.readCtbString(table, STRING_POOL, u32, { allowZero: true });
+    if (text) {
+      const clean = compactText(text, 180);
+      row.strings.push({ fieldOffset, text: clean });
+      if (textMatchesTargets(clean, targets)) {
+        row.stringMatches.push({ fieldOffset, text: clean, formulaLike: isFormulaLikeText(clean) });
+      }
+    }
+
+    if (intPool && shouldScanArrayField(table.tableName, fieldOffset, row)) {
+      const direct = readIntArrayFromPool(intPool, u32);
+      const directMatches = direct.filter((value) => classifyU32(value, targets, table.tableName).length);
+      if (directMatches.length) {
+        row.arrayMatches.push({ fieldOffset, arrayOffset: u32, values: direct.slice(0, 24), directMatches });
+      }
+      for (const recordOffset of direct.slice(0, 64)) {
+        const nested = readIntArrayFromPool(intPool, recordOffset);
+        const nestedMatches = nested.filter((value) => classifyU32(value, targets, table.tableName).length);
+        if (nestedMatches.length) {
+          row.arrayMatches.push({
+            fieldOffset,
+            arrayOffset: u32,
+            recordOffset,
+            values: nested.slice(0, 24),
+            directMatches: nestedMatches,
+          });
+        }
+      }
+    }
+
+    if (fieldOffset + 8 <= table.rowSize) {
+      const u64 = table.data.readBigUInt64LE(absolute).toString();
+      if (targets.damageBigIds.has(u64)) {
+        row.u64Matches.push({ fieldOffset, value: u64, kinds: ["damage"], reasons: reasonsForValue(u64, targets) });
+      }
+    }
+  }
+
+  row.arrayMatches = row.arrayMatches.filter((match) => isContextualArrayMatch(match, table.tableName, row)).slice(0, 24);
+  row.floatFields = row.floatFields.slice(0, 24);
+  row.strings = row.strings.slice(0, 12);
+  return row;
+}
+
+function knownShapeForRow(table, rowOffset, common) {
+  const name = table.tableName;
+  if (name === "DamageAttrTable.ctb") {
+    return {
+      damageId: table.data.readBigUInt64LE(rowOffset).toString(),
+      directName: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 12), { allowZero: true }),
+      linkedId: common.readU32(table.data, rowOffset + 20) ?? 0,
+      damageKind: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 24), { allowZero: true }),
+      detailKind: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 28), { allowZero: true }),
+    };
+  }
+  if (name === "SkillEffectTable.ctb") {
+    return {
+      effectId: common.readU32(table.data, rowOffset) ?? 0,
+      level: common.readU32(table.data, rowOffset + 4) ?? 0,
+      designName: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 8), { allowZero: true }),
+      skillId: common.readU32(table.data, rowOffset + 12) ?? 0,
+      floatAt16: roundFloat(table.data.readFloatLE(rowOffset + 16)),
+      u32At20: common.readU32(table.data, rowOffset + 20) ?? 0,
+      u32At24: common.readU32(table.data, rowOffset + 24) ?? 0,
+      u32At28: common.readU32(table.data, rowOffset + 28) ?? 0,
+    };
+  }
+  if (name === "SkillFightLevelTable.ctb") {
+    return {
+      fightId: common.readU32(table.data, rowOffset) ?? 0,
+      skillId: common.readU32(table.data, rowOffset + 4) ?? 0,
+      level: common.readU32(table.data, rowOffset + 8) ?? 0,
+      effectId: common.readU32(table.data, rowOffset + 12) ?? 0,
+      designName: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 16), { allowZero: true }),
+      floatAt28: rowOffset + 32 <= table.data.length ? roundFloat(table.data.readFloatLE(rowOffset + 28)) : null,
+    };
+  }
+  if (name === "SkillTable.ctb") {
+    return {
+      skillId: common.readU32(table.data, rowOffset) ?? 0,
+      designName: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 4), { allowZero: true }),
+      nameId: common.readU32(table.data, rowOffset + 12) ?? 0,
+      parentSkillId: common.readU32(table.data, rowOffset + 16) ?? 0,
+    };
+  }
+  if (name === "RecountTable.ctb") {
+    return {
+      recountId: common.readU32(table.data, rowOffset) ?? 0,
+      nameId: common.readU32(table.data, rowOffset + 4) ?? 0,
+      damageListOffset: common.readU32(table.data, rowOffset + 8) ?? 0,
+    };
+  }
+  if (name === "BuffTable.ctb") {
+    return {
+      buffId: common.readU32(table.data, rowOffset) ?? 0,
+      maybeNameOffset: common.readU32(table.data, rowOffset + 4) ?? 0,
+      maybeName: common.readCtbString(table, STRING_POOL, common.readU32(table.data, rowOffset + 4), { allowZero: true }),
+    };
+  }
+  return {};
+}
+
+function classifyU32(value, targets, tableName = "") {
+  const key = String(value);
+  const kinds = [];
+  if (tableName === "RecountTable.ctb" && targets.recountIds.has(key)) kinds.push("recount");
+  if (targets.skillIds.has(key)) kinds.push("skill");
+  if (targets.buffIds.has(key)) kinds.push("buff");
+  if (targets.linkedIds.has(key)) kinds.push("linked");
+  return kinds;
+}
+
+function isStrongArrayMatch(match) {
+  return (match.directMatches ?? []).some((value) => Math.abs(Number(value)) >= 1000);
+}
+
+function shouldScanArrayField(tableName, fieldOffset, row) {
+  if (tableName === "RecountTable.ctb") return fieldOffset === 8;
+  if (tableName === "DamageAttrTable.ctb") return (fieldOffset === 32 || fieldOffset === 48) && row.u64Matches.length > 0;
+  if (tableName === "SkillEffectTable.ctb" || tableName === "SkillFightLevelTable.ctb") return row.matches.length > 0;
+  return false;
+}
+
+function isContextualArrayMatch(match, tableName, row) {
+  if (!isStrongArrayMatch(match)) return false;
+  if (tableName === "RecountTable.ctb" && match.fieldOffset === 8) return true;
+  if (tableName === "DamageAttrTable.ctb" && row.u64Matches.length > 0) return true;
+  if ((tableName === "SkillEffectTable.ctb" || tableName === "SkillFightLevelTable.ctb") && row.matches.length > 0) return true;
+  return false;
+}
+
+function reasonsForValue(value, targets) {
+  return targets.byIdReason.get(String(value)) ?? [];
+}
+
+function readIntArrayFromPool(pool, offset) {
+  if (!pool || !Number.isInteger(offset) || offset < 0 || offset + 2 > pool.length) return [];
+  const length = pool.readInt16LE(offset);
+  if (length <= 0 || length > 512 || offset + 2 + length * 4 > pool.length) return [];
+  const out = [];
+  for (let index = 0; index < length; index += 1) {
+    out.push(pool.readInt32LE(offset + 2 + index * 4));
+  }
+  return out;
+}
+
+function isInterestingFloat(value) {
+  return Number.isFinite(value) && Math.abs(value) >= 0.001 && Math.abs(value) <= 10000;
+}
+
+function isFormulaLikeText(text) {
+  return TEXT_PATTERNS.some((pattern) => pattern.test(String(text || "")));
+}
+
+function textMatchesTargets(text, targets) {
+  const normalized = String(text || "").toLowerCase();
+  if (!normalized) return false;
+  for (const name of targets.names) {
+    if (name.length >= 3 && normalized.includes(name)) return true;
+  }
+  return false;
+}
+
+function compactText(text, maxLength) {
+  const compact = String(text || "").replace(/\s+/g, " ").trim();
+  return compact.length > maxLength ? `${compact.slice(0, maxLength - 3)}...` : compact;
+}
+
+function roundFloat(value) {
+  return Number.isFinite(value) ? Number(value.toFixed(6)) : null;
+}
+
+function sum(values) {
+  return values.reduce((total, value) => total + Number(value || 0), 0);
+}
+
+function rowScore(row) {
+  return row.u64Matches.length * 20 + row.matches.length * 8 + row.arrayMatches.length * 12 + row.stringMatches.length * 4 + row.floatFields.length;
+}
+
+function tableScore(table) {
+  return table.targetRowCount * 20 + table.formulaLikeStringCount + table.interestingFloatFieldCount * 2;
+}
+
+function summarizeTargets(targets) {
+  return {
+    damageIds: targets.damageIds.size,
+    damageLowIds: targets.damageLowIds.size,
+    recountIds: targets.recountIds.size,
+    skillIds: targets.skillIds.size,
+    buffIds: targets.buffIds.size,
+    linkedIds: targets.linkedIds.size,
+    names: targets.names.size,
+  };
+}
+
+function buildKeyFindings(tableReports, focusedRows) {
+  const damageAttrRows = focusedRows.filter((row) => row.table === "DamageAttrTable.ctb").length;
+  const skillEffectRows = focusedRows.filter((row) => row.table === "SkillEffectTable.ctb").length;
+  const skillFightRows = focusedRows.filter((row) => row.table === "SkillFightLevelTable.ctb").length;
+  const tableNames = tableReports
+    .filter((table) => table.targetRowCount)
+    .sort((left, right) => tableScore(right) - tableScore(left))
+    .slice(0, 12)
+    .map((table) => `${table.label}: ${table.targetRowCount}`);
+  return {
+    damageAttrRows,
+    skillEffectRows,
+    skillFightRows,
+    topTargetTables: tableNames,
+    implication:
+      "Use these row surfaces to build a generated skill coefficient/value-cal bridge. Final hit totals remain anchored to live packets; these rows only identify the static formula inputs to peel back next.",
+  };
+}
+
+function renderMarkdown(report, maxRows) {
+  const lines = [];
+  lines.push("# Skill Coefficient Surface Probe");
+  lines.push("");
+  lines.push(`Generated: ${report.generatedAt}`);
+  lines.push(`Game package: \`${report.gamePackage}\``);
+  lines.push(`Ledger: \`${report.ledger}\``);
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  lines.push(`- Target damage ids: ${report.targetSummary.damageIds}`);
+  lines.push(`- Target recount ids: ${report.targetSummary.recountIds}`);
+  lines.push(`- Target skill ids: ${report.targetSummary.skillIds}`);
+  lines.push(`- Target buff ids: ${report.targetSummary.buffIds}`);
+  lines.push(`- CTB tables scanned: ${report.summary.tablesScanned}`);
+  lines.push(`- Tables with target rows: ${report.summary.tablesWithTargetRows}`);
+  lines.push(`- Target rows found: ${report.summary.targetRowsFound}`);
+  lines.push(`- Chain candidates: ${report.summary.chainCandidates}`);
+  lines.push("");
+  lines.push("## Key Findings");
+  lines.push("");
+  lines.push(`- DamageAttr target rows in focused output: ${report.keyFindings.damageAttrRows}`);
+  lines.push(`- SkillEffect target rows in focused output: ${report.keyFindings.skillEffectRows}`);
+  lines.push(`- SkillFight target rows in focused output: ${report.keyFindings.skillFightRows}`);
+  lines.push(`- ${report.keyFindings.implication}`);
+  lines.push("");
+  lines.push("## Top Target Tables");
+  lines.push("");
+  for (const text of report.keyFindings.topTargetTables) lines.push(`- ${text}`);
+  lines.push("");
+  lines.push("## Chain Candidates");
+  lines.push("");
+  lines.push(`- Exact DamageAttr rows: ${report.chainSummary.exactDamageAttrRows}/${report.chainSummary.total}`);
+  lines.push(`- Rows with SkillEffect links: ${report.chainSummary.skillEffectRows}/${report.chainSummary.total}`);
+  lines.push(`- Rows with SkillFight links: ${report.chainSummary.skillFightRows}/${report.chainSummary.total}`);
+  lines.push(`- Rows with non-zero SkillEffect float candidates: ${report.chainSummary.coefficientCandidateRows}/${report.chainSummary.total}`);
+  lines.push(`- Multi-damage recount rows needing allocation: ${report.chainSummary.multiDamageRecountRows}/${report.chainSummary.total}`);
+  lines.push("");
+  const chains = report.chainCandidates.slice(0, Math.min(maxRows, 80)).map((chain) => [
+    chain.damageId,
+    chain.displayName,
+    shortNumber(chain.finalDamageAnchor.effectiveTotal),
+    (chain.recountParents ?? []).map((row) => `${row.id}:${row.name}`).join("; "),
+    chain.damageAttr
+      ? `linked=${chain.damageAttr.linkedId}; kind=${chain.damageAttr.damageKind}; name=${chain.damageAttr.name}`
+      : "",
+    shortSkillEffects(chain.skillEffects),
+    shortSkillFights(chain.skillFights),
+    shortCoefficientCandidates(chain.coefficientCandidates),
+    (chain.notes ?? []).join("; "),
+  ]);
+  lines.push(
+    chains.length
+      ? markdownTable(
+          ["Damage", "Name", "Final Total", "Recount", "DamageAttr", "SkillEffect", "SkillFight", "Candidates", "Notes"],
+          chains
+        )
+      : "No chain candidates found."
+  );
+  lines.push("");
+  lines.push("## Focused Rows");
+  lines.push("");
+  const focused = report.focusedRows.slice(0, maxRows).map((row) => [
+    row.table,
+    row.rowIndex,
+    row.absoluteOffset,
+    shortShape(row.knownShape),
+    shortMatches(row),
+    shortFloats(row.floatFields),
+    shortStrings(row.stringMatches),
+  ]);
+  lines.push(
+    focused.length
+      ? markdownTable(["Table", "Row", "Offset", "Known Shape", "Matches", "Float Fields", "Strings"], focused)
+      : "No focused rows found."
+  );
+  lines.push("");
+  lines.push("## Parser Boundary");
+  lines.push("");
+  lines.push("These are game-file surfaces, not finished contribution math. The next bridge should map each observed damage row to static coefficient/value-cal inputs, then the replay code can remove modifiers from the trusted final-hit totals in formula order.");
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
+function shortShape(shape) {
+  return Object.entries(shape || {})
+    .filter(([, value]) => value !== null && value !== undefined && value !== "")
+    .map(([key, value]) => `${key}=${String(value).replace(/\s+/g, " ").slice(0, 80)}`)
+    .join("; ");
+}
+
+function shortMatches(row) {
+  const parts = [];
+  for (const match of row.u64Matches ?? []) parts.push(`+${match.fieldOffset}:u64 ${match.value} ${match.kinds.join("/")}`);
+  for (const match of row.matches ?? []) parts.push(`+${match.fieldOffset}:u32 ${match.value} ${match.kinds.join("/")}`);
+  for (const match of row.arrayMatches ?? []) parts.push(`+${match.fieldOffset}:array [${match.directMatches.join(",")}]`);
+  return parts.slice(0, 8).join("; ");
+}
+
+function shortFloats(fields) {
+  return (fields ?? []).slice(0, 8).map((field) => `+${field.fieldOffset}=${field.value}`).join("; ");
+}
+
+function shortStrings(strings) {
+  return (strings ?? []).slice(0, 3).map((entry) => `+${entry.fieldOffset}:${entry.text}`).join("; ");
+}
+
+function shortSkillEffects(rows) {
+  return (rows ?? [])
+    .slice(0, 5)
+    .map((row) => `${row.effectId}/${row.skillId}:${row.designName || ""}:f16=${row.floatAt16}`)
+    .join("; ");
+}
+
+function shortSkillFights(rows) {
+  return (rows ?? [])
+    .slice(0, 5)
+    .map((row) => `${row.fightId}/${row.skillId}->${row.effectId}:lv${row.level}:f28=${row.floatAt28}`)
+    .join("; ");
+}
+
+function shortCoefficientCandidates(rows) {
+  return (rows ?? [])
+    .slice(0, 5)
+    .map((row) => `${row.effectId}/${row.skillId}:${row.value}`)
+    .join("; ");
+}
+
+function shortNumber(value) {
+  const number = Number(value || 0);
+  if (!Number.isFinite(number)) return "";
+  if (Math.abs(number) >= 1_000_000_000) return `${(number / 1_000_000_000).toFixed(2)}b`;
+  if (Math.abs(number) >= 1_000_000) return `${(number / 1_000_000).toFixed(1)}m`;
+  if (Math.abs(number) >= 1_000) return `${(number / 1_000).toFixed(1)}k`;
+  return String(Math.round(number));
+}
+
+function markdownTable(headers, rows) {
+  const escape = (value) => String(value ?? "").replaceAll("|", "\\|").replace(/\s+/g, " ").trim();
+  return [
+    `| ${headers.join(" | ")} |`,
+    `| ${headers.map(() => "---").join(" | ")} |`,
+    ...rows.map((row) => `| ${row.map(escape).join(" | ")} |`),
+  ].join("\n");
+}

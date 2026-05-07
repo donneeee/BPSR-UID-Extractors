@@ -1,6 +1,15 @@
 #!/usr/bin/env node
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  cleanMarkup,
+  extractIcdLockoutSeconds,
+  extractValueTexts,
+  hasIcdLockoutDescription,
+  isIcdLockoutNameText,
+  normalizeActivationText,
+  preferredText,
+} = require("./effect-semantics.cjs");
 
 const repoRoot = __dirname;
 const defaultOutputDir = path.join(repoRoot, "output");
@@ -13,9 +22,11 @@ function buildDefaultPaths(outputDir) {
     buffs: path.join(outputDir, "BuffName.json"),
     items: path.join(outputDir, "itemnames.json"),
     monsters: path.join(outputDir, "monsternames.json"),
+    aoyiSkills: path.join(outputDir, "skill_aoyi_icons.json"),
     consumableBridge: path.join(outputDir, "ConsumableBuffBridge.json"),
     talentProbe: path.join(outputDir, "probing-reports", "TalentEffectModelProbe.json"),
     classSpecProbe: path.join(outputDir, "probing-reports", "ClassSpecSkillModelProbe.json"),
+    talentOwnership: path.join(outputDir, "TalentSpecOwnership.json"),
     seasonTalentProbe: path.join(outputDir, "probing-reports", "SeasonTalentNodeProbe.json"),
     seasonRogueProbe: path.join(outputDir, "probing-reports", "SeasonRogueEntryProbe.json"),
     out: path.join(outputDir, "EffectSources.json"),
@@ -59,6 +70,99 @@ const ACTIVATION_DESCRIPTION_MARKERS = [
 const ACTIVATION_TRIGGER_STOPWORDS = new Set([
   "healing",
 ]);
+const DAMAGE_FORMULA_ID = "community-damage-v1";
+const FORMULA_COMPONENT_CLASS = Object.freeze({
+  "offense-stat": {
+    formulaTermIds: ["primaryAttack"],
+    contributionGroups: ["baseAttack"],
+    requiredRuntimeEvidence: ["attacker stat snapshot at hit time", "damage row ATK/MATK lane"],
+  },
+  "refined-or-elemental-attack": {
+    formulaTermIds: ["refinedOrElementalAttack"],
+    contributionGroups: ["baseAttack"],
+    requiredRuntimeEvidence: ["attacker elemental/refined attack snapshot at hit time", "damage element mapping by damage id"],
+  },
+  "critical-stat": {
+    formulaTermIds: ["critMultiplier"],
+    contributionGroups: ["critical"],
+    requiredRuntimeEvidence: ["attacker crit-rate snapshot at hit time", "crit flag"],
+  },
+  "critical-damage-stat": {
+    formulaTermIds: ["critMultiplier"],
+    contributionGroups: ["critical"],
+    requiredRuntimeEvidence: ["attacker crit-damage snapshot at hit time", "crit flag"],
+  },
+  "versatility-stat": {
+    formulaTermIds: ["versatilityDamagePct"],
+    contributionGroups: ["versatility"],
+    requiredRuntimeEvidence: ["attacker versatility damage snapshot at hit time"],
+  },
+  "elemental-damage": {
+    formulaTermIds: ["elementalDamagePct"],
+    contributionGroups: ["elemental"],
+    requiredRuntimeEvidence: ["damage element mapping by damage id", "attacker elemental damage snapshot at hit time"],
+  },
+  "damage-modifier": {
+    formulaTermIds: ["genericDamagePct"],
+    contributionGroups: ["genericDamage"],
+    requiredRuntimeEvidence: ["modifier windows"],
+  },
+  "target-mitigation": {
+    formulaTermIds: ["resistance"],
+    contributionGroups: ["targetMitigation"],
+    requiredRuntimeEvidence: ["target resistance snapshot at hit time", "matching-hit baseline for observed delta fallback"],
+  },
+  "target-armor-mitigation": {
+    formulaTermIds: ["targetArmorMitigation"],
+    contributionGroups: ["targetMitigation"],
+    requiredRuntimeEvidence: ["target armor/defense snapshot at hit time", "matching-hit baseline for observed delta fallback"],
+  },
+  "armor-scaling-damage": {
+    formulaTermIds: [],
+    contributionGroups: ["procDamage"],
+    requiredRuntimeEvidence: ["attacker armor/defense snapshot at hit time", "produced damage row id"],
+  },
+  "hit-timing": {
+    formulaTermIds: [],
+    contributionGroups: ["hitTiming"],
+    requiredRuntimeEvidence: ["cast timeline or per-hit window buckets"],
+  },
+  "proc-damage": {
+    formulaTermIds: [],
+    contributionGroups: ["procDamage"],
+    requiredRuntimeEvidence: ["produced damage row id", "attacker uid", "target uid"],
+  },
+  "damage-reduction": {
+    formulaTermIds: [],
+    contributionGroups: [],
+    requiredRuntimeEvidence: ["incoming hit direction"],
+  },
+  "defense-stat": {
+    formulaTermIds: [],
+    contributionGroups: [],
+    requiredRuntimeEvidence: ["incoming hit direction"],
+  },
+  "resource-stat": {
+    formulaTermIds: [],
+    contributionGroups: [],
+    requiredRuntimeEvidence: [],
+  },
+  "healing-or-lifesteal": {
+    formulaTermIds: [],
+    contributionGroups: [],
+    requiredRuntimeEvidence: ["healing/lifesteal event lane"],
+  },
+  "shield-or-barrier": {
+    formulaTermIds: [],
+    contributionGroups: [],
+    requiredRuntimeEvidence: ["shield event lane"],
+  },
+  "cooldown-or-resource": {
+    formulaTermIds: [],
+    contributionGroups: ["hitTiming"],
+    requiredRuntimeEvidence: ["cast timeline or cooldown state"],
+  },
+});
 
 function parseArgs(argv) {
   const args = {
@@ -71,6 +175,7 @@ function parseArgs(argv) {
     buffs: "",
     items: "",
     monsters: "",
+    aoyiSkills: "",
     consumableBridge: "",
     talentProbe: "",
     classSpecProbe: "",
@@ -110,6 +215,9 @@ function parseArgs(argv) {
     } else if (arg === "--monsters" && next) {
       args.monsters = path.resolve(next);
       index += 1;
+    } else if (arg === "--aoyi-skills" && next) {
+      args.aoyiSkills = path.resolve(next);
+      index += 1;
     } else if (arg === "--consumable-bridge" && next) {
       args.consumableBridge = path.resolve(next);
       index += 1;
@@ -118,6 +226,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (arg === "--class-spec-probe" && next) {
       args.classSpecProbe = path.resolve(next);
+      index += 1;
+    } else if (arg === "--talent-ownership" && next) {
+      args.talentOwnership = path.resolve(next);
       index += 1;
     } else if (arg === "--season-talent-probe" && next) {
       args.seasonTalentProbe = path.resolve(next);
@@ -135,9 +246,11 @@ function parseArgs(argv) {
   args.buffs ||= defaults.buffs;
   args.items ||= defaults.items;
   args.monsters ||= defaults.monsters;
+  args.aoyiSkills ||= defaults.aoyiSkills;
   args.consumableBridge ||= defaults.consumableBridge;
   args.talentProbe ||= defaults.talentProbe;
   args.classSpecProbe ||= defaults.classSpecProbe;
+  args.talentOwnership ||= defaults.talentOwnership;
   args.seasonTalentProbe ||= defaults.seasonTalentProbe;
   args.seasonRogueProbe ||= defaults.seasonRogueProbe;
   args.out ||= defaults.out;
@@ -159,9 +272,11 @@ function printHelp() {
   console.log("  --buffs <path>                BuffName.json input.");
   console.log("  --items <path>                itemnames.json input.");
   console.log("  --monsters <path>             monsternames.json input.");
+  console.log("  --aoyi-skills <path>          skill_aoyi_icons.json input.");
   console.log("  --consumable-bridge <path>    ConsumableBuffBridge.json input.");
   console.log("  --talent-probe <path>         TalentEffectModelProbe.json input.");
   console.log("  --class-spec-probe <path>     ClassSpecSkillModelProbe.json input.");
+  console.log("  --talent-ownership <path>     TalentSpecOwnership.json input.");
   console.log("  --season-talent-probe <path>  SeasonTalentNodeProbe.json input.");
   console.log("  --season-rogue-probe <path>   SeasonRogueEntryProbe.json input.");
 }
@@ -208,28 +323,6 @@ function preferredName(names, fallback = "") {
   return names?.en || names?.["zh-CN"] || names?.design || fallback || "";
 }
 
-function preferredText(values, fallback = "") {
-  return values?.en
-    ?? values?.["zh-CN"]
-    ?? values?.design
-    ?? Object.values(values ?? {}).find(Boolean)
-    ?? fallback
-    ?? "";
-}
-
-function extractValueTexts(value) {
-  const seen = new Set();
-  const out = [];
-  for (const match of String(value || "")
-    .match(/[+-]?\d+(?:[.,]\d+)?\s*(?:%|s|sec|seconds?)?/gi) ?? []) {
-    const text = match.trim();
-    if (!text || seen.has(text)) continue;
-    seen.add(text);
-    out.push(text);
-  }
-  return out;
-}
-
 function buildDescriptionModifierEvidence({
   source,
   valueStatus,
@@ -268,15 +361,6 @@ function mergeNameMaps(target, incoming) {
 
 function mergeDescriptionMaps(target, incoming) {
   return mergeNameMaps(target, incoming);
-}
-
-function normalizeActivationText(value) {
-  return String(value ?? "")
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
 }
 
 function localeText(values, locale) {
@@ -396,11 +480,171 @@ function addOwnerRecord(index, record) {
     row.source === record.source && String(row.sourceId ?? "") === String(record.sourceId ?? "")
   );
   const target = existing ?? record;
+  const extraAliases = Array.from(record.aliases ?? []);
+  target.aliases ||= new Set();
   if (!existing) index.records.push(target);
 
   for (const value of Object.values(record.ownerNames ?? {})) {
     addOwnerAlias(index, value, target);
   }
+  for (const value of extraAliases) {
+    addOwnerAlias(index, value, target);
+  }
+}
+
+function stripBattleImagineSkillPrefix(value) {
+  return String(value || "")
+    .trim()
+    .replace(/^(?:Arcane|Stunt|Ultimate)\s*!?\s*/i, "")
+    .replace(/^(?:奥义|奧義|绝技|絕技)\s*[!！]?\s*/, "")
+    .trim();
+}
+
+function normalizeOwnerSearchKey(value) {
+  return normalizeOwnerKey(value)
+    .replace(/[!！,，.。\-—–_]+/g, "")
+    .trim();
+}
+
+const SOURCE_CONFIG_TOKEN_STOPWORDS = [
+  "逻辑",
+  "表现",
+  "材质",
+  "共鸣",
+  "出生",
+  "通用",
+  "寻找目标",
+  "主动",
+  "被动",
+  "效果",
+  "自身",
+  "生效",
+  "触发",
+  "记时",
+  "计时",
+  "监控",
+  "隐藏",
+  "添加死亡监测",
+  "衍生a",
+  "衍生b",
+  "衍生c",
+  "主buff",
+  "buff",
+  "debuff",
+  "宠物",
+  "召唤者",
+  "极限",
+  "当次",
+];
+
+function sourceConfigOwnerToken(value) {
+  let token = normalizeOwnerSearchKey(stripBattleImagineSkillPrefix(value));
+  for (const word of SOURCE_CONFIG_TOKEN_STOPWORDS) {
+    token = token.replaceAll(normalizeOwnerSearchKey(word), "");
+  }
+  return token.trim();
+}
+
+function hasUsableSourceConfigOwnerToken(token) {
+  if (!token) return false;
+  if (token.length < 2) return false;
+  return !["加", "减", "目标", "时间", "效果"].includes(token);
+}
+
+function aoyiSkillNameKeys(row) {
+  return uniqueStrings([
+    row.Name,
+    row.NameDesign,
+    row.DesignName,
+    ...Object.values(row.Names ?? {}),
+  ])
+    .map((value) => normalizeOwnerSearchKey(stripBattleImagineSkillPrefix(value)))
+    .filter((value) => value.length >= 2);
+}
+
+function aoyiSkillOwnerNames(row, ownerNamesBySkillAlias = new Map()) {
+  const directOwnerNames = normalizedNames(row.MonsterNames);
+  const linkedOwnerNames = Object.keys(directOwnerNames).length
+    ? null
+    : aoyiSkillNameKeys(row)
+      .map((key) => ownerNamesBySkillAlias.get(key))
+      .find(Boolean);
+  const names = Object.keys(directOwnerNames).length
+    ? directOwnerNames
+    : linkedOwnerNames ?? normalizedNames(row.Names, row.NameDesign ?? row.Name);
+  return Object.keys(names).length ? names : null;
+}
+
+function aoyiSkillAliases(row) {
+  const aliases = new Set();
+  const add = (value) => {
+    const raw = String(value || "").trim();
+    if (!raw) return;
+    aliases.add(raw);
+    const stripped = stripBattleImagineSkillPrefix(raw);
+    if (stripped && stripped !== raw) aliases.add(stripped);
+  };
+  add(row.Name);
+  add(row.NameDesign);
+  add(row.DesignName);
+  for (const value of Object.values(row.Names ?? {})) add(value);
+  for (const value of Object.values(row.MonsterNames ?? {})) add(value);
+  for (const value of Object.values(row.QuoteTexts ?? {})) add(value);
+  return aliases;
+}
+
+function buildAoyiSkillOwnerRecords(aoyiSkills) {
+  const rows = Array.isArray(aoyiSkills) ? aoyiSkills : Object.values(aoyiSkills ?? {});
+  const ownerNamesBySkillAlias = new Map();
+  for (const row of rows) {
+    const ownerNames = normalizedNames(row.MonsterNames);
+    if (!Object.keys(ownerNames).length) continue;
+    for (const key of aoyiSkillNameKeys(row)) {
+      if (!ownerNamesBySkillAlias.has(key)) ownerNamesBySkillAlias.set(key, ownerNames);
+    }
+  }
+
+  const byNameKey = new Map();
+  for (const row of rows) {
+    const skillId = toNumber(row.Id ?? row.id);
+    if (skillId === null) continue;
+    const ownerNames = aoyiSkillOwnerNames(row, ownerNamesBySkillAlias);
+    if (!ownerNames) continue;
+    const aliases = aoyiSkillAliases(row);
+    const record = {
+      source: "skill_aoyi_icons",
+      sourceId: skillId,
+      priority: -2,
+      ownerNames,
+      aliases,
+      matchAliases: [...aliases]
+        .map((value) => normalizeOwnerSearchKey(stripBattleImagineSkillPrefix(value)))
+        .filter((value) => value.length >= 2),
+      monsterNames: normalizedNames(row.MonsterNames),
+      skillEffectId: toNumber(row.SkillEffectId),
+      sourceTable: row.Source,
+    };
+    const key = normalizeOwnerSearchKey(preferredName(ownerNames, row.Name ?? row.NameDesign));
+    const existing = byNameKey.get(key);
+    if (!existing) {
+      byNameKey.set(key, record);
+      continue;
+    }
+    const mergedAliases = new Set([...(existing.aliases ?? []), ...(record.aliases ?? [])]);
+    const mergedMatchAliases = uniqueStrings([...(existing.matchAliases ?? []), ...(record.matchAliases ?? [])]);
+    const keepRecord = (
+      (record.skillEffectId && !existing.skillEffectId)
+      || (record.sourceTable === "SkillAoyiTable" && existing.sourceTable !== "SkillAoyiTable")
+    );
+    const target = keepRecord ? record : existing;
+    target.ownerNames = mergeNameMaps(target.ownerNames, keepRecord ? existing.ownerNames : record.ownerNames);
+    target.aliases = mergedAliases;
+    target.matchAliases = mergedMatchAliases;
+    target.monsterNames = mergeNameMaps(target.monsterNames, keepRecord ? existing.monsterNames : record.monsterNames);
+    target.skillEffectId ||= existing.skillEffectId || record.skillEffectId;
+    byNameKey.set(key, target);
+  }
+  return [...byNameKey.values()];
 }
 
 function itemOwnerNames(row) {
@@ -425,8 +669,18 @@ function monsterOwnerNames(row) {
   return Object.keys(names).length ? names : null;
 }
 
-function buildImagineOwnerIndex(items, monsters) {
-  const index = { exact: new Map(), records: [], battleImagineRecords: 0, monsterFallbackRecords: 0 };
+function buildImagineOwnerIndex(items, monsters, aoyiSkills) {
+  const index = {
+    exact: new Map(),
+    records: [],
+    battleImagineRecords: 0,
+    battleImagineSkillRecords: 0,
+    monsterFallbackRecords: 0,
+  };
+  for (const record of buildAoyiSkillOwnerRecords(aoyiSkills)) {
+    addOwnerRecord(index, record);
+    index.battleImagineSkillRecords += 1;
+  }
   for (const row of Array.isArray(items) ? items : Object.values(items ?? {})) {
     const iconPath = String(row.IconPath ?? "");
     const namesText = Object.values(row.Names ?? {}).join(" ");
@@ -459,6 +713,79 @@ function buildImagineOwnerIndex(items, monsters) {
   }
 
   return index;
+}
+
+function resolveAoyiSkillOwnerBySourceToken(ownerIndex, token) {
+  if (!hasUsableSourceConfigOwnerToken(token)) return null;
+  const matches = [];
+  for (const record of ownerIndex.records) {
+    if (record.source !== "skill_aoyi_icons") continue;
+    for (const alias of record.matchAliases ?? []) {
+      if (!alias || alias.length < 2) continue;
+      if (alias.includes(token) || token.includes(alias)) {
+        matches.push({ record, alias });
+        break;
+      }
+    }
+  }
+  const unique = new Map(matches.map((match) => [String(match.record.sourceId), match]));
+  if (unique.size !== 1) return null;
+  const match = [...unique.values()][0];
+  return {
+    owner: {
+      record: match.record,
+      matchKind: "source-config-token",
+    },
+    ownerToken: localizedOwnerName(match.record, "zh-CN") || localizedOwnerName(match.record, "en"),
+    suffix: "",
+    matchKind: "source-config-token",
+    matchedAlias: match.alias,
+  };
+}
+
+function buildBattleImagineSourceConfigOwnerRules(buffRows, ownerIndex) {
+  const rows = Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {});
+  const rules = new Map();
+  for (const row of rows) {
+    const buffId = toNumber(row.Id);
+    if (buffId === null || !isBattleImagineRuntimeBuffId(buffId)) continue;
+    if (hasPrimaryLocalizedName(row)) continue;
+    const designName = buffRowBaseNames(row)?.design ?? row.DesignName ?? row.NameDesign ?? row.Name;
+    const token = sourceConfigOwnerToken(designName);
+    const parts = splitDesignNameParts(designName);
+    const ownerMatch = resolveAoyiSkillOwnerBySourceToken(ownerIndex, token)
+      ?? fallbackOwnerMatchFromDesignParts(parts);
+    if (!ownerMatch) continue;
+    rules.set(buffId, stripUndefined({
+      sourceConfigId: buffId,
+      sourceConfigDesignName: designName,
+      sourceConfigOwnerToken: token,
+      ownerSkillId: ownerMatch.owner.record.sourceId,
+      ownerSkillEffectId: ownerMatch.owner.record.skillEffectId,
+      ownerName: localizedOwnerName(ownerMatch.owner.record, "en"),
+      ownerNames: ownerMatch.owner.record.ownerNames,
+      ownerMonsterNames: ownerMatch.owner.record.monsterNames,
+      ownerMatch,
+      matchedAlias: ownerMatch.matchedAlias,
+    }));
+  }
+  return rules;
+}
+
+function buffSourceNamesFromSourceConfigOwner(row, sourceConfigOwnerRules) {
+  const buffId = toNumber(row.Id);
+  if (buffId === null) return null;
+  const rule = sourceConfigOwnerRules.get(buffId - 1);
+  if (!rule?.ownerMatch) return null;
+  const baseNames = buffRowBaseNames(row);
+  return {
+    names: ownerQualifiedNames(baseNames, {
+      ...rule.ownerMatch,
+      suffix: baseNames?.design,
+    }),
+    ownerMatch: rule.ownerMatch,
+    sourceConfigRule: rule,
+  };
 }
 
 function resolveOwnerRecord(index, token) {
@@ -596,7 +923,8 @@ function buffSourceNamesFromDetail(detail, buffSourceId, ownerIndex) {
   );
   if (!isImagineBuffDetail(detail)) return baseNames;
   const designText = baseNames.design ?? detail.LinkedNames?.design ?? detail.DisplayNames?.design ?? detail.DamageNames?.design;
-  const ownerMatch = splitOwnerFromDesign(designText, ownerIndex);
+  const ownerMatch = splitOwnerFromDesign(designText, ownerIndex)
+    ?? fallbackOwnerMatchFromDesignParts(splitDesignNameParts(designText));
   return ownerQualifiedNames(baseNames, ownerMatch);
 }
 
@@ -605,12 +933,181 @@ function buffSourceNamesFromBuffRow(row, ownerIndex) {
   if (buffId === null) return null;
   const baseNames = normalizedNames(row.Names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`);
   const designText = baseNames.design ?? row.DesignName ?? row.NameDesign;
-  const ownerMatch = splitOwnerFromDesign(designText, ownerIndex);
+  const ownerMatch = splitOwnerFromDesign(designText, ownerIndex)
+    ?? fallbackOwnerMatchFromDesignParts(splitDesignNameParts(designText));
   if (!ownerMatch) return null;
   return {
     names: ownerQualifiedNames(baseNames, ownerMatch),
     ownerMatch,
   };
+}
+
+function buffRowBaseNames(row) {
+  const buffId = toNumber(row.Id);
+  return normalizedNames(row.Names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId ?? ""}`);
+}
+
+function rowText(row) {
+  return [
+    row.Name,
+    row.NameDesign,
+    row.DesignName,
+    row.IconPath,
+    ...Object.values(row.Names ?? {}),
+  ].filter(Boolean).join(" ");
+}
+
+function hasPrimaryLocalizedName(row) {
+  const names = buffRowBaseNames(row);
+  return LOCALES.some((locale) => Boolean(names?.[locale]));
+}
+
+function isBattleImagineRuntimeBuffId(buffId) {
+  return buffId >= 2110000 && buffId < 2111000;
+}
+
+function isLikelyImagineRuntimeBuffRow(row, qualified) {
+  const buffId = toNumber(row.Id);
+  if (buffId === null) return false;
+  if (qualified?.ownerMatch?.owner?.record?.source === "itemnames") {
+    if (isBattleImagineRuntimeBuffId(buffId)) return true;
+    return qualified.ownerMatch.owner.matchKind !== "contains" && hasPrimaryLocalizedName(row);
+  }
+  if (!isBattleImagineRuntimeBuffId(buffId)) return false;
+  if (!hasPrimaryLocalizedName(row)) return false;
+  const text = rowText(row);
+  if (/\b(debug|test|dummy|placeholder|ui only)\b/i.test(text)) return false;
+  if (/表现|材质|出生|隐藏|逻辑|测试|占位/.test(text)) return false;
+  const iconPath = String(row.IconPath ?? "");
+  return /\/(?:buff|debuff)\//i.test(iconPath)
+    || /(?:buff|debuff)_/i.test(iconPath)
+    || /主动|效果|自身|加|提升|降低|下降|重伤|禁止|凝滞|Specialization|Enhancement|Blood|Shield|Command|Roar|Luck|Frostforce|Stasis|Haste|Mastery|Versatility|Crit|Lucky|Surge|Enchantment/i.test(text);
+}
+
+function imagineRuntimeSourceType(row) {
+  const text = rowText(row);
+  const iconPath = String(row.IconPath ?? "");
+  if (isIcdLockoutNameText(text) || /凝滞|内置冷却|冷却限制/.test(text)) {
+    return "imagine-icd";
+  }
+  if (/\/debuff\//i.test(iconPath) || /debuff_/i.test(iconPath)) {
+    return "imagine-debuff";
+  }
+  return "imagine-buff";
+}
+
+const DESIGN_OWNER_EN_FALLBACKS = new Map([
+  ["\u5F13", "Bow"],
+  ["\u7F57\u7F57\u62C9", "Rorola"],
+  ["\u9AD8\u539F\u8725\u8734\u738B", "Highland Lizard King"],
+]);
+
+const DESIGN_SUFFIX_EN_FALLBACKS = new Map([
+  ["\u73A9\u5BB6\u8EAB\u4E0A\u76D1\u63A7", "Player Monitor"],
+  ["\u4E3B\u52A8\u8BB0\u65F6", "Active Timer"],
+  ["\u4E3B\u52A8\u8BA1\u65F6", "Active Timer"],
+  ["\u56DE\u80FD\u5929\u751FBUFF", "Energy Recovery Passive"],
+  ["\u6682\u505C\u5149\u80FD\u6D88\u8017", "Photon Energy Cost Pause"],
+]);
+
+function normalizedDesignToken(value) {
+  return String(value ?? "").replace(/\s+/g, "").trim();
+}
+
+function englishDesignOwnerFallback(ownerToken, ownerMatch) {
+  const normalized = normalizedDesignToken(ownerToken);
+  const mapped = DESIGN_OWNER_EN_FALLBACKS.get(normalized);
+  if (mapped) return mapped;
+  if (ownerMatch?.owner?.record && ownerMatch.owner.matchKind !== "contains") {
+    const ownerName = localizedOwnerName(ownerMatch.owner.record, "en");
+    if (ownerName) return ownerName;
+  }
+  return /^[\x20-\x7e]+$/.test(String(ownerToken ?? "")) ? String(ownerToken).trim() : null;
+}
+
+function englishDesignSuffixFallback(suffix) {
+  const normalized = normalizedDesignToken(suffix);
+  const mapped = DESIGN_SUFFIX_EN_FALLBACKS.get(normalized);
+  if (mapped) return mapped;
+  return /^[\x20-\x7e]+$/.test(String(suffix ?? "")) ? String(suffix).trim() : null;
+}
+
+function splitDesignNameParts(designName) {
+  const parts = String(designName ?? "")
+    .split(/\s*[-\uFF0D\u2013\u2014]\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  if (parts.length < 2) return null;
+  return {
+    ownerToken: parts[0],
+    suffix: parts.slice(1).join(" - "),
+  };
+}
+
+function fallbackOwnerMatchFromDesignParts(parts, resolvedOwnerMatch = null) {
+  if (!parts?.ownerToken) return null;
+  const ownerName = englishDesignOwnerFallback(parts.ownerToken, resolvedOwnerMatch);
+  if (!ownerName) return null;
+  const ownerNames = {
+    en: ownerName,
+    "zh-CN": parts.ownerToken,
+    "zh-TW": parts.ownerToken,
+    design: parts.ownerToken,
+  };
+  return {
+    ownerToken: parts.ownerToken,
+    suffix: parts.suffix ?? "",
+    matchKind: "design-owner-fallback",
+    matchedAlias: parts.ownerToken,
+    owner: {
+      record: {
+        source: "design-owner-fallback",
+        sourceId: `design-owner:${normalizedDesignToken(parts.ownerToken)}`,
+        priority: 50,
+        ownerNames,
+      },
+      matchKind: "design-owner-fallback",
+    },
+  };
+}
+
+function designOnlyRuntimeBuffNames(row, ownerIndex) {
+  const baseNames = buffRowBaseNames(row);
+  const designName = baseNames.design ?? row.DesignName ?? row.NameDesign;
+  const parts = splitDesignNameParts(designName);
+  if (!parts) return null;
+  const ownerMatch = splitOwnerFromDesign(designName, ownerIndex)
+    ?? fallbackOwnerMatchFromDesignParts(parts);
+  const ownerName = englishDesignOwnerFallback(parts.ownerToken, ownerMatch);
+  const suffixName = englishDesignSuffixFallback(parts.suffix);
+  if (!ownerName || !suffixName) return null;
+  const names = mergeNameMaps(baseNames, {
+    en: `${ownerName} - ${suffixName}`,
+    design: `${parts.ownerToken} - ${parts.suffix}`,
+  });
+  return { names, ownerMatch };
+}
+
+function designOnlyRuntimeSourceType(row) {
+  const text = rowText(row);
+  if (/debuff|Debuff|\u6613\u4F24|\u964D\u4F4E|\u4E0B\u964D|\u7981\u6B62|\u51CF/i.test(text)) return "runtime-debuff";
+  return "runtime-buff";
+}
+
+function findUniqueRecountNameMatch(row, recountNameIndex) {
+  const names = buffRowBaseNames(row);
+  const matches = new Map();
+  for (const [locale, name] of Object.entries(names ?? {})) {
+    if (locale === "design") continue;
+    const normalized = normalizeLabel(name);
+    if (!normalized) continue;
+    const rows = recountNameIndex.get(`${locale}|${normalized}`) ?? [];
+    for (const recountRow of rows) {
+      matches.set(String(recountRow.recountId), recountRow);
+    }
+  }
+  if (matches.size !== 1) return null;
+  return [...matches.values()][0];
 }
 
 class EffectSourceBuilder {
@@ -756,6 +1253,534 @@ function mergeRuntimeDetection(left, right) {
   return parts.length ? parts.join("-or-") : undefined;
 }
 
+function isProducedRelationshipKind(relationshipKind) {
+  const value = String(relationshipKind ?? "");
+  return value.startsWith("produces-")
+    || value === "buff-source-damage-row"
+    || value === "buff-source-recount-row"
+    || value === "direct-linked-factor-damage-row";
+}
+
+function sourceHasProducedDamageTargets(source) {
+  return (source.targets ?? []).some((target) =>
+    isProducedRelationshipKind(target.relationshipKind)
+    && (target.targetKind === "damage" || target.targetKind === "recount")
+  );
+}
+
+function sourceHasModifierTargets(source) {
+  return (source.targets ?? []).some((target) => !isProducedRelationshipKind(target.relationshipKind));
+}
+
+function sourceRelationshipKinds(source) {
+  return uniqueStrings((source.targets ?? []).map((target) => target.relationshipKind).filter(Boolean));
+}
+
+function sourceHasActivationAliasEvidence(source) {
+  return (source.evidence ?? []).some((evidence) =>
+    String(evidence?.source ?? "").includes("activation")
+    || String(evidence?.relationshipPolicy ?? "").includes("activation window")
+  );
+}
+
+function attributionPredicateTags(component) {
+  const tags = new Set(component.predicateTags ?? []);
+  if (component.targetPredicate?.monsterRankAtLeast) tags.add("target.elite-or-stronger");
+  if (component.attackerPredicate?.monsterRankAtLeast) tags.add("attacker.elite-or-stronger");
+  if (component.sourcePredicate?.actorKind) tags.add(`source.${component.sourcePredicate.actorKind}`);
+  if (component.activationPredicate?.kind) tags.add(`activation.${component.activationPredicate.kind}`);
+  if (component.direction) tags.add(`direction.${component.direction}`);
+  return [...tags].sort((left, right) => left.localeCompare(right));
+}
+
+function componentFormulaInfo(component) {
+  const info = FORMULA_COMPONENT_CLASS[component.effectClass] ?? {};
+  const predicateEvidence = [];
+  const predicateTags = attributionPredicateTags(component);
+  if (predicateTags.includes("target.elite-or-stronger")) {
+    predicateEvidence.push("target predicate evaluation, such as elite-or-stronger");
+  }
+  if (predicateTags.some((tag) => tag.startsWith("source.companion") || tag.startsWith("source.summon"))) {
+    predicateEvidence.push("source predicate evaluation, such as companion or summon");
+  }
+  if (predicateTags.some((tag) => tag.startsWith("activation."))) {
+    predicateEvidence.push("modifier windows");
+  }
+  if (component.contributionScope === "targeted") {
+    predicateEvidence.push("target uid");
+  }
+  return {
+    formulaTermIds: uniqueStrings([...(component.formulaTermIds ?? []), ...(info.formulaTermIds ?? [])]),
+    contributionGroups: uniqueStrings([...(component.contributionGroups ?? []), ...(info.contributionGroups ?? [])]),
+    requiredRuntimeEvidence: uniqueStrings([
+      ...(component.requiredRuntimeEvidence ?? []),
+      ...(info.requiredRuntimeEvidence ?? []),
+      ...predicateEvidence,
+    ]),
+    predicateTags,
+  };
+}
+
+function englishEvidenceText(source) {
+  return cleanMarkup([
+    preferredText(source.cleanDescriptions),
+    preferredText(source.descriptions),
+    source.modifierEvidence?.cleanDescription,
+    source.modifierEvidence?.resolvedDescription,
+    source.sourceName,
+    preferredName(source.sourceNames),
+  ].filter(Boolean).join(" "));
+}
+
+function allEvidenceText(source) {
+  return cleanMarkup([
+    ...Object.values(source.cleanDescriptions ?? {}),
+    ...Object.values(source.descriptions ?? {}),
+    source.modifierEvidence?.cleanDescription,
+    source.modifierEvidence?.resolvedDescription,
+    source.sourceName,
+    ...Object.values(source.sourceNames ?? {}),
+  ].filter(Boolean).join(" "));
+}
+
+function sourceHasIcdLockoutDescription(source) {
+  return hasIcdLockoutDescription(allEvidenceText(source));
+}
+
+function sourceIcdLockoutSeconds(source) {
+  const text = allEvidenceText(source);
+  return extractIcdLockoutSeconds(text);
+}
+
+function inferredComponent(key, label, effectClass, order, extra = {}) {
+  return stripUndefined({
+    componentKey: key,
+    componentOrder: order,
+    label,
+    effectClass,
+    contributionScope: extra.contributionScope ?? "global",
+    direction: extra.direction,
+    stat: extra.stat,
+    valueScope: extra.valueScope,
+    valueTexts: extra.valueTexts,
+    predicateTags: extra.predicateTags,
+    targetPredicate: extra.targetPredicate,
+    attackerPredicate: extra.attackerPredicate,
+    sourcePredicate: extra.sourcePredicate,
+    activationPredicate: extra.activationPredicate,
+    inferenceSource: "EffectSources.formulaAttributionText",
+  });
+}
+
+const CRITICAL_DAMAGE_TEXT = /\bcrit(?:ical)?\s*dmg\b|\bcritical damage\b/i;
+const CRITICAL_RATE_TEXT = /\bcrit(?:ical)?\s*(?:rate|chance)\b|\b(?:rate|chance)\s+to\s+crit(?:ical)?\b/i;
+const PARTY_SCOPE_TEXT = /\b(?:allies?|ally|party(?:\s+members?)?|team(?:mates?|\s+members?)|other players)\b/i;
+const SELF_SCOPE_TEXT = /\b(?:self|own|your|you)\b/i;
+
+function splitEffectClauses(text) {
+  return String(text || "")
+    .split(/(?:[.!?;。；]|<br\s*\/?>)+/i)
+    .map((clause) => clause.trim())
+    .filter(Boolean);
+}
+
+function uniqueValueTextsFromClauses(clauses) {
+  return uniqueStrings(clauses.flatMap((clause) => extractValueTexts(clause)));
+}
+
+function clauseIsCriticalRate(clause) {
+  return /\bcrit(?:ical)?\b/i.test(clause) && !CRITICAL_DAMAGE_TEXT.test(clause);
+}
+
+function valueScopeForClauses(componentClauses, allClauses) {
+  if (componentClauses.some((clause) => PARTY_SCOPE_TEXT.test(clause))) return "party";
+  if (componentClauses.some((clause) => SELF_SCOPE_TEXT.test(clause))) return "owner";
+  if (allClauses.some((clause) => PARTY_SCOPE_TEXT.test(clause))) return "owner";
+  return undefined;
+}
+
+function inferEffectComponentsFromSource(source) {
+  const text = englishEvidenceText(source);
+  const normalized = normalizeActivationText(text);
+  const components = [];
+  let order = 1;
+  const valueTexts = extractValueTexts(text);
+  const effectClauses = splitEffectClauses(text);
+  const targetArmorMitigationText =
+    /\b(?:armor|defen[cs]e)\s*(?:break|down|reduction|reduced|reduce|decrease|decreased|decreases|shatter|shattered|lower|lowers|lowered|-\s*\d)/i.test(text)
+    || /\b(?:break|reduce|reduces|reduced|decrease|decreases|decreased|shatter|shattered|lower|lowers|lowered)\b.{0,50}\b(?:target'?s?\s*)?(?:armor|defen[cs]e)\b/i.test(text)
+    || /\b(?:shattered armor|armor break|armor down|defen[cs]e break|defen[cs]e down)\b/i.test(text)
+    || /破甲|碎甲|护甲降低|降低.{0,12}护甲|防御降低|降低.{0,12}防御/.test(text);
+  const targetResistanceMitigationText =
+    /\b(?:resistance|resist)\s*(?:break|down|reduction|reduced|reduce|decrease|decreased|decreases|lower|lowers|lowered|-\s*\d)/i.test(text)
+    || /\b(?:break|reduce|reduces|reduced|decrease|decreases|decreased|lower|lowers|lowered)\b.{0,50}\b(?:target'?s?\s*)?(?:resistance|resist)\b/i.test(text)
+    || /\b(?:resistance break|resistance down|resist break|resist down)\b/i.test(text)
+    || /抗性降低|降低.{0,12}抗性/.test(text);
+  const armorScalingDamageText =
+    /\b(?:percentage|%)\s+of\s+(?:your\s+)?(?:armor|defen[cs]e)\b/i.test(text)
+    || /\b(?:based on|scales? with|equal to)\b.{0,50}\b(?:your\s+)?(?:armor|defen[cs]e)\b/i.test(text);
+  const superArmorDamageText =
+    /\bsuper armor\b.{0,24}\b(?:dmg|damage)\b/i.test(text)
+    || /\b(?:dmg|damage)\b.{0,24}\bsuper armor\b/i.test(text);
+
+  const add = (key, label, effectClass, extra = {}) => {
+    if (components.some((component) => component.componentKey === key)) return;
+    components.push(inferredComponent(key, label, effectClass, order++, {
+      valueTexts,
+      ...extra,
+    }));
+  };
+
+  const targetPredicate = {};
+  const predicateTags = [];
+  if (/\b(elite|elites|boss|stronger enemies|stronger enemy)\b/i.test(text)) {
+    targetPredicate.monsterRankAtLeast = "elite";
+    predicateTags.push("target.elite-or-stronger");
+  }
+  if (/\b(marked|mark|target's location|target location|vulnerable)\b/i.test(text)) {
+    predicateTags.push("target.state-or-debuff");
+  }
+  const sourcePredicate = {};
+  if (/\b(companion|companions|summon|summons|summoned|pet|beast|falcon|phantom)\b/i.test(text)) {
+    sourcePredicate.actorKind = "companion-or-summon";
+    predicateTags.push("source.companion-or-summon");
+  }
+  const activationPredicate = {};
+  if (
+    /\b(while|during|throughout|duration|for \d+(?:\.\d+)?s|lasting \d+(?:\.\d+)?s|focus is active|when .+ active)\b/i.test(text)
+    || String(source.runtimeDetection ?? "").includes("active-buff")
+  ) {
+    activationPredicate.kind = "active-modifier-window";
+    predicateTags.push("activation.active-modifier-window");
+  }
+
+  if (sourceHasIcdLockoutDescription(source)) {
+    const lockoutSeconds = sourceIcdLockoutSeconds(source);
+    add("icd-lockout", "ICD / Lockout", "cooldown-or-resource", {
+      direction: "timing",
+      predicateTags: uniqueStrings([...predicateTags, "runtime.icd-lockout"]),
+      activationPredicate,
+      valueTexts: lockoutSeconds ? [`${lockoutSeconds}s lockout`] : valueTexts,
+    });
+  }
+
+  const criticalDamageClauses = effectClauses.filter((clause) => CRITICAL_DAMAGE_TEXT.test(clause));
+  const criticalRateClauses = effectClauses.filter((clause) => CRITICAL_RATE_TEXT.test(clause) || clauseIsCriticalRate(clause));
+  const criticalDamageText = criticalDamageClauses.length > 0 || CRITICAL_DAMAGE_TEXT.test(text);
+  const criticalRateText = criticalRateClauses.length > 0 || (/\bcrit(?:ical)?\b/i.test(text) && !CRITICAL_DAMAGE_TEXT.test(text));
+
+  if (criticalDamageText) {
+    add("critical-damage", "Crit DMG", "critical-damage-stat", {
+      direction: "stat",
+    stat: "Crit DMG",
+      valueTexts: uniqueValueTextsFromClauses(criticalDamageClauses).length
+        ? uniqueValueTextsFromClauses(criticalDamageClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(criticalDamageClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      sourcePredicate,
+      activationPredicate,
+    });
+  }
+  if (criticalRateText) {
+    add("critical-rate", "Crit", "critical-stat", {
+      direction: "stat",
+      stat: "Crit",
+      valueTexts: uniqueValueTextsFromClauses(criticalRateClauses).length
+        ? uniqueValueTextsFromClauses(criticalRateClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(criticalRateClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      sourcePredicate,
+      activationPredicate,
+    });
+  }
+  if (/\bhaste\b|\battack\s*spd\b|\battack speed\b|\banimation speed\b/i.test(text)) {
+    add("haste-or-attack-speed", "Haste / Attack Speed", "hit-timing", {
+      direction: "timing",
+      stat: "Haste",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (/\bcd\b|\bcooldown\b|\bresource\b|\benergy\b/i.test(text)) {
+    add("cooldown-or-resource", "Cooldown / Resource", "cooldown-or-resource", {
+      direction: "timing",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (/\bmatk\b|\bmagic attack\b/i.test(text)) {
+    add("matk", "MATK", "offense-stat", {
+      direction: "stat",
+      stat: "MATK",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (/\batk\b|\battack\b/i.test(text) && !/\battack speed\b|\battack spd\b|\battack dmg\b/i.test(text)) {
+    add("atk", "ATK", "offense-stat", {
+      direction: "stat",
+      stat: "ATK",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (/\bversatility\b/i.test(text)) {
+    add("versatility", "Versatility", "versatility-stat", {
+      direction: "stat",
+      stat: "Versatility",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (/\b(light|fire|ice|thunder|dark|elemental)\b.*\b(dmg|damage|strength)\b|\b(dmg|damage)\b.*\b(light|fire|ice|thunder|dark|elemental)\b/i.test(text)) {
+    add("elemental-damage", "Elemental DMG", "elemental-damage", {
+      direction: "damage-dealt",
+      predicateTags,
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (targetResistanceMitigationText) {
+    add("target-resistance-mitigation", "Target Resistance", "target-mitigation", {
+      direction: "target-mitigation",
+      contributionScope: "targeted",
+      predicateTags: uniqueStrings([...predicateTags, "target.resistance"]),
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (targetArmorMitigationText) {
+    add("target-armor-mitigation", "Target Armor / Defense", "target-armor-mitigation", {
+      direction: "target-mitigation",
+      contributionScope: "targeted",
+      predicateTags: uniqueStrings([...predicateTags, "target.armor-or-defense"]),
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (armorScalingDamageText) {
+    add("armor-scaling-damage", "Armor / Defense Scaling Damage", "armor-scaling-damage", {
+      direction: "damage-dealt",
+      contributionScope: "produced-damage-row",
+      predicateTags: uniqueStrings([...predicateTags, "source.armor-or-defense-scaling"]),
+      sourcePredicate,
+      activationPredicate,
+    });
+  }
+  if (superArmorDamageText) {
+    add("super-armor-damage", "Super Armor Damage", "proc-damage", {
+      direction: "damage-dealt",
+      contributionScope: "produced-damage-row",
+      predicateTags: uniqueStrings([...predicateTags, "target.super-armor"]),
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (/\b(lifesteal|life steal|healing|heals?|hp recovery|recover(?:s|ed)? hp|restore(?:s|d)? hp)\b/i.test(text)) {
+    add("healing-or-lifesteal", "Healing / Lifesteal", "healing-or-lifesteal", {
+      direction: "healing",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (!superArmorDamageText && /\bshield|barrier|super armor\b/i.test(text)) {
+    add("shield-or-barrier", "Shield / Barrier", "shield-or-barrier", {
+      direction: "defense",
+      predicateTags,
+      activationPredicate,
+    });
+  }
+  if (
+    !targetArmorMitigationText
+    && !targetResistanceMitigationText
+    && !armorScalingDamageText
+    && /\b(damage taken|dmg taken|damage reduction|dmg reduction|reduction|armor|defen[cs]e|resistance|resist)\b/i.test(text)
+  ) {
+    add("damage-reduction-or-defense", "Damage Reduction / Defense", "damage-reduction", {
+      direction: "damage-taken",
+      predicateTags,
+      attackerPredicate: targetPredicate,
+      activationPredicate,
+    });
+  }
+
+  const damageModifierClauses = effectClauses.filter((clause) =>
+    !CRITICAL_DAMAGE_TEXT.test(clause)
+    && !clauseIsCriticalRate(clause)
+    && /\b(more dmg|more damage|damage dealt|dmg dealt|skill damage|dmg to|damage to|boosting .*damage|increases? .*dmg|increases? .*damage|deal .*more dmg|deal .*more damage)\b/i.test(clause)
+  );
+  const damageModifierText =
+    !armorScalingDamageText
+    && !superArmorDamageText
+    && damageModifierClauses.length > 0;
+  const producedDamageText = /\b(summons?|creates?|fires?|launches?|dealing|deals?)\b.*\b(dmg|damage)\b/i.test(text)
+    && !damageModifierText;
+  if (damageModifierText) {
+    add("generic-damage", "Generic DMG", "damage-modifier", {
+      direction: "damage-dealt",
+      contributionScope: Object.keys(targetPredicate).length ? "targeted" : "global",
+      valueTexts: uniqueValueTextsFromClauses(damageModifierClauses).length
+        ? uniqueValueTextsFromClauses(damageModifierClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(damageModifierClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      sourcePredicate,
+      activationPredicate,
+    });
+  } else if (producedDamageText) {
+    add("produced-damage", "Produced Damage", "proc-damage", {
+      direction: "damage-dealt",
+      contributionScope: "produced-damage-row",
+      predicateTags,
+      targetPredicate,
+      sourcePredicate,
+      activationPredicate,
+    });
+  }
+
+  if (
+    components.length === 0
+    && sourceHasProducedDamageTargets(source)
+    && !sourceHasModifierTargets(source)
+    && !sourceHasActivationAliasEvidence(source)
+  ) {
+    add("produced-damage", "Produced Damage", "proc-damage", {
+      direction: "damage-dealt",
+      contributionScope: "produced-damage-row",
+      predicateTags: ["relationship.produced-damage-row"],
+    });
+  }
+
+  return mergeEffectComponents([], components);
+}
+
+function normalizeComponentForAttribution(component) {
+  const info = componentFormulaInfo(component);
+  return stripUndefined({
+    componentKey: component.componentKey,
+    label: component.label,
+    effectClass: component.effectClass,
+    contributionScope: component.contributionScope,
+    direction: component.direction,
+    stat: component.stat,
+    valueScope: component.valueScope,
+    formulaTermIds: info.formulaTermIds,
+    contributionGroups: info.contributionGroups,
+    predicateTags: info.predicateTags,
+    requiredRuntimeEvidence: info.requiredRuntimeEvidence,
+    valueTexts: component.valueTexts,
+    targetPredicate: component.targetPredicate,
+    attackerPredicate: component.attackerPredicate,
+    sourcePredicate: component.sourcePredicate,
+    activationPredicate: component.activationPredicate,
+    inferenceSource: component.inferenceSource,
+  });
+}
+
+function attributionStatusForSource(source, components, formulaTermIds, contributionGroups) {
+  const sourceName = preferredName(source.sourceNames, source.sourceName);
+  if (/^Unmapped Buff \d+$/i.test(sourceName)) return "needs-source-localization";
+  if (String(source.sourceType ?? "").includes("icd")) return "timing-only";
+  if (components.length === 0) {
+    return String(source.runtimeDetection ?? "").includes("active-buff")
+      ? "uptime-only"
+      : "needs-component-classification";
+  }
+  const classes = new Set(components.map((component) => component.effectClass));
+  const nonDamage = new Set(["damage-reduction", "defense-stat", "resource-stat", "healing-or-lifesteal", "shield-or-barrier"]);
+  if ([...classes].every((value) => nonDamage.has(value))) return "defensive-or-non-damage";
+  if ([...classes].every((value) => value === "proc-damage")) return "proc-damage";
+  if (formulaTermIds.length > 0) return "formula-ready-candidate";
+  if (contributionGroups.includes("hitTiming")) return "timing-only";
+  return "needs-component-classification";
+}
+
+function attributionConfidence(source, components, formulaTermIds) {
+  if (components.some((component) => component.inferenceSource === "EffectSources.formulaAttributionText")) {
+    return formulaTermIds.length > 0 ? "medium" : "low";
+  }
+  if (components.length > 0) return "high";
+  if (sourceHasProducedDamageTargets(source)) return "medium";
+  return "low";
+}
+
+function buildAttributionModel(source) {
+  const existingComponents = source.effectComponents ?? [];
+  const shouldInferComponents = existingComponents.length === 0
+    || existingComponents.every((component) => component.effectClass === "unknown-effect");
+  const hasIcdLockout = String(source.sourceType ?? "").includes("icd")
+    || sourceHasIcdLockoutDescription(source);
+  if (hasIcdLockout) {
+    source.effectTags = uniqueStrings([...(source.effectTags ?? []), "icd-lockout"]);
+    const lockoutSeconds = sourceIcdLockoutSeconds(source);
+    if (lockoutSeconds) {
+      source.icdLockoutSeconds = lockoutSeconds;
+    }
+  }
+  const components = mergeEffectComponents(
+    existingComponents,
+    shouldInferComponents ? inferEffectComponentsFromSource(source) : [],
+  );
+  source.effectComponents = components;
+
+  const attributionComponents = components
+    .map(normalizeComponentForAttribution)
+    .filter(Boolean);
+  const formulaTermIds = uniqueStrings(attributionComponents.flatMap((component) => component.formulaTermIds ?? []));
+  const contributionGroups = uniqueStrings(attributionComponents.flatMap((component) => component.contributionGroups ?? []));
+  const predicateTags = uniqueStrings(attributionComponents.flatMap((component) => component.predicateTags ?? []));
+  const requiredRuntimeEvidence = uniqueStrings(attributionComponents.flatMap((component) => component.requiredRuntimeEvidence ?? []));
+  const relationshipKinds = sourceRelationshipKinds(source);
+  const status = attributionStatusForSource(source, components, formulaTermIds, contributionGroups);
+  const notes = [
+    "Observed damage/hits are window overlap evidence, not solved net-added damage.",
+    formulaTermIds.length > 0
+      ? "Formula replay must compare the observed hit against a counterfactual hit with this source removed."
+      : "",
+    sourceHasProducedDamageTargets(source) && !sourceHasModifierTargets(source)
+      ? "Produced/proc damage rows should be attributed by their own damage rows, not treated as a parent-hit multiplier."
+      : "",
+    hasIcdLockout
+      ? "ICD/lockout rows describe timing suppression windows, not direct damage contribution."
+      : "",
+  ].filter(Boolean);
+
+  return stripUndefined({
+    schemaVersion: 1,
+    damageFormulaId: DAMAGE_FORMULA_ID,
+    status,
+    confidence: attributionConfidence(source, components, formulaTermIds),
+    formulaTermIds,
+    contributionGroups,
+    predicateTags,
+    requiredRuntimeEvidence,
+    relationshipKinds,
+    components: attributionComponents,
+    notes,
+  });
+}
+
+function addFormulaAttributionLayer(builder) {
+  for (const source of Object.values(builder.effectSourcesById)) {
+    source.attributionModel = buildAttributionModel(source);
+    builder.effectSourcesById[source.sourceId] = stripUndefined(source);
+  }
+}
+
+function countAttributionStatuses(effectSourcesById, ids) {
+  const counts = {};
+  for (const id of ids) {
+    const status = effectSourcesById[id]?.attributionModel?.status ?? "missing";
+    counts[status] = (counts[status] ?? 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => left.localeCompare(right)));
+}
+
 function addIndex(index, rawId, sourceId) {
   const id = toNumber(rawId);
   if (id === null) return;
@@ -893,6 +1918,35 @@ function applyRecountNameFallback(builder, sourceId, source) {
   return true;
 }
 
+function applyDesignOnlyBuffNameFallback(builder, sourceId, source) {
+  const buffId = toNumber(source.sourceEntityId) ?? toNumber(source.buffIds?.[0]);
+  const parts = splitDesignNameParts(source.sourceNames?.design);
+  if (buffId === null || !parts) return false;
+
+  const ownerEvidence = (source.evidence ?? []).find((item) => item?.ownerToken || item?.ownerMatchKind);
+  const ownerMatch = ownerEvidence?.ownerMatchKind
+    ? { owner: { matchKind: ownerEvidence.ownerMatchKind } }
+    : null;
+  const ownerName = englishDesignOwnerFallback(parts.ownerToken, ownerMatch);
+  const suffixName = englishDesignSuffixFallback(parts.suffix);
+  if (!ownerName || !suffixName) return false;
+
+  source.sourceNames = mergeNameMaps(source.sourceNames, {
+    en: `${ownerName} - ${suffixName}`,
+    design: `${parts.ownerToken} - ${parts.suffix}`,
+  });
+  source.sourceName = preferredName(source.sourceNames, `Buff ${buffId}`);
+  source.evidence = mergeEvidence(source.evidence, [{
+    source: "EffectSources.gen",
+    relationshipKind: "design-only-buff-source-name-fallback",
+    evidenceStatus: "owner-token-and-known-design-suffix",
+    buffSourceId: buffId,
+    designName: source.sourceNames?.design,
+  }]);
+  builder.effectSourcesById[sourceId] = stripUndefined(source);
+  return true;
+}
+
 function applyUnmappedBuffPlaceholder(builder, sourceId, source) {
   const buffId = toNumber(source.sourceEntityId) ?? toNumber(source.buffIds?.[0]);
   if (buffId === null) return false;
@@ -968,7 +2022,9 @@ function postProcessDesignOnlyBuffSources(builder) {
   for (const [sourceId, source] of Object.entries(builder.effectSourcesById)) {
     if (isDesignOnlyBuffSource(sourceId, source)) {
       summary.unresolvedDesignOnlyBuffSources += 1;
-      if (applyUnmappedBuffPlaceholder(builder, sourceId, source)) {
+      if (applyDesignOnlyBuffNameFallback(builder, sourceId, source)) {
+        summary.placeholderNamedDesignOnlyBuffSources += 1;
+      } else if (applyUnmappedBuffPlaceholder(builder, sourceId, source)) {
         summary.placeholderNamedDesignOnlyBuffSources += 1;
       }
     }
@@ -1061,20 +2117,60 @@ function addRecountTalentLinks(builder, recountRows) {
   }
 }
 
-function addImagineBuffCatalog(builder, buffRows, ownerIndex) {
+function addImagineBuffCatalog(builder, buffRows, ownerIndex, sourceConfigOwnerRules = new Map()) {
   for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
     const buffId = toNumber(row.Id);
     if (buffId === null) continue;
-    const qualified = buffSourceNamesFromBuffRow(row, ownerIndex);
-    if (!qualified) continue;
-    if (qualified.ownerMatch.owner.record.source !== "itemnames") continue;
+    const qualified = buffSourceNamesFromBuffRow(row, ownerIndex)
+      ?? buffSourceNamesFromSourceConfigOwner(row, sourceConfigOwnerRules);
+    if (!isLikelyImagineRuntimeBuffRow(row, qualified)) continue;
+    const names = qualified?.names ?? buffRowBaseNames(row);
+    const ownerMatch = qualified?.ownerMatch;
+    const sourceConfigRule = qualified?.sourceConfigRule;
     builder.upsertSource({
       sourceId: `buff-source:${buffId}`,
       sourceKind: "imagine",
-      sourceType: "imagine-buff",
+      sourceType: imagineRuntimeSourceType(row),
       sourceEntityId: buffId,
-      sourceName: preferredName(qualified.names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`),
-      sourceNames: qualified.names,
+      sourceName: preferredName(names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`),
+      sourceNames: names,
+      iconPath: row.IconPath,
+      runtimeDetection: "active-buff",
+      sourceTable: "BuffName",
+      buffIds: uniqueNumbers([buffId, sourceConfigRule?.sourceConfigId]),
+      evidence: [stripUndefined({
+        source: "BuffName",
+        buffSourceId: buffId,
+        relationshipKind: "battle-imagine-runtime-buff-row",
+        ownerNameSource: ownerMatch?.owner?.record?.source ?? "unresolved-buff-design",
+        ownerSourceId: ownerMatch?.owner?.record?.sourceId,
+        ownerMatchKind: ownerMatch?.owner?.matchKind,
+        ownerToken: ownerMatch?.ownerToken,
+        sourceConfigId: sourceConfigRule?.sourceConfigId,
+        sourceConfigDesignName: sourceConfigRule?.sourceConfigDesignName,
+        sourceConfigOwnerToken: sourceConfigRule?.sourceConfigOwnerToken,
+        ownerSkillEffectId: sourceConfigRule?.ownerSkillEffectId,
+        ownerMonsterNames: sourceConfigRule?.ownerMonsterNames,
+        designName: row.DesignName ?? row.NameDesign,
+      })],
+    });
+  }
+}
+
+function addDesignOnlyRuntimeBuffCatalog(builder, buffRows, ownerIndex) {
+  for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
+    const buffId = toNumber(row.Id);
+    if (buffId === null) continue;
+    if (sourceHasBuffIndex(builder, buffId)) continue;
+    const fallback = designOnlyRuntimeBuffNames(row, ownerIndex);
+    if (!fallback) continue;
+    builder.upsertSource({
+      sourceId: `buff-source:${buffId}`,
+      sourceKind: "runtime-buff",
+      sourceType: designOnlyRuntimeSourceType(row),
+      sourceEntityId: buffId,
+      sourceName: preferredName(fallback.names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`),
+      sourceNames: fallback.names,
       iconPath: row.IconPath,
       runtimeDetection: "active-buff",
       sourceTable: "BuffName",
@@ -1082,10 +2178,41 @@ function addImagineBuffCatalog(builder, buffRows, ownerIndex) {
       evidence: [stripUndefined({
         source: "BuffName",
         buffSourceId: buffId,
-        ownerNameSource: qualified.ownerMatch.owner.record.source,
-        ownerSourceId: qualified.ownerMatch.owner.record.sourceId,
-        ownerMatchKind: qualified.ownerMatch.owner.matchKind,
-        ownerToken: qualified.ownerMatch.ownerToken,
+        relationshipKind: "design-only-runtime-buff-row",
+        ownerNameSource: fallback.ownerMatch?.owner?.record?.source,
+        ownerSourceId: fallback.ownerMatch?.owner?.record?.sourceId,
+        ownerMatchKind: fallback.ownerMatch?.owner?.matchKind,
+        ownerToken: fallback.ownerMatch?.ownerToken,
+        designName: row.DesignName ?? row.NameDesign,
+      })],
+    });
+  }
+}
+
+function addRecountMatchedBuffCatalog(builder, buffRows) {
+  for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
+    const buffId = toNumber(row.Id);
+    if (buffId === null) continue;
+    if (sourceHasBuffIndex(builder, buffId)) continue;
+    const recountRow = findUniqueRecountNameMatch(row, builder.recountNameIndex);
+    if (!recountRow) continue;
+    builder.upsertSource({
+      sourceId: `buff-source:${buffId}`,
+      sourceKind: "active-skill",
+      sourceType: "active-skill-buff",
+      sourceEntityId: buffId,
+      sourceName: preferredName(buffRowBaseNames(row), recountRow.recountName ?? `Buff ${buffId}`),
+      sourceNames: mergeNameMaps(buffRowBaseNames(row), recountRow.recountNames),
+      iconPath: row.IconPath || recountRow.iconPath,
+      runtimeDetection: "active-buff",
+      sourceTable: "BuffName",
+      buffIds: [buffId],
+      evidence: [stripUndefined({
+        source: "BuffName.RecountTable.localizedNameMatch",
+        buffSourceId: buffId,
+        recountId: recountRow.recountId,
+        recountName: recountRow.recountName,
+        relationshipKind: "active-skill-runtime-buff-row",
         designName: row.DesignName ?? row.NameDesign,
       })],
     });
@@ -1469,6 +2596,56 @@ function addTalentProbeCatalog(builder, talentProbe) {
       }],
     });
   }
+}
+
+function applyTalentOwnershipMetadata(builder, talentOwnership) {
+  let applied = 0;
+  for (const [talentId, ownership] of Object.entries(talentOwnership?.talentsById ?? {})) {
+    const sourceId = `talent:${talentId}`;
+    const source = builder.effectSourcesById[sourceId];
+    if (!source) continue;
+    source.talentOwnership = stripUndefined({
+      classId: ownership.classId,
+      className: ownership.className,
+      classNames: ownership.classNames,
+      ownershipKind: ownership.ownershipKind,
+      ownershipStatus: ownership.ownershipStatus,
+      confidence: ownership.confidence,
+      hardFilterEligible: Boolean(ownership.hardFilterEligible),
+      specIds: ownership.specIds,
+      specNameKeys: ownership.specNameKeys,
+      specNames: ownership.specNames,
+      dpsRelevance: ownership.dpsRelevance,
+      generationSource: "TalentSpecOwnership.gen",
+      parserPolicy: {
+        selectedTalentEvidenceRequired: true,
+        safeToRejectWrongSpec:
+          ownership.ownershipKind === "spec-exclusive"
+          && ownership.ownershipStatus === "high-confidence"
+          && Boolean(ownership.hardFilterEligible),
+        keepRuntimeEvidenceForAmbiguousRows: ownership.ownershipKind !== "spec-exclusive",
+      },
+      evidence: (ownership.evidence ?? []).slice(0, 12),
+    });
+    source.evidence = mergeEvidence(source.evidence, [{
+      source: "TalentSpecOwnership",
+      ownershipKind: ownership.ownershipKind,
+      ownershipStatus: ownership.ownershipStatus,
+      confidence: ownership.confidence,
+      specIds: ownership.specIds,
+    }]);
+    builder.effectSourcesById[sourceId] = stripUndefined(source);
+    applied += 1;
+  }
+  builder.talentOwnershipSummary = stripUndefined({
+    source: talentOwnership?.summary?.source,
+    talentRows: talentOwnership?.summary?.talentRows,
+    specRows: talentOwnership?.summary?.specRows,
+    ownershipCounts: talentOwnership?.summary?.ownershipCounts,
+    hardFilterEligibleRows: talentOwnership?.summary?.hardFilterEligibleRows,
+    dpsRowsNeedingReview: talentOwnership?.summary?.dpsRowsNeedingReview,
+    appliedEffectSources: applied,
+  });
 }
 
 function addClassSpecSharedBuffAliases(builder, classSpecProbe) {
@@ -1938,16 +3115,6 @@ function normalizeLabel(value) {
     .toLowerCase();
 }
 
-function cleanMarkup(value) {
-  return String(value || "")
-    .replace(/[\u200b-\u200f\ufeff]/g, "")
-    .replace(/<br\s*\/?>/gi, " ")
-    .replace(/<[^>]*>/g, "")
-    .replace(/\{[^}]*\}/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 function uniqueRows(rows) {
   const byId = new Map();
   for (const row of rows ?? []) {
@@ -1981,26 +3148,33 @@ function main() {
   const buffs = readJson(args.buffs, []);
   const items = readJson(args.items, []);
   const monsters = readJson(args.monsters, {});
+  const aoyiSkills = readJson(args.aoyiSkills, []);
   const consumableBridge = readJson(args.consumableBridge, {});
   const talentProbe = readJson(args.talentProbe, {});
   const classSpecProbe = readJson(args.classSpecProbe, {});
+  const talentOwnership = readJson(args.talentOwnership, {});
   const seasonTalentProbe = readJson(args.seasonTalentProbe, {});
   const seasonRogueProbe = readJson(args.seasonRogueProbe, {});
   const recountRows = collectRecountRows(recount);
-  const imagineOwnerIndex = buildImagineOwnerIndex(items, monsters);
+  const imagineOwnerIndex = buildImagineOwnerIndex(items, monsters, aoyiSkills);
+  const battleImagineSourceConfigOwnerRules = buildBattleImagineSourceConfigOwnerRules(buffs, imagineOwnerIndex);
 
   const builder = new EffectSourceBuilder(recountRows);
   addPhantomFactors(builder, factorData);
   addTalentProbeCatalog(builder, talentProbe);
   addClassSpecSharedBuffAliases(builder, classSpecProbe);
   addRecountTalentLinks(builder, recountRows);
-  addImagineBuffCatalog(builder, buffs, imagineOwnerIndex);
+  addImagineBuffCatalog(builder, buffs, imagineOwnerIndex, battleImagineSourceConfigOwnerRules);
+  addRecountMatchedBuffCatalog(builder, buffs);
+  addDesignOnlyRuntimeBuffCatalog(builder, buffs, imagineOwnerIndex);
   addConsumableBuffCatalog(builder, buffs, items, consumableBridge);
   addSkillBreakdownLinks(builder, breakdown, imagineOwnerIndex);
   addClassSpecActivationAliases(builder, classSpecProbe, talentProbe);
   addSeasonTalentNodes(builder, seasonTalentProbe);
   addSeasonRogueEntries(builder, seasonRogueProbe);
   postProcessDesignOnlyBuffSources(builder);
+  applyTalentOwnershipMetadata(builder, talentOwnership);
+  addFormulaAttributionLayer(builder);
 
   const effectSourceIds = Object.keys(builder.effectSourcesById).sort((a, b) => a.localeCompare(b));
   const data = {
@@ -2013,13 +3187,17 @@ function main() {
         buffs: path.relative(repoRoot, args.buffs).replaceAll("\\", "/"),
         items: path.relative(repoRoot, args.items).replaceAll("\\", "/"),
         monsters: path.relative(repoRoot, args.monsters).replaceAll("\\", "/"),
+        aoyiSkills: path.relative(repoRoot, args.aoyiSkills).replaceAll("\\", "/"),
         consumableBridge: path.relative(repoRoot, args.consumableBridge).replaceAll("\\", "/"),
         talentProbe: path.relative(repoRoot, args.talentProbe).replaceAll("\\", "/"),
         classSpecProbe: path.relative(repoRoot, args.classSpecProbe).replaceAll("\\", "/"),
+        talentOwnership: path.relative(repoRoot, args.talentOwnership).replaceAll("\\", "/"),
         seasonTalentProbe: path.relative(repoRoot, args.seasonTalentProbe).replaceAll("\\", "/"),
         seasonRogueProbe: path.relative(repoRoot, args.seasonRogueProbe).replaceAll("\\", "/"),
       },
       battleImagineOwnerNames: imagineOwnerIndex.battleImagineRecords,
+      battleImagineSkillOwnerNames: imagineOwnerIndex.battleImagineSkillRecords,
+      battleImagineSourceConfigOwnerRules: battleImagineSourceConfigOwnerRules.size,
       monsterOwnerNameFallbacks: imagineOwnerIndex.monsterFallbackRecords,
       effectSources: effectSourceIds.length,
       consumableBuffSources: effectSourceIds.filter((id) =>
@@ -2031,14 +3209,22 @@ function main() {
         && builder.effectSourcesById[id]?.buffIds?.length,
       ).length,
       buffIds: Object.keys(builder.buffIdToEffectSourceIds).length,
+      battleImagineSourceConfigLinkedBuffs: effectSourceIds.filter((id) =>
+        (builder.effectSourcesById[id]?.evidence ?? []).some((entry) => entry?.sourceConfigId),
+      ).length,
       recountRowsWithEffectSources: Object.keys(builder.recountIdToEffectSourceIds).length,
       damageRowsWithEffectSources: Object.keys(builder.damageIdToEffectSourceIds).length,
       sourcesWithModifierEvidence: effectSourceIds.filter((id) =>
         builder.effectSourcesById[id]?.modifierEvidence,
       ).length,
+      sourcesWithAttributionModel: effectSourceIds.filter((id) =>
+        builder.effectSourcesById[id]?.attributionModel,
+      ).length,
+      attributionStatuses: countAttributionStatuses(builder.effectSourcesById, effectSourceIds),
+      talentOwnership: builder.talentOwnershipSummary,
       designOnlyBuffSourcePostProcess: builder.postProcessSummary,
       relationshipPolicy:
-        "This file is an evidence index. It exposes affected-by/produced-by relationships only; it does not calculate damage contribution unless a later source proves formula semantics and runtime selection.",
+        "This file is an evidence index. It exposes affected-by/produced-by relationships and formula-attribution candidates only. Observed damage is overlap evidence until formula replay validates source removal against captured runtime stats and predicates.",
     },
     effectSourceIds,
     effectSourcesById: Object.fromEntries(

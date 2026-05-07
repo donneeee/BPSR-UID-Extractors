@@ -1,0 +1,134 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const {
+  compactDisplayEntry,
+  prepareRecountEntry,
+  sourceRuleIdForRecountEntry,
+  stripUndefined,
+} = require("./modifier-table-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+
+function parseArgs(argv) {
+  const args = {
+    dryRun: false,
+    help: false,
+    outputDir: defaultOutputDir,
+    sourceIndexPath: "",
+    outPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--source-index" && next) {
+      args.sourceIndexPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.sourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierDisplayTable.json");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierDisplayTable.gen - export lazy modifier source names and icons keyed by source rule id.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>              Output JSON file path.");
+  console.log("  --output-dir <path>       Output directory override.");
+  console.log("  --dry-run                 Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --source-index <path>     ModifierSourceIndex.json input.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function addIndex(index, key, value) {
+  const normalized = String(key || "").trim();
+  if (!normalized) return;
+  index[normalized] ||= [];
+  if (!index[normalized].includes(value)) index[normalized].push(value);
+}
+
+function buildDisplayTable(sourceIndex) {
+  const sourcesByRuleId = {};
+  const sourceRuleIdsBySourceId = {};
+  let scannedEntries = 0;
+  let entriesWithDisplay = 0;
+
+  for (const entries of Object.values(sourceIndex.byBuffId ?? {})) {
+    for (const rawEntry of entries ?? []) {
+      scannedEntries += 1;
+      const { entry } = prepareRecountEntry(rawEntry);
+      const sourceRuleId = sourceRuleIdForRecountEntry(entry);
+      if (sourcesByRuleId[sourceRuleId]) {
+        addIndex(sourceRuleIdsBySourceId, entry.sourceId, sourceRuleId);
+        continue;
+      }
+
+      const display = compactDisplayEntry(rawEntry);
+      if (Object.keys(display).length > 1 || display.displayOwnerKind) {
+        sourcesByRuleId[sourceRuleId] = display;
+        entriesWithDisplay += 1;
+      }
+      addIndex(sourceRuleIdsBySourceId, entry.sourceId, sourceRuleId);
+    }
+  }
+
+  for (const key of Object.keys(sourceRuleIdsBySourceId)) {
+    sourceRuleIdsBySourceId[key].sort((left, right) => left.localeCompare(right));
+  }
+
+  return stripUndefined({
+    schemaVersion: 1,
+    generatedBy: "ModifierDisplayTable.gen",
+    generatedAt: new Date().toISOString(),
+    sourcesByRuleId,
+    sourceRuleIdsBySourceId,
+    stats: {
+      scannedEntries,
+      sourceRulesWithDisplay: Object.keys(sourcesByRuleId).length,
+      entriesWithDisplay,
+      sourceIds: Object.keys(sourceRuleIdsBySourceId).length,
+    },
+  });
+}
+
+const args = parseArgs(process.argv.slice(2));
+if (args.help) {
+  printHelp();
+  process.exit(0);
+}
+
+const sourceIndex = readJson(args.sourceIndexPath);
+const output = buildDisplayTable(sourceIndex);
+if (args.dryRun) {
+  console.log(`Dry run: modifier display sources ${output.stats.sourceRulesWithDisplay.toLocaleString()}`);
+  console.log(`Dry run: would write ${args.outPath}`);
+} else {
+  writeJson(args.outPath, output);
+  console.log(`Modifier display sources: ${output.stats.sourceRulesWithDisplay.toLocaleString()}`);
+  console.log(`Wrote ${args.outPath}`);
+}

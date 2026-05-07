@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  extractValueTexts,
+  preferredText,
+} = require("./effect-semantics.cjs");
 
 const repoRoot = __dirname;
 const defaultOutputDir = path.join(repoRoot, "output");
@@ -69,21 +73,6 @@ function uniqueNumbers(values) {
   return [...new Set(values.map(toNumber).filter((value) => value !== null))].sort(
     (left, right) => left - right,
   );
-}
-
-function extractValueTexts(value) {
-  return [...new Set(
-    String(value || "")
-      .match(/[+-]?\d+(?:[.,]\d+)?\s*(?:%|s|sec|seconds?)?/gi) ?? [],
-  )].map((entry) => entry.trim());
-}
-
-function preferredText(values) {
-  return values?.en
-    ?? values?.["zh-CN"]
-    ?? values?.design
-    ?? Object.values(values ?? {}).find(Boolean)
-    ?? "";
 }
 
 function buildFactorModifierEvidence(gradeRows) {
