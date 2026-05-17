@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-05-06T04:10:44.993Z",
+  "GeneratedAt": "2026-05-12T13:10:53.281Z",
   "OutputDir": "output/parser-assets",
   "StaticImagesDir": "output/parser-assets/static/images",
   "SourceIconManifest": "output/icons/IconManifest.json",
@@ -5044,7 +5044,7 @@
       "PngWidth": 38,
       "PngHeight": 52,
       "PngMode": "RGBA",
-      "PixelSha256": "3f09e2d0a931a7fe3a394ea7ae1f8453d3316c0868c985f55bb0e080ebf68b0c",
+      "PixelSha256": "fb262ef63fc1d59e36ec2c5682abea4fa1b24273a54b5087a9b753456d895eb5",
       "Address": "ui/atlas/hud/buff_abnormal_blue_board",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_abnormal_blue_board",
@@ -5426,7 +5426,7 @@
         },
         {
           "Id": "buff-source:2110100",
-          "Name": "Arcane! Infernal Thrust - Healing Prohibition"
+          "Name": "Iron Fang - Healing Prohibition"
         },
         {
           "Id": "buff-source:881076",
@@ -5676,7 +5676,7 @@
       "PngWidth": 54,
       "PngHeight": 60,
       "PngMode": "RGBA",
-      "PixelSha256": "99bfacb37103ebaf66c488d2ff2f5a63334420b57813befd10a72f68a906b259",
+      "PixelSha256": "31d3f948d097982d58810e168881301456aaf35bb6a89fa58a17e9037baf13e4",
       "Address": "ui/atlas/hud/buff_abnormal_progress_down",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_abnormal_progress_down",
@@ -5702,7 +5702,7 @@
       "PngWidth": 54,
       "PngHeight": 60,
       "PngMode": "RGBA",
-      "PixelSha256": "03d40a6f8f54f5005d720b72e2d4e65cc7aca268a0201c1d5fc60d452ccf6c46",
+      "PixelSha256": "9c3710e399a3f07bb9d4ce7b846436a35d496ca0e4f386af816b6003e6863e4f",
       "Address": "ui/atlas/hud/buff_abnormal_progress_up",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_abnormal_progress_up",
@@ -6234,7 +6234,7 @@
         },
         {
           "Id": "buff-source:2110026",
-          "Name": "Stunt! Boarrier Rush - Wound"
+          "Name": "Boarrier Tyrant - Wound"
         }
       ]
     },
@@ -7191,7 +7191,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "d2ec7eeaa190eb325ad858c9dd849850ee4d5f0852f3d412070246f299c63f4b",
+      "PixelSha256": "efafe5bd3430eb28fdea350b137ec9889f994fae03746ced2ab49fb54531e703",
       "Address": "ui/atlas/hud/buff_blue_atk",
       "Value": "ui/atlas/hud/buff/buff_blue_atk",
       "SpriteName": "buff_blue_atk",
@@ -7342,7 +7342,7 @@
         },
         {
           "Id": "buff-source:2110024",
-          "Name": "Stunt! Super Critical - Super Critical"
+          "Name": "Muku Warrior - Super Critical"
         },
         {
           "Id": "buff-source:2110062",
@@ -7354,7 +7354,7 @@
         },
         {
           "Id": "buff-source:2110095",
-          "Name": "Stunt! Super Critical - Crit Enhancement"
+          "Name": "Muku Warrior - Crit Enhancement"
         },
         {
           "Id": "buff-source:2110132",
@@ -7380,7 +7380,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "11f64b4bf154057dc274c431988494d66bb5e0f00203d637cdc04cd4e1b64b79",
+      "PixelSha256": "6778a31939fc868b44b0b308811527452062f43f00e1337d0ba65ac2d0107d97",
       "Address": "ui/atlas/hud/buff_blue_cd",
       "Value": "ui/atlas/hud/buff/buff_blue_cd",
       "SpriteName": "buff_blue_cd",
@@ -7438,7 +7438,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "a3d34a0d5a3a6dec44003d480d81a479c8804a3a442b49ce461c86889d54e380",
+      "PixelSha256": "ea1d3b32b3abdf15d1b8d064af903e7185fb406864b870051af63bdfb6bbdc70",
       "Address": "ui/atlas/hud/buff_blue_def",
       "Value": "ui/atlas/hud/buff/buff_blue_def",
       "SpriteName": "buff_blue_def",
@@ -7659,7 +7659,7 @@
         },
         {
           "Id": "buff-source:2110068",
-          "Name": "Arcane! Shrine Field - Protective Field"
+          "Name": "Inferno Ogre - Protective Field"
         },
         {
           "Id": "buff-source:2110084",
@@ -7721,7 +7721,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "6ac22d04fb7343c8a54b52aca3b0233df0f0307bdf7954ac21395758c0507763",
+      "PixelSha256": "96d130ba45033a97234a8e4c8d7af6c619063c9a649767df4b1ef63216ef480c",
       "Address": "ui/atlas/hud/buff_blue_heal",
       "Value": "ui/atlas/hud/buff/buff_blue_heal",
       "SpriteName": "buff_blue_heal",
@@ -7871,7 +7871,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "9366252b22d5d71f810020de17645b16b97936703067dd17ac92878784fbe4d4",
+      "PixelSha256": "6860790ec4eec2217fa7515d772dcf2a7a4c59db8ac7814c2da095f7e027f047",
       "Address": "ui/atlas/hud/buff_blue_hp",
       "Value": "ui/atlas/hud/buff/buff_blue_hp",
       "SpriteName": "buff_blue_hp",
@@ -8063,7 +8063,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "47675dd49d2444a32c54f625aa9aaae0dc3b26432c8505658c8872c353dac54a",
+      "PixelSha256": "649ce8ed96eba86b8f90c040f1055053f6784c8288f1cd2ebe5d8bd749e624c4",
       "Address": "ui/atlas/hud/buff_blue_lucky",
       "Value": "ui/atlas/hud/buff/buff_blue_lucky",
       "SpriteName": "buff_blue_lucky",
@@ -8074,6 +8074,8 @@
       "SourceGroups": [
         "BuffName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
@@ -8081,6 +8083,8 @@
       "SourceFiles": [
         "BuffName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
@@ -8088,6 +8092,8 @@
       "SourceAssetIds": [
         "BuffName|Sprite|2990205475|buff_blue_lucky|BuffName/buff_blue_lucky.png",
         "EffectSources|Sprite|2990205475|buff_blue_lucky|EffectSources/buff_blue_lucky.png",
+        "LuckyStrikeRuntime|Sprite|2990205475|buff_blue_lucky|LuckyStrikeRuntime/buff_blue_lucky.png",
+        "LuckyStrikeTable|Sprite|2990205475|buff_blue_lucky|LuckyStrikeTable/buff_blue_lucky.png",
         "ModifierClassificationTable|Sprite|2990205475|buff_blue_lucky|ModifierClassificationTable/buff_blue_lucky.png",
         "ModifierDisplayTable|Sprite|2990205475|buff_blue_lucky|ModifierDisplayTable/buff_blue_lucky.png",
         "ModifierSourceIndex|Sprite|2990205475|buff_blue_lucky|ModifierSourceIndex/buff_blue_lucky.png"
@@ -8129,7 +8135,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "88d18f25622e24459f407bb72b0aad636ec4eef0dc322cf23fac0fb917158524",
+      "PixelSha256": "069e93c93eecfda58c6733c009ba44a1190c3b665c5f61328481b57dbb8b4590",
       "Address": "ui/atlas/hud/buff_blue_movespeed",
       "Value": "ui/atlas/hud/buff/buff_blue_movespeed",
       "SpriteName": "buff_blue_movespeed",
@@ -8237,7 +8243,7 @@
         },
         {
           "Id": "buff-source:2110103",
-          "Name": "Arcane! Azure Gale - Azure Gale"
+          "Name": "Celestial Flier - Azure Gale"
         },
         {
           "Id": "buff-source:960404",
@@ -8259,7 +8265,7 @@
       "PngWidth": 384,
       "PngHeight": 38,
       "PngMode": "RGBA",
-      "PixelSha256": "a851ccee47b178a4942c3af1d02221aaa9bb22875f8e6380ad4de32902164f8e",
+      "PixelSha256": "bf4291dc4282a1e0dcc79b69e2a8447c7e184fe73698a6e91a01951dbf4bdc74",
       "Address": "ui/atlas/hud/buff_deduction_bg",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_deduction_bg",
@@ -8530,6 +8536,30 @@
           "Name": "Foodie's Grace"
         },
         {
+          "Id": 2010081,
+          "Name": "Foodie's Grace"
+        },
+        {
+          "Id": 2010082,
+          "Name": "Foodie's Grace"
+        },
+        {
+          "Id": 2010083,
+          "Name": "Foodie's Grace"
+        },
+        {
+          "Id": 2010084,
+          "Name": "Foodie's Grace"
+        },
+        {
+          "Id": 2010085,
+          "Name": "Foodie's Grace"
+        },
+        {
+          "Id": 2010086,
+          "Name": "Foodie's Grace"
+        },
+        {
           "Id": 2032011,
           "Name": "Cuisine"
         },
@@ -8566,16 +8596,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032015,
+          "Name": "Cuisine - ATK Lv.5"
+        },
+        {
           "Id": 2032016,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032016,
+          "Name": "Cuisine - ATK Lv.6"
         },
         {
           "Id": 2032017,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032017,
+          "Name": "Cuisine - ATK Lv.7"
+        },
+        {
           "Id": 2032018,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032018,
+          "Name": "Cuisine - ATK Lv.8"
         },
         {
           "Id": 2032021,
@@ -8614,16 +8660,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032025,
+          "Name": "Cuisine - MATK Lv.5"
+        },
+        {
           "Id": 2032026,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032026,
+          "Name": "Cuisine - MATK Lv.6"
         },
         {
           "Id": 2032027,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032027,
+          "Name": "Cuisine - MATK Lv.7"
+        },
+        {
           "Id": 2032028,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032028,
+          "Name": "Cuisine - MATK Lv.8"
         },
         {
           "Id": 2032031,
@@ -8662,16 +8724,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032035,
+          "Name": "Cuisine - Armor Lv.5"
+        },
+        {
           "Id": 2032036,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032036,
+          "Name": "Cuisine - Armor Lv.6"
         },
         {
           "Id": 2032037,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032037,
+          "Name": "Cuisine - Armor Lv.7"
+        },
+        {
           "Id": 2032038,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032038,
+          "Name": "Cuisine - Armor Lv.8"
         },
         {
           "Id": 2032041,
@@ -8710,16 +8788,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032045,
+          "Name": "Cuisine - HP Lv.5"
+        },
+        {
           "Id": 2032046,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032046,
+          "Name": "Cuisine - HP Lv.6"
         },
         {
           "Id": 2032047,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032047,
+          "Name": "Cuisine - HP Lv.7"
+        },
+        {
           "Id": 2032048,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032048,
+          "Name": "Cuisine - HP Lv.8"
         },
         {
           "Id": 2032051,
@@ -8758,16 +8852,32 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032055,
+          "Name": "Cuisine - HP Regen Lv.5"
+        },
+        {
           "Id": 2032056,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032056,
+          "Name": "Cuisine - HP Regen Lv.6"
         },
         {
           "Id": 2032057,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032057,
+          "Name": "Cuisine - HP Regen Lv.7"
+        },
+        {
           "Id": 2032058,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032058,
+          "Name": "Cuisine - HP Regen Lv.8"
         },
         {
           "Id": 2032065,
@@ -8822,164 +8932,332 @@
           "Name": "Cuisine"
         },
         {
+          "Id": 2032111,
+          "Name": "Cuisine - ATK Lv.1"
+        },
+        {
           "Id": 2032112,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032112,
+          "Name": "Cuisine - ATK Lv.2"
         },
         {
           "Id": 2032113,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032113,
+          "Name": "Cuisine - ATK Lv.3"
+        },
+        {
           "Id": 2032114,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032114,
+          "Name": "Cuisine - ATK Lv.4"
         },
         {
           "Id": 2032115,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032115,
+          "Name": "Cuisine - ATK Lv.5"
+        },
+        {
           "Id": 2032116,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032116,
+          "Name": "Cuisine - ATK Lv.6"
         },
         {
           "Id": 2032121,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032121,
+          "Name": "Cuisine - MATK Lv.1"
+        },
+        {
           "Id": 2032122,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032122,
+          "Name": "Cuisine - MATK Lv.2"
         },
         {
           "Id": 2032123,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032123,
+          "Name": "Cuisine - MATK Lv.3"
+        },
+        {
           "Id": 2032124,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032124,
+          "Name": "Cuisine - MATK Lv.4"
         },
         {
           "Id": 2032125,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032125,
+          "Name": "Cuisine - MATK Lv.5"
+        },
+        {
           "Id": 2032126,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032126,
+          "Name": "Cuisine - MATK Lv.6"
         },
         {
           "Id": 2032131,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032131,
+          "Name": "Cuisine - Armor Lv.1"
+        },
+        {
           "Id": 2032132,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032132,
+          "Name": "Cuisine - Armor Lv.2"
         },
         {
           "Id": 2032133,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032133,
+          "Name": "Cuisine - Armor Lv.3"
+        },
+        {
           "Id": 2032134,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032134,
+          "Name": "Cuisine - Armor Lv.4"
         },
         {
           "Id": 2032135,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032135,
+          "Name": "Cuisine - Armor Lv.5"
+        },
+        {
           "Id": 2032136,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032136,
+          "Name": "Cuisine - Armor Lv.6"
         },
         {
           "Id": 2032141,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032141,
+          "Name": "Cuisine - HP Lv.1"
+        },
+        {
           "Id": 2032142,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032142,
+          "Name": "Cuisine - HP Lv.2"
         },
         {
           "Id": 2032143,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032143,
+          "Name": "Cuisine - HP Lv.3"
+        },
+        {
           "Id": 2032144,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032144,
+          "Name": "Cuisine - HP Lv.4"
         },
         {
           "Id": 2032145,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032145,
+          "Name": "Cuisine - HP Lv.5"
+        },
+        {
           "Id": 2032146,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032146,
+          "Name": "Cuisine - HP Lv.6"
         },
         {
           "Id": 2032151,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032151,
+          "Name": "Cuisine - HP Regen Lv.1"
+        },
+        {
           "Id": 2032152,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032152,
+          "Name": "Cuisine - HP Regen Lv.2"
         },
         {
           "Id": 2032153,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032153,
+          "Name": "Cuisine - HP Regen Lv.3"
+        },
+        {
           "Id": 2032154,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032154,
+          "Name": "Cuisine - HP Regen Lv.4"
         },
         {
           "Id": 2032155,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032155,
+          "Name": "Cuisine - HP Regen Lv.5"
+        },
+        {
           "Id": 2032156,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032156,
+          "Name": "Cuisine - HP Regen Lv.6"
         },
         {
           "Id": 2032161,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032161,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.1"
+        },
+        {
           "Id": 2032162,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032162,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032163,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032163,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.3"
+        },
+        {
           "Id": 2032164,
           "Name": "Cuisine"
+        },
+        {
+          "Id": 2032164,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.4"
         },
         {
           "Id": 2032165,
           "Name": "Cuisine"
         },
         {
+          "Id": 2032165,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.5"
+        },
+        {
           "Id": 2032166,
-          "Name": "Cuisine"
+          "Name": "Cuisine - ATK + DMG to Elites Lv.6"
         },
         {
           "Id": 2032171,
-          "Name": "Cuisine"
+          "Name": "Cuisine - MATK + DMG to Elites Lv.1"
         },
         {
           "Id": 2032172,
-          "Name": "Cuisine"
+          "Name": "Cuisine - MATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032173,
-          "Name": "Cuisine"
+          "Name": "Cuisine - MATK + DMG to Elites Lv.3"
         },
         {
           "Id": 2032174,
-          "Name": "Cuisine"
+          "Name": "Cuisine - MATK + DMG to Elites Lv.4"
         },
         {
           "Id": 2032175,
-          "Name": "Cuisine"
+          "Name": "Cuisine - MATK + DMG to Elites Lv.5"
+        },
+        {
+          "Id": 2032176,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.6"
+        },
+        {
+          "Id": 2032181,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.1"
+        },
+        {
+          "Id": 2032182,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
+        },
+        {
+          "Id": 2032183,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.3"
+        },
+        {
+          "Id": 2032184,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.4"
+        },
+        {
+          "Id": 2032185,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.5"
+        },
+        {
+          "Id": 2032186,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.6"
         },
         {
           "Id": 700083,
@@ -9385,7 +9663,7 @@
       "PngWidth": 382,
       "PngHeight": 38,
       "PngMode": "RGBA",
-      "PixelSha256": "e11b85b2aff6dd777b3a15d07465eae4886e7ac0e44271fad1f4835e6a1a9676",
+      "PixelSha256": "4e5e8e977d263ddf059df8764d7fc39aeee483e153363603070d8a2a76519f63",
       "Address": "ui/atlas/hud/buff_gain_bg",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_gain_bg",
@@ -11169,7 +11447,7 @@
         },
         {
           "Id": "buff-source:2110129",
-          "Name": "Stunt! Twin Fangs - Haste Specialization"
+          "Name": "Emerald Caprahorn - Haste Specialization"
         }
       ]
     },
@@ -13092,7 +13370,7 @@
         },
         {
           "Id": "buff-source:2110121",
-          "Name": "Arcane! Phantom Ambush - Phantom Rally"
+          "Name": "Crimson Foxen - Phantom Rally"
         }
       ]
     },
@@ -13689,6 +13967,8 @@
       "SourceGroups": [
         "BuffName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
@@ -13696,6 +13976,8 @@
       "SourceFiles": [
         "BuffName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
@@ -13703,6 +13985,8 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon18|BuffName/buff_icon18.png",
         "EffectSources|Sprite|1447258277|buff_icon18|EffectSources/buff_icon18.png",
+        "LuckyStrikeRuntime|Sprite|1447258277|buff_icon18|LuckyStrikeRuntime/buff_icon18.png",
+        "LuckyStrikeTable|Sprite|1447258277|buff_icon18|LuckyStrikeTable/buff_icon18.png",
         "ModifierClassificationTable|Sprite|1447258277|buff_icon18|ModifierClassificationTable/buff_icon18.png",
         "ModifierDisplayTable|Sprite|1447258277|buff_icon18|ModifierDisplayTable/buff_icon18.png",
         "ModifierSourceIndex|Sprite|1447258277|buff_icon18|ModifierSourceIndex/buff_icon18.png"
@@ -14194,7 +14478,7 @@
         },
         {
           "Id": "buff-source:2110107",
-          "Name": "Stunt! Boarrier Rush - Enhanced Special Attack"
+          "Name": "Boarrier Tyrant - Enhanced Special Attack"
         }
       ]
     },
@@ -14727,6 +15011,8 @@
       "SourceGroups": [
         "BuffName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
@@ -14734,6 +15020,8 @@
       "SourceFiles": [
         "BuffName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
@@ -14741,6 +15029,8 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|buff_icon47|BuffName/buff_icon47.png",
         "EffectSources|Sprite|1447258277|buff_icon47|EffectSources/buff_icon47.png",
+        "LuckyStrikeRuntime|Sprite|1447258277|buff_icon47|LuckyStrikeRuntime/buff_icon47.png",
+        "LuckyStrikeTable|Sprite|1447258277|buff_icon47|LuckyStrikeTable/buff_icon47.png",
         "ModifierClassificationTable|Sprite|1447258277|buff_icon47|ModifierClassificationTable/buff_icon47.png",
         "ModifierDisplayTable|Sprite|1447258277|buff_icon47|ModifierDisplayTable/buff_icon47.png",
         "ModifierSourceIndex|Sprite|1447258277|buff_icon47|ModifierSourceIndex/buff_icon47.png"
@@ -14976,7 +15266,7 @@
         },
         {
           "Id": "buff-source:2110117",
-          "Name": "Arcane! Guardian's Boundary - Caprahorn Shield"
+          "Name": "Fafala - Caprahorn Shield"
         }
       ]
     },
@@ -15497,7 +15787,7 @@
         },
         {
           "Id": "buff-source:2110114",
-          "Name": "Arcane! Illusion Resonance - Dorothy Aid"
+          "Name": "Dorothy Aid"
         }
       ]
     },
@@ -16731,7 +17021,7 @@
       "PngWidth": 375,
       "PngHeight": 38,
       "PngMode": "RGBA",
-      "PixelSha256": "fd2c5522b9699d49d06e10cceaa89c0054b013146ac3a0d2045c2d1911249619",
+      "PixelSha256": "3ad93ad06af84dcf30954aabe8096136d447bf9d2f40162478c484593aa19fbe",
       "Address": "ui/atlas/hud/buff_normal_bg",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_normal_bg",
@@ -16857,7 +17147,7 @@
         },
         {
           "Id": "buff-source:2110065",
-          "Name": "Arcane! Blazing Axe - Fiery Battle Will"
+          "Name": "Brigand Leader - Fiery Battle Will"
         },
         {
           "Id": "buff-source:43201",
@@ -17267,7 +17557,7 @@
         },
         {
           "Id": "buff-source:2110042",
-          "Name": "Arcane! Phantom Ambush - Haste"
+          "Name": "Crimson Foxen - Haste"
         }
       ]
     },
@@ -17686,7 +17976,7 @@
         },
         {
           "Id": "buff-source:2110118",
-          "Name": "Arcane! Guardian's Boundary - Edge of Defense"
+          "Name": "Fafala - Edge of Defense"
         }
       ]
     },
@@ -17704,7 +17994,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "1dbfa13f85efe0551cdf005ee880179c214afc00db771ca5d85569254dc3e3ad",
+      "PixelSha256": "56ce0f9f1e3c1ee4ac8395c79eb7d240db8f9d6551a0376875bde53c361c94d2",
       "Address": "ui/atlas/hud/buff_passive_icon_general_sup_inspireex",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_passive_icon_general_sup_inspireex",
@@ -17890,6 +18180,8 @@
         "BuffName",
         "DamageAttrIdName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -17900,6 +18192,8 @@
         "BuffName.json",
         "DamageAttrIdName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -17910,6 +18204,8 @@
         "BuffName|Sprite|1447258277|buff_passive_icon_sup_heal02|BuffName/buff_passive_icon_sup_heal02.png",
         "DamageAttrIdName|Sprite|1447258277|buff_passive_icon_sup_heal02|DamageAttrIdName/buff_passive_icon_sup_heal02.png",
         "EffectSources|Sprite|1447258277|buff_passive_icon_sup_heal02|EffectSources/buff_passive_icon_sup_heal02.png",
+        "LuckyStrikeRuntime|Sprite|1447258277|buff_passive_icon_sup_heal02|LuckyStrikeRuntime/buff_passive_icon_sup_heal02.png",
+        "LuckyStrikeTable|Sprite|1447258277|buff_passive_icon_sup_heal02|LuckyStrikeTable/buff_passive_icon_sup_heal02.png",
         "ModifierClassificationTable|Sprite|1447258277|buff_passive_icon_sup_heal02|ModifierClassificationTable/buff_passive_icon_sup_heal02.png",
         "ModifierDisplayTable|Sprite|1447258277|buff_passive_icon_sup_heal02|ModifierDisplayTable/buff_passive_icon_sup_heal02.png",
         "ModifierSourceIndex|Sprite|1447258277|buff_passive_icon_sup_heal02|ModifierSourceIndex/buff_passive_icon_sup_heal02.png",
@@ -18125,7 +18421,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "b8972b64c15be5ffb47fcd964e61bc75f3ce179f812183e21cd5365b5cd5e832",
+      "PixelSha256": "26a83a946818f42b8481b1a959348cb19907083697de6bf3947474b2f5e91e7f",
       "Address": "ui/atlas/hud/buff_red_atk",
       "Value": "ui/atlas/hud/debuff/buff_red_atk",
       "SpriteName": "buff_red_atk",
@@ -18271,7 +18567,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "684f879050568a0da9f39b88507fc5918460986ee5071ecc460d8c49af8d4749",
+      "PixelSha256": "8477e9680121f715d5e4ad42a6d437243b42d4ac0436cd7abde0d503bac3be76",
       "Address": "ui/atlas/hud/buff_red_cd",
       "Value": "ui/atlas/hud/debuff/buff_red_cd",
       "SpriteName": "buff_red_cd",
@@ -18289,6 +18585,10 @@
         "BuffName|Sprite|2990205475|buff_red_cd|BuffName/buff_red_cd.png"
       ],
       "Rows": [
+        {
+          "Id": 681702,
+          "Name": "Interdimensional Punishment Registration Cooldown"
+        },
         {
           "Id": 882314,
           "Name": "Spacetime Freeze"
@@ -18309,7 +18609,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "0334368dcfac45c5d50cdeeed955553cb1258a2b2ce36efc89d72040875dc719",
+      "PixelSha256": "70821f6d9c0a63265f4af18b1867ede8200f81d5d0e3f44e77374c2ceee7801a",
       "Address": "ui/atlas/hud/buff_red_def",
       "Value": "ui/atlas/hud/debuff/buff_red_def",
       "SpriteName": "buff_red_def",
@@ -18474,7 +18774,7 @@
         },
         {
           "Id": "buff-source:2110111",
-          "Name": "Arcane! Divine Reliance - Enchantment"
+          "Name": "Rorola - Enchantment"
         },
         {
           "Id": "buff-source:700086",
@@ -18500,7 +18800,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "9ebd09410e270f660cc8be2122463d3d56b62671e999ff0a4a52e1f3407e1e03",
+      "PixelSha256": "5146fbc165bf3567c0960ede840877ea04a88a5c7c3a41433b0c78f7b321414e",
       "Address": "ui/atlas/hud/buff_red_heal",
       "Value": "ui/atlas/hud/debuff/buff_red_heal",
       "SpriteName": "buff_red_heal",
@@ -18538,7 +18838,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "0d59df8dc1c52a29a67e87ce770438ae07e26846e6d6bfd407080691c323cb27",
+      "PixelSha256": "5a1446838e876c3211fe0cceca9c3f2468232d6bf58316df171baf4a3b1c502f",
       "Address": "ui/atlas/hud/buff_red_hp",
       "Value": "ui/atlas/hud/debuff/buff_red_hp",
       "SpriteName": "buff_red_hp",
@@ -18741,7 +19041,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "886fd11e7a401a625ac00ae4e7474fd88e3a5aca39ee79cd04dcb57ca43a013a",
+      "PixelSha256": "94e078673bf99b9ea71038909bb92cbb3731844fb66ec3844bdd963e79f0c44d",
       "Address": "ui/atlas/hud/buff_red_lucky",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_red_lucky",
@@ -18767,7 +19067,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "4fe7e86d66fc3e0c1e8855e19840067245156ac6601f265474cd22154760ed35",
+      "PixelSha256": "880ba4de971c05a60cfe45252f73ded19803b4133d545548aa143d4d78959796",
       "Address": "ui/atlas/hud/buff_red_movespeed",
       "Value": "ui/atlas/hud/debuff/buff_red_movespeed",
       "SpriteName": "buff_red_movespeed",
@@ -18829,6 +19129,8 @@
         "BuffName",
         "DamageAttrIdName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -18839,6 +19141,8 @@
         "BuffName.json",
         "DamageAttrIdName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -18849,6 +19153,8 @@
         "BuffName|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|BuffName/buff_talent_passive_icon_dps_luckyconversion.png",
         "DamageAttrIdName|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|DamageAttrIdName/buff_talent_passive_icon_dps_luckyconversion.png",
         "EffectSources|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|EffectSources/buff_talent_passive_icon_dps_luckyconversion.png",
+        "LuckyStrikeRuntime|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|LuckyStrikeRuntime/buff_talent_passive_icon_dps_luckyconversion.png",
+        "LuckyStrikeTable|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|LuckyStrikeTable/buff_talent_passive_icon_dps_luckyconversion.png",
         "ModifierClassificationTable|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|ModifierClassificationTable/buff_talent_passive_icon_dps_luckyconversion.png",
         "ModifierDisplayTable|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|ModifierDisplayTable/buff_talent_passive_icon_dps_luckyconversion.png",
         "ModifierSourceIndex|Sprite|1447258277|buff_talent_passive_icon_dps_luckyconversion|ModifierSourceIndex/buff_talent_passive_icon_dps_luckyconversion.png",
@@ -19730,6 +20036,7 @@
         "EffectSources",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
+        "ModifierObservedUidBridge",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
@@ -19737,6 +20044,7 @@
         "EffectSources.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
+        "ModifierObservedUidBridge.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
@@ -19744,6 +20052,7 @@
         "EffectSources|Sprite|1447258277|buff_talent_skill_300001|EffectSources/buff_talent_skill_300001.png",
         "ModifierClassificationTable|Sprite|1447258277|buff_talent_skill_300001|ModifierClassificationTable/buff_talent_skill_300001.png",
         "ModifierDisplayTable|Sprite|1447258277|buff_talent_skill_300001|ModifierDisplayTable/buff_talent_skill_300001.png",
+        "ModifierObservedUidBridge|Sprite|1447258277|buff_talent_skill_300001|ModifierObservedUidBridge/buff_talent_skill_300001.png",
         "ModifierSourceIndex|Sprite|1447258277|buff_talent_skill_300001|ModifierSourceIndex/buff_talent_skill_300001.png"
       ],
       "Rows": [
@@ -19798,6 +20107,10 @@
         {
           "Id": "buff-source:2110128",
           "Name": "Foxen - Mastery Specialization"
+        },
+        {
+          "Id": "observed-buff:683115",
+          "Name": "Power of Unity"
         }
       ]
     },
@@ -19895,7 +20208,7 @@
         },
         {
           "Id": "buff-source:2110101",
-          "Name": "Stunt! Transform into Bee - Void Bzzar"
+          "Name": "Void Bzzar"
         },
         {
           "Id": "buff-source:55223",
@@ -20177,7 +20490,7 @@
         },
         {
           "Id": "buff-source:2110053",
-          "Name": "Arcane! Pulse Benediction - Mastery Increase"
+          "Name": "Muku King - Mastery Increase"
         }
       ]
     },
@@ -20547,7 +20860,7 @@
         },
         {
           "Id": "buff-source:2110034",
-          "Name": "Arcane! Time Decree - Lower CD"
+          "Name": "Tina - Lower CD"
         },
         {
           "Id": "buff-source:21412",
@@ -20573,7 +20886,7 @@
       "PngWidth": 50,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "2206ce2a5082a8bbcbadbce61087cd3e88febfa7037ffc4ea4ab92e2e58ba303",
+      "PixelSha256": "ca2bf80b68fd41be5f994ea813e46619452c9a3a1cfbd2d9591229dc8daf5820",
       "Address": "ui/atlas/hud/buff_time_bg",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_time_bg",
@@ -20599,7 +20912,7 @@
       "PngWidth": 26,
       "PngHeight": 24,
       "PngMode": "RGBA",
-      "PixelSha256": "4c18291d183c0a721c88f0cf0585c2196c00ee568b928facca768a5e29c9a274",
+      "PixelSha256": "2f101a4517793875077393c6c4f6a2a648503d666b90a66d61f5a853c0707939",
       "Address": "ui/atlas/hud/buff_time_bg_pc",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_time_bg_pc",
@@ -20625,7 +20938,7 @@
       "PngWidth": 272,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "9b45271ab77ac37fccd0f8a6005743bf792da0afd122b2cecc4906cf8e1092e8",
+      "PixelSha256": "ccd6fb3d49a7c219fe0f937cd3586773f5df1d1bb556504fc9ca9d758d2c8124",
       "Address": "ui/atlas/hud/buff_time_progress_down",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_time_progress_down",
@@ -20651,7 +20964,7 @@
       "PngWidth": 176,
       "PngHeight": 20,
       "PngMode": "RGBA",
-      "PixelSha256": "b6464e556778954f656bbde577c046a141a5fc83b30f7912c88fb21f5790ac56",
+      "PixelSha256": "0e3af3dc8e1ca02005065a81464a9430b24fa0dc76a8144230cb32a4aa3c7c8c",
       "Address": "ui/atlas/hud/buff_time_progress_down_pc",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_time_progress_down_pc",
@@ -20677,7 +20990,7 @@
       "PngWidth": 272,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "5c365d4fae80e378d26ed752b253d40ab19acecd831182ecb6fbad143157dcac",
+      "PixelSha256": "1b42381f0b945216d218f93321de38b91aa0932368711cb1ffc15a4ae90e6491",
       "Address": "ui/atlas/hud/buff_time_progress_up",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_time_progress_up",
@@ -20703,7 +21016,7 @@
       "PngWidth": 176,
       "PngHeight": 20,
       "PngMode": "RGBA",
-      "PixelSha256": "7e8747bdc4712e17bef8e7524ccf4766af2948cff23b7990f11fde6ec9dd4a83",
+      "PixelSha256": "7a56f750a63892a6c51842ddda01c7a9407ca1d9cfed0477141dbeb9377e74b1",
       "Address": "ui/atlas/hud/buff_time_progress_up_pc",
       "Value": "ui/atlas/hud",
       "SpriteName": "buff_time_progress_up_pc",
@@ -26161,17 +26474,27 @@
         "generated-json"
       ],
       "SourceGroups": [
-        "BuffName"
+        "BuffName",
+        "ModifierDisplayTable",
+        "ModifierObservedUidBridge"
       ],
       "SourceFiles": [
-        "BuffName.json"
+        "BuffName.json",
+        "ModifierDisplayTable.json",
+        "ModifierObservedUidBridge.json"
       ],
       "SourceAssetIds": [
-        "BuffName|Sprite|1337047534|debuff_icon_18|BuffName/debuff_icon_18.png"
+        "BuffName|Sprite|1337047534|debuff_icon_18|BuffName/debuff_icon_18.png",
+        "ModifierDisplayTable|Sprite|1337047534|debuff_icon_18|ModifierDisplayTable/debuff_icon_18.png",
+        "ModifierObservedUidBridge|Sprite|1337047534|debuff_icon_18|ModifierObservedUidBridge/debuff_icon_18.png"
       ],
       "Rows": [
         {
           "Id": 883213,
+          "Name": "Drowsiness"
+        },
+        {
+          "Id": "observed-buff:883213",
           "Name": "Drowsiness"
         }
       ]
@@ -31644,7 +31967,7 @@
       "PngWidth": 149,
       "PngHeight": 180,
       "PngMode": "RGBA",
-      "PixelSha256": "24d7ffa80fcd4314c83984fbf5886a4f3a80c7747d46faf0f848268f71d06047",
+      "PixelSha256": "daa9962029d13dcaa5c31e7f5002c5bd2dd74effa16424af5d6cdeae3d56c409",
       "Address": "ui/atlas/avatar/head_photo_iruna",
       "Value": "ui/atlas/avatar/head_photo_iruna",
       "SpriteName": "head_photo_iruna",
@@ -31685,7 +32008,7 @@
       "PngWidth": 180,
       "PngHeight": 178,
       "PngMode": "RGBA",
-      "PixelSha256": "d71a2b17a597e897c5b6fb598d1c9b58d6b9fb3ac7bdd591ee175a09ebce7573",
+      "PixelSha256": "aa2e122989fda3fffc8d7c220b55b5f8f0c888f1c4181745caf3c2da9897fbc6",
       "Address": "ui/atlas/avatar/head_photo_olvera",
       "Value": "ui/atlas/avatar/head_photo_olvera",
       "SpriteName": "head_photo_olvera",
@@ -31726,7 +32049,7 @@
       "PngWidth": 161,
       "PngHeight": 180,
       "PngMode": "RGBA",
-      "PixelSha256": "2270868459e28546a037cd0eedb1dd407798a83f9c5e826789d1ec8b604f75e2",
+      "PixelSha256": "a5176bb9dc8c70eff41dda89fb4fc766a7d91cfdfd7b4e4809da7ac65aae56b7",
       "Address": "ui/atlas/avatar/head_photo_tina",
       "Value": "ui/atlas/avatar/head_photo_tina",
       "SpriteName": "head_photo_tina",
@@ -35109,7 +35432,7 @@
       "PngWidth": 67,
       "PngHeight": 95,
       "PngMode": "RGBA",
-      "PixelSha256": "939c3255f36f4a365f62b0d918ba46d6906a80203c3f96f534457d16be464e8d",
+      "PixelSha256": "b6278db6b133dbcd011fe329a672ecb2c50fa8aef628c6c98f2234877d137689",
       "Address": "ui/atlas/hud/profession_horizontal_hud02",
       "Value": "ui/atlas/hud/profession/profession_horizontal_hud02",
       "SpriteName": "profession_horizontal_hud02",
@@ -35150,7 +35473,7 @@
       "PngWidth": 76,
       "PngHeight": 84,
       "PngMode": "RGBA",
-      "PixelSha256": "2d603a15d28266f5995d53c66b8b4d6f186ddf7bd4d89af5cac164f3f7322980",
+      "PixelSha256": "0a85facb58bdad4576d7d6b31fc8e8fcca256da494961e3427eae9f73ec39f6f",
       "Address": "ui/atlas/hud/profession_horizontal_hud03",
       "Value": "ui/atlas/hud/profession/profession_horizontal_hud03",
       "SpriteName": "profession_horizontal_hud03",
@@ -35191,7 +35514,7 @@
       "PngWidth": 84,
       "PngHeight": 76,
       "PngMode": "RGBA",
-      "PixelSha256": "a84c6349556490bf974b9b9d934450f640c6ab9ae85f230d02df569e7475aa6b",
+      "PixelSha256": "8c727b3408d41a8250a1bb3881a334f79f31653e20590ca14d0645148dbe7d7e",
       "Address": "ui/atlas/hud/profession_horizontal_hud04",
       "Value": "ui/atlas/hud/profession/profession_horizontal_hud04",
       "SpriteName": "profession_horizontal_hud04",
@@ -35232,7 +35555,7 @@
       "PngWidth": 74,
       "PngHeight": 93,
       "PngMode": "RGBA",
-      "PixelSha256": "3e9fefb8deb418dcbb54de177e118390a1d4ffe5ed0bc51b146bb2760a7ccfd0",
+      "PixelSha256": "9d370b2391553a5c2d6e93d01902b7c1c6fe871a28558f6f43bf4bd6dfb46614",
       "Address": "ui/atlas/hud/profession_horizontal_hud05",
       "Value": "ui/atlas/hud/profession/profession_horizontal_hud05",
       "SpriteName": "profession_horizontal_hud05",
@@ -35273,7 +35596,7 @@
       "PngWidth": 84,
       "PngHeight": 72,
       "PngMode": "RGBA",
-      "PixelSha256": "f681b6917c0d821c093594d3962143f2b6d3e76f132ee8bbcfb6ed6e58eef778",
+      "PixelSha256": "5eb222e9418d6968ae82dce0e295864f94d0f2d7f7bf125c4adbd0b13f6c14ad",
       "Address": "ui/atlas/hud/profession_horizontal_hud06",
       "Value": "ui/atlas/hud/profession/profession_horizontal_hud06",
       "SpriteName": "profession_horizontal_hud06",
@@ -35314,7 +35637,7 @@
       "PngWidth": 98,
       "PngHeight": 84,
       "PngMode": "RGBA",
-      "PixelSha256": "8c3dab3c6ea4765f9bee5294dd56ca988201ef0922db445e4d29c07ba753e481",
+      "PixelSha256": "a173c8e46eca42104f485676621214af3b2536b67c7f1f74079351ab9dcb2f63",
       "Address": "ui/atlas/hud/profession_horizontal_hud07",
       "Value": "ui/atlas/hud/profession/profession_horizontal_hud07",
       "SpriteName": "profession_horizontal_hud07",
@@ -51880,6 +52203,8 @@
       "SourceGroups": [
         "BuffName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
@@ -51887,6 +52212,8 @@
       "SourceFiles": [
         "BuffName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
@@ -51894,6 +52221,8 @@
       "SourceAssetIds": [
         "BuffName|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|BuffName/talent_passive_icon_general_dps_arrtuprandom.png",
         "EffectSources|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom.png",
+        "LuckyStrikeRuntime|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|LuckyStrikeRuntime/talent_passive_icon_general_dps_arrtuprandom.png",
+        "LuckyStrikeTable|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|LuckyStrikeTable/talent_passive_icon_general_dps_arrtuprandom.png",
         "ModifierClassificationTable|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|ModifierClassificationTable/talent_passive_icon_general_dps_arrtuprandom.png",
         "ModifierDisplayTable|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|ModifierDisplayTable/talent_passive_icon_general_dps_arrtuprandom.png",
         "ModifierSourceIndex|Sprite|1447258277|talent_passive_icon_general_dps_arrtuprandom|ModifierSourceIndex/talent_passive_icon_general_dps_arrtuprandom.png"
@@ -51909,7 +52238,7 @@
         },
         {
           "Id": "buff-source:2110123",
-          "Name": "Arcane! Flame Spirit's Fortune - Flame of Luck"
+          "Name": "Flamehorn - Flame of Luck"
         }
       ]
     },
@@ -52723,11 +53052,11 @@
         },
         {
           "Id": "buff-source:2110115",
-          "Name": "Arcane! Allscape Sublimation - Frostforce"
+          "Name": "Boyce - Frostforce"
         },
         {
           "Id": "buff-source:2110116",
-          "Name": "Arcane! Allscape Sublimation - Frostforce - EXT"
+          "Name": "Boyce - Frostforce - EXT"
         }
       ]
     },
@@ -55110,7 +55439,7 @@
         },
         {
           "Id": "buff-source:2110061",
-          "Name": "Arcane! Heart of Flame - Heart of Flames"
+          "Name": "Tatta - Heart of Flames"
         },
         {
           "Id": "buff-source:50049",
@@ -61676,7 +62005,7 @@
       "PngWidth": 32,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "ac7fbfa6999192770e473c9069347610d81239af02a2007731cde0d8a2628856",
+      "PixelSha256": "e8e07b20f24f3bd80323f5b5b8dae7025f94308d01d56d2ecb28437f5759c532",
       "Address": "ui/atlas/hud/hazard_sign_dark_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_dark_high",
@@ -61702,7 +62031,7 @@
       "PngWidth": 26,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "aeb6c07c2e657ef8fdd4095a413e2ac9eafe4958fb94f408ca4a5ccb03b45a63",
+      "PixelSha256": "c26e45bb70c015bfb3d6ed1b4e5079afddc964ebddc4358b908034f711f1f662",
       "Address": "ui/atlas/hud/hazard_sign_fire_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_fire_high",
@@ -61728,7 +62057,7 @@
       "PngWidth": 31,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "e2dac4e333e81ab92e5322190ef0320b30367df19d54a2fed2d3e5d32eaa9180",
+      "PixelSha256": "40042b36126d06f8316fdf5c248b657a99f37beefee7d8dca06e71b478855d65",
       "Address": "ui/atlas/hud/hazard_sign_ice_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_ice_high",
@@ -61754,7 +62083,7 @@
       "PngWidth": 31,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "b813f0ba8b90531cf3b75c983e520b98357d3e8bbde9b303e5ce8fb3d77dacde",
+      "PixelSha256": "400f021578231e73552e2bcb458807df71e4e6c60e40bfc51373cbfaa8dc0caf",
       "Address": "ui/atlas/hud/hazard_sign_light_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_light_high",
@@ -61780,7 +62109,7 @@
       "PngWidth": 32,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "cf1ad8ad0998b816b1f7a293dbf1de3f20efdaaedf7f80aff2edffb8ef20bcc2",
+      "PixelSha256": "65b61c81585cd4c14445a95cb27cf339784e1b4678a2c287dd01a06ecc358776",
       "Address": "ui/atlas/hud/hazard_sign_no_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_no_high",
@@ -61806,7 +62135,7 @@
       "PngWidth": 21,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "03fbebd99d0ca3c38aca9870c77da3493c380e08416f68d60a7f4d346f56230b",
+      "PixelSha256": "7e2ac5df5b8dd530039e4417103ee5ade8c1ec376c1c7474ad3a098b39236ec6",
       "Address": "ui/atlas/hud/hazard_sign_rock_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_rock_high",
@@ -61832,7 +62161,7 @@
       "PngWidth": 31,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "b1a5eb960493092c4176ee78162a82be975f04bae3d8ac5270cbfc2df21f90b3",
+      "PixelSha256": "860fce47ed67996093d0b32c9c4272812dcc42699a2f29acb0c1d8114c847748",
       "Address": "ui/atlas/hud/hazard_sign_sen_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_sen_high",
@@ -61858,7 +62187,7 @@
       "PngWidth": 31,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "d1bd2b44642442e4abc1baa17efdf71b05cca9b23fc5418673507a6e65c69a87",
+      "PixelSha256": "5a1969aad4d77b1ed615ca84f7dd8c626b4d099b15e8500a0472266bc99512b0",
       "Address": "ui/atlas/hud/hazard_sign_thunder_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_thunder_high",
@@ -61884,7 +62213,7 @@
       "PngWidth": 32,
       "PngHeight": 29,
       "PngMode": "RGBA",
-      "PixelSha256": "058a7437385201f98029effcd9be9647cd0691dbf216c9dddabea252892ccd48",
+      "PixelSha256": "e174bceab3dda4ab5b6662c44f266e0190844b3c0a164f6f8471a3de44fe5d3c",
       "Address": "ui/atlas/hud/hazard_sign_wind_high",
       "Value": "ui/atlas/hud",
       "SpriteName": "hazard_sign_wind_high",
@@ -72188,7 +72517,7 @@
       "Rows": [
         {
           "Id": 2350,
-          "Name": "Legendary Boarrier - Howl"
+          "Name": "Legendary Boar - Howl"
         },
         {
           "Id": "2350"
@@ -72198,7 +72527,7 @@
         },
         {
           "Id": 235001,
-          "Name": "Legendary Boarrier - Howl"
+          "Name": "Legendary Boar - Howl"
         }
       ]
     },
@@ -75415,7 +75744,7 @@
         },
         {
           "Id": "buff-source:2110066",
-          "Name": "Stunt! Earth Shield - Earth Shield"
+          "Name": "Brigand Guard Captain - Earth Shield"
         }
       ]
     },
@@ -98508,18 +98837,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|changqiang457|EffectSources/changqiang457.png",
+        "LuckyStrikeRuntime|Sprite|841625591|changqiang457|LuckyStrikeRuntime/changqiang457.png",
+        "LuckyStrikeTable|Sprite|841625591|changqiang457|LuckyStrikeTable/changqiang457.png",
         "ModifierClassificationTable|Sprite|841625591|changqiang457|ModifierClassificationTable/changqiang457.png",
         "ModifierDisplayTable|Sprite|841625591|changqiang457|ModifierDisplayTable/changqiang457.png",
         "ModifierSourceIndex|Sprite|841625591|changqiang457|ModifierSourceIndex/changqiang457.png"
@@ -98610,18 +98945,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|changqiang459|EffectSources/changqiang459.png",
+        "LuckyStrikeRuntime|Sprite|841625591|changqiang459|LuckyStrikeRuntime/changqiang459.png",
+        "LuckyStrikeTable|Sprite|841625591|changqiang459|LuckyStrikeTable/changqiang459.png",
         "ModifierClassificationTable|Sprite|841625591|changqiang459|ModifierClassificationTable/changqiang459.png",
         "ModifierDisplayTable|Sprite|841625591|changqiang459|ModifierDisplayTable/changqiang459.png",
         "ModifierSourceIndex|Sprite|841625591|changqiang459|ModifierSourceIndex/changqiang459.png"
@@ -98948,18 +99289,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|changqiang465|EffectSources/changqiang465.png",
+        "LuckyStrikeRuntime|Sprite|841625591|changqiang465|LuckyStrikeRuntime/changqiang465.png",
+        "LuckyStrikeTable|Sprite|841625591|changqiang465|LuckyStrikeTable/changqiang465.png",
         "ModifierClassificationTable|Sprite|841625591|changqiang465|ModifierClassificationTable/changqiang465.png",
         "ModifierDisplayTable|Sprite|841625591|changqiang465|ModifierDisplayTable/changqiang465.png",
         "ModifierSourceIndex|Sprite|841625591|changqiang465|ModifierSourceIndex/changqiang465.png"
@@ -99050,18 +99397,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|changqiang467|EffectSources/changqiang467.png",
+        "LuckyStrikeRuntime|Sprite|841625591|changqiang467|LuckyStrikeRuntime/changqiang467.png",
+        "LuckyStrikeTable|Sprite|841625591|changqiang467|LuckyStrikeTable/changqiang467.png",
         "ModifierClassificationTable|Sprite|841625591|changqiang467|ModifierClassificationTable/changqiang467.png",
         "ModifierDisplayTable|Sprite|841625591|changqiang467|ModifierDisplayTable/changqiang467.png",
         "ModifierSourceIndex|Sprite|841625591|changqiang467|ModifierSourceIndex/changqiang467.png"
@@ -99203,18 +99556,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|changqiang470|EffectSources/changqiang470.png",
+        "LuckyStrikeRuntime|Sprite|841625591|changqiang470|LuckyStrikeRuntime/changqiang470.png",
+        "LuckyStrikeTable|Sprite|841625591|changqiang470|LuckyStrikeTable/changqiang470.png",
         "ModifierClassificationTable|Sprite|841625591|changqiang470|ModifierClassificationTable/changqiang470.png",
         "ModifierDisplayTable|Sprite|841625591|changqiang470|ModifierDisplayTable/changqiang470.png",
         "ModifierSourceIndex|Sprite|841625591|changqiang470|ModifierSourceIndex/changqiang470.png"
@@ -99465,18 +99824,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3754306714|common_attrluck|EffectSources/common_attrluck.png",
+        "LuckyStrikeRuntime|Sprite|3754306714|common_attrluck|LuckyStrikeRuntime/common_attrluck.png",
+        "LuckyStrikeTable|Sprite|3754306714|common_attrluck|LuckyStrikeTable/common_attrluck.png",
         "ModifierClassificationTable|Sprite|3754306714|common_attrluck|ModifierClassificationTable/common_attrluck.png",
         "ModifierDisplayTable|Sprite|3754306714|common_attrluck|ModifierDisplayTable/common_attrluck.png",
         "ModifierSourceIndex|Sprite|3754306714|common_attrluck|ModifierSourceIndex/common_attrluck.png"
@@ -99681,7 +100046,7 @@
       "PngWidth": 60,
       "PngHeight": 61,
       "PngMode": "RGBA",
-      "PixelSha256": "6b593bc21ddd6d92ddeaa6bdb076c6174c5405b8b1b59b10e47b4da085196249",
+      "PixelSha256": "c983339cb9c115d7d539a21c6be8fe8652bf74e110ad81d9f0853150e39c16c7",
       "Address": "ui/atlas/hud/common_icon_equip_exchange",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_equip_exchange",
@@ -99707,7 +100072,7 @@
       "PngWidth": 60,
       "PngHeight": 61,
       "PngMode": "RGBA",
-      "PixelSha256": "79bbee6f8656d7a4281cf3250fe806ecfab1dd4bba5cfe8ed48afb5fde985b6e",
+      "PixelSha256": "48307626b36e85602a85f6d11cec9332b55ad23c7333bf04698c4218736dbf17",
       "Address": "ui/atlas/hud/common_icon_exchange",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_exchange",
@@ -99733,7 +100098,7 @@
       "PngWidth": 60,
       "PngHeight": 61,
       "PngMode": "RGBA",
-      "PixelSha256": "810b5cff7944b6d1086174915badb2ce0b4cfd874e8eafb0ac5ab6e164ddfbef",
+      "PixelSha256": "03a22516c784869e8b98e63864acd08bf0dd4181ad13c56725f9ff67dd8328df",
       "Address": "ui/atlas/hud/common_icon_fashion_exchange",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_fashion_exchange",
@@ -99759,7 +100124,7 @@
       "PngWidth": 64,
       "PngHeight": 58,
       "PngMode": "RGBA",
-      "PixelSha256": "080a18d398ee98737e5d9f7e2f5135386aaf4e6348f83f0a695e2e84e0c7aa7d",
+      "PixelSha256": "f7f17605bdfd09ca8ee0ec3a015479becd8ae0d29f7815fd6cd7ee0f3d171402",
       "Address": "ui/atlas/hud/common_icon_shop_action",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_shop_action",
@@ -99785,7 +100150,7 @@
       "PngWidth": 58,
       "PngHeight": 58,
       "PngMode": "RGBA",
-      "PixelSha256": "c94ffb76b79b8544e5b8c5875f6519c72a1051d51804a7b23853daa4207ed8ca",
+      "PixelSha256": "e3877f2f1afe2f0395b069886b48c801c210c4da676578c0540bdc035a9ee518",
       "Address": "ui/atlas/hud/common_icon_shop_equip",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_shop_equip",
@@ -99811,7 +100176,7 @@
       "PngWidth": 58,
       "PngHeight": 57,
       "PngMode": "RGBA",
-      "PixelSha256": "7f3ec438225c2ce9f7310c11863b62bc5d2a18fbad3c8b0634d1e5e261fba633",
+      "PixelSha256": "8c0d5384d19788fd7a219dbeaf9d4b841a98dda7edfa324b9f67bba6a3805500",
       "Address": "ui/atlas/hud/common_icon_shop_fashion",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_shop_fashion",
@@ -99837,7 +100202,7 @@
       "PngWidth": 57,
       "PngHeight": 58,
       "PngMode": "RGBA",
-      "PixelSha256": "fd761890a8e672bd70daf6e85ea7dc2c3a71819912985cae9a447a5bc8a2d52a",
+      "PixelSha256": "2e1f247a4a376ee2872493ced7d316b1085975ebd412a3f6f765c278fc4d93f4",
       "Address": "ui/atlas/hud/common_icon_shop_silvercoin",
       "Value": "ui/atlas/hud",
       "SpriteName": "common_icon_shop_silvercoin",
@@ -100605,18 +100970,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|fahuan536|EffectSources/fahuan536.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|fahuan536|LuckyStrikeRuntime/fahuan536.png",
+        "LuckyStrikeTable|Sprite|2173254008|fahuan536|LuckyStrikeTable/fahuan536.png",
         "ModifierClassificationTable|Sprite|2173254008|fahuan536|ModifierClassificationTable/fahuan536.png",
         "ModifierDisplayTable|Sprite|2173254008|fahuan536|ModifierDisplayTable/fahuan536.png",
         "ModifierSourceIndex|Sprite|2173254008|fahuan536|ModifierSourceIndex/fahuan536.png"
@@ -101404,18 +101775,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|fahuan553|EffectSources/fahuan553.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|fahuan553|LuckyStrikeRuntime/fahuan553.png",
+        "LuckyStrikeTable|Sprite|2173254008|fahuan553|LuckyStrikeTable/fahuan553.png",
         "ModifierClassificationTable|Sprite|2173254008|fahuan553|ModifierClassificationTable/fahuan553.png",
         "ModifierDisplayTable|Sprite|2173254008|fahuan553|ModifierDisplayTable/fahuan553.png",
         "ModifierSourceIndex|Sprite|2173254008|fahuan553|ModifierSourceIndex/fahuan553.png"
@@ -101498,18 +101875,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|fahuan555|EffectSources/fahuan555.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|fahuan555|LuckyStrikeRuntime/fahuan555.png",
+        "LuckyStrikeTable|Sprite|2173254008|fahuan555|LuckyStrikeTable/fahuan555.png",
         "ModifierClassificationTable|Sprite|2173254008|fahuan555|ModifierClassificationTable/fahuan555.png",
         "ModifierDisplayTable|Sprite|2173254008|fahuan555|ModifierDisplayTable/fahuan555.png",
         "ModifierSourceIndex|Sprite|2173254008|fahuan555|ModifierSourceIndex/fahuan555.png"
@@ -101592,18 +101975,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|fahuan557|EffectSources/fahuan557.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|fahuan557|LuckyStrikeRuntime/fahuan557.png",
+        "LuckyStrikeTable|Sprite|2173254008|fahuan557|LuckyStrikeTable/fahuan557.png",
         "ModifierClassificationTable|Sprite|2173254008|fahuan557|ModifierClassificationTable/fahuan557.png",
         "ModifierDisplayTable|Sprite|2173254008|fahuan557|ModifierDisplayTable/fahuan557.png",
         "ModifierSourceIndex|Sprite|2173254008|fahuan557|ModifierSourceIndex/fahuan557.png"
@@ -102109,18 +102498,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|fahuan568|EffectSources/fahuan568.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|fahuan568|LuckyStrikeRuntime/fahuan568.png",
+        "LuckyStrikeTable|Sprite|2173254008|fahuan568|LuckyStrikeTable/fahuan568.png",
         "ModifierClassificationTable|Sprite|2173254008|fahuan568|ModifierClassificationTable/fahuan568.png",
         "ModifierDisplayTable|Sprite|2173254008|fahuan568|ModifierDisplayTable/fahuan568.png",
         "ModifierSourceIndex|Sprite|2173254008|fahuan568|ModifierSourceIndex/fahuan568.png"
@@ -102668,18 +103063,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1308|EffectSources/gita1308.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1308|LuckyStrikeRuntime/gita1308.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1308|LuckyStrikeTable/gita1308.png",
         "ModifierClassificationTable|Sprite|623527783|gita1308|ModifierClassificationTable/gita1308.png",
         "ModifierDisplayTable|Sprite|623527783|gita1308|ModifierDisplayTable/gita1308.png",
         "ModifierSourceIndex|Sprite|623527783|gita1308|ModifierSourceIndex/gita1308.png"
@@ -102715,18 +103116,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1309|EffectSources/gita1309.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1309|LuckyStrikeRuntime/gita1309.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1309|LuckyStrikeTable/gita1309.png",
         "ModifierClassificationTable|Sprite|623527783|gita1309|ModifierClassificationTable/gita1309.png",
         "ModifierDisplayTable|Sprite|623527783|gita1309|ModifierDisplayTable/gita1309.png",
         "ModifierSourceIndex|Sprite|623527783|gita1309|ModifierSourceIndex/gita1309.png"
@@ -103068,18 +103475,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1316|EffectSources/gita1316.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1316|LuckyStrikeRuntime/gita1316.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1316|LuckyStrikeTable/gita1316.png",
         "ModifierClassificationTable|Sprite|623527783|gita1316|ModifierClassificationTable/gita1316.png",
         "ModifierDisplayTable|Sprite|623527783|gita1316|ModifierDisplayTable/gita1316.png",
         "ModifierSourceIndex|Sprite|623527783|gita1316|ModifierSourceIndex/gita1316.png"
@@ -103802,18 +104215,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1331|EffectSources/gita1331.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1331|LuckyStrikeRuntime/gita1331.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1331|LuckyStrikeTable/gita1331.png",
         "ModifierClassificationTable|Sprite|623527783|gita1331|ModifierClassificationTable/gita1331.png",
         "ModifierDisplayTable|Sprite|623527783|gita1331|ModifierDisplayTable/gita1331.png",
         "ModifierSourceIndex|Sprite|623527783|gita1331|ModifierSourceIndex/gita1331.png"
@@ -104131,18 +104550,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1338|EffectSources/gita1338.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1338|LuckyStrikeRuntime/gita1338.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1338|LuckyStrikeTable/gita1338.png",
         "ModifierClassificationTable|Sprite|623527783|gita1338|ModifierClassificationTable/gita1338.png",
         "ModifierDisplayTable|Sprite|623527783|gita1338|ModifierDisplayTable/gita1338.png",
         "ModifierSourceIndex|Sprite|623527783|gita1338|ModifierSourceIndex/gita1338.png"
@@ -104558,18 +104983,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1346|EffectSources/gita1346.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1346|LuckyStrikeRuntime/gita1346.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1346|LuckyStrikeTable/gita1346.png",
         "ModifierClassificationTable|Sprite|623527783|gita1346|ModifierClassificationTable/gita1346.png",
         "ModifierDisplayTable|Sprite|623527783|gita1346|ModifierDisplayTable/gita1346.png",
         "ModifierSourceIndex|Sprite|623527783|gita1346|ModifierSourceIndex/gita1346.png"
@@ -104605,18 +105036,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|623527783|gita1347|EffectSources/gita1347.png",
+        "LuckyStrikeRuntime|Sprite|623527783|gita1347|LuckyStrikeRuntime/gita1347.png",
+        "LuckyStrikeTable|Sprite|623527783|gita1347|LuckyStrikeTable/gita1347.png",
         "ModifierClassificationTable|Sprite|623527783|gita1347|ModifierClassificationTable/gita1347.png",
         "ModifierDisplayTable|Sprite|623527783|gita1347|ModifierDisplayTable/gita1347.png",
         "ModifierSourceIndex|Sprite|623527783|gita1347|ModifierSourceIndex/gita1347.png"
@@ -111181,7 +111618,7 @@
       "Rows": []
     },
     {
-      "AssetId": "catalog:sprite:1300425262:mod_effect_icon_017:3564913090",
+      "AssetId": "icon:ModifierDisplayTable|Sprite|1300425262|mod_effect_icon_017|ModifierDisplayTable/mod_effect_icon_017.png",
       "ParserPath": "static/images/talent/mod_effect_icon_017_-8311557264962928151.png",
       "ParserImagePath": "/images/talent/mod_effect_icon_017_-8311557264962928151.png",
       "Bucket": "talent",
@@ -111196,15 +111633,30 @@
       "PngMode": "RGBA",
       "PixelSha256": "6b9d12e6f7e2b42d4a07a5db1a5800f3a649860346355689323b7b320b0e4a7f",
       "Address": "ui/atlas/mod_effect/mod_effect_icon_017",
-      "Value": "ui/atlas/mod_effect",
+      "Value": "ui/atlas/mod_effect/mod_effect_icon_017",
       "SpriteName": "mod_effect_icon_017",
       "SourceKinds": [
-        "game-catalog"
+        "game-catalog",
+        "generated-json"
       ],
-      "SourceGroups": [],
-      "SourceFiles": [],
-      "SourceAssetIds": [],
-      "Rows": []
+      "SourceGroups": [
+        "ModifierDisplayTable",
+        "ModifierObservedUidBridge"
+      ],
+      "SourceFiles": [
+        "ModifierDisplayTable.json",
+        "ModifierObservedUidBridge.json"
+      ],
+      "SourceAssetIds": [
+        "ModifierDisplayTable|Sprite|1300425262|mod_effect_icon_017|ModifierDisplayTable/mod_effect_icon_017.png",
+        "ModifierObservedUidBridge|Sprite|1300425262|mod_effect_icon_017|ModifierObservedUidBridge/mod_effect_icon_017.png"
+      ],
+      "Rows": [
+        {
+          "Id": "observed-buff:2302120",
+          "Name": "Team Luck & Crit"
+        }
+      ]
     },
     {
       "AssetId": "catalog:sprite:1300425262:mod_effect_icon_018:3564913090",
@@ -112980,18 +113432,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|mozhang237|EffectSources/mozhang237.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|mozhang237|LuckyStrikeRuntime/mozhang237.png",
+        "LuckyStrikeTable|Sprite|2473336053|mozhang237|LuckyStrikeTable/mozhang237.png",
         "ModifierClassificationTable|Sprite|2473336053|mozhang237|ModifierClassificationTable/mozhang237.png",
         "ModifierDisplayTable|Sprite|2473336053|mozhang237|ModifierDisplayTable/mozhang237.png",
         "ModifierSourceIndex|Sprite|2473336053|mozhang237|ModifierSourceIndex/mozhang237.png"
@@ -113830,18 +114288,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|mozhang255|EffectSources/mozhang255.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|mozhang255|LuckyStrikeRuntime/mozhang255.png",
+        "LuckyStrikeTable|Sprite|2473336053|mozhang255|LuckyStrikeTable/mozhang255.png",
         "ModifierClassificationTable|Sprite|2473336053|mozhang255|ModifierClassificationTable/mozhang255.png",
         "ModifierDisplayTable|Sprite|2473336053|mozhang255|ModifierDisplayTable/mozhang255.png",
         "ModifierSourceIndex|Sprite|2473336053|mozhang255|ModifierSourceIndex/mozhang255.png"
@@ -114112,18 +114576,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|mozhang261|EffectSources/mozhang261.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|mozhang261|LuckyStrikeRuntime/mozhang261.png",
+        "LuckyStrikeTable|Sprite|2473336053|mozhang261|LuckyStrikeTable/mozhang261.png",
         "ModifierClassificationTable|Sprite|2473336053|mozhang261|ModifierClassificationTable/mozhang261.png",
         "ModifierDisplayTable|Sprite|2473336053|mozhang261|ModifierDisplayTable/mozhang261.png",
         "ModifierSourceIndex|Sprite|2473336053|mozhang261|ModifierSourceIndex/mozhang261.png"
@@ -114637,18 +115107,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|857206578|s2talent01_01|EffectSources/s2talent01_01.png",
+        "LuckyStrikeRuntime|Sprite|857206578|s2talent01_01|LuckyStrikeRuntime/s2talent01_01.png",
+        "LuckyStrikeTable|Sprite|857206578|s2talent01_01|LuckyStrikeTable/s2talent01_01.png",
         "ModifierClassificationTable|Sprite|857206578|s2talent01_01|ModifierClassificationTable/s2talent01_01.png",
         "ModifierDisplayTable|Sprite|857206578|s2talent01_01|ModifierDisplayTable/s2talent01_01.png",
         "ModifierSourceIndex|Sprite|857206578|s2talent01_01|ModifierSourceIndex/s2talent01_01.png"
@@ -114867,6 +115343,8 @@
       "SourceGroups": [
         "DamageAttrIdName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -114877,6 +115355,8 @@
       "SourceFiles": [
         "DamageAttrIdName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -114887,6 +115367,8 @@
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|4119821754|s2talent01_04|DamageAttrIdName/s2talent01_04.png",
         "EffectSources|Sprite|4119821754|s2talent01_04|EffectSources/s2talent01_04.png",
+        "LuckyStrikeRuntime|Sprite|4119821754|s2talent01_04|LuckyStrikeRuntime/s2talent01_04.png",
+        "LuckyStrikeTable|Sprite|4119821754|s2talent01_04|LuckyStrikeTable/s2talent01_04.png",
         "ModifierClassificationTable|Sprite|4119821754|s2talent01_04|ModifierClassificationTable/s2talent01_04.png",
         "ModifierDisplayTable|Sprite|4119821754|s2talent01_04|ModifierDisplayTable/s2talent01_04.png",
         "ModifierSourceIndex|Sprite|4119821754|s2talent01_04|ModifierSourceIndex/s2talent01_04.png",
@@ -115752,18 +116234,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|4119821754|s2talent02_02sel|EffectSources/s2talent02_02sel.png",
+        "LuckyStrikeRuntime|Sprite|4119821754|s2talent02_02sel|LuckyStrikeRuntime/s2talent02_02sel.png",
+        "LuckyStrikeTable|Sprite|4119821754|s2talent02_02sel|LuckyStrikeTable/s2talent02_02sel.png",
         "ModifierClassificationTable|Sprite|4119821754|s2talent02_02sel|ModifierClassificationTable/s2talent02_02sel.png",
         "ModifierDisplayTable|Sprite|4119821754|s2talent02_02sel|ModifierDisplayTable/s2talent02_02sel.png",
         "ModifierSourceIndex|Sprite|4119821754|s2talent02_02sel|ModifierSourceIndex/s2talent02_02sel.png"
@@ -117957,18 +118445,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|857206578|s2talent052_01|EffectSources/s2talent052_01.png",
+        "LuckyStrikeRuntime|Sprite|857206578|s2talent052_01|LuckyStrikeRuntime/s2talent052_01.png",
+        "LuckyStrikeTable|Sprite|857206578|s2talent052_01|LuckyStrikeTable/s2talent052_01.png",
         "ModifierClassificationTable|Sprite|857206578|s2talent052_01|ModifierClassificationTable/s2talent052_01.png",
         "ModifierDisplayTable|Sprite|857206578|s2talent052_01|ModifierDisplayTable/s2talent052_01.png",
         "ModifierSourceIndex|Sprite|857206578|s2talent052_01|ModifierSourceIndex/s2talent052_01.png"
@@ -120425,18 +120919,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao137|EffectSources/taidao137.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao137|LuckyStrikeRuntime/taidao137.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao137|LuckyStrikeTable/taidao137.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao137|ModifierClassificationTable/taidao137.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao137|ModifierDisplayTable/taidao137.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao137|ModifierSourceIndex/taidao137.png"
@@ -120754,18 +121254,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao144|EffectSources/taidao144.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao144|LuckyStrikeRuntime/taidao144.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao144|LuckyStrikeTable/taidao144.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao144|ModifierClassificationTable/taidao144.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao144|ModifierDisplayTable/taidao144.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao144|ModifierSourceIndex/taidao144.png"
@@ -120993,18 +121499,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao149|EffectSources/taidao149.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao149|LuckyStrikeRuntime/taidao149.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao149|LuckyStrikeTable/taidao149.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao149|ModifierClassificationTable/taidao149.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao149|ModifierDisplayTable/taidao149.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao149|ModifierSourceIndex/taidao149.png"
@@ -121416,6 +121928,8 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -121425,6 +121939,8 @@
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -121434,6 +121950,8 @@
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao158|EffectSources/taidao158.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao158|LuckyStrikeRuntime/taidao158.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao158|LuckyStrikeTable/taidao158.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao158|ModifierClassificationTable/taidao158.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao158|ModifierDisplayTable/taidao158.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao158|ModifierSourceIndex/taidao158.png",
@@ -121504,18 +122022,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao159|EffectSources/taidao159.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao159|LuckyStrikeRuntime/taidao159.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao159|LuckyStrikeTable/taidao159.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao159|ModifierClassificationTable/taidao159.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao159|ModifierDisplayTable/taidao159.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao159|ModifierSourceIndex/taidao159.png"
@@ -121598,18 +122122,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao161|EffectSources/taidao161.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao161|LuckyStrikeRuntime/taidao161.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao161|LuckyStrikeTable/taidao161.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao161|ModifierClassificationTable/taidao161.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao161|ModifierDisplayTable/taidao161.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao161|ModifierSourceIndex/taidao161.png"
@@ -121719,18 +122249,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao163|EffectSources/taidao163.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao163|LuckyStrikeRuntime/taidao163.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao163|LuckyStrikeTable/taidao163.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao163|ModifierClassificationTable/taidao163.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao163|ModifierDisplayTable/taidao163.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao163|ModifierSourceIndex/taidao163.png"
@@ -121813,18 +122349,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao165|EffectSources/taidao165.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao165|LuckyStrikeRuntime/taidao165.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao165|LuckyStrikeTable/taidao165.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao165|ModifierClassificationTable/taidao165.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao165|ModifierDisplayTable/taidao165.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao165|ModifierSourceIndex/taidao165.png"
@@ -122001,18 +122543,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|taidao169|EffectSources/taidao169.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|taidao169|LuckyStrikeRuntime/taidao169.png",
+        "LuckyStrikeTable|Sprite|1141707636|taidao169|LuckyStrikeTable/taidao169.png",
         "ModifierClassificationTable|Sprite|1141707636|taidao169|ModifierClassificationTable/taidao169.png",
         "ModifierDisplayTable|Sprite|1141707636|taidao169|ModifierDisplayTable/taidao169.png",
         "ModifierSourceIndex|Sprite|1141707636|taidao169|ModifierSourceIndex/taidao169.png"
@@ -123233,7 +123781,7 @@
       "PngWidth": 34,
       "PngHeight": 34,
       "PngMode": "RGBA",
-      "PixelSha256": "b3f80e093521394d9078bc3252ed8b71be18cf9465a8355530456064530e7c9f",
+      "PixelSha256": "a5e9c472fc35219c82b9075dc1197f4308b3bf619d8bb38adfc968fb2dd594a5",
       "Address": "ui/atlas/hud/talent_icon_suppress",
       "Value": "ui/atlas/hud",
       "SpriteName": "talent_icon_suppress",
@@ -123259,7 +123807,7 @@
       "PngWidth": 34,
       "PngHeight": 34,
       "PngMode": "RGBA",
-      "PixelSha256": "1f620165013ca3765b986e71e6394e27f9659efd00bccd824f05eff397fe1f74",
+      "PixelSha256": "b22bf864643f4f83f2981812330654c0c16f5cbc41f61844c42dc4a74359809e",
       "Address": "ui/atlas/hud/talent_icon_upliftment",
       "Value": "ui/atlas/hud",
       "SpriteName": "talent_icon_upliftment",
@@ -124268,6 +124816,8 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -124277,6 +124827,8 @@
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -124286,6 +124838,8 @@
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|talent_passive_icon_dps_lucky04|EffectSources/talent_passive_icon_dps_lucky04.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_dps_lucky04|LuckyStrikeRuntime/talent_passive_icon_dps_lucky04.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_dps_lucky04|LuckyStrikeTable/talent_passive_icon_dps_lucky04.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_dps_lucky04|ModifierClassificationTable/talent_passive_icon_dps_lucky04.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_dps_lucky04|ModifierDisplayTable/talent_passive_icon_dps_lucky04.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_dps_lucky04|ModifierSourceIndex/talent_passive_icon_dps_lucky04.png",
@@ -124366,6 +124920,8 @@
       "SourceGroups": [
         "DamageAttrIdName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -124375,6 +124931,8 @@
       "SourceFiles": [
         "DamageAttrIdName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -124384,6 +124942,8 @@
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|DamageAttrIdName/talent_passive_icon_dps_luckyconversion.png",
         "EffectSources|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|EffectSources/talent_passive_icon_dps_luckyconversion.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|LuckyStrikeRuntime/talent_passive_icon_dps_luckyconversion.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|LuckyStrikeTable/talent_passive_icon_dps_luckyconversion.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|ModifierClassificationTable/talent_passive_icon_dps_luckyconversion.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|ModifierDisplayTable/talent_passive_icon_dps_luckyconversion.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|ModifierSourceIndex/talent_passive_icon_dps_luckyconversion.png",
@@ -124634,18 +125194,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|EffectSources/talent_passive_icon_general_dps_arrtuprandom_2473336053.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|LuckyStrikeRuntime/talent_passive_icon_general_dps_arrtuprandom_2473336053.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|LuckyStrikeTable/talent_passive_icon_general_dps_arrtuprandom_2473336053.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|ModifierClassificationTable/talent_passive_icon_general_dps_arrtuprandom_2473336053.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|ModifierDisplayTable/talent_passive_icon_general_dps_arrtuprandom_2473336053.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_arrtuprandom|ModifierSourceIndex/talent_passive_icon_general_dps_arrtuprandom_2473336053.png"
@@ -125040,18 +125606,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_crithreetimes|EffectSources/talent_passive_icon_general_dps_crithreetimes.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_crithreetimes|LuckyStrikeRuntime/talent_passive_icon_general_dps_crithreetimes.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_crithreetimes|LuckyStrikeTable/talent_passive_icon_general_dps_crithreetimes.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_crithreetimes|ModifierClassificationTable/talent_passive_icon_general_dps_crithreetimes.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_crithreetimes|ModifierDisplayTable/talent_passive_icon_general_dps_crithreetimes.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_crithreetimes|ModifierSourceIndex/talent_passive_icon_general_dps_crithreetimes.png"
@@ -125550,18 +126122,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|EffectSources/talent_passive_icon_general_dps_flyhitget.png",
+        "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|LuckyStrikeRuntime/talent_passive_icon_general_dps_flyhitget.png",
+        "LuckyStrikeTable|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|LuckyStrikeTable/talent_passive_icon_general_dps_flyhitget.png",
         "ModifierClassificationTable|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|ModifierClassificationTable/talent_passive_icon_general_dps_flyhitget.png",
         "ModifierDisplayTable|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|ModifierDisplayTable/talent_passive_icon_general_dps_flyhitget.png",
         "ModifierSourceIndex|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|ModifierSourceIndex/talent_passive_icon_general_dps_flyhitget.png"
@@ -125822,6 +126400,8 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -125831,6 +126411,8 @@
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -125840,6 +126422,8 @@
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_icecharge|EffectSources/talent_passive_icon_general_dps_icecharge.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_icecharge|LuckyStrikeRuntime/talent_passive_icon_general_dps_icecharge.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_icecharge|LuckyStrikeTable/talent_passive_icon_general_dps_icecharge.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_icecharge|ModifierClassificationTable/talent_passive_icon_general_dps_icecharge.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_icecharge|ModifierDisplayTable/talent_passive_icon_general_dps_icecharge.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_icecharge|ModifierSourceIndex/talent_passive_icon_general_dps_icecharge.png",
@@ -125940,6 +126524,8 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -125949,6 +126535,8 @@
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -125958,6 +126546,8 @@
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_icecomet|EffectSources/talent_passive_icon_general_dps_icecomet.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_icecomet|LuckyStrikeRuntime/talent_passive_icon_general_dps_icecomet.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_icecomet|LuckyStrikeTable/talent_passive_icon_general_dps_icecomet.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_icecomet|ModifierClassificationTable/talent_passive_icon_general_dps_icecomet.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_icecomet|ModifierDisplayTable/talent_passive_icon_general_dps_icecomet.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_icecomet|ModifierSourceIndex/talent_passive_icon_general_dps_icecomet.png",
@@ -126649,18 +127239,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_icespeardouble|EffectSources/talent_passive_icon_general_dps_icespeardouble.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_icespeardouble|LuckyStrikeRuntime/talent_passive_icon_general_dps_icespeardouble.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_icespeardouble|LuckyStrikeTable/talent_passive_icon_general_dps_icespeardouble.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_icespeardouble|ModifierClassificationTable/talent_passive_icon_general_dps_icespeardouble.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_icespeardouble|ModifierDisplayTable/talent_passive_icon_general_dps_icespeardouble.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_icespeardouble|ModifierSourceIndex/talent_passive_icon_general_dps_icespeardouble.png"
@@ -127315,18 +127911,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|EffectSources/talent_passive_icon_general_dps_luckandcri.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|LuckyStrikeRuntime/talent_passive_icon_general_dps_luckandcri.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|LuckyStrikeTable/talent_passive_icon_general_dps_luckandcri.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|ModifierClassificationTable/talent_passive_icon_general_dps_luckandcri.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|ModifierDisplayTable/talent_passive_icon_general_dps_luckandcri.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|ModifierSourceIndex/talent_passive_icon_general_dps_luckandcri.png"
@@ -127757,18 +128359,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|talent_passive_icon_general_dps_ruthless|EffectSources/talent_passive_icon_general_dps_ruthless.png",
+        "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_ruthless|LuckyStrikeRuntime/talent_passive_icon_general_dps_ruthless.png",
+        "LuckyStrikeTable|Sprite|841625591|talent_passive_icon_general_dps_ruthless|LuckyStrikeTable/talent_passive_icon_general_dps_ruthless.png",
         "ModifierClassificationTable|Sprite|841625591|talent_passive_icon_general_dps_ruthless|ModifierClassificationTable/talent_passive_icon_general_dps_ruthless.png",
         "ModifierDisplayTable|Sprite|841625591|talent_passive_icon_general_dps_ruthless|ModifierDisplayTable/talent_passive_icon_general_dps_ruthless.png",
         "ModifierSourceIndex|Sprite|841625591|talent_passive_icon_general_dps_ruthless|ModifierSourceIndex/talent_passive_icon_general_dps_ruthless.png"
@@ -128218,18 +128826,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|talent_passive_icon_general_dps_sickleairun|EffectSources/talent_passive_icon_general_dps_sickleairun.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|talent_passive_icon_general_dps_sickleairun|LuckyStrikeRuntime/talent_passive_icon_general_dps_sickleairun.png",
+        "LuckyStrikeTable|Sprite|1141707636|talent_passive_icon_general_dps_sickleairun|LuckyStrikeTable/talent_passive_icon_general_dps_sickleairun.png",
         "ModifierClassificationTable|Sprite|1141707636|talent_passive_icon_general_dps_sickleairun|ModifierClassificationTable/talent_passive_icon_general_dps_sickleairun.png",
         "ModifierDisplayTable|Sprite|1141707636|talent_passive_icon_general_dps_sickleairun|ModifierDisplayTable/talent_passive_icon_general_dps_sickleairun.png",
         "ModifierSourceIndex|Sprite|1141707636|talent_passive_icon_general_dps_sickleairun|ModifierSourceIndex/talent_passive_icon_general_dps_sickleairun.png"
@@ -128269,18 +128883,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|EffectSources/talent_passive_icon_general_dps_sickleget.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|LuckyStrikeRuntime/talent_passive_icon_general_dps_sickleget.png",
+        "LuckyStrikeTable|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|LuckyStrikeTable/talent_passive_icon_general_dps_sickleget.png",
         "ModifierClassificationTable|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|ModifierClassificationTable/talent_passive_icon_general_dps_sickleget.png",
         "ModifierDisplayTable|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|ModifierDisplayTable/talent_passive_icon_general_dps_sickleget.png",
         "ModifierSourceIndex|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|ModifierSourceIndex/talent_passive_icon_general_dps_sickleget.png"
@@ -128414,18 +129034,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|EffectSources/talent_passive_icon_general_dps_skilltriggericearrow.png",
+        "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|LuckyStrikeRuntime/talent_passive_icon_general_dps_skilltriggericearrow.png",
+        "LuckyStrikeTable|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|LuckyStrikeTable/talent_passive_icon_general_dps_skilltriggericearrow.png",
         "ModifierClassificationTable|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|ModifierClassificationTable/talent_passive_icon_general_dps_skilltriggericearrow.png",
         "ModifierDisplayTable|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|ModifierDisplayTable/talent_passive_icon_general_dps_skilltriggericearrow.png",
         "ModifierSourceIndex|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|ModifierSourceIndex/talent_passive_icon_general_dps_skilltriggericearrow.png"
@@ -128649,6 +129275,8 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -128658,6 +129286,8 @@
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -128667,6 +129297,8 @@
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|talent_passive_icon_general_dps_spearrush|EffectSources/talent_passive_icon_general_dps_spearrush.png",
+        "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_spearrush|LuckyStrikeRuntime/talent_passive_icon_general_dps_spearrush.png",
+        "LuckyStrikeTable|Sprite|841625591|talent_passive_icon_general_dps_spearrush|LuckyStrikeTable/talent_passive_icon_general_dps_spearrush.png",
         "ModifierClassificationTable|Sprite|841625591|talent_passive_icon_general_dps_spearrush|ModifierClassificationTable/talent_passive_icon_general_dps_spearrush.png",
         "ModifierDisplayTable|Sprite|841625591|talent_passive_icon_general_dps_spearrush|ModifierDisplayTable/talent_passive_icon_general_dps_spearrush.png",
         "ModifierSourceIndex|Sprite|841625591|talent_passive_icon_general_dps_spearrush|ModifierSourceIndex/talent_passive_icon_general_dps_spearrush.png",
@@ -129007,18 +129639,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|talent_passive_icon_general_dps_tearget|EffectSources/talent_passive_icon_general_dps_tearget.png",
+        "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_tearget|LuckyStrikeRuntime/talent_passive_icon_general_dps_tearget.png",
+        "LuckyStrikeTable|Sprite|841625591|talent_passive_icon_general_dps_tearget|LuckyStrikeTable/talent_passive_icon_general_dps_tearget.png",
         "ModifierClassificationTable|Sprite|841625591|talent_passive_icon_general_dps_tearget|ModifierClassificationTable/talent_passive_icon_general_dps_tearget.png",
         "ModifierDisplayTable|Sprite|841625591|talent_passive_icon_general_dps_tearget|ModifierDisplayTable/talent_passive_icon_general_dps_tearget.png",
         "ModifierSourceIndex|Sprite|841625591|talent_passive_icon_general_dps_tearget|ModifierSourceIndex/talent_passive_icon_general_dps_tearget.png"
@@ -129631,18 +130269,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|EffectSources/talent_passive_icon_general_dps_thunderstrike.png",
+        "LuckyStrikeRuntime|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|LuckyStrikeRuntime/talent_passive_icon_general_dps_thunderstrike.png",
+        "LuckyStrikeTable|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|LuckyStrikeTable/talent_passive_icon_general_dps_thunderstrike.png",
         "ModifierClassificationTable|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|ModifierClassificationTable/talent_passive_icon_general_dps_thunderstrike.png",
         "ModifierDisplayTable|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|ModifierDisplayTable/talent_passive_icon_general_dps_thunderstrike.png",
         "ModifierSourceIndex|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|ModifierSourceIndex/talent_passive_icon_general_dps_thunderstrike.png"
@@ -129678,18 +130322,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|EffectSources/talent_passive_icon_general_dps_tornadoget.png",
+        "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|LuckyStrikeRuntime/talent_passive_icon_general_dps_tornadoget.png",
+        "LuckyStrikeTable|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|LuckyStrikeTable/talent_passive_icon_general_dps_tornadoget.png",
         "ModifierClassificationTable|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|ModifierClassificationTable/talent_passive_icon_general_dps_tornadoget.png",
         "ModifierDisplayTable|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|ModifierDisplayTable/talent_passive_icon_general_dps_tornadoget.png",
         "ModifierSourceIndex|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|ModifierSourceIndex/talent_passive_icon_general_dps_tornadoget.png"
@@ -130524,18 +131174,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_encourage|EffectSources/talent_passive_icon_general_sup_encourage.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_general_sup_encourage|LuckyStrikeRuntime/talent_passive_icon_general_sup_encourage.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_general_sup_encourage|LuckyStrikeTable/talent_passive_icon_general_sup_encourage.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_general_sup_encourage|ModifierClassificationTable/talent_passive_icon_general_sup_encourage.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_general_sup_encourage|ModifierDisplayTable/talent_passive_icon_general_sup_encourage.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_general_sup_encourage|ModifierSourceIndex/talent_passive_icon_general_sup_encourage.png"
@@ -130988,6 +131644,8 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -130997,6 +131655,8 @@
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -131006,6 +131666,8 @@
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|talent_passive_icon_general_sup_guide|EffectSources/talent_passive_icon_general_sup_guide.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|talent_passive_icon_general_sup_guide|LuckyStrikeRuntime/talent_passive_icon_general_sup_guide.png",
+        "LuckyStrikeTable|Sprite|3204800380|talent_passive_icon_general_sup_guide|LuckyStrikeTable/talent_passive_icon_general_sup_guide.png",
         "ModifierClassificationTable|Sprite|3204800380|talent_passive_icon_general_sup_guide|ModifierClassificationTable/talent_passive_icon_general_sup_guide.png",
         "ModifierDisplayTable|Sprite|3204800380|talent_passive_icon_general_sup_guide|ModifierDisplayTable/talent_passive_icon_general_sup_guide.png",
         "ModifierSourceIndex|Sprite|3204800380|talent_passive_icon_general_sup_guide|ModifierSourceIndex/talent_passive_icon_general_sup_guide.png",
@@ -131317,18 +131979,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|EffectSources/talent_passive_icon_general_sup_inspireex.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|LuckyStrikeRuntime/talent_passive_icon_general_sup_inspireex.png",
+        "LuckyStrikeTable|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|LuckyStrikeTable/talent_passive_icon_general_sup_inspireex.png",
         "ModifierClassificationTable|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|ModifierClassificationTable/talent_passive_icon_general_sup_inspireex.png",
         "ModifierDisplayTable|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|ModifierDisplayTable/talent_passive_icon_general_sup_inspireex.png",
         "ModifierSourceIndex|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|ModifierSourceIndex/talent_passive_icon_general_sup_inspireex.png"
@@ -131510,18 +132178,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_seedtrriger|EffectSources/talent_passive_icon_general_sup_seedtrriger.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_general_sup_seedtrriger|LuckyStrikeRuntime/talent_passive_icon_general_sup_seedtrriger.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_general_sup_seedtrriger|LuckyStrikeTable/talent_passive_icon_general_sup_seedtrriger.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_general_sup_seedtrriger|ModifierClassificationTable/talent_passive_icon_general_sup_seedtrriger.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_general_sup_seedtrriger|ModifierDisplayTable/talent_passive_icon_general_sup_seedtrriger.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_general_sup_seedtrriger|ModifierSourceIndex/talent_passive_icon_general_sup_seedtrriger.png"
@@ -131557,18 +132231,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_shieldlimit|EffectSources/talent_passive_icon_general_sup_shieldlimit.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_general_sup_shieldlimit|LuckyStrikeRuntime/talent_passive_icon_general_sup_shieldlimit.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_general_sup_shieldlimit|LuckyStrikeTable/talent_passive_icon_general_sup_shieldlimit.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_general_sup_shieldlimit|ModifierClassificationTable/talent_passive_icon_general_sup_shieldlimit.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_general_sup_shieldlimit|ModifierDisplayTable/talent_passive_icon_general_sup_shieldlimit.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_general_sup_shieldlimit|ModifierSourceIndex/talent_passive_icon_general_sup_shieldlimit.png"
@@ -131609,6 +132289,8 @@
       "SourceGroups": [
         "DamageAttrIdName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -131619,6 +132301,8 @@
       "SourceFiles": [
         "DamageAttrIdName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -131629,6 +132313,8 @@
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|3204800380|talent_passive_icon_general_sup_starfield|DamageAttrIdName/talent_passive_icon_general_sup_starfield.png",
         "EffectSources|Sprite|3204800380|talent_passive_icon_general_sup_starfield|EffectSources/talent_passive_icon_general_sup_starfield.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|talent_passive_icon_general_sup_starfield|LuckyStrikeRuntime/talent_passive_icon_general_sup_starfield.png",
+        "LuckyStrikeTable|Sprite|3204800380|talent_passive_icon_general_sup_starfield|LuckyStrikeTable/talent_passive_icon_general_sup_starfield.png",
         "ModifierClassificationTable|Sprite|3204800380|talent_passive_icon_general_sup_starfield|ModifierClassificationTable/talent_passive_icon_general_sup_starfield.png",
         "ModifierDisplayTable|Sprite|3204800380|talent_passive_icon_general_sup_starfield|ModifierDisplayTable/talent_passive_icon_general_sup_starfield.png",
         "ModifierSourceIndex|Sprite|3204800380|talent_passive_icon_general_sup_starfield|ModifierSourceIndex/talent_passive_icon_general_sup_starfield.png",
@@ -131682,18 +132368,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|talent_passive_icon_general_sup_starlight|EffectSources/talent_passive_icon_general_sup_starlight.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_general_sup_starlight|LuckyStrikeRuntime/talent_passive_icon_general_sup_starlight.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_general_sup_starlight|LuckyStrikeTable/talent_passive_icon_general_sup_starlight.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_general_sup_starlight|ModifierClassificationTable/talent_passive_icon_general_sup_starlight.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_general_sup_starlight|ModifierDisplayTable/talent_passive_icon_general_sup_starlight.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_general_sup_starlight|ModifierSourceIndex/talent_passive_icon_general_sup_starlight.png"
@@ -133165,18 +133857,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|2173254008|talent_passive_icon_sup_heal02|EffectSources/talent_passive_icon_sup_heal02.png",
+        "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_sup_heal02|LuckyStrikeRuntime/talent_passive_icon_sup_heal02.png",
+        "LuckyStrikeTable|Sprite|2173254008|talent_passive_icon_sup_heal02|LuckyStrikeTable/talent_passive_icon_sup_heal02.png",
         "ModifierClassificationTable|Sprite|2173254008|talent_passive_icon_sup_heal02|ModifierClassificationTable/talent_passive_icon_sup_heal02.png",
         "ModifierDisplayTable|Sprite|2173254008|talent_passive_icon_sup_heal02|ModifierDisplayTable/talent_passive_icon_sup_heal02.png",
         "ModifierSourceIndex|Sprite|2173254008|talent_passive_icon_sup_heal02|ModifierSourceIndex/talent_passive_icon_sup_heal02.png"
@@ -134220,18 +134918,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|talent_passive_icon_tank_violent01|EffectSources/talent_passive_icon_tank_violent01.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|talent_passive_icon_tank_violent01|LuckyStrikeRuntime/talent_passive_icon_tank_violent01.png",
+        "LuckyStrikeTable|Sprite|3204800380|talent_passive_icon_tank_violent01|LuckyStrikeTable/talent_passive_icon_tank_violent01.png",
         "ModifierClassificationTable|Sprite|3204800380|talent_passive_icon_tank_violent01|ModifierClassificationTable/talent_passive_icon_tank_violent01.png",
         "ModifierDisplayTable|Sprite|3204800380|talent_passive_icon_tank_violent01|ModifierDisplayTable/talent_passive_icon_tank_violent01.png",
         "ModifierSourceIndex|Sprite|3204800380|talent_passive_icon_tank_violent01|ModifierSourceIndex/talent_passive_icon_tank_violent01.png"
@@ -134647,6 +135351,8 @@
       "SourceGroups": [
         "DamageAttrIdName",
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex",
@@ -134657,6 +135363,8 @@
       "SourceFiles": [
         "DamageAttrIdName.json",
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json",
@@ -134667,6 +135375,8 @@
       "SourceAssetIds": [
         "DamageAttrIdName|Sprite|841625591|talent_skill_300001|DamageAttrIdName/talent_skill_300001.png",
         "EffectSources|Sprite|841625591|talent_skill_300001|EffectSources/talent_skill_300001.png",
+        "LuckyStrikeRuntime|Sprite|841625591|talent_skill_300001|LuckyStrikeRuntime/talent_skill_300001.png",
+        "LuckyStrikeTable|Sprite|841625591|talent_skill_300001|LuckyStrikeTable/talent_skill_300001.png",
         "ModifierClassificationTable|Sprite|841625591|talent_skill_300001|ModifierClassificationTable/talent_skill_300001.png",
         "ModifierDisplayTable|Sprite|841625591|talent_skill_300001|ModifierDisplayTable/talent_skill_300001.png",
         "ModifierSourceIndex|Sprite|841625591|talent_skill_300001|ModifierSourceIndex/talent_skill_300001.png",
@@ -136440,18 +137150,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|weiren956|EffectSources/weiren956.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|weiren956|LuckyStrikeRuntime/weiren956.png",
+        "LuckyStrikeTable|Sprite|3204800380|weiren956|LuckyStrikeTable/weiren956.png",
         "ModifierClassificationTable|Sprite|3204800380|weiren956|ModifierClassificationTable/weiren956.png",
         "ModifierDisplayTable|Sprite|3204800380|weiren956|ModifierDisplayTable/weiren956.png",
         "ModifierSourceIndex|Sprite|3204800380|weiren956|ModifierSourceIndex/weiren956.png"
@@ -136487,18 +137203,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|weiren957|EffectSources/weiren957.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|weiren957|LuckyStrikeRuntime/weiren957.png",
+        "LuckyStrikeTable|Sprite|3204800380|weiren957|LuckyStrikeTable/weiren957.png",
         "ModifierClassificationTable|Sprite|3204800380|weiren957|ModifierClassificationTable/weiren957.png",
         "ModifierDisplayTable|Sprite|3204800380|weiren957|ModifierDisplayTable/weiren957.png",
         "ModifierSourceIndex|Sprite|3204800380|weiren957|ModifierSourceIndex/weiren957.png"
@@ -136534,18 +137256,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|weiren958|EffectSources/weiren958.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|weiren958|LuckyStrikeRuntime/weiren958.png",
+        "LuckyStrikeTable|Sprite|3204800380|weiren958|LuckyStrikeTable/weiren958.png",
         "ModifierClassificationTable|Sprite|3204800380|weiren958|ModifierClassificationTable/weiren958.png",
         "ModifierDisplayTable|Sprite|3204800380|weiren958|ModifierDisplayTable/weiren958.png",
         "ModifierSourceIndex|Sprite|3204800380|weiren958|ModifierSourceIndex/weiren958.png"
@@ -136925,18 +137653,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|weiren965|EffectSources/weiren965.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|weiren965|LuckyStrikeRuntime/weiren965.png",
+        "LuckyStrikeTable|Sprite|3204800380|weiren965|LuckyStrikeTable/weiren965.png",
         "ModifierClassificationTable|Sprite|3204800380|weiren965|ModifierClassificationTable/weiren965.png",
         "ModifierDisplayTable|Sprite|3204800380|weiren965|ModifierDisplayTable/weiren965.png",
         "ModifierSourceIndex|Sprite|3204800380|weiren965|ModifierSourceIndex/weiren965.png"
@@ -137113,18 +137847,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|weiren969|EffectSources/weiren969.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|weiren969|LuckyStrikeRuntime/weiren969.png",
+        "LuckyStrikeTable|Sprite|3204800380|weiren969|LuckyStrikeTable/weiren969.png",
         "ModifierClassificationTable|Sprite|3204800380|weiren969|ModifierClassificationTable/weiren969.png",
         "ModifierDisplayTable|Sprite|3204800380|weiren969|ModifierDisplayTable/weiren969.png",
         "ModifierSourceIndex|Sprite|3204800380|weiren969|ModifierSourceIndex/weiren969.png"
@@ -137207,18 +137947,24 @@
       ],
       "SourceGroups": [
         "EffectSources",
+        "LuckyStrikeRuntime",
+        "LuckyStrikeTable",
         "ModifierClassificationTable",
         "ModifierDisplayTable",
         "ModifierSourceIndex"
       ],
       "SourceFiles": [
         "EffectSources.json",
+        "LuckyStrikeRuntime.json",
+        "LuckyStrikeTable.json",
         "ModifierClassificationTable.json",
         "ModifierDisplayTable.json",
         "ModifierSourceIndex.json"
       ],
       "SourceAssetIds": [
         "EffectSources|Sprite|3204800380|weiren971|EffectSources/weiren971.png",
+        "LuckyStrikeRuntime|Sprite|3204800380|weiren971|LuckyStrikeRuntime/weiren971.png",
+        "LuckyStrikeTable|Sprite|3204800380|weiren971|LuckyStrikeTable/weiren971.png",
         "ModifierClassificationTable|Sprite|3204800380|weiren971|ModifierClassificationTable/weiren971.png",
         "ModifierDisplayTable|Sprite|3204800380|weiren971|ModifierDisplayTable/weiren971.png",
         "ModifierSourceIndex|Sprite|3204800380|weiren971|ModifierSourceIndex/weiren971.png"

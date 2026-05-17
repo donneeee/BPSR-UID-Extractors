@@ -1,0 +1,905 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const OUTPUT_NAME = path.join("probing-reports", "ModifierUiDescriptionSurfaceProbe.json");
+const DEFAULT_MAX_TARGETS = 700;
+const DEFAULT_MAX_HITS_PER_TARGET = 24;
+const DEFAULT_MAX_CONTEXT_TEXTS = 16;
+const DEFAULT_MAX_ARRAY_VALUES = 24;
+const INT_POOL = 1;
+const STRING_POOL = 6;
+
+const KNOWN_TABLE_NAMES = [
+  "BuffTable.ctb",
+  "DamageAttrTable.ctb",
+  "FightAttrTable.ctb",
+  "ItemTable.ctb",
+  "ModEffectTable.ctb",
+  "RecountTable.ctb",
+  "SkillAoyiTable.ctb",
+  "SkillEffectTable.ctb",
+  "SkillFightLevelTable.ctb",
+  "SkillTable.ctb",
+  "TempAttrTable.ctb",
+  "TalentTable.ctb",
+];
+
+const KNOWN_HASH_LABELS = new Map([
+  [155301122, "CTB:155301122 AdjacentEffectBuff"],
+  [164473594, "CTB:164473594 SeasonTalentNode"],
+  [395604162, "CTB:395604162 SkillPair"],
+  [983121143, "CTB:983121143 SecondaryBuffName"],
+  [1383488036, "CTB:1383488036 SkillPair"],
+  [2200122700, "CTB:2200122700 RogueEntryDescription"],
+  [2319498083, "CTB:2319498083 SkillPair"],
+  [2553675475, "CTB:2553675475 SeasonPhantomFactor"],
+  [3259439677, "CTB:3259439677 SecondaryName"],
+  [3307381957, "CTB:3307381957 SkillPair"],
+  [3345237628, "TalentTable.ctb"],
+  [3518555200, "CTB:3518555200 VirtualSkillBridge"],
+  [3701956197, "CTB:3701956197 ItemCategory"],
+  [3754561411, "CTB:3754561411 SkillPair"],
+  [4038258408, "CTB:4038258408 RogueEntry"],
+  [4192598123, "CTB:4192598123 SeasonEffectDescription"],
+]);
+
+const DESCRIPTION_TEXT_RE =
+  /\b(?:effect|damage|dmg|atk|crit|critical|haste|luck|lucky|mastery|versatility|stack|duration|cooldown|cd|bonus|increase|decrease|summon|transform|party|ally|target|physical|magic|elemental)\b|[\u4e00-\u9fff].*(?:效果|伤害|傷害|攻击|攻擊|暴击|暴擊|急速|幸运|幸運|精通|全能|层|層|持续|持續|冷却|冷卻|加成|提升|降低|召唤|召喚|队伍|隊伍|目标|目標|物理|魔法|元素)/iu;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    maxTargets: DEFAULT_MAX_TARGETS,
+    maxHitsPerTarget: DEFAULT_MAX_HITS_PER_TARGET,
+    maxContextTexts: DEFAULT_MAX_CONTEXT_TEXTS,
+    blockerClass: "name-only-formula-hint-missing-description",
+    audit: "",
+    markdown: "",
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "ModifierUiDescriptionSurfaceProbe.gen - deep scan UI-page context for unresolved modifier UIDs.",
+      `
+Options:
+  --audit <path>             Static blocker audit JSON. Defaults to resonance-logs-global/DEV_exports/modifier-static-blocker-audit.json.
+  --blocker-class <class>    Audit blocker class to scan. Use "all" for every audit row. Default: name-only-formula-hint-missing-description.
+  --max-targets <count>      Maximum unresolved UIDs to scan. Default: ${DEFAULT_MAX_TARGETS}.
+  --max-hits-per-target <n>  Maximum CTB row hits retained per target. Default: ${DEFAULT_MAX_HITS_PER_TARGET}.
+  --max-context-texts <n>    Maximum localized/string context texts retained per hit. Default: ${DEFAULT_MAX_CONTEXT_TEXTS}.
+  --markdown <path>          Optional Markdown report path.
+
+Notes:
+  Probe/report only. It does not alter runtime parser paths. It searches exact
+  unresolved UIDs in CTB row fields and int-pool records, then captures same-row
+  localized UI text, string-pool text, numeric fields, floats, and arrays.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = common.resolvePaths(args, OUTPUT_NAME);
+  addKnownTableNames(common.hash33);
+
+  const auditPath = args.audit
+    ? path.resolve(args.audit)
+    : path.resolve(__dirname, "..", "resonance-logs-global", "DEV_exports", "modifier-static-blocker-audit.json");
+  const audit = readJson(auditPath, null);
+  if (!audit?.rows?.length) {
+    throw new Error(`Could not read blocker audit rows from ${auditPath}`);
+  }
+
+  const maxTargets = Number(args.maxTargets) || DEFAULT_MAX_TARGETS;
+  const maxHitsPerTarget = Number(args.maxHitsPerTarget) || DEFAULT_MAX_HITS_PER_TARGET;
+  const maxContextTexts = Number(args.maxContextTexts) || DEFAULT_MAX_CONTEXT_TEXTS;
+  const targets = buildTargetsFromAudit(audit.rows, {
+    blockerClass: String(args.blockerClass || "").trim(),
+    maxTargets,
+  });
+  const targetIds = new Set(targets.map((target) => String(target.uid)));
+  const targetById = new Map(targets.map((target) => [String(target.uid), target]));
+
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const localizationTables = common.loadLocalizationTables(containerDir, { metaEntries });
+  const localizedTextById = buildLocalizedTextLookup(localizationTables);
+  const generatedContext = loadGeneratedContext(paths.outputDir);
+  const targetPatterns = buildTargetPatterns(targetIds);
+
+  const scan = scanCtbForTargets({
+    common,
+    containerDir,
+    metaEntries,
+    targetIds,
+    targetById,
+    targetPatterns,
+    localizedTextById,
+    generatedContext,
+    maxHitsPerTarget,
+    maxContextTexts,
+  });
+
+  const report = {
+    schemaVersion: 1,
+    description:
+      "Exact CTB UID hit and same-row UI-page context scan for unresolved modifier descriptions. Dev-only evidence; do not promote without a direct page bridge.",
+    generatedAt: new Date().toISOString(),
+    auditPath: normalizePath(auditPath),
+    blockerClass: args.blockerClass,
+    summary: {
+      targets: targets.length,
+      targetsWithHits: scan.targetsWithHits,
+      targetsWithLocalizedDescriptionText: scan.targetsWithLocalizedDescriptionText,
+      targetsWithAnyUiText: scan.targetsWithAnyUiText,
+      targetsWithoutHits: targets.length - scan.targetsWithHits,
+      ctbEntriesScanned: scan.ctbEntriesScanned,
+      ctbEntriesSkippedNoTargetBytes: scan.ctbEntriesSkippedNoTargetBytes,
+      ctbRowsScanned: scan.ctbRowsScanned,
+      directFieldHits: scan.directFieldHits,
+      intPoolHits: scan.intPoolHits,
+    },
+    targetFamilies: summarizeFamilies(targets, scan.hitsByTarget),
+    tableHits: summarizeTables(scan.tableHitCounts),
+    strongBridgeCandidates: scan.strongBridgeCandidates,
+    weakOrNameOnlyTargets: scan.weakOrNameOnlyTargets,
+    targets,
+    hitsByTarget: scan.hitsByTarget,
+  };
+
+  common.maybeWriteJson(paths.out, report, Boolean(args.dryRun));
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "ModifierUiDescriptionSurfaceProbe.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(report), "utf8");
+    console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+  }
+
+  console.log(`Targets scanned: ${report.summary.targets}`);
+  console.log(`Targets with CTB hits: ${report.summary.targetsWithHits}`);
+  console.log(`Targets with localized description-like text: ${report.summary.targetsWithLocalizedDescriptionText}`);
+  console.log(`Strong bridge candidates: ${report.strongBridgeCandidates.length}`);
+  console.log(`Output: ${common.displayPath(paths.out)}`);
+}
+
+function addKnownTableNames(hash33) {
+  for (const tableName of KNOWN_TABLE_NAMES) {
+    KNOWN_HASH_LABELS.set(hash33(tableName), tableName);
+  }
+}
+
+function readJson(filePath, fallback = null) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return fallback;
+  }
+}
+
+function normalizePath(filePath) {
+  return path.normalize(String(filePath || "")).replace(/\\/g, "/");
+}
+
+function buildTargetsFromAudit(rows, options) {
+  const blockerClass = String(options.blockerClass || "").trim();
+  const wantAll = !blockerClass || blockerClass.toLowerCase() === "all";
+  const byUid = new Map();
+  for (const row of Array.isArray(rows) ? rows : []) {
+    if (!wantAll && row?.blockerClass !== blockerClass) {
+      continue;
+    }
+    const uid = uidFromSourceId(row?.sourceId);
+    if (!uid) {
+      continue;
+    }
+    const key = String(uid);
+    const target = byUid.get(key) || {
+      uid,
+      sourceIds: [],
+      sourcePrefixes: [],
+      labels: [],
+      formulaBuckets: [],
+      blockerClasses: [],
+      blockerHints: [],
+      runtimeProofRequired: [],
+    };
+    pushUnique(target.sourceIds, row.sourceId);
+    pushUnique(target.sourcePrefixes, row.sourcePrefix || prefixFromSourceId(row.sourceId));
+    pushUnique(target.labels, row.label);
+    pushUniqueArray(target.formulaBuckets, row.formulaBuckets);
+    pushUnique(target.blockerClasses, row.blockerClass);
+    pushUniqueArray(target.blockerHints, row.blockerHints);
+    pushUniqueArray(target.runtimeProofRequired, row.runtimeProofRequired);
+    byUid.set(key, target);
+  }
+  return [...byUid.values()].slice(0, options.maxTargets);
+}
+
+function uidFromSourceId(value) {
+  const text = String(value || "");
+  const match = /:(\d+)$/.exec(text);
+  if (!match) return 0;
+  const uid = Number(match[1]);
+  return Number.isSafeInteger(uid) && uid > 0 ? uid : 0;
+}
+
+function prefixFromSourceId(value) {
+  return String(value || "").split(":")[0] || "";
+}
+
+function pushUnique(out, value) {
+  const normalized = typeof value === "number" ? value : String(value || "").trim();
+  if (normalized !== "" && !out.includes(normalized)) {
+    out.push(normalized);
+  }
+}
+
+function pushUniqueArray(out, values) {
+  for (const value of Array.isArray(values) ? values : []) {
+    pushUnique(out, value);
+  }
+}
+
+function buildLocalizedTextLookup(localizationTables) {
+  const byId = new Map();
+  for (const table of localizationTables) {
+    const localeId = localeIdFromLanguage(table.language);
+    for (const [id, stringIndex] of table.index.entries()) {
+      const text = cleanText(table.strings[stringIndex]);
+      if (!text) continue;
+      const key = String(Number(id));
+      const entry = byId.get(key) || { id: Number(id), texts: {} };
+      if (!entry.texts[localeId]) {
+        entry.texts[localeId] = text;
+      }
+      byId.set(key, entry);
+    }
+  }
+  return byId;
+}
+
+function localeIdFromLanguage(language) {
+  const normalized = String(language || "").toLowerCase();
+  return {
+    english: "en",
+    chinese: "zh-CN",
+    traditionalchinese: "zh-TW",
+    japanese: "ja",
+    korean: "ko-KR",
+    french: "fr",
+    german: "de",
+    spanish: "es",
+    portuguese: "pt-BR",
+    thai: "th",
+    indonesian: "id",
+  }[normalized] || normalized || "und";
+}
+
+function cleanText(value) {
+  return String(value ?? "")
+    .replace(/\u0000/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\{\*[^}]+\*\}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function loadGeneratedContext(outputDir) {
+  return {
+    buffsById: indexGeneratedRows(readJson(path.join(outputDir, "BuffName.json"), [])),
+    descriptionsByCategory: readJson(path.join(outputDir, "ModifierDescriptionCatalogs.json"), {}),
+  };
+}
+
+function indexGeneratedRows(rows) {
+  const byId = new Map();
+  for (const row of Array.isArray(rows) ? rows : []) {
+    const id = Number(row?.Id ?? row?.id);
+    if (Number.isSafeInteger(id) && id > 0) {
+      byId.set(String(id), row);
+    }
+  }
+  return byId;
+}
+
+function scanCtbForTargets(options) {
+  const {
+    common,
+    containerDir,
+    metaEntries,
+    targetIds,
+    targetById,
+    targetPatterns,
+    localizedTextById,
+    generatedContext,
+    maxHitsPerTarget,
+    maxContextTexts,
+  } = options;
+  const hitsByTarget = Object.fromEntries([...targetIds].map((targetId) => [targetId, []]));
+  const targetHitCounts = new Map();
+  const tableHitCounts = new Map();
+  const strongBridgeCandidates = [];
+  const weakOrNameOnlyTargets = [];
+  let ctbEntriesScanned = 0;
+  let ctbEntriesSkippedNoTargetBytes = 0;
+  let ctbRowsScanned = 0;
+  let directFieldHits = 0;
+  let intPoolHits = 0;
+
+  for (const entry of [...metaEntries.values()].sort((left, right) => left.key - right.key)) {
+    let data;
+    try {
+      data = common.readPkgEntry(containerDir, entry);
+    } catch {
+      continue;
+    }
+    const table = tryParseCtb(entry, data);
+    if (!table) continue;
+    if (!tableHasAnyTargetBytes(table, targetPatterns)) {
+      ctbEntriesSkippedNoTargetBytes += 1;
+      continue;
+    }
+    ctbEntriesScanned += 1;
+
+    const tableLabel = labelForTable(entry.key);
+    const intPool = table.poolsByType.get(INT_POOL) || null;
+    const stringPool = table.poolsByType.get(STRING_POOL) || null;
+    const targetArrayIndex = buildTargetArrayIndex(intPool, targetIds);
+    for (let rowIndex = 0; rowIndex < table.rowCount; rowIndex += 1) {
+      ctbRowsScanned += 1;
+      const rowOffset = table.rowStart + rowIndex * table.rowSize;
+      const rowValues = readRowValues(table.data, rowOffset, table.rowSize);
+      const matches = findTargetMatches(rowValues, targetIds, targetArrayIndex);
+      if (!matches.length) continue;
+
+      const directMatches = matches.filter((match) => match.kind === "direct-field");
+      const poolMatches = matches.filter((match) => match.kind !== "direct-field");
+      directFieldHits += directMatches.length;
+      intPoolHits += poolMatches.length;
+
+      const context = collectRowContext({
+        rowValues,
+        stringPool,
+        intPool,
+        localizedTextById,
+        maxContextTexts,
+      });
+      const rowTargetIds = unique(matches.map((match) => String(match.targetId)));
+      for (const targetId of rowTargetIds) {
+        const currentCount = targetHitCounts.get(targetId) || 0;
+        targetHitCounts.set(targetId, currentCount + 1);
+        tableHitCounts.set(tableLabel, (tableHitCounts.get(tableLabel) || 0) + 1);
+        if ((hitsByTarget[targetId] || []).length >= maxHitsPerTarget) {
+          continue;
+        }
+
+        const target = targetById.get(targetId);
+        const sameTargetMatches = matches.filter((match) => String(match.targetId) === targetId);
+        const strength = classifyHitStrength(tableLabel, context, sameTargetMatches);
+        const generated = generatedContextForTarget(generatedContext, targetId);
+        const hit = {
+          tableKey: Number(entry.key) >>> 0,
+          tableLabel,
+          packageIndex: entry.index,
+          packageOffset: entry.offset,
+          rowIndex,
+          rowSize: table.rowSize,
+          rowOffset,
+          targetId: Number(targetId),
+          targetLabels: target?.labels || [],
+          sourceIds: target?.sourceIds || [],
+          matchFields: sameTargetMatches,
+          strength,
+          generated,
+          context,
+        };
+        hitsByTarget[targetId].push(hit);
+        if (strength === "localized-description-candidate" || strength === "localized-page-context-candidate") {
+          strongBridgeCandidates.push(hit);
+        }
+      }
+    }
+  }
+
+  let targetsWithHits = 0;
+  let targetsWithLocalizedDescriptionText = 0;
+  let targetsWithAnyUiText = 0;
+  for (const targetId of targetIds) {
+    const hits = hitsByTarget[targetId] || [];
+    if (hits.length) targetsWithHits += 1;
+    if (hits.some((hit) => hit.context.localizedDescriptionTexts.length)) {
+      targetsWithLocalizedDescriptionText += 1;
+    }
+    if (hits.some((hit) => hit.context.localizedTexts.length || hit.context.stringPoolTexts.length)) {
+      targetsWithAnyUiText += 1;
+    }
+    if (!hits.some((hit) => hit.strength === "localized-description-candidate" || hit.strength === "localized-page-context-candidate")) {
+      weakOrNameOnlyTargets.push({
+        targetId: Number(targetId),
+        targetLabels: targetById.get(targetId)?.labels || [],
+        sourceIds: targetById.get(targetId)?.sourceIds || [],
+        hitCount: targetHitCounts.get(targetId) || 0,
+        bestTables: topTablesForTarget(hits),
+      });
+    }
+  }
+
+  strongBridgeCandidates.sort(compareStrongCandidates);
+  weakOrNameOnlyTargets.sort((left, right) => right.hitCount - left.hitCount || left.targetId - right.targetId);
+
+  return {
+    hitsByTarget,
+    strongBridgeCandidates: strongBridgeCandidates.slice(0, 400),
+    weakOrNameOnlyTargets,
+    tableHitCounts,
+    targetsWithHits,
+    targetsWithLocalizedDescriptionText,
+    targetsWithAnyUiText,
+    ctbEntriesScanned,
+    ctbRowsScanned,
+    ctbEntriesSkippedNoTargetBytes,
+    directFieldHits,
+    intPoolHits,
+  };
+}
+
+function buildTargetPatterns(targetIds) {
+  return [...targetIds].map((targetId) => {
+    const pattern = Buffer.alloc(4);
+    pattern.writeUInt32LE(Number(targetId) >>> 0, 0);
+    return pattern;
+  });
+}
+
+function tableHasAnyTargetBytes(table, targetPatterns) {
+  if (!targetPatterns.length) return false;
+  for (const pattern of targetPatterns) {
+    if (table.data.indexOf(pattern) >= 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function tryParseCtb(entry, data) {
+  if (!data || data.length < 20) return null;
+  const rowCount = data.readInt32LE(8);
+  const poolCount = data.readInt32LE(12);
+  const rowDataBytes = data.readInt32LE(16);
+  if (rowCount <= 0 || poolCount < 0 || rowDataBytes <= 0 || rowDataBytes % rowCount !== 0) return null;
+  const rowSize = rowDataBytes / rowCount;
+  const indexStart = 20;
+  const rowStart = indexStart + rowCount * 8;
+  if (rowSize <= 0 || rowStart + rowDataBytes > data.length) return null;
+
+  let offset = rowStart + rowDataBytes;
+  const pools = [];
+  const poolsByType = new Map();
+  for (let index = 0; index < poolCount; index += 1) {
+    if (offset + 8 > data.length) return null;
+    const type = data.readInt32LE(offset);
+    const length = data.readInt32LE(offset + 4);
+    offset += 8;
+    if (length < 0 || offset + length > data.length) return null;
+    const buffer = data.subarray(offset, offset + length);
+    pools.push({ type, start: offset, length, buffer });
+    if (!poolsByType.has(type)) poolsByType.set(type, buffer);
+    offset += length;
+  }
+
+  return { data, rowCount, rowSize, rowStart, pools, poolsByType };
+}
+
+function labelForTable(key) {
+  return KNOWN_HASH_LABELS.get(Number(key) >>> 0) || `CTB:${Number(key) >>> 0}`;
+}
+
+function readRowValues(buffer, rowOffset, rowSize) {
+  const values = [];
+  for (let fieldOffset = 0; fieldOffset + 4 <= rowSize; fieldOffset += 4) {
+    const absoluteOffset = rowOffset + fieldOffset;
+    values.push({
+      fieldOffset,
+      u32: buffer.readUInt32LE(absoluteOffset),
+      i32: buffer.readInt32LE(absoluteOffset),
+      f32: buffer.readFloatLE(absoluteOffset),
+    });
+  }
+  return values;
+}
+
+function buildTargetArrayIndex(intPool, targetIds) {
+  const directByOffset = new Map();
+  const parentByOffset = new Map();
+  if (!intPool || !targetIds.size) {
+    return { directByOffset, parentByOffset };
+  }
+
+  for (const targetId of targetIds) {
+    const target = Number(targetId) >>> 0;
+    const pattern = Buffer.alloc(4);
+    pattern.writeUInt32LE(target, 0);
+    let position = intPool.indexOf(pattern, 0);
+    while (position >= 0) {
+      for (const arrayOffset of candidateArrayOffsetsForValue(intPool, position)) {
+        const values = readIntArrayFromPool(intPool, arrayOffset);
+        if (!values.some((value) => (value >>> 0) === target)) continue;
+        const records = directByOffset.get(arrayOffset) || [];
+        records.push({
+          targetId: target,
+          arrayOffset,
+          values: values.slice(0, DEFAULT_MAX_ARRAY_VALUES),
+        });
+        directByOffset.set(arrayOffset, records);
+      }
+      position = intPool.indexOf(pattern, position + 4);
+    }
+  }
+
+  for (const arrayOffset of directByOffset.keys()) {
+    const pattern = Buffer.alloc(4);
+    pattern.writeUInt32LE(arrayOffset >>> 0, 0);
+    let position = intPool.indexOf(pattern, 0);
+    while (position >= 0) {
+      for (const parentOffset of candidateArrayOffsetsForValue(intPool, position)) {
+        if (parentOffset === arrayOffset) continue;
+        const values = readIntArrayFromPool(intPool, parentOffset);
+        if (!values.includes(arrayOffset)) continue;
+        const nestedRecords = directByOffset.get(arrayOffset) || [];
+        const parentRecords = parentByOffset.get(parentOffset) || [];
+        for (const record of nestedRecords) {
+          parentRecords.push({
+            ...record,
+            parentArrayOffset: parentOffset,
+            recordOffset: arrayOffset,
+            parentValues: values.slice(0, DEFAULT_MAX_ARRAY_VALUES),
+          });
+        }
+        parentByOffset.set(parentOffset, parentRecords);
+      }
+      position = intPool.indexOf(pattern, position + 4);
+    }
+  }
+
+  return { directByOffset, parentByOffset };
+}
+
+function candidateArrayOffsetsForValue(pool, valueOffset) {
+  const offsets = [];
+  const maxBacktrackValues = 128;
+  for (let index = 0; index < maxBacktrackValues; index += 1) {
+    const arrayOffset = valueOffset - 2 - index * 4;
+    if (arrayOffset < 0 || arrayOffset + 2 > pool.length) break;
+    const length = pool.readInt16LE(arrayOffset);
+    if (length <= index || length > 512) continue;
+    if (arrayOffset + 2 + length * 4 > pool.length) continue;
+    if (arrayOffset + 2 + index * 4 !== valueOffset) continue;
+    offsets.push(arrayOffset);
+  }
+  return offsets;
+}
+
+function findTargetMatches(rowValues, targetIds, targetArrayIndex) {
+  const matches = [];
+  for (const field of rowValues) {
+    const directKey = String(field.u32);
+    if (targetIds.has(directKey)) {
+      matches.push({ kind: "direct-field", fieldOffset: field.fieldOffset, targetId: field.u32 });
+    }
+    const directArrayMatches = targetArrayIndex.directByOffset.get(field.u32) || [];
+    for (const record of directArrayMatches) {
+      matches.push({
+        kind: "int-array",
+        fieldOffset: field.fieldOffset,
+        arrayOffset: record.arrayOffset,
+        targetId: record.targetId,
+        values: record.values,
+      });
+    }
+    const parentArrayMatches = targetArrayIndex.parentByOffset.get(field.u32) || [];
+    for (const record of parentArrayMatches) {
+      matches.push({
+        kind: "nested-int-array",
+        fieldOffset: field.fieldOffset,
+        arrayOffset: record.parentArrayOffset,
+        recordOffset: record.recordOffset,
+        targetId: record.targetId,
+        values: record.values,
+        parentValues: record.parentValues,
+      });
+    }
+  }
+  return matches;
+}
+
+function readIntArrayFromPool(pool, offset) {
+  if (!pool || !Number.isInteger(offset) || offset < 0 || offset + 2 > pool.length) return [];
+  const length = pool.readInt16LE(offset);
+  if (length <= 0 || length > 512 || offset + 2 + length * 4 > pool.length) return [];
+  const out = [];
+  for (let index = 0; index < length; index += 1) {
+    out.push(pool.readInt32LE(offset + 2 + index * 4));
+  }
+  return out;
+}
+
+function collectRowContext(options) {
+  const { rowValues, stringPool, intPool, localizedTextById, maxContextTexts } = options;
+  const localizedTexts = [];
+  const localizedDescriptionTexts = [];
+  const stringPoolTexts = [];
+  const arrays = [];
+  const floats = [];
+  const nonZeroFields = [];
+
+  for (const field of rowValues) {
+    const localized = localizedTextById.get(String(field.u32));
+    if (localized) {
+      const compact = compactLocalizedText(localized);
+      const record = { fieldOffset: field.fieldOffset, localizationId: field.u32, texts: compact };
+      pushLimitedUnique(localizedTexts, record, maxContextTexts, (value) => `${value.fieldOffset}:${value.localizationId}`);
+      if (looksLikeDescriptionText(compact)) {
+        pushLimitedUnique(
+          localizedDescriptionTexts,
+          record,
+          maxContextTexts,
+          (value) => `${value.fieldOffset}:${value.localizationId}`
+        );
+      }
+    }
+
+    const stringText = readStringFromPool(stringPool, field.u32);
+    if (stringText && !looksLikeAssetOnlyString(stringText)) {
+      pushLimitedUnique(
+        stringPoolTexts,
+        { fieldOffset: field.fieldOffset, stringOffset: field.u32, text: compactText(stringText, 360) },
+        maxContextTexts,
+        (value) => `${value.fieldOffset}:${value.stringOffset}:${value.text}`
+      );
+    }
+
+    if (intPool) {
+      const array = readIntArrayFromPool(intPool, field.u32);
+      if (array.length) {
+        pushLimitedUnique(
+          arrays,
+          {
+            fieldOffset: field.fieldOffset,
+            arrayOffset: field.u32,
+            length: array.length,
+            values: array.slice(0, DEFAULT_MAX_ARRAY_VALUES),
+          },
+          12,
+          (value) => `${value.fieldOffset}:${value.arrayOffset}`
+        );
+      }
+    }
+
+    if (isInterestingFloat(field.f32)) {
+      pushLimitedUnique(
+        floats,
+        { fieldOffset: field.fieldOffset, value: Number(field.f32.toFixed(6)) },
+        16,
+        (value) => `${value.fieldOffset}:${value.value}`
+      );
+    }
+
+    if (field.u32) {
+      pushLimitedUnique(
+        nonZeroFields,
+        { fieldOffset: field.fieldOffset, u32: field.u32, i32: field.i32 },
+        36,
+        (value) => `${value.fieldOffset}:${value.u32}`
+      );
+    }
+  }
+
+  return {
+    localizedDescriptionTexts,
+    localizedTexts,
+    stringPoolTexts,
+    arrays,
+    floats,
+    nonZeroFields,
+  };
+}
+
+function readStringFromPool(pool, offset) {
+  if (!pool || !Number.isInteger(offset) || offset < 0 || offset + 2 > pool.length) return "";
+  const len = pool.readUInt16LE(offset);
+  if (!len || len > 4096 || offset + 2 + len > pool.length) return "";
+  const bytes = pool.subarray(offset + 2, offset + 2 + len);
+  if (bytes.includes(0)) return "";
+  return cleanText(bytes.toString("utf8"));
+}
+
+function compactLocalizedText(localized) {
+  const out = {};
+  for (const localeId of ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"]) {
+    const text = compactText(localized?.texts?.[localeId], 420);
+    if (text) out[localeId] = text;
+  }
+  return out;
+}
+
+function compactText(value, maxLength = 240) {
+  const text = cleanText(value);
+  return text.length > maxLength ? `${text.slice(0, maxLength - 3)}...` : text;
+}
+
+function looksLikeDescriptionText(texts) {
+  return Object.values(texts || {}).some((text) => DESCRIPTION_TEXT_RE.test(text) && cleanText(text).length >= 12);
+}
+
+function looksLikeAssetOnlyString(text) {
+  const clean = cleanText(text);
+  return /^(?:ui\/|assets?\/|[a-z0-9_/-]+\.(?:png|dds|tga|ktx))$/i.test(clean);
+}
+
+function isInterestingFloat(value) {
+  return Number.isFinite(value)
+    && Math.abs(value) >= 0.001
+    && Math.abs(value) <= 100000
+    && Math.abs(value - Math.round(value)) > 0.0001;
+}
+
+function pushLimitedUnique(out, value, limit, keyFn) {
+  const key = keyFn(value);
+  if (out.some((entry) => keyFn(entry) === key)) return;
+  if (out.length < limit) out.push(value);
+}
+
+function unique(values) {
+  return [...new Set(values.filter((value) => value !== undefined && value !== null && value !== ""))];
+}
+
+function classifyHitStrength(tableLabel, context, matches) {
+  if (context.localizedDescriptionTexts.length) {
+    return "localized-description-candidate";
+  }
+  if (context.localizedTexts.length || context.stringPoolTexts.some((entry) => DESCRIPTION_TEXT_RE.test(entry.text))) {
+    return "localized-page-context-candidate";
+  }
+  if (/BuffTable/i.test(tableLabel) && matches.some((match) => match.kind === "direct-field")) {
+    return "direct-buff-table-row";
+  }
+  if (context.stringPoolTexts.length) {
+    return "string-context-only";
+  }
+  return "uid-row-only";
+}
+
+function generatedContextForTarget(generatedContext, targetId) {
+  const buff = generatedContext.buffsById.get(String(targetId));
+  const out = {};
+  if (buff) {
+    out.buffName = buff.NameDesign || buff.Names?.en || buff.DesignName || "";
+    out.buffDescriptionId = buff.DescriptionId || null;
+    out.buffNameId = buff.NameId || null;
+    out.buffNameIdSource = buff.NameIdSource || null;
+    out.buffDesignName = buff.DesignName || "";
+  }
+  return out;
+}
+
+function compareStrongCandidates(left, right) {
+  const leftScore = candidateScore(left);
+  const rightScore = candidateScore(right);
+  return rightScore - leftScore || left.tableLabel.localeCompare(right.tableLabel) || left.targetId - right.targetId;
+}
+
+function candidateScore(hit) {
+  return (hit.context.localizedDescriptionTexts.length ? 100 : 0)
+    + (hit.context.localizedTexts.length ? 20 : 0)
+    + (hit.context.stringPoolTexts.length ? 8 : 0)
+    + (/Item|Skill|Talent|Season|Rogue|Factor|Aoyi/i.test(hit.tableLabel) ? 10 : 0)
+    - (/BuffTable/i.test(hit.tableLabel) ? 15 : 0);
+}
+
+function topTablesForTarget(hits) {
+  const counts = new Map();
+  for (const hit of hits || []) {
+    counts.set(hit.tableLabel, (counts.get(hit.tableLabel) || 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .slice(0, 6)
+    .map(([tableLabel, count]) => ({ tableLabel, count }));
+}
+
+function summarizeFamilies(targets, hitsByTarget) {
+  const byPrefix = new Map();
+  for (const target of targets) {
+    const prefix = target.sourcePrefixes[0] || "unknown";
+    const summary = byPrefix.get(prefix) || { prefix, targets: 0, targetsWithHits: 0, targetsWithDescriptionText: 0 };
+    summary.targets += 1;
+    const hits = hitsByTarget[String(target.uid)] || [];
+    if (hits.length) summary.targetsWithHits += 1;
+    if (hits.some((hit) => hit.context.localizedDescriptionTexts.length)) {
+      summary.targetsWithDescriptionText += 1;
+    }
+    byPrefix.set(prefix, summary);
+  }
+  return [...byPrefix.values()].sort((left, right) => right.targets - left.targets || left.prefix.localeCompare(right.prefix));
+}
+
+function summarizeTables(tableHitCounts) {
+  return [...tableHitCounts.entries()]
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .slice(0, 80)
+    .map(([tableLabel, hits]) => ({ tableLabel, hits }));
+}
+
+function renderMarkdown(report) {
+  const lines = [];
+  lines.push("# Modifier UI Description Surface Probe");
+  lines.push("");
+  lines.push("Dev-only exact UID scan for unresolved modifier description sources.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  for (const [key, value] of Object.entries(report.summary)) {
+    lines.push(`- ${key}: ${value}`);
+  }
+  lines.push("");
+  lines.push("## Target Families");
+  lines.push("");
+  lines.push("| Prefix | Targets | With CTB Hits | With Description Text |");
+  lines.push("| --- | ---: | ---: | ---: |");
+  for (const row of report.targetFamilies) {
+    lines.push(`| ${escapeMd(row.prefix)} | ${row.targets} | ${row.targetsWithHits} | ${row.targetsWithDescriptionText} |`);
+  }
+  lines.push("");
+  lines.push("## Strong Bridge Candidates");
+  lines.push("");
+  lines.push("| UID | Label | Table | Row | Strength | Text |");
+  lines.push("| ---: | --- | --- | ---: | --- | --- |");
+  for (const hit of report.strongBridgeCandidates.slice(0, 80)) {
+    const label = hit.targetLabels[0] || hit.generated?.buffName || "";
+    const text = firstContextText(hit);
+    lines.push(
+      `| ${hit.targetId} | ${escapeMd(label)} | ${escapeMd(hit.tableLabel)} | ${hit.rowIndex} | ${escapeMd(hit.strength)} | ${escapeMd(text)} |`
+    );
+  }
+  lines.push("");
+  lines.push("## Weak / Name-Only Targets");
+  lines.push("");
+  lines.push("| UID | Label | Hits | Best Tables |");
+  lines.push("| ---: | --- | ---: | --- |");
+  for (const row of report.weakOrNameOnlyTargets.slice(0, 120)) {
+    lines.push(
+      `| ${row.targetId} | ${escapeMd(row.targetLabels[0] || "")} | ${row.hitCount} | ${escapeMd(row.bestTables.map((entry) => `${entry.tableLabel} x${entry.count}`).join(", "))} |`
+    );
+  }
+  lines.push("");
+  lines.push("## Top Tables");
+  lines.push("");
+  lines.push("| Table | Hits |");
+  lines.push("| --- | ---: |");
+  for (const row of report.tableHits.slice(0, 40)) {
+    lines.push(`| ${escapeMd(row.tableLabel)} | ${row.hits} |`);
+  }
+  lines.push("");
+  return `${lines.join("\n")}\n`;
+}
+
+function firstContextText(hit) {
+  const localized =
+    hit.context.localizedDescriptionTexts[0]?.texts?.en ||
+    hit.context.localizedDescriptionTexts[0]?.texts?.["zh-CN"] ||
+    hit.context.localizedTexts[0]?.texts?.en ||
+    hit.context.localizedTexts[0]?.texts?.["zh-CN"];
+  if (localized) return localized;
+  return hit.context.stringPoolTexts[0]?.text || "";
+}
+
+function escapeMd(value) {
+  return String(value ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
+}

@@ -1,0 +1,1798 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const {
+  cleanDescriptionsByLocale,
+  cleanMarkup,
+  cleanMarkupPreserveBreaks,
+  descriptionParagraphsByLocale,
+  extractDecisionPlaceholders,
+  extractValueTexts,
+  preferredText,
+} = require("./effect-semantics.cjs");
+const { stripUndefined } = require("./modifier-table-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+const defaultReportDir = path.join(defaultOutputDir, "probing-reports");
+
+const DESCRIPTION_BLOCK_LIMIT = 96;
+const STRUCTURED_VALUE_LIMIT = 240;
+const BRIDGED_CONTEXT_LIMIT = 160;
+const DESCRIPTION_FIELD_RE = /^(?:descriptions?|cleanDescriptions?|texts?|notes?|tooltips?)$/i;
+const STRUCTURED_VALUE_CONTAINER_RE = /(?:baseEffectValues?|tierEffects?|levelEffects?|effectValues?|effectRows?|valueRows?|componentValueHints?|selectedValues?)/i;
+const STRUCTURED_VALUE_FIELD_RE = /^(?:value|rawValue|percentValue|decimalValue|flatValue|valueText|durationSeconds|cooldownSeconds|duration|cooldown|rate|ratio|amount|multiplier|constant)$/i;
+const UI_CONTEXT_BRANCH_RE = /(?:description|tooltip|text|note|effect|tier|level|scope|value|component|selected|rows?)/i;
+
+const CATEGORY_SPECS = [
+  {
+    category: "buffs",
+    output: "BuffDescriptions.json",
+    sources: [
+      { file: "BuffName.json" },
+      { file: "SeasonEffectDescriptions.json" },
+    ],
+    uid: (row) => row.Id ?? row.id ?? row.buffId,
+    note: "Runtime buff/debuff rows from BuffName.json. Many rows are name-only until a structured description bridge exists.",
+  },
+  {
+    category: "skills",
+    output: "SkillDescriptions.json",
+    sources: [
+      { file: "skillnames.json" },
+      { file: "SkillCooldowns.json" },
+      { file: "SkillBreakdownDetails.json" },
+      { file: "SkillDamageChainBridge.json" },
+    ],
+    uid: (row) => row.skillId ?? row.SkillId ?? row.Id ?? row.id ?? row.recountId ?? row.RecountId,
+    note: "Skill, recount, cooldown, and child-damage identity/text rows. Final damage remains packet truth.",
+  },
+  {
+    category: "talents",
+    output: "TalentDescriptions.json",
+    sources: [
+      { file: path.join("probing-reports", "TalentEffectModelProbe.json"), root: "talentRows" },
+      { file: "TalentSpecOwnership.json" },
+    ],
+    uid: (row) => row.id ?? row.Id ?? row.talentId ?? row.TalentId,
+    note: "Class talent/passive text and ownership evidence. Selected runtime talent state is still required before contribution math.",
+  },
+  {
+    category: "seasonal-talents",
+    output: "SeasonalTalentDescriptions.json",
+    sources: [
+      { file: path.join("probing-reports", "SeasonTalentNodeProbe.json") },
+      { file: path.join("probing-reports", "SeasonRogueEntryProbe.json") },
+    ],
+    uid: (row) => row.id ?? row.Id ?? row.entryId ?? row.nodeId ?? row.buffId ?? row.computedAlignedBuffId,
+    note: "Slumberdream node and rogue-entry rows. These are separate from normal class talents.",
+  },
+  {
+    category: "factors",
+    output: "FactorDescriptions.json",
+    sources: [
+      { file: "SeasonPhantomFactors.json" },
+      { file: path.join("probing-reports", "SeasonPhantomFactorProbe.json") },
+    ],
+    uid: (row) => row.buffId ?? row.factorBuffId ?? row.id ?? row.Id,
+    note: "Season Phantom Factor text/value rows. Factor grade/runtime acquisition still needs runtime proof.",
+  },
+  {
+    category: "items",
+    output: "ItemDescriptions.json",
+    sources: [
+      { file: "ItemDescriptionSources.json" },
+      { file: "itemnames.json" },
+      { file: "ConsumableBuffBridge.json" },
+    ],
+    uid: (row) => row.itemId ?? row.ItemId ?? row.Id ?? row.id ?? row.consumableItemId,
+    note: "Static item/gear descriptions and consumable scaffolding. Actual equipped gear statlines are packet/runtime-derived, not game-file-derived.",
+  },
+  {
+    category: "battle-imagines",
+    output: "BattleImagineDescriptions.json",
+    sources: [
+      { file: "skill_aoyi_icons.json" },
+      { file: "ModifierSourceIndex.json", filter: (row) => row.sourceKind === "imagine" },
+      { file: "EffectSources.json", filter: (row) => row.sourceKind === "imagine" },
+    ],
+    uid: (row) => row.sourceEntityId ?? row.Id ?? row.id ?? row.buffId ?? row.sourceId,
+    note: "Battle Imagine/Aoyi owner and runtime buff/debuff text. Display renames still happen after row reduction.",
+  },
+  {
+    category: "linktext-tooltips",
+    output: "LinkTextTooltipDescriptions.json",
+    sources: [{ file: "LinkTextDescriptions.json" }],
+    uid: (row) => row.linkTextId ?? row.id ?? row.Id ?? row.key,
+    note: "Client linktext tooltip rows used by other descriptions, including stack/value fragments.",
+  },
+];
+
+function parseArgs(argv) {
+  const args = {
+    help: false,
+    dryRun: false,
+    outputDir: defaultOutputDir,
+    reportDir: defaultReportDir,
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      args.reportDir = path.join(args.outputDir, "probing-reports");
+      index += 1;
+    } else if (arg === "--report-dir" && next) {
+      args.reportDir = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierDescriptionCatalogs.gen - build category-separated modifier description/value catalogs.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --output-dir <path>       Generated output directory override.");
+  console.log("  --report-dir <path>       Markdown/summary report directory override.");
+  console.log("  --dry-run                 Scan and report without writing.");
+}
+
+function readJsonIfExists(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    if (error && error.code === "ENOENT") return undefined;
+    throw new Error(`Failed to parse ${filePath}: ${error.message}`);
+  }
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeText(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${value.trimEnd()}\n`, "utf8");
+}
+
+function jsonRows(data) {
+  if (Array.isArray(data)) return data;
+  if (!data || typeof data !== "object") return [];
+  if (Array.isArray(data.rows)) return data.rows;
+  if (Array.isArray(data.entries)) return data.entries;
+  if (Array.isArray(data.talentRows)) return data.talentRows;
+  if (Array.isArray(data.nodeRows)) return data.nodeRows;
+  if (Array.isArray(data.factorRows)) return data.factorRows;
+  if (Array.isArray(data.allRows)) return data.allRows;
+
+  if (data.skillCooldownsBySkillId && typeof data.skillCooldownsBySkillId === "object") {
+    return Object.values(data.skillCooldownsBySkillId);
+  }
+  if (data.skillCooldownsByLevelId && typeof data.skillCooldownsByLevelId === "object") {
+    return Object.values(data.skillCooldownsByLevelId);
+  }
+  if (data.talentsById && typeof data.talentsById === "object") {
+    return Object.entries(data.talentsById).map(([talentId, row]) => ({ talentId, ...row }));
+  }
+  if (data.byBuffId && typeof data.byBuffId === "object") {
+    const rows = [];
+    for (const [buffId, entries] of Object.entries(data.byBuffId)) {
+      for (const entry of arrayOf(entries)) rows.push({ observedBuffId: Number(buffId), ...entry });
+    }
+    return rows;
+  }
+  if (data.effectSourcesById && typeof data.effectSourcesById === "object") {
+    return Object.values(data.effectSourcesById);
+  }
+  if (data.sourcesByRuleId && typeof data.sourcesByRuleId === "object") {
+    return Object.entries(data.sourcesByRuleId).map(([ruleId, row]) => ({ ruleId, ...row }));
+  }
+  if (data.linkTextsById && typeof data.linkTextsById === "object") {
+    return Object.entries(data.linkTextsById).map(([linkTextId, row]) => ({ linkTextId, ...row }));
+  }
+  if (data.descriptionsByItemId && typeof data.descriptionsByItemId === "object") {
+    return Object.entries(data.descriptionsByItemId).map(([itemId, row]) => ({ itemId: Number(itemId), ...row }));
+  }
+  if (data.factorsByBuffId && typeof data.factorsByBuffId === "object") {
+    const rows = [];
+    for (const [buffId, entry] of Object.entries(data.factorsByBuffId)) {
+      if (Array.isArray(entry)) {
+        for (const row of entry) rows.push({ buffId: Number(buffId), ...row });
+      } else if (entry && typeof entry === "object") {
+        rows.push({ buffId: Number(buffId), ...entry });
+      }
+    }
+    return rows;
+  }
+  if (data.groups && typeof data.groups === "object") {
+    const rows = [];
+    const groups = Array.isArray(data.groups) ? data.groups : Object.values(data.groups);
+    for (const group of groups) collectRowsFromGroup(group, rows);
+    if (rows.length > 0) return rows;
+  }
+
+  return Object.entries(data)
+    .filter(([, value]) => value && typeof value === "object")
+    .map(([key, value]) => ({ key, ...value }));
+}
+
+function collectRowsFromGroup(value, rows) {
+  if (!value || typeof value !== "object") return;
+  if (Array.isArray(value)) {
+    for (const row of value) collectRowsFromGroup(row, rows);
+    return;
+  }
+  if (Array.isArray(value.rows)) {
+    for (const row of value.rows) rows.push({ groupKey: value.groupKey, groupName: value.groupName, ...row });
+    return;
+  }
+  for (const child of Object.values(value)) {
+    if (Array.isArray(child)) {
+      for (const row of child) {
+        if (row && typeof row === "object") rows.push(row);
+      }
+    }
+  }
+}
+
+function rowsForSource(data, source) {
+  if (!source.root) return jsonRows(data);
+  const root = source.root.split(".").reduce((value, key) => value?.[key], data);
+  return jsonRows(root);
+}
+
+function arrayOf(value) {
+  if (Array.isArray(value)) return value;
+  if (value === undefined || value === null) return [];
+  return [value];
+}
+
+function toUid(value) {
+  if (value === undefined || value === null || value === "") return "";
+  const number = Number(value);
+  if (Number.isFinite(number) && String(value).trim() !== "") return String(Math.trunc(number));
+  return String(value).trim();
+}
+
+function toFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function sortedUnique(values) {
+  return [...new Set(values.filter((value) => value !== undefined && value !== null && value !== ""))]
+    .sort((left, right) => String(left).localeCompare(String(right), undefined, { numeric: true }));
+}
+
+function mergeLocaleMaps(...maps) {
+  const out = {};
+  for (const map of maps) {
+    if (!map || typeof map !== "object" || Array.isArray(map)) continue;
+    for (const [locale, value] of Object.entries(map)) {
+      const text = String(value || "").trim();
+      if (text && !out[locale]) out[locale] = text;
+    }
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function mergeLocaleArrayMaps(...maps) {
+  const out = {};
+  for (const map of maps) {
+    if (!map || typeof map !== "object" || Array.isArray(map)) continue;
+    for (const [locale, value] of Object.entries(map)) {
+      const parts = arrayOf(value).flatMap((item) => Array.isArray(item) ? item : [item]);
+      for (const part of parts) {
+        const text = String(part || "").trim();
+        if (!text) continue;
+        out[locale] ||= [];
+        if (!out[locale].includes(text)) out[locale].push(text);
+      }
+    }
+  }
+  return Object.keys(out).length > 0 ? out : undefined;
+}
+
+function mergeParagraphs(left, right) {
+  const out = [];
+  for (const value of [...arrayOf(left), ...arrayOf(right)].flatMap((item) => Array.isArray(item) ? item : [item])) {
+    const text = String(value || "").trim();
+    if (text && !out.includes(text)) out.push(text);
+  }
+  return out.length ? out : undefined;
+}
+
+function isLocaleLikeMap(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const entries = Object.entries(value);
+  if (!entries.length) return false;
+  return entries.every(([key, child]) => {
+    if (!/^(?:en|zh-CN|zh-TW|ja|ko-KR|fr|de|es|pt-BR|th|id|design)$/i.test(key)) return false;
+    return child === null || child === undefined || ["string", "number", "boolean"].includes(typeof child);
+  });
+}
+
+function collectDeepLocaleMaps(row, keyPredicate, limit = 20) {
+  const maps = [];
+  const seen = new Set();
+  function visit(value, depth = 0) {
+    if (maps.length >= limit || depth > 6 || !value || typeof value !== "object") return;
+    if (seen.has(value)) return;
+    seen.add(value);
+    if (Array.isArray(value)) {
+      for (const item of value.slice(0, 80)) visit(item, depth + 1);
+      return;
+    }
+    for (const [key, child] of Object.entries(value)) {
+      if (keyPredicate(key)) {
+        if (isLocaleLikeMap(child)) {
+          maps.push(child);
+        } else if (["string", "number", "boolean"].includes(typeof child)) {
+          const text = String(child || "").trim();
+          if (text) maps.push({ en: text });
+        }
+      }
+      if (child && typeof child === "object") visit(child, depth + 1);
+    }
+  }
+  visit(row);
+  return maps;
+}
+
+function localizedTextFromScalar(value) {
+  const text = String(value || "").trim();
+  return text ? { en: text } : undefined;
+}
+
+function extractNames(row) {
+  const deepNameMaps = collectDeepLocaleMaps(row, (key) => /^(?:names|Names|displayNames|sourceNames|familyNames)$/i.test(key), 6);
+  const names = mergeLocaleMaps(
+    row.Names,
+    row.names,
+    row.SourceNames,
+    row.sourceNames,
+    row.DisplayNames,
+    row.displayNames,
+    row.FamilyNames,
+    row.familyNames,
+    localizedTextFromScalar(row.Name),
+    localizedTextFromScalar(row.name),
+    localizedTextFromScalar(row.SourceName),
+    localizedTextFromScalar(row.sourceName),
+    localizedTextFromScalar(row.DisplayName),
+    localizedTextFromScalar(row.displayName),
+    localizedTextFromScalar(row.FamilyName),
+    localizedTextFromScalar(row.familyName),
+    row.NameDesign ? { design: row.NameDesign } : undefined,
+    row.DesignName ? { design: row.DesignName } : undefined,
+    row.nameDesign ? { design: row.nameDesign } : undefined,
+    row.designName ? { design: row.designName } : undefined,
+    ...deepNameMaps,
+  );
+  return {
+    names,
+    name: preferredText(names, row.Name ?? row.name ?? row.sourceName ?? row.displayName ?? row.FamilyName ?? row.familyName ?? row.NameDesign ?? row.DesignName),
+  };
+}
+
+function extractDescriptions(row) {
+  const deepDescriptionMaps = collectDeepLocaleMaps(row, (key) => /^(?:descriptions|Descriptions|notes|Notes|tooltips|Tooltips|texts|Texts)$/i.test(key), 24);
+  const deepCleanMaps = collectDeepLocaleMaps(row, (key) => /^(?:cleanDescriptions|CleanDescriptions)$/i.test(key), 24);
+  const descriptions = mergeLocaleMaps(
+    row.Descriptions,
+    row.descriptions,
+    row.Texts,
+    row.texts,
+    row.Notes,
+    row.notes,
+    row.Tooltips,
+    row.tooltips,
+    localizedTextFromScalar(row.Description),
+    localizedTextFromScalar(row.description),
+    localizedTextFromScalar(row.Text),
+    localizedTextFromScalar(row.text),
+    localizedTextFromScalar(row.Note),
+    localizedTextFromScalar(row.note),
+    localizedTextFromScalar(row.Tooltip),
+    localizedTextFromScalar(row.tooltip),
+    ...deepDescriptionMaps,
+  );
+  const explicitClean = mergeLocaleMaps(row.CleanDescriptions, row.cleanDescriptions, ...deepCleanMaps);
+  const cleanDescriptions = mergeLocaleMaps(explicitClean, cleanDescriptionsByLocale(descriptions || {}));
+  const description = preferredText(descriptions, "");
+  const cleanDescription = preferredText(cleanDescriptions, description ? cleanMarkup(description) : "");
+  const descriptionParagraphsByLocaleMap = descriptionParagraphsByLocale(descriptions || {});
+  const descriptionParagraphs = preferredText(descriptionParagraphsByLocaleMap, undefined);
+  return {
+    description: description || undefined,
+    descriptions,
+    cleanDescription: cleanDescription || undefined,
+    cleanDescriptions,
+    descriptionParagraphs,
+    descriptionParagraphsByLocale: descriptionParagraphsByLocaleMap,
+  };
+}
+
+function normalizedFieldPath(parts) {
+  return parts
+    .map((part) => String(part ?? "").replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .join(".");
+}
+
+function localeMapFromValue(value) {
+  if (isLocaleLikeMap(value)) return mergeLocaleMaps(value);
+  if (["string", "number", "boolean"].includes(typeof value)) return localizedTextFromScalar(value);
+  return undefined;
+}
+
+function addDescriptionBlock(blocks, seen, sourceFile, fieldPath, value) {
+  const descriptions = localeMapFromValue(value);
+  if (!descriptions) return;
+  const cleanDescriptions = cleanDescriptionsByLocale(descriptions);
+  const descriptionParagraphsByLocaleMap = descriptionParagraphsByLocale(descriptions);
+  const preview = preferredText(cleanDescriptions, preferredText(descriptions, ""));
+  if (!preview || preview.length < 3) return;
+  const key = `${sourceFile}:${fieldPath}:${preview}`;
+  if (seen.has(key)) return;
+  seen.add(key);
+  blocks.push(stripUndefined({
+    sourceFile,
+    sourcePath: fieldPath,
+    kind: DESCRIPTION_FIELD_RE.test(fieldPath.split(".").pop() || "") ? "ui-text" : "ui-page-context",
+    descriptions,
+    cleanDescriptions,
+    descriptionParagraphs: preferredText(descriptionParagraphsByLocaleMap, undefined),
+    descriptionParagraphsByLocale: descriptionParagraphsByLocaleMap,
+  }));
+}
+
+function collectDescriptionBlocks(row, sourceFile, limit = DESCRIPTION_BLOCK_LIMIT) {
+  const blocks = [];
+  const seen = new Set();
+  const seenObjects = new Set();
+
+  function visit(value, pathParts = [], depth = 0) {
+    if (blocks.length >= limit || depth > 7 || value === null || value === undefined) return;
+    if (Array.isArray(value)) {
+      for (let index = 0; index < value.length && blocks.length < limit; index += 1) {
+        visit(value[index], [...pathParts, `[${index}]`], depth + 1);
+      }
+      return;
+    }
+    if (typeof value !== "object") return;
+    if (seenObjects.has(value)) return;
+    seenObjects.add(value);
+
+    for (const [key, child] of Object.entries(value)) {
+      const nextPath = [...pathParts, key];
+      if (DESCRIPTION_FIELD_RE.test(key)) {
+        addDescriptionBlock(blocks, seen, sourceFile, normalizedFieldPath(nextPath), child);
+      }
+      if (child && typeof child === "object" && (depth < 2 || UI_CONTEXT_BRANCH_RE.test(key))) {
+        visit(child, nextPath, depth + 1);
+      }
+    }
+  }
+
+  visit(row);
+  return blocks;
+}
+
+function collectIdsByKey(row, predicate, limit = 200) {
+  const out = new Set();
+  function visit(value, depth = 0) {
+    if (out.size >= limit || depth > 7 || value === null || value === undefined) return;
+    if (Array.isArray(value)) {
+      for (const item of value) visit(item, depth + 1);
+      return;
+    }
+    if (typeof value !== "object") return;
+    for (const [key, child] of Object.entries(value)) {
+      if (predicate(key)) {
+        for (const item of flattenScalars(child)) {
+          const uid = toUid(item);
+          if (uid) out.add(uid);
+        }
+      }
+      if (child && typeof child === "object") visit(child, depth + 1);
+    }
+  }
+  visit(row);
+  return sortedUnique([...out]);
+}
+
+function flattenScalars(value, limit = 100) {
+  const out = [];
+  function visit(inner) {
+    if (out.length >= limit || inner === undefined || inner === null) return;
+    if (Array.isArray(inner)) {
+      for (const item of inner) visit(item);
+      return;
+    }
+    if (typeof inner === "object") {
+      for (const child of Object.values(inner)) visit(child);
+      return;
+    }
+    out.push(inner);
+  }
+  visit(value);
+  return out;
+}
+
+function collectStringsByKey(row, predicate, limit = 120) {
+  const out = new Set();
+  function visit(value, depth = 0) {
+    if (out.size >= limit || depth > 6 || value === null || value === undefined) return;
+    if (Array.isArray(value)) {
+      for (const item of value) visit(item, depth + 1);
+      return;
+    }
+    if (typeof value !== "object") return;
+    for (const [key, child] of Object.entries(value)) {
+      if (predicate(key)) {
+        for (const item of flattenScalars(child)) {
+          const text = String(item || "").trim();
+          if (text) out.add(text);
+        }
+      }
+      if (child && typeof child === "object") visit(child, depth + 1);
+    }
+  }
+  visit(row);
+  return sortedUnique([...out]);
+}
+
+function extractRelationships(row) {
+  return stripUndefined({
+    buffIds: collectIdsByKey(row, (key) => /(?:^|[^a-z])(?:buffId|buffIds|observedBuffId|computedAlignedBuffId|descriptionSourceBuffId)$/i.test(key)),
+    skillIds: collectIdsByKey(row, (key) => /(?:^|[^a-z])(?:skillId|skillIds|baseSkillId|linkedBaseSkillId|ownerSourceId|ownerSkillEffectId|ownerBaseEffectSkillLevelId)$/i.test(key)),
+    itemIds: collectIdsByKey(row, (key) => /(?:^|[^a-z])(?:itemId|itemIds|consumableItemId)$/i.test(key)),
+    factorIds: collectIdsByKey(row, (key) => /(?:factorBuffId|factorId|factorIds)$/i.test(key)),
+    targetDamageIds: collectIdsByKey(row, (key) => /targetDamageIds?|damageIds?|damageAttrIds?/i.test(key)),
+    targetRecountIds: collectIdsByKey(row, (key) => /targetRecountIds?|recountIds?/i.test(key)),
+    sourceEntityIds: collectIdsByKey(row, (key) => /sourceEntityIds?|sourceConfigIds?/i.test(key)),
+    ownerClassIds: collectIdsByKey(row, (key) => /ownerClassIds?|classIds?|classId/i.test(key)),
+    ownerSpecIds: collectIdsByKey(row, (key) => /ownerSpecIds?|specIds?|specId/i.test(key)),
+  });
+}
+
+function extractProvenance(row, sourceFile) {
+  return stripUndefined({
+    sourceFiles: [sourceFile],
+    sourceTables: collectStringsByKey(row, (key) => /sourceTable|SourceTable|ctb/i.test(key)),
+    sourceOffsets: collectIdsByKey(row, (key) => /sourceOffset|SourceOffset|nameSourceOffset|iconPathOffset|fieldOffset/i.test(key)),
+    nameIds: collectIdsByKey(row, (key) => /(?:^|[^a-z])nameId(?:s)?$/i.test(key)),
+    descriptionIds: collectIdsByKey(row, (key) => /descriptionId|directDescriptionId/i.test(key)),
+    linkTextIds: collectIdsByKey(row, (key) => /linkTextId|linktext/i.test(key)),
+    evidence: collectStringsByKey(row, (key) => /^evidence$|evidence$/i.test(key)),
+  });
+}
+
+function textSurface(entry, row) {
+  return [
+    entry.name,
+    ...Object.values(entry.names || {}),
+    entry.description,
+    entry.cleanDescription,
+    ...Object.values(entry.descriptions || {}),
+    ...Object.values(entry.cleanDescriptions || {}),
+    row.valueText,
+    row.effectNameEn,
+  ]
+    .map((value) => String(value || "").trim())
+    .filter(Boolean)
+    .join(" ");
+}
+
+function parseValueText(rawText) {
+  const numberMatch = String(rawText || "").match(/[+-]?\d+(?:[.,]\d+)?/);
+  if (!numberMatch) return undefined;
+  const value = Number(numberMatch[0].replace(",", "."));
+  if (!Number.isFinite(value)) return undefined;
+  const lower = String(rawText).toLowerCase();
+  const unit = lower.includes("%")
+    ? "percent"
+    : /\b(?:s|sec|secs|second|seconds)\b/i.test(lower)
+      ? "seconds"
+      : "flat";
+  return { value, unit, rawText: String(rawText).trim(), confidence: "text" };
+}
+
+function valueSourceClauses(text) {
+  const clauses = cleanMarkupPreserveBreaks(String(text || ""))
+    .replace(/\(([^)]{0,120})\)/g, ". $1 .")
+    .split(/[\n.;\uFF1B\u3002]+|,\s+/g)
+    .map((part) => part.trim())
+    .filter((part) => part.length >= 3 && part.length <= 240);
+  return clauses.length ? clauses : [cleanMarkupPreserveBreaks(String(text || "")).trim()].filter(Boolean);
+}
+
+function valueRowsFromText(text) {
+  const byValue = new Map();
+  for (const clause of valueSourceClauses(text)) {
+    for (const rawText of extractValueTexts(clause)) {
+      const parsed = parseValueText(rawText);
+      if (!parsed) continue;
+      const key = `${parsed.unit}:${parsed.value}:${parsed.rawText}`;
+      if (!byValue.has(key)) {
+        byValue.set(key, {
+          ...parsed,
+          sourceTexts: [],
+        });
+      }
+      const current = byValue.get(key);
+      if (clause && current.sourceTexts.length < 8 && !current.sourceTexts.includes(clause)) {
+        current.sourceTexts.push(clause);
+      }
+    }
+  }
+  return [...byValue.values()].map((row) => stripUndefined({
+    ...row,
+    sourceText: row.sourceTexts[0],
+    sourceTexts: row.sourceTexts,
+  }));
+}
+
+function collectDecisionPlaceholdersFromTexts(texts, sourceFile) {
+  const byKey = new Map();
+  for (const text of texts || []) {
+    if (!text) continue;
+    for (const placeholder of extractDecisionPlaceholders(text)) {
+      const key = `${placeholder.functionName}:${placeholder.index}:${placeholder.token}`;
+      if (!byKey.has(key)) {
+        byKey.set(key, {
+          ...placeholder,
+          sourceFile,
+          sourceTexts: [],
+        });
+      }
+      const current = byKey.get(key);
+      const sourceText = cleanMarkupPreserveBreaks(text);
+      if (sourceText && current.sourceTexts.length < 6 && !current.sourceTexts.includes(sourceText)) {
+        current.sourceTexts.push(sourceText);
+      }
+    }
+  }
+  return [...byKey.values()].sort((left, right) => {
+    if (left.index !== right.index) return left.index - right.index;
+    return left.functionName.localeCompare(right.functionName);
+  });
+}
+
+function hasDecisionParameterValueSource(row) {
+  return objectContainsDecisionParameterSource(row);
+}
+
+function objectContainsDecisionParameterSource(value, depth = 0) {
+  if (!value || typeof value !== "object" || depth > 8) return false;
+  if (Array.isArray(value)) {
+    return value.some((item) => objectContainsDecisionParameterSource(item, depth + 1));
+  }
+  for (const [key, child] of Object.entries(value)) {
+    if (/^(?:parameterValues|parameterRecords)$/i.test(key) && arrayOf(child).length > 0) return true;
+    if (/^(?:resolvedDescription|resolvedDescriptions|cleanResolvedDescription|cleanResolvedDescriptions)$/i.test(key) && child) return true;
+    if (child && typeof child === "object" && objectContainsDecisionParameterSource(child, depth + 1)) return true;
+  }
+  return false;
+}
+
+function structuredRowsContainDecisionParameterSource(rows) {
+  return arrayOf(rows).some((row) => /parameterValues|parameterRecords|cleanResolvedDescription|resolvedDescription|modifierEvidence\.gradeRows/i.test(String(row.sourcePath || "")));
+}
+
+function firstNumber(...values) {
+  for (const value of values) {
+    const number = toFiniteNumber(value);
+    if (number !== null) return number;
+  }
+  return null;
+}
+
+function contextFromObject(value, inherited = {}) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return inherited;
+  return stripUndefined({
+    ...inherited,
+    key: value.key ?? value.Key ?? inherited.key,
+    scope: value.scope ?? value.Scope ?? inherited.scope,
+    level: value.level ?? value.Level ?? value.skillLevel ?? inherited.level,
+    tier: value.tier ?? value.Tier ?? value.grade ?? value.Grade ?? inherited.tier,
+    sourceTable: value.sourceTable ?? value.SourceTable ?? inherited.sourceTable,
+    sourceOffset: value.sourceOffset ?? value.SourceOffset ?? inherited.sourceOffset,
+    rowId: value.rowId ?? value.RowId ?? inherited.rowId,
+    skillLevelId: value.skillLevelId ?? value.SkillLevelId ?? inherited.skillLevelId,
+    skillEffectId: value.skillEffectId ?? value.SkillEffectId ?? inherited.skillEffectId,
+  });
+}
+
+function structuredUnitForKey(key, parsed, value) {
+  if (parsed?.unit) return parsed.unit;
+  const lower = String(key || "").toLowerCase();
+  if (lower.includes("percent") || lower.includes("rate") || lower.includes("ratio")) return "percent";
+  if (lower.includes("duration") || lower.includes("cooldown")) return "seconds";
+  if (Math.abs(value) > 0 && Math.abs(value) <= 1 && (lower.includes("per") || lower.includes("rate"))) return "decimal";
+  return "flat";
+}
+
+function structuredValueRowFromObject(value, sourceFile, sourcePath, context = {}) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const valueText = String(value.valueText ?? value.ValueText ?? "").trim();
+  const parsed = valueText ? parseValueText(valueText) : undefined;
+  const percentValue = firstNumber(value.percentValue, value.PercentValue);
+  const decimalValue = firstNumber(value.decimalValue, value.DecimalValue);
+  const rawValue = firstNumber(value.value, value.Value, value.rawValue, value.RawValue, value.flatValue, value.FlatValue);
+  const fallbackValue = parsed?.value ?? percentValue ?? rawValue ?? decimalValue;
+  if (fallbackValue === null || fallbackValue === undefined) return undefined;
+
+  const key = value.key ?? value.Key ?? context.key ?? "value";
+  const unit = percentValue !== null ? "percent" : structuredUnitForKey(key, parsed, fallbackValue);
+  const rawText = valueText || `${key}: ${fallbackValue}${unit === "percent" ? "%" : ""}`;
+  return stripUndefined({
+    key: String(key),
+    scope: value.scope ?? value.Scope ?? context.scope,
+    value: unit === "percent" && percentValue !== null ? percentValue : fallbackValue,
+    unit,
+    rawText,
+    confidence: "structured",
+    sourceFile,
+    sourcePath,
+    sourceTable: value.sourceTable ?? value.SourceTable ?? context.sourceTable,
+    sourceOffset: value.sourceOffset ?? value.SourceOffset ?? context.sourceOffset,
+    rowId: value.rowId ?? value.RowId ?? context.rowId,
+    level: value.level ?? value.Level ?? context.level,
+    tier: value.tier ?? value.Tier ?? value.grade ?? value.Grade ?? context.tier,
+    skillLevelId: value.skillLevelId ?? value.SkillLevelId ?? context.skillLevelId,
+    skillEffectId: value.skillEffectId ?? value.SkillEffectId ?? context.skillEffectId,
+    rawValue: rawValue ?? undefined,
+    percentValue: percentValue ?? undefined,
+    decimalValue: decimalValue ?? undefined,
+    sourceText: rawText,
+    sourceTexts: [rawText],
+  });
+}
+
+function structuredScalarRow(key, value, sourceFile, sourcePath, context = {}) {
+  const number = toFiniteNumber(value);
+  if (number === null) return undefined;
+  const unit = structuredUnitForKey(key, undefined, number);
+  return stripUndefined({
+    key,
+    scope: context.scope,
+    value: number,
+    unit,
+    rawText: `${key}: ${number}${unit === "percent" ? "%" : unit === "seconds" ? "s" : ""}`,
+    confidence: "structured",
+    sourceFile,
+    sourcePath,
+    sourceTable: context.sourceTable,
+    sourceOffset: context.sourceOffset,
+    rowId: context.rowId,
+    level: context.level,
+    tier: context.tier,
+    skillLevelId: context.skillLevelId,
+    skillEffectId: context.skillEffectId,
+    sourceText: `${key}: ${number}`,
+    sourceTexts: [`${key}: ${number}`],
+  });
+}
+
+function collectStructuredValueRows(row, sourceFile, limit = STRUCTURED_VALUE_LIMIT) {
+  const rows = [];
+  const seen = new Set();
+  const seenObjects = new Set();
+
+  function add(rowValue) {
+    if (!rowValue || rows.length >= limit) return;
+    const key = valueRowMergeKey(rowValue);
+    if (seen.has(key)) return;
+    seen.add(key);
+    rows.push(rowValue);
+  }
+
+  function visit(value, pathParts = [], context = {}, inStructuredContainer = false, depth = 0) {
+    if (rows.length >= limit || depth > 8 || value === null || value === undefined) return;
+    const sourcePath = normalizedFieldPath(pathParts);
+    if (Array.isArray(value)) {
+      const nextStructured = inStructuredContainer || STRUCTURED_VALUE_CONTAINER_RE.test(sourcePath);
+      if (!nextStructured && depth > 2) return;
+      for (let index = 0; index < value.length && rows.length < limit; index += 1) {
+        visit(value[index], [...pathParts, `[${index}]`], context, nextStructured, depth + 1);
+      }
+      return;
+    }
+    if (typeof value !== "object") return;
+    if (seenObjects.has(value)) return;
+    seenObjects.add(value);
+
+    const nextStructured = inStructuredContainer || STRUCTURED_VALUE_CONTAINER_RE.test(sourcePath);
+    const nextContext = contextFromObject(value, context);
+    const hasValueShape = value.valueText !== undefined
+      || value.ValueText !== undefined
+      || value.value !== undefined
+      || value.Value !== undefined
+      || value.rawValue !== undefined
+      || value.RawValue !== undefined
+      || value.percentValue !== undefined
+      || value.PercentValue !== undefined
+      || value.decimalValue !== undefined
+      || value.DecimalValue !== undefined
+      || value.flatValue !== undefined
+      || value.FlatValue !== undefined;
+    if (nextStructured) add(structuredValueRowFromObject(value, sourceFile, sourcePath, nextContext));
+
+    for (const [key, child] of Object.entries(value)) {
+      const nextPath = [...pathParts, key];
+      if (nextStructured && !hasValueShape && STRUCTURED_VALUE_FIELD_RE.test(key) && ["string", "number"].includes(typeof child)) {
+        add(structuredScalarRow(key, child, sourceFile, normalizedFieldPath(nextPath), nextContext));
+      }
+      if (
+        child
+        && typeof child === "object"
+        && (nextStructured || depth < 2 || STRUCTURED_VALUE_CONTAINER_RE.test(key) || UI_CONTEXT_BRANCH_RE.test(key))
+      ) {
+        visit(child, nextPath, nextContext, nextStructured || STRUCTURED_VALUE_CONTAINER_RE.test(key), depth + 1);
+      }
+    }
+  }
+
+  visit(row);
+  return rows;
+}
+
+function hasStructuredValueSurface(row) {
+  if (!row || typeof row !== "object") return false;
+  return Object.keys(row).some((key) => (
+    STRUCTURED_VALUE_CONTAINER_RE.test(key)
+    || STRUCTURED_VALUE_FIELD_RE.test(key)
+  ));
+}
+
+function maybeOwnerPartySplit(text, valueRows) {
+  const lower = cleanMarkup(text).toLowerCase();
+  if (/\bluck(?:y)?\b/.test(lower) && /\bevery\s+\d/.test(lower)) return undefined;
+  const percents = valueRows
+    .filter((row) => row.unit === "percent")
+    .map((row) => row.value)
+    .filter((value) => Number.isFinite(value) && value > 0);
+  if (percents.length < 2) return undefined;
+  const values = [...new Set(percents)].sort((left, right) => left - right);
+  if (values.length < 2) return undefined;
+  return {
+    status: "candidate",
+    ownerValue: values[values.length - 1],
+    partyValue: values[0],
+    unit: "percent",
+    rule: "larger-value-owner-smaller-value-party-candidate",
+    runtimeEvidenceRequired: ["source actor", "recipient actor", "active buff window"],
+  };
+}
+
+function extractStacking(text) {
+  const cleaned = cleanMarkup(text);
+  const hasStackText = /\bstack(?:s|ing)?\b|\u5c42|\u53e0/u.test(cleaned);
+  if (!hasStackText) return undefined;
+
+  const maxStacks = [
+    ...cleaned.matchAll(/\b(?:up to|max(?:imum)?|cap(?:ped)? at)\s*(\d+)\s*stacks?\b/gi),
+    ...cleaned.matchAll(/\b(\d+)\s*stacks?\s*(?:max|max(?:imum)?|cap)\b/gi),
+  ].map((match) => Number(match[1])).filter((value) => Number.isFinite(value) && value > 0);
+
+  const perStackValues = [
+    ...cleaned.matchAll(/([+-]?\d+(?:[.,]\d+)?)\s*(%|s|sec|seconds?)?\s+per\s+stack/gi),
+  ].map((match) => ({
+    value: Number(match[1].replace(",", ".")),
+    unit: match[2] === "%" ? "percent" : "flat",
+    rawText: match[0].trim(),
+  })).filter((row) => Number.isFinite(row.value));
+
+  const valueCaps = [
+    ...cleaned.matchAll(/\bup to\s*\+?(\d+(?:[.,]\d+)?)\s*(%)?/gi),
+  ].map((match) => ({
+    value: Number(match[1].replace(",", ".")),
+    unit: match[2] === "%" ? "percent" : "flat",
+    rawText: match[0].trim(),
+  })).filter((row) => Number.isFinite(row.value));
+
+  const thresholdEffects = [...new Set([
+    ...cleaned.matchAll(/\b(?:at|every|when|after)\s+[^.]{0,40}?\b\d+\s+stacks?\b/gi),
+    ...cleaned.matchAll(/\b(?:maximum|max)\s+stacks?[^.]{0,80}/gi),
+  ].map((match) => match[0].trim()))];
+
+  const hasTargetStackText = /\btarget\b|\bmark(?:ed)?\b|\bdebuff\b|\barrow\b|\u76ee\u6807|\u6807\u8bb0|\u7bad/u.test(cleaned);
+  return stripUndefined({
+    hasStackText: true,
+    maxStacks: sortedUnique(maxStacks).map(Number),
+    valuePerStack: perStackValues,
+    valueCaps,
+    thresholdEffects,
+    targetStackEffects: hasTargetStackText ? ["stack text references target/mark/debuff/arrow semantics"] : undefined,
+    runtimeStackEvidenceRequired: true,
+  });
+}
+
+function extractFormulaTerms(row) {
+  return sortedUnique([
+    ...collectStringsByKey(row, (key) => /formulaTerm|contributionGroup|componentClass|predicateTag|relationshipKind/i.test(key)),
+    ...arrayOf(row.rowPolicy),
+    ...arrayOf(row.contributionStatus),
+    ...arrayOf(row.sourceType),
+  ]);
+}
+
+function mergeArray(left, right) {
+  return sortedUnique([...arrayOf(left), ...arrayOf(right)]);
+}
+
+function valueRowMergeKey(row) {
+  return [
+    row.unit,
+    row.value,
+    row.rawText,
+    row.key,
+    row.scope,
+    row.tier,
+    row.level,
+    row.sourcePath,
+  ].map((value) => String(value ?? "")).join(":");
+}
+
+function mergeObjectArrays(left, right, keyFn) {
+  const map = new Map();
+  for (const item of [...arrayOf(left), ...arrayOf(right)]) {
+    if (!item || typeof item !== "object") continue;
+    const key = keyFn(item);
+    if (!map.has(key)) {
+      map.set(key, item);
+      continue;
+    }
+    const existing = map.get(key);
+    const sourceTexts = sortedUnique([
+      ...arrayOf(existing.sourceTexts),
+      existing.sourceText,
+      ...arrayOf(item.sourceTexts),
+      item.sourceText,
+    ].filter(Boolean)).slice(0, 8);
+    if (sourceTexts.length) {
+      map.set(key, stripUndefined({
+        ...existing,
+        sourceText: existing.sourceText || sourceTexts[0],
+        sourceTexts,
+      }));
+    }
+  }
+  return [...map.values()];
+}
+
+function contextBlockMergeKey(row) {
+  return [
+    row.sourceFile,
+    row.sourcePath,
+    row.kind,
+    row.bridgeSourceCategory,
+    row.bridgeSourceUid,
+    preferredText(row.cleanDescriptions, preferredText(row.descriptions, "")),
+  ].map((value) => String(value ?? "")).join(":");
+}
+
+function decisionPlaceholderMergeKey(row) {
+  return [
+    row.functionName,
+    row.index,
+    row.token,
+  ].map((value) => String(value ?? "")).join(":");
+}
+
+function mergeLocale(left, right) {
+  return mergeLocaleMaps(left, right);
+}
+
+function makeBaseEntry(category, uid) {
+  return {
+    uid,
+    category,
+    name: "",
+    names: undefined,
+    description: undefined,
+    descriptions: undefined,
+    cleanDescription: undefined,
+    cleanDescriptions: undefined,
+    descriptionParagraphs: undefined,
+    descriptionParagraphsByLocale: undefined,
+    scopeDescriptions: undefined,
+    cleanScopeDescriptions: undefined,
+    scopeDescriptionParagraphs: undefined,
+    scopeDescriptionParagraphsByLocale: undefined,
+    descriptionBlocks: [],
+    bridgedPageContexts: [],
+    levels: [],
+    tiers: [],
+    formulaTerms: [],
+    valueRows: [],
+    structuredValueRows: [],
+    decisionPlaceholders: [],
+    decisionPlaceholderResolution: undefined,
+    hasUnresolvedDecisionPlaceholders: undefined,
+    ownerPartySplit: undefined,
+    stacking: undefined,
+    relationships: {},
+    provenance: {
+      sourceFiles: [],
+      sourceTables: [],
+      sourceOffsets: [],
+      nameIds: [],
+      descriptionIds: [],
+      linkTextIds: [],
+      evidence: [],
+    },
+  };
+}
+
+function mergeEntry(existing, patch) {
+  existing.name ||= patch.name;
+  existing.names = mergeLocale(existing.names, patch.names);
+  existing.description ||= patch.description;
+  existing.descriptions = mergeLocale(existing.descriptions, patch.descriptions);
+  existing.cleanDescription ||= patch.cleanDescription;
+  existing.cleanDescriptions = mergeLocale(existing.cleanDescriptions, patch.cleanDescriptions);
+  existing.descriptionParagraphs = mergeParagraphs(existing.descriptionParagraphs, patch.descriptionParagraphs);
+  existing.descriptionParagraphsByLocale = mergeLocaleArrayMaps(existing.descriptionParagraphsByLocale, patch.descriptionParagraphsByLocale);
+  existing.scopeDescriptions = mergeLocale(existing.scopeDescriptions, patch.scopeDescriptions);
+  existing.cleanScopeDescriptions = mergeLocale(existing.cleanScopeDescriptions, patch.cleanScopeDescriptions);
+  existing.scopeDescriptionParagraphs = mergeParagraphs(existing.scopeDescriptionParagraphs, patch.scopeDescriptionParagraphs);
+  existing.scopeDescriptionParagraphsByLocale = mergeLocaleArrayMaps(existing.scopeDescriptionParagraphsByLocale, patch.scopeDescriptionParagraphsByLocale);
+  existing.descriptionBlocks = mergeObjectArrays(existing.descriptionBlocks, patch.descriptionBlocks, contextBlockMergeKey).slice(0, DESCRIPTION_BLOCK_LIMIT);
+  existing.bridgedPageContexts = mergeObjectArrays(existing.bridgedPageContexts, patch.bridgedPageContexts, contextBlockMergeKey).slice(0, BRIDGED_CONTEXT_LIMIT);
+  existing.levels = mergeArray(existing.levels, patch.levels);
+  existing.tiers = mergeArray(existing.tiers, patch.tiers);
+  existing.formulaTerms = mergeArray(existing.formulaTerms, patch.formulaTerms);
+  existing.valueRows = mergeObjectArrays(existing.valueRows, patch.valueRows, valueRowMergeKey);
+  existing.structuredValueRows = mergeObjectArrays(existing.structuredValueRows, patch.structuredValueRows, valueRowMergeKey);
+  existing.decisionPlaceholders = mergeObjectArrays(existing.decisionPlaceholders, patch.decisionPlaceholders, decisionPlaceholderMergeKey);
+  existing.decisionPlaceholderResolution = existing.decisionPlaceholderResolution === "parameter-source-present" || patch.decisionPlaceholderResolution === "parameter-source-present"
+    ? "parameter-source-present"
+    : existing.decisionPlaceholderResolution || patch.decisionPlaceholderResolution;
+  existing.hasUnresolvedDecisionPlaceholders = existing.decisionPlaceholderResolution === "parameter-source-unresolved" ? true : undefined;
+  existing.ownerPartySplit ||= patch.ownerPartySplit;
+  existing.stacking = mergeStacking(existing.stacking, patch.stacking);
+  existing.relationships = mergeRelationshipObjects(existing.relationships, patch.relationships);
+  existing.provenance = mergeRelationshipObjects(existing.provenance, patch.provenance);
+}
+
+function mergeStacking(left, right) {
+  if (!left) return right;
+  if (!right) return left;
+  return stripUndefined({
+    hasStackText: left.hasStackText || right.hasStackText,
+    maxStacks: mergeArray(left.maxStacks, right.maxStacks).map(Number),
+    valuePerStack: mergeObjectArrays(left.valuePerStack, right.valuePerStack, (row) => `${row.unit}:${row.value}:${row.rawText}`),
+    valueCaps: mergeObjectArrays(left.valueCaps, right.valueCaps, (row) => `${row.unit}:${row.value}:${row.rawText}`),
+    thresholdEffects: mergeArray(left.thresholdEffects, right.thresholdEffects),
+    targetStackEffects: mergeArray(left.targetStackEffects, right.targetStackEffects),
+    runtimeStackEvidenceRequired: left.runtimeStackEvidenceRequired || right.runtimeStackEvidenceRequired,
+  });
+}
+
+function mergeRelationshipObjects(left, right) {
+  const out = { ...(left || {}) };
+  for (const [key, value] of Object.entries(right || {})) {
+    out[key] = mergeArray(out[key], value);
+  }
+  return stripUndefined(out);
+}
+
+function indexedDescriptionPatch(existing, row) {
+  const descriptions = extractDescriptions(row);
+  return {
+    descriptions: mergeLocale(existing?.descriptions, descriptions.descriptions),
+    cleanDescriptions: mergeLocale(existing?.cleanDescriptions, descriptions.cleanDescriptions),
+  };
+}
+
+function addIndexedPatch(map, uid, row) {
+  const key = toUid(uid);
+  if (!key) return;
+  const patch = indexedDescriptionPatch(map.get(key), row);
+  if (patch.descriptions || patch.cleanDescriptions) map.set(key, stripUndefined(patch));
+}
+
+function buildSkillCooldownDescriptionIndex(args) {
+  const data = readJsonIfExists(path.join(args.outputDir, "SkillCooldowns.json"));
+  const bySkillId = new Map();
+  const byLevelId = new Map();
+  if (!data) return { bySkillId, byLevelId, rows: 0, missing: true };
+
+  const rows = jsonRows(data);
+  for (const row of rows) {
+    const skillIds = sortedUnique([
+      ...arrayOf(row.skillId),
+      ...arrayOf(row.SkillId),
+      ...arrayOf(row.id),
+      ...arrayOf(row.Id),
+    ]);
+    const levelIds = sortedUnique([
+      ...arrayOf(row.skillLevelId),
+      ...arrayOf(row.skillEffectId),
+      ...arrayOf(row.levelId),
+      ...arrayOf(row.levelIds),
+      ...arrayOf(row.SkillLevelId),
+      ...arrayOf(row.SkillEffectId),
+    ].flatMap((value) => flattenScalars(value)));
+
+    for (const skillId of skillIds) addIndexedPatch(bySkillId, skillId, row);
+    for (const levelId of levelIds) addIndexedPatch(byLevelId, levelId, row);
+  }
+
+  return { bySkillId, byLevelId, rows: rows.length, missing: false };
+}
+
+function mergeScopeDescriptionPatch(entry, patch, evidenceId) {
+  if (!patch || (!patch.descriptions && !patch.cleanDescriptions)) return false;
+  entry.scopeDescriptions = mergeLocale(entry.scopeDescriptions, patch.descriptions);
+  entry.cleanScopeDescriptions = mergeLocale(entry.cleanScopeDescriptions, patch.cleanDescriptions);
+  entry.scopeDescriptionParagraphs = mergeParagraphs(entry.scopeDescriptionParagraphs, patch.descriptionParagraphs);
+  entry.scopeDescriptionParagraphsByLocale = mergeLocaleArrayMaps(
+    entry.scopeDescriptionParagraphsByLocale,
+    patch.descriptionParagraphsByLocale,
+  );
+  entry.provenance.sourceFiles = mergeArray(entry.provenance.sourceFiles, ["SkillCooldowns.json"]);
+  entry.provenance.evidence = mergeArray(entry.provenance.evidence, [`linked-skill-scope-text:${evidenceId}`]);
+  return true;
+}
+
+function enrichBattleImagineScopeDescriptions(args, entries) {
+  const index = buildSkillCooldownDescriptionIndex(args);
+  if (index.missing) return { file: "SkillCooldowns.json", rows: 0, enrichedEntries: 0, missing: true };
+
+  let enrichedEntries = 0;
+  for (const entry of entries.values()) {
+    const skillIds = sortedUnique(entry.relationships?.skillIds || []);
+    let enriched = false;
+    for (const skillId of skillIds) {
+      enriched = mergeScopeDescriptionPatch(entry, index.bySkillId.get(skillId), skillId) || enriched;
+      enriched = mergeScopeDescriptionPatch(entry, index.byLevelId.get(skillId), skillId) || enriched;
+    }
+    if (enriched) enrichedEntries += 1;
+  }
+
+  return { file: "SkillCooldowns.json", rows: index.rows, enrichedEntries, missing: false };
+}
+
+function patchFromRow(category, uid, row, sourceFile) {
+  const names = extractNames(row);
+  const descriptions = extractDescriptions(row);
+  const descriptionBlocks = collectDescriptionBlocks(row, sourceFile);
+  const seedEntry = {
+    ...names,
+    ...descriptions,
+  };
+  const blockText = descriptionBlocks
+    .flatMap((block) => [
+      ...Object.values(block.descriptions || {}),
+      ...Object.values(block.cleanDescriptions || {}),
+    ])
+    .join(" ");
+  const text = [textSurface(seedEntry, row), blockText].filter(Boolean).join(" ");
+  const structuredValueRows = hasStructuredValueSurface(row)
+    ? collectStructuredValueRows(row, sourceFile)
+    : [];
+  const valueRows = mergeObjectArrays(valueRowsFromText(text), structuredValueRows, valueRowMergeKey);
+  const decisionPlaceholders = collectDecisionPlaceholdersFromTexts([
+    descriptions.description,
+    ...Object.values(descriptions.descriptions || {}),
+    ...descriptionBlocks.flatMap((block) => Object.values(block.descriptions || {})),
+    row.valueText,
+    row.effectNameEn,
+  ], sourceFile);
+  const hasPlaceholderValueSource = hasDecisionParameterValueSource(row) || structuredRowsContainDecisionParameterSource(structuredValueRows);
+  const stacking = extractStacking(text);
+  const decisionPlaceholderResolution = decisionPlaceholders.length
+    ? hasPlaceholderValueSource
+      ? "parameter-source-present"
+      : "parameter-source-unresolved"
+    : undefined;
+
+  return stripUndefined({
+    uid,
+    category,
+    ...names,
+    ...descriptions,
+    levels: sortedUnique([row.Level, row.level, row.skillLevel, row.buffLevel]).map(String),
+    tiers: sortedUnique([row.Tier, row.tier, row.rarityOrTier, row.grade, row.Grade]).map(String),
+    formulaTerms: extractFormulaTerms(row),
+    descriptionBlocks,
+    valueRows,
+    structuredValueRows,
+    decisionPlaceholders,
+    decisionPlaceholderResolution,
+    hasUnresolvedDecisionPlaceholders: decisionPlaceholderResolution === "parameter-source-unresolved" ? true : undefined,
+    ownerPartySplit: maybeOwnerPartySplit(text, valueRows),
+    stacking,
+    relationships: extractRelationships(row),
+    provenance: extractProvenance(row, sourceFile),
+  });
+}
+
+function buildCategory(args, spec, generatedAt) {
+  const entries = new Map();
+  const sourceSummaries = [];
+  const missingSources = [];
+  let scannedRows = 0;
+
+  for (const source of spec.sources) {
+    const filePath = path.join(args.outputDir, source.file);
+    const data = readJsonIfExists(filePath);
+    if (!data) {
+      missingSources.push(source.file);
+      continue;
+    }
+    const rows = rowsForSource(data, source).filter((row) => !source.filter || source.filter(row));
+    sourceSummaries.push({ file: source.file, rows: rows.length });
+    for (const row of rows) {
+      scannedRows += 1;
+      const uid = toUid(spec.uid(row));
+      if (!uid) continue;
+      const patch = patchFromRow(spec.category, uid, row, source.file);
+      const entry = entries.get(uid) || makeBaseEntry(spec.category, uid);
+      mergeEntry(entry, patch);
+      entries.set(uid, entry);
+    }
+  }
+
+  if (spec.category === "battle-imagines") {
+    const enrichment = enrichBattleImagineScopeDescriptions(args, entries);
+    sourceSummaries.push(stripUndefined({
+      file: enrichment.file,
+      rows: enrichment.rows,
+      enrichment: "linked-skill-scope-text",
+      enrichedEntries: enrichment.enrichedEntries,
+      missing: enrichment.missing || undefined,
+    }));
+    if (enrichment.missing) missingSources.push(enrichment.file);
+  }
+
+  const sortedEntries = [...entries.entries()]
+    .sort(([left], [right]) => left.localeCompare(right, undefined, { numeric: true }))
+    .map(([uid, entry]) => [uid, finalizeEntry(entry)]);
+  const entriesByUid = Object.fromEntries(sortedEntries);
+  const stats = summarizeEntries(entriesByUid, scannedRows, missingSources);
+
+  return {
+    schemaVersion: 1,
+    generatedAt,
+    category: spec.category,
+    note: spec.note,
+    sources: sourceSummaries,
+    missingSources,
+    stats,
+    entriesByUid,
+  };
+}
+
+function finalizeEntry(entry) {
+  entry.name ||= preferredText(entry.names, "") || `uid:${entry.uid}`;
+  return stripUndefined(entry);
+}
+
+function summarizeEntries(entriesByUid, scannedRows, missingSources) {
+  const entries = Object.values(entriesByUid);
+  return {
+    scannedRows,
+    entries: entries.length,
+    missingSources: missingSources.length,
+    withDescriptions: entries.filter((entry) => entry.description || entry.descriptions || entry.cleanDescriptions).length,
+    withParagraphBreaks: entries.filter((entry) => entry.descriptionParagraphs?.length > 1 || entry.scopeDescriptionParagraphs?.length > 1).length,
+    withDescriptionBlocks: entries.filter((entry) => entry.descriptionBlocks?.length).length,
+    withBridgedPageContexts: entries.filter((entry) => entry.bridgedPageContexts?.length).length,
+    withValueRows: entries.filter((entry) => entry.valueRows?.length).length,
+    withStructuredValueRows: entries.filter((entry) => entry.structuredValueRows?.length).length,
+    withDecisionPlaceholders: entries.filter((entry) => entry.decisionPlaceholders?.length).length,
+    withUnresolvedDecisionPlaceholders: entries.filter((entry) => entry.hasUnresolvedDecisionPlaceholders).length,
+    withOwnerPartySplitCandidates: entries.filter((entry) => entry.ownerPartySplit).length,
+    withStacking: entries.filter((entry) => entry.stacking?.hasStackText).length,
+    withMaxStackEvidence: entries.filter((entry) => entry.stacking?.maxStacks?.length).length,
+    withTargetStackEvidence: entries.filter((entry) => entry.stacking?.targetStackEffects?.length).length,
+    withRuntimeStackEvidenceRequired: entries.filter((entry) => entry.stacking?.runtimeStackEvidenceRequired).length,
+    withScopeDescriptions: entries.filter((entry) => entry.scopeDescriptions || entry.cleanScopeDescriptions).length,
+    withRelationships: entries.filter((entry) => Object.values(entry.relationships || {}).some((value) => value?.length)).length,
+    withProvenance: entries.filter((entry) => Object.values(entry.provenance || {}).some((value) => value?.length)).length,
+  };
+}
+
+function normalizedSearchText(text) {
+  return cleanMarkup(String(text || ""))
+    .toLowerCase()
+    .replace(/[^a-z0-9\u3400-\u9fff]+/giu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function entryLocalizedTexts(entry) {
+  return sortedUnique([
+    entry.name,
+    ...Object.values(entry.names || {}),
+    entry.description,
+    entry.cleanDescription,
+    ...arrayOf(entry.descriptionParagraphs),
+    ...Object.values(entry.descriptionParagraphsByLocale || {}).flatMap((value) => arrayOf(value)),
+    ...Object.values(entry.descriptions || {}),
+    ...Object.values(entry.cleanDescriptions || {}),
+    entry.scopeDescription,
+    ...arrayOf(entry.scopeDescriptionParagraphs),
+    ...Object.values(entry.scopeDescriptionParagraphsByLocale || {}).flatMap((value) => arrayOf(value)),
+    ...Object.values(entry.scopeDescriptions || {}),
+    ...Object.values(entry.cleanScopeDescriptions || {}),
+    ...arrayOf(entry.descriptionBlocks).flatMap((block) => [
+      ...arrayOf(block.descriptionParagraphs),
+      ...Object.values(block.descriptionParagraphsByLocale || {}).flatMap((value) => arrayOf(value)),
+      ...Object.values(block.descriptions || {}),
+      ...Object.values(block.cleanDescriptions || {}),
+    ]),
+    ...arrayOf(entry.bridgedPageContexts).flatMap((block) => [
+      ...arrayOf(block.descriptionParagraphs),
+      ...Object.values(block.descriptionParagraphsByLocale || {}).flatMap((value) => arrayOf(value)),
+      ...Object.values(block.descriptions || {}),
+      ...Object.values(block.cleanDescriptions || {}),
+    ]),
+  ].map((value) => String(value || "").trim()).filter(Boolean));
+}
+
+function bridgedContextBlocks(blocks, bridgeSourceCategory, bridgeSourceUid, bridgeKind) {
+  return arrayOf(blocks).map((block) => stripUndefined({
+    ...block,
+    kind: "bridged-ui-page-context",
+    bridgeSourceCategory,
+    bridgeSourceUid: toUid(bridgeSourceUid),
+    bridgeKind,
+  }));
+}
+
+function entryPageContextBlocks(entry) {
+  const direct = arrayOf(entry.descriptionBlocks);
+  const bridged = arrayOf(entry.bridgedPageContexts);
+  if (direct.length || bridged.length) return [...direct, ...bridged];
+  const descriptions = mergeLocale(entry.descriptions, entry.scopeDescriptions);
+  const cleanDescriptions = mergeLocale(entry.cleanDescriptions, entry.cleanScopeDescriptions);
+  const descriptionParagraphs = mergeParagraphs(entry.descriptionParagraphs, entry.scopeDescriptionParagraphs);
+  const descriptionParagraphsByLocaleMap = mergeLocaleArrayMaps(entry.descriptionParagraphsByLocale, entry.scopeDescriptionParagraphsByLocale);
+  if (!descriptions && !cleanDescriptions && !descriptionParagraphsByLocaleMap) return [];
+  return [stripUndefined({
+    sourceFile: entry.catalogFile,
+    sourcePath: "entry.descriptions",
+    kind: "ui-page-context",
+    descriptions,
+    cleanDescriptions,
+    descriptionParagraphs,
+    descriptionParagraphsByLocale: descriptionParagraphsByLocaleMap,
+  })];
+}
+
+function propagateItemBattleImaginePageDescriptions(outputs) {
+  const items = outputs.find((output) => output.category === "items");
+  const battleImagines = outputs.find((output) => output.category === "battle-imagines");
+  if (!items || !battleImagines) return;
+
+  const battleEntries = Object.values(battleImagines.catalog.entriesByUid || {});
+  const searchableBattleEntries = battleEntries.map((entry) => ({
+    entry,
+    names: sortedUnique([
+      entry.name,
+      entry.names?.en,
+      entry.names?.design,
+    ])
+      .map(normalizedSearchText)
+      .filter((text) => text.length >= 5),
+  })).filter((row) => row.names.length);
+
+  let enrichedEntries = 0;
+  for (const itemEntry of Object.values(items.catalog.entriesByUid || {})) {
+    const itemText = normalizedSearchText([
+      itemEntry.name,
+      itemEntry.names?.en,
+      itemEntry.names?.design,
+      preferredText(itemEntry.cleanDescriptions, preferredText(itemEntry.descriptions, "")),
+    ].join(" "));
+    if (!/\bbattle imagine\b|\bimagine\b|\bfantasy\b|\u5e7b|\u30a4\u30de\u30b8\u30f3/i.test(itemText)) continue;
+    if (!itemText) continue;
+
+    for (const candidate of searchableBattleEntries) {
+      if (!candidate.names.some((name) => itemText.includes(name))) continue;
+      const entry = candidate.entry;
+      const hadContext = Boolean(entry.bridgedPageContexts?.length);
+      entry.descriptions = mergeLocale(entry.descriptions, itemEntry.descriptions);
+      entry.cleanDescriptions = mergeLocale(entry.cleanDescriptions, itemEntry.cleanDescriptions);
+      entry.descriptionParagraphs = mergeParagraphs(entry.descriptionParagraphs, itemEntry.descriptionParagraphs);
+      entry.descriptionParagraphsByLocale = mergeLocaleArrayMaps(entry.descriptionParagraphsByLocale, itemEntry.descriptionParagraphsByLocale);
+      entry.bridgedPageContexts = mergeObjectArrays(
+        entry.bridgedPageContexts,
+        bridgedContextBlocks(
+          entryPageContextBlocks(itemEntry),
+          "items",
+          itemEntry.uid,
+          "item-page-describes-battle-imagine-skill",
+        ),
+        contextBlockMergeKey,
+      ).slice(0, BRIDGED_CONTEXT_LIMIT);
+      entry.relationships = mergeRelationshipObjects(entry.relationships, { itemIds: [itemEntry.uid] });
+      entry.provenance = mergeRelationshipObjects(entry.provenance, {
+        sourceFiles: ["ItemDescriptions.json", ...(itemEntry.provenance?.sourceFiles || [])],
+        evidence: [`item-page-context:${itemEntry.uid}`],
+      });
+      if (!hadContext && entry.bridgedPageContexts?.length) enrichedEntries += 1;
+    }
+  }
+
+  if (enrichedEntries > 0) {
+    battleImagines.catalog.sources.push({
+      file: "ItemDescriptions.json",
+      enrichment: "item-page-describes-battle-imagine-skill",
+      enrichedEntries,
+    });
+    battleImagines.catalog.stats = summarizeEntries(
+      battleImagines.catalog.entriesByUid,
+      battleImagines.catalog.stats.scannedRows,
+      battleImagines.catalog.missingSources || []
+    );
+  }
+}
+
+function propagateBattleImagineScopeDescriptions(outputs) {
+  const buffs = outputs.find((output) => output.category === "buffs");
+  const battleImagines = outputs.find((output) => output.category === "battle-imagines");
+  if (!buffs || !battleImagines) return;
+
+  let enrichedEntries = 0;
+  const buffEntries = buffs.catalog.entriesByUid || {};
+  for (const entry of Object.values(battleImagines.catalog.entriesByUid || {})) {
+    const hasContext = Boolean(
+      entry.scopeDescriptions
+      || entry.cleanScopeDescriptions
+      || entry.scopeDescriptionParagraphs?.length
+      || entry.scopeDescriptionParagraphsByLocale
+      || entry.descriptionBlocks?.length
+      || entry.bridgedPageContexts?.length
+      || entry.structuredValueRows?.length
+      || entry.valueRows?.length
+    );
+    if (!hasContext) continue;
+    for (const buffId of entry.relationships?.buffIds || []) {
+      const buffEntry = buffEntries[toUid(buffId)];
+      if (!buffEntry) continue;
+      const hadScope = Boolean(
+        buffEntry.scopeDescriptions
+        || buffEntry.cleanScopeDescriptions
+        || buffEntry.scopeDescriptionParagraphs?.length
+        || buffEntry.scopeDescriptionParagraphsByLocale
+        || buffEntry.bridgedPageContexts?.length
+        || buffEntry.structuredValueRows?.length
+      );
+      buffEntry.scopeDescriptions = mergeLocale(buffEntry.scopeDescriptions, entry.scopeDescriptions);
+      buffEntry.cleanScopeDescriptions = mergeLocale(buffEntry.cleanScopeDescriptions, entry.cleanScopeDescriptions);
+      buffEntry.scopeDescriptionParagraphs = mergeParagraphs(buffEntry.scopeDescriptionParagraphs, entry.scopeDescriptionParagraphs);
+      buffEntry.scopeDescriptionParagraphsByLocale = mergeLocaleArrayMaps(
+        buffEntry.scopeDescriptionParagraphsByLocale,
+        entry.scopeDescriptionParagraphsByLocale,
+      );
+      buffEntry.bridgedPageContexts = mergeObjectArrays(
+        buffEntry.bridgedPageContexts,
+        bridgedContextBlocks(
+          entryPageContextBlocks(entry),
+          "battle-imagines",
+          entry.uid,
+          "battle-imagine-page-context-for-runtime-buff",
+        ),
+        contextBlockMergeKey,
+      ).slice(0, BRIDGED_CONTEXT_LIMIT);
+      buffEntry.structuredValueRows = mergeObjectArrays(buffEntry.structuredValueRows, entry.structuredValueRows, valueRowMergeKey);
+      buffEntry.valueRows = mergeObjectArrays(buffEntry.valueRows, entry.valueRows, valueRowMergeKey);
+      buffEntry.ownerPartySplit ||= entry.ownerPartySplit;
+      buffEntry.stacking = mergeStacking(buffEntry.stacking, entry.stacking);
+      buffEntry.relationships = mergeRelationshipObjects(buffEntry.relationships, {
+        skillIds: entry.relationships?.skillIds,
+        itemIds: entry.relationships?.itemIds,
+      });
+      buffEntry.provenance = mergeRelationshipObjects(buffEntry.provenance, {
+        sourceFiles: ["BattleImagineDescriptions.json", "SkillCooldowns.json", ...(entry.provenance?.sourceFiles || [])],
+        evidence: [`battle-imagine-page-context:${entry.uid}`],
+      });
+      if (!hadScope && (
+        buffEntry.scopeDescriptions
+        || buffEntry.cleanScopeDescriptions
+        || buffEntry.scopeDescriptionParagraphs?.length
+        || buffEntry.scopeDescriptionParagraphsByLocale
+        || buffEntry.bridgedPageContexts?.length
+        || buffEntry.structuredValueRows?.length
+      )) enrichedEntries += 1;
+    }
+  }
+
+  if (enrichedEntries > 0) {
+    buffs.catalog.sources.push({
+      file: "BattleImagineDescriptions.json",
+      enrichment: "battle-imagine-page-context",
+      enrichedEntries,
+    });
+    buffs.catalog.stats = summarizeEntries(
+      buffs.catalog.entriesByUid,
+      buffs.catalog.stats.scannedRows,
+      buffs.catalog.missingSources || []
+    );
+  }
+}
+
+function effectSourceRows(effectSources) {
+  if (!effectSources || typeof effectSources !== "object") return [];
+  if (effectSources.effectSourcesById && typeof effectSources.effectSourcesById === "object") {
+    return Object.values(effectSources.effectSourcesById);
+  }
+  return jsonRows(effectSources);
+}
+
+function entryByCategory(outputs, category) {
+  return outputs.find((output) => output.category === category)?.catalog?.entriesByUid || {};
+}
+
+function bridgableOwnerEntriesFromEffectSource(source, indexes) {
+  const candidates = [];
+  const add = (category, uid, reason) => {
+    const key = toUid(uid);
+    if (!key) return;
+    const entry = indexes[category]?.[key];
+    if (!entry) return;
+    const hasPageContext = Boolean(
+      entry.description
+      || entry.descriptions
+      || entry.cleanDescriptions
+      || entry.descriptionBlocks?.length
+      || entry.bridgedPageContexts?.length
+      || entry.structuredValueRows?.length
+      || entry.valueRows?.length
+    );
+    if (!hasPageContext) return;
+    candidates.push({ category, uid: key, entry, reason });
+  };
+
+  for (const evidence of arrayOf(source.evidence)) {
+    add("skills", evidence.ownerSourceId ?? evidence.ownerSkillId, "effect-source-owner-skill");
+    add("skills", evidence.recountId, "effect-source-recount-skill");
+    for (const skillId of arrayOf(evidence.triggerBaseSkillIds)) {
+      add("skills", skillId, "effect-source-trigger-base-skill");
+    }
+    add("talents", evidence.talentId, "effect-source-talent");
+    add("items", evidence.itemId ?? evidence.consumableItemId, "effect-source-item");
+    add("battle-imagines", evidence.ownerSourceId, "effect-source-battle-imagine-owner");
+  }
+
+  for (const skillId of arrayOf(source.skillIds)) add("skills", skillId, "effect-source-skill-id");
+  for (const skillId of arrayOf(source.targetRecountIds)) add("skills", skillId, "effect-source-recount-id");
+  for (const talentId of arrayOf(source.talentIds)) add("talents", talentId, "effect-source-talent-id");
+  for (const itemId of arrayOf(source.itemIds)) add("items", itemId, "effect-source-item-id");
+
+  const seen = new Set();
+  return candidates.filter((candidate) => {
+    const key = `${candidate.category}:${candidate.uid}:${candidate.reason}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function propagateEffectSourceOwnerPageDescriptions(args, outputs) {
+  const buffs = outputs.find((output) => output.category === "buffs");
+  if (!buffs) return;
+
+  const effectSourcesPath = path.join(args.outputDir, "EffectSources.json");
+  const effectSources = readJsonIfExists(effectSourcesPath);
+  if (!effectSources) {
+    buffs.catalog.missingSources = sortedUnique([...(buffs.catalog.missingSources || []), "EffectSources.json"]);
+    return;
+  }
+
+  const indexes = {
+    skills: entryByCategory(outputs, "skills"),
+    talents: entryByCategory(outputs, "talents"),
+    items: entryByCategory(outputs, "items"),
+    "battle-imagines": entryByCategory(outputs, "battle-imagines"),
+  };
+
+  const buffEntries = buffs.catalog.entriesByUid || {};
+  let enrichedEntries = 0;
+  for (const source of effectSourceRows(effectSources)) {
+    const owners = bridgableOwnerEntriesFromEffectSource(source, indexes);
+    if (!owners.length) continue;
+
+    const targetBuffIds = sortedUnique([
+      source.sourceEntityId,
+      ...arrayOf(source.buffIds),
+    ].map(toUid).filter(Boolean));
+
+    for (const buffId of targetBuffIds) {
+      const buffEntry = buffEntries[buffId];
+      if (!buffEntry) continue;
+      const hadContext = Boolean(
+        buffEntry.description
+        || buffEntry.descriptions
+        || buffEntry.cleanDescriptions
+        || buffEntry.bridgedPageContexts?.length
+        || buffEntry.structuredValueRows?.length
+        || buffEntry.valueRows?.length
+      );
+
+      for (const owner of owners) {
+        buffEntry.descriptions = mergeLocale(buffEntry.descriptions, owner.entry.descriptions);
+        buffEntry.cleanDescriptions = mergeLocale(buffEntry.cleanDescriptions, owner.entry.cleanDescriptions);
+        buffEntry.descriptionParagraphs = mergeParagraphs(buffEntry.descriptionParagraphs, owner.entry.descriptionParagraphs);
+        buffEntry.descriptionParagraphsByLocale = mergeLocaleArrayMaps(
+          buffEntry.descriptionParagraphsByLocale,
+          owner.entry.descriptionParagraphsByLocale,
+        );
+        buffEntry.bridgedPageContexts = mergeObjectArrays(
+          buffEntry.bridgedPageContexts,
+          bridgedContextBlocks(
+            entryPageContextBlocks(owner.entry),
+            owner.category,
+            owner.uid,
+            owner.reason,
+          ),
+          contextBlockMergeKey,
+        ).slice(0, BRIDGED_CONTEXT_LIMIT);
+        buffEntry.structuredValueRows = mergeObjectArrays(buffEntry.structuredValueRows, owner.entry.structuredValueRows, valueRowMergeKey);
+        buffEntry.valueRows = mergeObjectArrays(buffEntry.valueRows, owner.entry.valueRows, valueRowMergeKey);
+        buffEntry.ownerPartySplit ||= owner.entry.ownerPartySplit;
+        buffEntry.stacking = mergeStacking(buffEntry.stacking, owner.entry.stacking);
+        buffEntry.relationships = mergeRelationshipObjects(buffEntry.relationships, {
+          skillIds: owner.category === "skills" ? [owner.uid] : owner.entry.relationships?.skillIds,
+          talentIds: owner.category === "talents" ? [owner.uid] : owner.entry.relationships?.talentIds,
+          itemIds: owner.category === "items" ? [owner.uid] : owner.entry.relationships?.itemIds,
+          battleImagineIds: owner.category === "battle-imagines" ? [owner.uid] : owner.entry.relationships?.battleImagineIds,
+        });
+        buffEntry.provenance = mergeRelationshipObjects(buffEntry.provenance, {
+          sourceFiles: ["EffectSources.json", owner.entry.catalogFile, ...(owner.entry.provenance?.sourceFiles || [])],
+          evidence: [`effect-source-owner-page-context:${source.sourceId}:${owner.category}:${owner.uid}`],
+        });
+      }
+
+      if (!hadContext && (
+        buffEntry.description
+        || buffEntry.descriptions
+        || buffEntry.cleanDescriptions
+        || buffEntry.bridgedPageContexts?.length
+        || buffEntry.structuredValueRows?.length
+        || buffEntry.valueRows?.length
+      )) enrichedEntries += 1;
+    }
+  }
+
+  if (enrichedEntries > 0) {
+    buffs.catalog.sources.push({
+      file: "EffectSources.json",
+      enrichment: "effect-source-owner-page-context",
+      enrichedEntries,
+    });
+    buffs.catalog.stats = summarizeEntries(
+      buffs.catalog.entriesByUid,
+      buffs.catalog.stats.scannedRows,
+      buffs.catalog.missingSources || [],
+    );
+  }
+}
+
+function buildIndex(generatedAt, outputs) {
+  return {
+    schemaVersion: 1,
+    generatedAt,
+    status: "description-value-grounding",
+    boundaries: [
+      "These catalogs are generated evidence for modifier work, not runtime contribution math.",
+      "Final damage totals remain packet-derived truth.",
+      "Equipped gear statlines and rolled equipment values are packet/runtime-derived and are not supplied by these game-file catalogs.",
+      "UI descriptions with Decision placeholders are preserved as description/value-source gaps, not demoted or discarded.",
+      "Stacking, max-stack, target-stack, and owner/party split rows require runtime source/window/stack evidence before exact contribution replay.",
+    ],
+    catalogs: outputs.map((output) => ({
+      category: output.category,
+      output: output.output,
+      stats: output.catalog.stats,
+      note: output.catalog.note,
+    })),
+  };
+}
+
+function renderMarkdown(index) {
+  const lines = [];
+  lines.push("# Modifier Description Catalogs");
+  lines.push("");
+  lines.push(`Generated: ${index.generatedAt}`);
+  lines.push("");
+  lines.push("## Boundaries");
+  lines.push("");
+  for (const boundary of index.boundaries) lines.push(`- ${boundary}`);
+  lines.push("");
+  lines.push("## Catalog Coverage");
+  lines.push("");
+  lines.push("| Category | Entries | Descriptions | Paragraph Breaks | Page Context | Bridged Context | Values | Structured Values | Decision Refs | Unresolved Decision Refs | Stack | Max Stack | Target Stack | Owner/Party Candidates | Output |");
+  lines.push("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |");
+  for (const catalog of index.catalogs) {
+    const stats = catalog.stats;
+    lines.push([
+      `| ${catalog.category}`,
+      stats.entries,
+      stats.withDescriptions,
+      stats.withParagraphBreaks,
+      stats.withDescriptionBlocks,
+      stats.withBridgedPageContexts,
+      stats.withValueRows,
+      stats.withStructuredValueRows,
+      stats.withDecisionPlaceholders,
+      stats.withUnresolvedDecisionPlaceholders,
+      stats.withStacking,
+      stats.withMaxStackEvidence,
+      stats.withTargetStackEvidence,
+      stats.withOwnerPartySplitCandidates,
+      `\`${catalog.output}\` |`,
+    ].join(" | "));
+  }
+  lines.push("");
+  lines.push("## Notes");
+  lines.push("");
+  for (const catalog of index.catalogs) lines.push(`- ${catalog.category}: ${catalog.note}`);
+  return `${lines.join("\n")}\n`;
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  const generatedAt = new Date().toISOString();
+  const outputs = [];
+  for (const spec of CATEGORY_SPECS) {
+    const catalog = buildCategory(args, spec, generatedAt);
+    outputs.push({
+      category: spec.category,
+      output: spec.output,
+      path: path.join(args.outputDir, spec.output),
+      catalog,
+    });
+  }
+  propagateItemBattleImaginePageDescriptions(outputs);
+  propagateBattleImagineScopeDescriptions(outputs);
+  propagateEffectSourceOwnerPageDescriptions(args, outputs);
+
+  const index = buildIndex(generatedAt, outputs);
+  const indexPath = path.join(args.outputDir, "ModifierDescriptionCatalogs.json");
+  const markdownPath = path.join(args.reportDir, "ModifierDescriptionCatalogs.md");
+
+  if (args.dryRun) {
+    console.log("Dry run: modifier description catalogs");
+    for (const output of outputs) {
+      const stats = output.catalog.stats;
+      console.log(
+        `  ${output.category}: ${stats.entries.toLocaleString()} entries, ${stats.withDescriptions.toLocaleString()} descriptions, ${stats.withParagraphBreaks.toLocaleString()} paragraph-break rows, ${stats.withDescriptionBlocks.toLocaleString()} page contexts, ${stats.withValueRows.toLocaleString()} value rows, ${stats.withUnresolvedDecisionPlaceholders.toLocaleString()} unresolved Decision rows`
+      );
+    }
+    console.log(`Dry run: would write ${indexPath}`);
+    console.log(`Dry run: would write ${markdownPath}`);
+    return;
+  }
+
+  for (const output of outputs) writeJson(output.path, output.catalog);
+  writeJson(indexPath, index);
+  writeText(markdownPath, renderMarkdown(index));
+
+  console.log(`Wrote ${outputs.length} modifier description catalogs`);
+  console.log(`Wrote ${indexPath}`);
+  console.log(`Wrote ${markdownPath}`);
+}
+
+main();

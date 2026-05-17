@@ -1,0 +1,1982 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const {
+  compactFormulaZoneContract,
+  formulaZoneCounts,
+  formulaZoneIdsForEntry,
+  uniqueStrings,
+} = require("./modifier-formula-zones.cjs");
+const { cleanMarkupPreserveBreaks } = require("./effect-semantics.cjs");
+const { stripUndefined } = require("./modifier-table-common.cjs");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+const defaultReportDir = path.join(defaultOutputDir, "probing-reports");
+
+const CATALOG_SPECS = [
+  { category: "buffs", file: "BuffDescriptions.json", runtimeKind: "runtime-buff" },
+  { category: "skills", file: "SkillDescriptions.json", runtimeKind: "skill-or-damage-row" },
+  { category: "talents", file: "TalentDescriptions.json", runtimeKind: "selected-talent" },
+  { category: "seasonal-talents", file: "SeasonalTalentDescriptions.json", runtimeKind: "selected-seasonal-talent" },
+  { category: "factors", file: "FactorDescriptions.json", runtimeKind: "season-factor" },
+  { category: "items", file: "ItemDescriptions.json", runtimeKind: "equipped-or-consumed-item" },
+  { category: "battle-imagines", file: "BattleImagineDescriptions.json", runtimeKind: "battle-imagine" },
+  { category: "linktext-tooltips", file: "LinkTextTooltipDescriptions.json", runtimeKind: "description-fragment" },
+];
+
+const SOURCE_KIND_CATEGORY_HINTS = {
+  "active-skill": ["skills", "buffs"],
+  "buff-proc": ["buffs"],
+  "consumable": ["items", "buffs"],
+  "imagine": ["battle-imagines", "buffs"],
+  "lucky-strike": ["skills", "buffs"],
+  "observed-buff": ["buffs"],
+  "phantom-factor": ["factors", "buffs"],
+  "runtime-buff": ["buffs"],
+  "season-rogue-entry": ["seasonal-talents", "buffs"],
+  "season-talent-node": ["seasonal-talents", "buffs"],
+  "set-effect": ["items", "buffs"],
+  "skill-proc": ["skills", "buffs"],
+  "talent-passive": ["talents", "buffs"],
+  "talent-skill": ["talents", "skills", "buffs"],
+};
+
+const SOURCE_ID_PREFIX_CATEGORY_HINTS = {
+  "battle-imagine": ["battle-imagines"],
+  "buff": ["buffs"],
+  "buff-source": ["buffs"],
+  "consumable": ["items", "buffs"],
+  "factor": ["factors"],
+  "item": ["items"],
+  "phantom-factor": ["factors"],
+  "runtime-buff": ["buffs"],
+  "season-rogue-entry": ["seasonal-talents"],
+  "season-talent-node": ["seasonal-talents"],
+  "skill": ["skills"],
+  "talent": ["talents"],
+};
+
+const DESCRIPTION_COMPONENT_DEFS = [
+  {
+    componentKey: "critical-damage",
+    label: "Critical Damage",
+    effectClass: "critical-damage-stat",
+    formulaTermIds: ["critMultiplier"],
+    contributionGroups: ["critical"],
+    formulaZoneIds: ["critical"],
+    stat: "criticalDamage",
+    direction: "increase",
+    pattern: /\b(?:crit(?:ical)?(?:\s+hit)?\s*(?:dmg|damage)|crit\s*dmg|cdmg)\b|\u7206\u4f24|\u66b4\u51fb\u4f24\u5bb3/i,
+  },
+  {
+    componentKey: "critical-rate",
+    label: "Critical Rate",
+    effectClass: "critical-stat",
+    formulaTermIds: ["critMultiplier"],
+    contributionGroups: ["critical"],
+    formulaZoneIds: ["critical"],
+    stat: "criticalRate",
+    direction: "expected-value",
+    pattern: /\b(?:crit(?:ical)?(?:\s+hit)?\s*(?:rate|chance)|crit\s*rate|\bcr\b|crit\b(?=\s*(?:\+|by\s*[+-]?\d|[+-]?\d|increase(?:s|d)?|boost(?:s|ed)?|bonus\s*:?)))\b|\u66b4\u51fb(?:\u7387|\u6982\u7387)?/i,
+  },
+  {
+    componentKey: "physical-magic-enhancement",
+    label: "Physical/Magic Enhancement",
+    effectClass: "physical-magic-enhancement",
+    formulaTermIds: ["physicalMagicEnhancementPct"],
+    contributionGroups: ["physicalMagicEnhancement"],
+    formulaZoneIds: ["physicalMagicEnhancement"],
+    direction: "increase",
+    pattern: /\b(?:phy(?:sical)?|mag(?:ic|ical)?)\s*(?:enhancement|boost|increase|damage bonus|dmg bonus|boost value|boost strength)\b|\b(?:p\.?dmg|m\.?dmg|physical damage|magic damage)\s*(?:\+|increase|bonus|boost)\b|\b(?:phy|magic)\s*boost\b|\u7269\u7406(?:\u589e\u6548|\u4f24\u5bb3\u52a0\u6210|\u50b7\u5bb3\u52a0\u6210)|\u9b54\u6cd5(?:\u589e\u6548|\u4f24\u5bb3\u52a0\u6210|\u50b7\u5bb3\u52a0\u6210)|\u6cd5\u672f(?:\u589e\u6548|\u4f24\u5bb3\u52a0\u6210|\u50b7\u5bb3\u52a0\u6210)/i,
+  },
+  {
+    componentKey: "elemental-attack",
+    label: "Elemental Attack",
+    effectClass: "elemental-attack-stat",
+    formulaTermIds: ["elementalAttack"],
+    contributionGroups: ["baseAttack"],
+    formulaZoneIds: ["baseAttackTerm"],
+    stat: "elementalAttack",
+    direction: "increase",
+    pattern: /\b(?:element(?:al)?|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)\s*(?:attack|atk)\b|\b(?:attack|atk)\s*(?:of|for)?\s*(?:fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)\b|\u5143\u7d20.*\u653b|\u706b.*\u653b|\u51b0.*\u653b|\u96f7.*\u653b|\u5ca9.*\u653b/i,
+  },
+  {
+    componentKey: "elemental-damage",
+    label: "Elemental Damage",
+    effectClass: "elemental-damage",
+    formulaTermIds: ["elementalDamagePct"],
+    contributionGroups: ["elemental"],
+    formulaZoneIds: ["elementalDamage"],
+    direction: "increase",
+    pattern: /\b(?:element(?:al)?|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)\s*(?:damage|dmg|boost|increase|bonus)\b|\b(?:damage|dmg)\s*(?:to|against)?\s*(?:fire|ice|frost|thunder|lightning|wind|light|dark|rock)\b|\u5143\u7d20|\u706b|\u51b0|\u96f7/i,
+  },
+  {
+    componentKey: "final-damage",
+    label: "Final Damage",
+    effectClass: "final-damage",
+    formulaTermIds: ["finalDamagePct"],
+    contributionGroups: ["finalDamage"],
+    formulaZoneIds: ["finalDamage"],
+    direction: "increase",
+    pattern: /\bfinal\s*(?:damage|dmg)\b|\u6700\u7ec8\u4f24\u5bb3/i,
+  },
+  {
+    componentKey: "season-suppression",
+    label: "Season Suppression",
+    effectClass: "season-suppression",
+    formulaTermIds: ["seasonSuppressionPct"],
+    contributionGroups: ["seasonSuppression"],
+    formulaZoneIds: ["seasonSuppression"],
+    direction: "increase",
+    pattern: /\bseason(?:al)?\s*(?:strength\s*)?suppression\b|\u8d5b\u5b63.*\u538b\u5236|\u538b\u5236/i,
+  },
+  {
+    componentKey: "season-damage",
+    label: "Season/Dream Damage",
+    effectClass: "season-damage",
+    formulaTermIds: ["seasonDamagePct"],
+    contributionGroups: ["seasonDamage"],
+    formulaZoneIds: ["seasonDamage"],
+    direction: "increase",
+    pattern: /\b(?:season(?:al)?|dream|slumber|breakthrough|phantasm|phantom\s*intensity|illusion)\s*(?:damage|dmg|boost|increase|bonus|power|strength|intensity)\b|\b(?:phantasm|illusion)\s*(?:power|strength|intensity)\b|\u8d5b\u5b63|\u5e7b\u68a6|\u7a81\u7834/i,
+  },
+  {
+    componentKey: "versatility",
+    label: "Versatility/All-Round Damage",
+    effectClass: "versatility-stat",
+    formulaTermIds: ["versatilityDamagePct"],
+    contributionGroups: ["versatility"],
+    formulaZoneIds: ["allRoundDamage"],
+    stat: "versatility",
+    direction: "increase",
+    pattern: /\b(?:versatility|versatil(?:ity|idad|idade)|polyvalence|vielseitigkeit|all[-\s]?round|omni(?:potent)?|universal)\b|\u5168\u80fd/i,
+  },
+  {
+    componentKey: "lucky-rate",
+    label: "Lucky Rate",
+    effectClass: "lucky-stat",
+    formulaTermIds: ["luckyChance"],
+    contributionGroups: ["luckyChance"],
+    formulaZoneIds: ["luckyChance"],
+    stat: "lucky",
+    direction: "expected-value",
+    pattern: /\b(?:(?:luck|lucky|luk)\s*(?:rate|chance|probability)?\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d|(?:luck|lucky|luk)\s*(?:rate|chance|probability)\b|(?:increase(?:s|d)?|boosts?|adds?)\s+(?:your\s+)?(?:luck|lucky|luk)\s*(?:rate|chance|probability)?\s*(?:by\s*)?[+-]?\d)\b|\u5e78\u8fd0(?:\u7387|\u6982\u7387)?\s*(?:\+|\u63d0\u5347|\u589e\u52a0)\s*[+-]?\d/i,
+  },
+  {
+    componentKey: "lucky-damage",
+    label: "Lucky Damage",
+    effectClass: "lucky-damage",
+    formulaTermIds: ["luckyDamagePct", "luckyEffectDamagePct", "genericDamagePct"],
+    contributionGroups: ["luckyDamage", "genericDamage"],
+    formulaZoneIds: ["luckyEnhancement", "generalDamage"],
+    direction: "expected-value",
+    pattern: /\b(?:lucky|luck)\s*(?:strike\s*)?(?:damage|dmg|enhancement|bonus|multiplier)\b|\b(?:lucky|luck)\s*effect\s*(?:damage|dmg|bonus|enhancement|increase|boost)\b|\u5e78\u8fd0(?:\u4f24\u5bb3|\u50b7\u5bb3|\u589e\u6548|\u52a0\u6210|\u63d0\u5347)/i,
+  },
+  {
+    componentKey: "mastery-stat",
+    label: "Mastery Stat",
+    effectClass: "stat-conversion",
+    formulaTermIds: ["masteryStat"],
+    contributionGroups: ["statConversion"],
+    formulaZoneIds: [],
+    stat: "mastery",
+    direction: "stat-conversion",
+    pattern: /\b(?:(?:mastery|meisterschaft|maestr(?:i|í|Ã­)a|ma.{0,3}trise)\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?|by|um|en|de)?\s*[+-]?\d|(?:increase(?:s|d)?|boosts?|adds?|erh(?:o|ö|Ã¶)ht|augmente|aumenta)\s+(?:your\s+)?(?:mastery|meisterschaft|maestr(?:i|í|Ã­)a|ma.{0,3}trise)\s*(?:by|um|en|de)?\s*[+-]?\d)\b|\u7cbe\u901a\s*(?:\+|\u63d0\u5347|\u589e\u52a0)\s*[+-]?\d/i,
+  },
+  {
+    componentKey: "adaptive-primary-stat",
+    label: "Adaptive Primary Stat",
+    effectClass: "stat-conversion",
+    formulaTermIds: ["adaptivePrimaryStat"],
+    contributionGroups: ["statConversion"],
+    formulaZoneIds: [],
+    stat: "adaptivePrimary",
+    direction: "stat-conversion",
+    pattern: /\b(?:(?:adaptive\s*)?(?:strength|str|intellect|int|agility|agi|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))\s*(?:\/\s*(?:strength|str|intellect|int|agility|agi))*\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d|(?:increase(?:s|d)?|boosts?|adds?)\s+(?:adaptive\s*)?(?:strength|str|intellect|int|agility|agi|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))(?:\/(?:strength|str|intellect|int|agility|agi))*\s*(?:by\s*)?[+-]?\d)\b/i,
+  },
+  {
+    componentKey: "haste-or-attack-speed",
+    label: "Haste/Attack Speed",
+    effectClass: "hit-timing",
+    formulaTermIds: ["hitTiming"],
+    contributionGroups: ["hitTiming"],
+    formulaZoneIds: ["timingCadence"],
+    stat: "haste",
+    direction: "timing",
+    pattern: /\b(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*(?:speed|spd)|speed)\b|\u6025\u901f|\u653b\u901f/i,
+  },
+  {
+    componentKey: "cooldown-or-resource",
+    label: "Cooldown/Resource",
+    effectClass: "cooldown-or-resource",
+    formulaTermIds: ["hitTiming"],
+    contributionGroups: ["hitTiming"],
+    formulaZoneIds: ["timingCadence"],
+    direction: "timing",
+    pattern: /\b(?:cooldown|cd|resource|energy|cost|recovery|recharge|charge\s*(?:rate|speed)?|photon\s*energy|ice\s*energy|sound\s*wave|soundwave|charge\s*seed)\b|\u51b7\u5374|\u80fd\u91cf|\u6d88\u8017|\u6062\u590d/i,
+  },
+  {
+    componentKey: "hit-count-model",
+    label: "Proc / Hit Count Model",
+    effectClass: "hit-count-model",
+    formulaTermIds: ["hitCount"],
+    contributionGroups: ["hitCount"],
+    formulaZoneIds: ["timingCadence"],
+    direction: "hit-count-model",
+    pattern: /\b(?:number\s+of\s+(?:times|hits)|hit\s+count|hits?\s+(?:one|two|three|\d+)\s+extra\s+times?|extra\s+(?:hit|hits|time|times)|additional\s+(?:hit|hits|time|times)|trigger(?:s|ed)?\s+(?:one|two|three|\d+)\s+extra\s+time|(?:chance|probability).{0,48}\btrigger.{0,48}\b(?:extra|again|additional)|deals?\s+(?:damage|dmg)\s+(?:again|one\s+extra\s+time))\b/i,
+  },
+  {
+    componentKey: "atk",
+    label: "Attack",
+    effectClass: "offense-stat",
+    formulaTermIds: ["primaryAttack"],
+    contributionGroups: ["baseAttack"],
+    formulaZoneIds: ["baseAttackTerm"],
+    stat: "ATK",
+    direction: "increase",
+    pattern: /\b(?:atk|attack|attack\s*power|physical\s*attack|magic\s*attack|matk)\b|\u653b\u51fb\u529b|\u6cd5\u653b|\u9b54\u653b/i,
+  },
+  {
+    componentKey: "skill-multiplier",
+    label: "Skill Multiplier",
+    effectClass: "skill-coefficient",
+    formulaTermIds: ["skillMultiplier"],
+    contributionGroups: ["skillCoefficient"],
+    formulaZoneIds: ["skillMultiplier"],
+    direction: "coefficient",
+    pattern: /\b(?:skill\s*(?:multiplier|coefficient|power)|(?:deals?|inflicts?)\s*[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:damage|dmg)|(?:damage|dmg)\s*(?:multiplier|coefficient)|(?:damage|dmg)\s*(?:equal\s*to|of)\s*[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:atk|attack)|[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:of\s*)?(?:atk|attack)\s*(?:damage|dmg|p\.?dmg|m\.?dmg)?)\b|\u6280\u80fd.*(?:\u500d\u7387|\u7cfb\u6570)|(?:\u500d\u7387|\u7cfb\u6570)/i,
+  },
+  {
+    componentKey: "fixed-damage",
+    label: "Fixed Damage",
+    effectClass: "flat-damage",
+    formulaTermIds: ["flatDamage"],
+    contributionGroups: ["flatDamage"],
+    formulaZoneIds: ["fixedDamage"],
+    direction: "flat",
+    pattern: /\b(?:(?:fixed|flat|constant)\s*(?:damage|dmg)|(?:damage|dmg)\s*(?:constant|fixed|flat)|(?:additional|bonus)\s*[+-]?\d+(?:[.,]\d+)?\s*(?:damage|dmg))\b|\u56fa\u5b9a\u4f24\u5bb3|\u56fa\u5b9a\u50b7\u5bb3/i,
+  },
+  {
+    componentKey: "target-vulnerability",
+    label: "Target Vulnerability / Wound",
+    effectClass: "target-vulnerability",
+    contributionScope: "target",
+    formulaTermIds: ["genericDamagePct"],
+    contributionGroups: ["genericDamage"],
+    formulaZoneIds: ["generalDamage"],
+    direction: "increase",
+    pattern: /\b(?:wound|severe\s+wound|vulnerab(?:le|ility)|injur(?:y|ed)|damage\s*(?:taken|received)\s*(?:\+|increase|more)|takes?\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg)|receives?\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg)|(?:damage|dmg)\s+from\s+[\w\s'!-]{0,80}?\s*(?:\+|increase(?:s|d)?|boost(?:s|ed)?|up))\b|\u6613\u4f24|\u53d7\u4f24|\u91cd\u4f24/i,
+  },
+  {
+    componentKey: "target-resistance-mitigation",
+    label: "Target Resistance / Defense Reduction",
+    effectClass: "target-mitigation",
+    contributionScope: "target",
+    formulaTermIds: ["targetResistanceReductionPct"],
+    contributionGroups: ["targetMitigation"],
+    formulaZoneIds: ["baseAttackTerm"],
+    direction: "increase",
+    pattern: /\b(?:(?:element(?:al)?|all[-\s]?element|multi[-\s]?element)?\s*(?:resistance\s*)?(?:reduction|down|decrease|shred)|(?:resistance|armor|defen[cs]e)\s*(?:reduction|down|decrease|shred|break)|(?:reduce|decrease|shred|break).{0,32}(?:resistance|armor|defen[cs]e))\b|\u51cf\u6297|\u964d\u6297|\u7834\u9632/i,
+  },
+  {
+    componentKey: "generic-damage",
+    label: "Generic Damage",
+    effectClass: "damage-modifier",
+    formulaTermIds: ["genericDamagePct"],
+    contributionGroups: ["genericDamage"],
+    formulaZoneIds: ["generalDamage"],
+    direction: "increase",
+    pattern: /\b(?:(?:increas(?:e|es|ed|ing)|boost(?:s|ed|ing)?|enhanc(?:e|es|ed|ing)|add(?:s|ed|ing)?)\s+(?:the\s+)?[\w\s'!-]{0,80}?(?:damage|dmg)\b|(?:damage|dmg)\s*(?:dealt|done|inflicted|bonus|increase|increases|increased|increasing|boost|up|\+|by\s*[+-]?\d|[+-]?\d)|(?:deals?|dealt|done|inflicts?|inflicted)\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:(?:more|increased)\s+)?(?:damage|dmg)|current\s*(?:damage|dmg))\b|\u9020\u6210.*\u4f24\u5bb3|\u4f24\u5bb3.*\u63d0\u9ad8/i,
+  },
+];
+
+const FLAT_VALUE_COMPONENT_CLASSES = new Set([
+  "critical-stat",
+  "flat-damage",
+  "hit-timing",
+  "hit-count-model",
+  "lucky-stat",
+  "cooldown-or-resource",
+  "elemental-attack-stat",
+  "offense-stat",
+  "physical-magic-enhancement",
+  "stat-conversion",
+  "versatility-stat",
+]);
+
+function parseArgs(argv) {
+  const args = {
+    help: false,
+    dryRun: false,
+    outputDir: defaultOutputDir,
+    reportDir: defaultReportDir,
+    modifierContributionPath: "",
+    outPath: "",
+    runtimeOutPath: "",
+    reportPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      args.reportDir = path.join(args.outputDir, "probing-reports");
+      index += 1;
+    } else if (arg === "--report-dir" && next) {
+      args.reportDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--modifier-contribution" && next) {
+      args.modifierContributionPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--runtime-out" && next) {
+      args.runtimeOutPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--report" && next) {
+      args.reportPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.modifierContributionPath ||= path.join(args.outputDir, "ModifierContributionTable.json");
+  args.outPath ||= path.join(args.outputDir, "ModifierFormulaTermTable.json");
+  args.runtimeOutPath ||= path.join(args.outputDir, "ModifierFormulaTermRuntime.json");
+  args.reportPath ||= path.join(args.reportDir, "ModifierFormulaTermTable.md");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierFormulaTermTable.gen - join category description catalogs to formula-zone, value, scope, and runtime-proof terms.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --output-dir <path>             Generated output directory override.");
+  console.log("  --report-dir <path>             Markdown report directory override.");
+  console.log("  --dry-run                       Scan and report without writing.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --modifier-contribution <path>  ModifierContributionTable.json input.");
+  console.log("  --out <path>                    Full audit table output.");
+  console.log("  --runtime-out <path>            Compact runtime table output.");
+  console.log("  --report <path>                 Markdown coverage report output.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return fs.existsSync(filePath) ? readJson(filePath) : fallback;
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeText(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${value.trimEnd()}\n`, "utf8");
+}
+
+function arrayOf(value) {
+  if (Array.isArray(value)) return value;
+  if (value === undefined || value === null) return [];
+  return [value];
+}
+
+function toUid(value) {
+  if (value === undefined || value === null || value === "") return "";
+  const text = String(value).trim();
+  if (!text) return "";
+  const numeric = Number(text);
+  if (Number.isFinite(numeric) && /^-?\d+(?:\.0+)?$/.test(text)) return String(Math.trunc(numeric));
+  return text;
+}
+
+function toNumberUid(value) {
+  const uid = toUid(value);
+  return /^-?\d+$/.test(uid) ? uid : "";
+}
+
+function parseSourceId(sourceId) {
+  const text = String(sourceId || "").trim();
+  const match = text.match(/^([^:]+):(.+)$/);
+  if (!match) return { prefix: "", uid: toNumberUid(text) };
+  return { prefix: match[1], uid: toNumberUid(match[2]) || match[2].trim() };
+}
+
+function sortedNumericStrings(values) {
+  return uniqueStrings(values).sort((left, right) => {
+    const leftNumber = Number(left);
+    const rightNumber = Number(right);
+    if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) return leftNumber - rightNumber;
+    return left.localeCompare(right);
+  });
+}
+
+function countBy(values) {
+  const out = {};
+  for (const value of values || []) {
+    const key = String(value || "").trim() || "unknown";
+    out[key] = (out[key] || 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(out).sort(([left], [right]) => left.localeCompare(right)));
+}
+
+function jsonCatalogEntries(data) {
+  if (!data || typeof data !== "object") return [];
+  if (data.entriesByUid && typeof data.entriesByUid === "object") {
+    return Object.entries(data.entriesByUid).map(([uid, entry]) => ({ uid, ...entry }));
+  }
+  if (Array.isArray(data.entries)) return data.entries;
+  if (Array.isArray(data.rows)) return data.rows;
+  return [];
+}
+
+function sourceRuleEntries(contributionTable) {
+  if (contributionTable?.sourcesByRuleId && typeof contributionTable.sourcesByRuleId === "object") {
+    return Object.entries(contributionTable.sourcesByRuleId).map(([sourceRuleId, source]) => ({ sourceRuleId, ...source }));
+  }
+  if (Array.isArray(contributionTable?.sources)) return contributionTable.sources;
+  if (Array.isArray(contributionTable?.entries)) return contributionTable.entries;
+  return [];
+}
+
+function addLink(index, key, sourceRuleId, reason) {
+  if (!key || !sourceRuleId) return;
+  if (!index.has(key)) index.set(key, new Map());
+  const rules = index.get(key);
+  if (!rules.has(sourceRuleId)) rules.set(sourceRuleId, new Set());
+  rules.get(sourceRuleId).add(reason);
+}
+
+function categoryHintsForSource(source) {
+  const kind = String(source.sourceKind || "").toLowerCase();
+  const type = String(source.sourceType || "").toLowerCase();
+  const sourceId = parseSourceId(source.sourceId);
+  return uniqueStrings([
+    ...(SOURCE_KIND_CATEGORY_HINTS[kind] || []),
+    ...(SOURCE_ID_PREFIX_CATEGORY_HINTS[sourceId.prefix] || []),
+    ...(type === "buff" ? ["buffs"] : []),
+  ]);
+}
+
+function indexContributionSource(index, source) {
+  const sourceRuleId = source.sourceRuleId;
+  const sourceId = parseSourceId(source.sourceId);
+  const categories = categoryHintsForSource(source);
+
+  for (const category of categories) {
+    if (sourceId.uid) addLink(index, `${category}:${sourceId.uid}`, sourceRuleId, `source-id:${sourceId.prefix || "raw"}`);
+    if (source.sourceEntityId !== undefined) {
+      addLink(index, `${category}:${toUid(source.sourceEntityId)}`, sourceRuleId, "source-entity-id");
+    }
+  }
+
+  for (const buffId of arrayOf(source.buffIds)) {
+    const uid = toUid(buffId);
+    addLink(index, `buffs:${uid}`, sourceRuleId, "source-buff-id");
+    if (String(source.sourceKind || "").toLowerCase() === "imagine") {
+      addLink(index, `battle-imagines:${uid}`, sourceRuleId, "imagine-buff-id");
+    }
+    if (String(source.sourceKind || "").toLowerCase() === "phantom-factor") {
+      addLink(index, `factors:${uid}`, sourceRuleId, "factor-buff-id");
+    }
+  }
+
+  for (const damageId of arrayOf(source.targetDamageIds)) {
+    addLink(index, `skills:${toUid(damageId)}`, sourceRuleId, "target-damage-row");
+  }
+  for (const recountId of arrayOf(source.targetRecountIds)) {
+    addLink(index, `skills:${toUid(recountId)}`, sourceRuleId, "target-recount-row");
+  }
+}
+
+function linkedRulesForKeys(index, keys, sourcesByRuleId) {
+  const byRule = new Map();
+  for (const key of keys) {
+    const rules = index.get(key);
+    if (!rules) continue;
+    for (const [sourceRuleId, reasons] of rules.entries()) {
+      if (!byRule.has(sourceRuleId)) byRule.set(sourceRuleId, new Set());
+      for (const reason of reasons) byRule.get(sourceRuleId).add(reason);
+    }
+  }
+  return [...byRule.entries()]
+    .map(([sourceRuleId, reasons]) => stripUndefined({
+      sourceRuleId,
+      linkReasons: uniqueStrings([...reasons]),
+      sourceKind: sourcesByRuleId[sourceRuleId]?.sourceKind,
+      contributionMode: sourcesByRuleId[sourceRuleId]?.contributionMode,
+      contributionTier: sourcesByRuleId[sourceRuleId]?.contributionTier,
+      formulaZoneIds: sourcesByRuleId[sourceRuleId]?.formulaZoneIds,
+    }))
+    .sort((left, right) => left.sourceRuleId.localeCompare(right.sourceRuleId));
+}
+
+function compactValueRows(valueRows) {
+  const byValue = new Map();
+  for (const row of valueRows || []) {
+    const key = `${row.unit || "flat"}:${row.value}`;
+    if (!byValue.has(key)) {
+      byValue.set(key, {
+        value: row.value,
+        unit: row.unit,
+        rawTexts: new Set(),
+        sourceTexts: new Set(),
+        confidence: row.confidence,
+      });
+    }
+    const current = byValue.get(key);
+    if (row.rawText && current.rawTexts.size < 6) current.rawTexts.add(row.rawText);
+    if (row.sourceText && current.sourceTexts.size < 8) current.sourceTexts.add(row.sourceText);
+    for (const sourceText of row.sourceTexts || []) {
+      if (sourceText && current.sourceTexts.size < 8) current.sourceTexts.add(sourceText);
+    }
+  }
+  return [...byValue.values()]
+    .map((row) => stripUndefined({
+      value: row.value,
+      unit: row.unit,
+      rawTexts: uniqueStrings([...row.rawTexts]),
+      sourceTexts: uniqueStrings([...row.sourceTexts]),
+      confidence: row.confidence,
+    }))
+    .sort((left, right) => String(left.unit || "").localeCompare(String(right.unit || ""))
+      || Number(left.value || 0) - Number(right.value || 0));
+}
+
+function normalizeDescriptionText(value) {
+  const text = cleanMarkupPreserveBreaks(String(value || ""))
+    .replace(/\r\n/g, "\n")
+    .replace(/\s+\n/g, "\n")
+    .replace(/\n\s+/g, "\n")
+    .replace(/[ \t]+/g, " ")
+    .trim();
+  return text;
+}
+
+function descriptionTextSurfaces(entry) {
+  return uniqueStrings([
+    entry.name,
+    entry.description,
+    entry.cleanDescription,
+    ...arrayOf(entry.descriptionParagraphs),
+    ...Object.values(entry.descriptionParagraphsByLocale || {}).flatMap((value) => arrayOf(value)),
+    ...Object.values(entry.names || {}),
+    ...Object.values(entry.descriptions || {}),
+    ...Object.values(entry.cleanDescriptions || {}),
+  ].map(normalizeDescriptionText));
+}
+
+function scopeTextSurfaces(entry) {
+  return uniqueStrings([
+    ...arrayOf(entry.scopeDescriptionParagraphs),
+    ...Object.values(entry.scopeDescriptionParagraphsByLocale || {}).flatMap((value) => arrayOf(value)),
+    ...Object.values(entry.scopeDescriptions || {}),
+    ...Object.values(entry.cleanScopeDescriptions || {}),
+  ].map(normalizeDescriptionText));
+}
+
+function scopeEvidenceKinds(entry) {
+  const text = scopeTextSurfaces(entry).join("\n").toLowerCase();
+  if (!text) return [];
+  const scopes = new Set();
+  if (/\b(?:enemy|monster|victim|debuff|vulnerability|vulnerable)\b|\u654c|\u602a|\u5f31\u70b9|\u5f31\u9ede/.test(text)) scopes.add("target");
+  if (/\b(?:ally|allies|party|team|teammate|member|recipient)\b|\u961f\u53cb|\u961f\u4f0d|\u5c0f\u961f|\u5168\u961f|\u53cb\u65b9|\u5473\u65b9|\u30d1\u30fc\u30c6\u30a3|\u30a2\u30e9\u30a4|\uad70|\ud30c\ud2f0/.test(text)) scopes.add("party");
+  if (/\b(?:self|yourself|owner|caster|user|source|own)\b|\u81ea\u8eab|\u81ea\u5df1|\u65bd\u653e\u8005|\u81ea\u8eab\u3068|\uc790\uc2e0/.test(text)) scopes.add("owner");
+  return uniqueStrings([...scopes]);
+}
+
+function splitDescriptionClauses(text) {
+  return uniqueStrings(String(text || "")
+    .replace(/\(([^)]{0,120})\)/g, ". $1 .")
+    .replace(/[!\uFF01]/g, ".")
+    .split(/[\n.;；。]+|,\s+/g)
+    .map((part) => part.trim())
+    .filter((part) => part.length >= 3 && part.length <= 220));
+}
+
+const DESCRIPTION_NUMBER_TOKEN = "[+-]?(?:\\d{1,3}(?:,\\d{3})+(?:\\.\\d+)?|\\d+(?:[.,]\\d+)?)";
+const DESCRIPTION_NUMBER_PATTERN = new RegExp(
+  `${DESCRIPTION_NUMBER_TOKEN}\\s*(?:%|s|sec|secs|second|seconds|m|meter|meters|metre|metres)?(?=$|[^\\w])`,
+  "i"
+);
+const DESCRIPTION_NUMBER_GLOBAL_PATTERN = new RegExp(DESCRIPTION_NUMBER_PATTERN.source, "gi");
+
+function parseDescriptionNumberToken(rawToken) {
+  const text = String(rawToken || "").trim();
+  if (!text) return null;
+  let normalized = text;
+  if (/^[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(normalized)) {
+    normalized = normalized.replace(/,/g, "");
+  } else {
+    normalized = normalized.replace(",", ".");
+  }
+  const value = Number(normalized);
+  return Number.isFinite(value) ? value : null;
+}
+
+function parseDescriptionNumber(rawText) {
+  const text = String(rawText || "").trim();
+  const match = text.match(DESCRIPTION_NUMBER_PATTERN);
+  if (!match) return null;
+  const rawValue = match[0];
+  const valueMatch = rawValue.match(new RegExp(DESCRIPTION_NUMBER_TOKEN));
+  if (!valueMatch) return null;
+  const value = parseDescriptionNumberToken(valueMatch[0]);
+  if (value === null) return null;
+  const unit = rawValue.includes("%")
+    ? "percent"
+    : /(?:\d)\s*(?:s|sec|secs|second|seconds)\b/i.test(rawValue)
+      ? "seconds"
+      : /(?:\d)\s*(?:m|meter|meters|metre|metres)\b/i.test(rawValue)
+        ? "distance"
+        : "flat";
+  return stripUndefined({
+    rawText: rawValue,
+    unit,
+    value,
+    decimalValue: unit === "percent" ? value / 100 : undefined,
+  });
+}
+
+function descriptionNumbersInClause(clause) {
+  return [...String(clause || "").matchAll(DESCRIPTION_NUMBER_GLOBAL_PATTERN)]
+    .map((match) => {
+      const parsed = parseDescriptionNumber(match[0]);
+      return parsed ? { ...parsed, index: match.index || 0 } : null;
+    })
+    .filter(Boolean);
+}
+
+function descriptionFormulaCandidateValues(clause) {
+  const text = String(clause || "");
+  return descriptionNumbersInClause(text).filter((value) => {
+    if (value.unit === "distance") return false;
+    if (value.unit !== "flat") return true;
+    const start = Number(value.index || 0);
+    const end = start + String(value.rawText || "").length;
+    const before = text.slice(Math.max(0, start - 32), start).toLowerCase();
+    const after = text.slice(end, Math.min(text.length, end + 32)).toLowerCase();
+    if (/^\s*(?:stack|stacks|times?|hits?|hit|meters?|metres?|m\b|targets?|enemies?|seconds?|secs?|s\b)/.test(after)) return false;
+    if (/\b(?:max(?:imum)?|up to|within|range|for|duration|lasts?|stack|stacks|times?|hits?|targets?|enemies?)\s*$/.test(before)) return false;
+    return true;
+  });
+}
+
+function equivalentDescriptionValues(values) {
+  const candidates = (values || []).filter((value) => value.unit !== "seconds" && value.unit !== "distance");
+  const signatures = uniqueStrings(candidates.map((value) => {
+    const numeric = Number(value.value);
+    const numericKey = Number.isFinite(numeric) ? numeric.toFixed(8).replace(/\.?0+$/, "") : String(value.value);
+    return `${value.unit || ""}:${numericKey}`;
+  }));
+  if (signatures.length !== 1) return candidates;
+  const first = candidates[0];
+  const rawTexts = uniqueStrings(candidates.map((value) => value.rawText));
+  return [{
+    ...first,
+    rawText: rawTexts[0],
+    equivalentValueCount: candidates.length > 1 ? candidates.length : undefined,
+    equivalentRawTexts: rawTexts.length > 1 ? rawTexts.slice(0, 8) : undefined,
+  }];
+}
+
+function isMostlyLevelOrTierClause(clause) {
+  const text = String(clause || "").toLowerCase();
+  return /\b(?:lv|lvl|level|tier|rank|cost|duration)\b\s*:?\s*[+-]?\d/.test(text)
+    && !/\b(?:atk|attack|damage|dmg|crit|haste|cooldown|resource|energy|speed|element|final|season|dream|versatility|lucky)\b/i.test(text);
+}
+
+function isOutgoingDefensiveClause(clause) {
+  const text = String(clause || "").toLowerCase();
+  const targetVulnerability = /\b(?:damage|dmg)\s*(?:received|taken)\s*(?:\+|increas|more)/.test(text)
+    || /\b(?:takes?|receives?)\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg)\b/.test(text);
+  if (targetVulnerability) return false;
+  if (clauseLooksLikeTargetMitigation(text)) return false;
+  const partyDamageAbsorb = /\b(?:damage|dmg)\s+taken\s+by\s+(?:allies|party|team|teammates?|members?)\b/.test(text)
+    || /\b(?:allies|party|team|teammates?|members?)\b.{0,48}\b(?:damage|dmg)\s+taken\b/.test(text);
+  const selfDamageReduction = /\breduces?\s+(?:your\s+)?(?:magic|physical)?\s*(?:damage|dmg)\s+taken\b/.test(text)
+    || /\b(?:magic|physical)?\s*(?:damage|dmg)\s+taken\b.{0,40}\b(?:reduced|reduction|mitigated|mitigation)\b/.test(text);
+  if (partyDamageAbsorb || selfDamageReduction) return true;
+  return /\b(?:damage|dmg)\s*(?:reduced|reduction|mitigation)\b/.test(text)
+    || /\b(?:damage|dmg)\s*(?:received|taken)\s*(?:-|decreas|less|reduc|mitig)/.test(text)
+    || /\b(?:incoming)\s*(?:damage|dmg)\b/.test(text)
+    || /\b(?:immune|immunity|absorb|absorbs|absorbing|barrier|defense|defence|shield|hp|health|heal|healing|recovery|restore|restores|resistance|armor)\b/.test(text)
+    || /\u51cf\u4f24|\u62a4\u76fe|\u6cbb\u7597|\u56de\u590d|\u9632\u5fa1|\u751f\u547d/.test(text);
+}
+
+const SKILL_COEFFICIENT_TEXT_PATTERN = /\b(?:(?:deals?|inflicts?)\s*(?:attack|physical|magic|elemental)?\s*(?:damage|dmg)?\s*(?:equal\s*to|of)?\s*[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:of\s*)?(?:atk|attack|attack power)|(?:damage|dmg)\s*(?:equal\s*to|of)\s*[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:atk|attack|attack power)|(?:p\.?dmg|m\.?dmg|dmg|damage)[^。；;,\n]{0,80}?[+-]?\d+(?:[.,]\d+)?\s*%[^。；;,\n]{0,80}?(?:atk|attack|attack power)|[+-]?\d+(?:[.,]\d+)?\s*%[^。；;,\n]{0,80}?(?:atk|attack|attack power)[^。；;,\n]{0,80}?(?:damage|dmg|p\.?dmg|m\.?dmg))\b|(?:\u9020\u6210)[^。；;，,]*?[+-]?\d+(?:[.,]\d+)?\s*%[^。；;，,]*?(?:\u653b\u51fb\u529b|\u653b\u64ca\u529b)[^。；;，,]*?(?:\u4f24\u5bb3|\u50b7\u5bb3)/i;
+const LOOSE_PERCENT_ATK_DAMAGE_PATTERN = /(?:p\.?dmg|m\.?dmg|dmg|damage)[^。；;,\n]{0,80}?[+-]?\d+(?:[.,]\d+)?\s*%[^。；;,\n]{0,80}?(?:atk|attack|attack power)|[+-]?\d+(?:[.,]\d+)?\s*%[^。；;,\n]{0,80}?(?:atk|attack|attack power)[^。；;,\n]{0,80}?(?:damage|dmg|p\.?dmg|m\.?dmg)/i;
+
+const ATTACK_SCALED_SKILL_DAMAGE_PATTERN = /\b(?:(?:deals?|dealing|inflicts?|inflicting)\s+)?(?:physical|magic|elemental|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)?\s*(?:damage|dmg)\s*(?:equal\s*to|of)\s*[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:of\s*)?(?:atk|attack|attack power)\b/i;
+
+function clauseLooksLikeSkillCoefficient(clause) {
+  const text = String(clause || "");
+  return SKILL_COEFFICIENT_TEXT_PATTERN.test(text) || LOOSE_PERCENT_ATK_DAMAGE_PATTERN.test(text) || ATTACK_SCALED_SKILL_DAMAGE_PATTERN.test(text);
+}
+
+function clauseLooksLikeTargetMitigation(clause) {
+  const text = String(clause || "").toLowerCase();
+  return /\b(?:(?:element(?:al)?|all[-\s]?element|multi[-\s]?element)?\s*(?:resistance\s*)?(?:reduction|down|decrease|shred)|(?:resistance|armor|defen[cs]e)\s*(?:reduction|down|decrease|shred|break)|(?:reduce|decrease|shred|break).{0,32}(?:resistance|armor|defen[cs]e))\b/.test(text)
+    || /\u51cf\u6297|\u964d\u6297|\u7834\u9632/.test(text);
+}
+
+function clauseLooksLikeTargetVulnerability(clause) {
+  const text = String(clause || "").toLowerCase();
+  return /\b(?:wound|severe\s+wound|vulnerab(?:le|ility)|injur(?:y|ed)|damage\s*(?:taken|received)\s*(?:\+|increase|more)|takes?\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg)|receives?\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg)|(?:damage|dmg)\s+from\s+[\w\s'!-]{0,80}?\s*(?:\+|increase(?:s|d)?|boost(?:s|ed)?|up))\b/.test(text)
+    || /\u6613\u4f24|\u53d7\u4f24|\u91cd\u4f24/.test(text);
+}
+
+function clauseLooksLikeHitCountModel(clause) {
+  const text = String(clause || "").toLowerCase();
+  return /\b(?:number\s+of\s+(?:times|hits)|hit\s+count|hits?\s+(?:one|two|three|\d+)\s+extra\s+times?|extra\s+(?:hit|hits|time|times)|additional\s+(?:hit|hits|time|times)|trigger(?:s|ed)?\s+(?:one|two|three|\d+)\s+extra\s+time|(?:chance|probability).{0,64}\b(?:stage|hit|trigger|extra|again|additional)|deals?\s+(?:damage|dmg)\s+(?:again|one\s+extra\s+time))\b/.test(text)
+    || /\b(?:once|when|whenever|each\s+time).{0,40}(?:attack\s*speed|haste).{0,40}(?:reach(?:es|ed)?|threshold)\b/.test(text);
+}
+
+function destinationDefForStatConversionClause(clause, entry) {
+  const text = String(clause || "");
+  const lower = text.toLowerCase();
+  if (!/\b(?:every|each|per|for\s+every|grants?|provides?|converted?\s+(?:into|to)|converts?\s+(?:into|to)|becomes?)\b/i.test(text)) {
+    return null;
+  }
+
+  const destination = (() => {
+    const match = text.match(/\b(?:grants?|provides?|converted?\s+(?:into|to)|converts?\s+(?:into|to)|becomes?)\b(?<tail>.{0,120})/i);
+    return match?.groups?.tail || text;
+  })().toLowerCase();
+
+  const key = (() => {
+    if (/\b(?:cooldown|cd|recharge|charge\s*(?:rate|speed)?|resource|energy|photon\s*energy|ice\s*energy|sound\s*wave|soundwave|charge\s*seed)\b/.test(destination)) {
+      return "cooldown-or-resource";
+    }
+    if (/\b(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*(?:speed|spd))\b/.test(destination)) {
+      return "haste-or-attack-speed";
+    }
+    if (/\b(?:matk|magic\s*attack|m\.?atk|atq-?m)\b/.test(destination)) {
+      return "atk";
+    }
+    if (/\b(?:atk|attack|attack\s*power|physical\s*attack)\b/.test(destination)) {
+      return "atk";
+    }
+    if (/\b(?:versatility|all[-\s]?round|omni(?:potent)?|universal)\b/.test(destination)) {
+      return "versatility";
+    }
+    return null;
+  })();
+
+  if (!key && !/\b(?:agility|agi|intellect|int|strength|str|mastery|haste)\b/.test(lower)) return null;
+  const def = DESCRIPTION_COMPONENT_DEFS.find((candidate) => candidate.componentKey === (key || "adaptive-primary-stat"));
+  return componentDefForEntry(def, entry);
+}
+
+function clauseLooksUtilityOnly(clause) {
+  const text = String(clause || "").toLowerCase();
+  if (!text.trim()) return false;
+  if (
+    clauseLooksLikeSkillCoefficient(text) ||
+    clauseLooksLikeTargetMitigation(text) ||
+    clauseLooksLikeTargetVulnerability(text) ||
+    clauseLooksLikeHitCountModel(text)
+  ) return false;
+  const blockResourceOnly = /\b(?:block(?:ing)?|block\s*chance|sand\s*crystal)\b/.test(text)
+    && !/\b(?:damage|dmg|atk|attack|matk|crit(?:ical)?\s*(?:damage|dmg|rate|chance)?|haste|cooldown|cd|resource|energy|attack\s*speed|cast(?:ing)?\s*speed|elemental|physical|magic|versatility|final\s*(?:damage|dmg))\b/.test(text);
+  if (blockResourceOnly) return true;
+  if (/\b(?:damage|dmg)\s*(?:bonus|boost|increase|multiplier)|\b(?:atk|attack|matk|crit|critical|haste|cooldown|resource|energy|elemental attack|physical attack|magic attack|versatility|lucky|final damage|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))\b/.test(text)) {
+    return false;
+  }
+  return /\b(?:duration|active\s*time|uptime|movement\s*speed|evade|evasion|freeze|frozen|stun|silence|root|knockback|orb|vestige|slumberdream\s*value|deep\s*dream|dream\s*heart|dreamheart|cannot\s+fight|cannot\s+attack)\b/.test(text);
+}
+
+function shouldSkipComponentForClause(def, clause) {
+  const text = String(clause || "");
+  if (clauseLooksLikeSkillCoefficient(text) && !["skill-multiplier", "fixed-damage"].includes(def.componentKey)) return true;
+  return false;
+}
+
+function componentDefForClause(clause, entry) {
+  if (isOutgoingDefensiveClause(clause)) return null;
+  if (clauseLooksUtilityOnly(clause)) return null;
+  const text = String(clause || "");
+  const skillMultiplierDef = DESCRIPTION_COMPONENT_DEFS.find((def) => def.componentKey === "skill-multiplier");
+  if (clauseLooksLikeSkillCoefficient(text)) {
+    return componentDefForEntry(skillMultiplierDef, entry);
+  }
+  const conversionDestinationDef = destinationDefForStatConversionClause(text, entry);
+  if (conversionDestinationDef) return conversionDestinationDef;
+  const targetVulnerabilityDef = DESCRIPTION_COMPONENT_DEFS.find((def) => def.componentKey === "target-vulnerability");
+  if (targetVulnerabilityDef && clauseLooksLikeTargetVulnerability(text)) {
+    return componentDefForEntry(targetVulnerabilityDef, entry);
+  }
+  const hitCountDef = DESCRIPTION_COMPONENT_DEFS.find((def) => def.componentKey === "hit-count-model");
+  if (hitCountDef && clauseLooksLikeHitCountModel(text)) {
+    return componentDefForEntry(hitCountDef, entry);
+  }
+  const masteryDef = DESCRIPTION_COMPONENT_DEFS.find((def) => def.componentKey === "mastery-stat");
+  if (masteryDef && /\bmastery\b(?!\s+skill).{0,32}(?:by\s*)?[+-]?\d|\b(?:increase(?:s|d)?|boosts?|adds?)\b.{0,48}\bmastery\b(?!\s+skill).{0,24}[+-]?\d/i.test(text)) {
+    return componentDefForEntry(masteryDef, entry);
+  }
+  const adaptivePrimaryDef = DESCRIPTION_COMPONENT_DEFS.find((def) => def.componentKey === "adaptive-primary-stat");
+  if (adaptivePrimaryDef && /\b(?:main|primary)\s*(?:stat|stats|attribute|attributes)\b.{0,32}(?:by\s*)?[+-]?\d|\b(?:increase(?:s|d)?|boosts?|adds?)\b.{0,48}\b(?:main|primary)\s*(?:stat|stats|attribute|attributes)\b.{0,24}[+-]?\d/i.test(text)) {
+    return componentDefForEntry(adaptivePrimaryDef, entry);
+  }
+  const defs = entry?.category === "skills" || entry?.category === "linktext-tooltips"
+    ? [
+      skillMultiplierDef,
+      ...DESCRIPTION_COMPONENT_DEFS.filter((def) => def !== skillMultiplierDef),
+    ].filter(Boolean)
+    : DESCRIPTION_COMPONENT_DEFS;
+  for (const def of defs) {
+    const candidate = componentDefForEntry(def, entry);
+    if (candidate && def.pattern.test(text) && !shouldSkipComponentForClause(candidate, text)) return candidate;
+  }
+  return null;
+}
+
+function componentDefForEntry(def, entry) {
+  if (!def) return null;
+  if (def.categories && !def.categories.includes(entry?.category)) return null;
+  if (!def || def.componentKey !== "season-damage") return def;
+  if (entry?.category !== "factors" && entry?.runtimeKind !== "season-factor") return def;
+  return {
+    ...def,
+    componentKey: "seasonal-factor-damage",
+    label: "Seasonal Factor Damage",
+    effectClass: "seasonal-factor-damage",
+  };
+}
+
+function scopeForDescriptionClause(clause, fullText) {
+  const text = String(clause || "").toLowerCase();
+  const full = String(fullText || "").toLowerCase();
+  if (/\b(?:target|enemy|monster|victim|debuff|vulnerability|vulnerable)\b/.test(text)) return "target";
+  const hasPartyText = /\b(?:ally|allies|party|team|teammate|member|recipient)\b/.test(text);
+  const hasOwnerText = /\b(?:self|yourself|owner|caster|user|source)\b/.test(text);
+  if (hasPartyText && hasOwnerText) return "all";
+  if (hasPartyText) return "party";
+  if (hasOwnerText) return "owner";
+  if (/^\s*(?:atk|attack|attack power)\s*bonus\s*:/.test(text) && /\b(?:ally|party)\s*(?:atk|attack|attack power)\s*bonus\s*:/.test(full)) {
+    return "owner";
+  }
+  return "all";
+}
+
+function componentValueWithScope(scope, parsedValue, inferredFrom, sourceText) {
+  return stripUndefined({
+    scope,
+    rawText: parsedValue.rawText,
+    rawTexts: parsedValue.equivalentRawTexts,
+    unit: parsedValue.unit,
+    value: parsedValue.value,
+    decimalValue: parsedValue.decimalValue,
+    equivalentValueCount: parsedValue.equivalentValueCount,
+    formulaAmount: true,
+    inferredFrom,
+    sourceText,
+  });
+}
+
+function flatValueLooksLikeFormulaAmount(clause, parsedValue, def) {
+  if (parsedValue.unit !== "flat") return true;
+  const rawText = String(parsedValue.rawText || "").trim();
+  const text = String(clause || "").toLowerCase();
+  if (def.effectClass === "flat-damage") {
+    return /\b(?:(?:fixed|flat|constant)\s*(?:damage|dmg)|(?:damage|dmg)\s*(?:constant|fixed|flat)|(?:additional|bonus)\s*[+-]?\d+(?:[.,]\d+)?\s*(?:damage|dmg))\b|\u56fa\u5b9a\u4f24\u5bb3|\u56fa\u5b9a\u50b7\u5bb3/.test(text);
+  }
+  if (def.effectClass === "critical-stat") {
+    return /\b(?:crit(?:ical)?(?:\s+hit)?\s*(?:rate|chance)?|crit|cr)\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d/.test(text)
+      || /\b(?:increase(?:s|d)?|boosts?|adds?)\s+(?:your\s+)?(?:crit(?:ical)?(?:\s+hit)?\s*(?:rate|chance)?|crit|cr)\s*(?:by\s*)?[+-]?\d/.test(text)
+      || /\u66b4\u51fb(?:\u7387|\u6982\u7387)?\s*(?:\+|\u63d0\u5347|\u589e\u52a0)\s*[+-]?\d/.test(text);
+  }
+  if (def.effectClass === "lucky-stat") {
+    return /\b(?:luck|lucky|luk)\s*(?:rate|chance|probability)?\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d/.test(text)
+      || /\b(?:increase(?:s|d)?|boosts?|adds?)\s+(?:your\s+)?(?:luck|lucky|luk)\s*(?:by\s*)?[+-]?\d/.test(text)
+      || (/^[+-]/.test(rawText) && /\b(?:luck|lucky|luk)\s*(?:rate|chance|probability)?\b/.test(text))
+      || /\u5e78\u8fd0(?:\u7387|\u6982\u7387)?\s*(?:\+|\u63d0\u5347|\u589e\u52a0)\s*[+-]?\d/.test(text);
+  }
+  if (def.effectClass === "hit-timing") {
+    return /\b(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*(?:speed|spd))\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d/.test(text)
+      || /\b(?:increase(?:s|d)?|boosts?|adds?)\s+(?:your\s+)?(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*(?:speed|spd))\s*(?:by\s*)?[+-]?\d/.test(text)
+      || (/^[+-]/.test(rawText) && /\b(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*(?:speed|spd))\b/.test(text));
+  }
+  if (def.effectClass === "cooldown-or-resource") {
+    return /\b(?:cooldown|cd|resource|energy|cost|recovery|recharge|charge\s*(?:rate|speed)?|photon\s*energy|ice\s*energy|sound\s*wave|soundwave|charge\s*seed)\b.{0,56}[+-]?\d/.test(text)
+      || /[+-]?\d+(?:\s*points?|\s*pt)?\b.{0,56}\b(?:cooldown|cd|resource|energy|cost|recovery|recharge|charge\s*(?:rate|speed)?|photon\s*energy|ice\s*energy|sound\s*wave|soundwave|charge\s*seed)\b/.test(text)
+      || /\b(?:reduces?|decreases?|lowers?)\b.{0,80}\b(?:cooldown|cd|recharge|charge)\b.{0,56}\d/.test(text);
+  }
+  if (def.effectClass === "hit-count-model") {
+    return /\b(?:number\s+of\s+(?:times|hits)|hit\s+count|extra\s+(?:hit|hits|time|times)|additional\s+(?:hit|hits|time|times)|trigger(?:s|ed)?.{0,48}\b(?:extra|again|additional))\b/.test(text);
+  }
+  if (def.effectClass === "physical-magic-enhancement") {
+    return /\b(?:phy(?:sical)?|mag(?:ic|ical)?|p\.?dmg|m\.?dmg)\s*(?:enhancement|boost|increase|bonus|value|strength)?\s*(?:\+|:)?\s*[+-]?\d/.test(text)
+      || /\b[+-]?\d+\s*(?:phy(?:sical)?|mag(?:ic|ical)?|p\.?dmg|m\.?dmg)\s*(?:enhancement|boost|increase|bonus|value|strength)\b/.test(text)
+      || /\u7269\u7406(?:\u589e\u6548|\u4f24\u5bb3|\u50b7\u5bb3)|\u9b54\u6cd5(?:\u589e\u6548|\u4f24\u5bb3|\u50b7\u5bb3)|\u6cd5\u672f(?:\u589e\u6548|\u4f24\u5bb3|\u50b7\u5bb3)/.test(text);
+  }
+  if (def.effectClass === "elemental-attack-stat") {
+    return /\b(?:element(?:al)?|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)\s*(?:attack|atk)\b.{0,48}[+-]?\d/.test(text)
+      || /[+-]?\d+(?:\s*points?|\s*pt)?\b.{0,48}\b(?:element(?:al)?|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)\s*(?:attack|atk)\b/.test(text)
+      || /\u5143\u7d20.*\u653b|\u706b.*\u653b|\u51b0.*\u653b|\u96f7.*\u653b|\u5ca9.*\u653b/.test(text);
+  }
+  if (def.effectClass === "versatility-stat") {
+    return /\b(?:versatility|versatil(?:ity|idad|idade)|polyvalence|vielseitigkeit|all[-\s]?round|omni(?:potent)?|universal)\b.{0,56}[+-]?\d/.test(text)
+      || (/^[+-]/.test(rawText) && /\b(?:versatility|versatil(?:ity|idad|idade)|polyvalence|vielseitigkeit|all[-\s]?round|omni(?:potent)?|universal)\b/.test(text))
+      || /\u5168\u80fd/.test(text);
+  }
+  if (def.effectClass === "stat-conversion") {
+    return /\b(?:mastery\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d|(?:increase(?:s|d)?|boosts?|adds?)\s+(?:your\s+)?mastery\s*(?:by\s*)?[+-]?\d)\b/.test(text)
+      || /\b(?:(?:adaptive\s*)?(?:strength|str|intellect|int|agility|agi)\s*(?:\/\s*(?:strength|str|intellect|int|agility|agi))*\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d|(?:increase(?:s|d)?|boosts?|adds?)\s+(?:adaptive\s*)?(?:strength|str|intellect|int|agility|agi)(?:\/(?:strength|str|intellect|int|agility|agi))*\s*(?:by\s*)?[+-]?\d)\b/.test(text)
+      || /\b(?:main|primary)\s*(?:stat|stats|attribute|attributes)\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d/.test(text)
+      || /\b(?:increase(?:s|d)?|boosts?|adds?)\s+(?:the\s+)?(?:main|primary)\s*(?:stat|stats|attribute|attributes)\s*(?:by\s*)?[+-]?\d/.test(text)
+      || /\u7cbe\u901a\s*(?:\+|\u63d0\u5347|\u589e\u52a0)\s*[+-]?\d/.test(text);
+  }
+  if (def.effectClass !== "offense-stat") return false;
+  if (/^[+-]/.test(rawText)) return true;
+  return /\b(?:atk|attack|attack power|physical attack|magic attack|matk)\b\s*(?:bonus|increase|boost)?\s*[:+]\s*[+-]?\d/.test(text)
+    || /[+-]?\d+\s*(?:atk|attack|attack power|matk)\b/.test(text)
+    || /\u653b\u51fb\u529b\s*[:+]\s*[+-]?\d|\u6cd5\u653b\s*[:+]\s*[+-]?\d|\u9b54\u653b\s*[:+]\s*[+-]?\d/.test(text);
+}
+
+function componentValueTermPattern(def) {
+  if (def.effectClass === "critical-stat") return /\b(?:crit(?:ical)?(?:\s+hit)?(?:\s*(?:rate|chance))?|cr)\b|\u66b4\u51fb(?:\u7387|\u6982\u7387)?/i;
+  if (def.effectClass === "critical-damage-stat") return /\b(?:crit(?:ical)?(?:\s+hit)?\s*(?:dmg|damage)|crit\s*dmg|cdmg)\b|\u7206\u4f24|\u66b4\u51fb\u4f24\u5bb3/i;
+  if (def.effectClass === "hit-timing") return /\b(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*(?:speed|spd)|cooldown|resource|energy|charge\s*(?:rate|speed)?)\b|\u6025\u901f|\u51b7\u5374|\u653b\u901f/i;
+  if (def.effectClass === "cooldown-or-resource") return /\b(?:cooldown|cd|resource|energy|cost|recovery|recharge|charge\s*(?:rate|speed)?|photon\s*energy|ice\s*energy|sound\s*wave|soundwave|charge\s*seed|haste)\b|\u6025\u901f|\u51b7\u5374|\u80fd\u91cf|\u6d88\u8017|\u6062\u590d/i;
+  if (def.effectClass === "hit-count-model") return /\b(?:number\s+of\s+(?:times|hits)|hit\s+count|extra\s+(?:hit|hits|time|times)|additional\s+(?:hit|hits|time|times)|trigger(?:s|ed)?|chance|probability)\b/i;
+  if (def.effectClass === "lucky-stat") return /\b(?:luck|lucky|luk)\b|\u5e78\u8fd0/i;
+  if (def.effectClass === "stat-conversion") return /\b(?:mastery|meisterschaft|maestr(?:i|í|Ã­)a|ma.{0,3}trise|adaptive\s*(?:strength|str|intellect|int|agility|agi)|strength|str|intellect|int|agility|agi|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))\b|\u7cbe\u901a/i;
+  if (def.effectClass === "versatility-stat") return /\b(?:versatility|versatil(?:ity|idad|idade)|polyvalence|vielseitigkeit|all[-\s]?round|omnipotent\s*(?:damage|dmg)?|universal\s*(?:damage|dmg)?)\b|\u5168\u80fd/i;
+  if (def.effectClass === "offense-stat") return /\b(?:atk|attack|attack power|physical attack|magic attack|matk)\b|\u653b\u51fb\u529b|\u6cd5\u653b|\u9b54\u653b/i;
+  if (def.effectClass === "target-vulnerability") return /\b(?:wound|severe\s+wound|vulnerab(?:le|ility)|injur(?:y|ed)|damage\s*(?:taken|received)|takes?|receives?)\b|\u6613\u4f24|\u53d7\u4f24|\u91cd\u4f24/i;
+  if (def.effectClass === "target-mitigation") return /\b(?:element(?:al)?|resistance|armor|defen[cs]e|reduction|down|decrease|shred|break)\b|\u51cf\u6297|\u964d\u6297|\u7834\u9632/i;
+  if (def.effectClass === "damage-modifier") return /\b(?:damage|dmg)\b|\u4f24\u5bb3|\u50b7\u5bb3/i;
+  if (def.effectClass === "elemental-damage-modifier") return /\b(?:element|elemental|fire|flame|ice|frost|thunder|lightning)\b|\u5143\u7d20|\u706b|\u51b0|\u96f7/i;
+  if (def.effectClass === "elemental-attack-stat") return /\b(?:element(?:al)?|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)\s*(?:attack|atk)\b|\u5143\u7d20.*\u653b|\u706b.*\u653b|\u51b0.*\u653b|\u96f7.*\u653b|\u5ca9.*\u653b/i;
+  if (def.effectClass === "physical-magic-enhancement") return /\b(?:(?:physical|magic|phy|mag|m\.?dmg|p\.?dmg)\s*(?:enhancement|boost|increase|bonus|value|strength|damage\s*bonus|dmg\s*bonus)|(?:enhancement|boost|increase|bonus|value|strength)\s*(?:to|for|of)?\s*(?:physical|magic|phy|mag|m\.?dmg|p\.?dmg))\b|\u7269\u7406.*(?:\u589e|\u52a0\u6210|\u5f3a\u5316)|\u9b54\u6cd5.*(?:\u589e|\u52a0\u6210|\u5f3a\u5316)/i;
+  if (def.effectClass === "skill-coefficient") return /\b(?:damage|dmg|atk|attack|attack power|p\.?dmg|m\.?dmg)\b|\u653b\u51fb|\u4f24\u5bb3|\u50b7\u5bb3/i;
+  return null;
+}
+
+function componentSpecificCandidateValues(clause, def, values) {
+  if ((values || []).length <= 1) return values || [];
+  if (["cooldown-or-resource", "damage-modifier", "elemental-damage-modifier", "season-damage", "seasonal-factor-damage", "skill-coefficient", "target-vulnerability"].includes(def.effectClass)) {
+    const percentValues = (values || []).filter((value) => value.unit === "percent");
+    if (percentValues.length > 0) return percentValues;
+  }
+  const termPattern = componentValueTermPattern(def);
+  if (!termPattern) return values || [];
+  const text = String(clause || "");
+  if (def.componentKey === "adaptive-primary-stat") {
+    const termMatch = text.match(/\b(?:main|primary)\s*(?:stat|stats|attribute|attributes)\b/i);
+    if (termMatch) {
+      const afterTerm = values.filter((value) => Number(value.index || 0) >= Number(termMatch.index || 0));
+      if (afterTerm.length > 0) return afterTerm;
+    }
+  }
+  const matched = values.filter((value) => {
+    const start = Number(value.index || 0);
+    const end = start + String(value.rawText || "").length;
+    const before = text.slice(Math.max(0, start - 48), start);
+    const after = text.slice(end, Math.min(text.length, end + 32));
+    const beforeLocal = before.split(/\b(?:and|or)\b|[,;，、]/i).pop() || before;
+    const afterLocal = after.split(/\b(?:and|or)\b|[,;，、]/i)[0] || after;
+    return termPattern.test(beforeLocal) || termPattern.test(afterLocal);
+  });
+  return matched.length ? matched : values || [];
+}
+
+function valueMatchesLocalComponentTerm(clause, def, value) {
+  const termPattern = componentValueTermPattern(def);
+  if (!termPattern) return true;
+  const text = String(clause || "");
+  const raw = String(value?.rawText || value?.rawTexts?.[0] || "").trim();
+  const normalizedRaw = raw.replace(/\s+/g, "");
+  const start = (() => {
+    if (raw) {
+      const direct = text.indexOf(raw);
+      if (direct >= 0) return direct;
+      if (normalizedRaw && normalizedRaw !== raw) {
+        const compact = text.replace(/\s+/g, "");
+        const compactIndex = compact.indexOf(normalizedRaw);
+        if (compactIndex >= 0) return Math.min(compactIndex, text.length);
+      }
+    }
+    const numeric = String(value?.value ?? "").replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+    const match = numeric ? text.match(new RegExp(`[+-]?${numeric}(?:\\s*%|\\s*points?|\\s*pt)?`, "i")) : null;
+    return match?.index ?? 0;
+  })();
+  const end = start + Math.max(raw.length, 1);
+  const before = text.slice(Math.max(0, start - 56), start);
+  const after = text.slice(end, Math.min(text.length, end + 48));
+  const beforeLocal = before.split(/\b(?:and|or)\b|[,;ï¼Œã€]/i).pop() || before;
+  const afterLocal = after.split(/\b(?:and|or)\b|[,;ï¼Œã€]/i)[0] || after;
+  return termPattern.test(beforeLocal) || termPattern.test(afterLocal);
+}
+
+function dedupeValues(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values || []) {
+    const key = `${value.scope || ""}:${value.unit || ""}:${value.value}:${value.rawText || ""}:${value.sourceText || ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(value);
+  }
+  return out;
+}
+
+function resolutionForDescriptionValues(values) {
+  const scopes = uniqueStrings(values.map((value) => value.scope));
+  if (scopes.includes("owner") && scopes.includes("party")) return "description-owner-party-split";
+  const scopeCounts = countBy(values.map((value) => value.scope || "unknown"));
+  if (Object.values(scopeCounts).some((count) => count > 1)) return "description-ambiguous-multiple-values";
+  return "description-clause-single";
+}
+
+function descriptionComponentValueHints(entry, textZoneIds, existingHints) {
+  const coveredComponents = new Set((existingHints || [])
+    .filter((hint) => (hint.values || []).length > 0)
+    .map((hint) => String(hint.componentKey || "")));
+  const fullText = descriptionTextSurfaces(entry).join("\n");
+  if (!fullText.trim()) return [];
+
+  const byComponent = new Map();
+  for (const surface of descriptionTextSurfaces(entry)) {
+    for (const clause of splitDescriptionClauses(surface)) {
+      if (isMostlyLevelOrTierClause(clause)) continue;
+      const def = componentDefForClause(clause, entry);
+      if (!def || coveredComponents.has(def.componentKey)) continue;
+      const scope = scopeForDescriptionClause(clause, fullText);
+      const values = descriptionFormulaCandidateValues(clause);
+      const candidateValues = equivalentDescriptionValues(componentSpecificCandidateValues(clause, def, values))
+        .filter((value) => Number(value.value) !== 0);
+      if (def.effectClass !== "hit-count-model" && candidateValues.length !== 1) continue;
+      if (def.effectClass === "hit-count-model" && !candidateValues.length) continue;
+      const rows = [];
+      for (const parsedValue of candidateValues) {
+        if (parsedValue.unit === "flat" && !FLAT_VALUE_COMPONENT_CLASSES.has(def.effectClass)) continue;
+        if (!flatValueLooksLikeFormulaAmount(clause, parsedValue, def)) continue;
+        rows.push(componentValueWithScope(scope, parsedValue, "description-clause", clause));
+      }
+      if (!rows.length) continue;
+      if (!byComponent.has(def.componentKey)) {
+        byComponent.set(def.componentKey, {
+          def,
+          values: [],
+          formulaZoneIds: new Set(),
+        });
+      }
+      const current = byComponent.get(def.componentKey);
+      current.values.push(...rows);
+      for (const zoneId of def.formulaZoneIds || []) current.formulaZoneIds.add(zoneId);
+    }
+  }
+
+  const out = [];
+  for (const { def, values, formulaZoneIds } of byComponent.values()) {
+    const uniqueValues = dedupeValues(values);
+    if (!uniqueValues.length) continue;
+    out.push(stripUndefined({
+      componentKey: def.componentKey,
+      label: def.label,
+      effectClass: def.effectClass,
+      contributionScope: def.contributionScope,
+      direction: def.direction,
+      stat: def.stat,
+      valueScope: uniqueValues.length === 1 ? uniqueValues[0].scope : undefined,
+      formulaTermIds: def.formulaTermIds,
+      contributionGroups: def.contributionGroups,
+      formulaZoneIds: uniqueStrings([...formulaZoneIds, ...(textZoneIds || [])].filter((zoneId) => (def.formulaZoneIds || []).includes(zoneId))),
+      valueResolution: resolutionForDescriptionValues(uniqueValues),
+      values: uniqueValues,
+      inferredFrom: "description-clause",
+    }));
+  }
+  return out.sort((left, right) => String(left.componentKey || "").localeCompare(String(right.componentKey || "")));
+}
+
+function valueRowComponentValueHints(entry, textZoneIds, existingHints, valueRows) {
+  const coveredComponents = new Set((existingHints || [])
+    .filter((hint) => (hint.values || []).length > 0)
+    .map((hint) => String(hint.componentKey || "")));
+  const rows = valueRows || [];
+  if (!rows.length) return [];
+
+  const byComponent = new Map();
+  for (const row of rows) {
+    const texts = uniqueStrings([
+      row.sourceText,
+      ...(row.sourceTexts || []),
+      row.rawText,
+      ...(row.rawTexts || []),
+    ].filter(Boolean));
+    const rawNeedles = uniqueStrings([
+      row.rawText,
+      ...(row.rawTexts || []),
+    ].filter(Boolean));
+    const localWindows = [];
+    for (const text of texts) {
+      const source = String(text || "");
+      for (const rawNeedle of rawNeedles) {
+        const index = source.indexOf(String(rawNeedle));
+        if (index < 0) continue;
+        localWindows.push(source.slice(Math.max(0, index - 96), Math.min(source.length, index + String(rawNeedle).length + 96)).trim());
+      }
+    }
+    const clauses = uniqueStrings([
+      ...texts.flatMap((text) => splitDescriptionClauses(text)),
+      ...localWindows,
+    ].filter((part) => String(part || "").trim().length >= 3));
+    for (const clause of clauses) {
+      if (isMostlyLevelOrTierClause(clause)) continue;
+      if (valueRowLooksFormulaRelevant({ ...row, sourceText: clause }) === false) continue;
+      const def = componentDefForClause(clause, entry);
+      if (!def || coveredComponents.has(def.componentKey)) continue;
+      const value = stripUndefined({
+        scope: scopeForDescriptionClause(clause, texts.join("\n")),
+        rawText: row.rawText || row.rawTexts?.[0],
+        rawTexts: row.rawTexts,
+        unit: row.unit,
+        value: row.value,
+        decimalValue: row.decimalValue,
+        equivalentValueCount: row.equivalentValueCount,
+        formulaAmount: true,
+        inferredFrom: "description-value-row",
+        sourceText: clause,
+      });
+      if (value.unit === "flat" && !FLAT_VALUE_COMPONENT_CLASSES.has(def.effectClass)) continue;
+      if (!valueMatchesLocalComponentTerm(clause, def, value)) continue;
+      if (!flatValueLooksLikeFormulaAmount(clause, value, def)) continue;
+
+      if (!byComponent.has(def.componentKey)) {
+        byComponent.set(def.componentKey, {
+          def,
+          values: [],
+          formulaZoneIds: new Set(),
+        });
+      }
+      const current = byComponent.get(def.componentKey);
+      current.values.push(value);
+      for (const zoneId of def.formulaZoneIds || []) current.formulaZoneIds.add(zoneId);
+      break;
+    }
+  }
+
+  const out = [];
+  for (const { def, values, formulaZoneIds } of byComponent.values()) {
+    const uniqueValues = dedupeValues(values);
+    if (!uniqueValues.length) continue;
+    out.push(stripUndefined({
+      componentKey: def.componentKey,
+      label: def.label,
+      effectClass: def.effectClass,
+      contributionScope: def.contributionScope,
+      direction: def.direction,
+      stat: def.stat,
+      valueScope: uniqueValues.length === 1 ? uniqueValues[0].scope : undefined,
+      formulaTermIds: def.formulaTermIds,
+      contributionGroups: def.contributionGroups,
+      formulaZoneIds: uniqueStrings([...formulaZoneIds, ...(textZoneIds || [])].filter((zoneId) => (def.formulaZoneIds || []).includes(zoneId))),
+      valueResolution: resolutionForDescriptionValues(uniqueValues),
+      values: uniqueValues,
+      inferredFrom: "description-value-row",
+    }));
+  }
+  return out.sort((left, right) => String(left.componentKey || "").localeCompare(String(right.componentKey || "")));
+}
+
+function ownerPartySplitForEntry(entry) {
+  if (!entry.ownerPartySplit) return undefined;
+  const text = descriptionTextSurfaces(entry).join("\n").toLowerCase();
+  const hasPartyText = /\b(?:ally|allies|party|team|teammate|member|recipient)\b|\u961f\u53cb|\u961f\u4f0d|\u5c0f\u961f|\u5168\u961f/.test(text);
+  const hasOwnerText = /\b(?:self|yourself|owner|caster|user|source)\b|\u81ea\u8eab|\u81ea\u5df1|\u65bd\u653e\u8005/.test(text);
+  return hasPartyText && hasOwnerText ? entry.ownerPartySplit : undefined;
+}
+
+function mergeComponentValueHints(hints) {
+  const seen = new Set();
+  const out = [];
+  for (const hint of hints || []) {
+    if (!hint || typeof hint !== "object") continue;
+    const row = stripUndefined(hint);
+    if (!Object.keys(row).length) continue;
+    const key = JSON.stringify(row);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(row);
+  }
+  return out;
+}
+
+function relationshipKeys(entry) {
+  const relationships = entry.relationships || {};
+  const keys = new Set([`${entry.category}:${toUid(entry.uid)}`]);
+  for (const buffId of arrayOf(relationships.buffIds)) keys.add(`buffs:${toUid(buffId)}`);
+  for (const sourceEntityId of arrayOf(relationships.sourceEntityIds)) {
+    keys.add(`${entry.category}:${toUid(sourceEntityId)}`);
+    if (entry.category === "battle-imagines") keys.add(`battle-imagines:${toUid(sourceEntityId)}`);
+  }
+  for (const factorId of arrayOf(relationships.factorIds)) keys.add(`factors:${toUid(factorId)}`);
+  for (const itemId of arrayOf(relationships.itemIds)) keys.add(`items:${toUid(itemId)}`);
+  for (const skillId of arrayOf(relationships.skillIds)) keys.add(`skills:${toUid(skillId)}`);
+  for (const damageId of arrayOf(relationships.targetDamageIds)) keys.add(`skills:${toUid(damageId)}`);
+  for (const recountId of arrayOf(relationships.targetRecountIds)) keys.add(`skills:${toUid(recountId)}`);
+  return [...keys].filter((key) => !key.endsWith(":"));
+}
+
+function nonDefensiveDescriptionClauses(entry) {
+  const clauses = [];
+  for (const surface of descriptionTextSurfaces(entry)) {
+    for (const clause of splitDescriptionClauses(surface)) {
+      if (isOutgoingDefensiveClause(clause)) continue;
+      clauses.push(clause);
+    }
+  }
+  return uniqueStrings(clauses);
+}
+
+function linkedSourceComponentHintsAreAuthoritative(linkedSources = [], componentValueHints = []) {
+  if (!arrayOf(componentValueHints).length) return false;
+  return linkedSources.some((source) => {
+    const sourceKind = String(source.sourceKind || "").toLowerCase();
+    const sourceType = String(source.sourceType || "").toLowerCase();
+    return sourceKind === "imagine" || sourceType === "imagine-buff";
+  }) || componentValueHints.some((hint) =>
+    arrayOf(hint.predicateTags).some((tag) => String(tag || "") === "source.battle-imagine")
+  );
+}
+
+function textFormulaZones(entry, formulaZoneContract, linkedSources = [], sourceComponentValueHints = []) {
+  const sourceHintsAreAuthoritative = linkedSourceComponentHintsAreAuthoritative(linkedSources, sourceComponentValueHints);
+  const formulaTerms = sourceHintsAreAuthoritative ? [] : uniqueStrings(entry.formulaTerms || []);
+  const syntheticEntry = {
+    formulaTermIds: formulaTerms,
+    contributionGroups: formulaTerms,
+    componentClasses: formulaTerms,
+    attributionModel: {
+      components: formulaTerms.map((term) => ({
+        componentKey: term,
+        effectClass: term,
+        formulaTermIds: [term],
+        contributionGroups: [term],
+      })),
+    },
+  };
+  const out = new Set(formulaZoneIdsForEntry(syntheticEntry, formulaZoneContract));
+  const identityText = [
+    entry.name,
+    ...Object.values(entry.names || {}),
+    ...(sourceHintsAreAuthoritative ? [] : formulaTerms),
+  ].map((value) => String(value || "").toLowerCase()).join(" ");
+  const clauses = nonDefensiveDescriptionClauses(entry)
+    .map((value) => String(value || "").toLowerCase());
+  const clauseText = clauses.join(" ");
+  const modifierClauseText = clauses
+    .filter((clause) => !clauseLooksLikeSkillCoefficient(clause))
+    .join(" ");
+  const text = `${identityText} ${clauseText}`.trim();
+  const modifierText = `${identityText} ${modifierClauseText}`.trim();
+  const hasSkillCoefficientClause = clauses.some(clauseLooksLikeSkillCoefficient);
+  const linkedToSeasonalFactor = linkedSources.some((source) =>
+    String(source.sourceKind || "").toLowerCase() === "phantom-factor"
+      || (source.linkReasons || []).some((reason) => String(reason || "").includes("source-id:phantom-factor"))
+  );
+  const linkedSourceZones = new Set(linkedSources.flatMap((source) => source.formulaZoneIds || []));
+  const seasonDamageText = /season|dream|slumber|breakthrough|\u8d5b\u5b63|\u5e7b\u68a6|\u7a81\u7834/.test(modifierText) &&
+    /\b(?:dmg|damage|bonus|boost|increase|multiplier|enhancement)\b|\u4f24\u5bb3|\u589e\u4f24/.test(modifierText);
+  const elementalDamageText = /element|fire|flame|ice|frost|thunder|lightning|\u5143\u7d20|\u706b|\u51b0|\u96f7/.test(modifierText);
+  const seasonalFactorSourceOnly = linkedToSeasonalFactor
+    && linkedSourceZones.has("seasonDamage")
+    && !linkedSourceZones.has("elementalDamage");
+
+  if (/\bcrit(?:ical)?\b|crit dmg|crit rate|\u66b4\u51fb|\u7206\u4f24/.test(text)) out.add("critical");
+  if (/\bhaste\b|cooldown|\bcd\b|resource|attack speed|\u6025\u901f|\u51b7\u5374|\u653b\u901f/.test(text)) out.add("timingCadence");
+  if (hasSkillCoefficientClause) out.add("skillMultiplier");
+  if (elementalDamageText && !seasonalFactorSourceOnly) out.add("elementalDamage");
+  if (/physical|magic|p\.?dmg|m\.?dmg|\u7269\u7406|\u9b54\u6cd5|\u6cd5\u672f/.test(modifierText)) out.add("physicalMagicEnhancement");
+  if (/final damage|final dmg|\u6700\u7ec8/.test(modifierText)) out.add("finalDamage");
+  if (seasonDamageText) {
+    out.add("seasonDamage");
+  }
+  if (/suppression|\u538b\u5236/.test(modifierText)) out.add("seasonSuppression");
+  if (/versatility|all-round|omni|\u5168\u80fd/.test(modifierText)) out.add("allRoundDamage");
+  if (/lucky|luck|\u5e78\u8fd0/.test(modifierText)) out.add("luckyEnhancement");
+  if (/\batk\b|\battack\b|\bmatk\b|\u653b\u51fb\u529b|\u6cd5\u653b|\u9b54\u653b/.test(modifierText)) out.add("baseAttackTerm");
+  if (/\bdmg\b|\bdamage\b|\u4f24\u5bb3/.test(modifierClauseText)) out.add("generalDamage");
+
+  return uniqueStrings([...out]);
+}
+
+function entryLooksDefensiveOrSustainOnly(entry) {
+  const fullText = descriptionTextSurfaces(entry).join(" ").toLowerCase();
+  if (!/\b(?:hp|health|shield|defense|defence|resistance|heal|healing|recovery)\b|\b(?:incoming|taken|received)\s+(?:damage|dmg)\b|\b(?:damage|dmg)\s+(?:taken|received|reduced|reduction|mitigation)\b|\u751f\u547d|\u62a4\u76fe|\u9632\u5fa1|\u6062\u590d|\u53d7\u5230.*\u4f24\u5bb3|\u51cf\u4f24/.test(fullText)) {
+    return false;
+  }
+  const nonDefensiveClauses = nonDefensiveDescriptionClauses(entry)
+    .filter((clause) => !isMostlyLevelOrTierClause(clause));
+  const outgoingClauses = nonDefensiveClauses.filter((clause) => {
+    const text = String(clause || "").toLowerCase();
+    return /\b(?:atk|attack|matk|crit|critical|haste|element|fire|flame|ice|frost|thunder|lightning|physical|magic|final|season|dream|slumber|breakthrough|versatility|all-round|lucky)\b|\b(?:dmg|damage)\s*(?:bonus|boost|increase|multiplier)\b|\u653b\u51fb|\u66b4\u51fb|\u5143\u7d20|\u6700\u7ec8|\u8d5b\u5b63|\u589e\u4f24/.test(text);
+  });
+  return outgoingClauses.length === 0;
+}
+
+function entryLooksUtilityOnly(entry) {
+  const clauses = nonDefensiveDescriptionClauses(entry)
+    .filter((clause) => !isMostlyLevelOrTierClause(clause));
+  if (!clauses.length) return false;
+  const utilityClauses = clauses.filter(clauseLooksUtilityOnly);
+  if (!utilityClauses.length) return false;
+  const outgoingClauses = clauses.filter((clause) => {
+    const text = String(clause || "").toLowerCase();
+    return clauseLooksLikeSkillCoefficient(text) ||
+      clauseLooksLikeTargetMitigation(text) ||
+      /\b(?:atk|attack|matk|crit|critical|haste|cooldown|resource|energy|elemental attack|physical attack|magic attack|versatility|lucky|final damage|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))\b/.test(text) ||
+      /\b(?:damage|dmg)\s*(?:bonus|boost|increase|multiplier)\b/.test(text);
+  });
+  return outgoingClauses.length === 0;
+}
+
+function formulaZoneEvidence(linkedSources, textZoneIds) {
+  const zones = {};
+  for (const source of linkedSources) {
+    for (const zoneId of source.formulaZoneIds || []) {
+      zones[zoneId] ||= { kinds: new Set() };
+      zones[zoneId].kinds.add("source-rule");
+    }
+  }
+  for (const zoneId of textZoneIds) {
+    zones[zoneId] ||= { kinds: new Set() };
+    zones[zoneId].kinds.add("description-text-candidate");
+  }
+  return Object.fromEntries(Object.entries(zones)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([zoneId, value]) => [zoneId, stripUndefined({
+      evidenceKinds: uniqueStrings([...value.kinds]),
+    })]));
+}
+
+function compactComponentValueHints(linkedSources, sourcesByRuleId) {
+  const seen = new Set();
+  const out = [];
+  for (const source of linkedSources) {
+    for (const hint of sourcesByRuleId[source.sourceRuleId]?.componentValueHints || []) {
+      const row = stripUndefined({
+        sourceRuleId: source.sourceRuleId,
+        componentKey: hint.componentKey,
+        label: hint.label,
+        effectClass: hint.effectClass,
+        contributionScope: hint.contributionScope,
+        direction: hint.direction,
+        stat: hint.stat,
+        valueScope: hint.valueScope,
+        formulaTermIds: hint.formulaTermIds,
+        contributionGroups: hint.contributionGroups,
+        valueResolution: hint.valueResolution,
+        tierSelectionRequired: hint.tierSelectionRequired,
+        values: hint.values,
+      });
+      const key = JSON.stringify(row);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(row);
+    }
+  }
+  return out;
+}
+
+function componentScopeKind(value) {
+  const text = String(value || "").trim().toLowerCase();
+  if (!text || text === "global") return "";
+  if (text === "owner" || text === "self" || text === "caster" || text === "user" || text === "source") return "owner";
+  if (text === "party" || text === "ally" || text === "allies" || text === "external" || text === "recipient" || text === "teammate") return "party";
+  if (text === "target" || text === "targeted" || text === "enemy" || text === "monster" || text === "victim") return "target";
+  if (text === "all" || text === "any" || text === "shared") return "all";
+  if (text.includes("target") || text.includes("enemy") || text.includes("monster")) return "target";
+  if (text.includes("party") || text.includes("ally") || text.includes("external")) return "party";
+  if (text.includes("owner") || text.includes("self") || text.includes("caster")) return "owner";
+  return "";
+}
+
+function componentHintScopeKinds(componentValueHints) {
+  const scopes = new Set();
+  for (const hint of componentValueHints || []) {
+    const contributionScope = componentScopeKind(hint.contributionScope);
+    if (contributionScope === "target") {
+      scopes.add("target");
+      continue;
+    }
+    for (const value of hint.values || []) {
+      const scope = componentScopeKind(value.scope || value.valueScope || value.contributionScope);
+      if (scope) scopes.add(scope);
+    }
+    const valueScope = componentScopeKind(hint.valueScope);
+    if (valueScope) scopes.add(valueScope);
+    if (contributionScope) scopes.add(contributionScope);
+  }
+  return scopes;
+}
+
+function scopeKinds(entry, componentValueHints, linkedSources = []) {
+  const scopes = new Set();
+  const componentScopes = componentHintScopeKinds(componentValueHints);
+  if (linkedSourceComponentHintsAreAuthoritative(linkedSources, componentValueHints) && componentScopes.size > 0) {
+    for (const scope of componentScopes) scopes.add(scope);
+    const relationships = entry.relationships || {};
+    if ((relationships.targetDamageIds || []).length || (relationships.targetRecountIds || []).length) scopes.add("target");
+    return uniqueStrings([...scopes]);
+  }
+  for (const scope of componentScopes) {
+    scopes.add(scope);
+  }
+  if (ownerPartySplitForEntry(entry)) {
+    scopes.add("owner");
+    scopes.add("party");
+  }
+  for (const scope of scopeEvidenceKinds(entry)) scopes.add(scope);
+  const relationships = entry.relationships || {};
+  if ((relationships.targetDamageIds || []).length || (relationships.targetRecountIds || []).length) scopes.add("target");
+  return uniqueStrings([...scopes]);
+}
+
+function valueRowText(row) {
+  return uniqueStrings([
+    row.sourceText,
+    ...(row.sourceTexts || []),
+    row.rawText,
+    ...(row.rawTexts || []),
+  ].filter(Boolean)).join(" ");
+}
+
+function valueRowLooksFormulaRelevant(row) {
+  if (row.unit === "seconds") return false;
+  if (row.unit === "distance") return false;
+  if (Number(row.value) === 0) return false;
+  const text = valueRowText(row);
+  if (!text.trim()) return false;
+  if (isMostlyLevelOrTierClause(text)) return false;
+  if (isOutgoingDefensiveClause(text)) return false;
+  if (clauseLooksUtilityOnly(text)) return false;
+  const lower = text.toLowerCase();
+  if (/\b(?:duration|active\s*time|uptime)\b/.test(lower) && !/\b(?:damage|dmg|atk|attack|crit|haste|cooldown|resource|energy)\b/.test(lower)) return false;
+  if ((row.unit || "flat") === "flat") {
+    const rawTexts = [
+      row.rawText,
+      ...(row.rawTexts || []),
+    ].map((value) => String(value || "").trim()).filter(Boolean);
+    if (rawTexts.length > 0 && rawTexts.every((value) => /^[+-]?\d+(?:[.,]\d+)?\s*(?:m|meter|meters|metre|metres)$/i.test(value))) {
+      return false;
+    }
+    const numericRawTexts = rawTexts.filter((value) => /^[+-]?\d+(?:[.,]\d+)?$/.test(value));
+    if (
+      numericRawTexts.length > 0 &&
+      numericRawTexts.length === rawTexts.length &&
+      numericRawTexts.every((value) => {
+        const escaped = value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(",", "[.,]");
+        return new RegExp(`(^|[^\\d.])${escaped}\\s*(?:m|meter|meters|metre|metres)\\b`, "i").test(text);
+      })
+    ) {
+      return false;
+    }
+    if (rawTexts.length > 0 && rawTexts.every((value) => /^-\d+$/.test(value))) {
+      const hasExplicitNegativeFormula = /\b(?:reduce|decrease|lower|less|down|cooldown|cd|cost|resource|resistance|armor|defense|defence|haste|speed|penalty)\b.{0,48}-\d/.test(lower)
+        || /-\d.{0,48}\b(?:reduce|decrease|lower|less|down|cooldown|cd|cost|resource|resistance|armor|defense|defence|haste|speed|penalty)\b/.test(lower);
+      if (!hasExplicitNegativeFormula) return false;
+    }
+    if (
+      rawTexts.length > 0 &&
+      rawTexts.every((value) => /^-\d+$/.test(value)) &&
+      !/\b(?:atk|attack|attack power|matk|damage|dmg|crit|critical|cdmg|haste|cooldown|resource|energy|attack speed|element|elemental|mastery|versatility|lucky|luck|final\s*(?:damage|dmg)|season|seasonal|dream|suppression|physical|magic|melee|ranged|vulnerab|injur|wound|multiplier|fixed damage|constant|main\s*(?:stat|attribute)|primary\s*(?:stat|attribute))\b/.test(lower)
+    ) {
+      return false;
+    }
+    const hasSignedRawValue = rawTexts.some((value) => /^[+-]/.test(value));
+    const hasExplicitFlatFormula = /\b(?:atk|attack|attack power|physical attack|magic attack|matk)\b\s*(?:bonus|increase|boost)?\s*[:+]\s*[+-]?\d/.test(lower)
+      || /[+-]?\d+\s*(?:atk|attack|attack power|matk)\b/.test(lower)
+      || /\b(?:main|primary)\s*(?:stat|stats|attribute|attributes)\s*(?:bonus|increase|boost)?\s*[:+]\s*[+-]?\d/.test(lower)
+      || /[+-]?\d+\s*(?:main|primary)\s*(?:stat|stats|attribute|attributes)\b/.test(lower)
+      || /\b(?:(?:fixed|flat|constant)\s*(?:damage|dmg)|(?:damage|dmg)\s*(?:constant|fixed|flat)|(?:additional|bonus)\s*[+-]?\d+(?:[.,]\d+)?\s*(?:damage|dmg))\b/.test(lower)
+      || /\u653b\u51fb\u529b\s*[:+]\s*[+-]?\d|\u6cd5\u653b\s*[:+]\s*[+-]?\d|\u9b54\u653b\s*[:+]\s*[+-]?\d|\u56fa\u5b9a\u4f24\u5bb3|\u56fa\u5b9a\u50b7\u5bb3/.test(lower);
+    if (!hasSignedRawValue && !hasExplicitFlatFormula) return false;
+  }
+  const hasDamageText = /\b(?:damage|dmg|vulnerab|injur|wound)\b/.test(lower) || clauseLooksLikeTargetMitigation(lower);
+  if (!hasDamageText && /\b(?:hp|health|heal|healing|shield|defense|defence|armor|resistance)\b/.test(lower)) {
+    return false;
+  }
+  return /\b(?:atk|attack|attack power|matk|damage|dmg|crit|critical|cdmg|haste|cooldown|resource|energy|attack speed|speed|element|elemental|mastery|versatility|lucky|luck|final|season|seasonal|dream|suppression|physical|magic|melee|ranged|vulnerab|injur|wound|skill power|skill damage|multiplier|fixed damage|constant|main\s*stat|main\s*attribute|primary\s*stat|primary\s*attribute|resistance\s*reduction|armor\s*reduction|defense\s*reduction|defence\s*reduction)\b/.test(lower);
+}
+
+function formulaRelevantValueRows(entry) {
+  return compactValueRows(entry.valueRows).filter(valueRowLooksFormulaRelevant);
+}
+
+function valuePolicy(entry, componentValueHints, valueRows) {
+  const resolutions = uniqueStrings(componentValueHints.map((hint) => hint.valueResolution));
+  if (resolutions.length > 0) return resolutions.length === 1 ? resolutions[0] : "mixed-component-values";
+  if ((valueRows || []).length > 0) return "description-values-unscoped";
+  if (entry.hasUnresolvedDecisionPlaceholders) return "description-decision-parameter-unresolved";
+  if (ownerPartySplitForEntry(entry)) return "description-owner-party-split-candidate";
+  return "no-value";
+}
+
+function stackPolicy(entry) {
+  const stacking = entry.stacking;
+  if (!stacking) return "none";
+  const policies = [];
+  if (stacking.runtimeStackEvidenceRequired) policies.push("runtime-stack-count");
+  if ((stacking.valueCaps || []).length > 0) policies.push("max-stack-or-cap");
+  if ((stacking.targetStackEffects || []).length > 0) policies.push("target-stack-effect");
+  return policies.length ? policies.join("+") : "stack-text";
+}
+
+function sourceModes(linkedSources) {
+  return new Set(linkedSources.map((source) => source.contributionMode).filter(Boolean));
+}
+
+function formulaReadiness(entry, linkedSources, formulaZoneIds, valueRows) {
+  const modes = sourceModes(linkedSources);
+  if (modes.has("exact-produced-damage") && modes.has("formula-replay-candidate")) return "mixed-exact-and-replay";
+  if (modes.has("exact-produced-damage")) return "packet-exact-produced-damage";
+  if (modes.has("formula-replay-candidate")) return "formula-replay-required";
+  if (modes.has("timing-only")) return "timing-model-required";
+  if (modes.has("defensive")) return "non-damage-or-support";
+  if (entryLooksDefensiveOrSustainOnly(entry)) return "non-damage-or-support";
+  if (entryLooksUtilityOnly(entry)) return "non-damage-or-support";
+  if (modes.has("overlap-only") && entryLooksDefensiveOrSustainOnly(entry)) return "non-damage-or-support";
+  if (modes.has("overlap-only")) return "overlap-only";
+  if (formulaZoneIds.length > 0 || (valueRows || []).length > 0) return "description-grounded-needs-runtime-proof";
+  return "identity-only";
+}
+
+function runtimeProofRequired(entry, linkedSources, sourcesByRuleId, valueResolution, scopes, stack, valueRows) {
+  const proof = new Set();
+  for (const source of linkedSources) {
+    for (const evidence of sourcesByRuleId[source.sourceRuleId]?.requiredRuntimeEvidence || []) proof.add(evidence);
+  }
+  if (linkedSources.length === 0) proof.add(`${entry.category} UID observed, selected, equipped, or otherwise active`);
+  if (valueResolution === "description-decision-parameter-unresolved") {
+    proof.add("Decision placeholder parameter source must be resolved from the owning UI/effect table before numeric contribution math");
+  } else if ((valueRows || []).length > 0 || valueResolution !== "no-value") {
+    proof.add("description-derived value mapped to a formula component");
+  }
+  const ownerPartySplit = ownerPartySplitForEntry(entry);
+  if (ownerPartySplit) {
+    for (const evidence of ownerPartySplit.runtimeEvidenceRequired || []) proof.add(evidence);
+    proof.add("owner/party scope resolved against encounter-local actors");
+  }
+  if (scopes.includes("owner") && scopes.includes("party")) {
+    proof.add("owner/party scope resolved against encounter-local actors");
+  }
+  if (stack !== "none") {
+    proof.add("stack count at hit time");
+    if (stack.includes("max-stack") || stack.includes("cap")) proof.add("stack cap or threshold state at hit time");
+    if (stack.includes("target-stack")) proof.add("target stack state at hit time");
+  }
+  if (scopes.includes("target")) {
+    proof.add("target uid");
+    proof.add("target-side buff/debuff/window state at hit time");
+  }
+  if (entry.category === "items") {
+    proof.add("item equipped/consumed runtime proof");
+    proof.add("rolled/equipped gear statlines remain packet-derived when applicable");
+  }
+  if (entry.category === "battle-imagines") {
+    proof.add("battle imagine owner/source actor uid");
+    proof.add("recipient actor uid for party-shared effects");
+  }
+  return uniqueStrings([...proof]);
+}
+
+function directSourceRuleLinks(links) {
+  return links.filter((link) => (link.linkReasons || []).some((reason) => {
+    return reason.startsWith("source-")
+      || reason === "source-entity-id"
+      || reason === "imagine-buff-id"
+      || reason === "factor-buff-id";
+  }));
+}
+
+const SKILL_COEFFICIENT_AMBIGUOUS_TEXT_ZONES = new Set([
+  "baseAttackTerm",
+  "elementalDamage",
+  "generalDamage",
+  "physicalMagicEnhancement",
+]);
+
+function textZoneSupportedByStructuredEvidence(zoneId, componentValueHints, linkedSources) {
+  return (componentValueHints || []).some((hint) => (hint.formulaZoneIds || []).includes(zoneId))
+    || (linkedSources || []).some((source) => (source.formulaZoneIds || []).includes(zoneId));
+}
+
+function filterTextZoneIds(entry, textZoneIds, componentValueHints, linkedSources) {
+  const zones = uniqueStrings(textZoneIds || []);
+  if (!["skills", "linktext-tooltips"].includes(entry?.category)) return zones;
+  const hasSkillCoefficientHint = (componentValueHints || [])
+    .some((hint) => hint.componentKey === "skill-multiplier" || (hint.formulaTermIds || []).includes("skillMultiplier"));
+  if (!hasSkillCoefficientHint) return zones;
+  return zones.filter((zoneId) => {
+    if (!SKILL_COEFFICIENT_AMBIGUOUS_TEXT_ZONES.has(zoneId)) return true;
+    return textZoneSupportedByStructuredEvidence(zoneId, componentValueHints, linkedSources);
+  });
+}
+
+function tableEntryFromCatalog(entry, spec, linkedSources, sourcesByRuleId, formulaZoneContract) {
+  const sourceComponentValueHints = compactComponentValueHints(linkedSources, sourcesByRuleId);
+  const rawTextZoneIds = textFormulaZones(entry, formulaZoneContract, linkedSources, sourceComponentValueHints);
+  const valueRows = formulaRelevantValueRows(entry);
+  const descriptionHints = descriptionComponentValueHints(entry, rawTextZoneIds, sourceComponentValueHints);
+  const valueRowHints = valueRowComponentValueHints(entry, rawTextZoneIds, [
+    ...sourceComponentValueHints,
+    ...descriptionHints,
+  ], valueRows);
+  const componentValueHints = mergeComponentValueHints([
+    ...sourceComponentValueHints,
+    ...descriptionHints,
+    ...valueRowHints,
+  ]);
+  const textZoneIds = filterTextZoneIds(entry, rawTextZoneIds, componentValueHints, linkedSources);
+  const formulaZoneIds = uniqueStrings([
+    ...linkedSources.flatMap((source) => source.formulaZoneIds || []),
+    ...componentValueHints.flatMap((hint) => hint.formulaZoneIds || []),
+    ...textZoneIds,
+  ]);
+  const scopes = scopeKinds(entry, componentValueHints, linkedSources);
+  const valueResolution = valuePolicy(entry, componentValueHints, valueRows);
+  const stack = stackPolicy(entry);
+  const proof = runtimeProofRequired(entry, linkedSources, sourcesByRuleId, valueResolution, scopes, stack, valueRows);
+  const readiness = formulaReadiness(entry, linkedSources, formulaZoneIds, valueRows);
+  const sourceRuleIds = uniqueStrings(linkedSources.map((source) => source.sourceRuleId));
+  const ownerPartySplit = ownerPartySplitForEntry(entry);
+
+  return stripUndefined({
+    key: `${entry.category}:${toUid(entry.uid)}`,
+    uid: toUid(entry.uid),
+    category: entry.category,
+    runtimeKind: spec.runtimeKind,
+    name: entry.name,
+    catalogFile: spec.file,
+    formulaReadiness: readiness,
+    formulaZoneIds,
+    formulaZoneEvidence: formulaZoneEvidence(linkedSources, textZoneIds),
+    formulaTerms: uniqueStrings(entry.formulaTerms || []),
+    valueResolution,
+    valueRows,
+    ownerPartySplit,
+    componentValueHints,
+    descriptionComponentValueHints: descriptionHints.length ? descriptionHints : undefined,
+    valueRowComponentValueHints: valueRowHints.length ? valueRowHints : undefined,
+    scopeKinds: scopes.length ? scopes : ["unknown"],
+    stackPolicy: stack,
+    stacking: entry.stacking,
+    runtimeProofRequired: proof,
+    sourceRuleIds,
+    directSourceRuleIds: uniqueStrings(directSourceRuleLinks(linkedSources).map((link) => link.sourceRuleId)),
+    sourceRuleLinks: linkedSources,
+    relationships: entry.relationships,
+    descriptionRef: stripUndefined({
+      hasDescription: Boolean(entry.description || entry.cleanDescription || entry.descriptions || entry.cleanDescriptions),
+      hasScopeDescription: Boolean(entry.scopeDescriptions || entry.cleanScopeDescriptions),
+      hasDescriptionBlocks: Boolean(entry.descriptionBlocks?.length),
+      hasBridgedPageContext: Boolean(entry.bridgedPageContexts?.length),
+      hasStructuredValueRows: Boolean(entry.structuredValueRows?.length),
+      hasDecisionPlaceholders: Boolean(entry.decisionPlaceholders?.length),
+      hasUnresolvedDecisionPlaceholders: Boolean(entry.hasUnresolvedDecisionPlaceholders),
+      descriptionBlockCount: entry.descriptionBlocks?.length,
+      bridgedPageContextCount: entry.bridgedPageContexts?.length,
+      structuredValueRowCount: entry.structuredValueRows?.length,
+      decisionPlaceholderCount: entry.decisionPlaceholders?.length,
+      decisionPlaceholderResolution: entry.decisionPlaceholderResolution,
+      descriptionIds: entry.provenance?.descriptionIds,
+      linkTextIds: entry.provenance?.linkTextIds,
+      sourceFiles: entry.provenance?.sourceFiles,
+    }),
+    boundaries: entry.category === "items"
+      ? ["Static item/gear text is game-file-derived; equipped/rolled statlines must come from packets/runtime state."]
+      : undefined,
+  });
+}
+
+function syntheticEntryFromSource(source, formulaZoneContract) {
+  const textZoneIds = [];
+  const formulaZoneIds = uniqueStrings(source.formulaZoneIds || []);
+  return stripUndefined({
+    key: `modifier-source-rules:${source.sourceRuleId}`,
+    uid: String(source.sourceEntityId || parseSourceId(source.sourceId).uid || source.sourceId || source.sourceRuleId),
+    category: "modifier-source-rules",
+    runtimeKind: "generated-source-rule",
+    formulaReadiness: formulaReadiness({}, [source], formulaZoneIds),
+    formulaZoneIds,
+    formulaZoneEvidence: formulaZoneEvidence([source], textZoneIds),
+    formulaTerms: source.formulaTermIds,
+    valueResolution: source.componentValueHints?.length ? "component-values" : "no-value",
+    componentValueHints: source.componentValueHints,
+    scopeKinds: scopeKinds({}, source.componentValueHints || [], [source]),
+    stackPolicy: "none",
+    runtimeProofRequired: uniqueStrings(source.requiredRuntimeEvidence || []),
+    sourceRuleIds: [source.sourceRuleId],
+    directSourceRuleIds: [source.sourceRuleId],
+    sourceRuleLinks: [{
+      sourceRuleId: source.sourceRuleId,
+      linkReasons: ["unmatched-generated-source-rule"],
+      sourceKind: source.sourceKind,
+      contributionMode: source.contributionMode,
+      contributionTier: source.contributionTier,
+      formulaZoneIds: source.formulaZoneIds,
+    }],
+    relationships: stripUndefined({
+      sourceEntityIds: source.sourceEntityId !== undefined ? [String(source.sourceEntityId)] : undefined,
+      buffIds: source.buffIds?.map(String),
+      targetDamageIds: source.targetDamageIds?.map(String),
+      targetRecountIds: source.targetRecountIds?.map(String),
+    }),
+    boundaries: ["This row has contribution/readiness evidence but no category catalog identity match yet."],
+  });
+}
+
+function isRelevantEntry(entry) {
+  return (entry.sourceRuleIds || []).length > 0
+    || (entry.formulaZoneIds || []).length > 0
+    || (entry.valueRows || []).length > 0
+    || Boolean(entry.ownerPartySplit)
+    || entry.stackPolicy !== "none"
+    || Boolean(entry.relationships);
+}
+
+function runtimeEntry(entry) {
+  return stripUndefined({
+    uid: entry.uid,
+    category: entry.category,
+    runtimeKind: entry.runtimeKind,
+    formulaReadiness: entry.formulaReadiness,
+    formulaZoneIds: entry.formulaZoneIds,
+    valueResolution: entry.valueResolution,
+    scopeKinds: entry.scopeKinds,
+    stackPolicy: entry.stackPolicy,
+    runtimeProofRequired: entry.runtimeProofRequired,
+    sourceRuleIds: entry.sourceRuleIds,
+    directSourceRuleIds: entry.directSourceRuleIds,
+  });
+}
+
+function buildTable(args) {
+  const contributionTable = readOptionalJson(args.modifierContributionPath, {});
+  const formulaZoneContract = contributionTable.formulaZoneContract || {};
+  const sourceRules = sourceRuleEntries(contributionTable);
+  const sourcesByRuleId = Object.fromEntries(sourceRules.map((source) => [source.sourceRuleId, source]));
+  const contributionIndex = new Map();
+  for (const source of sourceRules) indexContributionSource(contributionIndex, source);
+
+  const entriesByKey = {};
+  const directLinkedRuleIds = new Set();
+  const catalogStats = [];
+
+  for (const spec of CATALOG_SPECS) {
+    const filePath = path.join(args.outputDir, spec.file);
+    const data = readOptionalJson(filePath, {});
+    const rows = jsonCatalogEntries(data).map((row) => ({
+      ...row,
+      uid: toUid(row.uid),
+      category: row.category || spec.category,
+    })).filter((row) => row.uid);
+    let relevant = 0;
+
+    for (const row of rows) {
+      const keys = relationshipKeys(row);
+      const linkedSources = linkedRulesForKeys(contributionIndex, keys, sourcesByRuleId);
+      const entry = tableEntryFromCatalog(row, spec, linkedSources, sourcesByRuleId, formulaZoneContract);
+      if (!isRelevantEntry(entry)) continue;
+      relevant += 1;
+      for (const sourceRuleId of entry.directSourceRuleIds || []) directLinkedRuleIds.add(sourceRuleId);
+      entriesByKey[entry.key] = entry;
+    }
+
+    catalogStats.push({
+      category: spec.category,
+      file: spec.file,
+      inputEntries: rows.length,
+      termEntries: relevant,
+    });
+  }
+
+  let syntheticSourceRuleEntries = 0;
+  for (const source of sourceRules) {
+    if (directLinkedRuleIds.has(source.sourceRuleId)) continue;
+    const entry = syntheticEntryFromSource(source, formulaZoneContract);
+    entriesByKey[entry.key] = entry;
+    syntheticSourceRuleEntries += 1;
+  }
+
+  const entries = Object.values(entriesByKey)
+    .sort((left, right) => left.category.localeCompare(right.category) || left.uid.localeCompare(right.uid, undefined, { numeric: true }));
+  const byFormulaZoneId = {};
+  const byRuntimeProof = {};
+  const byCategory = {};
+  const byFormulaReadiness = {};
+  const byStackPolicy = {};
+  const byScopeKind = {};
+
+  for (const entry of entries) {
+    byCategory[entry.category] = (byCategory[entry.category] || 0) + 1;
+    byFormulaReadiness[entry.formulaReadiness] = (byFormulaReadiness[entry.formulaReadiness] || 0) + 1;
+    byStackPolicy[entry.stackPolicy] = (byStackPolicy[entry.stackPolicy] || 0) + 1;
+    for (const zoneId of entry.formulaZoneIds || []) {
+      byFormulaZoneId[zoneId] ||= [];
+      byFormulaZoneId[zoneId].push(entry.key);
+    }
+    for (const proof of entry.runtimeProofRequired || []) {
+      byRuntimeProof[proof] ||= [];
+      byRuntimeProof[proof].push(entry.key);
+    }
+    for (const scope of entry.scopeKinds || []) {
+      byScopeKind[scope] = (byScopeKind[scope] || 0) + 1;
+    }
+  }
+
+  for (const index of [byFormulaZoneId, byRuntimeProof]) {
+    for (const key of Object.keys(index)) index[key] = uniqueStrings(index[key]);
+  }
+
+  const table = {
+    schemaVersion: 1,
+    generatedBy: "ModifierFormulaTermTable.gen",
+    generatedFrom: {
+      modifierContributionTable: "output/ModifierContributionTable.json",
+      categoryCatalogs: CATALOG_SPECS.map((spec) => `output/${spec.file}`),
+      formulaZoneRules: "modifier-formula-zones.cjs",
+    },
+    boundaries: [
+      "This table is formula/value/proof grounding only; final damage remains packet-derived truth.",
+      "Formula rows are not net-added contribution until runtime source-on/source-off replay validates the hit.",
+      "Owner/party, target, stack, max-stack, and tiered values are emitted as explicit runtime proof requirements, not assumed facts.",
+      "Static item/gear descriptions are game-file-derived; equipped/rolled gear statlines remain packet/runtime-derived.",
+    ],
+    formulaZoneContract: compactFormulaZoneContract(formulaZoneContract),
+    stats: {
+      sourceRules: sourceRules.length,
+      entries: entries.length,
+      catalogStats,
+      syntheticSourceRuleEntries,
+      categoryCounts: countBy(entries.map((entry) => entry.category)),
+      formulaReadinessCounts: countBy(entries.map((entry) => entry.formulaReadiness)),
+      stackPolicyCounts: countBy(entries.map((entry) => entry.stackPolicy)),
+      scopeKindCounts: Object.fromEntries(Object.entries(byScopeKind).sort(([left], [right]) => left.localeCompare(right))),
+      formulaZoneCounts: formulaZoneCounts(entries),
+      entriesWithScopedValues: entries.filter((entry) => (entry.scopeKinds || []).some((scope) => scope !== "unknown")).length,
+      entriesWithRuntimeProof: entries.filter((entry) => (entry.runtimeProofRequired || []).length > 0).length,
+      entriesWithComponentValueHints: entries.filter((entry) => (entry.componentValueHints || []).length > 0).length,
+      entriesWithDescriptionComponentValueHints: entries.filter((entry) => (entry.descriptionComponentValueHints || []).length > 0).length,
+      descriptionComponentValueHints: entries.reduce((sum, entry) => sum + (entry.descriptionComponentValueHints || []).length, 0),
+      entriesWithDescriptionValues: entries.filter((entry) => (entry.valueRows || []).length > 0).length,
+      entriesWithOwnerPartySplit: entries.filter((entry) => entry.ownerPartySplit).length,
+    },
+    entriesByKey,
+    byFormulaZoneId,
+    byRuntimeProof,
+  };
+
+  const runtimeEntriesByKey = {};
+  for (const entry of entries) {
+    if (entry.formulaReadiness === "identity-only") continue;
+    runtimeEntriesByKey[entry.key] = runtimeEntry(entry);
+  }
+  const runtimeTable = {
+    schemaVersion: 1,
+    generatedBy: "ModifierFormulaTermTable.gen",
+    runtimeOf: "ModifierFormulaTermTable.json",
+    stats: {
+      ...table.stats,
+      runtimeEntries: Object.keys(runtimeEntriesByKey).length,
+    },
+    entriesByKey: runtimeEntriesByKey,
+  };
+
+  return { table, runtimeTable };
+}
+
+function markdownList(counts, limit = 16) {
+  return Object.entries(counts || {})
+    .sort(([, leftCount], [, rightCount]) => Number(rightCount) - Number(leftCount))
+    .slice(0, limit)
+    .map(([key, count]) => `- ${key}: ${count}`)
+    .join("\n");
+}
+
+function buildReport(table) {
+  const stats = table.stats;
+  const catalogLines = stats.catalogStats
+    .map((row) => `- ${row.category}: ${row.termEntries} term entries from ${row.inputEntries} catalog rows (${row.file})`)
+    .join("\n");
+  return `# Modifier Formula Term Table
+
+Generated by \`ModifierFormulaTermTable.gen\`.
+
+## Boundaries
+
+${table.boundaries.map((line) => `- ${line}`).join("\n")}
+
+## Coverage
+
+- Source rules joined: ${stats.sourceRules}
+- Term entries written: ${stats.entries}
+- Synthetic source-rule entries without category identity: ${stats.syntheticSourceRuleEntries}
+- Entries with runtime proof requirements: ${stats.entriesWithRuntimeProof}
+- Entries with component value hints: ${stats.entriesWithComponentValueHints}
+- Entries with description-derived component hints: ${stats.entriesWithDescriptionComponentValueHints}
+- Description-derived component hints: ${stats.descriptionComponentValueHints}
+- Entries with description value rows: ${stats.entriesWithDescriptionValues}
+- Entries with owner/party split candidates: ${stats.entriesWithOwnerPartySplit}
+
+## Catalog Inputs
+
+${catalogLines}
+
+## Formula Readiness
+
+${markdownList(stats.formulaReadinessCounts)}
+
+## Formula Zones
+
+${markdownList(stats.formulaZoneCounts)}
+
+## Scope Kinds
+
+${markdownList(stats.scopeKindCounts)}
+
+## Stack Policies
+
+${markdownList(stats.stackPolicyCounts)}
+`;
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  const { table, runtimeTable } = buildTable(args);
+  if (!args.dryRun) {
+    writeJson(args.outPath, table);
+    writeJson(args.runtimeOutPath, runtimeTable);
+    writeText(args.reportPath, buildReport(table));
+  }
+
+  console.log(JSON.stringify({
+    out: args.outPath,
+    runtimeOut: args.runtimeOutPath,
+    report: args.reportPath,
+    dryRun: args.dryRun,
+    stats: table.stats,
+  }, null, 2));
+}
+
+main();

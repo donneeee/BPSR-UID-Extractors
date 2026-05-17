@@ -17,6 +17,7 @@ function parseArgs(argv) {
     help: false,
     outputDir: defaultOutputDir,
     sourceIndexPath: "",
+    observedBridgePath: "",
     outPath: "",
   };
 
@@ -33,6 +34,9 @@ function parseArgs(argv) {
     } else if (arg === "--source-index" && next) {
       args.sourceIndexPath = path.resolve(next);
       index += 1;
+    } else if (arg === "--observed-uid-bridge" && next) {
+      args.observedBridgePath = path.resolve(next);
+      index += 1;
     } else if (arg === "--out" && next) {
       args.outPath = path.resolve(next);
       index += 1;
@@ -40,6 +44,7 @@ function parseArgs(argv) {
   }
 
   args.sourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.observedBridgePath ||= path.join(args.outputDir, "ModifierObservedUidBridge.json");
   args.outPath ||= path.join(args.outputDir, "ModifierDisplayTable.json");
   return args;
 }
@@ -54,10 +59,15 @@ function printHelp() {
   console.log("");
   console.log("Options:");
   console.log("  --source-index <path>     ModifierSourceIndex.json input.");
+  console.log("  --observed-uid-bridge <path> ModifierObservedUidBridge.json input.");
 }
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return filePath && fs.existsSync(filePath) ? readJson(filePath) : fallback;
 }
 
 function writeJson(filePath, value) {
@@ -72,28 +82,40 @@ function addIndex(index, key, value) {
   if (!index[normalized].includes(value)) index[normalized].push(value);
 }
 
-function buildDisplayTable(sourceIndex) {
+function buildDisplayTable(sourceIndex, observedBridge) {
   const sourcesByRuleId = {};
   const sourceRuleIdsBySourceId = {};
   let scannedEntries = 0;
   let entriesWithDisplay = 0;
+  let observedBridgePromotedSources = 0;
+
+  function addDisplay(rawEntry, source) {
+    scannedEntries += 1;
+    const { entry } = prepareRecountEntry(rawEntry);
+    const sourceRuleId = sourceRuleIdForRecountEntry(entry, source);
+    if (sourcesByRuleId[sourceRuleId]) {
+      addIndex(sourceRuleIdsBySourceId, entry.sourceId, sourceRuleId);
+      return;
+    }
+
+    const display = compactDisplayEntry(rawEntry);
+    if (Object.keys(display).length > 1 || display.displayOwnerKind) {
+      sourcesByRuleId[sourceRuleId] = display;
+      entriesWithDisplay += 1;
+    }
+    addIndex(sourceRuleIdsBySourceId, entry.sourceId, sourceRuleId);
+    if (source === "observed-bridge") observedBridgePromotedSources += 1;
+  }
 
   for (const entries of Object.values(sourceIndex.byBuffId ?? {})) {
     for (const rawEntry of entries ?? []) {
-      scannedEntries += 1;
-      const { entry } = prepareRecountEntry(rawEntry);
-      const sourceRuleId = sourceRuleIdForRecountEntry(entry);
-      if (sourcesByRuleId[sourceRuleId]) {
-        addIndex(sourceRuleIdsBySourceId, entry.sourceId, sourceRuleId);
-        continue;
-      }
+      addDisplay(rawEntry, "source-index");
+    }
+  }
 
-      const display = compactDisplayEntry(rawEntry);
-      if (Object.keys(display).length > 1 || display.displayOwnerKind) {
-        sourcesByRuleId[sourceRuleId] = display;
-        entriesWithDisplay += 1;
-      }
-      addIndex(sourceRuleIdsBySourceId, entry.sourceId, sourceRuleId);
+  for (const entries of Object.values(observedBridge?.promotedSourcesByBuffId ?? {})) {
+    for (const rawEntry of entries ?? []) {
+      addDisplay(rawEntry, "observed-bridge");
     }
   }
 
@@ -111,6 +133,7 @@ function buildDisplayTable(sourceIndex) {
       scannedEntries,
       sourceRulesWithDisplay: Object.keys(sourcesByRuleId).length,
       entriesWithDisplay,
+      observedBridgePromotedSources,
       sourceIds: Object.keys(sourceRuleIdsBySourceId).length,
     },
   });
@@ -123,7 +146,8 @@ if (args.help) {
 }
 
 const sourceIndex = readJson(args.sourceIndexPath);
-const output = buildDisplayTable(sourceIndex);
+const observedBridge = readOptionalJson(args.observedBridgePath, null);
+const output = buildDisplayTable(sourceIndex, observedBridge);
 if (args.dryRun) {
   console.log(`Dry run: modifier display sources ${output.stats.sourceRulesWithDisplay.toLocaleString()}`);
   console.log(`Dry run: would write ${args.outPath}`);

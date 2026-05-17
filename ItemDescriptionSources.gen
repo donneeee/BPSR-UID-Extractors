@@ -1,0 +1,467 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const {
+  cleanDescriptionsByLocale,
+  cleanMarkup,
+  extractValueTexts,
+  preferredText,
+} = require("./effect-semantics.cjs");
+const { stripUndefined } = require("./modifier-table-common.cjs");
+
+const STRING_POOL = 6;
+const DEFAULT_SCAN_BYTES = 160;
+
+const DESCRIPTION_HINTS = [
+  "after use",
+  "battle imagine",
+  "bonus",
+  "can be used",
+  "class",
+  "contains",
+  "damage",
+  "deals",
+  "duration",
+  "effect",
+  "equipment",
+  "for a period",
+  "grants",
+  "increases",
+  "item for",
+  "material",
+  "obtained",
+  "party",
+  "quest",
+  "reward",
+  "skill",
+  "transforms",
+  "used",
+  "weapon"
+];
+
+const GEAR_NAME_HINTS = [
+  "armor",
+  "belt",
+  "blade",
+  "boots",
+  "bow",
+  "bracer",
+  "bracelet",
+  "charm",
+  "cloak",
+  "clothes",
+  "crossbow",
+  "earring",
+  "garb",
+  "gloves",
+  "helm",
+  "helmet",
+  "longbow",
+  "necklace",
+  "ring",
+  "robe",
+  "spear",
+  "staff",
+  "suit",
+  "talisman",
+  "weapon"
+];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbString,
+    readCtbTable,
+    readPackage,
+    readU32,
+    resolvePaths
+  } = common;
+
+  const args = parseArgs(process.argv.slice(2), {
+    scanBytes: String(DEFAULT_SCAN_BYTES),
+  });
+
+  if (args.help) {
+    printHelp(
+      "ItemDescriptionSources.gen - extract static item/gear descriptions from game files.",
+      `
+Item description options:
+  --items <path>             itemnames.json input. Defaults to output/itemnames.json.
+  --scan-bytes <number>      Bytes to scan after each item identity row. Default: ${DEFAULT_SCAN_BYTES}.
+
+Output shape:
+  descriptionsByItemId for category catalog consumption.
+  Static item/gear descriptions come from game files; equipped gear statlines remain packet/runtime-derived.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "ItemDescriptionSources.json");
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir);
+  const buffer = readPackage(paths.m0Path);
+  const itemTable = readCtbTable(containerDir, metaEntries, "ItemTable.ctb");
+  const itemsPath = path.resolve(args.items || path.join(paths.outputDir, "itemnames.json"));
+  const itemRows = readJson(itemsPath);
+  const scanBytes = Math.max(16, Math.min(512, Number(args.scanBytes) || DEFAULT_SCAN_BYTES));
+
+  const itemTableRowsById = readItemTableRows(itemTable, readU32, readCtbString);
+  const rows = buildDescriptionRows({
+    itemRows,
+    itemTableRowsById,
+    localizationTables,
+    buffer,
+    itemTable,
+    readU32,
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    scanBytes,
+  });
+  const descriptionsByItemId = Object.fromEntries(rows.map((row) => [String(row.itemId), row]));
+  const topFieldOffsets = summarizeCandidateOffsets(rows);
+  const output = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    source: {
+      itemNames: path.relative(__dirname, itemsPath).replace(/\\/g, "/"),
+      itemTable: "ItemTable.ctb",
+      scanBytes,
+      statlineBoundary:
+        "Static item and gear descriptions are game-file sourced. Actual equipped/rolled gear statlines are packet/runtime-derived.",
+    },
+    summary: {
+      itemRows: itemRows.length,
+      rowsWithDescriptions: rows.length,
+      itemTableRows: itemTable.rowCount,
+      candidateFieldOffsets: topFieldOffsets,
+    },
+    descriptionsByItemId,
+  };
+
+  console.log(`Loaded ${itemRows.length.toLocaleString()} item name rows`);
+  console.log(`Item rows with static descriptions: ${rows.length.toLocaleString()}`);
+  console.log(`Output: ${displayPath(paths.out)}`);
+  maybeWriteJson(paths.out, output, Boolean(args.dryRun));
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function packageOffset(table, rowOffset) {
+  return Number(table.entry?.offset || 0) + rowOffset;
+}
+
+function readItemTableRows(itemTable, readU32, readCtbString) {
+  const byId = new Map();
+  for (let index = 0; index < itemTable.rowCount; index += 1) {
+    const rowOffset = itemTable.rowStart + index * itemTable.rowSize;
+    const itemId = readU32(itemTable.data, rowOffset);
+    if (!Number.isInteger(itemId) || itemId <= 0) continue;
+    const iconPathOffset = readU32(itemTable.data, rowOffset + 8);
+    byId.set(String(itemId), {
+      itemId,
+      rowIndex: index,
+      rowOffset,
+      sourceOffset: packageOffset(itemTable, rowOffset),
+      itemTier: readU32(itemTable.data, rowOffset + 24),
+      iconPathOffset,
+      iconPath: readCtbString(itemTable, STRING_POOL, iconPathOffset, { allowZero: true }),
+    });
+  }
+  return byId;
+}
+
+function buildDescriptionRows(context) {
+  const {
+    itemRows,
+    itemTableRowsById,
+    localizationTables,
+    buffer,
+    itemTable,
+    readU32,
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    scanBytes,
+  } = context;
+  const rows = [];
+
+  for (const item of itemRows) {
+    const itemId = Number(item.Id ?? item.itemId ?? item.id);
+    if (!Number.isInteger(itemId) || itemId <= 0) continue;
+    const nameId = Number(item.NameId ?? item.nameId ?? 0);
+    const itemNames = item.Names ?? item.names ?? {};
+    const itemName = choosePreferredLocaleText(itemNames, item.NameDesign ?? item.name ?? "");
+    const tableRow = itemTableRowsById.get(String(itemId));
+    const candidates = [];
+
+    addCandidatesFromIdentityRow({
+      candidates,
+      item,
+      buffer,
+      readU32,
+      localizationTables,
+      buildLocaleTextObject,
+      itemNames,
+      nameId,
+      scanBytes,
+    });
+    if (tableRow) {
+      addCandidatesFromItemTableRow({
+        candidates,
+        itemTable,
+        tableRow,
+        readU32,
+        localizationTables,
+        buildLocaleTextObject,
+        itemNames,
+        nameId,
+      });
+    }
+
+    const selected = selectDescriptionCandidates(candidates);
+    const primary = selected[0];
+    if (!primary) continue;
+    const cleanDescriptions = cleanDescriptionsByLocale(primary.descriptions);
+    const description = preferredText(primary.descriptions, "");
+    const cleanDescription = preferredText(cleanDescriptions, cleanMarkup(description));
+    const descriptionIds = selected.map((candidate) => candidate.descriptionId);
+    const valueTexts = uniqueStrings(selected.flatMap((candidate) => extractValueTexts(candidate.cleanDescription)));
+
+    rows.push(
+      stripUndefined({
+        itemId,
+        name: itemName,
+        itemKind: classifyItemKind(itemName, primary.cleanDescription),
+        descriptionId: primary.descriptionId,
+        descriptionIds,
+        descriptions: primary.descriptions,
+        source: primary.source,
+        sourceTable: primary.sourceTable,
+        sourceOffset: primary.sourceOffset,
+        fieldOffset: primary.fieldOffset,
+        itemTableRowIndex: tableRow?.rowIndex,
+        itemTableSourceOffset: tableRow?.sourceOffset,
+        itemTier: tableRow?.itemTier,
+        iconPath: item.IconPath ?? tableRow?.iconPath,
+        staticGameDescription: true,
+        packetStatlinesRequired: isGearLike(itemName, primary.cleanDescription),
+        statlineBoundary: isGearLike(itemName, primary.cleanDescription)
+          ? "Gear description is static game-file data; equipped/rolled statlines are packet/runtime-derived."
+          : undefined,
+      })
+    );
+  }
+
+  return rows.sort((left, right) => left.itemId - right.itemId);
+}
+
+function addCandidatesFromIdentityRow(context) {
+  const {
+    candidates,
+    item,
+    buffer,
+    readU32,
+    localizationTables,
+    buildLocaleTextObject,
+    itemNames,
+    nameId,
+    scanBytes,
+  } = context;
+  const sourceOffset = Number(item.SourceOffset ?? item.sourceOffset);
+  if (!Number.isInteger(sourceOffset) || sourceOffset < 0 || sourceOffset + 4 > buffer.length) return;
+  const end = Math.min(buffer.length - 4, sourceOffset + scanBytes);
+  for (let offset = sourceOffset + 8; offset <= end; offset += 4) {
+    const descriptionId = readU32(buffer, offset);
+    addLocalizedDescriptionCandidate({
+      candidates,
+      descriptionId,
+      localizationTables,
+      buildLocaleTextObject,
+      itemNames,
+      nameId,
+      source: "item-identity-row",
+      sourceTable: "m0.pkg:item-identity-region",
+      sourceOffset: offset,
+      fieldOffset: offset - sourceOffset,
+    });
+  }
+}
+
+function addCandidatesFromItemTableRow(context) {
+  const {
+    candidates,
+    itemTable,
+    tableRow,
+    readU32,
+    localizationTables,
+    buildLocaleTextObject,
+    itemNames,
+    nameId,
+  } = context;
+  for (let fieldOffset = 0; fieldOffset + 4 <= itemTable.rowSize; fieldOffset += 4) {
+    const absoluteOffset = tableRow.rowOffset + fieldOffset;
+    const descriptionId = readU32(itemTable.data, absoluteOffset);
+    addLocalizedDescriptionCandidate({
+      candidates,
+      descriptionId,
+      localizationTables,
+      buildLocaleTextObject,
+      itemNames,
+      nameId,
+      source: "item-table-row",
+      sourceTable: "ItemTable.ctb",
+      sourceOffset: packageOffset(itemTable, absoluteOffset),
+      fieldOffset,
+    });
+  }
+}
+
+function addLocalizedDescriptionCandidate(context) {
+  const {
+    candidates,
+    descriptionId,
+    localizationTables,
+    buildLocaleTextObject,
+    itemNames,
+    nameId,
+    source,
+    sourceTable,
+    sourceOffset,
+    fieldOffset,
+  } = context;
+  if (!Number.isInteger(descriptionId) || descriptionId <= 0 || descriptionId === nameId) return;
+  const localeEntries = collectLocalizedTextEntries(descriptionId, localizationTables);
+  if (!localeEntries.length) return;
+  const descriptions = buildLocaleTextObject(localeEntries, { includeDesign: false });
+  const cleanDescriptions = cleanDescriptionsByLocale(descriptions);
+  const cleanDescription = preferredText(cleanDescriptions, "");
+  if (!cleanDescription || looksLikeItemName(cleanDescriptions, itemNames)) return;
+  const score = scoreDescriptionCandidate(cleanDescription, source, fieldOffset);
+  if (score <= 0) return;
+  candidates.push({
+    descriptionId,
+    descriptions,
+    cleanDescription,
+    score,
+    source,
+    sourceTable,
+    sourceOffset,
+    fieldOffset,
+  });
+}
+
+function collectLocalizedTextEntries(textId, localizationTables) {
+  const id = Number(textId);
+  const entries = [];
+  for (const table of localizationTables) {
+    const stringIndex = table.index.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = String(table.strings[stringIndex] || "").replace(/\s+/g, " ").trim();
+    if (text) entries.push({ language: table.language, stringIndex, text });
+  }
+  return entries;
+}
+
+function looksLikeItemName(cleanDescriptions, itemNames) {
+  const names = new Set(
+    Object.values(itemNames || {})
+      .map((value) => cleanComparable(value))
+      .filter(Boolean)
+  );
+  return Object.values(cleanDescriptions || {}).some((value) => names.has(cleanComparable(value)));
+}
+
+function cleanComparable(value) {
+  return cleanMarkup(value).toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function scoreDescriptionCandidate(text, source, fieldOffset) {
+  const clean = cleanMarkup(text);
+  const lower = clean.toLowerCase();
+  const words = clean.split(/\s+/).filter(Boolean);
+  let score = 0;
+  if (clean.length >= 28) score += 16;
+  if (clean.length >= 60) score += 16;
+  if (words.length >= 5) score += 10;
+  if (/[.!?。！？]$/.test(clean)) score += 8;
+  if (/[+-]?\d+(?:[.,]\d+)?\s*%/.test(clean)) score += 14;
+  if (extractValueTexts(clean).length > 0) score += 8;
+  for (const hint of DESCRIPTION_HINTS) {
+    if (lower.includes(hint)) score += 4;
+  }
+  if (/\b(atk|hp|cd|crit|damage|duration|skill|effect|ally|party)\b/i.test(clean)) score += 10;
+  if (/^[\w\s'!:-]+$/.test(clean) && words.length <= 4) score -= 24;
+  if (clean.length <= 18) score -= 18;
+  if (/^(common|rare|epic|legendary|normal|item|weapon|armor)$/i.test(clean)) score -= 30;
+  if (/^(?:ui|icon|texture|sprite|asset)[\w/.-]*$/i.test(clean)) score -= 50;
+  if (source === "item-table-row") score += 4;
+  if (fieldOffset >= 8 && fieldOffset <= 64) score += 2;
+  return score;
+}
+
+function selectDescriptionCandidates(candidates) {
+  const byDescriptionId = new Map();
+  for (const candidate of candidates) {
+    const existing = byDescriptionId.get(candidate.descriptionId);
+    if (!existing || candidate.score > existing.score) {
+      byDescriptionId.set(candidate.descriptionId, candidate);
+    }
+  }
+  return [...byDescriptionId.values()].sort(
+    (left, right) =>
+      right.score - left.score ||
+      String(left.source).localeCompare(String(right.source)) ||
+      left.descriptionId - right.descriptionId
+  );
+}
+
+function summarizeCandidateOffsets(rows) {
+  const counts = new Map();
+  for (const row of rows) {
+    const key = `${row.sourceTable}:${row.fieldOffset}`;
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .slice(0, 12)
+    .map(([key, count]) => ({ key, count }));
+}
+
+function classifyItemKind(name, description) {
+  if (isGearLike(name, description)) return "gear";
+  const text = `${name} ${description}`.toLowerCase();
+  if (/\b(food|meal|dish|drink|serum|potion|consumable)\b/.test(text)) return "consumable";
+  if (/\bmaterial|ore|fiber|crystal|fragment|token\b/.test(text)) return "material";
+  return "item";
+}
+
+function isGearLike(name, description) {
+  const text = `${name || ""} ${description || ""}`.toLowerCase();
+  return GEAR_NAME_HINTS.some((hint) => new RegExp(`\\b${escapeRegExp(hint)}\\b`, "i").test(text));
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.map((value) => String(value || "").trim()).filter(Boolean))];
+}

@@ -4,7 +4,6 @@ const path = require("node:path");
 const {
   cleanMarkup,
   extractIcdLockoutSeconds,
-  extractValueTexts,
   hasIcdLockoutDescription,
   isIcdLockoutNameText,
   normalizeActivationText,
@@ -29,6 +28,7 @@ function buildDefaultPaths(outputDir) {
     talentOwnership: path.join(outputDir, "TalentSpecOwnership.json"),
     seasonTalentProbe: path.join(outputDir, "probing-reports", "SeasonTalentNodeProbe.json"),
     seasonRogueProbe: path.join(outputDir, "probing-reports", "SeasonRogueEntryProbe.json"),
+    linkTexts: path.join(outputDir, "LinkTextDescriptions.json"),
     out: path.join(outputDir, "EffectSources.json"),
   };
 }
@@ -107,6 +107,31 @@ const FORMULA_COMPONENT_CLASS = Object.freeze({
     contributionGroups: ["genericDamage"],
     requiredRuntimeEvidence: ["modifier windows"],
   },
+  "physical-magic-enhancement": {
+    formulaTermIds: ["physicalMagicEnhancementPct"],
+    contributionGroups: ["physicalMagicEnhancement"],
+    requiredRuntimeEvidence: ["attacker physical/magic enhancement snapshot at hit time", "damage physical/magic lane"],
+  },
+  "final-damage": {
+    formulaTermIds: ["finalDamagePct"],
+    contributionGroups: ["finalDamage"],
+    requiredRuntimeEvidence: ["final damage bonus snapshot at hit time"],
+  },
+  "season-damage": {
+    formulaTermIds: ["seasonDamagePct"],
+    contributionGroups: ["seasonDamage"],
+    requiredRuntimeEvidence: ["season damage bonus snapshot at hit time"],
+  },
+  "seasonal-factor-damage": {
+    formulaTermIds: ["seasonDamagePct"],
+    contributionGroups: ["seasonDamage"],
+    requiredRuntimeEvidence: ["seasonal factor selection and season damage bonus snapshot at hit time"],
+  },
+  "season-suppression": {
+    formulaTermIds: ["seasonSuppressionPct"],
+    contributionGroups: ["seasonSuppression"],
+    requiredRuntimeEvidence: ["season suppression snapshot at hit time"],
+  },
   "target-mitigation": {
     formulaTermIds: ["resistance"],
     contributionGroups: ["targetMitigation"],
@@ -181,6 +206,7 @@ function parseArgs(argv) {
     classSpecProbe: "",
     seasonTalentProbe: "",
     seasonRogueProbe: "",
+    linkTexts: "",
     out: "",
   };
 
@@ -236,6 +262,9 @@ function parseArgs(argv) {
     } else if (arg === "--season-rogue-probe" && next) {
       args.seasonRogueProbe = path.resolve(next);
       index += 1;
+    } else if (arg === "--link-texts" && next) {
+      args.linkTexts = path.resolve(next);
+      index += 1;
     }
   }
 
@@ -253,6 +282,7 @@ function parseArgs(argv) {
   args.talentOwnership ||= defaults.talentOwnership;
   args.seasonTalentProbe ||= defaults.seasonTalentProbe;
   args.seasonRogueProbe ||= defaults.seasonRogueProbe;
+  args.linkTexts ||= defaults.linkTexts;
   args.out ||= defaults.out;
   return args;
 }
@@ -279,6 +309,7 @@ function printHelp() {
   console.log("  --talent-ownership <path>     TalentSpecOwnership.json input.");
   console.log("  --season-talent-probe <path>  SeasonTalentNodeProbe.json input.");
   console.log("  --season-rogue-probe <path>   SeasonRogueEntryProbe.json input.");
+  console.log("  --link-texts <path>           LinkTextDescriptions.json input.");
 }
 
 function readJson(filePath, fallback = null) {
@@ -336,7 +367,7 @@ function buildDescriptionModifierEvidence({
     valueStatus,
     descriptionId: toNumber(descriptionId),
     cleanDescription,
-    valueTexts: extractValueTexts(cleanDescription),
+    valueTexts: extractFormulaValueTexts(cleanDescription),
   });
 }
 
@@ -374,6 +405,92 @@ function localeText(values, locale) {
     ?? values["zh-CN"]
     ?? Object.values(values).find((entry) => typeof entry === "string" && entry.trim())
     ?? "";
+}
+
+function collectLinkTextIdsFromText(text) {
+  const ids = [];
+  const regex = /<linktext=(\d+)[^>]*>/gi;
+  for (const match of String(text || "").matchAll(regex)) {
+    const id = toNumber(match[1]);
+    if (id !== null) ids.push(id);
+  }
+  return ids;
+}
+
+function collectLinkTextIdsFromDescriptions(descriptions) {
+  return uniqueNumbers(Object.values(descriptions ?? {}).flatMap(collectLinkTextIdsFromText));
+}
+
+function appendUniqueText(base, addition) {
+  const left = String(base || "").trim();
+  const right = String(addition || "").trim();
+  if (!right) return left || undefined;
+  if (!left) return right;
+  const normalizedLeft = cleanMarkup(left).toLowerCase();
+  const normalizedRight = cleanMarkup(right).toLowerCase();
+  if (normalizedLeft.includes(normalizedRight)) return left;
+  return `${left}\n\n${right}`;
+}
+
+function tooltipDescriptionLine(tooltip, localeId, clean = false) {
+  const names = tooltip?.names;
+  const descriptions = clean ? tooltip?.cleanDescriptions : tooltip?.descriptions;
+  const name = localeText(names, localeId);
+  const description = localeText(descriptions, localeId);
+  const text = clean ? cleanMarkup(description) : String(description || "").trim();
+  if (!text) return "";
+  const label = clean ? cleanMarkup(name) : String(name || "").trim();
+  if (!label || cleanMarkup(text).toLowerCase().startsWith(cleanMarkup(label).toLowerCase())) return text;
+  return `${label}: ${text}`;
+}
+
+function appendTooltipDescriptions(baseDescriptions, tooltips, clean = false) {
+  const out = { ...(baseDescriptions ?? {}) };
+  for (const localeId of LOCALES) {
+    let value = out[localeId];
+    for (const tooltip of tooltips) {
+      value = appendUniqueText(value, tooltipDescriptionLine(tooltip, localeId, clean));
+    }
+    if (value) out[localeId] = value;
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+
+function enrichSourcesWithLinkedTooltips(builder, linkTextDescriptions) {
+  const byId = linkTextDescriptions?.linkTextsById ?? {};
+  let enrichedSources = 0;
+  let linkedTooltips = 0;
+  for (const source of Object.values(builder.effectSourcesById)) {
+    const linkTextIds = collectLinkTextIdsFromDescriptions(source.descriptions);
+    if (linkTextIds.length === 0) continue;
+    const tooltips = linkTextIds
+      .map((id) => byId[String(id)])
+      .filter((entry) => entry?.description || entry?.descriptions || entry?.cleanDescriptions);
+    if (tooltips.length === 0) continue;
+
+    enrichedSources += 1;
+    linkedTooltips += tooltips.length;
+    source.descriptions = appendTooltipDescriptions(source.descriptions, tooltips, false);
+    source.cleanDescriptions = appendTooltipDescriptions(source.cleanDescriptions, tooltips, true);
+    source.linkTextTooltips = tooltips.map((tooltip) => stripUndefined({
+      linkTextId: tooltip.linkTextId,
+      name: tooltip.name,
+      names: tooltip.names,
+      description: tooltip.description,
+      descriptions: tooltip.descriptions,
+      cleanDescriptions: tooltip.cleanDescriptions,
+      descriptionIds: tooltip.descriptionIds,
+      descriptionKey: tooltip.descriptionKey,
+      valueTexts: tooltip.valueTexts,
+    }));
+    source.evidence = mergeEvidence(source.evidence, tooltips.map((tooltip) => stripUndefined({
+      source: "LinkTextDescriptions.linkTextTooltip",
+      linkTextId: tooltip.linkTextId,
+      descriptionKey: tooltip.descriptionKey,
+      descriptionIds: tooltip.descriptionIds,
+    })));
+  }
+  builder.linkTextTooltipSummary = { enrichedSources, linkedTooltips };
 }
 
 function entityNames(entity, fallback = "") {
@@ -623,6 +740,8 @@ function buildAoyiSkillOwnerRecords(aoyiSkills) {
       monsterNames: normalizedNames(row.MonsterNames),
       skillEffectId: toNumber(row.SkillEffectId),
       sourceTable: row.Source,
+      baseEffects: normalizeAoyiBaseEffect(row.BaseEffectValues),
+      tierEffects: normalizeAoyiTierEffects(row.TierEffects),
     };
     const key = normalizeOwnerSearchKey(preferredName(ownerNames, row.Name ?? row.NameDesign));
     const existing = byNameKey.get(key);
@@ -642,9 +761,74 @@ function buildAoyiSkillOwnerRecords(aoyiSkills) {
     target.matchAliases = mergedMatchAliases;
     target.monsterNames = mergeNameMaps(target.monsterNames, keepRecord ? existing.monsterNames : record.monsterNames);
     target.skillEffectId ||= existing.skillEffectId || record.skillEffectId;
+    target.baseEffects ||= existing.baseEffects || record.baseEffects;
+    target.tierEffects = mergeAoyiTierEffects(existing.tierEffects, record.tierEffects);
     byNameKey.set(key, target);
   }
   return [...byNameKey.values()];
+}
+
+function normalizeAoyiEffectValues(values) {
+  return (Array.isArray(values) ? values : [])
+    .map((value) => {
+      const rawValue = toNumber(value?.rawValue);
+      const percentValue = toNumber(value?.percentValue);
+      const decimalValue = toNumber(value?.decimalValue);
+      if (rawValue === null || percentValue === null || decimalValue === null) return null;
+      return stripUndefined({
+        key: String(value?.key ?? "").trim(),
+        scope: String(value?.scope ?? "").trim(),
+        rawValue,
+        percentValue,
+        decimalValue,
+        valueText: String(value?.valueText ?? `${percentValue}%`).trim(),
+      });
+    })
+    .filter((value) => value?.key);
+}
+
+function normalizeAoyiBaseEffect(row) {
+  if (!row || typeof row !== "object") return undefined;
+  const values = normalizeAoyiEffectValues(row.values);
+  if (values.length === 0) return undefined;
+  return stripUndefined({
+    values,
+    sourceTable: row.sourceTable,
+    sourceOffset: toNumber(row.sourceOffset),
+    skillLevelId: toNumber(row.skillLevelId),
+    skillEffectId: toNumber(row.skillEffectId),
+    level: toNumber(row.level),
+    cooldownSeconds: toNumber(row.cooldownSeconds),
+  });
+}
+
+function normalizeAoyiTierEffects(rows) {
+  return (Array.isArray(rows) ? rows : [])
+    .map((row) => {
+      const tier = toNumber(row?.tier);
+      const values = normalizeAoyiEffectValues(row?.values);
+      if (tier === null || values.length === 0) return null;
+      return stripUndefined({
+        tier,
+        values,
+        sourceTable: row?.sourceTable,
+        sourceOffset: toNumber(row?.sourceOffset),
+        rowId: toNumber(row?.rowId),
+      });
+    })
+    .filter(Boolean)
+    .sort((left, right) => left.tier - right.tier || Number(left.rowId ?? 0) - Number(right.rowId ?? 0));
+}
+
+function mergeAoyiTierEffects(left, right) {
+  const byKey = new Map();
+  for (const row of [...(left ?? []), ...(right ?? [])]) {
+    if (!row) continue;
+    byKey.set(`${row.tier}|${row.sourceOffset ?? ""}|${row.rowId ?? ""}`, row);
+  }
+  return [...byKey.values()].sort((a, b) =>
+    a.tier - b.tier || Number(a.rowId ?? 0) - Number(b.rowId ?? 0),
+  );
 }
 
 function itemOwnerNames(row) {
@@ -765,10 +949,20 @@ function buildBattleImagineSourceConfigOwnerRules(buffRows, ownerIndex) {
       ownerName: localizedOwnerName(ownerMatch.owner.record, "en"),
       ownerNames: ownerMatch.owner.record.ownerNames,
       ownerMonsterNames: ownerMatch.owner.record.monsterNames,
+      ownerBaseEffects: ownerMatch.owner.record.baseEffects,
+      ownerTierEffects: ownerMatch.owner.record.tierEffects,
       ownerMatch,
       matchedAlias: ownerMatch.matchedAlias,
     }));
   }
+  const byOwnerSkillId = new Map();
+  for (const rule of rules.values()) {
+    const key = rule.ownerSkillId !== undefined ? String(rule.ownerSkillId) : "";
+    if (!key) continue;
+    if (!byOwnerSkillId.has(key)) byOwnerSkillId.set(key, []);
+    byOwnerSkillId.get(key).push(rule);
+  }
+  rules.byOwnerSkillId = byOwnerSkillId;
   return rules;
 }
 
@@ -1362,34 +1556,163 @@ function inferredComponent(key, label, effectClass, order, extra = {}) {
     direction: extra.direction,
     stat: extra.stat,
     valueScope: extra.valueScope,
+    formulaTermIds: extra.formulaTermIds,
+    contributionGroups: extra.contributionGroups,
     valueTexts: extra.valueTexts,
+    baseValues: extra.baseValues,
+    valueTiers: extra.valueTiers,
     predicateTags: extra.predicateTags,
     targetPredicate: extra.targetPredicate,
     attackerPredicate: extra.attackerPredicate,
     sourcePredicate: extra.sourcePredicate,
     activationPredicate: extra.activationPredicate,
+    requiredRuntimeEvidence: extra.requiredRuntimeEvidence,
+    valueTextSource: extra.valueTextSource,
     inferenceSource: "EffectSources.formulaAttributionText",
   });
 }
 
 const CRITICAL_DAMAGE_TEXT = /\bcrit(?:ical)?\s*dmg\b|\bcritical damage\b/i;
 const CRITICAL_RATE_TEXT = /\bcrit(?:ical)?\s*(?:rate|chance)\b|\b(?:rate|chance)\s+to\s+crit(?:ical)?\b/i;
+const FINAL_DAMAGE_TEXT = /\bfinal\s+(?:dmg|damage|damage bonus|damage increase)\b/i;
+const PHYSICAL_MAGIC_DAMAGE_TEXT = /\b(?:(?:physical|magic|magical)(?!\s+attack\b)\s*(?:\/\s*(?:physical|magic|magical))?\s*(?:(?:dmg|damage)\s*)?(?:enhancement|increase|boost|bonus|strength|value|percentage)|(?:enhancement|increase|boost|bonus|strength|value|percentage)\s*(?:to|for|of)?\s*(?:physical|magic|magical)(?:\s*(?:dmg|damage))?)\b/i;
+const SEASON_DAMAGE_TEXT = /\b(?:(?:season(?:al)?|dream(?:scape)?|breakthrough).{0,40}(?:dmg|damage|damage bonus|damage increase)|(?:dmg|damage|damage bonus|damage increase).{0,40}(?:season(?:al)?|dream(?:scape)?|breakthrough))\b/i;
+const SEASON_SUPPRESSION_TEXT = /\bseason(?:al)?\s+(?:strength\s+)?suppression\b|\bseason(?:al)?\s+suppression\b/i;
 const PARTY_SCOPE_TEXT = /\b(?:allies?|ally|party(?:\s+members?)?|team(?:mates?|\s+members?)|other players)\b/i;
 const SELF_SCOPE_TEXT = /\b(?:self|own|your|you)\b/i;
+const PRODUCED_DAMAGE_CLAUSE_TEXT = /\b(?:deals?|dealing|dealt|inflicts?|inflicting|causes?|creates?|summons?|fires?|launches?)\b.{0,140}\b(?:dmg|damage)\b|\b(?:dmg|damage)\b.{0,140}\b(?:equal to|based on|of\s+(?:the\s+)?(?:caster'?s?|your|own)?\s*(?:atk|matk|attack|magic attack|armor|defen[cs]e))/i;
+const LOOSE_PERCENT_ATK_DAMAGE_PATTERN = /(?:p\.?dmg|m\.?dmg|dmg|damage)[^。；;,\n]{0,80}?[+-]?\d+(?:[.,]\d+)?\s*%[^。；;,\n]{0,80}?(?:atk|attack|attack power)|[+-]?\d+(?:[.,]\d+)?\s*%[^。；;,\n]{0,80}?(?:atk|attack|attack power)[^。；;,\n]{0,80}?(?:damage|dmg|p\.?dmg|m\.?dmg)/i;
+const ATTACK_SCALED_SKILL_DAMAGE_PATTERN = /\b(?:(?:deals?|dealing|inflicts?|inflicting)\s+)?(?:physical|magic|elemental|fire|flame|ice|frost|thunder|lightning|wind|light|dark|rock)?\s*(?:damage|dmg)\s*(?:equal\s*to|of)\s*[+-]?\d+(?:[.,]\d+)?\s*%\s*(?:of\s*)?(?:atk|attack|attack power)\b/i;
+const MODIFIER_INTENT_TEXT = /\b(?:increase|increases|increased|boost|boosts|bonus|grant|grants|gains?|adds?|raises?|reduces?|reduced|decreases?|decreased|converted|conversion)\b|[+-]\s*\d/i;
+const TRIGGER_CONDITION_TEXT = /\b(?:when|if|after|upon|every)\b.{0,120}\b(?:deal|deals|dealing|dealt|hit|hits|land|lands|trigger|triggers|inflict|inflicts|stack|stacks|gained)\b/i;
 
 function splitEffectClauses(text) {
   return String(text || "")
-    .split(/(?:[.!?;。；]|<br\s*\/?>)+/i)
+    .split(/(?:[.!?;。；]|<br\s*\/?>|,\s*but\s+|\s+but\s+|，但是|，但)+/i)
     .map((clause) => clause.trim())
     .filter(Boolean);
 }
 
+function valueTextLooksDistance(rawText, sourceText = "", index = -1) {
+  const raw = String(rawText || "");
+  if (/\d\s*(?:m|meter|meters|metre|metres)\b/i.test(raw)) return true;
+  if (index < 0 || /[%s]\b/i.test(raw)) return false;
+  const end = index + raw.length;
+  return /^\s*(?:m|meter|meters|metre|metres)\b/i.test(String(sourceText || "").slice(end, end + 12));
+}
+
+function extractFormulaValueTexts(value) {
+  const text = String(value || "");
+  const seen = new Set();
+  const out = [];
+  const pattern = /[+-]?\d+(?:[.,]\d+)?\s*(?:%|s|sec|secs|second|seconds|m|meter|meters|metre|metres)?/gi;
+  for (const match of text.matchAll(pattern)) {
+    const raw = String(match[0] || "").trim().replace(/\s+/g, " ");
+    if (!raw || valueTextLooksDistance(raw, text, match.index ?? -1)) continue;
+    if (seen.has(raw)) continue;
+    seen.add(raw);
+    out.push(raw);
+  }
+  return out;
+}
+
 function uniqueValueTextsFromClauses(clauses) {
-  return uniqueStrings(clauses.flatMap((clause) => extractValueTexts(clause)));
+  return uniqueStrings(clauses.flatMap((clause) => extractFormulaValueTexts(clause)));
+}
+
+const FORMULA_EFFECT_CLAUSE_SEPARATOR = /(?:[!?;\u3002\uff1b]|(?<!\d)\.(?!\d)|<br\s*\/?>|,\s*but\s+|\s+but\s+|\uff0c\u4f46\u662f|\uff0c\u4f46)+/i;
+
+function splitFormulaEffectClauses(text) {
+  return String(text || "")
+    .split(FORMULA_EFFECT_CLAUSE_SEPARATOR)
+    .map((clause) => clause.trim())
+    .filter(Boolean);
+}
+
+function clauseLooksLikeSkillCoefficient(clause) {
+  const text = String(clause || "");
+  return clauseIsProducedDamageFormula(text)
+    || LOOSE_PERCENT_ATK_DAMAGE_PATTERN.test(text)
+    || ATTACK_SCALED_SKILL_DAMAGE_PATTERN.test(text);
+}
+
+function clauseIsHealingOrLifesteal(clause) {
+  return /\b(lifesteal|life steal|healing|heals?|hp recovery|recover(?:s|ed)? hp|restore(?:s|d)? hp)\b/i.test(String(clause || ""));
+}
+
+function componentClauseMatches(componentKey, effectClass, clause) {
+  const key = String(componentKey || "");
+  if (key === "critical-damage") return CRITICAL_DAMAGE_TEXT.test(clause);
+  if (key === "critical-rate") return CRITICAL_RATE_TEXT.test(clause) || clauseIsCriticalRate(clause) || clauseHasCriticalRateAndDamage(clause);
+  if (key === "atk") return !clauseLooksLikeSkillCoefficient(clause) && hasAttackStatText(clause);
+  if (key === "matk") return !clauseLooksLikeSkillCoefficient(clause) && /\bmatk\b|\bmagic attack\b/i.test(clause);
+  if (key === "physical-magic-enhancement") return !clauseLooksLikeSkillCoefficient(clause) && PHYSICAL_MAGIC_DAMAGE_TEXT.test(clause);
+  if (key === "final-damage") return FINAL_DAMAGE_TEXT.test(clause);
+  if (key === "season-damage" || key === "seasonal-factor-damage") return SEASON_DAMAGE_TEXT.test(clause);
+  if (key === "season-suppression") return SEASON_SUPPRESSION_TEXT.test(clause);
+  if (key === "elemental-damage") {
+    return /\b(light|fire|ice|thunder|dark|elemental)\b.*\b(dmg|damage|strength)\b|\b(dmg|damage)\b.*\b(light|fire|ice|thunder|dark|elemental)\b/i.test(clause);
+  }
+  if (key === "generic-damage" || effectClass === "damage-modifier") {
+    return !clauseLooksLikeSkillCoefficient(clause)
+      && !clauseIsHealingOrLifesteal(clause)
+      && /\b(more dmg|more damage|damage dealt|dmg dealt|skill damage|dmg to|damage to|boosting .*damage|increases? .*dmg|increases? .*damage|deal .*more dmg|deal .*more damage)\b/i.test(clause);
+  }
+  if (key === "haste-or-attack-speed") return /\bhaste\b|\battack\s*spd\b|\battack speed\b|\banimation speed\b/i.test(clause);
+  if (key === "cooldown-or-resource") return /\bcd\b|\bcooldown\b|\bresource\b|\benergy\b/i.test(clause);
+  return false;
+}
+
+function componentValueTextsFromDescription(text, componentKey, effectClass) {
+  const clauses = splitFormulaEffectClauses(text).filter((clause) =>
+    componentClauseMatches(componentKey, effectClass, clause)
+  );
+  return uniqueValueTextsFromClauses(clauses);
+}
+
+function modifierEvidenceGradeValueTexts(source, componentKey, effectClass) {
+  const rows = Array.isArray(source.modifierEvidence?.gradeRows)
+    ? source.modifierEvidence.gradeRows
+    : [];
+  if (!rows.length) return [];
+
+  return uniqueStrings(rows.flatMap((row) => {
+    const text = row.cleanResolvedDescription
+      || row.resolvedDescription
+      || preferredText(row.cleanResolvedDescriptions)
+      || preferredText(row.resolvedDescriptions)
+      || "";
+    return componentValueTextsFromDescription(text, componentKey, effectClass);
+  }));
 }
 
 function clauseIsCriticalRate(clause) {
   return /\bcrit(?:ical)?\b/i.test(clause) && !CRITICAL_DAMAGE_TEXT.test(clause);
+}
+
+function clauseHasCriticalRateAndDamage(clause) {
+  const value = String(clause || "");
+  return (
+    /\bcrit(?:ical)?\b\s*(?:and|&|\/|\+|,)\s*(?:crit(?:ical)?\s*dmg|critical damage)\b/i.test(value)
+    || /\b(?:crit(?:ical)?\s*dmg|critical damage)\b\s*(?:and|&|\/|\+|,)\s*crit(?:ical)?\b/i.test(value)
+  );
+}
+
+function clauseIsProducedDamageFormula(clause) {
+  return PRODUCED_DAMAGE_CLAUSE_TEXT.test(String(clause || ""));
+}
+
+function clauseHasModifierIntent(clause) {
+  return MODIFIER_INTENT_TEXT.test(String(clause || ""));
+}
+
+function clauseIsTriggerConditionOnly(clause) {
+  const value = String(clause || "");
+  return TRIGGER_CONDITION_TEXT.test(value) && !clauseHasModifierIntent(value);
+}
+
+function clauseEligibleForFormulaStat(clause) {
+  return !clauseIsProducedDamageFormula(clause) && !clauseIsTriggerConditionOnly(clause);
 }
 
 function valueScopeForClauses(componentClauses, allClauses) {
@@ -1399,13 +1722,18 @@ function valueScopeForClauses(componentClauses, allClauses) {
   return undefined;
 }
 
+function isSeasonalPhantomFactorSource(source) {
+  return String(source.sourceKind || "").toLowerCase() === "phantom-factor"
+    || String(source.sourceType || "").toLowerCase() === "season-phantom-factor";
+}
+
 function inferEffectComponentsFromSource(source) {
   const text = englishEvidenceText(source);
   const normalized = normalizeActivationText(text);
   const components = [];
   let order = 1;
-  const valueTexts = extractValueTexts(text);
-  const effectClauses = splitEffectClauses(text);
+  const valueTexts = extractFormulaValueTexts(text);
+  const effectClauses = splitFormulaEffectClauses(text);
   const targetArmorMitigationText =
     /\b(?:armor|defen[cs]e)\s*(?:break|down|reduction|reduced|reduce|decrease|decreased|decreases|shatter|shattered|lower|lowers|lowered|-\s*\d)/i.test(text)
     || /\b(?:break|reduce|reduces|reduced|decrease|decreases|decreased|shatter|shattered|lower|lowers|lowered)\b.{0,50}\b(?:target'?s?\s*)?(?:armor|defen[cs]e)\b/i.test(text)
@@ -1424,10 +1752,16 @@ function inferEffectComponentsFromSource(source) {
     || /\b(?:dmg|damage)\b.{0,24}\bsuper armor\b/i.test(text);
 
   const add = (key, label, effectClass, extra = {}) => {
-    if (components.some((component) => component.componentKey === key)) return;
-    components.push(inferredComponent(key, label, effectClass, order++, {
-      valueTexts,
+    const isSeasonalFactor = key === "season-damage" && isSeasonalPhantomFactorSource(source);
+    const componentKey = isSeasonalFactor ? "seasonal-factor-damage" : key;
+    const componentLabel = isSeasonalFactor ? "Seasonal Factor DMG" : label;
+    const componentClass = isSeasonalFactor ? "seasonal-factor-damage" : effectClass;
+    if (components.some((component) => component.componentKey === componentKey)) return;
+    const gradeValueTexts = modifierEvidenceGradeValueTexts(source, componentKey, componentClass);
+    components.push(inferredComponent(componentKey, componentLabel, componentClass, order++, {
       ...extra,
+      valueTexts: gradeValueTexts.length ? gradeValueTexts : (extra.valueTexts ?? valueTexts),
+      valueTextSource: gradeValueTexts.length ? "modifierEvidence.gradeRows" : extra.valueTextSource,
     }));
   };
 
@@ -1464,10 +1798,21 @@ function inferEffectComponentsFromSource(source) {
     });
   }
 
-  const criticalDamageClauses = effectClauses.filter((clause) => CRITICAL_DAMAGE_TEXT.test(clause));
-  const criticalRateClauses = effectClauses.filter((clause) => CRITICAL_RATE_TEXT.test(clause) || clauseIsCriticalRate(clause));
-  const criticalDamageText = criticalDamageClauses.length > 0 || CRITICAL_DAMAGE_TEXT.test(text);
-  const criticalRateText = criticalRateClauses.length > 0 || (/\bcrit(?:ical)?\b/i.test(text) && !CRITICAL_DAMAGE_TEXT.test(text));
+  const criticalDamageClauses = effectClauses.filter((clause) =>
+    CRITICAL_DAMAGE_TEXT.test(clause) && clauseEligibleForFormulaStat(clause)
+  );
+  const criticalRateClauses = effectClauses.filter((clause) =>
+    (CRITICAL_RATE_TEXT.test(clause) || clauseIsCriticalRate(clause) || clauseHasCriticalRateAndDamage(clause)) && clauseEligibleForFormulaStat(clause)
+  );
+  const criticalDamageText = criticalDamageClauses.length > 0
+    || (effectClauses.length === 0 && CRITICAL_DAMAGE_TEXT.test(text) && clauseEligibleForFormulaStat(text));
+  const criticalRateText = criticalRateClauses.length > 0
+    || (
+      effectClauses.length === 0
+      && /\bcrit(?:ical)?\b/i.test(text)
+      && !CRITICAL_DAMAGE_TEXT.test(text)
+      && clauseEligibleForFormulaStat(text)
+    );
 
   if (criticalDamageText) {
     add("critical-damage", "Crit DMG", "critical-damage-stat", {
@@ -1512,18 +1857,26 @@ function inferEffectComponentsFromSource(source) {
       activationPredicate,
     });
   }
-  if (/\bmatk\b|\bmagic attack\b/i.test(text)) {
+  const matkClauses = effectClauses.filter((clause) => /\bmatk\b|\bmagic attack\b/i.test(clause));
+  if (matkClauses.length > 0 || /\bmatk\b|\bmagic attack\b/i.test(text)) {
     add("matk", "MATK", "offense-stat", {
       direction: "stat",
       stat: "MATK",
+      valueTexts: uniqueValueTextsFromClauses(matkClauses).length
+        ? uniqueValueTextsFromClauses(matkClauses)
+        : valueTexts,
       predicateTags,
       activationPredicate,
     });
   }
-  if (/\batk\b|\battack\b/i.test(text) && !/\battack speed\b|\battack spd\b|\battack dmg\b/i.test(text)) {
+  const atkClauses = effectClauses.filter((clause) => !clauseLooksLikeSkillCoefficient(clause) && hasAttackStatText(clause));
+  if (atkClauses.length > 0 || hasAttackStatText(text)) {
     add("atk", "ATK", "offense-stat", {
       direction: "stat",
       stat: "ATK",
+      valueTexts: uniqueValueTextsFromClauses(atkClauses).length
+        ? uniqueValueTextsFromClauses(atkClauses)
+        : valueTexts,
       predicateTags,
       activationPredicate,
     });
@@ -1536,7 +1889,63 @@ function inferEffectComponentsFromSource(source) {
       activationPredicate,
     });
   }
-  if (/\b(light|fire|ice|thunder|dark|elemental)\b.*\b(dmg|damage|strength)\b|\b(dmg|damage)\b.*\b(light|fire|ice|thunder|dark|elemental)\b/i.test(text)) {
+  const physicalMagicDamageClauses = effectClauses.filter((clause) =>
+    !clauseLooksLikeSkillCoefficient(clause) && PHYSICAL_MAGIC_DAMAGE_TEXT.test(clause)
+  );
+  const finalDamageClauses = effectClauses.filter((clause) => FINAL_DAMAGE_TEXT.test(clause));
+  const seasonDamageClauses = effectClauses.filter((clause) => SEASON_DAMAGE_TEXT.test(clause));
+  const seasonSuppressionClauses = effectClauses.filter((clause) => SEASON_SUPPRESSION_TEXT.test(clause));
+  if (physicalMagicDamageClauses.length > 0 || PHYSICAL_MAGIC_DAMAGE_TEXT.test(text)) {
+    add("physical-magic-enhancement", "Physical/Magic Enhancement", "physical-magic-enhancement", {
+      direction: "damage-dealt",
+      valueTexts: uniqueValueTextsFromClauses(physicalMagicDamageClauses).length
+        ? uniqueValueTextsFromClauses(physicalMagicDamageClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(physicalMagicDamageClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (finalDamageClauses.length > 0 || FINAL_DAMAGE_TEXT.test(text)) {
+    add("final-damage", "Final DMG", "final-damage", {
+      direction: "damage-dealt",
+      valueTexts: uniqueValueTextsFromClauses(finalDamageClauses).length
+        ? uniqueValueTextsFromClauses(finalDamageClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(finalDamageClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (seasonDamageClauses.length > 0 || SEASON_DAMAGE_TEXT.test(text)) {
+    add("season-damage", "Season DMG", "season-damage", {
+      direction: "damage-dealt",
+      valueTexts: uniqueValueTextsFromClauses(seasonDamageClauses).length
+        ? uniqueValueTextsFromClauses(seasonDamageClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(seasonDamageClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  if (seasonSuppressionClauses.length > 0 || SEASON_SUPPRESSION_TEXT.test(text)) {
+    add("season-suppression", "Season Suppression", "season-suppression", {
+      direction: "damage-dealt",
+      valueTexts: uniqueValueTextsFromClauses(seasonSuppressionClauses).length
+        ? uniqueValueTextsFromClauses(seasonSuppressionClauses)
+        : valueTexts,
+      valueScope: valueScopeForClauses(seasonSuppressionClauses, effectClauses),
+      predicateTags,
+      targetPredicate,
+      activationPredicate,
+    });
+  }
+  const elementalDamageText = /\b(light|fire|ice|thunder|dark|elemental)\b.*\b(dmg|damage|strength)\b|\b(dmg|damage)\b.*\b(light|fire|ice|thunder|dark|elemental)\b/i.test(text);
+  const seasonalFactorAlreadyClassified = components.some((component) => component.componentKey === "seasonal-factor-damage");
+  if (elementalDamageText && !(isSeasonalPhantomFactorSource(source) && seasonalFactorAlreadyClassified)) {
     add("elemental-damage", "Elemental DMG", "elemental-damage", {
       direction: "damage-dealt",
       predicateTags,
@@ -1611,6 +2020,12 @@ function inferEffectComponentsFromSource(source) {
   const damageModifierClauses = effectClauses.filter((clause) =>
     !CRITICAL_DAMAGE_TEXT.test(clause)
     && !clauseIsCriticalRate(clause)
+    && !PHYSICAL_MAGIC_DAMAGE_TEXT.test(clause)
+    && !FINAL_DAMAGE_TEXT.test(clause)
+    && !SEASON_DAMAGE_TEXT.test(clause)
+    && !SEASON_SUPPRESSION_TEXT.test(clause)
+    && !clauseLooksLikeSkillCoefficient(clause)
+    && !clauseIsHealingOrLifesteal(clause)
     && /\b(more dmg|more damage|damage dealt|dmg dealt|skill damage|dmg to|damage to|boosting .*damage|increases? .*dmg|increases? .*damage|deal .*more dmg|deal .*more damage)\b/i.test(clause)
   );
   const damageModifierText =
@@ -1659,6 +2074,17 @@ function inferEffectComponentsFromSource(source) {
   return mergeEffectComponents([], components);
 }
 
+function hasAttackStatText(text) {
+  const value = String(text ?? "");
+  if (clauseLooksLikeSkillCoefficient(value)) return false;
+  if (clauseIsProducedDamageFormula(value)) return false;
+  if (/\batk\b/i.test(value)) return true;
+  if (/\battack\s*(?:speed|spd|dmg|damage)\b/i.test(value)) return false;
+  if (/\b(?:basic|normal|special|melee|ranged)\s+attack\b/i.test(value)) return false;
+  return /\battack\b\s*(?:[+-]?\d+(?:[.,]\d+)?\s*%?|\+|-|\bincreases?\b|\bboosts?\b|\bup\b|\bby\b)/i.test(value)
+    || /\b(?:increases?|boosts?|grants?|gain(?:s)?|raises?)\s+(?:your\s+)?attack\b/i.test(value);
+}
+
 function normalizeComponentForAttribution(component) {
   const info = componentFormulaInfo(component);
   return stripUndefined({
@@ -1674,10 +2100,13 @@ function normalizeComponentForAttribution(component) {
     predicateTags: info.predicateTags,
     requiredRuntimeEvidence: info.requiredRuntimeEvidence,
     valueTexts: component.valueTexts,
+    baseValues: component.baseValues,
+    valueTiers: component.valueTiers,
     targetPredicate: component.targetPredicate,
     attackerPredicate: component.attackerPredicate,
     sourcePredicate: component.sourcePredicate,
     activationPredicate: component.activationPredicate,
+    valueTextSource: component.valueTextSource,
     inferenceSource: component.inferenceSource,
   });
 }
@@ -2117,6 +2546,323 @@ function addRecountTalentLinks(builder, recountRows) {
   }
 }
 
+function aoyiValueScope(key) {
+  const normalized = String(key || "").trim();
+  if (normalized === "attrPer") return "owner";
+  if (normalized === "attrOther") return "party";
+  return "";
+}
+
+function aoyiComponentValues(values, options = {}) {
+  const allowedKeys = new Set(options.keys ?? ["attrPer", "attrOther"]);
+  return (values ?? [])
+    .filter((value) => allowedKeys.has(value.key))
+    .map((value) => stripUndefined({
+      scope: value.scope || aoyiValueScope(value.key) || options.scope,
+      key: value.key,
+      rawText: value.valueText,
+      unit: "percent",
+      value: value.percentValue,
+      decimalValue: value.decimalValue,
+      formulaAmount: true,
+      rawTableValue: value.rawValue,
+    }));
+}
+
+function battleImagineTextLooksTargetVulnerability(text) {
+  return /\b(?:wound|severe\s+wound|vulnerab(?:le|ility)|damage\s*(?:taken|received)\s*(?:\+|increase|more)|takes?\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg)|receives?\s+(?:[+-]?\d+(?:[.,]\d+)?\s*%\s+)?(?:more|increased)\s+(?:damage|dmg))\b/i.test(text);
+}
+
+function battleImagineValueComponentSpec(row, sourceConfigRule) {
+  const text = cleanMarkup([
+    row?.sourceName,
+    row?.Name,
+    row?.NameDesign,
+    row?.DesignName,
+    preferredName(row?.Names),
+    preferredText(row?.CleanDescriptions),
+    preferredText(row?.Descriptions),
+    sourceConfigRule?.ownerName,
+    preferredName(sourceConfigRule?.ownerNames),
+    preferredName(sourceConfigRule?.ownerMonsterNames),
+  ].filter(Boolean).join(" ")).toLowerCase();
+  const requiredRuntimeEvidence = ["runtime battle imagine modification tier selection"];
+  const predicateTags = ["source.battle-imagine"];
+
+  if (/\b(?:healing|heal)\s+received\b|\breceived\s+(?:healing|heal)\b|\bhealing\s+taken\b/i.test(text)) {
+    return {
+      key: "healing-received",
+      label: "Healing Received",
+      effectClass: "healing-or-lifesteal",
+      order: 1,
+      extra: {
+        direction: "healing",
+        stat: "healing received",
+        predicateTags,
+        requiredRuntimeEvidence: uniqueStrings([
+          ...requiredRuntimeEvidence,
+          "healing event lane or healing-received stat snapshot",
+        ]),
+      },
+    };
+  }
+
+  if (/\b(?:cooldown|cd|recast|recharge|tdr|skill\s*cds?|skill\s*cooldowns?)\b/i.test(text)) {
+    return {
+      key: "cooldown-or-resource",
+      label: "Cooldown / Resource",
+      effectClass: "cooldown-or-resource",
+      order: 1,
+      extra: {
+        direction: "timing",
+        stat: "cooldown speed",
+        predicateTags,
+        requiredRuntimeEvidence: uniqueStrings([
+          ...requiredRuntimeEvidence,
+          "cast timeline or cooldown state",
+        ]),
+      },
+    };
+  }
+
+  if (/\b(?:haste|attack\s*speed|atk\s*speed|cast(?:ing)?\s*speed)\b/i.test(text)) {
+    return {
+      key: "haste-or-attack-speed",
+      label: "Haste / Attack Speed",
+      effectClass: "hit-timing",
+      order: 1,
+      extra: {
+        direction: "timing",
+        stat: "haste",
+        predicateTags,
+        requiredRuntimeEvidence: uniqueStrings([
+          ...requiredRuntimeEvidence,
+          "cast timeline or per-hit window buckets",
+        ]),
+      },
+    };
+  }
+
+  if (/\bmastery\b/i.test(text)) {
+    return {
+      key: "mastery-stat",
+      label: "Mastery",
+      effectClass: "stat-conversion",
+      order: 1,
+      extra: {
+        direction: "stat-conversion",
+        stat: "mastery",
+        formulaTermIds: ["masteryStat"],
+        contributionGroups: ["statConversion"],
+        predicateTags,
+        requiredRuntimeEvidence: uniqueStrings([
+          ...requiredRuntimeEvidence,
+          "attacker mastery snapshot at hit time",
+        ]),
+      },
+    };
+  }
+
+  if (battleImagineTextLooksTargetVulnerability(text)) {
+    return {
+      key: "target-vulnerability",
+      label: "Target Vulnerability / Wound",
+      effectClass: "damage-modifier",
+      order: 1,
+      extra: {
+        contributionScope: "targeted",
+        direction: "damage-dealt",
+        formulaTermIds: ["genericDamagePct"],
+        contributionGroups: ["genericDamage"],
+        predicateTags: uniqueStrings([...predicateTags, "target.state-or-debuff"]),
+        targetPredicate: { state: "vulnerability" },
+        requiredRuntimeEvidence: uniqueStrings([
+          ...requiredRuntimeEvidence,
+          "modifier windows",
+          "target uid",
+        ]),
+      },
+    };
+  }
+
+  if (/\b(?:damage|dmg)\b.{0,60}\b(?:dealt|increase|boost|bonus|more)\b|\b(?:increase|boost|bonus|more)\b.{0,60}\b(?:damage|dmg)\b/i.test(text)) {
+    return {
+      key: "generic-damage",
+      label: "Generic DMG",
+      effectClass: "damage-modifier",
+      order: 1,
+      extra: {
+        direction: "damage-dealt",
+        formulaTermIds: ["genericDamagePct"],
+        contributionGroups: ["genericDamage"],
+        predicateTags,
+        requiredRuntimeEvidence: uniqueStrings([
+          ...requiredRuntimeEvidence,
+          "modifier windows",
+        ]),
+      },
+    };
+  }
+
+  if (hasAttackStatText(text)) {
+    return {
+      key: "atk",
+      label: "ATK",
+      effectClass: "offense-stat",
+      order: 1,
+      extra: {
+        direction: "damage-dealt",
+        stat: "attack",
+        predicateTags,
+        requiredRuntimeEvidence: requiredRuntimeEvidence,
+      },
+    };
+  }
+
+  return {
+    key: "battle-imagine-value",
+    label: "Battle Imagine Value",
+    effectClass: "unknown-effect",
+    order: 1,
+    extra: {
+      contributionScope: "unknown",
+      predicateTags: uniqueStrings([...predicateTags, "needs.effect-component-classification"]),
+      requiredRuntimeEvidence: requiredRuntimeEvidence,
+    },
+  };
+}
+
+function battleImagineTieredComponent(spec, baseEffect, tierRows, valueOptions = {}) {
+  const baseValues = aoyiComponentValues(baseEffect?.values, valueOptions);
+  const valueTiers = tierRows
+    .map((row) => {
+      const values = aoyiComponentValues(row.values, valueOptions);
+      if (values.length === 0) return null;
+      return stripUndefined({
+        tier: row.tier,
+        tierKind: "modification-stage",
+        values,
+        sourceTable: row.sourceTable,
+        sourceOffset: row.sourceOffset,
+        rowId: row.rowId,
+      });
+    })
+    .filter(Boolean);
+
+  if (baseValues.length === 0 && valueTiers.length === 0) return null;
+
+  return inferredComponent(spec.key, spec.label, spec.effectClass, spec.order, {
+    ...spec.extra,
+    valueTextSource: "SkillFightLevelTable.baseEffect+SkillAoyiStarTable.modificationRows",
+    baseValues: baseValues.length > 0
+      ? stripUndefined({
+          values: baseValues,
+          sourceTable: baseEffect.sourceTable,
+          sourceOffset: baseEffect.sourceOffset,
+          skillLevelId: baseEffect.skillLevelId,
+          skillEffectId: baseEffect.skillEffectId,
+          level: baseEffect.level,
+          cooldownSeconds: baseEffect.cooldownSeconds,
+        })
+      : undefined,
+    valueTiers,
+  });
+}
+
+function battleImagineTierEffectComponents(row, sourceConfigRule) {
+  const baseEffect = normalizeAoyiBaseEffect(sourceConfigRule?.ownerBaseEffects);
+  const tierRows = normalizeAoyiTierEffects(sourceConfigRule?.ownerTierEffects);
+  const text = cleanMarkup([
+    row?.sourceName,
+    row?.Name,
+    row?.NameDesign,
+    row?.DesignName,
+    preferredName(row?.Names),
+    preferredText(row?.CleanDescriptions),
+    preferredText(row?.Descriptions),
+    sourceConfigRule?.ownerName,
+    preferredName(sourceConfigRule?.ownerNames),
+    preferredName(sourceConfigRule?.ownerMonsterNames),
+  ].filter(Boolean).join(" "));
+
+  if (!baseEffect && tierRows.length === 0) return [];
+
+  const requiredRuntimeEvidence = ["runtime battle imagine modification tier selection"];
+  const predicateTags = ["source.battle-imagine"];
+  const hasCriticalDamage = CRITICAL_DAMAGE_TEXT.test(text);
+  const hasCriticalRate = CRITICAL_RATE_TEXT.test(text)
+    || clauseIsCriticalRate(text)
+    || clauseHasCriticalRateAndDamage(text);
+  if (hasCriticalDamage || hasCriticalRate) {
+    const components = [
+      hasCriticalDamage
+        ? battleImagineTieredComponent({
+            key: "critical-damage",
+            label: "Crit DMG",
+            effectClass: "critical-damage-stat",
+            order: 1,
+            extra: {
+              direction: "stat",
+              stat: "Crit DMG",
+              predicateTags,
+              requiredRuntimeEvidence: uniqueStrings([
+                ...requiredRuntimeEvidence,
+                "attacker crit-damage snapshot at hit time",
+                "crit flag",
+              ]),
+            },
+          }, baseEffect, tierRows, { keys: ["attrAdd"], scope: "owner" })
+        : null,
+      hasCriticalRate
+        ? battleImagineTieredComponent({
+            key: "critical-rate",
+            label: "Crit",
+            effectClass: "critical-stat",
+            order: 2,
+            extra: {
+              direction: "stat",
+              stat: "Crit",
+              predicateTags,
+              requiredRuntimeEvidence: uniqueStrings([
+                ...requiredRuntimeEvidence,
+                "attacker crit-rate snapshot at hit time",
+                "crit flag",
+              ]),
+            },
+          }, baseEffect, tierRows, { keys: ["attrPer"], scope: "owner" })
+        : null,
+    ].filter(Boolean);
+    if (components.length > 0) return components;
+  }
+
+  const spec = battleImagineValueComponentSpec(row, sourceConfigRule);
+  const component = battleImagineTieredComponent(spec, baseEffect, tierRows);
+  return component ? [component] : [];
+}
+
+function sourceConfigRuleForRuntimeBuff(buffId, qualified, sourceConfigOwnerRules) {
+  const rule = qualified?.sourceConfigRule
+    ?? sourceConfigOwnerRules.get(buffId - 1)
+    ?? sourceConfigOwnerRules.get(buffId);
+  if (!rule) return undefined;
+  const qualifiedOwnerId = qualified?.ownerMatch?.owner?.record?.sourceId;
+  if (qualifiedOwnerId !== undefined && rule.ownerSkillId !== undefined && Number(qualifiedOwnerId) !== Number(rule.ownerSkillId)) {
+    return undefined;
+  }
+  return rule;
+}
+
+function sourceConfigRuleForOwnerSkill(buffId, qualified, sourceConfigOwnerRules) {
+  const ownerSkillId = qualified?.ownerMatch?.owner?.record?.sourceId;
+  if (ownerSkillId === undefined || ownerSkillId === null) return undefined;
+  const candidates = sourceConfigOwnerRules.byOwnerSkillId?.get(String(ownerSkillId)) ?? [];
+  if (candidates.length === 1) return candidates[0];
+  const priorCandidates = candidates
+    .filter((candidate) => Number(candidate.sourceConfigId) < Number(buffId))
+    .sort((left, right) => Number(right.sourceConfigId) - Number(left.sourceConfigId));
+  return priorCandidates[0];
+}
+
 function addImagineBuffCatalog(builder, buffRows, ownerIndex, sourceConfigOwnerRules = new Map()) {
   for (const row of Array.isArray(buffRows) ? buffRows : Object.values(buffRows ?? {})) {
     const buffId = toNumber(row.Id);
@@ -2126,7 +2872,9 @@ function addImagineBuffCatalog(builder, buffRows, ownerIndex, sourceConfigOwnerR
     if (!isLikelyImagineRuntimeBuffRow(row, qualified)) continue;
     const names = qualified?.names ?? buffRowBaseNames(row);
     const ownerMatch = qualified?.ownerMatch;
-    const sourceConfigRule = qualified?.sourceConfigRule;
+    const sourceConfigRule = sourceConfigRuleForRuntimeBuff(buffId, qualified, sourceConfigOwnerRules)
+      ?? sourceConfigRuleForOwnerSkill(buffId, qualified, sourceConfigOwnerRules);
+    const effectComponents = battleImagineTierEffectComponents(row, sourceConfigRule);
     builder.upsertSource({
       sourceId: `buff-source:${buffId}`,
       sourceKind: "imagine",
@@ -2134,10 +2882,14 @@ function addImagineBuffCatalog(builder, buffRows, ownerIndex, sourceConfigOwnerR
       sourceEntityId: buffId,
       sourceName: preferredName(names, row.Name ?? row.NameDesign ?? row.DesignName ?? `Buff ${buffId}`),
       sourceNames: names,
+      descriptionIds: row.DescriptionId ? [row.DescriptionId] : undefined,
+      descriptions: row.Descriptions,
+      cleanDescriptions: row.CleanDescriptions,
       iconPath: row.IconPath,
       runtimeDetection: "active-buff",
       sourceTable: "BuffName",
       buffIds: uniqueNumbers([buffId, sourceConfigRule?.sourceConfigId]),
+      effectComponents,
       evidence: [stripUndefined({
         source: "BuffName",
         buffSourceId: buffId,
@@ -2150,7 +2902,10 @@ function addImagineBuffCatalog(builder, buffRows, ownerIndex, sourceConfigOwnerR
         sourceConfigDesignName: sourceConfigRule?.sourceConfigDesignName,
         sourceConfigOwnerToken: sourceConfigRule?.sourceConfigOwnerToken,
         ownerSkillEffectId: sourceConfigRule?.ownerSkillEffectId,
+        ownerBaseEffectSkillLevelId: sourceConfigRule?.ownerBaseEffects?.skillLevelId,
+        ownerTierEffectTiers: sourceConfigRule?.ownerTierEffects?.map((entry) => entry.tier),
         ownerMonsterNames: sourceConfigRule?.ownerMonsterNames,
+        buffDescriptionId: row.DescriptionId,
         designName: row.DesignName ?? row.NameDesign,
       })],
     });
@@ -2411,6 +3166,10 @@ function addConsumableBuffCatalog(builder, buffRows, items, consumableBridge) {
       sourceEntityId: buffId,
       sourceName: preferredName(sourceNames, kind === "food" ? "Cuisine" : "Potion"),
       sourceNames,
+      descriptionIds: bridgeSource?.descriptionIds,
+      description: bridgeSource?.description,
+      descriptions: bridgeSource?.descriptions,
+      cleanDescriptions: bridgeSource?.cleanDescriptions,
       iconPath: row.IconPath,
       runtimeDetection: "active-buff",
       sourceTable: "BuffName",
@@ -2428,6 +3187,8 @@ function addConsumableBuffCatalog(builder, buffRows, items, consumableBridge) {
         foodEffectName: bridgeSource?.effectNameEn,
         foodEffectDesignName: bridgeSource?.effectDesignName,
         foodEffectComponents: effectComponents,
+        foodDescriptionIds: bridgeSource?.descriptionIds,
+        foodDescription: bridgeSource?.description,
         candidateItemCount: bridgeSource?.candidateItemCount,
         candidateItemIds: bridgeSource?.candidateItemIds,
         candidateItemNames: bridgeSource?.candidateItemNames,
@@ -3155,6 +3916,7 @@ function main() {
   const talentOwnership = readJson(args.talentOwnership, {});
   const seasonTalentProbe = readJson(args.seasonTalentProbe, {});
   const seasonRogueProbe = readJson(args.seasonRogueProbe, {});
+  const linkTextDescriptions = readJson(args.linkTexts, {});
   const recountRows = collectRecountRows(recount);
   const imagineOwnerIndex = buildImagineOwnerIndex(items, monsters, aoyiSkills);
   const battleImagineSourceConfigOwnerRules = buildBattleImagineSourceConfigOwnerRules(buffs, imagineOwnerIndex);
@@ -3173,6 +3935,7 @@ function main() {
   addSeasonTalentNodes(builder, seasonTalentProbe);
   addSeasonRogueEntries(builder, seasonRogueProbe);
   postProcessDesignOnlyBuffSources(builder);
+  enrichSourcesWithLinkedTooltips(builder, linkTextDescriptions);
   applyTalentOwnershipMetadata(builder, talentOwnership);
   addFormulaAttributionLayer(builder);
 
@@ -3194,6 +3957,7 @@ function main() {
         talentOwnership: path.relative(repoRoot, args.talentOwnership).replaceAll("\\", "/"),
         seasonTalentProbe: path.relative(repoRoot, args.seasonTalentProbe).replaceAll("\\", "/"),
         seasonRogueProbe: path.relative(repoRoot, args.seasonRogueProbe).replaceAll("\\", "/"),
+        linkTexts: path.relative(repoRoot, args.linkTexts).replaceAll("\\", "/"),
       },
       battleImagineOwnerNames: imagineOwnerIndex.battleImagineRecords,
       battleImagineSkillOwnerNames: imagineOwnerIndex.battleImagineSkillRecords,
@@ -3223,6 +3987,7 @@ function main() {
       attributionStatuses: countAttributionStatuses(builder.effectSourcesById, effectSourceIds),
       talentOwnership: builder.talentOwnershipSummary,
       designOnlyBuffSourcePostProcess: builder.postProcessSummary,
+      linkTextTooltips: builder.linkTextTooltipSummary,
       relationshipPolicy:
         "This file is an evidence index. It exposes affected-by/produced-by relationships and formula-attribution candidates only. Observed damage is overlap evidence until formula replay validates source removal against captured runtime stats and predicates.",
     },

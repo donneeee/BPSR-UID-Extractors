@@ -2,6 +2,8 @@
 const path = require("node:path");
 
 const STRING_POOL = 6;
+const INT_POOL = 1;
+const SKILL_AOYI_STAR_TABLE = "SkillAoyiStarTable.ctb";
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -47,6 +49,8 @@ Notes:
   const aoyiTable = readCtbTable(containerDir, metaEntries, "SkillAoyiTable.ctb");
   const skillTable = readCtbTable(containerDir, metaEntries, "SkillTable.ctb");
   const skillLookup = buildSkillEffectLookup(containerDir, metaEntries, { readCtbString, readCtbTable, readU32 });
+  const baseEffectsBySkillId = buildAoyiBaseEffects(containerDir, metaEntries, { readCtbString, readCtbTable, readU32 });
+  const tierEffectsBySkillId = buildAoyiTierEffects(containerDir, metaEntries, { readCtbString, readCtbTable, readU32 });
   const skillDisplayLookup = buildSkillDisplayLookup(skillTable, localizationTables, {
     buildLocaleTextObject,
     choosePreferredLocaleText,
@@ -104,6 +108,8 @@ Notes:
       ...(Object.keys(monsterNames).length ? { MonsterNames: monsterNames } : {}),
       QuoteId: quoteId,
       ...(Object.keys(quoteTexts).length ? { QuoteTexts: quoteTexts } : {}),
+      ...(baseEffectsBySkillId.get(String(id)) ? { BaseEffectValues: baseEffectsBySkillId.get(String(id)) } : {}),
+      ...(tierEffectsBySkillId.get(String(id)) ? { TierEffects: tierEffectsBySkillId.get(String(id)) } : {}),
       Source: "SkillAoyiTable",
       SourceOffset: aoyiTable.entry.offset + rowOffset,
       ...(skillDisplay ? { SkillTableSourceOffset: skillDisplay.SourceOffset } : {})
@@ -125,6 +131,8 @@ Notes:
       Icon: deriveIconFileName(skillDisplay.IconPath),
       IconPath: skillDisplay.IconPath,
       IconPathOffset: skillDisplay.IconPathOffset,
+      ...(baseEffectsBySkillId.get(String(skillDisplay.Id)) ? { BaseEffectValues: baseEffectsBySkillId.get(String(skillDisplay.Id)) } : {}),
+      ...(tierEffectsBySkillId.get(String(skillDisplay.Id)) ? { TierEffects: tierEffectsBySkillId.get(String(skillDisplay.Id)) } : {}),
       Source: "SkillTableAdjacentAoyiIcon",
       SourceOffset: skillDisplay.SourceOffset
     });
@@ -203,6 +211,142 @@ function buildSkillEffectLookup(containerDir, metaEntries, helpers) {
   }
 
   return { bySkillId };
+}
+
+function buildAoyiBaseEffects(containerDir, metaEntries, helpers) {
+  const { readCtbString, readCtbTable, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTable(containerDir, metaEntries, "SkillFightLevelTable.ctb");
+  } catch {
+    return new Map();
+  }
+
+  const bySkillId = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const skillLevelId = readU32(table.data, rowOffset);
+    const skillId = readU32(table.data, rowOffset + 4);
+    const level = readU32(table.data, rowOffset + 8);
+    const skillEffectId = readU32(table.data, rowOffset + 12);
+    const effectRecordOffset = readU32(table.data, rowOffset + 32);
+    if (!skillLevelId || !skillId || !effectRecordOffset) continue;
+
+    const values = readAoyiEffectValues(table, effectRecordOffset, { readCtbString });
+    if (values.length === 0) continue;
+
+    const entry = {
+      values,
+      sourceTable: "SkillFightLevelTable.ctb",
+      sourceOffset: table.entry.offset + rowOffset,
+      skillLevelId,
+      skillEffectId,
+      level,
+      cooldownSeconds: readFloatLE(table.data, rowOffset + 28),
+    };
+    const existing = bySkillId.get(String(skillId));
+    if (!existing || (entry.level || Infinity) < (existing.level || Infinity)) {
+      bySkillId.set(String(skillId), entry);
+    }
+  }
+
+  return bySkillId;
+}
+
+function buildAoyiTierEffects(containerDir, metaEntries, helpers) {
+  const { readCtbString, readCtbTable, readU32 } = helpers;
+  let table;
+  try {
+    table = readCtbTable(containerDir, metaEntries, SKILL_AOYI_STAR_TABLE);
+  } catch {
+    return new Map();
+  }
+
+  const bySkillId = new Map();
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const rowId = readU32(table.data, rowOffset);
+    const skillId = readU32(table.data, rowOffset + 12);
+    const tier = readU32(table.data, rowOffset + 16);
+    const effectRecordOffset = readU32(table.data, rowOffset + 20);
+    if (!rowId || !skillId || !tier) continue;
+
+    const values = readAoyiEffectValues(table, effectRecordOffset, { readCtbString });
+    if (values.length === 0) continue;
+
+    const rows = bySkillId.get(String(skillId)) ?? [];
+    rows.push({
+      tier,
+      values,
+      sourceTable: SKILL_AOYI_STAR_TABLE,
+      sourceOffset: table.entry.offset + rowOffset,
+      rowId,
+    });
+    bySkillId.set(String(skillId), rows);
+  }
+
+  for (const rows of bySkillId.values()) {
+    rows.sort((left, right) => left.tier - right.tier || left.rowId - right.rowId);
+  }
+  return bySkillId;
+}
+
+function readFloatLE(buffer, offset) {
+  if (offset < 0 || offset + 4 > buffer.length) return undefined;
+  const value = buffer.readFloatLE(offset);
+  return Number.isFinite(value) ? value : undefined;
+}
+
+function readAoyiEffectValues(table, effectRecordOffset, helpers) {
+  const { readCtbString } = helpers;
+  const recordOffsets = readIntArray(table, effectRecordOffset);
+  const values = [];
+  for (const recordOffset of recordOffsets) {
+    const record = readIntArray(table, recordOffset);
+    if (record.length < 2) continue;
+    const key = readCtbString(table, STRING_POOL, record[0], { allowZero: true });
+    const rawText = readCtbString(table, STRING_POOL, record[1], { allowZero: true });
+    const rawValue = Number(rawText);
+    if (!key || !Number.isFinite(rawValue)) continue;
+    values.push({
+      key,
+      ...(aoyiEffectScope(key) ? { scope: aoyiEffectScope(key) } : {}),
+      rawValue,
+      percentValue: rawValue / 100,
+      decimalValue: rawValue / 10000,
+      valueText: `${formatPercent(rawValue / 100)}%`,
+    });
+  }
+  return values;
+}
+
+function readIntArray(table, offset) {
+  const pool = table?.pools?.get(INT_POOL);
+  const numericOffset = Number(offset);
+  if (!pool || !Number.isInteger(numericOffset) || numericOffset < 0 || numericOffset + 2 > pool.length) {
+    return [];
+  }
+  const length = pool.readInt16LE(numericOffset);
+  if (length <= 0 || length > 128 || numericOffset + 2 + length * 4 > pool.length) {
+    return [];
+  }
+  const values = [];
+  for (let index = 0; index < length; index += 1) {
+    values.push(pool.readInt32LE(numericOffset + 2 + index * 4));
+  }
+  return values;
+}
+
+function aoyiEffectScope(key) {
+  const normalized = String(key || "").trim();
+  if (normalized === "attrPer") return "owner";
+  if (normalized === "attrOther") return "party";
+  return "";
+}
+
+function formatPercent(value) {
+  if (Number.isInteger(value)) return String(value);
+  return String(Number(value.toFixed(4))).replace(/\.?0+$/, "");
 }
 
 function nextStringOffset(table, poolType, offset) {

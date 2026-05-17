@@ -1,0 +1,3758 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T00:50:50.675Z",
+  "auditedStatus": "needs-skill-stage-selector",
+  "totalRows": 62,
+  "byCategory": {
+    "skills": 62
+  },
+  "byFormulaReadiness": {
+    "description-grounded-needs-runtime-proof": 62
+  },
+  "byFormulaZone": {
+    "elementalDamage": 62,
+    "generalDamage": 62,
+    "physicalMagicEnhancement": 62
+  },
+  "byBlocker": {
+    "component:generic-damage:skill-stage-selector-required": 62
+  },
+  "byWording": {
+    "generic-damage-wording": 62
+  },
+  "byCategoryWording": {
+    "skills / generic-damage-wording": 62
+  },
+  "byScopeGap": {},
+  "byScopeGapCategory": {},
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "skills:1240",
+      "uid": "1240",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124001",
+      "uid": "124001",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124002",
+      "uid": "124002",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124003",
+      "uid": "124003",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124004",
+      "uid": "124004",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124005",
+      "uid": "124005",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124006",
+      "uid": "124006",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124007",
+      "uid": "124007",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124008",
+      "uid": "124008",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124009",
+      "uid": "124009",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124010",
+      "uid": "124010",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124011",
+      "uid": "124011",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124012",
+      "uid": "124012",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124013",
+      "uid": "124013",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124014",
+      "uid": "124014",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124015",
+      "uid": "124015",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124016",
+      "uid": "124016",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124017",
+      "uid": "124017",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124018",
+      "uid": "124018",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124019",
+      "uid": "124019",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124020",
+      "uid": "124020",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124021",
+      "uid": "124021",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124022",
+      "uid": "124022",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124023",
+      "uid": "124023",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124024",
+      "uid": "124024",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124025",
+      "uid": "124025",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124026",
+      "uid": "124026",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124027",
+      "uid": "124027",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124028",
+      "uid": "124028",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124029",
+      "uid": "124029",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:124030",
+      "uid": "124030",
+      "category": "skills",
+      "sourceLabel": "Frozen Gale",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "DMG meningkat 100%",
+        "targeting an 8m frontal cone with 50% increased DMG",
+        "targeting an 8m frontal cone with 100% increased DMG",
+        "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+            "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "atingindo um cone frontal de 8m com 50% de dano aumentado",
+            "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+            "DMG meningkat 50%",
+            "targeting an 8m frontal cone with 50% increased DMG",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+            "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+            "atingindo um cone frontal de 8m com 100% de dano aumentado",
+            "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+            "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+            "DMG meningkat 100%",
+            "targeting an 8m frontal cone with 100% increased DMG",
+            "대미지 100% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:2313",
+      "uid": "2313",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231301",
+      "uid": "231301",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231302",
+      "uid": "231302",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231303",
+      "uid": "231303",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231304",
+      "uid": "231304",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231305",
+      "uid": "231305",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231306",
+      "uid": "231306",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231307",
+      "uid": "231307",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:231308",
+      "uid": "231308",
+      "category": "skills",
+      "sourceLabel": "Passion Burst",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:skill-stage-selector-required"
+      ],
+      "sampleText": "DMG meningkat 50% | 4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2 | targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+      "sampleTexts": [
+        "DMG meningkat 50%",
+        "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+        "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+        "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+        "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%"
+      ],
+      "samples": [
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "4 วินาที ระยะพัดรัศมี 8 เมตรด้านหน้า DMG เพิ่มขึ้น 50% ขั้นที่ 3: ร่าย 2",
+            "4秒，前方8公尺半徑扇形範圍，傷害提升50%",
+            "4秒，前方8米半径扇形范围，伤害提升50%",
+            "4秒、前方の半径8mの扇形範囲、ダメージ+50%",
+            "DMG meningkat 50%",
+            "mirando uma área em forma de leque com um raio de 8 metros à frente e aumentando o dano em 50%",
+            "targeting a fan-shaped area with an 8-meter radius in front and increasing DMG by 50%",
+            "대미지 50% 증가"
+          ],
+          "confidence": "text"
+        }
+      ]
+    }
+  ],
+  "topByWording": {
+    "generic-damage-wording": [
+      {
+        "key": "skills:1240",
+        "uid": "1240",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124001",
+        "uid": "124001",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124002",
+        "uid": "124002",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124003",
+        "uid": "124003",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124004",
+        "uid": "124004",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124005",
+        "uid": "124005",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124006",
+        "uid": "124006",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124007",
+        "uid": "124007",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124008",
+        "uid": "124008",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124009",
+        "uid": "124009",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124010",
+        "uid": "124010",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124011",
+        "uid": "124011",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124012",
+        "uid": "124012",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124013",
+        "uid": "124013",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124014",
+        "uid": "124014",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124015",
+        "uid": "124015",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124016",
+        "uid": "124016",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124017",
+        "uid": "124017",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124018",
+        "uid": "124018",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124019",
+        "uid": "124019",
+        "category": "skills",
+        "sourceLabel": "Frozen Gale",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:skill-stage-selector-required"
+        ],
+        "sampleText": "DMG meningkat 50% | DMG meningkat 100% | targeting an 8m frontal cone with 50% increased DMG",
+        "sampleTexts": [
+          "DMG meningkat 50%",
+          "DMG meningkat 100%",
+          "targeting an 8m frontal cone with 50% increased DMG",
+          "targeting an 8m frontal cone with 100% increased DMG",
+          "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%"
+        ],
+        "samples": [
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "2阶：吟唱2秒，前方8米半径扇形范围，伤害提升50%",
+              "2階：吟唱2秒，前方8公尺半徑扇形範圍，傷害提升50%",
+              "atingindo um cone frontal de 8m com 50% de dano aumentado",
+              "C2：詠唱2秒、前方の半径8mの扇形範囲、ダメージ+50%",
+              "cible un cône frontal de 8 m avec 50 % de dégâts supplémentaires",
+              "DMG meningkat 50%",
+              "targeting an 8m frontal cone with 50% increased DMG",
+              "대미지 50% 증가"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "3阶：吟唱3秒，自身周围8米半径圆形，伤害提升100%",
+              "3階：吟唱3秒，自身周圍8公尺半徑圓形，傷害提升100%",
+              "atingindo um cone frontal de 8m com 100% de dano aumentado",
+              "C3：詠唱3秒、自身の周囲の半径8m範囲、ダメージ+100%",
+              "cible un cône frontal de 8 m avec 100 % de dégâts supplémentaires",
+              "DMG meningkat 100%",
+              "targeting an 8m frontal cone with 100% increased DMG",
+              "대미지 100% 증가"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

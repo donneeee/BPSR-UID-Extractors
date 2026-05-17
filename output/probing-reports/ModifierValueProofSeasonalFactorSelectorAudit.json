@@ -1,0 +1,1759 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T00:50:51.817Z",
+  "auditedStatus": "needs-seasonal-factor-selector",
+  "totalRows": 479,
+  "byCategory": {
+    "skills": 303,
+    "buffs": 84,
+    "factors": 84,
+    "talents": 8
+  },
+  "byFormulaReadiness": {
+    "formula-replay-required": 318,
+    "mixed-exact-and-replay": 161
+  },
+  "byFormulaZone": {
+    "seasonDamage": 479,
+    "generalDamage": 86,
+    "timingCadence": 78,
+    "baseAttackTerm": 16,
+    "luckyEnhancement": 14,
+    "critical": 6,
+    "luckyStrikeBaseTerm": 6,
+    "elementalDamage": 5,
+    "skillMultiplier": 5,
+    "physicalMagicEnhancement": 2
+  },
+  "byBlocker": {
+    "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required": 479,
+    "component:cooldown-or-resource:timing-model-required": 16,
+    "component:haste-or-attack-speed:timing-model-required": 2,
+    "component:haste-or-attack-speed:stat-conversion-model-required": 1
+  },
+  "byWording": {
+    "no-sample-text": 463,
+    "attack-wording": 6,
+    "elemental-wording": 4,
+    "seasonal-wording": 4,
+    "generic-damage-wording": 2
+  },
+  "byCategoryWording": {
+    "skills / no-sample-text": 299,
+    "buffs / no-sample-text": 84,
+    "factors / no-sample-text": 74,
+    "talents / no-sample-text": 6,
+    "factors / seasonal-wording": 4,
+    "factors / attack-wording": 3,
+    "factors / generic-damage-wording": 2,
+    "skills / attack-wording": 2,
+    "skills / elemental-wording": 2,
+    "factors / elemental-wording": 1,
+    "talents / attack-wording": 1,
+    "talents / elemental-wording": 1
+  },
+  "byScopeGap": {},
+  "byScopeGapCategory": {},
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "buffs:3050010",
+      "uid": "3050010",
+      "category": "buffs",
+      "sourceLabel": "雷影G1",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050020",
+      "uid": "3050020",
+      "category": "buffs",
+      "sourceLabel": "雷影G2",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050030",
+      "uid": "3050030",
+      "category": "buffs",
+      "sourceLabel": "雷影G3",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050040",
+      "uid": "3050040",
+      "category": "buffs",
+      "sourceLabel": "雷影G4",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050050",
+      "uid": "3050050",
+      "category": "buffs",
+      "sourceLabel": "雷影G5",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050060",
+      "uid": "3050060",
+      "category": "buffs",
+      "sourceLabel": "雷影G6",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050070",
+      "uid": "3050070",
+      "category": "buffs",
+      "sourceLabel": "雷影G7",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050080",
+      "uid": "3050080",
+      "category": "buffs",
+      "sourceLabel": "雷影G8",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050090",
+      "uid": "3050090",
+      "category": "buffs",
+      "sourceLabel": "雷影G9",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050100",
+      "uid": "3050100",
+      "category": "buffs",
+      "sourceLabel": "雷影G10",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050130",
+      "uid": "3050130",
+      "category": "buffs",
+      "sourceLabel": "无穷雷霆之力期间持续获得雷压",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050140",
+      "uid": "3050140",
+      "category": "buffs",
+      "sourceLabel": "镰车上限1，放雷霆之镰",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050150",
+      "uid": "3050150",
+      "category": "buffs",
+      "sourceLabel": "千雷闪影之意期间霹雳连斩触发雷击，增加电荷",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051010",
+      "uid": "3051010",
+      "category": "buffs",
+      "sourceLabel": "青岚G1",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051020",
+      "uid": "3051020",
+      "category": "buffs",
+      "sourceLabel": "青岚G2",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051030",
+      "uid": "3051030",
+      "category": "buffs",
+      "sourceLabel": "青岚G3",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051040",
+      "uid": "3051040",
+      "category": "buffs",
+      "sourceLabel": "青岚G4",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051050",
+      "uid": "3051050",
+      "category": "buffs",
+      "sourceLabel": "青岚G5",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051070",
+      "uid": "3051070",
+      "category": "buffs",
+      "sourceLabel": "青岚G7",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051080",
+      "uid": "3051080",
+      "category": "buffs",
+      "sourceLabel": "青岚G8",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051090",
+      "uid": "3051090",
+      "category": "buffs",
+      "sourceLabel": "青岚G9",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051100",
+      "uid": "3051100",
+      "category": "buffs",
+      "sourceLabel": "青岚G10",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051110",
+      "uid": "3051110",
+      "category": "buffs",
+      "sourceLabel": "青岚G11",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3051120",
+      "uid": "3051120",
+      "category": "buffs",
+      "sourceLabel": "勇气风环每命中多次，触发一次大的",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052010",
+      "uid": "3052010",
+      "category": "buffs",
+      "sourceLabel": "冰魔G1",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052020",
+      "uid": "3052020",
+      "category": "buffs",
+      "sourceLabel": "冰魔G2",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052030",
+      "uid": "3052030",
+      "category": "buffs",
+      "sourceLabel": "冰魔G3",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052040",
+      "uid": "3052040",
+      "category": "buffs",
+      "sourceLabel": "冰魔G4",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052050",
+      "uid": "3052050",
+      "category": "buffs",
+      "sourceLabel": "冰魔G5",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052060",
+      "uid": "3052060",
+      "category": "buffs",
+      "sourceLabel": "冰魔G6",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052070",
+      "uid": "3052070",
+      "category": "buffs",
+      "sourceLabel": "冰魔G7",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052090",
+      "uid": "3052090",
+      "category": "buffs",
+      "sourceLabel": "冰魔G9",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052100",
+      "uid": "3052100",
+      "category": "buffs",
+      "sourceLabel": "冰魔G10",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052140",
+      "uid": "3052140",
+      "category": "buffs",
+      "sourceLabel": "冰魔狂想-贯穿矛",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3052150",
+      "uid": "3052150",
+      "category": "buffs",
+      "sourceLabel": "冰魔狂想-陨石",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3053010",
+      "uid": "3053010",
+      "category": "buffs",
+      "sourceLabel": "神射G1",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3053020",
+      "uid": "3053020",
+      "category": "buffs",
+      "sourceLabel": "神射G2",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3053030",
+      "uid": "3053030",
+      "category": "buffs",
+      "sourceLabel": "神射G3",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3053050",
+      "uid": "3053050",
+      "category": "buffs",
+      "sourceLabel": "神射G5",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3053060",
+      "uid": "3053060",
+      "category": "buffs",
+      "sourceLabel": "神射G6",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    }
+  ],
+  "topByWording": {
+    "no-sample-text": [
+      {
+        "key": "buffs:3050010",
+        "uid": "3050010",
+        "category": "buffs",
+        "sourceLabel": "雷影G1",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050020",
+        "uid": "3050020",
+        "category": "buffs",
+        "sourceLabel": "雷影G2",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050030",
+        "uid": "3050030",
+        "category": "buffs",
+        "sourceLabel": "雷影G3",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050040",
+        "uid": "3050040",
+        "category": "buffs",
+        "sourceLabel": "雷影G4",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050050",
+        "uid": "3050050",
+        "category": "buffs",
+        "sourceLabel": "雷影G5",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050060",
+        "uid": "3050060",
+        "category": "buffs",
+        "sourceLabel": "雷影G6",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050070",
+        "uid": "3050070",
+        "category": "buffs",
+        "sourceLabel": "雷影G7",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050080",
+        "uid": "3050080",
+        "category": "buffs",
+        "sourceLabel": "雷影G8",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050090",
+        "uid": "3050090",
+        "category": "buffs",
+        "sourceLabel": "雷影G9",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050100",
+        "uid": "3050100",
+        "category": "buffs",
+        "sourceLabel": "雷影G10",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050130",
+        "uid": "3050130",
+        "category": "buffs",
+        "sourceLabel": "无穷雷霆之力期间持续获得雷压",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050140",
+        "uid": "3050140",
+        "category": "buffs",
+        "sourceLabel": "镰车上限1，放雷霆之镰",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050150",
+        "uid": "3050150",
+        "category": "buffs",
+        "sourceLabel": "千雷闪影之意期间霹雳连斩触发雷击，增加电荷",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051010",
+        "uid": "3051010",
+        "category": "buffs",
+        "sourceLabel": "青岚G1",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051020",
+        "uid": "3051020",
+        "category": "buffs",
+        "sourceLabel": "青岚G2",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051030",
+        "uid": "3051030",
+        "category": "buffs",
+        "sourceLabel": "青岚G3",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051040",
+        "uid": "3051040",
+        "category": "buffs",
+        "sourceLabel": "青岚G4",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051050",
+        "uid": "3051050",
+        "category": "buffs",
+        "sourceLabel": "青岚G5",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051070",
+        "uid": "3051070",
+        "category": "buffs",
+        "sourceLabel": "青岚G7",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3051080",
+        "uid": "3051080",
+        "category": "buffs",
+        "sourceLabel": "青岚G8",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      }
+    ],
+    "attack-wording": [
+      {
+        "key": "factors:3051120",
+        "uid": "3051120",
+        "category": "factors",
+        "sourceLabel": "uid:3051120",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "physicalMagicEnhancement",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "dealing 1500% ATK DMG to enemies within 5 meters around you | Courage Wind Ring akan memicu Great Wind Loop yang mengakibatkan PDMG sebesar 1500% ATK terhadap musuh yang berjarak 5 meter di sekitar diri sendiri | Windforce Grand จะทำงาน Cyclone สร้าง PDMG 1500% ของ Atk ใส่เป้าหมายศัตรูในระยะ 5 เมตรรอบตัว DMG จาก Windforce Grand Cyclone ในฝันเพิ่มขึ้น+ Setiap mengenai target 10 kali",
+        "sampleTexts": [
+          "dealing 1500% ATK DMG to enemies within 5 meters around you",
+          "Courage Wind Ring akan memicu Great Wind Loop yang mengakibatkan PDMG sebesar 1500% ATK terhadap musuh yang berjarak 5 meter di sekitar diri sendiri",
+          "Windforce Grand จะทำงาน Cyclone สร้าง PDMG 1500% ของ Atk ใส่เป้าหมายศัตรูในระยะ 5 เมตรรอบตัว DMG จาก Windforce Grand Cyclone ในฝันเพิ่มขึ้น+ Setiap mengenai target 10 kali",
+          "causando 1500% de dano de ATQ a inimigos em um raio de 5 metros ao seu redor",
+          "勇心風環が対象に10回命中するごとに（複数の対象に命中してもカウントは1回のみ）ループウィンドを発動し、自身の周囲5m以内にいるエネミー対象に攻撃力の1500%の物理ダメージを与える"
+        ],
+        "samples": [
+          {
+            "value": 1500,
+            "unit": "percent",
+            "rawTexts": [
+              "1500 %",
+              "1500%"
+            ],
+            "sourceTexts": [
+              "causando 1500% de dano de ATQ a inimigos em um raio de 5 metros ao seu redor",
+              "Courage Wind Ring akan memicu Great Wind Loop yang mengakibatkan PDMG sebesar 1500% ATK terhadap musuh yang berjarak 5 meter di sekitar diri sendiri",
+              "dealing 1500% ATK DMG to enemies within 5 meters around you",
+              "Windforce Grand จะทำงาน Cyclone สร้าง PDMG 1500% ของ Atk ใส่เป้าหมายศัตรูในระยะ 5 เมตรรอบตัว DMG จาก Windforce Grand Cyclone ในฝันเพิ่มขึ้น+ Setiap mengenai target 10 kali",
+              "자신 주위 5미터 내 적군 목표에게 공격력 1500%만큼의 물리 대미지를 줍니다",
+              "勇心風環が対象に10回命中するごとに（複数の対象に命中してもカウントは1回のみ）ループウィンドを発動し、自身の周囲5m以内にいるエネミー対象に攻撃力の1500%の物理ダメージを与える",
+              "勇气风环每命中目标10次（命中多个目标计数1次），触发风力大回环，对自身周围5米内敌方目标造成1500%攻击力物理伤害",
+              "勇氣風環每命中目標10次（命中多個目標計數1次），觸發風力大回環，對自身周圍5公尺內敵方目標造成1500%攻擊力物理傷害"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3054150",
+        "uid": "3054150",
+        "category": "factors",
+        "sourceLabel": "uid:3054150",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "physicalMagicEnhancement",
+          "seasonDamage",
+          "skillMultiplier",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "dealing Attack DMG equal to 800% of ATK to the target | akan memicu Holylight Cyclone yang mengakibatkan PDMG sebesar 800% ATK pada musuh yang ditargetkan | DMG 800% ของ ATK ใส่ศัตรู Dreamscape DMG ของ Aura Slash + Vanguard Pursuit melancarkan 2 Sword Qi tambahan",
+        "sampleTexts": [
+          "dealing Attack DMG equal to 800% of ATK to the target",
+          "akan memicu Holylight Cyclone yang mengakibatkan PDMG sebesar 800% ATK pada musuh yang ditargetkan",
+          "DMG 800% ของ ATK ใส่ศัตรู Dreamscape DMG ของ Aura Slash + Vanguard Pursuit melancarkan 2 Sword Qi tambahan",
+          "causando Dano de Ataque igual a 800% do ATQ ao alvo",
+          "800%"
+        ],
+        "samples": [
+          {
+            "value": 800,
+            "unit": "percent",
+            "rawTexts": [
+              "800 %",
+              "800%"
+            ],
+            "sourceTexts": [
+              "akan memicu Holylight Cyclone yang mengakibatkan PDMG sebesar 800% ATK pada musuh yang ditargetkan",
+              "causando Dano de Ataque igual a 800% do ATQ ao alvo",
+              "dealing Attack DMG equal to 800% of ATK to the target",
+              "DMG 800% ของ ATK ใส่ศัตรู Dreamscape DMG ของ Aura Slash + Vanguard Pursuit melancarkan 2 Sword Qi tambahan",
+              "적군 목표에게 공격력 800%만큼의 물리 대미지를 줍니다",
+              "ヴァンガードラッシュの使用5回ごとにサーキュラースラッシュを発動し、エネミー対象に攻撃力の800%の物理ダメージを与える",
+              "每施放5次先鋒追擊觸發聖光環形斬，對敵方目標造成800%攻擊力物理傷害",
+              "每施放5次先锋追击触发圣光环形斩，对敌方目标造成800%攻击力物理伤害"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3055040",
+        "uid": "3055040",
+        "category": "factors",
+        "sourceLabel": "uid:3055040",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "Basic Attack Dream DMG + 砂岩之握充能次数+1 | Basic Attack Dream DMG + Sandgrip charge count +1 | Sandgrip charge count +1",
+        "sampleTexts": [
+          "Basic Attack Dream DMG + 砂岩之握充能次数+1",
+          "Basic Attack Dream DMG + Sandgrip charge count +1",
+          "Sandgrip charge count +1",
+          "Nombre de charges de Prise sableuse +1",
+          "Traum-SCH von Standardangriff + Cargas de Agarre Arenoso +1"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "Basic Attack Dream DMG + Sandgrip charge count +1",
+              "Basic Attack Dream DMG + 砂岩之握充能次数+1",
+              "dégâts oniriques de l'attaque de base + Aufladungen von Sandgriff +1",
+              "Nombre de charges de Prise sableuse +1",
+              "Sandgrip charge count +1",
+              "Traum-SCH von Standardangriff + Cargas de Agarre Arenoso +1",
+              "普通攻击梦境伤害+ 砂岩之握充能次數+1",
+              "普通攻擊夢境傷害+ 砂岩握のチャージ回数+1"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:124160102",
+        "uid": "124160102",
+        "category": "skills",
+        "sourceLabel": "Condemn",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "there is a 30% fixed chance for Basic Attacks to evolve into Condemn | ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack... | há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+        "sampleTexts": [
+          "there is a 30% fixed chance for Basic Attacks to evolve into Condemn",
+          "ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack...",
+          "há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+          "il y a 30 % de chances fixes pour que les attaques de base évoluent en Condamnation",
+          "30%"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+              "il y a 30 % de chances fixes pour que les attaques de base évoluent en Condamnation",
+              "there is a 30% fixed chance for Basic Attacks to evolve into Condemn",
+              "ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack menghasilkan skill turunan Condemn",
+              "라이트 포스를 소모하는 스킬 시전 시 30%의 고정 확률로 일반 공격이 단죄로 파생됩니다",
+              "光源消費スキルの発動時、30%の固定確率で通常攻撃がパニッシュメントに派生する",
+              "消耗光明能量的技能施放时有30%固定几率使普通攻击派生为断罪",
+              "消耗光明能量的技能施放時有30%固定機率使普通攻擊派生為斷罪"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:154",
+        "uid": "154",
+        "category": "skills",
+        "sourceLabel": "Condemn",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "there is a 30% fixed chance for Basic Attacks to evolve into Condemn | ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack... | há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+        "sampleTexts": [
+          "there is a 30% fixed chance for Basic Attacks to evolve into Condemn",
+          "ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack...",
+          "há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+          "il y a 30 % de chances fixes pour que les attaques de base évoluent en Condamnation",
+          "30%"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+              "il y a 30 % de chances fixes pour que les attaques de base évoluent en Condamnation",
+              "there is a 30% fixed chance for Basic Attacks to evolve into Condemn",
+              "ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack menghasilkan skill turunan Condemn",
+              "라이트 포스를 소모하는 스킬 시전 시 30%의 고정 확률로 일반 공격이 단죄로 파생됩니다",
+              "光源消費スキルの発動時、30%の固定確率で通常攻撃がパニッシュメントに派生する",
+              "消耗光明能量的技能施放时有30%固定几率使普通攻击派生为断罪",
+              "消耗光明能量的技能施放時有30%固定機率使普通攻擊派生為斷罪"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1201",
+        "uid": "1201",
+        "category": "talents",
+        "sourceLabel": "Condemn",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "there is a 30% fixed chance for Basic Attacks to evolve into Condemn | ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack... | há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+        "sampleTexts": [
+          "there is a 30% fixed chance for Basic Attacks to evolve into Condemn",
+          "ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack...",
+          "há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+          "il y a 30 % de chances fixes pour que les attaques de base évoluent en Condamnation",
+          "30%"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "há 30% de chance fixa de Ataques Básicos evoluírem para Condenar",
+              "il y a 30 % de chances fixes pour que les attaques de base évoluent en Condamnation",
+              "there is a 30% fixed chance for Basic Attacks to evolve into Condemn",
+              "ใช้สกิลของ Light Energy เมื่อร่ายมีโอกาสคงที่ 30% ทำให้โจมตีทั่วไปแยกย่อยเป็น Judgement Melancarkan skill yang menggunakan Light Energy berpeluang tetap 30% membuat Normal Attack menghasilkan skill turunan Condemn",
+              "라이트 포스를 소모하는 스킬 시전 시 30%의 고정 확률로 일반 공격이 단죄로 파생됩니다",
+              "光源消費スキルの発動時、30%の固定確率で通常攻撃がパニッシュメントに派生する",
+              "消耗光明能量的技能施放时有30%固定几率使普通攻击派生为断罪",
+              "消耗光明能量的技能施放時有30%固定機率使普通攻擊派生為斷罪"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "elemental-wording": [
+      {
+        "key": "factors:3052140",
+        "uid": "3052140",
+        "category": "factors",
+        "sourceLabel": "uid:3052140",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:haste-or-attack-speed:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "Piercing Ice Lance's projectile speed is reduced by 80% | La vitesse du projectile de Lance de glace perforante diminue de 80 % | A velocidade do projétil da Lança de Gelo Perfurante é reduzida em 80%",
+        "sampleTexts": [
+          "Piercing Ice Lance's projectile speed is reduced by 80%",
+          "La vitesse du projectile de Lance de glace perforante diminue de 80 %",
+          "A velocidade do projétil da Lança de Gelo Perfurante é reduzida em 80%",
+          "La velocidad del proyectil de Lanza Gélida Perforante se reduce en un 80 %",
+          "Die Projektilgeschwindigkeit von Durchdringende Eislanze wird um 80 % reduziert"
+        ],
+        "samples": [
+          {
+            "value": 80,
+            "unit": "percent",
+            "rawTexts": [
+              "80 %",
+              "80%"
+            ],
+            "sourceTexts": [
+              "A velocidade do projétil da Lança de Gelo Perfurante é reduzida em 80%",
+              "Die Projektilgeschwindigkeit von Durchdringende Eislanze wird um 80 % reduziert",
+              "La velocidad del proyectil de Lanza Gélida Perforante se reduce en un 80 %",
+              "La vitesse du projectile de Lance de glace perforante diminue de 80 %",
+              "Piercing Ice Lance's projectile speed is reduced by 80%",
+              "피어싱 아이스 스피어 비행 속도가 80% 감소하며"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:112590101",
+        "uid": "112590101",
+        "category": "skills",
+        "sourceLabel": "Frost Comet",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "there is a fixed 21% chance to summon Frost Comet | เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice | berpeluang tetap 21% memanggil Frost Comet",
+        "sampleTexts": [
+          "there is a fixed 21% chance to summon Frost Comet",
+          "เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice",
+          "berpeluang tetap 21% memanggil Frost Comet",
+          "há uma chance fixa de 21% de invocar um Cometa Gélido",
+          "21%"
+        ],
+        "samples": [
+          {
+            "value": 21,
+            "unit": "percent",
+            "rawTexts": [
+              "21 %",
+              "21%"
+            ],
+            "sourceTexts": [
+              "21%의 고정 확률로 프로스트 코멧을 소환합니다",
+              "berpeluang tetap 21% memanggil Frost Comet",
+              "há uma chance fixa de 21% de invocar um Cometa Gélido",
+              "there is a fixed 21% chance to summon Frost Comet",
+              "เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice",
+              "消耗玄冰的冰霜之矛造成伤害时有21%固定几率召唤冰霜彗星",
+              "消耗玄冰的冰霜之矛造成傷害時有21%固定機率召喚冰霜彗星",
+              "玄氷を消費して発動したフロストファングがダメージを与えると、21%の固定確率で氷慧を召喚する"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:39",
+        "uid": "39",
+        "category": "skills",
+        "sourceLabel": "Frost Comet",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "there is a fixed 21% chance to summon Frost Comet | เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice | berpeluang tetap 21% memanggil Frost Comet",
+        "sampleTexts": [
+          "there is a fixed 21% chance to summon Frost Comet",
+          "เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice",
+          "berpeluang tetap 21% memanggil Frost Comet",
+          "há uma chance fixa de 21% de invocar um Cometa Gélido",
+          "21%"
+        ],
+        "samples": [
+          {
+            "value": 21,
+            "unit": "percent",
+            "rawTexts": [
+              "21 %",
+              "21%"
+            ],
+            "sourceTexts": [
+              "21%의 고정 확률로 프로스트 코멧을 소환합니다",
+              "berpeluang tetap 21% memanggil Frost Comet",
+              "há uma chance fixa de 21% de invocar um Cometa Gélido",
+              "there is a fixed 21% chance to summon Frost Comet",
+              "เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice",
+              "消耗玄冰的冰霜之矛造成伤害时有21%固定几率召唤冰霜彗星",
+              "消耗玄冰的冰霜之矛造成傷害時有21%固定機率召喚冰霜彗星",
+              "玄氷を消費して発動したフロストファングがダメージを与えると、21%の固定確率で氷慧を召喚する"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:215",
+        "uid": "215",
+        "category": "talents",
+        "sourceLabel": "Frost Comet",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "there is a fixed 21% chance to summon Frost Comet | เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice | berpeluang tetap 21% memanggil Frost Comet",
+        "sampleTexts": [
+          "there is a fixed 21% chance to summon Frost Comet",
+          "เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice",
+          "berpeluang tetap 21% memanggil Frost Comet",
+          "há uma chance fixa de 21% de invocar um Cometa Gélido",
+          "21%"
+        ],
+        "samples": [
+          {
+            "value": 21,
+            "unit": "percent",
+            "rawTexts": [
+              "21 %",
+              "21%"
+            ],
+            "sourceTexts": [
+              "21%의 고정 확률로 프로스트 코멧을 소환합니다",
+              "berpeluang tetap 21% memanggil Frost Comet",
+              "há uma chance fixa de 21% de invocar um Cometa Gélido",
+              "there is a fixed 21% chance to summon Frost Comet",
+              "เมื่อ Frost Lance ที่ใช้ Dark Ice สร้าง DMG จะมีโอกาส 21% ที่จะเรียก Frost Comet ออกมา Saat mengakibatkan DMG dengan Frost Spear yang menggunakan Black Ice",
+              "消耗玄冰的冰霜之矛造成伤害时有21%固定几率召唤冰霜彗星",
+              "消耗玄冰的冰霜之矛造成傷害時有21%固定機率召喚冰霜彗星",
+              "玄氷を消費して発動したフロストファングがダメージを与えると、21%の固定確率で氷慧を召喚する"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "seasonal-wording": [
+      {
+        "key": "factors:3050050",
+        "uid": "3050050",
+        "category": "factors",
+        "sourceLabel": "uid:3050050",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "Ultimate Dream DMG + 无穷雷霆之力充能次数+1，但是持续时间-4秒 | Ultimate Dream DMG + Volt Surge charge count +1 | Volt Surge charge count +1",
+        "sampleTexts": [
+          "Ultimate Dream DMG + 无穷雷霆之力充能次数+1，但是持续时间-4秒",
+          "Ultimate Dream DMG + Volt Surge charge count +1",
+          "Volt Surge charge count +1",
+          "Nombre de charges de Surtension +1",
+          "Traum-SCH von Ultima + Descarga de Voltios: Cargas +1"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "dégâts oniriques de l'Ultime + Spannungsspitze: Anzahl der Aufladungen +1",
+              "Nombre de charges de Surtension +1",
+              "Traum-SCH von Ultima + Descarga de Voltios: Cargas +1",
+              "Ultimate Dream DMG + Volt Surge charge count +1",
+              "Ultimate Dream DMG + 无穷雷霆之力充能次数+1，但是持续时间-4秒",
+              "Volt Surge charge count +1",
+              "終極大招夢境傷害+ 無窮雷陣のチャージ回数+1、ただし、持続時間-4秒",
+              "终极大招梦境伤害+ 無窮雷霆之力充能次數+1，但是持續時間-4秒"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3051110",
+        "uid": "3051110",
+        "category": "factors",
+        "sourceLabel": "uid:3051110",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "Dream DMG of Sharp Impact and Typhoon: Sharp Impact + 锐利冲击每获得5%充能（该时间受到冷却加速影响） | Dream DMG of Sharp Impact and Typhoon: Sharp Impact + Sharp Impact gains 5% charge every | Sharp Impact gains 5% charge every",
+        "sampleTexts": [
+          "Dream DMG of Sharp Impact and Typhoon: Sharp Impact + 锐利冲击每获得5%充能（该时间受到冷却加速影响）",
+          "Dream DMG of Sharp Impact and Typhoon: Sharp Impact + Sharp Impact gains 5% charge every",
+          "Sharp Impact gains 5% charge every",
+          "DÑO onírico de Impacto Afilado y Tifón: Impacto Afilado + Impacto Afiado ganha 5% de carga a cada",
+          "Dano Onírico de Impacto Afiado e Tufão: Impacto Afiado + Sharp Impact จะได้รับ Charge 5% ทุกๆ"
+        ],
+        "samples": [
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "Dano Onírico de Impacto Afiado e Tufão: Impacto Afiado + Sharp Impact จะได้รับ Charge 5% ทุกๆ",
+              "DÑO onírico de Impacto Afilado y Tifón: Impacto Afilado + Impacto Afiado ganha 5% de carga a cada",
+              "Dream DMG of Sharp Impact and Typhoon: Sharp Impact + Sharp Impact gains 5% charge every",
+              "Dream DMG of Sharp Impact and Typhoon: Sharp Impact + 锐利冲击每获得5%充能（该时间受到冷却加速影响）",
+              "Sharp Impact gains 5% charge every",
+              "銳利衝擊、風神·銳利衝擊夢境傷害+ 鋭利衝がごとに5%のチャージを獲得する（この時間はリキャスト短縮の影響を受ける）",
+              "鋭利衝、風神・鋭利衝の夢界ダメージ+ 예리한 찌르기 마다 충전 5%를 획득합니다",
+              "锐利冲击、风神·锐利冲击梦境伤害+ 銳利衝擊每獲得5%充能（該時間受到冷卻加速影響）"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3054100",
+        "uid": "3054100",
+        "category": "factors",
+        "sourceLabel": "uid:3054100",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "Radiance Dream DMG + 光明决心充能次数+1 | Radiance Dream DMG + Radiance charge count + 1 | Radiance charge count + 1",
+        "sampleTexts": [
+          "Radiance Dream DMG + 光明决心充能次数+1",
+          "Radiance Dream DMG + Radiance charge count + 1",
+          "Radiance charge count + 1",
+          "Nombre de charges de Radiance +1",
+          "DÑO onírico de Resplandor + Cargas de Radiância + 1"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "DÑO onírico de Resplandor + Cargas de Radiância + 1",
+              "Nombre de charges de Radiance +1",
+              "Radiance charge count + 1",
+              "Radiance Dream DMG + Radiance charge count + 1",
+              "Radiance Dream DMG + 光明决心充能次数+1",
+              "セイクリッドオースの夢界ダメージ+ 결의의 빛 충전 횟수가 1 증가합니다",
+              "光明决心梦境伤害+ 光明決心充能次數+1",
+              "光明決心夢境傷害+ セイクリッドオースのチャージ回数+1"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3053090",
+        "uid": "3053090",
+        "category": "factors",
+        "sourceLabel": "uid:3053090",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:haste-or-attack-speed:stat-conversion-model-required",
+          "component:haste-or-attack-speed:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "Each Haste increases Radiance Barrage hit count by 1 | Radiance Barrage Dream DMG increases by 每急速使光能轰炸攻击次数+1 | Radiance Barrage Dream DMG increases by Each Haste increases Radiance Barrage hit count by 1",
+        "sampleTexts": [
+          "Each Haste increases Radiance Barrage hit count by 1",
+          "Radiance Barrage Dream DMG increases by 每急速使光能轰炸攻击次数+1",
+          "Radiance Barrage Dream DMG increases by Each Haste increases Radiance Barrage hit count by 1",
+          "o número de acertos da Rajada de Radiância aumenta em 1",
+          "Cada de presteza aumenta el número de golpes de Aluvión de Resplandor en 1"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "Cada de presteza aumenta el número de golpes de Aluvión de Resplandor en 1",
+              "Chaque tranche de de célérité augmente le nombre de coups de Déluge de radiance de 1",
+              "Each Haste increases Radiance Barrage hit count by 1",
+              "les dégâts oniriques de Déluge de radiance sont augmentés de Jeweils Tempo erhöhen die Trefferanzahl von Strahlungskanonade um 1",
+              "o número de acertos da Rajada de Radiância aumenta em 1",
+              "Radiance Barrage Dream DMG increases by Each Haste increases Radiance Barrage hit count by 1",
+              "Radiance Barrage Dream DMG increases by 每急速使光能轰炸攻击次数+1",
+              "エナジーショットの夢界ダメージ+ 속공마다 라이트 봄버 공격 횟수가 1 증가합니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "generic-damage-wording": [
+      {
+        "key": "factors:3050150",
+        "uid": "3050150",
+        "category": "factors",
+        "sourceLabel": "uid:3050150",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:cooldown-or-resource:timing-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "ระหว่างที่ Stormflash ทำงาน ทุกครั้งที่ใช้ Thundercut จะปล่อย Thunderstrike ใส่ศัตรูในระยะ 5 เมตร สูงสุด 6 ตัว พร้อมได้รับ Seed of Charge 3 ชิ้น Dreamscape DMG ของ Thunderstrike +... | each cast of Thundercut also casts Thunderstrike on up to 6 enemies within a 5m radius and grants 3 Charge Seeds | wirkt jedes Wirken von Donnerschnitter auch Donnerschlag auf bis zu 6 Gegner innerhalb von 5 m und gewährt 3 Ladungssaaten",
+        "sampleTexts": [
+          "ระหว่างที่ Stormflash ทำงาน ทุกครั้งที่ใช้ Thundercut จะปล่อย Thunderstrike ใส่ศัตรูในระยะ 5 เมตร สูงสุด 6 ตัว พร้อมได้รับ Seed of Charge 3 ชิ้น Dreamscape DMG ของ Thunderstrike +...",
+          "each cast of Thundercut also casts Thunderstrike on up to 6 enemies within a 5m radius and grants 3 Charge Seeds",
+          "wirkt jedes Wirken von Donnerschnitter auch Donnerschlag auf bis zu 6 Gegner innerhalb von 5 m und gewährt 3 Ladungssaaten",
+          "chaque utilisation de Coup de tonnerre lance également Frappe-foudre sur un maximum de 6 ennemis dans un rayon de 5 m et confère 3 Graines de charge",
+          "setiap kali melancarkan Thunderbolt Strike akan melancarkan Thunderstrike terhadap sebanyak-banyaknya 6 musuh dalam area berjarak 5 meter dari diri sendiri dan mendapat 3 Charge S..."
+        ],
+        "samples": [
+          {
+            "value": 3,
+            "unit": "flat",
+            "rawTexts": [
+              "+3",
+              "3"
+            ],
+            "sourceTexts": [
+              "chaque utilisation de Coup de tonnerre lance également Frappe-foudre sur un maximum de 6 ennemis dans un rayon de 5 m et confère 3 Graines de charge",
+              "each cast of Thundercut also casts Thunderstrike on up to 6 enemies within a 5m radius and grants 3 Charge Seeds",
+              "setiap kali melancarkan Thunderbolt Strike akan melancarkan Thunderstrike terhadap sebanyak-banyaknya 6 musuh dalam area berjarak 5 meter dari diri sendiri dan mendapat 3 Charge Seed secara bersamaan",
+              "wirkt jedes Wirken von Donnerschnitter auch Donnerschlag auf bis zu 6 Gegner innerhalb von 5 m und gewährt 3 Ladungssaaten",
+              "ระหว่างที่ Stormflash ทำงาน ทุกครั้งที่ใช้ Thundercut จะปล่อย Thunderstrike ใส่ศัตรูในระยะ 5 เมตร สูงสุด 6 ตัว พร้อมได้รับ Seed of Charge 3 ชิ้น Dreamscape DMG ของ Thunderstrike + Selama Thousand Thunder Flash berlangsung",
+              "동시에 전하 씨앗 3개를 획득합니다",
+              "千雷閃影之意持續期間每次施放霹靂連斬向自身5公尺範圍內最多6個敵方目標施放雷擊，同時獲得3枚電荷之種",
+              "千雷闪影之意持续期间每次施放霹雳连斩向自身5米范围内最多6个敌方目标施放雷击，同时获得3枚电荷之种"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3057140",
+        "uid": "3057140",
+        "category": "factors",
+        "sourceLabel": "uid:3057140",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "ลำโพงจะปล่อยแรงสั่นไฟทุกๆ 3 วินาที ระยะแรงสั่นไฟเพิ่มขึ้น+300% DMG แรงสั่นไฟในฝันเพิ่มขึ้น+ | Flame Shock Range +300% | Area dari Flame Shock +300%",
+        "sampleTexts": [
+          "ลำโพงจะปล่อยแรงสั่นไฟทุกๆ 3 วินาที ระยะแรงสั่นไฟเพิ่มขึ้น+300% DMG แรงสั่นไฟในฝันเพิ่มขึ้น+",
+          "Flame Shock Range +300%",
+          "Area dari Flame Shock +300%",
+          "Alcance do Choque de Chamas +300%",
+          "300%"
+        ],
+        "samples": [
+          {
+            "value": 300,
+            "unit": "percent",
+            "rawTexts": [
+              "+300 %",
+              "+300%",
+              "300%"
+            ],
+            "sourceTexts": [
+              "Alcance do Choque de Chamas +300%",
+              "Area dari Flame Shock +300%",
+              "Flame Shock Range +300%",
+              "ลำโพงจะปล่อยแรงสั่นไฟทุกๆ 3 วินาที ระยะแรงสั่นไฟเพิ่มขึ้น+300% DMG แรงสั่นไฟในฝันเพิ่มขึ้น+",
+              "플레임 쇼크 범위가 300% 증가합니다",
+              "フレイムショックの範囲+300%",
+              "火焰震击范围+300%",
+              "火焰震擊範圍+300%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

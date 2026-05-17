@@ -24,7 +24,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 0,
     "Source": "RecountTable",
-    "SourceOffset": 794206637
+    "SourceOffset": 794150322
   },
   "2": {
     "Id": 2,
@@ -50,7 +50,7 @@
     ],
     "DamageListOffset": 10,
     "Source": "RecountTable",
-    "SourceOffset": 794206649
+    "SourceOffset": 794150334
   },
   "3": {
     "Id": 3,
@@ -99,14 +99,14 @@
       "design": "蒂娜ATK_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq_skill_atk",
-    "LinkedBaseSkillSourceOffset": 605384483,
+    "LinkedBaseSkillSourceOffset": 604704887,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq_skill_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 28,
     "Source": "RecountTable",
-    "SourceOffset": 794206661
+    "SourceOffset": 794150346
   },
   "4": {
     "Id": 4,
@@ -139,7 +139,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 102,
     "Source": "RecountTable",
-    "SourceOffset": 794206673
+    "SourceOffset": 794150358
   },
   "5": {
     "Id": 5,
@@ -180,7 +180,7 @@
       "design": "蒂娜特攻SKILL_02"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_tg02",
-    "LinkedBaseSkillSourceOffset": 605388785,
+    "LinkedBaseSkillSourceOffset": 604709189,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_tg02",
@@ -191,7 +191,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 160,
     "Source": "RecountTable",
-    "SourceOffset": 794206685
+    "SourceOffset": 794150370
   },
   "6": {
     "Id": 6,
@@ -219,7 +219,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 170,
     "Source": "RecountTable",
-    "SourceOffset": 794206697
+    "SourceOffset": 794150382
   },
   "7": {
     "Id": 7,
@@ -261,14 +261,14 @@
       "design": "蒂娜可选SKILL_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx01",
-    "LinkedBaseSkillSourceOffset": 605389024,
+    "LinkedBaseSkillSourceOffset": 604709428,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 188,
     "Source": "RecountTable",
-    "SourceOffset": 794206709
+    "SourceOffset": 794150394
   },
   "8": {
     "Id": 8,
@@ -296,7 +296,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 206,
     "Source": "RecountTable",
-    "SourceOffset": 794206721
+    "SourceOffset": 794150406
   },
   "9": {
     "Id": 9,
@@ -324,7 +324,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 224,
     "Source": "RecountTable",
-    "SourceOffset": 794206733
+    "SourceOffset": 794150418
   },
   "10": {
     "Id": 10,
@@ -366,14 +366,14 @@
       "design": "蒂娜可选SKILL_06"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx06",
-    "LinkedBaseSkillSourceOffset": 605390219,
+    "LinkedBaseSkillSourceOffset": 604710623,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx06",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 242,
     "Source": "RecountTable",
-    "SourceOffset": 794206745
+    "SourceOffset": 794150430
   },
   "11": {
     "Id": 11,
@@ -416,14 +416,14 @@
       "design": "蒂娜可选SKILL_05"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605389980,
+    "LinkedBaseSkillSourceOffset": 604710384,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx05",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 260,
     "Source": "RecountTable",
-    "SourceOffset": 794206757
+    "SourceOffset": 794150442
   },
   "12": {
     "Id": 12,
@@ -467,7 +467,7 @@
       "design": "蒂娜可选SKILL_07"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx07",
-    "LinkedBaseSkillSourceOffset": 605391414,
+    "LinkedBaseSkillSourceOffset": 604711818,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx07",
@@ -478,7 +478,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 286,
     "Source": "RecountTable",
-    "SourceOffset": 794206769
+    "SourceOffset": 794150454
   },
   "13": {
     "Id": 13,
@@ -521,14 +521,14 @@
       "design": "蒂娜特攻SKILL_08"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605391653,
+    "LinkedBaseSkillSourceOffset": 604712057,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_kx08",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 320,
     "Source": "RecountTable",
-    "SourceOffset": 794206781
+    "SourceOffset": 794150466
   },
   "14": {
     "Id": 14,
@@ -556,7 +556,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 346,
     "Source": "RecountTable",
-    "SourceOffset": 794206793
+    "SourceOffset": 794150478
   },
   "15": {
     "Id": 15,
@@ -597,7 +597,7 @@
       "id": "Dragon Blast"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_tf03",
-    "LinkedBaseSkillSourceOffset": 605392609,
+    "LinkedBaseSkillSourceOffset": 604713013,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_tf03",
@@ -608,7 +608,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 364,
     "Source": "RecountTable",
-    "SourceOffset": 794206805
+    "SourceOffset": 794150490
   },
   "16": {
     "Id": 16,
@@ -650,7 +650,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663306363,
+    "LinkedTalentSourceOffset": 662881984,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -672,7 +672,7 @@
       "design": "蒂娜神影螺旋"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_cq/weapon_cq-01_tf02",
-    "LinkedBaseSkillSourceOffset": 605392370,
+    "LinkedBaseSkillSourceOffset": 604712774,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_windspiral",
@@ -685,7 +685,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 382,
     "Source": "RecountTable",
-    "SourceOffset": 794206817
+    "SourceOffset": 794150502
   },
   "17": {
     "Id": 17,
@@ -717,7 +717,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 400,
     "Source": "RecountTable",
-    "SourceOffset": 794206829
+    "SourceOffset": 794150514
   },
   "18": {
     "Id": 18,
@@ -759,7 +759,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_backhitpro",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663306183,
+    "LinkedTalentSourceOffset": 662881804,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -771,7 +771,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 418,
     "Source": "RecountTable",
-    "SourceOffset": 794206841
+    "SourceOffset": 794150526
   },
   "19": {
     "Id": 19,
@@ -812,7 +812,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_spearrush",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663306483,
+    "LinkedTalentSourceOffset": 662882104,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -820,7 +820,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 436,
     "Source": "RecountTable",
-    "SourceOffset": 794206853
+    "SourceOffset": 794150538
   },
   "20": {
     "Id": 20,
@@ -862,14 +862,14 @@
       "design": "飓风野猪-龙卷风-英雄本"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605977203,
+    "LinkedBaseSkillSourceOffset": 605297607,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_cq/weapon_cq_skill_01",
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 446,
     "Source": "RecountTable",
-    "SourceOffset": 794206865
+    "SourceOffset": 794150550
   },
   "21": {
     "Id": 21,
@@ -910,7 +910,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_4/changqiang440",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663307863,
+    "LinkedTalentSourceOffset": 662883484,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -918,7 +918,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 464,
     "Source": "RecountTable",
-    "SourceOffset": 794206877
+    "SourceOffset": 794150562
   },
   "22": {
     "Id": 22,
@@ -943,7 +943,7 @@
     ],
     "DamageListOffset": 474,
     "Source": "RecountTable",
-    "SourceOffset": 794206889
+    "SourceOffset": 794150574
   },
   "23": {
     "Id": 23,
@@ -984,7 +984,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_teardelay",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663305943,
+    "LinkedTalentSourceOffset": 662881564,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -992,7 +992,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 484,
     "Source": "RecountTable",
-    "SourceOffset": 794206901
+    "SourceOffset": 794150586
   },
   "24": {
     "Id": 24,
@@ -1019,7 +1019,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 494,
     "Source": "RecountTable",
-    "SourceOffset": 794206913
+    "SourceOffset": 794150598
   },
   "25": {
     "Id": 25,
@@ -1045,7 +1045,7 @@
     ],
     "DamageListOffset": 504,
     "Source": "RecountTable",
-    "SourceOffset": 794206925
+    "SourceOffset": 794150610
   },
   "26": {
     "Id": 26,
@@ -1090,14 +1090,14 @@
       "design": "博伊斯ATK_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_skill_atk",
-    "LinkedBaseSkillSourceOffset": 605371577,
+    "LinkedBaseSkillSourceOffset": 604691981,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_skill_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 522,
     "Source": "RecountTable",
-    "SourceOffset": 794206937
+    "SourceOffset": 794150622
   },
   "27": {
     "Id": 27,
@@ -1138,7 +1138,7 @@
       "design": "博伊斯SPECIAL_SKILL_B"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_tg02",
-    "LinkedBaseSkillSourceOffset": 605377552,
+    "LinkedBaseSkillSourceOffset": 604697956,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_tg02",
@@ -1150,7 +1150,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 564,
     "Source": "RecountTable",
-    "SourceOffset": 794206949
+    "SourceOffset": 794150634
   },
   "28": {
     "Id": 28,
@@ -1191,7 +1191,7 @@
       "design": "博伊斯SPECIAL_SKILL_A"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_tg01",
-    "LinkedBaseSkillSourceOffset": 605377313,
+    "LinkedBaseSkillSourceOffset": 604697717,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_tg01",
@@ -1202,7 +1202,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 574,
     "Source": "RecountTable",
-    "SourceOffset": 794206961
+    "SourceOffset": 794150646
   },
   "29": {
     "Id": 29,
@@ -1244,14 +1244,14 @@
       "design": "博伊斯UTR_SKILL"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_ult",
-    "LinkedBaseSkillSourceOffset": 605378986,
+    "LinkedBaseSkillSourceOffset": 604699390,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_ult",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 584,
     "Source": "RecountTable",
-    "SourceOffset": 794206973
+    "SourceOffset": 794150658
   },
   "30": {
     "Id": 30,
@@ -1298,14 +1298,14 @@
       "design": "冰陨石"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx07",
-    "LinkedBaseSkillSourceOffset": 605376835,
+    "LinkedBaseSkillSourceOffset": 604697239,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx07",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 602,
     "Source": "RecountTable",
-    "SourceOffset": 794206985
+    "SourceOffset": 794150670
   },
   "31": {
     "Id": 31,
@@ -1347,14 +1347,14 @@
       "design": "博伊斯SKILL_02"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605373250,
+    "LinkedBaseSkillSourceOffset": 604693654,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx05",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 660,
     "Source": "RecountTable",
-    "SourceOffset": 794206997
+    "SourceOffset": 794150682
   },
   "32": {
     "Id": 32,
@@ -1396,14 +1396,14 @@
       "design": "冰风暴"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx03",
-    "LinkedBaseSkillSourceOffset": 605378030,
+    "LinkedBaseSkillSourceOffset": 604698434,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx03",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 678,
     "Source": "RecountTable",
-    "SourceOffset": 794207009
+    "SourceOffset": 794150694
   },
   "33": {
     "Id": 33,
@@ -1445,12 +1445,12 @@
       "design": "博伊斯SKILL_01"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605373011,
+    "LinkedBaseSkillSourceOffset": 604693415,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "DamageListOffset": 696,
     "Source": "RecountTable",
-    "SourceOffset": 794207021
+    "SourceOffset": 794150706
   },
   "34": {
     "Id": 34,
@@ -1492,14 +1492,14 @@
       "design": "冰风"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605377074,
+    "LinkedBaseSkillSourceOffset": 604697478,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx08",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 714,
     "Source": "RecountTable",
-    "SourceOffset": 794207033
+    "SourceOffset": 794150718
   },
   "35": {
     "Id": 35,
@@ -1537,14 +1537,14 @@
       "id": "Ice Infuse"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx01",
-    "LinkedBaseSkillSourceOffset": 605377791,
+    "LinkedBaseSkillSourceOffset": 604698195,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794207045
+    "SourceOffset": 794150730
   },
   "36": {
     "Id": 36,
@@ -1586,12 +1586,12 @@
       "design": "水龙卷"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605378508,
+    "LinkedBaseSkillSourceOffset": 604698912,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "DamageListOffset": 734,
     "Source": "RecountTable",
-    "SourceOffset": 794207057
+    "SourceOffset": 794150742
   },
   "37": {
     "Id": 37,
@@ -1633,14 +1633,14 @@
       "design": "冰箱"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx02",
-    "LinkedBaseSkillSourceOffset": 605378269,
+    "LinkedBaseSkillSourceOffset": 604698673,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_mz/weapon_mz-01_kx02",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 752,
     "Source": "RecountTable",
-    "SourceOffset": 794207069
+    "SourceOffset": 794150754
   },
   "38": {
     "Id": 38,
@@ -1665,7 +1665,7 @@
     ],
     "DamageListOffset": 770,
     "Source": "RecountTable",
-    "SourceOffset": 794207081
+    "SourceOffset": 794150766
   },
   "39": {
     "Id": 39,
@@ -1706,7 +1706,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663298323,
+    "LinkedTalentSourceOffset": 662873944,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -1714,7 +1714,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 780,
     "Source": "RecountTable",
-    "SourceOffset": 794207093
+    "SourceOffset": 794150778
   },
   "40": {
     "Id": 40,
@@ -1755,7 +1755,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663297963,
+    "LinkedTalentSourceOffset": 662873584,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -1763,7 +1763,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 790,
     "Source": "RecountTable",
-    "SourceOffset": 794207105
+    "SourceOffset": 794150790
   },
   "41": {
     "Id": 41,
@@ -1804,7 +1804,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecharge",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663298923,
+    "LinkedTalentSourceOffset": 662874544,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -1826,14 +1826,14 @@
       "design": "【清火】冰龙冰霜冲击"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605652163,
+    "LinkedBaseSkillSourceOffset": 604972567,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "IconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecharge",
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 800,
     "Source": "RecountTable",
-    "SourceOffset": 794207117
+    "SourceOffset": 794150802
   },
   "42": {
     "Id": 42,
@@ -1874,7 +1874,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icepulse",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663299403,
+    "LinkedTalentSourceOffset": 662875024,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -1882,7 +1882,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 810,
     "Source": "RecountTable",
-    "SourceOffset": 794207129
+    "SourceOffset": 794150814
   },
   "43": {
     "Id": 43,
@@ -1910,7 +1910,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 820,
     "Source": "RecountTable",
-    "SourceOffset": 794207141
+    "SourceOffset": 794150826
   },
   "44": {
     "Id": 44,
@@ -1942,7 +1942,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 838,
     "Source": "RecountTable",
-    "SourceOffset": 794207153
+    "SourceOffset": 794150838
   },
   "45": {
     "Id": 45,
@@ -1967,7 +1967,7 @@
     ],
     "DamageListOffset": 856,
     "Source": "RecountTable",
-    "SourceOffset": 794207165
+    "SourceOffset": 794150850
   },
   "46": {
     "Id": 46,
@@ -1992,7 +1992,7 @@
     ],
     "DamageListOffset": 866,
     "Source": "RecountTable",
-    "SourceOffset": 794207177
+    "SourceOffset": 794150862
   },
   "47": {
     "Id": 47,
@@ -2018,7 +2018,7 @@
     ],
     "DamageListOffset": 876,
     "Source": "RecountTable",
-    "SourceOffset": 794207189
+    "SourceOffset": 794150874
   },
   "48": {
     "Id": 48,
@@ -2065,12 +2065,12 @@
       "design": "奥尔维拉ATK_01"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605413163,
+    "LinkedBaseSkillSourceOffset": 604733567,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "DamageListOffset": 894,
     "Source": "RecountTable",
-    "SourceOffset": 794207201
+    "SourceOffset": 794150886
   },
   "49": {
     "Id": 49,
@@ -2116,14 +2116,14 @@
       "design": "奥尔维拉特攻SKILL_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01",
-    "LinkedBaseSkillSourceOffset": 605416270,
+    "LinkedBaseSkillSourceOffset": 604736674,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 952,
     "Source": "RecountTable",
-    "SourceOffset": 794207213
+    "SourceOffset": 794150898
   },
   "50": {
     "Id": 50,
@@ -2171,7 +2171,7 @@
       "design": "奥尔维拉特攻SKILL_02"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02",
-    "LinkedBaseSkillSourceOffset": 605416509,
+    "LinkedBaseSkillSourceOffset": 604736913,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tg02",
@@ -2182,7 +2182,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1002,
     "Source": "RecountTable",
-    "SourceOffset": 794207225
+    "SourceOffset": 794150910
   },
   "51": {
     "Id": 51,
@@ -2212,7 +2212,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1068,
     "Source": "RecountTable",
-    "SourceOffset": 794207237
+    "SourceOffset": 794150922
   },
   "52": {
     "Id": 52,
@@ -2242,7 +2242,7 @@
     ],
     "DamageListOffset": 1102,
     "Source": "RecountTable",
-    "SourceOffset": 794207249
+    "SourceOffset": 794150934
   },
   "53": {
     "Id": 53,
@@ -2283,14 +2283,14 @@
       "design": "奥尔维拉可选SKILL_02"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02",
-    "LinkedBaseSkillSourceOffset": 605416987,
+    "LinkedBaseSkillSourceOffset": 604737391,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx02",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1152,
     "Source": "RecountTable",
-    "SourceOffset": 794207261
+    "SourceOffset": 794150946
   },
   "54": {
     "Id": 54,
@@ -2331,14 +2331,14 @@
       "design": "奥尔维拉可选SKILL_03"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03",
-    "LinkedBaseSkillSourceOffset": 605417226,
+    "LinkedBaseSkillSourceOffset": 604737630,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx03",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1162,
     "Source": "RecountTable",
-    "SourceOffset": 794207273
+    "SourceOffset": 794150958
   },
   "55": {
     "Id": 55,
@@ -2380,14 +2380,14 @@
       "design": "奥尔维拉可选SKILL_04"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04",
-    "LinkedBaseSkillSourceOffset": 605417465,
+    "LinkedBaseSkillSourceOffset": 604737869,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx04",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1172,
     "Source": "RecountTable",
-    "SourceOffset": 794207285
+    "SourceOffset": 794150970
   },
   "56": {
     "Id": 56,
@@ -2413,7 +2413,7 @@
     ],
     "DamageListOffset": 1190,
     "Source": "RecountTable",
-    "SourceOffset": 794207297
+    "SourceOffset": 794150982
   },
   "57": {
     "Id": 57,
@@ -2440,7 +2440,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1208,
     "Source": "RecountTable",
-    "SourceOffset": 794207309
+    "SourceOffset": 794150994
   },
   "58": {
     "Id": 58,
@@ -2491,7 +2491,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1218,
     "Source": "RecountTable",
-    "SourceOffset": 794207321
+    "SourceOffset": 794151006
   },
   "59": {
     "Id": 59,
@@ -2514,7 +2514,7 @@
     "DamageId": [],
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794207333
+    "SourceOffset": 794151018
   },
   "60": {
     "Id": 60,
@@ -2555,14 +2555,14 @@
       "design": "奥尔维拉可选SKILL_08"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605420094,
+    "LinkedBaseSkillSourceOffset": 604740498,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx08",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1420,
     "Source": "RecountTable",
-    "SourceOffset": 794207345
+    "SourceOffset": 794151030
   },
   "61": {
     "Id": 61,
@@ -2606,14 +2606,14 @@
       "design": "奥尔维拉可选SKILL_05"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605417704,
+    "LinkedBaseSkillSourceOffset": 604738108,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1430,
     "Source": "RecountTable",
-    "SourceOffset": 794207357
+    "SourceOffset": 794151042
   },
   "62": {
     "Id": 62,
@@ -2639,7 +2639,7 @@
     ],
     "DamageListOffset": 1464,
     "Source": "RecountTable",
-    "SourceOffset": 794207369
+    "SourceOffset": 794151054
   },
   "63": {
     "Id": 63,
@@ -2672,7 +2672,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1482,
     "Source": "RecountTable",
-    "SourceOffset": 794207381
+    "SourceOffset": 794151066
   },
   "64": {
     "Id": 64,
@@ -2705,7 +2705,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1508,
     "Source": "RecountTable",
-    "SourceOffset": 794207393
+    "SourceOffset": 794151078
   },
   "65": {
     "Id": 65,
@@ -2749,7 +2749,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_1/taidao158",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663296643,
+    "LinkedTalentSourceOffset": 662872264,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -2771,7 +2771,7 @@
       "design": "奥尔维拉神罚之镰"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf01",
-    "LinkedBaseSkillSourceOffset": 605421528,
+    "LinkedBaseSkillSourceOffset": 604741932,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_1/taidao158",
@@ -2783,7 +2783,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 1526,
     "Source": "RecountTable",
-    "SourceOffset": 794207405
+    "SourceOffset": 794151090
   },
   "66": {
     "Id": 66,
@@ -2813,7 +2813,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1560,
     "Source": "RecountTable",
-    "SourceOffset": 794207417
+    "SourceOffset": 794151102
   },
   "67": {
     "Id": 67,
@@ -2843,7 +2843,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1594,
     "Source": "RecountTable",
-    "SourceOffset": 794207429
+    "SourceOffset": 794151114
   },
   "68": {
     "Id": 68,
@@ -2885,7 +2885,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_1/taidao162",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663296883,
+    "LinkedTalentSourceOffset": 662872504,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -2907,7 +2907,7 @@
       "design": "奥尔维拉缭乱兜割"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_tdl/weapon_tdl-01_tf02",
-    "LinkedBaseSkillSourceOffset": 605421767,
+    "LinkedBaseSkillSourceOffset": 604742171,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "IconPath": "ui/atlas/talent_passive_1/taidao162",
@@ -2919,7 +2919,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 1628,
     "Source": "RecountTable",
-    "SourceOffset": 794207441
+    "SourceOffset": 794151126
   },
   "69": {
     "Id": 69,
@@ -2947,7 +2947,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1646,
     "Source": "RecountTable",
-    "SourceOffset": 794207453
+    "SourceOffset": 794151138
   },
   "70": {
     "Id": 70,
@@ -2991,7 +2991,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_1/talent_skill_360105",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663294123,
+    "LinkedTalentSourceOffset": 662869744,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -3003,7 +3003,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 1664,
     "Source": "RecountTable",
-    "SourceOffset": 794207465
+    "SourceOffset": 794151150
   },
   "71": {
     "Id": 71,
@@ -3030,7 +3030,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1698,
     "Source": "RecountTable",
-    "SourceOffset": 794207477
+    "SourceOffset": 794151162
   },
   "72": {
     "Id": 72,
@@ -3057,7 +3057,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1708,
     "Source": "RecountTable",
-    "SourceOffset": 794207489
+    "SourceOffset": 794151174
   },
   "73": {
     "Id": 73,
@@ -3084,7 +3084,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1718,
     "Source": "RecountTable",
-    "SourceOffset": 794207501
+    "SourceOffset": 794151186
   },
   "74": {
     "Id": 74,
@@ -3110,7 +3110,7 @@
     ],
     "DamageListOffset": 1728,
     "Source": "RecountTable",
-    "SourceOffset": 794207513
+    "SourceOffset": 794151198
   },
   "75": {
     "Id": 75,
@@ -3152,14 +3152,14 @@
       "design": "罗特罗亚尼-弓-ATK_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_atk",
-    "LinkedBaseSkillSourceOffset": 605446623,
+    "LinkedBaseSkillSourceOffset": 604767027,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1746,
     "Source": "RecountTable",
-    "SourceOffset": 794207525
+    "SourceOffset": 794151210
   },
   "76": {
     "Id": 76,
@@ -3186,7 +3186,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1764,
     "Source": "RecountTable",
-    "SourceOffset": 794207537
+    "SourceOffset": 794151222
   },
   "77": {
     "Id": 77,
@@ -3227,7 +3227,7 @@
       "design": "罗特罗亚尼-弓-特殊攻击B"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_tg02",
-    "LinkedBaseSkillSourceOffset": 605450447,
+    "LinkedBaseSkillSourceOffset": 604770851,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_tg02",
@@ -3238,7 +3238,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1774,
     "Source": "RecountTable",
-    "SourceOffset": 794207549
+    "SourceOffset": 794151234
   },
   "78": {
     "Id": 78,
@@ -3268,7 +3268,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1784,
     "Source": "RecountTable",
-    "SourceOffset": 794207561
+    "SourceOffset": 794151246
   },
   "79": {
     "Id": 79,
@@ -3311,7 +3311,7 @@
       "design": "罗特罗亚尼-弓-ULT_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_ult",
-    "LinkedBaseSkillSourceOffset": 605448535,
+    "LinkedBaseSkillSourceOffset": 604768939,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_ult",
@@ -3322,7 +3322,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1818,
     "Source": "RecountTable",
-    "SourceOffset": 794207573
+    "SourceOffset": 794151258
   },
   "80": {
     "Id": 80,
@@ -3347,7 +3347,7 @@
     ],
     "DamageListOffset": 1844,
     "Source": "RecountTable",
-    "SourceOffset": 794207585
+    "SourceOffset": 794151270
   },
   "81": {
     "Id": 81,
@@ -3387,7 +3387,7 @@
       "id": "Raging Shot"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01",
-    "LinkedBaseSkillSourceOffset": 605451164,
+    "LinkedBaseSkillSourceOffset": 604771568,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx01",
@@ -3398,7 +3398,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1854,
     "Source": "RecountTable",
-    "SourceOffset": 794207597
+    "SourceOffset": 794151282
   },
   "82": {
     "Id": 82,
@@ -3429,7 +3429,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1864,
     "Source": "RecountTable",
-    "SourceOffset": 794207609
+    "SourceOffset": 794151294
   },
   "83": {
     "Id": 83,
@@ -3469,14 +3469,14 @@
       "id": "Arrow Rain"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx03",
-    "LinkedBaseSkillSourceOffset": 605451642,
+    "LinkedBaseSkillSourceOffset": 604772046,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx03",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1874,
     "Source": "RecountTable",
-    "SourceOffset": 794207621
+    "SourceOffset": 794151306
   },
   "84": {
     "Id": 84,
@@ -3517,14 +3517,14 @@
       "design": "贯穿箭"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605451881,
+    "LinkedBaseSkillSourceOffset": 604772285,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx05",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1884,
     "Source": "RecountTable",
-    "SourceOffset": 794207633
+    "SourceOffset": 794151318
   },
   "85": {
     "Id": 85,
@@ -3566,14 +3566,14 @@
       "design": "聚能射击"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx04",
-    "LinkedBaseSkillSourceOffset": 605452120,
+    "LinkedBaseSkillSourceOffset": 604772524,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx04",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1894,
     "Source": "RecountTable",
-    "SourceOffset": 794207645
+    "SourceOffset": 794151330
   },
   "86": {
     "Id": 86,
@@ -3612,14 +3612,14 @@
       "design": "集中"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx02",
-    "LinkedBaseSkillSourceOffset": 605451403,
+    "LinkedBaseSkillSourceOffset": 604771807,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx02",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794207657
+    "SourceOffset": 794151342
   },
   "87": {
     "Id": 87,
@@ -3661,7 +3661,7 @@
       "design": "爆炸箭一段"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605453076,
+    "LinkedBaseSkillSourceOffset": 604773480,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx08",
@@ -3672,7 +3672,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1912,
     "Source": "RecountTable",
-    "SourceOffset": 794207669
+    "SourceOffset": 794151354
   },
   "88": {
     "Id": 88,
@@ -3713,7 +3713,7 @@
       "design": "位移射击"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx06",
-    "LinkedBaseSkillSourceOffset": 605452359,
+    "LinkedBaseSkillSourceOffset": 604772763,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_gj/weapon_gj-01_kx06",
@@ -3724,7 +3724,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 1930,
     "Source": "RecountTable",
-    "SourceOffset": 794207681
+    "SourceOffset": 794151366
   },
   "89": {
     "Id": 89,
@@ -3751,7 +3751,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1940,
     "Source": "RecountTable",
-    "SourceOffset": 794207693
+    "SourceOffset": 794151378
   },
   "90": {
     "Id": 90,
@@ -3778,7 +3778,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1950,
     "Source": "RecountTable",
-    "SourceOffset": 794207705
+    "SourceOffset": 794151390
   },
   "91": {
     "Id": 91,
@@ -3805,7 +3805,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 1960,
     "Source": "RecountTable",
-    "SourceOffset": 794207717
+    "SourceOffset": 794151402
   },
   "92": {
     "Id": 92,
@@ -3831,7 +3831,7 @@
     ],
     "DamageListOffset": 1970,
     "Source": "RecountTable",
-    "SourceOffset": 794207729
+    "SourceOffset": 794151414
   },
   "93": {
     "Id": 93,
@@ -3856,7 +3856,7 @@
     ],
     "DamageListOffset": 1988,
     "Source": "RecountTable",
-    "SourceOffset": 794207741
+    "SourceOffset": 794151426
   },
   "94": {
     "Id": 94,
@@ -3881,7 +3881,7 @@
     ],
     "DamageListOffset": 1998,
     "Source": "RecountTable",
-    "SourceOffset": 794207753
+    "SourceOffset": 794151438
   },
   "95": {
     "Id": 95,
@@ -3906,7 +3906,7 @@
     ],
     "DamageListOffset": 2008,
     "Source": "RecountTable",
-    "SourceOffset": 794207765
+    "SourceOffset": 794151450
   },
   "96": {
     "Id": 96,
@@ -3948,7 +3948,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_11/gongjian1153",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663321063,
+    "LinkedTalentSourceOffset": 662896684,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -3960,7 +3960,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2018,
     "Source": "RecountTable",
-    "SourceOffset": 794207777
+    "SourceOffset": 794151462
   },
   "97": {
     "Id": 97,
@@ -4002,7 +4002,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_11/gongjian1160",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663321483,
+    "LinkedTalentSourceOffset": 662897104,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -4023,14 +4023,14 @@
       "id": "Celestial Eagle"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605453793,
+    "LinkedBaseSkillSourceOffset": 604774197,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_11/gongjian1160",
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2036,
     "Source": "RecountTable",
-    "SourceOffset": 794207789
+    "SourceOffset": 794151474
   },
   "98": {
     "Id": 98,
@@ -4055,7 +4055,7 @@
     ],
     "DamageListOffset": 2054,
     "Source": "RecountTable",
-    "SourceOffset": 794207801
+    "SourceOffset": 794151486
   },
   "99": {
     "Id": 99,
@@ -4084,7 +4084,7 @@
     ],
     "DamageListOffset": 2064,
     "Source": "RecountTable",
-    "SourceOffset": 794207813
+    "SourceOffset": 794151498
   },
   "100": {
     "Id": 100,
@@ -4125,7 +4125,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_11/gongjian1151",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663320943,
+    "LinkedTalentSourceOffset": 662896564,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -4133,7 +4133,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2106,
     "Source": "RecountTable",
-    "SourceOffset": 794207825
+    "SourceOffset": 794151510
   },
   "101": {
     "Id": 101,
@@ -4158,7 +4158,7 @@
     ],
     "DamageListOffset": 2116,
     "Source": "RecountTable",
-    "SourceOffset": 794207837
+    "SourceOffset": 794151522
   },
   "102": {
     "Id": 102,
@@ -4202,7 +4202,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_11/gongjian1162",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663321603,
+    "LinkedTalentSourceOffset": 662897224,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -4210,7 +4210,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2126,
     "Source": "RecountTable",
-    "SourceOffset": 794207849
+    "SourceOffset": 794151534
   },
   "103": {
     "Id": 103,
@@ -4237,7 +4237,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2160,
     "Source": "RecountTable",
-    "SourceOffset": 794207861
+    "SourceOffset": 794151546
   },
   "104": {
     "Id": 104,
@@ -4264,7 +4264,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2170,
     "Source": "RecountTable",
-    "SourceOffset": 794207873
+    "SourceOffset": 794151558
   },
   "105": {
     "Id": 105,
@@ -4291,7 +4291,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2180,
     "Source": "RecountTable",
-    "SourceOffset": 794207885
+    "SourceOffset": 794151570
   },
   "106": {
     "Id": 106,
@@ -4333,7 +4333,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_bowarrow",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663319743,
+    "LinkedTalentSourceOffset": 662895364,
     "TalentBridge": "CTB:3345237628.BuffFormulaMatch",
     "TalentFormulaBridge": "CTB:3345237628.BuffFormulaMatch",
     "TalentFormulaBridgeLocaleMatches": 6,
@@ -4351,7 +4351,7 @@
     "IconSource": "CTB:3345237628.BuffFormulaMatch",
     "DamageListOffset": 2190,
     "Source": "RecountTable",
-    "SourceOffset": 794207897
+    "SourceOffset": 794151582
   },
   "107": {
     "Id": 107,
@@ -4378,7 +4378,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2208,
     "Source": "RecountTable",
-    "SourceOffset": 794207909
+    "SourceOffset": 794151594
   },
   "108": {
     "Id": 108,
@@ -4404,7 +4404,7 @@
     ],
     "DamageListOffset": 2218,
     "Source": "RecountTable",
-    "SourceOffset": 794207921
+    "SourceOffset": 794151606
   },
   "109": {
     "Id": 109,
@@ -4436,7 +4436,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2236,
     "Source": "RecountTable",
-    "SourceOffset": 794207933
+    "SourceOffset": 794151618
   },
   "110": {
     "Id": 110,
@@ -4463,7 +4463,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2286,
     "Source": "RecountTable",
-    "SourceOffset": 794207945
+    "SourceOffset": 794151630
   },
   "111": {
     "Id": 111,
@@ -4505,7 +4505,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/talent_passive_icon_sup_meleeconversion",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663314763,
+    "LinkedTalentSourceOffset": 662890384,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -4517,7 +4517,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2296,
     "Source": "RecountTable",
-    "SourceOffset": 794207957
+    "SourceOffset": 794151642
   },
   "112": {
     "Id": 112,
@@ -4553,7 +4553,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2314,
     "Source": "RecountTable",
-    "SourceOffset": 794207969
+    "SourceOffset": 794151654
   },
   "113": {
     "Id": 113,
@@ -4594,14 +4594,14 @@
       "design": "杰拉德ULT_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_ult",
-    "LinkedBaseSkillSourceOffset": 605430849,
+    "LinkedBaseSkillSourceOffset": 604751253,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_ult",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2364,
     "Source": "RecountTable",
-    "SourceOffset": 794207981
+    "SourceOffset": 794151666
   },
   "114": {
     "Id": 114,
@@ -4628,7 +4628,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2374,
     "Source": "RecountTable",
-    "SourceOffset": 794207993
+    "SourceOffset": 794151678
   },
   "115": {
     "Id": 115,
@@ -4660,7 +4660,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2384,
     "Source": "RecountTable",
-    "SourceOffset": 794208005
+    "SourceOffset": 794151690
   },
   "116": {
     "Id": 116,
@@ -4699,12 +4699,12 @@
       "design": "杰拉德减伤KX-03"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605437302,
+    "LinkedBaseSkillSourceOffset": 604757706,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794208017
+    "SourceOffset": 794151702
   },
   "117": {
     "Id": 117,
@@ -4745,14 +4745,14 @@
       "design": "杰拉德聚怪KX-04"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605434912,
+    "LinkedBaseSkillSourceOffset": 604755316,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx05",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2402,
     "Source": "RecountTable",
-    "SourceOffset": 794208029
+    "SourceOffset": 794151714
   },
   "118": {
     "Id": 118,
@@ -4778,7 +4778,7 @@
     ],
     "DamageListOffset": 2412,
     "Source": "RecountTable",
-    "SourceOffset": 794208041
+    "SourceOffset": 794151726
   },
   "119": {
     "Id": 119,
@@ -4806,7 +4806,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2430,
     "Source": "RecountTable",
-    "SourceOffset": 794208053
+    "SourceOffset": 794151738
   },
   "120": {
     "Id": 120,
@@ -4845,14 +4845,14 @@
       "design": "杰拉德格挡翻倍KX-07"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605437780,
+    "LinkedBaseSkillSourceOffset": 604758184,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx08",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794208065
+    "SourceOffset": 794151750
   },
   "121": {
     "Id": 121,
@@ -4894,14 +4894,14 @@
       "design": "杰拉德盾墙无敌KX-08"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx06",
-    "LinkedBaseSkillSourceOffset": 605434195,
+    "LinkedBaseSkillSourceOffset": 604754599,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx06",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2448,
     "Source": "RecountTable",
-    "SourceOffset": 794208077
+    "SourceOffset": 794151762
   },
   "122": {
     "Id": 122,
@@ -4928,7 +4928,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2466,
     "Source": "RecountTable",
-    "SourceOffset": 794208089
+    "SourceOffset": 794151774
   },
   "123": {
     "Id": 123,
@@ -4969,7 +4969,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/weiren948",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663316503,
+    "LinkedTalentSourceOffset": 662892124,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -4991,7 +4991,7 @@
       "design": "杰拉德冲锋ex"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weapon_wr-01_kx01_01",
-    "LinkedBaseSkillSourceOffset": 605438497,
+    "LinkedBaseSkillSourceOffset": 604758901,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_9/weiren948",
@@ -5003,7 +5003,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2476,
     "Source": "RecountTable",
-    "SourceOffset": 794208101
+    "SourceOffset": 794151786
   },
   "124": {
     "Id": 124,
@@ -5044,14 +5044,14 @@
       "design": "杰拉德ATK_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk",
-    "LinkedBaseSkillSourceOffset": 605438736,
+    "LinkedBaseSkillSourceOffset": 604759140,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_wr/weapon_wr_skill_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2486,
     "Source": "RecountTable",
-    "SourceOffset": 794208113
+    "SourceOffset": 794151798
   },
   "125": {
     "Id": 125,
@@ -5084,7 +5084,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2496,
     "Source": "RecountTable",
-    "SourceOffset": 794208125
+    "SourceOffset": 794151810
   },
   "126": {
     "Id": 126,
@@ -5125,7 +5125,7 @@
       "design": "杰拉德岩拳轰击"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_wr/weaponn-wr_sikll_atk_02",
-    "LinkedBaseSkillSourceOffset": 605438975,
+    "LinkedBaseSkillSourceOffset": 604759379,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_wr/weaponn-wr_sikll_atk_02",
@@ -5136,7 +5136,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2522,
     "Source": "RecountTable",
-    "SourceOffset": 794208137
+    "SourceOffset": 794151822
   },
   "127": {
     "Id": 127,
@@ -5177,7 +5177,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule03",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663314103,
+    "LinkedTalentSourceOffset": 662889724,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -5185,7 +5185,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2532,
     "Source": "RecountTable",
-    "SourceOffset": 794208149
+    "SourceOffset": 794151834
   },
   "128": {
     "Id": 128,
@@ -5226,7 +5226,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_starfield",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663314223,
+    "LinkedTalentSourceOffset": 662889844,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -5234,7 +5234,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2542,
     "Source": "RecountTable",
-    "SourceOffset": 794208161
+    "SourceOffset": 794151846
   },
   "129": {
     "Id": 129,
@@ -5280,7 +5280,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_guide",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663314283,
+    "LinkedTalentSourceOffset": 662889904,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -5288,7 +5288,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2552,
     "Source": "RecountTable",
-    "SourceOffset": 794208173
+    "SourceOffset": 794151858
   },
   "130": {
     "Id": 130,
@@ -5331,7 +5331,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/talent_passive_icon_tank_ridicule02",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663314943,
+    "LinkedTalentSourceOffset": 662890564,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -5339,7 +5339,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2602,
     "Source": "RecountTable",
-    "SourceOffset": 794208185
+    "SourceOffset": 794151870
   },
   "131": {
     "Id": 131,
@@ -5380,7 +5380,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/weiren939",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663315963,
+    "LinkedTalentSourceOffset": 662891584,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -5388,7 +5388,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2628,
     "Source": "RecountTable",
-    "SourceOffset": 794208197
+    "SourceOffset": 794151882
   },
   "132": {
     "Id": 132,
@@ -5429,7 +5429,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/weiren947",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663316443,
+    "LinkedTalentSourceOffset": 662892064,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -5441,7 +5441,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2638,
     "Source": "RecountTable",
-    "SourceOffset": 794208209
+    "SourceOffset": 794151894
   },
   "133": {
     "Id": 133,
@@ -5483,7 +5483,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/weiren962",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663317343,
+    "LinkedTalentSourceOffset": 662892964,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -5491,7 +5491,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2648,
     "Source": "RecountTable",
-    "SourceOffset": 794208221
+    "SourceOffset": 794151906
   },
   "134": {
     "Id": 134,
@@ -5516,7 +5516,7 @@
     ],
     "DamageListOffset": 2666,
     "Source": "RecountTable",
-    "SourceOffset": 794208233
+    "SourceOffset": 794151918
   },
   "135": {
     "Id": 135,
@@ -5558,7 +5558,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/weiren960",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663317223,
+    "LinkedTalentSourceOffset": 662892844,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -5570,7 +5570,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2676,
     "Source": "RecountTable",
-    "SourceOffset": 794208245
+    "SourceOffset": 794151930
   },
   "136": {
     "Id": 136,
@@ -5612,7 +5612,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_unrelent",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663314583,
+    "LinkedTalentSourceOffset": 662890204,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -5624,7 +5624,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 2694,
     "Source": "RecountTable",
-    "SourceOffset": 794208257
+    "SourceOffset": 794151942
   },
   "137": {
     "Id": 137,
@@ -5651,7 +5651,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2712,
     "Source": "RecountTable",
-    "SourceOffset": 794208269
+    "SourceOffset": 794151954
   },
   "138": {
     "Id": 138,
@@ -5677,7 +5677,7 @@
     ],
     "DamageListOffset": 2722,
     "Source": "RecountTable",
-    "SourceOffset": 794208281
+    "SourceOffset": 794151966
   },
   "139": {
     "Id": 139,
@@ -5721,14 +5721,14 @@
       "design": "剑盾普攻01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_atk",
-    "LinkedBaseSkillSourceOffset": 605468372,
+    "LinkedBaseSkillSourceOffset": 604788776,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2740,
     "Source": "RecountTable",
-    "SourceOffset": 794208293
+    "SourceOffset": 794151978
   },
   "140": {
     "Id": 140,
@@ -5771,14 +5771,14 @@
       "design": "剑盾特攻A"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_tg01",
-    "LinkedBaseSkillSourceOffset": 605469328,
+    "LinkedBaseSkillSourceOffset": 604789732,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_tg01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2774,
     "Source": "RecountTable",
-    "SourceOffset": 794208305
+    "SourceOffset": 794151990
   },
   "141": {
     "Id": 141,
@@ -5819,7 +5819,7 @@
       "design": "剑盾特攻B"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_tg02",
-    "LinkedBaseSkillSourceOffset": 605469567,
+    "LinkedBaseSkillSourceOffset": 604789971,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_tg02",
@@ -5830,7 +5830,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2800,
     "Source": "RecountTable",
-    "SourceOffset": 794208317
+    "SourceOffset": 794152002
   },
   "142": {
     "Id": 142,
@@ -5865,7 +5865,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2810,
     "Source": "RecountTable",
-    "SourceOffset": 794208329
+    "SourceOffset": 794152014
   },
   "143": {
     "Id": 143,
@@ -5906,14 +5906,14 @@
       "design": "剑盾大招"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01",
-    "LinkedBaseSkillSourceOffset": 605469806,
+    "LinkedBaseSkillSourceOffset": 604790210,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_ult_01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2852,
     "Source": "RecountTable",
-    "SourceOffset": 794208341
+    "SourceOffset": 794152026
   },
   "144": {
     "Id": 144,
@@ -5942,7 +5942,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2862,
     "Source": "RecountTable",
-    "SourceOffset": 794208353
+    "SourceOffset": 794152038
   },
   "145": {
     "Id": 145,
@@ -5969,7 +5969,7 @@
     ],
     "DamageListOffset": 2888,
     "Source": "RecountTable",
-    "SourceOffset": 794208365
+    "SourceOffset": 794152050
   },
   "146": {
     "Id": 146,
@@ -5994,7 +5994,7 @@
     ],
     "DamageListOffset": 2914,
     "Source": "RecountTable",
-    "SourceOffset": 794208377
+    "SourceOffset": 794152062
   },
   "147": {
     "Id": 147,
@@ -6037,14 +6037,14 @@
       "design": "剑盾清算"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04",
-    "LinkedBaseSkillSourceOffset": 605471001,
+    "LinkedBaseSkillSourceOffset": 604791405,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx04",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2924,
     "Source": "RecountTable",
-    "SourceOffset": 794208389
+    "SourceOffset": 794152074
   },
   "148": {
     "Id": 148,
@@ -6071,7 +6071,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2950,
     "Source": "RecountTable",
-    "SourceOffset": 794208401
+    "SourceOffset": 794152086
   },
   "149": {
     "Id": 149,
@@ -6098,7 +6098,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 2960,
     "Source": "RecountTable",
-    "SourceOffset": 794208413
+    "SourceOffset": 794152098
   },
   "150": {
     "Id": 150,
@@ -6138,7 +6138,7 @@
       "id": "Light Resolve"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605472913,
+    "LinkedBaseSkillSourceOffset": 604793317,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx08",
@@ -6149,7 +6149,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2970,
     "Source": "RecountTable",
-    "SourceOffset": 794208425
+    "SourceOffset": 794152110
   },
   "151": {
     "Id": 151,
@@ -6190,7 +6190,7 @@
       "id": "Holylight Guard"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx06",
-    "LinkedBaseSkillSourceOffset": 605471718,
+    "LinkedBaseSkillSourceOffset": 604792122,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx06",
@@ -6201,7 +6201,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2980,
     "Source": "RecountTable",
-    "SourceOffset": 794208437
+    "SourceOffset": 794152122
   },
   "152": {
     "Id": 152,
@@ -6250,7 +6250,7 @@
       "id": "Cruel Conquest"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx07",
-    "LinkedBaseSkillSourceOffset": 605472674,
+    "LinkedBaseSkillSourceOffset": 604793078,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx07",
@@ -6261,7 +6261,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 2998,
     "Source": "RecountTable",
-    "SourceOffset": 794208449
+    "SourceOffset": 794152134
   },
   "153": {
     "Id": 153,
@@ -6303,14 +6303,14 @@
       "design": "剑盾圣环"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx02",
-    "LinkedBaseSkillSourceOffset": 605470284,
+    "LinkedBaseSkillSourceOffset": 604790688,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_kx02",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3080,
     "Source": "RecountTable",
-    "SourceOffset": 794208461
+    "SourceOffset": 794152146
   },
   "154": {
     "Id": 154,
@@ -6351,7 +6351,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_12/jiandun1201",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663322023,
+    "LinkedTalentSourceOffset": 662897644,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -6373,7 +6373,7 @@
       "design": "前戳普攻（小）"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605471957,
+    "LinkedBaseSkillSourceOffset": 604792361,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_12/jiandun1201",
@@ -6384,7 +6384,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3098,
     "Source": "RecountTable",
-    "SourceOffset": 794208473
+    "SourceOffset": 794152158
   },
   "155": {
     "Id": 155,
@@ -6425,7 +6425,7 @@
       "design": "前戳普攻（大）"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex",
-    "LinkedBaseSkillSourceOffset": 605472196,
+    "LinkedBaseSkillSourceOffset": 604792600,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jd/weapon_jd-01_atk_ex",
@@ -6436,7 +6436,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3108,
     "Source": "RecountTable",
-    "SourceOffset": 794208485
+    "SourceOffset": 794152170
   },
   "156": {
     "Id": 156,
@@ -6470,7 +6470,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3118,
     "Source": "RecountTable",
-    "SourceOffset": 794208497
+    "SourceOffset": 794152182
   },
   "157": {
     "Id": 157,
@@ -6497,7 +6497,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3152,
     "Source": "RecountTable",
-    "SourceOffset": 794208509
+    "SourceOffset": 794152194
   },
   "158": {
     "Id": 158,
@@ -6527,7 +6527,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3162,
     "Source": "RecountTable",
-    "SourceOffset": 794208521
+    "SourceOffset": 794152206
   },
   "159": {
     "Id": 159,
@@ -6552,7 +6552,7 @@
     ],
     "DamageListOffset": 3196,
     "Source": "RecountTable",
-    "SourceOffset": 794208533
+    "SourceOffset": 794152218
   },
   "160": {
     "Id": 160,
@@ -6593,7 +6593,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_12/jiandun1245",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663324663,
+    "LinkedTalentSourceOffset": 662900284,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -6601,7 +6601,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3206,
     "Source": "RecountTable",
-    "SourceOffset": 794208545
+    "SourceOffset": 794152230
   },
   "161": {
     "Id": 161,
@@ -6643,7 +6643,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_12/jiandun1254",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663325203,
+    "LinkedTalentSourceOffset": 662900824,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -6651,7 +6651,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3216,
     "Source": "RecountTable",
-    "SourceOffset": 794208557
+    "SourceOffset": 794152242
   },
   "162": {
     "Id": 162,
@@ -6692,7 +6692,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_9/weiren947",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663316443,
+    "LinkedTalentSourceOffset": 662892064,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -6704,7 +6704,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3234,
     "Source": "RecountTable",
-    "SourceOffset": 794208569
+    "SourceOffset": 794152254
   },
   "163": {
     "Id": 163,
@@ -6745,7 +6745,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_12/jiandun1223",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663323343,
+    "LinkedTalentSourceOffset": 662898964,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -6753,7 +6753,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3244,
     "Source": "RecountTable",
-    "SourceOffset": 794208581
+    "SourceOffset": 794152266
   },
   "164": {
     "Id": 164,
@@ -6780,7 +6780,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3254,
     "Source": "RecountTable",
-    "SourceOffset": 794208593
+    "SourceOffset": 794152278
   },
   "165": {
     "Id": 165,
@@ -6806,7 +6806,7 @@
     ],
     "DamageListOffset": 3264,
     "Source": "RecountTable",
-    "SourceOffset": 794208605
+    "SourceOffset": 794152290
   },
   "166": {
     "Id": 166,
@@ -6854,14 +6854,14 @@
       "design": "艾露娜ATK_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk",
-    "LinkedBaseSkillSourceOffset": 605393565,
+    "LinkedBaseSkillSourceOffset": 604713969,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh_skill_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3282,
     "Source": "RecountTable",
-    "SourceOffset": 794208617
+    "SourceOffset": 794152302
   },
   "167": {
     "Id": 167,
@@ -6890,7 +6890,7 @@
     ],
     "DamageListOffset": 3348,
     "Source": "RecountTable",
-    "SourceOffset": 794208629
+    "SourceOffset": 794152314
   },
   "168": {
     "Id": 168,
@@ -6932,14 +6932,14 @@
       "design": "艾露娜SKILL_03"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh_skill_passive",
-    "LinkedBaseSkillSourceOffset": 605394999,
+    "LinkedBaseSkillSourceOffset": 604715403,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh_skill_passive",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3390,
     "Source": "RecountTable",
-    "SourceOffset": 794208641
+    "SourceOffset": 794152326
   },
   "169": {
     "Id": 169,
@@ -6982,14 +6982,14 @@
       "design": "艾露娜SKILL_05"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_ult",
-    "LinkedBaseSkillSourceOffset": 605395477,
+    "LinkedBaseSkillSourceOffset": 604715881,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_ult",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3408,
     "Source": "RecountTable",
-    "SourceOffset": 794208653
+    "SourceOffset": 794152338
   },
   "170": {
     "Id": 170,
@@ -7032,7 +7032,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663311703,
+    "LinkedTalentSourceOffset": 662887324,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -7054,7 +7054,7 @@
       "design": "艾露娜花语回升"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_ult02",
-    "LinkedBaseSkillSourceOffset": 605399779,
+    "LinkedBaseSkillSourceOffset": 604720183,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide",
@@ -7066,7 +7066,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3434,
     "Source": "RecountTable",
-    "SourceOffset": 794208665
+    "SourceOffset": 794152350
   },
   "171": {
     "Id": 171,
@@ -7105,7 +7105,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663311583,
+    "LinkedTalentSourceOffset": 662887204,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -7127,7 +7127,7 @@
       "design": "艾露娜飞升"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_ult03",
-    "LinkedBaseSkillSourceOffset": 605400018,
+    "LinkedBaseSkillSourceOffset": 604720422,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyiguide",
@@ -7138,7 +7138,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794208677
+    "SourceOffset": 794152362
   },
   "172": {
     "Id": 172,
@@ -7181,7 +7181,7 @@
       "design": "艾露娜种子陨石"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx09",
-    "LinkedBaseSkillSourceOffset": 605397867,
+    "LinkedBaseSkillSourceOffset": 604718271,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx09",
@@ -7192,7 +7192,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3460,
     "Source": "RecountTable",
-    "SourceOffset": 794208689
+    "SourceOffset": 794152374
   },
   "173": {
     "Id": 173,
@@ -7233,7 +7233,7 @@
       "design": "艾露娜hot"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx04",
-    "LinkedBaseSkillSourceOffset": 605398584,
+    "LinkedBaseSkillSourceOffset": 604718988,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx04",
@@ -7244,7 +7244,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3486,
     "Source": "RecountTable",
-    "SourceOffset": 794208701
+    "SourceOffset": 794152386
   },
   "174": {
     "Id": 174,
@@ -7301,7 +7301,7 @@
       "design": "艾露娜奶环"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605398823,
+    "LinkedBaseSkillSourceOffset": 604719227,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx05",
@@ -7312,7 +7312,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3496,
     "Source": "RecountTable",
-    "SourceOffset": 794208713
+    "SourceOffset": 794152398
   },
   "175": {
     "Id": 175,
@@ -7356,7 +7356,7 @@
       "design": "艾露娜灌注"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx01",
-    "LinkedBaseSkillSourceOffset": 605398106,
+    "LinkedBaseSkillSourceOffset": 604718510,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx01",
@@ -7367,7 +7367,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3634,
     "Source": "RecountTable",
-    "SourceOffset": 794208725
+    "SourceOffset": 794152410
   },
   "176": {
     "Id": 176,
@@ -7392,7 +7392,7 @@
     ],
     "DamageListOffset": 3668,
     "Source": "RecountTable",
-    "SourceOffset": 794208737
+    "SourceOffset": 794152422
   },
   "177": {
     "Id": 177,
@@ -7417,7 +7417,7 @@
     ],
     "DamageListOffset": 3678,
     "Source": "RecountTable",
-    "SourceOffset": 794208749
+    "SourceOffset": 794152434
   },
   "178": {
     "Id": 178,
@@ -7456,14 +7456,14 @@
       "design": "艾露娜护盾"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605400735,
+    "LinkedBaseSkillSourceOffset": 604721139,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx08",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794208761
+    "SourceOffset": 794152446
   },
   "179": {
     "Id": 179,
@@ -7509,14 +7509,14 @@
       "design": "艾露娜盛放注能"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07",
-    "LinkedBaseSkillSourceOffset": 605400257,
+    "LinkedBaseSkillSourceOffset": 604720661,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 3688,
     "Source": "RecountTable",
-    "SourceOffset": 794208773
+    "SourceOffset": 794152458
   },
   "180": {
     "Id": 180,
@@ -7555,14 +7555,14 @@
       "design": "艾露娜减CD"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx06",
-    "LinkedBaseSkillSourceOffset": 605399062,
+    "LinkedBaseSkillSourceOffset": 604719466,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx06",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794208785
+    "SourceOffset": 794152470
   },
   "181": {
     "Id": 181,
@@ -7604,7 +7604,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdeer",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663310983,
+    "LinkedTalentSourceOffset": 662886604,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -7616,7 +7616,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3738,
     "Source": "RecountTable",
-    "SourceOffset": 794208797
+    "SourceOffset": 794152482
   },
   "182": {
     "Id": 182,
@@ -7641,7 +7641,7 @@
     ],
     "DamageListOffset": 3756,
     "Source": "RecountTable",
-    "SourceOffset": 794208809
+    "SourceOffset": 794152494
   },
   "183": {
     "Id": 183,
@@ -7668,7 +7668,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3766,
     "Source": "RecountTable",
-    "SourceOffset": 794208821
+    "SourceOffset": 794152506
   },
   "184": {
     "Id": 184,
@@ -7694,7 +7694,7 @@
     ],
     "DamageListOffset": 3776,
     "Source": "RecountTable",
-    "SourceOffset": 794208833
+    "SourceOffset": 794152518
   },
   "185": {
     "Id": 185,
@@ -7735,7 +7735,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healshield",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663310023,
+    "LinkedTalentSourceOffset": 662885644,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -7743,7 +7743,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3794,
     "Source": "RecountTable",
-    "SourceOffset": 794208845
+    "SourceOffset": 794152530
   },
   "186": {
     "Id": 186,
@@ -7768,7 +7768,7 @@
     ],
     "DamageListOffset": 3804,
     "Source": "RecountTable",
-    "SourceOffset": 794208857
+    "SourceOffset": 794152542
   },
   "187": {
     "Id": 187,
@@ -7793,7 +7793,7 @@
     ],
     "DamageListOffset": 3814,
     "Source": "RecountTable",
-    "SourceOffset": 794208869
+    "SourceOffset": 794152554
   },
   "188": {
     "Id": 188,
@@ -7834,7 +7834,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_5/talent_passive_icon_sup_melee03",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663311103,
+    "LinkedTalentSourceOffset": 662886724,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -7842,7 +7842,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3824,
     "Source": "RecountTable",
-    "SourceOffset": 794208881
+    "SourceOffset": 794152566
   },
   "189": {
     "Id": 189,
@@ -7870,7 +7870,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3834,
     "Source": "RecountTable",
-    "SourceOffset": 794208893
+    "SourceOffset": 794152578
   },
   "190": {
     "Id": 190,
@@ -7895,7 +7895,7 @@
     ],
     "DamageListOffset": 3852,
     "Source": "RecountTable",
-    "SourceOffset": 794208905
+    "SourceOffset": 794152590
   },
   "191": {
     "Id": 191,
@@ -7936,7 +7936,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663311523,
+    "LinkedTalentSourceOffset": 662887144,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -7944,7 +7944,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 3862,
     "Source": "RecountTable",
-    "SourceOffset": 794208917
+    "SourceOffset": 794152602
   },
   "192": {
     "Id": 192,
@@ -7971,7 +7971,7 @@
     ],
     "DamageListOffset": 3872,
     "Source": "RecountTable",
-    "SourceOffset": 794208929
+    "SourceOffset": 794152614
   },
   "193": {
     "Id": 193,
@@ -8003,7 +8003,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 3898,
     "Source": "RecountTable",
-    "SourceOffset": 794208941
+    "SourceOffset": 794152626
   },
   "194": {
     "Id": 194,
@@ -8029,7 +8029,7 @@
     ],
     "DamageListOffset": 3916,
     "Source": "RecountTable",
-    "SourceOffset": 794208953
+    "SourceOffset": 794152638
   },
   "195": {
     "Id": 195,
@@ -8077,12 +8077,12 @@
       "design": "灵魂乐手ATK_01a"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605461441,
+    "LinkedBaseSkillSourceOffset": 604781845,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "DamageListOffset": 3934,
     "Source": "RecountTable",
-    "SourceOffset": 794208965
+    "SourceOffset": 794152650
   },
   "196": {
     "Id": 196,
@@ -8126,14 +8126,14 @@
       "design": "灵魂乐手ATK_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_atk",
-    "LinkedBaseSkillSourceOffset": 605456661,
+    "LinkedBaseSkillSourceOffset": 604777065,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_atk",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4000,
     "Source": "RecountTable",
-    "SourceOffset": 794208977
+    "SourceOffset": 794152662
   },
   "197": {
     "Id": 197,
@@ -8176,14 +8176,14 @@
       "design": "灵魂乐手特攻SKILL_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
-    "LinkedBaseSkillSourceOffset": 605457856,
+    "LinkedBaseSkillSourceOffset": 604778260,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4034,
     "Source": "RecountTable",
-    "SourceOffset": 794208989
+    "SourceOffset": 794152674
   },
   "198": {
     "Id": 198,
@@ -8226,14 +8226,14 @@
       "design": "灵魂乐手特攻SKILL_02"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_tg02",
-    "LinkedBaseSkillSourceOffset": 605458095,
+    "LinkedBaseSkillSourceOffset": 604778499,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_tg02",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4060,
     "Source": "RecountTable",
-    "SourceOffset": 794209001
+    "SourceOffset": 794152686
   },
   "199": {
     "Id": 199,
@@ -8273,7 +8273,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4086,
     "Source": "RecountTable",
-    "SourceOffset": 794209013
+    "SourceOffset": 794152698
   },
   "200": {
     "Id": 200,
@@ -8316,7 +8316,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_13/gita1330",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663327783,
+    "LinkedTalentSourceOffset": 662903404,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -8338,7 +8338,7 @@
       "design": "灵魂乐手ULT_01b"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_ult02",
-    "LinkedBaseSkillSourceOffset": 605465026,
+    "LinkedBaseSkillSourceOffset": 604785430,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/atlas/talent_passive_13/gita1330",
@@ -8350,7 +8350,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 4168,
     "Source": "RecountTable",
-    "SourceOffset": 794209025
+    "SourceOffset": 794152710
   },
   "201": {
     "Id": 201,
@@ -8401,7 +8401,7 @@
       "design": "灵魂乐手可选SKILL_01"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx01",
-    "LinkedBaseSkillSourceOffset": 605458334,
+    "LinkedBaseSkillSourceOffset": 604778738,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx01",
@@ -8412,7 +8412,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4194,
     "Source": "RecountTable",
-    "SourceOffset": 794209037
+    "SourceOffset": 794152722
   },
   "202": {
     "Id": 202,
@@ -8457,7 +8457,7 @@
       "design": "灵魂乐手可选SKILL_02"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx02",
-    "LinkedBaseSkillSourceOffset": 605458573,
+    "LinkedBaseSkillSourceOffset": 604778977,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx02",
@@ -8469,7 +8469,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4284,
     "Source": "RecountTable",
-    "SourceOffset": 794209049
+    "SourceOffset": 794152734
   },
   "203": {
     "Id": 203,
@@ -8511,7 +8511,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_13/gita1342",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663328503,
+    "LinkedTalentSourceOffset": 662904124,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -8523,7 +8523,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 4326,
     "Source": "RecountTable",
-    "SourceOffset": 794209061
+    "SourceOffset": 794152746
   },
   "204": {
     "Id": 204,
@@ -8564,7 +8564,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_13/gita1343",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663328563,
+    "LinkedTalentSourceOffset": 662904184,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -8576,7 +8576,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 4344,
     "Source": "RecountTable",
-    "SourceOffset": 794209073
+    "SourceOffset": 794152758
   },
   "205": {
     "Id": 205,
@@ -8617,14 +8617,14 @@
       "design": "灵魂乐手可选SKILL_03"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03",
-    "LinkedBaseSkillSourceOffset": 605458812,
+    "LinkedBaseSkillSourceOffset": 604779216,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4354,
     "Source": "RecountTable",
-    "SourceOffset": 794209085
+    "SourceOffset": 794152770
   },
   "206": {
     "Id": 206,
@@ -8665,14 +8665,14 @@
       "design": "灵魂乐手SKILL_03_Hack"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01",
-    "LinkedBaseSkillSourceOffset": 605460485,
+    "LinkedBaseSkillSourceOffset": 604780889,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx03_01",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4364,
     "Source": "RecountTable",
-    "SourceOffset": 794209097
+    "SourceOffset": 794152782
   },
   "207": {
     "Id": 207,
@@ -8713,14 +8713,14 @@
       "design": "灵魂乐手可选SKILL_04"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx04",
-    "LinkedBaseSkillSourceOffset": 605459051,
+    "LinkedBaseSkillSourceOffset": 604779455,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx04",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4374,
     "Source": "RecountTable",
-    "SourceOffset": 794209109
+    "SourceOffset": 794152794
   },
   "208": {
     "Id": 208,
@@ -8772,14 +8772,14 @@
       "design": "灵魂乐手可选SKILL_05"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx05",
-    "LinkedBaseSkillSourceOffset": 605459290,
+    "LinkedBaseSkillSourceOffset": 604779694,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx05",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4384,
     "Source": "RecountTable",
-    "SourceOffset": 794209121
+    "SourceOffset": 794152806
   },
   "209": {
     "Id": 209,
@@ -8822,14 +8822,14 @@
       "design": "灵魂乐手可选SKILL_06"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx06",
-    "LinkedBaseSkillSourceOffset": 605459529,
+    "LinkedBaseSkillSourceOffset": 604779933,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx06",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4482,
     "Source": "RecountTable",
-    "SourceOffset": 794209133
+    "SourceOffset": 794152818
   },
   "210": {
     "Id": 210,
@@ -8871,7 +8871,7 @@
       "design": "灵魂乐手绚烂焰火"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01",
-    "LinkedBaseSkillSourceOffset": 605464070,
+    "LinkedBaseSkillSourceOffset": 604784474,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_tf03_01",
@@ -8882,7 +8882,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4508,
     "Source": "RecountTable",
-    "SourceOffset": 794209145
+    "SourceOffset": 794152830
   },
   "211": {
     "Id": 211,
@@ -8926,14 +8926,14 @@
       "design": "灵魂乐手可选SKILL_07"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx07",
-    "LinkedBaseSkillSourceOffset": 605460007,
+    "LinkedBaseSkillSourceOffset": 604780411,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx07",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4526,
     "Source": "RecountTable",
-    "SourceOffset": 794209157
+    "SourceOffset": 794152842
   },
   "212": {
     "Id": 212,
@@ -8972,14 +8972,14 @@
       "design": "灵魂乐手可选SKILL_08"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx08",
-    "LinkedBaseSkillSourceOffset": 605460246,
+    "LinkedBaseSkillSourceOffset": 604780650,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_weapon_jt/weapon_jt-01_kx08",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794209169
+    "SourceOffset": 794152854
   },
   "213": {
     "Id": 213,
@@ -9004,7 +9004,7 @@
     ],
     "DamageListOffset": 4560,
     "Source": "RecountTable",
-    "SourceOffset": 794209181
+    "SourceOffset": 794152866
   },
   "214": {
     "Id": 214,
@@ -9046,7 +9046,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_13/gita1361",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663329643,
+    "LinkedTalentSourceOffset": 662905264,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 11,
@@ -9054,7 +9054,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 4570,
     "Source": "RecountTable",
-    "SourceOffset": 794209193
+    "SourceOffset": 794152878
   },
   "215": {
     "Id": 215,
@@ -9095,7 +9095,7 @@
     },
     "LinkedTalentIconPath": "ui/atlas/talent_passive_13/gita1314",
     "LinkedTalentTableHash": 3345237628,
-    "LinkedTalentSourceOffset": 663326823,
+    "LinkedTalentSourceOffset": 662902444,
     "TalentBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridge": "CTB:3345237628.LocalizedNameMatch",
     "TalentNameBridgeLocaleMatches": 10,
@@ -9103,7 +9103,7 @@
     "IconSource": "CTB:3345237628.LocalizedNameMatch",
     "DamageListOffset": 4588,
     "Source": "RecountTable",
-    "SourceOffset": 794209205
+    "SourceOffset": 794152890
   },
   "216": {
     "Id": 216,
@@ -9130,7 +9130,7 @@
     ],
     "DamageListOffset": 4598,
     "Source": "RecountTable",
-    "SourceOffset": 794209217
+    "SourceOffset": 794152902
   },
   "217": {
     "Id": 217,
@@ -9155,7 +9155,7 @@
     ],
     "DamageListOffset": 4624,
     "Source": "RecountTable",
-    "SourceOffset": 794209229
+    "SourceOffset": 794152914
   },
   "218": {
     "Id": 218,
@@ -9182,7 +9182,7 @@
     ],
     "DamageListOffset": 4634,
     "Source": "RecountTable",
-    "SourceOffset": 794209241
+    "SourceOffset": 794152926
   },
   "219": {
     "Id": 219,
@@ -9207,7 +9207,7 @@
     ],
     "DamageListOffset": 4660,
     "Source": "RecountTable",
-    "SourceOffset": 794209253
+    "SourceOffset": 794152938
   },
   "220": {
     "Id": 220,
@@ -9232,7 +9232,7 @@
     ],
     "DamageListOffset": 4670,
     "Source": "RecountTable",
-    "SourceOffset": 794209265
+    "SourceOffset": 794152950
   },
   "221": {
     "Id": 221,
@@ -9260,7 +9260,7 @@
     ],
     "DamageListOffset": 4680,
     "Source": "RecountTable",
-    "SourceOffset": 794209277
+    "SourceOffset": 794152962
   },
   "222": {
     "Id": 222,
@@ -9300,7 +9300,7 @@
       "id": "Ultimate! Roar Command"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_030",
-    "LinkedBaseSkillSourceOffset": 605493706,
+    "LinkedBaseSkillSourceOffset": 604814110,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_030",
@@ -9311,7 +9311,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4714,
     "Source": "RecountTable",
-    "SourceOffset": 794209289
+    "SourceOffset": 794152974
   },
   "223": {
     "Id": 223,
@@ -9336,7 +9336,7 @@
     ],
     "DamageListOffset": 4724,
     "Source": "RecountTable",
-    "SourceOffset": 794209301
+    "SourceOffset": 794152986
   },
   "224": {
     "Id": 224,
@@ -9365,7 +9365,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4734,
     "Source": "RecountTable",
-    "SourceOffset": 794209313
+    "SourceOffset": 794152998
   },
   "225": {
     "Id": 225,
@@ -9395,7 +9395,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4760,
     "Source": "RecountTable",
-    "SourceOffset": 794209325
+    "SourceOffset": 794153010
   },
   "226": {
     "Id": 226,
@@ -9435,14 +9435,14 @@
       "id": "Arcane! Blazing Axe"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_018",
-    "LinkedBaseSkillSourceOffset": 605488209,
+    "LinkedBaseSkillSourceOffset": 604808613,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_018",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4794,
     "Source": "RecountTable",
-    "SourceOffset": 794209337
+    "SourceOffset": 794153022
   },
   "227": {
     "Id": 227,
@@ -9483,14 +9483,14 @@
       "id": "Arcane! Poison Blast"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_046",
-    "LinkedBaseSkillSourceOffset": 605497291,
+    "LinkedBaseSkillSourceOffset": 604817695,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_046",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4804,
     "Source": "RecountTable",
-    "SourceOffset": 794209349
+    "SourceOffset": 794153034
   },
   "228": {
     "Id": 228,
@@ -9518,7 +9518,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4822,
     "Source": "RecountTable",
-    "SourceOffset": 794209361
+    "SourceOffset": 794153046
   },
   "229": {
     "Id": 229,
@@ -9561,14 +9561,14 @@
       "id": "Ultimate! Wild Shot"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_020",
-    "LinkedBaseSkillSourceOffset": 605490838,
+    "LinkedBaseSkillSourceOffset": 604811242,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_020",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4840,
     "Source": "RecountTable",
-    "SourceOffset": 794209373
+    "SourceOffset": 794153058
   },
   "230": {
     "Id": 230,
@@ -9597,7 +9597,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4874,
     "Source": "RecountTable",
-    "SourceOffset": 794209385
+    "SourceOffset": 794153070
   },
   "231": {
     "Id": 231,
@@ -9625,7 +9625,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4900,
     "Source": "RecountTable",
-    "SourceOffset": 794209397
+    "SourceOffset": 794153082
   },
   "232": {
     "Id": 232,
@@ -9668,14 +9668,14 @@
       "id": "Arcane! Meteor Fall"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_029",
-    "LinkedBaseSkillSourceOffset": 605493467,
+    "LinkedBaseSkillSourceOffset": 604813871,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_029",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4918,
     "Source": "RecountTable",
-    "SourceOffset": 794209409
+    "SourceOffset": 794153094
   },
   "233": {
     "Id": 233,
@@ -9702,7 +9702,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4952,
     "Source": "RecountTable",
-    "SourceOffset": 794209421
+    "SourceOffset": 794153106
   },
   "234": {
     "Id": 234,
@@ -9729,7 +9729,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 4962,
     "Source": "RecountTable",
-    "SourceOffset": 794209433
+    "SourceOffset": 794153118
   },
   "235": {
     "Id": 235,
@@ -9754,7 +9754,7 @@
     ],
     "DamageListOffset": 4972,
     "Source": "RecountTable",
-    "SourceOffset": 794209445
+    "SourceOffset": 794153130
   },
   "236": {
     "Id": 236,
@@ -9795,14 +9795,14 @@
       "id": "Ultimate! Lightning Sphere"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_043",
-    "LinkedBaseSkillSourceOffset": 605496574,
+    "LinkedBaseSkillSourceOffset": 604816978,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_043",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 4982,
     "Source": "RecountTable",
-    "SourceOffset": 794209457
+    "SourceOffset": 794153142
   },
   "237": {
     "Id": 237,
@@ -9829,7 +9829,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5000,
     "Source": "RecountTable",
-    "SourceOffset": 794209469
+    "SourceOffset": 794153154
   },
   "238": {
     "Id": 238,
@@ -9869,14 +9869,14 @@
       "id": "Ultimate! Spiral Break"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_051",
-    "LinkedBaseSkillSourceOffset": 605498486,
+    "LinkedBaseSkillSourceOffset": 604818890,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_051",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5010,
     "Source": "RecountTable",
-    "SourceOffset": 794209481
+    "SourceOffset": 794153166
   },
   "239": {
     "Id": 239,
@@ -9902,7 +9902,7 @@
     ],
     "DamageListOffset": 5020,
     "Source": "RecountTable",
-    "SourceOffset": 794209493
+    "SourceOffset": 794153178
   },
   "240": {
     "Id": 240,
@@ -9943,14 +9943,14 @@
       "id": "Ultimate! Electro Bomb"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010",
-    "LinkedBaseSkillSourceOffset": 605490360,
+    "LinkedBaseSkillSourceOffset": 604810764,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_010",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5038,
     "Source": "RecountTable",
-    "SourceOffset": 794209505
+    "SourceOffset": 794153190
   },
   "241": {
     "Id": 241,
@@ -9984,7 +9984,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5056,
     "Source": "RecountTable",
-    "SourceOffset": 794209517
+    "SourceOffset": 794153202
   },
   "242": {
     "Id": 242,
@@ -10026,14 +10026,14 @@
       "id": "Ultimate! Blade Sweep"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019",
-    "LinkedBaseSkillSourceOffset": 605490599,
+    "LinkedBaseSkillSourceOffset": 604811003,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_019",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5122,
     "Source": "RecountTable",
-    "SourceOffset": 794209529
+    "SourceOffset": 794153214
   },
   "243": {
     "Id": 243,
@@ -10071,14 +10071,14 @@
       "id": "Ultimate! Shell Defense"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_032",
-    "LinkedBaseSkillSourceOffset": 605494184,
+    "LinkedBaseSkillSourceOffset": 604814588,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_032",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794209541
+    "SourceOffset": 794153226
   },
   "244": {
     "Id": 244,
@@ -10118,14 +10118,14 @@
       "id": "Ultimate! Earth Shield"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_033",
-    "LinkedBaseSkillSourceOffset": 605494423,
+    "LinkedBaseSkillSourceOffset": 604814827,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_033",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5148,
     "Source": "RecountTable",
-    "SourceOffset": 794209553
+    "SourceOffset": 794153238
   },
   "245": {
     "Id": 245,
@@ -10166,7 +10166,7 @@
       "id": "Arcane! Thunder Roar"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_038",
-    "LinkedBaseSkillSourceOffset": 605495618,
+    "LinkedBaseSkillSourceOffset": 604816022,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_038",
@@ -10177,7 +10177,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5158,
     "Source": "RecountTable",
-    "SourceOffset": 794209565
+    "SourceOffset": 794153250
   },
   "246": {
     "Id": 246,
@@ -10218,7 +10218,7 @@
       "id": "Arcane! Pulse Blessing"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_012",
-    "LinkedBaseSkillSourceOffset": 605489404,
+    "LinkedBaseSkillSourceOffset": 604809808,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_012",
@@ -10229,7 +10229,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5176,
     "Source": "RecountTable",
-    "SourceOffset": 794209577
+    "SourceOffset": 794153262
   },
   "247": {
     "Id": 247,
@@ -10257,7 +10257,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5194,
     "Source": "RecountTable",
-    "SourceOffset": 794209589
+    "SourceOffset": 794153274
   },
   "248": {
     "Id": 248,
@@ -10297,14 +10297,14 @@
       "id": "Arcane! Hell Thrust"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_047",
-    "LinkedBaseSkillSourceOffset": 605497530,
+    "LinkedBaseSkillSourceOffset": 604817934,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_047",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5212,
     "Source": "RecountTable",
-    "SourceOffset": 794209601
+    "SourceOffset": 794153286
   },
   "249": {
     "Id": 249,
@@ -10345,14 +10345,14 @@
       "id": "Arcane! Luminous Roar"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017",
-    "LinkedBaseSkillSourceOffset": 605487731,
+    "LinkedBaseSkillSourceOffset": 604808135,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_017",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5222,
     "Source": "RecountTable",
-    "SourceOffset": 794209613
+    "SourceOffset": 794153298
   },
   "250": {
     "Id": 250,
@@ -10394,14 +10394,14 @@
       "id": "Ultimate! Overstrike"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_022",
-    "LinkedBaseSkillSourceOffset": 605491316,
+    "LinkedBaseSkillSourceOffset": 604811720,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_022",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5240,
     "Source": "RecountTable",
-    "SourceOffset": 794209625
+    "SourceOffset": 794153310
   },
   "251": {
     "Id": 251,
@@ -10441,14 +10441,14 @@
       "id": "Ultimate! Invisible Impact"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028",
-    "LinkedBaseSkillSourceOffset": 605493228,
+    "LinkedBaseSkillSourceOffset": 604813632,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_028",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5266,
     "Source": "RecountTable",
-    "SourceOffset": 794209637
+    "SourceOffset": 794153322
   },
   "252": {
     "Id": 252,
@@ -10491,7 +10491,7 @@
       "id": "Ultimate! Transform menjadi lebah"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_045",
-    "LinkedBaseSkillSourceOffset": 605497052,
+    "LinkedBaseSkillSourceOffset": 604817456,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_045",
@@ -10502,7 +10502,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5276,
     "Source": "RecountTable",
-    "SourceOffset": 794209649
+    "SourceOffset": 794153334
   },
   "253": {
     "Id": 253,
@@ -10530,7 +10530,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5310,
     "Source": "RecountTable",
-    "SourceOffset": 794209661
+    "SourceOffset": 794153346
   },
   "254": {
     "Id": 254,
@@ -10558,7 +10558,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5328,
     "Source": "RecountTable",
-    "SourceOffset": 794209673
+    "SourceOffset": 794153358
   },
   "255": {
     "Id": 255,
@@ -10591,7 +10591,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5346,
     "Source": "RecountTable",
-    "SourceOffset": 794209685
+    "SourceOffset": 794153370
   },
   "256": {
     "Id": 256,
@@ -10614,7 +10614,7 @@
     "DamageId": [],
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794209697
+    "SourceOffset": 794153382
   },
   "257": {
     "Id": 257,
@@ -10637,7 +10637,7 @@
     "DamageId": [],
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794209709
+    "SourceOffset": 794153394
   },
   "258": {
     "Id": 258,
@@ -10660,7 +10660,7 @@
     "DamageId": [],
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794209721
+    "SourceOffset": 794153406
   },
   "259": {
     "Id": 259,
@@ -10698,14 +10698,14 @@
       "id": "Arcane! Goblin March"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_050",
-    "LinkedBaseSkillSourceOffset": 605498247,
+    "LinkedBaseSkillSourceOffset": 604818651,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 10,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_050",
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 732,
     "Source": "RecountTable",
-    "SourceOffset": 794209733
+    "SourceOffset": 794153418
   },
   "260": {
     "Id": 260,
@@ -10750,7 +10750,7 @@
       "id": "Arcane! Divine Possession"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_052",
-    "LinkedBaseSkillSourceOffset": 605498725,
+    "LinkedBaseSkillSourceOffset": 604819129,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_052",
@@ -10761,7 +10761,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5404,
     "Source": "RecountTable",
-    "SourceOffset": 794209745
+    "SourceOffset": 794153430
   },
   "261": {
     "Id": 261,
@@ -10788,7 +10788,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5454,
     "Source": "RecountTable",
-    "SourceOffset": 794209757
+    "SourceOffset": 794153442
   },
   "262": {
     "Id": 262,
@@ -10815,7 +10815,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5464,
     "Source": "RecountTable",
-    "SourceOffset": 794209769
+    "SourceOffset": 794153454
   },
   "263": {
     "Id": 263,
@@ -10867,7 +10867,7 @@
       "id": "Arcane! Illusion Resonance"
     },
     "LinkedBaseSkillIconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_053",
-    "LinkedBaseSkillSourceOffset": 605498964,
+    "LinkedBaseSkillSourceOffset": 604819368,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_053",
@@ -10880,7 +10880,7 @@
     "IconSource": "SkillTable.LocalizedNameMatch",
     "DamageListOffset": 5474,
     "Source": "RecountTable",
-    "SourceOffset": 794209781
+    "SourceOffset": 794153466
   },
   "264": {
     "Id": 264,
@@ -10907,7 +10907,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5580,
     "Source": "RecountTable",
-    "SourceOffset": 794209793
+    "SourceOffset": 794153478
   },
   "265": {
     "Id": 265,
@@ -10934,7 +10934,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5590,
     "Source": "RecountTable",
-    "SourceOffset": 794209805
+    "SourceOffset": 794153490
   },
   "266": {
     "Id": 266,
@@ -10961,7 +10961,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5600,
     "Source": "RecountTable",
-    "SourceOffset": 794209817
+    "SourceOffset": 794153502
   },
   "267": {
     "Id": 267,
@@ -10988,7 +10988,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5610,
     "Source": "RecountTable",
-    "SourceOffset": 794209829
+    "SourceOffset": 794153514
   },
   "268": {
     "Id": 268,
@@ -11017,7 +11017,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5620,
     "Source": "RecountTable",
-    "SourceOffset": 794209841
+    "SourceOffset": 794153526
   },
   "269": {
     "Id": 269,
@@ -11042,7 +11042,7 @@
     ],
     "DamageListOffset": 5646,
     "Source": "RecountTable",
-    "SourceOffset": 794209853
+    "SourceOffset": 794153538
   },
   "270": {
     "Id": 270,
@@ -11069,7 +11069,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5656,
     "Source": "RecountTable",
-    "SourceOffset": 794209865
+    "SourceOffset": 794153550
   },
   "271": {
     "Id": 271,
@@ -11095,7 +11095,7 @@
     ],
     "DamageListOffset": 5666,
     "Source": "RecountTable",
-    "SourceOffset": 794209877
+    "SourceOffset": 794153562
   },
   "272": {
     "Id": 272,
@@ -11122,7 +11122,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5684,
     "Source": "RecountTable",
-    "SourceOffset": 794209889
+    "SourceOffset": 794153574
   },
   "273": {
     "Id": 273,
@@ -11156,7 +11156,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5694,
     "Source": "RecountTable",
-    "SourceOffset": 794209901
+    "SourceOffset": 794153586
   },
   "274": {
     "Id": 274,
@@ -11185,7 +11185,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5728,
     "Source": "RecountTable",
-    "SourceOffset": 794209913
+    "SourceOffset": 794153598
   },
   "275": {
     "Id": 275,
@@ -11213,7 +11213,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5754,
     "Source": "RecountTable",
-    "SourceOffset": 794209925
+    "SourceOffset": 794153610
   },
   "276": {
     "Id": 276,
@@ -11240,7 +11240,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5772,
     "Source": "RecountTable",
-    "SourceOffset": 794209937
+    "SourceOffset": 794153622
   },
   "277": {
     "Id": 277,
@@ -11271,7 +11271,7 @@
     ],
     "DamageListOffset": 5782,
     "Source": "RecountTable",
-    "SourceOffset": 794209949
+    "SourceOffset": 794153634
   },
   "278": {
     "Id": 278,
@@ -11298,7 +11298,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5840,
     "Source": "RecountTable",
-    "SourceOffset": 794209961
+    "SourceOffset": 794153646
   },
   "279": {
     "Id": 279,
@@ -11323,7 +11323,7 @@
     ],
     "DamageListOffset": 5850,
     "Source": "RecountTable",
-    "SourceOffset": 794209973
+    "SourceOffset": 794153658
   },
   "280": {
     "Id": 280,
@@ -11350,7 +11350,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5860,
     "Source": "RecountTable",
-    "SourceOffset": 794209985
+    "SourceOffset": 794153670
   },
   "281": {
     "Id": 281,
@@ -11375,7 +11375,7 @@
     ],
     "DamageListOffset": 5870,
     "Source": "RecountTable",
-    "SourceOffset": 794209997
+    "SourceOffset": 794153682
   },
   "282": {
     "Id": 282,
@@ -11402,7 +11402,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5880,
     "Source": "RecountTable",
-    "SourceOffset": 794210009
+    "SourceOffset": 794153694
   },
   "283": {
     "Id": 283,
@@ -11430,7 +11430,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5890,
     "Source": "RecountTable",
-    "SourceOffset": 794210021
+    "SourceOffset": 794153706
   },
   "284": {
     "Id": 284,
@@ -11458,7 +11458,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5908,
     "Source": "RecountTable",
-    "SourceOffset": 794210033
+    "SourceOffset": 794153718
   },
   "285": {
     "Id": 285,
@@ -11484,7 +11484,7 @@
     ],
     "DamageListOffset": 5926,
     "Source": "RecountTable",
-    "SourceOffset": 794210045
+    "SourceOffset": 794153730
   },
   "286": {
     "Id": 286,
@@ -11509,7 +11509,7 @@
     ],
     "DamageListOffset": 5944,
     "Source": "RecountTable",
-    "SourceOffset": 794210057
+    "SourceOffset": 794153742
   },
   "287": {
     "Id": 287,
@@ -11535,7 +11535,7 @@
     ],
     "DamageListOffset": 5954,
     "Source": "RecountTable",
-    "SourceOffset": 794210069
+    "SourceOffset": 794153754
   },
   "288": {
     "Id": 288,
@@ -11562,7 +11562,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5972,
     "Source": "RecountTable",
-    "SourceOffset": 794210081
+    "SourceOffset": 794153766
   },
   "289": {
     "Id": 289,
@@ -11589,7 +11589,7 @@
     "IconSource": "DamageAttrIdName.DamageId",
     "DamageListOffset": 5982,
     "Source": "RecountTable",
-    "SourceOffset": 794210093
+    "SourceOffset": 794153778
   },
   "290": {
     "Id": 290,
@@ -11638,12 +11638,12 @@
       "id": "Dream Arrow"
     },
     "LinkedBaseSkillIconPath": "",
-    "LinkedBaseSkillSourceOffset": 605564211,
+    "LinkedBaseSkillSourceOffset": 604884615,
     "BaseSkillNameBridge": "SkillTable.LocalizedNameMatch",
     "BaseSkillNameBridgeLocaleMatches": 11,
     "DamageListOffset": 5992,
     "Source": "RecountTable",
-    "SourceOffset": 794210105
+    "SourceOffset": 794153790
   },
   "291": {
     "Id": 291,
@@ -11668,7 +11668,7 @@
     ],
     "DamageListOffset": 6074,
     "Source": "RecountTable",
-    "SourceOffset": 794210117
+    "SourceOffset": 794153802
   },
   "292": {
     "Id": 292,
@@ -11693,7 +11693,7 @@
     ],
     "DamageListOffset": 6084,
     "Source": "RecountTable",
-    "SourceOffset": 794210129
+    "SourceOffset": 794153814
   },
   "293": {
     "Id": 293,
@@ -11718,7 +11718,7 @@
     ],
     "DamageListOffset": 6094,
     "Source": "RecountTable",
-    "SourceOffset": 794210141
+    "SourceOffset": 794153826
   },
   "294": {
     "Id": 294,
@@ -11741,6 +11741,6 @@
     "DamageId": [],
     "DamageListOffset": 6104,
     "Source": "RecountTable",
-    "SourceOffset": 794210153
+    "SourceOffset": 794153838
   }
 }

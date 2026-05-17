@@ -1,0 +1,4022 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T02:16:17.868Z",
+  "auditedStatus": "needs-value-selection",
+  "totalRows": 37,
+  "byCategory": {
+    "talents": 29,
+    "seasonal-talents": 3,
+    "factors": 2,
+    "skills": 2,
+    "buffs": 1
+  },
+  "byFormulaReadiness": {
+    "formula-replay-required": 25,
+    "overlap-only": 6,
+    "mixed-exact-and-replay": 5,
+    "timing-model-required": 1
+  },
+  "byFormulaZone": {
+    "baseAttackTerm": 22,
+    "generalDamage": 21,
+    "luckyStrikeBaseTerm": 19,
+    "skillMultiplier": 12,
+    "elementalDamage": 11,
+    "critical": 8,
+    "luckyEnhancement": 7,
+    "seasonDamage": 7,
+    "timingCadence": 5,
+    "physicalMagicEnhancement": 3,
+    "finalDamage": 1,
+    "luckyChance": 1
+  },
+  "byBlocker": {
+    "component:atk:ambiguous-value-selection-required": 19,
+    "component:critical-rate:expected-value-model-required": 7,
+    "component:skill-multiplier:ambiguous-scoped-value:all": 7,
+    "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required": 6,
+    "component:elemental-damage:ambiguous-scoped-value:all": 5,
+    "component:elemental-damage:value-ladder-selection-required": 3,
+    "component:atk:ambiguous-scoped-value:all": 2,
+    "component:cooldown-or-resource:timing-model-required": 2,
+    "component:critical-damage:ambiguous-scoped-value:all": 2,
+    "component:hit-count-model:hit-count-model-required": 2,
+    "component:skill-multiplier:ambiguous-scoped-value:target": 2,
+    "component:target-vulnerability:ambiguous-scoped-value:all": 2,
+    "component:target-vulnerability:ambiguous-scoped-value:target": 2,
+    "component:target-vulnerability:target-window-proof-required": 2,
+    "component:critical-damage:scope-value-missing:party": 1,
+    "component:critical-rate:scope-value-missing:owner": 1,
+    "component:critical-rate:value-ladder-selection-required": 1,
+    "component:final-damage:value-ladder-selection-required": 1,
+    "component:lucky-damage:ambiguous-scoped-value:all": 1,
+    "component:lucky-rate:expected-value-model-required": 1,
+    "component:seasonal-factor-damage:scope-value-missing:owner": 1,
+    "component:seasonal-factor-damage:scope-value-missing:party": 1
+  },
+  "byWording": {
+    "no-sample-text": 16,
+    "attack-wording": 7,
+    "critical-wording": 5,
+    "generic-damage-wording": 4,
+    "elemental-wording": 3,
+    "lucky-wording": 2
+  },
+  "byCategoryWording": {
+    "talents / no-sample-text": 13,
+    "talents / attack-wording": 4,
+    "talents / generic-damage-wording": 4,
+    "talents / critical-wording": 3,
+    "talents / elemental-wording": 3,
+    "factors / no-sample-text": 2,
+    "seasonal-talents / critical-wording": 2,
+    "skills / attack-wording": 2,
+    "talents / lucky-wording": 2,
+    "buffs / no-sample-text": 1,
+    "seasonal-talents / attack-wording": 1
+  },
+  "byScopeGap": {
+    "critical-damage:all": 2,
+    "critical-rate:all": 2,
+    "critical-damage:party": 1,
+    "critical-rate:owner": 1,
+    "elemental-damage:all": 1,
+    "generic-damage:all": 1,
+    "generic-damage:target": 1,
+    "seasonal-factor-damage:all": 1,
+    "seasonal-factor-damage:owner": 1,
+    "seasonal-factor-damage:party": 1,
+    "seasonal-factor-damage:target": 1
+  },
+  "byScopeGapCategory": {
+    "seasonal-talents / critical-damage:all": 1,
+    "seasonal-talents / critical-rate:all": 1,
+    "talents / critical-damage:all": 1,
+    "talents / critical-damage:party": 1,
+    "talents / critical-rate:all": 1,
+    "talents / critical-rate:owner": 1,
+    "talents / elemental-damage:all": 1,
+    "talents / generic-damage:all": 1,
+    "talents / generic-damage:target": 1,
+    "talents / seasonal-factor-damage:all": 1,
+    "talents / seasonal-factor-damage:owner": 1,
+    "talents / seasonal-factor-damage:party": 1,
+    "talents / seasonal-factor-damage:target": 1
+  },
+  "byOwnerPartyScopeGap": {
+    "critical-damage:party": 1,
+    "critical-rate:owner": 1,
+    "seasonal-factor-damage:owner": 1,
+    "seasonal-factor-damage:party": 1
+  },
+  "byOwnerPartyScopeGapCategory": {
+    "talents / critical-damage:party": 1,
+    "talents / critical-rate:owner": 1,
+    "talents / seasonal-factor-damage:owner": 1,
+    "talents / seasonal-factor-damage:party": 1
+  },
+  "scopeValueGaps": [
+    {
+      "key": "seasonal-talents:252",
+      "uid": "252",
+      "category": "seasonal-talents",
+      "runtimeKind": "selected-seasonal-talent",
+      "sourceLabel": "Marksman - Tidal Fury",
+      "componentKey": "critical-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner",
+        "party"
+      ],
+      "missingValueScopes": [
+        "all"
+      ],
+      "values": "owner:10%; party:1%",
+      "valueBlockers": [
+        "component:critical-rate:expected-value-model-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "expected-value model required before this can be a deterministic contribution",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:1413dccc2959"
+      ],
+      "sourceFiles": [
+        "probing-reports\\SeasonRogueEntryProbe.json"
+      ],
+      "sampleText": "Every 1% of Crit Rate increases its Crit DMG by 10% | dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] | Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit"
+    },
+    {
+      "key": "seasonal-talents:252",
+      "uid": "252",
+      "category": "seasonal-talents",
+      "runtimeKind": "selected-seasonal-talent",
+      "sourceLabel": "Marksman - Tidal Fury",
+      "componentKey": "critical-rate",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner",
+        "party"
+      ],
+      "missingValueScopes": [
+        "all"
+      ],
+      "values": "owner:10%; party:1%",
+      "valueBlockers": [
+        "component:critical-rate:expected-value-model-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "expected-value model required before this can be a deterministic contribution",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:1413dccc2959"
+      ],
+      "sourceFiles": [
+        "probing-reports\\SeasonRogueEntryProbe.json"
+      ],
+      "sampleText": "Every 1% of Crit Rate increases its Crit DMG by 10% | dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] | Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit"
+    },
+    {
+      "key": "talents:250",
+      "uid": "250",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Critical Cold",
+      "componentKey": "critical-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner"
+      ],
+      "missingValueScopes": [
+        "party",
+        "all"
+      ],
+      "values": "owner:15%",
+      "valueBlockers": [
+        "component:critical-damage:scope-value-missing:party",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:scope-value-missing:owner",
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "expected-value model required before this can be a deterministic contribution",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:012672550630"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "Crit DMG +15% | increases Crit DMG dealt by 15% | ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif"
+    },
+    {
+      "key": "talents:250",
+      "uid": "250",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Critical Cold",
+      "componentKey": "critical-rate",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "party"
+      ],
+      "missingValueScopes": [
+        "owner",
+        "all"
+      ],
+      "values": "party:3%",
+      "valueBlockers": [
+        "component:critical-damage:scope-value-missing:party",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:scope-value-missing:owner",
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "expected-value model required before this can be a deterministic contribution",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:012672550630"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "Crit DMG +15% | increases Crit DMG dealt by 15% | ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif"
+    },
+    {
+      "key": "talents:263",
+      "uid": "263",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Frost Tide",
+      "componentKey": "elemental-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner",
+        "party"
+      ],
+      "missingValueScopes": [
+        "all"
+      ],
+      "values": "owner:20%; party:5%",
+      "valueBlockers": [
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker elemental damage snapshot at hit time",
+        "damage element mapping by damage id",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target/source predicate evaluation"
+      ],
+      "sourceRuleIds": [
+        "mrs:07e7a6e8c9a8"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "grants 5% bonus Ice damage dealt instead for 3s | Frostbeam has a fixed 20% chance to grant Frost Crystal | เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG"
+    },
+    {
+      "key": "talents:235",
+      "uid": "235",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Cold Pulse",
+      "componentKey": "generic-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party",
+        "target"
+      ],
+      "candidateScopes": [
+        "owner",
+        "party"
+      ],
+      "missingValueScopes": [
+        "target",
+        "all"
+      ],
+      "values": "owner:500%; party:20%",
+      "valueBlockers": [
+        "component:seasonal-factor-damage:scope-value-missing:owner",
+        "component:seasonal-factor-damage:scope-value-missing:party",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker uid",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "produced damage row id",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "seasonal factor selection and season damage bonus snapshot at hit time",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target damage/recount id match",
+        "target uid",
+        "target-side buff/debuff/window state at hit time",
+        "target/source predicate evaluation"
+      ],
+      "sourceRuleIds": [
+        "mrs:3a6f63ce5388",
+        "mrs:aae80ca429fa",
+        "mrs:baf69dc8b8e6"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "DMG dari Chill Pulse +20% | increases Cold Pulse DMG by 20% | ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka..."
+    },
+    {
+      "key": "talents:235",
+      "uid": "235",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Cold Pulse",
+      "componentKey": "seasonal-factor-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party",
+        "target"
+      ],
+      "candidateScopes": [],
+      "missingValueScopes": [
+        "owner",
+        "party",
+        "target",
+        "all"
+      ],
+      "values": "",
+      "valueBlockers": [
+        "component:seasonal-factor-damage:scope-value-missing:owner",
+        "component:seasonal-factor-damage:scope-value-missing:party",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker uid",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "produced damage row id",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "seasonal factor selection and season damage bonus snapshot at hit time",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target damage/recount id match",
+        "target uid",
+        "target-side buff/debuff/window state at hit time",
+        "target/source predicate evaluation"
+      ],
+      "sourceRuleIds": [
+        "mrs:3a6f63ce5388",
+        "mrs:aae80ca429fa",
+        "mrs:baf69dc8b8e6"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "DMG dari Chill Pulse +20% | increases Cold Pulse DMG by 20% | ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka..."
+    }
+  ],
+  "ownerPartyScopeValueGaps": [
+    {
+      "key": "talents:250",
+      "uid": "250",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Critical Cold",
+      "componentKey": "critical-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner"
+      ],
+      "missingValueScopes": [
+        "party"
+      ],
+      "values": "owner:15%",
+      "valueBlockers": [
+        "component:critical-damage:scope-value-missing:party",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:scope-value-missing:owner",
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "expected-value model required before this can be a deterministic contribution",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:012672550630"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "Crit DMG +15% | increases Crit DMG dealt by 15% | ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif"
+    },
+    {
+      "key": "talents:250",
+      "uid": "250",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Critical Cold",
+      "componentKey": "critical-rate",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "party"
+      ],
+      "missingValueScopes": [
+        "owner"
+      ],
+      "values": "party:3%",
+      "valueBlockers": [
+        "component:critical-damage:scope-value-missing:party",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:scope-value-missing:owner",
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "expected-value model required before this can be a deterministic contribution",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:012672550630"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "Crit DMG +15% | increases Crit DMG dealt by 15% | ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif"
+    },
+    {
+      "key": "talents:235",
+      "uid": "235",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Cold Pulse",
+      "componentKey": "seasonal-factor-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party",
+        "target"
+      ],
+      "candidateScopes": [],
+      "missingValueScopes": [
+        "owner",
+        "party"
+      ],
+      "values": "",
+      "valueBlockers": [
+        "component:seasonal-factor-damage:scope-value-missing:owner",
+        "component:seasonal-factor-damage:scope-value-missing:party",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "proofRequirements": [
+        "attacker uid",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "numeric value for each proven owner/party scope must be mapped before deterministic contribution math",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "produced damage row id",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "seasonal factor selection and season damage bonus snapshot at hit time",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target damage/recount id match",
+        "target uid",
+        "target-side buff/debuff/window state at hit time",
+        "target/source predicate evaluation"
+      ],
+      "sourceRuleIds": [
+        "mrs:3a6f63ce5388",
+        "mrs:aae80ca429fa",
+        "mrs:baf69dc8b8e6"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "DMG dari Chill Pulse +20% | increases Cold Pulse DMG by 20% | ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka..."
+    }
+  ],
+  "examples": [
+    {
+      "key": "buffs:3055080",
+      "uid": "3055080",
+      "category": "buffs",
+      "sourceLabel": "巨刃G8",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "factors:3055080",
+      "uid": "3055080",
+      "category": "factors",
+      "sourceLabel": "uid:3055080",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "factors:3057070",
+      "uid": "3057070",
+      "category": "factors",
+      "sourceLabel": "uid:3057070",
+      "formulaReadiness": "mixed-exact-and-replay",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyStrikeBaseTerm",
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "seasonal-talents:252",
+      "uid": "252",
+      "category": "seasonal-talents",
+      "sourceLabel": "Marksman - Tidal Fury",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:critical-rate:expected-value-model-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "Every 1% of Crit Rate increases its Crit DMG by 10% | dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] | Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+      "sampleTexts": [
+        "Every 1% of Crit Rate increases its Crit DMG by 10%",
+        "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare]",
+        "Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+        "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] Torrent Volley is guaranteed to be a Crit",
+        "Cada 1% de Taxa Crítico aumenta seu Dano Crítico em 10%"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de tasa de críticos aumenta su DÑO crítico en un 10%",
+            "Cada 1% de Taxa Crítico aumenta seu Dano Crítico em 10%",
+            "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] Torrent Volley is guaranteed to be a Crit",
+            "Every 1% of Crit Rate increases its Crit DMG by 10%",
+            "Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+            "치명타 확률 1%마다 치명타 대미지가 10% 증가합니다",
+            "さらに会心率1%につき会心ダメージ+10%",
+            "怒涛射击必定暴击，且每有1%暴击率提升10%暴击伤害 仅在[困难]和[噩梦]难度出现 怒濤射擊必定暴擊，且每有1%暴擊率提升10%暴擊傷害 僅在[困難]和[噩夢]難度出現 レイジショットが必ず会心となる"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 10,
+          "unit": "percent",
+          "rawTexts": [
+            "+10%",
+            "10 %",
+            "10%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de tasa de críticos aumenta su DÑO crítico en un 10%",
+            "Cada 1% de Taxa Crítico aumenta seu Dano Crítico em 10%",
+            "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare]",
+            "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] Torrent Volley is guaranteed to be a Crit",
+            "Every 1% of Crit Rate increases its Crit DMG by 10%",
+            "Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+            "치명타 확률 1%마다 치명타 대미지가 10% 증가합니다",
+            "怒涛射击必定暴击，且每有1%暴击率提升10%暴击伤害 仅在[困难]和[噩梦]难度出现 怒濤射擊必定暴擊，且每有1%暴擊率提升10%暴擊傷害 僅在[困難]和[噩夢]難度出現 レイジショットが必ず会心となる"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:265",
+      "uid": "265",
+      "category": "seasonal-talents",
+      "sourceLabel": "Verdant Oracle - Critical Pulse",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:ambiguous-scoped-value:all",
+        "component:critical-rate:expected-value-model-required"
+      ],
+      "sampleText": "and its Crit DMG is increased by 2,000% | dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan | Regen Pulse จะ Crit เสมอ และ Crit DMG+2000% ปรากฏเฉพาะในระดับ [นรก] Regen Pulse pasti Crit",
+      "sampleTexts": [
+        "and its Crit DMG is increased by 2,000%",
+        "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan",
+        "Regen Pulse จะ Crit เสมอ และ Crit DMG+2000% ปรากฏเฉพาะในระดับ [นรก] Regen Pulse pasti Crit",
+        "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan Regen Pulse is guaranteed to be a Crit",
+        "Pulso Regenerativo es un crítico garantizado y su DÑO crítico aumenta un 2000 %"
+      ],
+      "samples": [
+        {
+          "value": 2,
+          "unit": "percent",
+          "rawTexts": [
+            "2,000%"
+          ],
+          "sourceTexts": [
+            "and its Crit DMG is increased by 2,000%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 2000,
+          "unit": "percent",
+          "rawTexts": [
+            "+2000%",
+            "2000 %",
+            "2000%"
+          ],
+          "sourceTexts": [
+            "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan",
+            "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan Regen Pulse is guaranteed to be a Crit",
+            "Pulso Regenerativo es un crítico garantizado y su DÑO crítico aumenta un 2000 %",
+            "Regen Pulse จะ Crit เสมอ และ Crit DMG+2000% ปรากฏเฉพาะในระดับ [นรก] Regen Pulse pasti Crit",
+            "치명타 대미지가 2000% 증가합니다",
+            "再生脉冲必定暴击，且暴击伤害+2000% 仅在[噩梦]难度出现 再生脈衝必定暴擊，且暴擊傷害+2000% 僅在[噩夢]難度出現 リジェネイトパルスで必ず会心が発生し、さらに会心ダメージ+2000%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:1110",
+      "uid": "1110",
+      "category": "seasonal-talents",
+      "sourceLabel": "Swift-Calc",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "generalDamage",
+        "seasonDamage",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "Melee Attack +3 | Melee Attack -3,5 detik | เมื่อ Class Skills ประเภท DMG โดยตรงที่ไม่ใช่การโจมตีทั่วไปทำ CRIT DMG จำนวนนับของ Dream Execution จะ +1",
+      "sampleTexts": [
+        "Melee Attack +3",
+        "Melee Attack -3,5 detik",
+        "เมื่อ Class Skills ประเภท DMG โดยตรงที่ไม่ใช่การโจมตีทั่วไปทำ CRIT DMG จำนวนนับของ Dream Execution จะ +1",
+        "Phantom Execution trigger count +1",
+        "hitungan pemicuan Phantasm Execution +1"
+      ],
+      "samples": [
+        {
+          "value": -3.5,
+          "unit": "flat",
+          "rawTexts": [
+            "-3,5"
+          ],
+          "sourceTexts": [
+            "Melee Attack -3,5 detik"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1,
+          "unit": "flat",
+          "rawTexts": [
+            "+1",
+            "1"
+          ],
+          "sourceTexts": [
+            "5>秒ごとに1回発動）",
+            "hitungan pemicuan Phantasm Execution +1",
+            "le compteur de déclenchements d'Exécution fantôme augmente de +1 et son TdR interne diminue de 0,5 s",
+            "Phantom Execution trigger count +1",
+            "เมื่อ Class Skills ประเภท DMG โดยตรงที่ไม่ใช่การโจมตีทั่วไปทำ CRIT DMG จำนวนนับของ Dream Execution จะ +1",
+            "通常攻撃以外の直接ダメージ型クラススキルで会心ダメージを与えたとき、幻夢の断罪の発動カウント+1（近接攻撃+3）、リキャスト-0",
+            "非普通攻击的直接伤害型职业技能造成暴击伤害时，幻梦处决的触发计数+1（近战攻击+3），同时内置冷却时间-0",
+            "非普通攻擊的直接傷害型職業技能造成暴擊傷害時，幻夢處決的觸發計數+1（近戰攻擊+3），同時內置冷卻時間-0"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 3,
+          "unit": "flat",
+          "rawTexts": [
+            "+3",
+            "3"
+          ],
+          "sourceTexts": [
+            "Melee Attack +3",
+            "การโจมตีระยะประชิด +3",
+            "근접 공격은 3",
+            "근접 공격은 3 증가",
+            "通常攻撃以外の直接ダメージ型クラススキルで会心ダメージを与えたとき、幻夢の断罪の発動カウント+1（近接攻撃+3）、リキャスト-0",
+            "非普通攻击的直接伤害型职业技能造成暴击伤害时，幻梦处决的触发计数+1（近战攻击+3），同时内置冷却时间-0",
+            "非普通攻擊的直接傷害型職業技能造成暴擊傷害時，幻夢處決的觸發計數+1（近戰攻擊+3），同時內置冷卻時間-0"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:12301060101",
+      "uid": "12301060101",
+      "category": "skills",
+      "sourceLabel": "Flame Note",
+      "formulaReadiness": "mixed-exact-and-replay",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm",
+        "seasonDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches | เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill | causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+      "sampleTexts": [
+        "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+        "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+        "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+        "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+        "700%"
+      ],
+      "samples": [
+        {
+          "value": 700,
+          "unit": "percent",
+          "rawTexts": [
+            "700 %",
+            "700%"
+          ],
+          "sourceTexts": [
+            "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+            "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+            "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+            "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+            "불꽃의 랩소디가 리듬에 맞춰 폭발해 공격력 700%만큼의 마법 대미지를 1회 입히며",
+            "マスタリースキル発動時、フレイムラプソディーがリズムに合わせて爆発し、攻撃力700%の魔法ダメージを与え、同時に接触した味方ターゲットに音符を付与する",
+            "施放专精技能时，烈焰狂想跟着律动爆发一次攻击力700%魔法伤害，同时为其接触到的友方目标添加音符",
+            "施放專精技能時，烈焰狂想跟著律動爆發一次攻擊力700%魔法傷害，同時為其接觸到的友方目標添加音符"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "skills:204",
+      "uid": "204",
+      "category": "skills",
+      "sourceLabel": "Flame Note",
+      "formulaReadiness": "mixed-exact-and-replay",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm",
+        "seasonDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches | เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill | causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+      "sampleTexts": [
+        "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+        "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+        "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+        "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+        "700%"
+      ],
+      "samples": [
+        {
+          "value": 700,
+          "unit": "percent",
+          "rawTexts": [
+            "700 %",
+            "700%"
+          ],
+          "sourceTexts": [
+            "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+            "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+            "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+            "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+            "불꽃의 랩소디가 리듬에 맞춰 폭발해 공격력 700%만큼의 마법 대미지를 1회 입히며",
+            "マスタリースキル発動時、フレイムラプソディーがリズムに合わせて爆発し、攻撃力700%の魔法ダメージを与え、同時に接触した味方ターゲットに音符を付与する",
+            "施放专精技能时，烈焰狂想跟着律动爆发一次攻击力700%魔法伤害，同时为其接触到的友方目标添加音符",
+            "施放專精技能時，烈焰狂想跟著律動爆發一次攻擊力700%魔法傷害，同時為其接觸到的友方目標添加音符"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1102",
+      "uid": "1102",
+      "category": "talents",
+      "sourceLabel": "Vulnerable Strike",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:skill-multiplier:ambiguous-scoped-value:target",
+        "component:target-vulnerability:ambiguous-scoped-value:all",
+        "component:target-vulnerability:ambiguous-scoped-value:target",
+        "component:target-vulnerability:target-window-proof-required"
+      ],
+      "sampleText": "Vulnerability: Increases the DMG you deal to the target by 10% for 5s | Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik | Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+      "sampleTexts": [
+        "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+        "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+        "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+        "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30%...",
+        "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s"
+      ],
+      "samples": [
+        {
+          "value": 10,
+          "unit": "percent",
+          "rawTexts": [
+            "+10%",
+            "10 %",
+            "10%"
+          ],
+          "sourceTexts": [
+            "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s",
+            "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+            "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+            "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+            "취약: 5초 동안 대상이 자신으로부터 받는 대미지 +10%",
+            "易伤：5秒内目标受到自身伤害+10%",
+            "易傷：5秒內目標受到自身傷害+10%",
+            "脆弱：5秒間、対象に与えるダメージ+10%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "30%의 고정 확률로 적에게 취약 효과를 부여합니다",
+            "Causar dano concede 30% de chance fixa de aplicar Vulnerabilidade ao inimigo",
+            "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+            "Infliger des dégâts confère 30 % de chances fixes d'appliquer Vulnérabilité à l'ennemi",
+            "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+            "ダメージを与えると、30%の固定確率でエネミーに脆弱効果を付与する",
+            "造成伤害时，有30%固定几率对敌方目标施加易伤效果",
+            "造成傷害時，有30%固定機率對敵方目標施加易傷效果"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1200",
+      "uid": "1200",
+      "category": "talents",
+      "sourceLabel": "Lightforged Body",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1204",
+      "uid": "1204",
+      "category": "talents",
+      "sourceLabel": "Lightforge Continuum",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "luckyStrikeBaseTerm",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:cooldown-or-resource:timing-model-required",
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1214",
+      "uid": "1214",
+      "category": "talents",
+      "sourceLabel": "Fearless Shield",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-scoped-value:all",
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "akan mendapat Light Holyshield sebesar 37,5% ATK | ganha Escudo Radiante igual a 37,5% do ATQ | vous gagnez un Bouclier radieux égal à 37,5 % de l'attaque",
+      "sampleTexts": [
+        "akan mendapat Light Holyshield sebesar 37,5% ATK",
+        "ganha Escudo Radiante igual a 37,5% do ATQ",
+        "vous gagnez un Bouclier radieux égal à 37,5 % de l'attaque",
+        "wird Strahlender Schild in Höhe von 37,5 % des ANG gewährt",
+        "37,5%"
+      ],
+      "samples": [
+        {
+          "value": 37.5,
+          "unit": "percent",
+          "rawTexts": [
+            "37,5 %",
+            "37,5%"
+          ],
+          "sourceTexts": [
+            "akan mendapat Light Holyshield sebesar 37,5% ATK",
+            "ganha Escudo Radiante igual a 37,5% do ATQ",
+            "vous gagnez un Bouclier radieux égal à 37,5 % de l'attaque",
+            "wird Strahlender Schild in Höhe von 37,5 % des ANG gewährt"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1313",
+      "uid": "1313",
+      "category": "talents",
+      "sourceLabel": "Healing Note",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyStrikeBaseTerm",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:cooldown-or-resource:timing-model-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1339",
+      "uid": "1339",
+      "category": "talents",
+      "sourceLabel": "Resonant Counterpoint",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "luckyStrikeBaseTerm",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:critical-rate:expected-value-model-required",
+        "component:hit-count-model:hit-count-model-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1340",
+      "uid": "1340",
+      "category": "talents",
+      "sourceLabel": "Sonic Cure",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1341",
+      "uid": "1341",
+      "category": "talents",
+      "sourceLabel": "Sonic Therapy",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:158",
+      "uid": "158",
+      "category": "talents",
+      "sourceLabel": "Divine Sickle",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "elementalDamage",
+        "finalDamage",
+        "generalDamage",
+        "luckyChance",
+        "luckyEnhancement",
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:value-ladder-selection-required",
+        "component:elemental-damage:ambiguous-scoped-value:all",
+        "component:final-damage:value-ladder-selection-required",
+        "component:lucky-rate:expected-value-model-required",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "final damage increases by 200% | DMG akhir yang diakibatkan +200% | Divine Sickle's final damage increases by 100%",
+      "sampleTexts": [
+        "final damage increases by 200%",
+        "DMG akhir yang diakibatkan +200%",
+        "Divine Sickle's final damage increases by 100%",
+        "Saat Lucky Chance lebih dari 28% dan kurang dari 45%",
+        "DMG akhir yang diakibatkan Scythe of Punishment +100%"
+      ],
+      "samples": [
+        {
+          "value": 28,
+          "unit": "percent",
+          "rawTexts": [
+            "28 %",
+            "28%"
+          ],
+          "sourceTexts": [
+            "Lorsque la chance est comprise entre 28 % et 45 %",
+            "Quando a Sorte estiver entre 28% e 45%",
+            "Saat Lucky Chance lebih dari 28% dan kurang dari 45%",
+            "When Luck is between 28% and 45%",
+            "행운 확률이 28% 초과 45% 이하일 때",
+            "幸運確率が28%以上45%未満だった場合、審罰鎌の最終ダメージ+100%だが、雷霆鎌の発動14回が前提",
+            "当幸运几率超过28%低于45%时，神罚之镰的最终伤害+100%，但是需要14次雷霆之镰进行触发",
+            "當幸運機率超過28%低於45%時，神罰之鐮的最終傷害+100%，但是需要14次雷霆之鐮進行觸發"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 45,
+          "unit": "percent",
+          "rawTexts": [
+            "45 %",
+            "45%"
+          ],
+          "sourceTexts": [
+            "When Luck chance is above 45%",
+            "When Luck is between 28% and 45%",
+            "同様に、幸運確率が45%以上だった場合は、最終ダメージ+200%だが、雷霆鎌の発動21回が前提",
+            "幸運確率が28%以上45%未満だった場合、審罰鎌の最終ダメージ+100%だが、雷霆鎌の発動14回が前提",
+            "当幸运几率超过28%低于45%时，神罚之镰的最终伤害+100%，但是需要14次雷霆之镰进行触发",
+            "当幸运几率超过45%后，同时其最终伤害+200%，但是需要21次雷霆之镰进行触发",
+            "當幸運機率超過28%低於45%時，神罰之鐮的最終傷害+100%，但是需要14次雷霆之鐮進行觸發",
+            "當幸運機率超過45%後，同時其最終傷害+200%，但是需要21次雷霆之鐮進行觸發"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "Divine Sickle's final damage increases by 100%",
+            "DMG akhir yang diakibatkan Scythe of Punishment +100%",
+            "les dégâts finaux de Faucille divine augmentent de 100 %",
+            "o dano final da Foice Divina aumenta em 100%",
+            "신벌의 낫의 최종 대미지가 100% 증가하지만 뇌전의 낫 14회 시전 시 발동됩니다",
+            "幸運確率が28%以上45%未満だった場合、審罰鎌の最終ダメージ+100%だが、雷霆鎌の発動14回が前提",
+            "当幸运几率超过28%低于45%时，神罚之镰的最终伤害+100%，但是需要14次雷霆之镰进行触发",
+            "當幸運機率超過28%低於45%時，神罰之鐮的最終傷害+100%，但是需要14次雷霆之鐮進行觸發"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 200,
+          "unit": "percent",
+          "rawTexts": [
+            "+200%",
+            "200 %",
+            "200%"
+          ],
+          "sourceTexts": [
+            "DMG akhir yang diakibatkan +200%",
+            "final damage increases by 200%",
+            "o dano final aumenta em 200%",
+            "ses dégâts finaux augmentent de 200 %",
+            "최종 대미지가 200% 증가하지만 뇌전의 낫 21회 시전 시 발동됩니다",
+            "同様に、幸運確率が45%以上だった場合は、最終ダメージ+200%だが、雷霆鎌の発動21回が前提",
+            "当幸运几率超过45%后，同时其最终伤害+200%，但是需要21次雷霆之镰进行触发",
+            "當幸運機率超過45%後，同時其最終傷害+200%，但是需要21次雷霆之鐮進行觸發"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:247",
+      "uid": "247",
+      "category": "talents",
+      "sourceLabel": "Frost Lance Crit",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:ambiguous-scoped-value:all",
+        "component:critical-rate:expected-value-model-required"
+      ],
+      "sampleText": "5% more Crit DMG | Crit DMG +1,5% selama 6 detik | เมื่อFrost Spear ติด CRIT ทำให้ CRIT DMG +1",
+      "sampleTexts": [
+        "5% more Crit DMG",
+        "Crit DMG +1,5% selama 6 detik",
+        "เมื่อFrost Spear ติด CRIT ทำให้ CRIT DMG +1",
+        "5% ต่อเนื่อง6วินาที ซ้อนทับสูงสุด10Stack Saat Frost Spear menghasilkan Crit",
+        "Frost Lance Crit Frost Lance Crit 冰矛暴击 冰矛暴擊 氷槍会心 얼음 창 치명타 Critique de Lance de givre Frostlanzen-Krit Crítico de Lanza Gélida Crítico da Lança de Gelo Frost Spear CRIT Ice Spear C..."
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "flat",
+          "rawTexts": [
+            "+1",
+            "1"
+          ],
+          "sourceTexts": [
+            "Frost Lance Crit Frost Lance Crit 冰矛暴击 冰矛暴擊 氷槍会心 얼음 창 치명타 Critique de Lance de givre Frostlanzen-Krit Crítico de Lanza Gélida Crítico da Lança de Gelo Frost Spear CRIT Ice Spear Critical 冰矛暴击 Frost Lance deals 1",
+            "Frost Lance deals 1",
+            "Lanza Gélida inflige un 1",
+            "เมื่อFrost Spear ติด CRIT ทำให้ CRIT DMG +1",
+            "자신의 치명타 대미지 +1",
+            "フロストファングが会心になった場合、会心ダメージ+1",
+            "冰霜之矛暴击时暴击伤害+1",
+            "冰霜之矛暴擊時暴擊傷害+1"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1.5,
+          "unit": "percent",
+          "rawTexts": [
+            "+1,5%",
+            "1,5 %",
+            "1,5%"
+          ],
+          "sourceTexts": [
+            "Crit DMG +1,5% selama 6 detik",
+            "Frostlanze verursacht 1,5 % mehr Krit-SCH",
+            "Lança de Gelo causa 1,5% mais Dano Crítico",
+            "Lance de givre inflige 1,5 % de dégâts critiques supplémentaires"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 5,
+          "unit": "percent",
+          "rawTexts": [
+            "5 %",
+            "5%"
+          ],
+          "sourceTexts": [
+            "5 % más de DÑO crítico",
+            "5% more Crit DMG",
+            "5% ต่อเนื่อง6วินาที ซ้อนทับสูงสุด10Stack Saat Frost Spear menghasilkan Crit",
+            "5%，持续6秒，最多叠加10层",
+            "5%，持續6秒，最多疊加10層"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:250",
+      "uid": "250",
+      "category": "talents",
+      "sourceLabel": "Critical Cold",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:scope-value-missing:party",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:scope-value-missing:owner",
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "Crit DMG +15% | increases Crit DMG dealt by 15% | ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+      "sampleTexts": [
+        "Crit DMG +15%",
+        "increases Crit DMG dealt by 15%",
+        "ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+        "Critical Chance rekan satu tim +3%",
+        "aumenta o Dano Crítico causado em 15%"
+      ],
+      "samples": [
+        {
+          "value": 3,
+          "unit": "percent",
+          "rawTexts": [
+            "+3%",
+            "3 %",
+            "3%"
+          ],
+          "sourceTexts": [
+            "aumenta a Taxa de Crítico de aliados em 3%",
+            "Critical Chance rekan satu tim +3%",
+            "increases allies' critical rate by 3%",
+            "ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+            "파티원의 치명타 확률 +3%",
+            "かつ、パーティメンバーの会心確率+3%",
+            "冰之灌注持续期间，队友暴击几率+3%",
+            "冰之灌注持續期間，隊友暴擊機率+3%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 15,
+          "unit": "percent",
+          "rawTexts": [
+            "+15%",
+            "15 %",
+            "15%"
+          ],
+          "sourceTexts": [
+            "aumenta o Dano Crítico causado em 15%",
+            "Crit DMG +15%",
+            "increases Crit DMG dealt by 15%",
+            "ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+            "치명타 대미지 +15%",
+            "パーマフロストの有効中、会心ダメージ+15%",
+            "冰之灌注持续期间，暴击伤害+15%",
+            "冰之灌注持續期間，暴擊傷害+15%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:252",
+      "uid": "252",
+      "category": "talents",
+      "sourceLabel": "Sharp Blizzard",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-rate:expected-value-model-required",
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "Ice Storm Crit DMG +15% | Increases the Crit DMG of Blizzard by 15% | Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+      "sampleTexts": [
+        "Ice Storm Crit DMG +15%",
+        "Increases the Crit DMG of Blizzard by 15%",
+        "Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+        "Aumenta o Dano Crítico de Nevasca em 15%",
+        "Aumenta a Taxa de Crítico de Nevasca em 50%"
+      ],
+      "samples": [
+        {
+          "value": 15,
+          "unit": "percent",
+          "rawTexts": [
+            "+15%",
+            "15 %",
+            "15%"
+          ],
+          "sourceTexts": [
+            "Aumenta o Dano Crítico de Nevasca em 15%",
+            "Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+            "Ice Storm Crit DMG +15%",
+            "Increases the Crit DMG of Blizzard by 15%",
+            "블리자드 치명타 대미지 +15%",
+            "ブリザードの会心ダメージ+15%",
+            "寒冰風暴暴擊傷害+15%",
+            "寒冰风暴暴击伤害+15%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "+50%",
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "Aumenta a Taxa de Crítico de Nevasca em 50%",
+            "Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+            "Increases the critical rate of Blizzard by 50%",
+            "Sharp Blizzard Sharp Blizzard 锐利冰暴 銳利冰暴 氷嵐 예리한 빙폭 Blizzard Tranchant Scharfer Schneesturm Ventisca Afilada Nevasca Cortante พายุน้ำแข็งคม Sharp Blizzard 锐利冰暴 Increases the critical rate of Blizzard by 50%",
+            "블리자드 치명타 +50%",
+            "ブリザードの会心+50%",
+            "寒冰風暴暴擊+50%",
+            "寒冰风暴暴击+50%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:263",
+      "uid": "263",
+      "category": "talents",
+      "sourceLabel": "Frost Tide",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "grants 5% bonus Ice damage dealt instead for 3s | Frostbeam has a fixed 20% chance to grant Frost Crystal | เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+      "sampleTexts": [
+        "grants 5% bonus Ice damage dealt instead for 3s",
+        "Frostbeam has a fixed 20% chance to grant Frost Crystal",
+        "เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+        "akan mendapatkan 5% Ice Boost selama 3 detik",
+        "concede 5% bônus de Dano de Gelo em vez disso por 3 s"
+      ],
+      "samples": [
+        {
+          "value": 5,
+          "unit": "percent",
+          "rawTexts": [
+            "+5%",
+            "5 %",
+            "5%"
+          ],
+          "sourceTexts": [
+            "akan mendapatkan 5% Ice Boost selama 3 detik",
+            "concede 5% bônus de Dano de Gelo em vez disso por 3 s",
+            "grants 5% bonus Ice damage dealt instead for 3s",
+            "เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+            "만약 미스틱 아이스가 이미 최대치라면 대신 얼음 원소 보너스를 5% 획득합니다",
+            "寒冰射线造成伤害时有20%固定几率直接获得玄冰，如果玄冰已达上限，则获得5%冰元素加成，持续3秒",
+            "寒冰射線造成傷害時有20%固定機率直接獲得玄冰，如果玄冰已達上限，則獲得5%冰元素加成，持續3秒",
+            "玄氷がすでに上限に達していた場合は、氷属性ボーナス+5%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 20,
+          "unit": "percent",
+          "rawTexts": [
+            "20 %",
+            "20%"
+          ],
+          "sourceTexts": [
+            "20%의 고정 확률로 미스틱 아이스를 즉시 획득합니다",
+            "Frostbeam has a fixed 20% chance to grant Frost Crystal",
+            "Raio de Gelo tem 20% de chance fixa de conceder Cristal de Gelo",
+            "terdapat 20% peluang tetap untuk langsung mendapatkan Black Ice",
+            "เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+            "フロストレイがダメージを与えると、20%の固定確率で玄氷を獲得する",
+            "寒冰射线造成伤害时有20%固定几率直接获得玄冰，如果玄冰已达上限，则获得5%冰元素加成，持续3秒",
+            "寒冰射線造成傷害時有20%固定機率直接獲得玄冰，如果玄冰已達上限，則獲得5%冰元素加成，持續3秒"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:402",
+      "uid": "402",
+      "category": "talents",
+      "sourceLabel": "Vulnerable Strike",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:skill-multiplier:ambiguous-scoped-value:target",
+        "component:target-vulnerability:ambiguous-scoped-value:all",
+        "component:target-vulnerability:ambiguous-scoped-value:target",
+        "component:target-vulnerability:target-window-proof-required"
+      ],
+      "sampleText": "Vulnerability: Increases the DMG you deal to the target by 10% for 5s | Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik | Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+      "sampleTexts": [
+        "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+        "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+        "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+        "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30%...",
+        "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s"
+      ],
+      "samples": [
+        {
+          "value": 10,
+          "unit": "percent",
+          "rawTexts": [
+            "+10%",
+            "10 %",
+            "10%"
+          ],
+          "sourceTexts": [
+            "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s",
+            "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+            "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+            "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+            "취약: 5초 동안 대상이 자신으로부터 받는 대미지 +10%",
+            "易伤：5秒内目标受到自身伤害+10%",
+            "易傷：5秒內目標受到自身傷害+10%",
+            "脆弱：5秒間、対象に与えるダメージ+10%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "30%의 고정 확률로 적에게 취약 효과를 부여합니다",
+            "Causar dano concede 30% de chance fixa de aplicar Vulnerabilidade ao inimigo",
+            "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+            "Infliger des dégâts confère 30 % de chances fixes d'appliquer Vulnérabilité à l'ennemi",
+            "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+            "ダメージを与えると、30%の固定確率でエネミーに脆弱効果を付与する",
+            "造成伤害时，有30%固定几率对敌方目标施加易伤效果",
+            "造成傷害時，有30%固定機率對敵方目標施加易傷效果"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:404",
+      "uid": "404",
+      "category": "talents",
+      "sourceLabel": "Sharp Expansion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:409",
+      "uid": "409",
+      "category": "talents",
+      "sourceLabel": "Sharp Expansion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:418",
+      "uid": "418",
+      "category": "talents",
+      "sourceLabel": "Sharp Expansion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:420",
+      "uid": "420",
+      "category": "talents",
+      "sourceLabel": "Sharp Expansion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:436",
+      "uid": "436",
+      "category": "talents",
+      "sourceLabel": "Sharp Expansion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:438",
+      "uid": "438",
+      "category": "talents",
+      "sourceLabel": "Sharp",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "bonus ATK dari Sharp meningkat 6% | the additional ATK from Sharp increases to 6% | 筋力が500ptに達すると、鋭利が付与する攻撃力が6%にアップする",
+      "sampleTexts": [
+        "bonus ATK dari Sharp meningkat 6%",
+        "the additional ATK from Sharp increases to 6%",
+        "筋力が500ptに達すると、鋭利が付与する攻撃力が6%にアップする",
+        "o ATQ adicional de Afiado aumenta para 6%",
+        "เมื่อPowerถึง500แต้ม พลังโจมตีที่เพิ่มขึ้นจากความคมจะเพิ่มเป็น6% Saat STR mencapai 500 poin"
+      ],
+      "samples": [
+        {
+          "value": 6,
+          "unit": "percent",
+          "rawTexts": [
+            "6 %",
+            "6%"
+          ],
+          "sourceTexts": [
+            "bonus ATK dari Sharp meningkat 6%",
+            "o ATQ adicional de Afiado aumenta para 6%",
+            "the additional ATK from Sharp increases to 6%",
+            "เมื่อPowerถึง500แต้ม พลังโจมตีที่เพิ่มขึ้นจากความคมจะเพิ่มเป็น6% Saat STR mencapai 500 poin",
+            "예리함의 추가 공격력이 6%로 증가합니다",
+            "力量达到500点时，锐利附加攻击力提升至6%",
+            "力量達到500點時，銳利附加攻擊力提升至6%",
+            "筋力が500ptに達すると、鋭利が付与する攻撃力が6%にアップする"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:459",
+      "uid": "459",
+      "category": "talents",
+      "sourceLabel": "Sharp Expansion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1343",
+      "uid": "1343",
+      "category": "talents",
+      "sourceLabel": "Flame Note",
+      "formulaReadiness": "mixed-exact-and-replay",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyStrikeBaseTerm",
+        "physicalMagicEnhancement",
+        "seasonDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:atk:ambiguous-value-selection-required",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+      ],
+      "sampleText": "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches | เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill | causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+      "sampleTexts": [
+        "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+        "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+        "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+        "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+        "700%"
+      ],
+      "samples": [
+        {
+          "value": 700,
+          "unit": "percent",
+          "rawTexts": [
+            "700 %",
+            "700%"
+          ],
+          "sourceTexts": [
+            "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+            "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+            "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+            "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+            "불꽃의 랩소디가 리듬에 맞춰 폭발해 공격력 700%만큼의 마법 대미지를 1회 입히며",
+            "マスタリースキル発動時、フレイムラプソディーがリズムに合わせて爆発し、攻撃力700%の魔法ダメージを与え、同時に接触した味方ターゲットに音符を付与する",
+            "施放专精技能时，烈焰狂想跟着律动爆发一次攻击力700%魔法伤害，同时为其接触到的友方目标添加音符",
+            "施放專精技能時，烈焰狂想跟著律動爆發一次攻擊力700%魔法傷害，同時為其接觸到的友方目標添加音符"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:235",
+      "uid": "235",
+      "category": "talents",
+      "sourceLabel": "Cold Pulse",
+      "formulaReadiness": "mixed-exact-and-replay",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement",
+        "seasonDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:seasonal-factor-damage:scope-value-missing:owner",
+        "component:seasonal-factor-damage:scope-value-missing:party",
+        "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "DMG dari Chill Pulse +20% | increases Cold Pulse DMG by 20% | ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka...",
+      "sampleTexts": [
+        "DMG dari Chill Pulse +20%",
+        "increases Cold Pulse DMG by 20%",
+        "ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka...",
+        "up to 500%",
+        "até um máximo de 500%"
+      ],
+      "samples": [
+        {
+          "value": 20,
+          "unit": "percent",
+          "rawTexts": [
+            "+20%",
+            "20 %",
+            "20%"
+          ],
+          "sourceTexts": [
+            "Cada inimigo adicional atingido aumenta o dano do Pulso Frio em 20%",
+            "DMG dari Chill Pulse +20%",
+            "increases Cold Pulse DMG by 20%",
+            "ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatkan 50 kali DMG",
+            "콜드 펄스가 명중한 목표 1명당 대미지 +20%",
+            "冰冷脉冲每命中一个目标伤害+20%，最多不超过500%",
+            "冰冷脈衝每命中一個目標傷害+20%，最多不超過500%",
+            "氷冷波動が対象1体に命中するたびダメージ+20%（最大500%まで）"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 500,
+          "unit": "percent",
+          "rawTexts": [
+            "500 %",
+            "500%"
+          ],
+          "sourceTexts": [
+            "500%",
+            "até um máximo de 500%",
+            "up to 500%",
+            "ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatkan 50 kali DMG",
+            "대미지 최대치는 500%입니다",
+            "冰冷脉冲每命中一个目标伤害+20%，最多不超过500%",
+            "冰冷脈衝每命中一個目標傷害+20%，最多不超過500%",
+            "氷冷波動が対象1体に命中するたびダメージ+20%（最大500%まで）"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1103",
+      "uid": "1103",
+      "category": "talents",
+      "sourceLabel": "Wolf Pact",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:hit-count-model:hit-count-model-required",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "mengakibatkan PDMG sebesar 60% ATK | dealing Attack DMG equal to 60% ATK | mengakibatkan PDMG sebesar 100% ATK",
+      "sampleTexts": [
+        "mengakibatkan PDMG sebesar 60% ATK",
+        "dealing Attack DMG equal to 60% ATK",
+        "mengakibatkan PDMG sebesar 100% ATK",
+        "dealing Attack DMG equal to 100% ATK",
+        "Storm Arrow has a 30% fixed chance to trigger Coordinated Attack"
+      ],
+      "samples": [
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "Flecha da Tempestade tem 30% de chance fixa de ativar Ataque Coordenado",
+            "Melancarkan Storm Arrow berpeluang tetap 30% memicu Sync Attack bersama Wildwolf",
+            "Storm Arrow has a 30% fixed chance to trigger Coordinated Attack",
+            "ฝึก Wild Wolf 1 ตัวเพื่อติดตามตัวเองไปต่อสู้ ปล่อย Storm Arrow มีโอกาสคงที่ 30% เพื่อทำให้ทำงานร่วมมือโจมตี Wild Wolf Wild Wolf จะช่วยคุณในการต่อสู้แบบร่วมมือกัน โจมตีทั่วไป: ทำการกวาดล้างเป้าหมายฝ่ายศัตรู เพื่อสร้าง 60% ของ P",
+            "스톰 애로우 시전 시 30%의 고정 확률로 협동 공격을 발동합니다",
+            "ハウリングボルト使用時、30%の固定確率で協力攻撃を発動する",
+            "馴化一隻野狼跟隨自身戰鬥，施放暴風箭矢有30%固定機率使其觸發協同攻擊",
+            "驯化一只野狼跟随自身战斗，施放暴风箭矢有30%固定几率使其触发协同攻击"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 60,
+          "unit": "percent",
+          "rawTexts": [
+            "60 %",
+            "60%"
+          ],
+          "sourceTexts": [
+            "causando Dano de Ataque igual a 60% ATQ",
+            "dealing Attack DMG equal to 60% ATK",
+            "mengakibatkan PDMG sebesar 60% ATK",
+            "ฝึก Wild Wolf 1 ตัวเพื่อติดตามตัวเองไปต่อสู้ ปล่อย Storm Arrow มีโอกาสคงที่ 30% เพื่อทำให้ทำงานร่วมมือโจมตี Wild Wolf Wild Wolf จะช่วยคุณในการต่อสู้แบบร่วมมือกัน โจมตีทั่วไป: ทำการกวาดล้างเป้าหมายฝ่ายศัตรู เพื่อสร้าง 60% ของ P",
+            "일반 공격: 적을 가로로 휩쓸어 공격해 공격력의 60%에 해당하는 물리 대미지를 입힙니다",
+            "普通攻击：对敌方目标进行横扫，造成60%攻击力物理伤害，跟随普通攻击技能升级/进阶进行成长",
+            "普通攻擊：對敵方目標進行橫掃，造成60%攻擊力物理傷害，跟隨普通攻擊技能升級/進階進行成長",
+            "通常攻撃：エネミーを横薙ぎして攻撃力の60%の物理ダメージを与える（威力は通常攻撃スキルのレベル/ランクに応じて上昇）"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "/เลื่อนขั้นของโจมตีทั่วไป ร่วมมือโจมตี:Wild Wolf กระโดดไปที่เป้าหมายเพื่อทำการกัดทันที สร้าง 100% ของ P",
+            "causando Dano de Ataque igual a 100% ATQ",
+            "dealing Attack DMG equal to 100% ATK",
+            "mengakibatkan PDMG sebesar 100% ATK",
+            "협동 공격: 늑대가 즉시 적에게 달려들어 물어뜯고 공격력 100%만큼의 물리 대미지를 입힙니다",
+            "协同攻击：野狼立刻扑向目标对其进行撕咬，造成100%攻击力物理伤害，跟随普通攻击技能升级/进阶进行成长",
+            "協力攻撃：臣狼が対象に飛びかかって噛みつき、攻撃力の100%の物理ダメージを与える（威力は通常攻撃スキルのレベル/ランクに応じて上昇）",
+            "協同攻擊：野狼立刻撲向目標對其進行撕咬，造成100%攻擊力物理傷害，跟隨普通攻擊技能升級/進階進行成長"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1137",
+      "uid": "1137",
+      "category": "talents",
+      "sourceLabel": "Beast Tidal Power",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1161",
+      "uid": "1161",
+      "category": "talents",
+      "sourceLabel": "Radiant Charge",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "Explosive Shot berikutnya mendapatkan +20% DMG | increases the DMG of the next Blast Shot by 20% | ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+      "sampleTexts": [
+        "Explosive Shot berikutnya mendapatkan +20% DMG",
+        "increases the DMG of the next Blast Shot by 20%",
+        "ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+        "até no máximo 100%",
+        "hingga maksimum 100%"
+      ],
+      "samples": [
+        {
+          "value": 20,
+          "unit": "percent",
+          "rawTexts": [
+            "+20%",
+            "20 %",
+            "20%"
+          ],
+          "sourceTexts": [
+            "aumenta o dano do próximo Tiro Explosivo em 20%",
+            "Explosive Shot berikutnya mendapatkan +20% DMG",
+            "increases the DMG of the next Blast Shot by 20%",
+            "ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+            "다음에 시전되는 익스플로전 샷의 대미지 +20%",
+            "光エナジースリットが放った矢がダメージを1回与えるたび、次のブラストショットのダメージ+20%、最大で100%を超えない 빛의 균열에서 발사된 화살이 대미지를 1회 입힐 때마다",
+            "光能裂隙发射的箭矢每造成1次伤害，使得下一次爆炸射击伤害+20%，最高不超过100%",
+            "光能裂隙發射的箭矢每造成1次傷害，使得下一次爆炸射擊傷害+20%，最高不超過100%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "até no máximo 100%",
+            "hingga maksimum 100%",
+            "up to a maximum of 100%",
+            "ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+            "최대 100% 증가",
+            "光エナジースリットが放った矢がダメージを1回与えるたび、次のブラストショットのダメージ+20%、最大で100%を超えない 빛의 균열에서 발사된 화살이 대미지를 1회 입힐 때마다",
+            "光能裂隙发射的箭矢每造成1次伤害，使得下一次爆炸射击伤害+20%，最高不超过100%",
+            "光能裂隙發射的箭矢每造成1次傷害，使得下一次爆炸射擊傷害+20%，最高不超過100%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1338",
+      "uid": "1338",
+      "category": "talents",
+      "sourceLabel": "Luck Multiplier",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "5% Lucky Strike DMG Multiplier | Lucky ทุก 1% จะเพิ่มอัตราเท่า DMG ของ Lucky Strike 0 | 5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+      "sampleTexts": [
+        "5% Lucky Strike DMG Multiplier",
+        "Lucky ทุก 1% จะเพิ่มอัตราเท่า DMG ของ Lucky Strike 0",
+        "5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+        "Luck Multiplier Luck Multiplier 幸运倍乘 幸運倍乘 幸運相乗 행운 증폭 Multiplicateur de chance Glücksmultiplikator Multiplicador de Suerte Multiplicador de Sorte ตัวคูณนำโชค Lucky Multiplier 幸运倍乘...",
+        "Every 1% Luck grants 0"
+      ],
+      "samples": [
+        {
+          "value": 0.5,
+          "unit": "percent",
+          "rawTexts": [
+            "0,5 %",
+            "0,5%"
+          ],
+          "sourceTexts": [
+            "5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+            "Cada 1% de Sorte concede 0,5% Multiplicador de Dano de Golpe de Sorte",
+            "Chaque 1 % de chance confère 0,5 % de multiplicateur de dégâtsde Frappe chanceuse",
+            "Jeweils 1 % Glück gewährt 0,5 % Glückstreffer-SCH-Multiplikator"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de Sorte concede 0,5% Multiplicador de Dano de Golpe de Sorte",
+            "Every 1% Luck grants 0",
+            "Luck Multiplier Luck Multiplier 幸运倍乘 幸運倍乘 幸運相乗 행운 증폭 Multiplicateur de chance Glücksmultiplikator Multiplicador de Suerte Multiplicador de Sorte ตัวคูณนำโชค Lucky Multiplier 幸运倍乘 Every 1% Luck grants 0",
+            "Lucky ทุก 1% จะเพิ่มอัตราเท่า DMG ของ Lucky Strike 0",
+            "행운 1%당 행운의 일격 대미지 배율이 0",
+            "幸運1%につき幸運の一撃ダメージ倍率+0",
+            "每1%幸运提供0",
+            "每1%幸運提供0"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 5,
+          "unit": "percent",
+          "rawTexts": [
+            "5 %",
+            "5%"
+          ],
+          "sourceTexts": [
+            "5 % de multiplicador de DÑO de golpe de suerte",
+            "5% Lucky Strike DMG Multiplier",
+            "5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+            "5% 증가합니다",
+            "5%幸运一击伤害倍率",
+            "5%幸運一擊傷害倍率"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:245",
+      "uid": "245",
+      "category": "talents",
+      "sourceLabel": "Deep Cold Magic Spear",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "Frost Lance deals 70% more DMG | DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70% | Waktu Cast Frost Spear +100%",
+      "sampleTexts": [
+        "Frost Lance deals 70% more DMG",
+        "DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70%",
+        "Waktu Cast Frost Spear +100%",
+        "Lança de Gelo causa 70% mais dano",
+        "Frost Lance costs 100% more time to use"
+      ],
+      "samples": [
+        {
+          "value": 70,
+          "unit": "percent",
+          "rawTexts": [
+            "+70%",
+            "70 %",
+            "70%"
+          ],
+          "sourceTexts": [
+            "DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70%",
+            "Frost Lance deals 70% more DMG",
+            "Lança de Gelo causa 70% mais dano",
+            "Lance de givre inflige 70 % de dégâts supplémentaires",
+            "프로스트 스피어 대미지 +70%",
+            "フロストファングのダメージ+70%",
+            "冰霜之矛伤害+70%",
+            "冰霜之矛傷害+70%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 100,
+          "unit": "percent",
+          "rawTexts": [
+            "+100%",
+            "100 %",
+            "100%"
+          ],
+          "sourceTexts": [
+            "DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70%",
+            "Frost Lance costs 100% more time to use",
+            "Lança de Gelo demora 100% mais tempo para usar",
+            "Waktu Cast Frost Spear +100%",
+            "프로스트 스피어 캐스팅 시간 +100%",
+            "フロストファングの詠唱時間+100%",
+            "冰霜之矛施法时间+100%",
+            "冰霜之矛施法時間+100%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:553",
+      "uid": "553",
+      "category": "talents",
+      "sourceLabel": "Luck Damage",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:lucky-damage:ambiguous-scoped-value:all",
+        "component:skill-multiplier:ambiguous-scoped-value:all"
+      ],
+      "sampleText": "2% Lucky Strike DMG Multiplier | 2% Lucky Hit DMG Multiplier +5% | Lucky Strike DMG Multiplier +5%",
+      "sampleTexts": [
+        "2% Lucky Strike DMG Multiplier",
+        "2% Lucky Hit DMG Multiplier +5%",
+        "Lucky Strike DMG Multiplier +5%",
+        "Setiap 1% Luck memberikan tambahan 1,2% Lucky Hit DMG Multiplier",
+        "อัตราเท่า Lucky Strike DMG +5% Lucky ทุกๆ 1% จะเพิ่มอัตราเท่า Lucky Strike DMG 1"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "flat",
+          "rawTexts": [
+            "+1",
+            "1"
+          ],
+          "sourceTexts": [
+            "Cada 1 % de suerte otorga un 1",
+            "Every 1% Luck grants 1",
+            "อัตราเท่า Lucky Strike DMG +5% Lucky ทุกๆ 1% จะเพิ่มอัตราเท่า Lucky Strike DMG 1",
+            "행운 1%당 행운의 일격 대미지 배율이 1",
+            "幸運1%につき幸運の一撃ダメージ倍率+1",
+            "每1%幸运提供1",
+            "每1%幸運提供1"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de Sorte concede 1,2% de Multiplicador de Dano de Golpe de Sorte",
+            "Every 1% Luck grants 1",
+            "Setiap 1% Luck memberikan tambahan 1,2% Lucky Hit DMG Multiplier",
+            "อัตราเท่า Lucky Strike DMG +5% Lucky ทุกๆ 1% จะเพิ่มอัตราเท่า Lucky Strike DMG 1",
+            "행운 1%당 행운의 일격 대미지 배율이 1",
+            "幸運1%につき幸運の一撃ダメージ倍率+1",
+            "每1%幸运提供1",
+            "每1%幸運提供1"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1.2,
+          "unit": "percent",
+          "rawTexts": [
+            "1,2 %",
+            "1,2%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de Sorte concede 1,2% de Multiplicador de Dano de Golpe de Sorte",
+            "Chaque 1 % de chances confère 1,2 % de multiplicateur de dégâts de Frappe chanceuse",
+            "Jeweils 1 % Glück gewähren 1,2 % Glückstreffer-SCH-Multiplikator",
+            "Setiap 1% Luck memberikan tambahan 1,2% Lucky Hit DMG Multiplier"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 2,
+          "unit": "percent",
+          "rawTexts": [
+            "2 %",
+            "2%"
+          ],
+          "sourceTexts": [
+            "2 % de multiplicador de DÑO de golpe de suerte",
+            "2% Lucky Hit DMG Multiplier +5%",
+            "2% Lucky Strike DMG Multiplier",
+            "2% 증가합니다",
+            "2%幸运一击伤害倍率",
+            "2%幸運一擊傷害倍率"
+          ],
+          "confidence": "text"
+        }
+      ]
+    }
+  ],
+  "topByWording": {
+    "no-sample-text": [
+      {
+        "key": "buffs:3055080",
+        "uid": "3055080",
+        "category": "buffs",
+        "sourceLabel": "巨刃G8",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "factors:3055080",
+        "uid": "3055080",
+        "category": "factors",
+        "sourceLabel": "uid:3055080",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "factors:3057070",
+        "uid": "3057070",
+        "category": "factors",
+        "sourceLabel": "uid:3057070",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "luckyStrikeBaseTerm",
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1200",
+        "uid": "1200",
+        "category": "talents",
+        "sourceLabel": "Lightforged Body",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "elementalDamage",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1204",
+        "uid": "1204",
+        "category": "talents",
+        "sourceLabel": "Lightforge Continuum",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "elementalDamage",
+          "luckyStrikeBaseTerm",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:cooldown-or-resource:timing-model-required",
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1313",
+        "uid": "1313",
+        "category": "talents",
+        "sourceLabel": "Healing Note",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "luckyStrikeBaseTerm",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:cooldown-or-resource:timing-model-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1339",
+        "uid": "1339",
+        "category": "talents",
+        "sourceLabel": "Resonant Counterpoint",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "critical",
+          "luckyStrikeBaseTerm",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:critical-rate:expected-value-model-required",
+          "component:hit-count-model:hit-count-model-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1340",
+        "uid": "1340",
+        "category": "talents",
+        "sourceLabel": "Sonic Cure",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1341",
+        "uid": "1341",
+        "category": "talents",
+        "sourceLabel": "Sonic Therapy",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:404",
+        "uid": "404",
+        "category": "talents",
+        "sourceLabel": "Sharp Expansion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:409",
+        "uid": "409",
+        "category": "talents",
+        "sourceLabel": "Sharp Expansion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:418",
+        "uid": "418",
+        "category": "talents",
+        "sourceLabel": "Sharp Expansion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:420",
+        "uid": "420",
+        "category": "talents",
+        "sourceLabel": "Sharp Expansion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:436",
+        "uid": "436",
+        "category": "talents",
+        "sourceLabel": "Sharp Expansion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:459",
+        "uid": "459",
+        "category": "talents",
+        "sourceLabel": "Sharp Expansion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1137",
+        "uid": "1137",
+        "category": "talents",
+        "sourceLabel": "Beast Tidal Power",
+        "formulaReadiness": "overlap-only",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      }
+    ],
+    "attack-wording": [
+      {
+        "key": "seasonal-talents:1110",
+        "uid": "1110",
+        "category": "seasonal-talents",
+        "sourceLabel": "Swift-Calc",
+        "formulaReadiness": "timing-model-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "critical",
+          "generalDamage",
+          "seasonDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "Melee Attack +3 | Melee Attack -3,5 detik | เมื่อ Class Skills ประเภท DMG โดยตรงที่ไม่ใช่การโจมตีทั่วไปทำ CRIT DMG จำนวนนับของ Dream Execution จะ +1",
+        "sampleTexts": [
+          "Melee Attack +3",
+          "Melee Attack -3,5 detik",
+          "เมื่อ Class Skills ประเภท DMG โดยตรงที่ไม่ใช่การโจมตีทั่วไปทำ CRIT DMG จำนวนนับของ Dream Execution จะ +1",
+          "Phantom Execution trigger count +1",
+          "hitungan pemicuan Phantasm Execution +1"
+        ],
+        "samples": [
+          {
+            "value": -3.5,
+            "unit": "flat",
+            "rawTexts": [
+              "-3,5"
+            ],
+            "sourceTexts": [
+              "Melee Attack -3,5 detik"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "5>秒ごとに1回発動）",
+              "hitungan pemicuan Phantasm Execution +1",
+              "le compteur de déclenchements d'Exécution fantôme augmente de +1 et son TdR interne diminue de 0,5 s",
+              "Phantom Execution trigger count +1",
+              "เมื่อ Class Skills ประเภท DMG โดยตรงที่ไม่ใช่การโจมตีทั่วไปทำ CRIT DMG จำนวนนับของ Dream Execution จะ +1",
+              "通常攻撃以外の直接ダメージ型クラススキルで会心ダメージを与えたとき、幻夢の断罪の発動カウント+1（近接攻撃+3）、リキャスト-0",
+              "非普通攻击的直接伤害型职业技能造成暴击伤害时，幻梦处决的触发计数+1（近战攻击+3），同时内置冷却时间-0",
+              "非普通攻擊的直接傷害型職業技能造成暴擊傷害時，幻夢處決的觸發計數+1（近戰攻擊+3），同時內置冷卻時間-0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 3,
+            "unit": "flat",
+            "rawTexts": [
+              "+3",
+              "3"
+            ],
+            "sourceTexts": [
+              "Melee Attack +3",
+              "การโจมตีระยะประชิด +3",
+              "근접 공격은 3",
+              "근접 공격은 3 증가",
+              "通常攻撃以外の直接ダメージ型クラススキルで会心ダメージを与えたとき、幻夢の断罪の発動カウント+1（近接攻撃+3）、リキャスト-0",
+              "非普通攻击的直接伤害型职业技能造成暴击伤害时，幻梦处决的触发计数+1（近战攻击+3），同时内置冷却时间-0",
+              "非普通攻擊的直接傷害型職業技能造成暴擊傷害時，幻夢處決的觸發計數+1（近戰攻擊+3），同時內置冷卻時間-0"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:12301060101",
+        "uid": "12301060101",
+        "category": "skills",
+        "sourceLabel": "Flame Note",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches | เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill | causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+        "sampleTexts": [
+          "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+          "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+          "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+          "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+          "700%"
+        ],
+        "samples": [
+          {
+            "value": 700,
+            "unit": "percent",
+            "rawTexts": [
+              "700 %",
+              "700%"
+            ],
+            "sourceTexts": [
+              "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+              "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+              "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+              "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+              "불꽃의 랩소디가 리듬에 맞춰 폭발해 공격력 700%만큼의 마법 대미지를 1회 입히며",
+              "マスタリースキル発動時、フレイムラプソディーがリズムに合わせて爆発し、攻撃力700%の魔法ダメージを与え、同時に接触した味方ターゲットに音符を付与する",
+              "施放专精技能时，烈焰狂想跟着律动爆发一次攻击力700%魔法伤害，同时为其接触到的友方目标添加音符",
+              "施放專精技能時，烈焰狂想跟著律動爆發一次攻擊力700%魔法傷害，同時為其接觸到的友方目標添加音符"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "skills:204",
+        "uid": "204",
+        "category": "skills",
+        "sourceLabel": "Flame Note",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches | เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill | causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+        "sampleTexts": [
+          "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+          "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+          "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+          "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+          "700%"
+        ],
+        "samples": [
+          {
+            "value": 700,
+            "unit": "percent",
+            "rawTexts": [
+              "700 %",
+              "700%"
+            ],
+            "sourceTexts": [
+              "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+              "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+              "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+              "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+              "불꽃의 랩소디가 리듬에 맞춰 폭발해 공격력 700%만큼의 마법 대미지를 1회 입히며",
+              "マスタリースキル発動時、フレイムラプソディーがリズムに合わせて爆発し、攻撃力700%の魔法ダメージを与え、同時に接触した味方ターゲットに音符を付与する",
+              "施放专精技能时，烈焰狂想跟着律动爆发一次攻击力700%魔法伤害，同时为其接触到的友方目标添加音符",
+              "施放專精技能時，烈焰狂想跟著律動爆發一次攻擊力700%魔法傷害，同時為其接觸到的友方目標添加音符"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1214",
+        "uid": "1214",
+        "category": "talents",
+        "sourceLabel": "Fearless Shield",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "elementalDamage",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-scoped-value:all",
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "akan mendapat Light Holyshield sebesar 37,5% ATK | ganha Escudo Radiante igual a 37,5% do ATQ | vous gagnez un Bouclier radieux égal à 37,5 % de l'attaque",
+        "sampleTexts": [
+          "akan mendapat Light Holyshield sebesar 37,5% ATK",
+          "ganha Escudo Radiante igual a 37,5% do ATQ",
+          "vous gagnez un Bouclier radieux égal à 37,5 % de l'attaque",
+          "wird Strahlender Schild in Höhe von 37,5 % des ANG gewährt",
+          "37,5%"
+        ],
+        "samples": [
+          {
+            "value": 37.5,
+            "unit": "percent",
+            "rawTexts": [
+              "37,5 %",
+              "37,5%"
+            ],
+            "sourceTexts": [
+              "akan mendapat Light Holyshield sebesar 37,5% ATK",
+              "ganha Escudo Radiante igual a 37,5% do ATQ",
+              "vous gagnez un Bouclier radieux égal à 37,5 % de l'attaque",
+              "wird Strahlender Schild in Höhe von 37,5 % des ANG gewährt"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:438",
+        "uid": "438",
+        "category": "talents",
+        "sourceLabel": "Sharp",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required"
+        ],
+        "sampleText": "bonus ATK dari Sharp meningkat 6% | the additional ATK from Sharp increases to 6% | 筋力が500ptに達すると、鋭利が付与する攻撃力が6%にアップする",
+        "sampleTexts": [
+          "bonus ATK dari Sharp meningkat 6%",
+          "the additional ATK from Sharp increases to 6%",
+          "筋力が500ptに達すると、鋭利が付与する攻撃力が6%にアップする",
+          "o ATQ adicional de Afiado aumenta para 6%",
+          "เมื่อPowerถึง500แต้ม พลังโจมตีที่เพิ่มขึ้นจากความคมจะเพิ่มเป็น6% Saat STR mencapai 500 poin"
+        ],
+        "samples": [
+          {
+            "value": 6,
+            "unit": "percent",
+            "rawTexts": [
+              "6 %",
+              "6%"
+            ],
+            "sourceTexts": [
+              "bonus ATK dari Sharp meningkat 6%",
+              "o ATQ adicional de Afiado aumenta para 6%",
+              "the additional ATK from Sharp increases to 6%",
+              "เมื่อPowerถึง500แต้ม พลังโจมตีที่เพิ่มขึ้นจากความคมจะเพิ่มเป็น6% Saat STR mencapai 500 poin",
+              "예리함의 추가 공격력이 6%로 증가합니다",
+              "力量达到500点时，锐利附加攻击力提升至6%",
+              "力量達到500點時，銳利附加攻擊力提升至6%",
+              "筋力が500ptに達すると、鋭利が付与する攻撃力が6%にアップする"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1343",
+        "uid": "1343",
+        "category": "talents",
+        "sourceLabel": "Flame Note",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "luckyStrikeBaseTerm",
+          "physicalMagicEnhancement",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:atk:ambiguous-value-selection-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches | เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill | causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+        "sampleTexts": [
+          "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+          "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+          "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+          "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+          "700%"
+        ],
+        "samples": [
+          {
+            "value": 700,
+            "unit": "percent",
+            "rawTexts": [
+              "700 %",
+              "700%"
+            ],
+            "sourceTexts": [
+              "causando Dano Mágico igual a 700% de ATQ e concedendo Nota a aliados que tocar",
+              "dealing Magic DMG equal to 700% of ATK and granting Note to allies it touches",
+              "infligeant des dégâts magiques égaux à 700 % de l'attaque et conférant une Note aux alliés touchés",
+              "เมื่อปล่อยสกิลเฉพาะพิเศษ Rhapsody of Flame จะโจมตีตาม Rhythm 1 ครั้งเท่ากับ 700%Magic DMG ขณะเดียวกัน จะมอบโน้ตให้พันธมิตรเพิ่ม โน้ต When you use an Expertise Skill",
+              "불꽃의 랩소디가 리듬에 맞춰 폭발해 공격력 700%만큼의 마법 대미지를 1회 입히며",
+              "マスタリースキル発動時、フレイムラプソディーがリズムに合わせて爆発し、攻撃力700%の魔法ダメージを与え、同時に接触した味方ターゲットに音符を付与する",
+              "施放专精技能时，烈焰狂想跟着律动爆发一次攻击力700%魔法伤害，同时为其接触到的友方目标添加音符",
+              "施放專精技能時，烈焰狂想跟著律動爆發一次攻擊力700%魔法傷害，同時為其接觸到的友方目標添加音符"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1103",
+        "uid": "1103",
+        "category": "talents",
+        "sourceLabel": "Wolf Pact",
+        "formulaReadiness": "overlap-only",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "physicalMagicEnhancement",
+          "skillMultiplier",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:hit-count-model:hit-count-model-required",
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "mengakibatkan PDMG sebesar 60% ATK | dealing Attack DMG equal to 60% ATK | mengakibatkan PDMG sebesar 100% ATK",
+        "sampleTexts": [
+          "mengakibatkan PDMG sebesar 60% ATK",
+          "dealing Attack DMG equal to 60% ATK",
+          "mengakibatkan PDMG sebesar 100% ATK",
+          "dealing Attack DMG equal to 100% ATK",
+          "Storm Arrow has a 30% fixed chance to trigger Coordinated Attack"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "Flecha da Tempestade tem 30% de chance fixa de ativar Ataque Coordenado",
+              "Melancarkan Storm Arrow berpeluang tetap 30% memicu Sync Attack bersama Wildwolf",
+              "Storm Arrow has a 30% fixed chance to trigger Coordinated Attack",
+              "ฝึก Wild Wolf 1 ตัวเพื่อติดตามตัวเองไปต่อสู้ ปล่อย Storm Arrow มีโอกาสคงที่ 30% เพื่อทำให้ทำงานร่วมมือโจมตี Wild Wolf Wild Wolf จะช่วยคุณในการต่อสู้แบบร่วมมือกัน โจมตีทั่วไป: ทำการกวาดล้างเป้าหมายฝ่ายศัตรู เพื่อสร้าง 60% ของ P",
+              "스톰 애로우 시전 시 30%의 고정 확률로 협동 공격을 발동합니다",
+              "ハウリングボルト使用時、30%の固定確率で協力攻撃を発動する",
+              "馴化一隻野狼跟隨自身戰鬥，施放暴風箭矢有30%固定機率使其觸發協同攻擊",
+              "驯化一只野狼跟随自身战斗，施放暴风箭矢有30%固定几率使其触发协同攻击"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 60,
+            "unit": "percent",
+            "rawTexts": [
+              "60 %",
+              "60%"
+            ],
+            "sourceTexts": [
+              "causando Dano de Ataque igual a 60% ATQ",
+              "dealing Attack DMG equal to 60% ATK",
+              "mengakibatkan PDMG sebesar 60% ATK",
+              "ฝึก Wild Wolf 1 ตัวเพื่อติดตามตัวเองไปต่อสู้ ปล่อย Storm Arrow มีโอกาสคงที่ 30% เพื่อทำให้ทำงานร่วมมือโจมตี Wild Wolf Wild Wolf จะช่วยคุณในการต่อสู้แบบร่วมมือกัน โจมตีทั่วไป: ทำการกวาดล้างเป้าหมายฝ่ายศัตรู เพื่อสร้าง 60% ของ P",
+              "일반 공격: 적을 가로로 휩쓸어 공격해 공격력의 60%에 해당하는 물리 대미지를 입힙니다",
+              "普通攻击：对敌方目标进行横扫，造成60%攻击力物理伤害，跟随普通攻击技能升级/进阶进行成长",
+              "普通攻擊：對敵方目標進行橫掃，造成60%攻擊力物理傷害，跟隨普通攻擊技能升級/進階進行成長",
+              "通常攻撃：エネミーを横薙ぎして攻撃力の60%の物理ダメージを与える（威力は通常攻撃スキルのレベル/ランクに応じて上昇）"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "/เลื่อนขั้นของโจมตีทั่วไป ร่วมมือโจมตี:Wild Wolf กระโดดไปที่เป้าหมายเพื่อทำการกัดทันที สร้าง 100% ของ P",
+              "causando Dano de Ataque igual a 100% ATQ",
+              "dealing Attack DMG equal to 100% ATK",
+              "mengakibatkan PDMG sebesar 100% ATK",
+              "협동 공격: 늑대가 즉시 적에게 달려들어 물어뜯고 공격력 100%만큼의 물리 대미지를 입힙니다",
+              "协同攻击：野狼立刻扑向目标对其进行撕咬，造成100%攻击力物理伤害，跟随普通攻击技能升级/进阶进行成长",
+              "協力攻撃：臣狼が対象に飛びかかって噛みつき、攻撃力の100%の物理ダメージを与える（威力は通常攻撃スキルのレベル/ランクに応じて上昇）",
+              "協同攻擊：野狼立刻撲向目標對其進行撕咬，造成100%攻擊力物理傷害，跟隨普通攻擊技能升級/進階進行成長"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "critical-wording": [
+      {
+        "key": "seasonal-talents:252",
+        "uid": "252",
+        "category": "seasonal-talents",
+        "sourceLabel": "Marksman - Tidal Fury",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "generalDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:critical-rate:expected-value-model-required",
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "Every 1% of Crit Rate increases its Crit DMG by 10% | dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] | Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+        "sampleTexts": [
+          "Every 1% of Crit Rate increases its Crit DMG by 10%",
+          "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare]",
+          "Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+          "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] Torrent Volley is guaranteed to be a Crit",
+          "Cada 1% de Taxa Crítico aumenta seu Dano Crítico em 10%"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de tasa de críticos aumenta su DÑO crítico en un 10%",
+              "Cada 1% de Taxa Crítico aumenta seu Dano Crítico em 10%",
+              "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] Torrent Volley is guaranteed to be a Crit",
+              "Every 1% of Crit Rate increases its Crit DMG by 10%",
+              "Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+              "치명타 확률 1%마다 치명타 대미지가 10% 증가합니다",
+              "さらに会心率1%につき会心ダメージ+10%",
+              "怒涛射击必定暴击，且每有1%暴击率提升10%暴击伤害 仅在[困难]和[噩梦]难度出现 怒濤射擊必定暴擊，且每有1%暴擊率提升10%暴擊傷害 僅在[困難]和[噩夢]難度出現 レイジショットが必ず会心となる"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 10,
+            "unit": "percent",
+            "rawTexts": [
+              "+10%",
+              "10 %",
+              "10%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de tasa de críticos aumenta su DÑO crítico en un 10%",
+              "Cada 1% de Taxa Crítico aumenta seu Dano Crítico em 10%",
+              "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare]",
+              "dan setiap 1% Crit Rate meningkatkan 10% Crit DMG Hanya muncul pada tingkat kesulitan [Hard] dan [Nightmare] Torrent Volley is guaranteed to be a Crit",
+              "Every 1% of Crit Rate increases its Crit DMG by 10%",
+              "Torrent Volley จะติด Crit เสมอ และทุกๆ 1% Crit เรทจะเพิ่ม Crit DMG 10% ปรากฏเฉพาะในระดับ [ยาก] และ [Nightmare] Raging Shot pasti Crit",
+              "치명타 확률 1%마다 치명타 대미지가 10% 증가합니다",
+              "怒涛射击必定暴击，且每有1%暴击率提升10%暴击伤害 仅在[困难]和[噩梦]难度出现 怒濤射擊必定暴擊，且每有1%暴擊率提升10%暴擊傷害 僅在[困難]和[噩夢]難度出現 レイジショットが必ず会心となる"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "seasonal-talents:265",
+        "uid": "265",
+        "category": "seasonal-talents",
+        "sourceLabel": "Verdant Oracle - Critical Pulse",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:ambiguous-scoped-value:all",
+          "component:critical-rate:expected-value-model-required"
+        ],
+        "sampleText": "and its Crit DMG is increased by 2,000% | dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan | Regen Pulse จะ Crit เสมอ และ Crit DMG+2000% ปรากฏเฉพาะในระดับ [นรก] Regen Pulse pasti Crit",
+        "sampleTexts": [
+          "and its Crit DMG is increased by 2,000%",
+          "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan",
+          "Regen Pulse จะ Crit เสมอ และ Crit DMG+2000% ปรากฏเฉพาะในระดับ [นรก] Regen Pulse pasti Crit",
+          "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan Regen Pulse is guaranteed to be a Crit",
+          "Pulso Regenerativo es un crítico garantizado y su DÑO crítico aumenta un 2000 %"
+        ],
+        "samples": [
+          {
+            "value": 2,
+            "unit": "percent",
+            "rawTexts": [
+              "2,000%"
+            ],
+            "sourceTexts": [
+              "and its Crit DMG is increased by 2,000%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 2000,
+            "unit": "percent",
+            "rawTexts": [
+              "+2000%",
+              "2000 %",
+              "2000%"
+            ],
+            "sourceTexts": [
+              "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan",
+              "dan Crit DMG +2000% Hanya muncul pada [Nightmare] kesulitan Regen Pulse is guaranteed to be a Crit",
+              "Pulso Regenerativo es un crítico garantizado y su DÑO crítico aumenta un 2000 %",
+              "Regen Pulse จะ Crit เสมอ และ Crit DMG+2000% ปรากฏเฉพาะในระดับ [นรก] Regen Pulse pasti Crit",
+              "치명타 대미지가 2000% 증가합니다",
+              "再生脉冲必定暴击，且暴击伤害+2000% 仅在[噩梦]难度出现 再生脈衝必定暴擊，且暴擊傷害+2000% 僅在[噩夢]難度出現 リジェネイトパルスで必ず会心が発生し、さらに会心ダメージ+2000%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:247",
+        "uid": "247",
+        "category": "talents",
+        "sourceLabel": "Frost Lance Crit",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "elementalDamage",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:ambiguous-scoped-value:all",
+          "component:critical-rate:expected-value-model-required"
+        ],
+        "sampleText": "5% more Crit DMG | Crit DMG +1,5% selama 6 detik | เมื่อFrost Spear ติด CRIT ทำให้ CRIT DMG +1",
+        "sampleTexts": [
+          "5% more Crit DMG",
+          "Crit DMG +1,5% selama 6 detik",
+          "เมื่อFrost Spear ติด CRIT ทำให้ CRIT DMG +1",
+          "5% ต่อเนื่อง6วินาที ซ้อนทับสูงสุด10Stack Saat Frost Spear menghasilkan Crit",
+          "Frost Lance Crit Frost Lance Crit 冰矛暴击 冰矛暴擊 氷槍会心 얼음 창 치명타 Critique de Lance de givre Frostlanzen-Krit Crítico de Lanza Gélida Crítico da Lança de Gelo Frost Spear CRIT Ice Spear C..."
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "Frost Lance Crit Frost Lance Crit 冰矛暴击 冰矛暴擊 氷槍会心 얼음 창 치명타 Critique de Lance de givre Frostlanzen-Krit Crítico de Lanza Gélida Crítico da Lança de Gelo Frost Spear CRIT Ice Spear Critical 冰矛暴击 Frost Lance deals 1",
+              "Frost Lance deals 1",
+              "Lanza Gélida inflige un 1",
+              "เมื่อFrost Spear ติด CRIT ทำให้ CRIT DMG +1",
+              "자신의 치명타 대미지 +1",
+              "フロストファングが会心になった場合、会心ダメージ+1",
+              "冰霜之矛暴击时暴击伤害+1",
+              "冰霜之矛暴擊時暴擊傷害+1"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1.5,
+            "unit": "percent",
+            "rawTexts": [
+              "+1,5%",
+              "1,5 %",
+              "1,5%"
+            ],
+            "sourceTexts": [
+              "Crit DMG +1,5% selama 6 detik",
+              "Frostlanze verursacht 1,5 % mehr Krit-SCH",
+              "Lança de Gelo causa 1,5% mais Dano Crítico",
+              "Lance de givre inflige 1,5 % de dégâts critiques supplémentaires"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "5 % más de DÑO crítico",
+              "5% more Crit DMG",
+              "5% ต่อเนื่อง6วินาที ซ้อนทับสูงสุด10Stack Saat Frost Spear menghasilkan Crit",
+              "5%，持续6秒，最多叠加10层",
+              "5%，持續6秒，最多疊加10層"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:250",
+        "uid": "250",
+        "category": "talents",
+        "sourceLabel": "Critical Cold",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "elementalDamage",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:scope-value-missing:party",
+          "component:critical-rate:expected-value-model-required",
+          "component:critical-rate:scope-value-missing:owner",
+          "component:elemental-damage:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "Crit DMG +15% | increases Crit DMG dealt by 15% | ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+        "sampleTexts": [
+          "Crit DMG +15%",
+          "increases Crit DMG dealt by 15%",
+          "ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+          "Critical Chance rekan satu tim +3%",
+          "aumenta o Dano Crítico causado em 15%"
+        ],
+        "samples": [
+          {
+            "value": 3,
+            "unit": "percent",
+            "rawTexts": [
+              "+3%",
+              "3 %",
+              "3%"
+            ],
+            "sourceTexts": [
+              "aumenta a Taxa de Crítico de aliados em 3%",
+              "Critical Chance rekan satu tim +3%",
+              "increases allies' critical rate by 3%",
+              "ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+              "파티원의 치명타 확률 +3%",
+              "かつ、パーティメンバーの会心確率+3%",
+              "冰之灌注持续期间，队友暴击几率+3%",
+              "冰之灌注持續期間，隊友暴擊機率+3%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 15,
+            "unit": "percent",
+            "rawTexts": [
+              "+15%",
+              "15 %",
+              "15%"
+            ],
+            "sourceTexts": [
+              "aumenta o Dano Crítico causado em 15%",
+              "Crit DMG +15%",
+              "increases Crit DMG dealt by 15%",
+              "ระหว่างInfusion of Ice CRIT DMG +15% ระหว่างInfusion of Ice โอกาส CRIT ของเพื่อนร่วมทีม +3% Selama Ice Infuse aktif",
+              "치명타 대미지 +15%",
+              "パーマフロストの有効中、会心ダメージ+15%",
+              "冰之灌注持续期间，暴击伤害+15%",
+              "冰之灌注持續期間，暴擊傷害+15%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:252",
+        "uid": "252",
+        "category": "talents",
+        "sourceLabel": "Sharp Blizzard",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "elementalDamage",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-rate:expected-value-model-required",
+          "component:elemental-damage:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "Ice Storm Crit DMG +15% | Increases the Crit DMG of Blizzard by 15% | Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+        "sampleTexts": [
+          "Ice Storm Crit DMG +15%",
+          "Increases the Crit DMG of Blizzard by 15%",
+          "Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+          "Aumenta o Dano Crítico de Nevasca em 15%",
+          "Aumenta a Taxa de Crítico de Nevasca em 50%"
+        ],
+        "samples": [
+          {
+            "value": 15,
+            "unit": "percent",
+            "rawTexts": [
+              "+15%",
+              "15 %",
+              "15%"
+            ],
+            "sourceTexts": [
+              "Aumenta o Dano Crítico de Nevasca em 15%",
+              "Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+              "Ice Storm Crit DMG +15%",
+              "Increases the Crit DMG of Blizzard by 15%",
+              "블리자드 치명타 대미지 +15%",
+              "ブリザードの会心ダメージ+15%",
+              "寒冰風暴暴擊傷害+15%",
+              "寒冰风暴暴击伤害+15%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "+50%",
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "Aumenta a Taxa de Crítico de Nevasca em 50%",
+              "Ice Storm CRIT +50% CRIT DMG ของIce Storm +15% Ice Storm Crit +50%",
+              "Increases the critical rate of Blizzard by 50%",
+              "Sharp Blizzard Sharp Blizzard 锐利冰暴 銳利冰暴 氷嵐 예리한 빙폭 Blizzard Tranchant Scharfer Schneesturm Ventisca Afilada Nevasca Cortante พายุน้ำแข็งคม Sharp Blizzard 锐利冰暴 Increases the critical rate of Blizzard by 50%",
+              "블리자드 치명타 +50%",
+              "ブリザードの会心+50%",
+              "寒冰風暴暴擊+50%",
+              "寒冰风暴暴击+50%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "generic-damage-wording": [
+      {
+        "key": "talents:1102",
+        "uid": "1102",
+        "category": "talents",
+        "sourceLabel": "Vulnerable Strike",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "luckyEnhancement",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:skill-multiplier:ambiguous-scoped-value:target",
+          "component:target-vulnerability:ambiguous-scoped-value:all",
+          "component:target-vulnerability:ambiguous-scoped-value:target",
+          "component:target-vulnerability:target-window-proof-required"
+        ],
+        "sampleText": "Vulnerability: Increases the DMG you deal to the target by 10% for 5s | Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik | Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+        "sampleTexts": [
+          "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+          "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+          "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+          "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30%...",
+          "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s"
+        ],
+        "samples": [
+          {
+            "value": 10,
+            "unit": "percent",
+            "rawTexts": [
+              "+10%",
+              "10 %",
+              "10%"
+            ],
+            "sourceTexts": [
+              "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s",
+              "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+              "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+              "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+              "취약: 5초 동안 대상이 자신으로부터 받는 대미지 +10%",
+              "易伤：5秒内目标受到自身伤害+10%",
+              "易傷：5秒內目標受到自身傷害+10%",
+              "脆弱：5秒間、対象に与えるダメージ+10%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "30%의 고정 확률로 적에게 취약 효과를 부여합니다",
+              "Causar dano concede 30% de chance fixa de aplicar Vulnerabilidade ao inimigo",
+              "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+              "Infliger des dégâts confère 30 % de chances fixes d'appliquer Vulnérabilité à l'ennemi",
+              "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+              "ダメージを与えると、30%の固定確率でエネミーに脆弱効果を付与する",
+              "造成伤害时，有30%固定几率对敌方目标施加易伤效果",
+              "造成傷害時，有30%固定機率對敵方目標施加易傷效果"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:158",
+        "uid": "158",
+        "category": "talents",
+        "sourceLabel": "Divine Sickle",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "elementalDamage",
+          "finalDamage",
+          "generalDamage",
+          "luckyChance",
+          "luckyEnhancement",
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-rate:expected-value-model-required",
+          "component:critical-rate:value-ladder-selection-required",
+          "component:elemental-damage:ambiguous-scoped-value:all",
+          "component:final-damage:value-ladder-selection-required",
+          "component:lucky-rate:expected-value-model-required",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required"
+        ],
+        "sampleText": "final damage increases by 200% | DMG akhir yang diakibatkan +200% | Divine Sickle's final damage increases by 100%",
+        "sampleTexts": [
+          "final damage increases by 200%",
+          "DMG akhir yang diakibatkan +200%",
+          "Divine Sickle's final damage increases by 100%",
+          "Saat Lucky Chance lebih dari 28% dan kurang dari 45%",
+          "DMG akhir yang diakibatkan Scythe of Punishment +100%"
+        ],
+        "samples": [
+          {
+            "value": 28,
+            "unit": "percent",
+            "rawTexts": [
+              "28 %",
+              "28%"
+            ],
+            "sourceTexts": [
+              "Lorsque la chance est comprise entre 28 % et 45 %",
+              "Quando a Sorte estiver entre 28% e 45%",
+              "Saat Lucky Chance lebih dari 28% dan kurang dari 45%",
+              "When Luck is between 28% and 45%",
+              "행운 확률이 28% 초과 45% 이하일 때",
+              "幸運確率が28%以上45%未満だった場合、審罰鎌の最終ダメージ+100%だが、雷霆鎌の発動14回が前提",
+              "当幸运几率超过28%低于45%时，神罚之镰的最终伤害+100%，但是需要14次雷霆之镰进行触发",
+              "當幸運機率超過28%低於45%時，神罰之鐮的最終傷害+100%，但是需要14次雷霆之鐮進行觸發"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 45,
+            "unit": "percent",
+            "rawTexts": [
+              "45 %",
+              "45%"
+            ],
+            "sourceTexts": [
+              "When Luck chance is above 45%",
+              "When Luck is between 28% and 45%",
+              "同様に、幸運確率が45%以上だった場合は、最終ダメージ+200%だが、雷霆鎌の発動21回が前提",
+              "幸運確率が28%以上45%未満だった場合、審罰鎌の最終ダメージ+100%だが、雷霆鎌の発動14回が前提",
+              "当幸运几率超过28%低于45%时，神罚之镰的最终伤害+100%，但是需要14次雷霆之镰进行触发",
+              "当幸运几率超过45%后，同时其最终伤害+200%，但是需要21次雷霆之镰进行触发",
+              "當幸運機率超過28%低於45%時，神罰之鐮的最終傷害+100%，但是需要14次雷霆之鐮進行觸發",
+              "當幸運機率超過45%後，同時其最終傷害+200%，但是需要21次雷霆之鐮進行觸發"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "Divine Sickle's final damage increases by 100%",
+              "DMG akhir yang diakibatkan Scythe of Punishment +100%",
+              "les dégâts finaux de Faucille divine augmentent de 100 %",
+              "o dano final da Foice Divina aumenta em 100%",
+              "신벌의 낫의 최종 대미지가 100% 증가하지만 뇌전의 낫 14회 시전 시 발동됩니다",
+              "幸運確率が28%以上45%未満だった場合、審罰鎌の最終ダメージ+100%だが、雷霆鎌の発動14回が前提",
+              "当幸运几率超过28%低于45%时，神罚之镰的最终伤害+100%，但是需要14次雷霆之镰进行触发",
+              "當幸運機率超過28%低於45%時，神罰之鐮的最終傷害+100%，但是需要14次雷霆之鐮進行觸發"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 200,
+            "unit": "percent",
+            "rawTexts": [
+              "+200%",
+              "200 %",
+              "200%"
+            ],
+            "sourceTexts": [
+              "DMG akhir yang diakibatkan +200%",
+              "final damage increases by 200%",
+              "o dano final aumenta em 200%",
+              "ses dégâts finaux augmentent de 200 %",
+              "최종 대미지가 200% 증가하지만 뇌전의 낫 21회 시전 시 발동됩니다",
+              "同様に、幸運確率が45%以上だった場合は、最終ダメージ+200%だが、雷霆鎌の発動21回が前提",
+              "当幸运几率超过45%后，同时其最终伤害+200%，但是需要21次雷霆之镰进行触发",
+              "當幸運機率超過45%後，同時其最終傷害+200%，但是需要21次雷霆之鐮進行觸發"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:402",
+        "uid": "402",
+        "category": "talents",
+        "sourceLabel": "Vulnerable Strike",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "generalDamage",
+          "luckyEnhancement",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:skill-multiplier:ambiguous-scoped-value:target",
+          "component:target-vulnerability:ambiguous-scoped-value:all",
+          "component:target-vulnerability:ambiguous-scoped-value:target",
+          "component:target-vulnerability:target-window-proof-required"
+        ],
+        "sampleText": "Vulnerability: Increases the DMG you deal to the target by 10% for 5s | Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik | Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+        "sampleTexts": [
+          "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+          "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+          "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+          "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30%...",
+          "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s"
+        ],
+        "samples": [
+          {
+            "value": 10,
+            "unit": "percent",
+            "rawTexts": [
+              "+10%",
+              "10 %",
+              "10%"
+            ],
+            "sourceTexts": [
+              "Vulnerabilidade: Aumenta o dano causado ao alvo em 10% por 5 s",
+              "Vulnerability: Increases the DMG you deal to the target by 10% for 5s",
+              "Vulnerable: Target menerima +10% DMG dari diri sendiri selama 5 detik",
+              "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+              "취약: 5초 동안 대상이 자신으로부터 받는 대미지 +10%",
+              "易伤：5秒内目标受到自身伤害+10%",
+              "易傷：5秒內目標受到自身傷害+10%",
+              "脆弱：5秒間、対象に与えるダメージ+10%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "30%의 고정 확률로 적에게 취약 효과를 부여합니다",
+              "Causar dano concede 30% de chance fixa de aplicar Vulnerabilidade ao inimigo",
+              "Dealing DMG grants a fixed 30% chance to apply Vulnerability to the enemy",
+              "Infliger des dégâts confère 30 % de chances fixes d'appliquer Vulnérabilité à l'ennemi",
+              "เมื่อสร้าง DMG มีโอกาสที่กำหนด 30% ที่จะปล่อยเอฟเฟกต์บาดเจ็บง่ายเเก่เป้าหมายฝ่ายศัตรู บาดเจ็บง่าย: ภายใน 5s เป้าหมายได้รับ DMG จากตัวเอง+10% Mengakibatkan DMG berpeluang tetap 30% memberi efek Vulnerable pada target",
+              "ダメージを与えると、30%の固定確率でエネミーに脆弱効果を付与する",
+              "造成伤害时，有30%固定几率对敌方目标施加易伤效果",
+              "造成傷害時，有30%固定機率對敵方目標施加易傷效果"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:235",
+        "uid": "235",
+        "category": "talents",
+        "sourceLabel": "Cold Pulse",
+        "formulaReadiness": "mixed-exact-and-replay",
+        "formulaZoneIds": [
+          "generalDamage",
+          "luckyEnhancement",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:seasonal-factor-damage:scope-value-missing:owner",
+          "component:seasonal-factor-damage:scope-value-missing:party",
+          "component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required",
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "DMG dari Chill Pulse +20% | increases Cold Pulse DMG by 20% | ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka...",
+        "sampleTexts": [
+          "DMG dari Chill Pulse +20%",
+          "increases Cold Pulse DMG by 20%",
+          "ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatka...",
+          "up to 500%",
+          "até um máximo de 500%"
+        ],
+        "samples": [
+          {
+            "value": 20,
+            "unit": "percent",
+            "rawTexts": [
+              "+20%",
+              "20 %",
+              "20%"
+            ],
+            "sourceTexts": [
+              "Cada inimigo adicional atingido aumenta o dano do Pulso Frio em 20%",
+              "DMG dari Chill Pulse +20%",
+              "increases Cold Pulse DMG by 20%",
+              "ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatkan 50 kali DMG",
+              "콜드 펄스가 명중한 목표 1명당 대미지 +20%",
+              "冰冷脉冲每命中一个目标伤害+20%，最多不超过500%",
+              "冰冷脈衝每命中一個目標傷害+20%，最多不超過500%",
+              "氷冷波動が対象1体に命中するたびダメージ+20%（最大500%まで）"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 500,
+            "unit": "percent",
+            "rawTexts": [
+              "500 %",
+              "500%"
+            ],
+            "sourceTexts": [
+              "500%",
+              "até um máximo de 500%",
+              "up to 500%",
+              "ทุกครั้งที่ Frostbeam สร้าง DMG ครบ 50 ครั้ง จะระเบิด Cold Pulse ออกมา 1 ครั้ง Cold Pulse ยิ่งโจมตีโดนเป้าหมายเยอะ DMG จะยิ่งเพิ่มตัวละ +20% สูงสุดไม่เกิน 500% Setiap mengakibatkan 50 kali DMG",
+              "대미지 최대치는 500%입니다",
+              "冰冷脉冲每命中一个目标伤害+20%，最多不超过500%",
+              "冰冷脈衝每命中一個目標傷害+20%，最多不超過500%",
+              "氷冷波動が対象1体に命中するたびダメージ+20%（最大500%まで）"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "elemental-wording": [
+      {
+        "key": "talents:263",
+        "uid": "263",
+        "category": "talents",
+        "sourceLabel": "Frost Tide",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "grants 5% bonus Ice damage dealt instead for 3s | Frostbeam has a fixed 20% chance to grant Frost Crystal | เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+        "sampleTexts": [
+          "grants 5% bonus Ice damage dealt instead for 3s",
+          "Frostbeam has a fixed 20% chance to grant Frost Crystal",
+          "เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+          "akan mendapatkan 5% Ice Boost selama 3 detik",
+          "concede 5% bônus de Dano de Gelo em vez disso por 3 s"
+        ],
+        "samples": [
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "+5%",
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "akan mendapatkan 5% Ice Boost selama 3 detik",
+              "concede 5% bônus de Dano de Gelo em vez disso por 3 s",
+              "grants 5% bonus Ice damage dealt instead for 3s",
+              "เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+              "만약 미스틱 아이스가 이미 최대치라면 대신 얼음 원소 보너스를 5% 획득합니다",
+              "寒冰射线造成伤害时有20%固定几率直接获得玄冰，如果玄冰已达上限，则获得5%冰元素加成，持续3秒",
+              "寒冰射線造成傷害時有20%固定機率直接獲得玄冰，如果玄冰已達上限，則獲得5%冰元素加成，持續3秒",
+              "玄氷がすでに上限に達していた場合は、氷属性ボーナス+5%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 20,
+            "unit": "percent",
+            "rawTexts": [
+              "20 %",
+              "20%"
+            ],
+            "sourceTexts": [
+              "20%의 고정 확률로 미스틱 아이스를 즉시 획득합니다",
+              "Frostbeam has a fixed 20% chance to grant Frost Crystal",
+              "Raio de Gelo tem 20% de chance fixa de conceder Cristal de Gelo",
+              "terdapat 20% peluang tetap untuk langsung mendapatkan Black Ice",
+              "เมื่อIce Rayสร้าง DMG มีโอกาสคงที่ 20% ที่จะได้รับน้ำแข็งทมิฬโดยตรง หากน้ำแข็งทมิฬถึงลิมิตแล้ว จะได้รับโบนัสธาตุน้ำแข็ง 5% เป็นเวลา 3วินาที Saat Ice Ray mengakibatkan DMG",
+              "フロストレイがダメージを与えると、20%の固定確率で玄氷を獲得する",
+              "寒冰射线造成伤害时有20%固定几率直接获得玄冰，如果玄冰已达上限，则获得5%冰元素加成，持续3秒",
+              "寒冰射線造成傷害時有20%固定機率直接獲得玄冰，如果玄冰已達上限，則獲得5%冰元素加成，持續3秒"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1161",
+        "uid": "1161",
+        "category": "talents",
+        "sourceLabel": "Radiant Charge",
+        "formulaReadiness": "overlap-only",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "Explosive Shot berikutnya mendapatkan +20% DMG | increases the DMG of the next Blast Shot by 20% | ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+        "sampleTexts": [
+          "Explosive Shot berikutnya mendapatkan +20% DMG",
+          "increases the DMG of the next Blast Shot by 20%",
+          "ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+          "até no máximo 100%",
+          "hingga maksimum 100%"
+        ],
+        "samples": [
+          {
+            "value": 20,
+            "unit": "percent",
+            "rawTexts": [
+              "+20%",
+              "20 %",
+              "20%"
+            ],
+            "sourceTexts": [
+              "aumenta o dano do próximo Tiro Explosivo em 20%",
+              "Explosive Shot berikutnya mendapatkan +20% DMG",
+              "increases the DMG of the next Blast Shot by 20%",
+              "ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+              "다음에 시전되는 익스플로전 샷의 대미지 +20%",
+              "光エナジースリットが放った矢がダメージを1回与えるたび、次のブラストショットのダメージ+20%、最大で100%を超えない 빛의 균열에서 발사된 화살이 대미지를 1회 입힐 때마다",
+              "光能裂隙发射的箭矢每造成1次伤害，使得下一次爆炸射击伤害+20%，最高不超过100%",
+              "光能裂隙發射的箭矢每造成1次傷害，使得下一次爆炸射擊傷害+20%，最高不超過100%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "até no máximo 100%",
+              "hingga maksimum 100%",
+              "up to a maximum of 100%",
+              "ศรที่ Light Energy Rift ยิงสร้าง DMG ทุก 1 ครั้ง จะทำให้ Explosive Shot ครั้งถัดไป DMG +20% สูงสุดไม่เกิน 100% Setiap kali panah dari Light Rift mengakibatkan 1 kali DMG",
+              "최대 100% 증가",
+              "光エナジースリットが放った矢がダメージを1回与えるたび、次のブラストショットのダメージ+20%、最大で100%を超えない 빛의 균열에서 발사된 화살이 대미지를 1회 입힐 때마다",
+              "光能裂隙发射的箭矢每造成1次伤害，使得下一次爆炸射击伤害+20%，最高不超过100%",
+              "光能裂隙發射的箭矢每造成1次傷害，使得下一次爆炸射擊傷害+20%，最高不超過100%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:245",
+        "uid": "245",
+        "category": "talents",
+        "sourceLabel": "Deep Cold Magic Spear",
+        "formulaReadiness": "overlap-only",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "Frost Lance deals 70% more DMG | DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70% | Waktu Cast Frost Spear +100%",
+        "sampleTexts": [
+          "Frost Lance deals 70% more DMG",
+          "DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70%",
+          "Waktu Cast Frost Spear +100%",
+          "Lança de Gelo causa 70% mais dano",
+          "Frost Lance costs 100% more time to use"
+        ],
+        "samples": [
+          {
+            "value": 70,
+            "unit": "percent",
+            "rawTexts": [
+              "+70%",
+              "70 %",
+              "70%"
+            ],
+            "sourceTexts": [
+              "DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70%",
+              "Frost Lance deals 70% more DMG",
+              "Lança de Gelo causa 70% mais dano",
+              "Lance de givre inflige 70 % de dégâts supplémentaires",
+              "프로스트 스피어 대미지 +70%",
+              "フロストファングのダメージ+70%",
+              "冰霜之矛伤害+70%",
+              "冰霜之矛傷害+70%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 100,
+            "unit": "percent",
+            "rawTexts": [
+              "+100%",
+              "100 %",
+              "100%"
+            ],
+            "sourceTexts": [
+              "DMG Frost Spear + 70% Frost Spearเวลาร่าย + 100% DMG Frost Spear +70%",
+              "Frost Lance costs 100% more time to use",
+              "Lança de Gelo demora 100% mais tempo para usar",
+              "Waktu Cast Frost Spear +100%",
+              "프로스트 스피어 캐스팅 시간 +100%",
+              "フロストファングの詠唱時間+100%",
+              "冰霜之矛施法时间+100%",
+              "冰霜之矛施法時間+100%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "lucky-wording": [
+      {
+        "key": "talents:1338",
+        "uid": "1338",
+        "category": "talents",
+        "sourceLabel": "Luck Multiplier",
+        "formulaReadiness": "overlap-only",
+        "formulaZoneIds": [
+          "generalDamage",
+          "luckyEnhancement",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "5% Lucky Strike DMG Multiplier | Lucky ทุก 1% จะเพิ่มอัตราเท่า DMG ของ Lucky Strike 0 | 5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+        "sampleTexts": [
+          "5% Lucky Strike DMG Multiplier",
+          "Lucky ทุก 1% จะเพิ่มอัตราเท่า DMG ของ Lucky Strike 0",
+          "5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+          "Luck Multiplier Luck Multiplier 幸运倍乘 幸運倍乘 幸運相乗 행운 증폭 Multiplicateur de chance Glücksmultiplikator Multiplicador de Suerte Multiplicador de Sorte ตัวคูณนำโชค Lucky Multiplier 幸运倍乘...",
+          "Every 1% Luck grants 0"
+        ],
+        "samples": [
+          {
+            "value": 0.5,
+            "unit": "percent",
+            "rawTexts": [
+              "0,5 %",
+              "0,5%"
+            ],
+            "sourceTexts": [
+              "5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+              "Cada 1% de Sorte concede 0,5% Multiplicador de Dano de Golpe de Sorte",
+              "Chaque 1 % de chance confère 0,5 % de multiplicateur de dégâtsde Frappe chanceuse",
+              "Jeweils 1 % Glück gewährt 0,5 % Glückstreffer-SCH-Multiplikator"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de Sorte concede 0,5% Multiplicador de Dano de Golpe de Sorte",
+              "Every 1% Luck grants 0",
+              "Luck Multiplier Luck Multiplier 幸运倍乘 幸運倍乘 幸運相乗 행운 증폭 Multiplicateur de chance Glücksmultiplikator Multiplicador de Suerte Multiplicador de Sorte ตัวคูณนำโชค Lucky Multiplier 幸运倍乘 Every 1% Luck grants 0",
+              "Lucky ทุก 1% จะเพิ่มอัตราเท่า DMG ของ Lucky Strike 0",
+              "행운 1%당 행운의 일격 대미지 배율이 0",
+              "幸運1%につき幸運の一撃ダメージ倍率+0",
+              "每1%幸运提供0",
+              "每1%幸運提供0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "5 % de multiplicador de DÑO de golpe de suerte",
+              "5% Lucky Strike DMG Multiplier",
+              "5% หลังจากเปิดโซนาต้า - บทเพลงกล้าหาญประสิทธิภาพที่แปลงจะทวีคูณ Setiap 1% Luck memberikan tambahan 0,5% Lucky Hit DMG Multiplier",
+              "5% 증가합니다",
+              "5%幸运一击伤害倍率",
+              "5%幸運一擊傷害倍率"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:553",
+        "uid": "553",
+        "category": "talents",
+        "sourceLabel": "Luck Damage",
+        "formulaReadiness": "overlap-only",
+        "formulaZoneIds": [
+          "generalDamage",
+          "luckyEnhancement",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:lucky-damage:ambiguous-scoped-value:all",
+          "component:skill-multiplier:ambiguous-scoped-value:all"
+        ],
+        "sampleText": "2% Lucky Strike DMG Multiplier | 2% Lucky Hit DMG Multiplier +5% | Lucky Strike DMG Multiplier +5%",
+        "sampleTexts": [
+          "2% Lucky Strike DMG Multiplier",
+          "2% Lucky Hit DMG Multiplier +5%",
+          "Lucky Strike DMG Multiplier +5%",
+          "Setiap 1% Luck memberikan tambahan 1,2% Lucky Hit DMG Multiplier",
+          "อัตราเท่า Lucky Strike DMG +5% Lucky ทุกๆ 1% จะเพิ่มอัตราเท่า Lucky Strike DMG 1"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1",
+              "1"
+            ],
+            "sourceTexts": [
+              "Cada 1 % de suerte otorga un 1",
+              "Every 1% Luck grants 1",
+              "อัตราเท่า Lucky Strike DMG +5% Lucky ทุกๆ 1% จะเพิ่มอัตราเท่า Lucky Strike DMG 1",
+              "행운 1%당 행운의 일격 대미지 배율이 1",
+              "幸運1%につき幸運の一撃ダメージ倍率+1",
+              "每1%幸运提供1",
+              "每1%幸運提供1"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de Sorte concede 1,2% de Multiplicador de Dano de Golpe de Sorte",
+              "Every 1% Luck grants 1",
+              "Setiap 1% Luck memberikan tambahan 1,2% Lucky Hit DMG Multiplier",
+              "อัตราเท่า Lucky Strike DMG +5% Lucky ทุกๆ 1% จะเพิ่มอัตราเท่า Lucky Strike DMG 1",
+              "행운 1%당 행운의 일격 대미지 배율이 1",
+              "幸運1%につき幸運の一撃ダメージ倍率+1",
+              "每1%幸运提供1",
+              "每1%幸運提供1"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1.2,
+            "unit": "percent",
+            "rawTexts": [
+              "1,2 %",
+              "1,2%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de Sorte concede 1,2% de Multiplicador de Dano de Golpe de Sorte",
+              "Chaque 1 % de chances confère 1,2 % de multiplicateur de dégâts de Frappe chanceuse",
+              "Jeweils 1 % Glück gewähren 1,2 % Glückstreffer-SCH-Multiplikator",
+              "Setiap 1% Luck memberikan tambahan 1,2% Lucky Hit DMG Multiplier"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 2,
+            "unit": "percent",
+            "rawTexts": [
+              "2 %",
+              "2%"
+            ],
+            "sourceTexts": [
+              "2 % de multiplicador de DÑO de golpe de suerte",
+              "2% Lucky Hit DMG Multiplier +5%",
+              "2% Lucky Strike DMG Multiplier",
+              "2% 증가합니다",
+              "2%幸运一击伤害倍率",
+              "2%幸運一擊傷害倍率"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

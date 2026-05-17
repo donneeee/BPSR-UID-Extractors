@@ -5,6 +5,20 @@ const path = require("node:path");
 const repoRoot = __dirname;
 const defaultOutputDir = path.join(repoRoot, "output");
 const LOCALES = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+const DISPLAY_LOCALES = [...LOCALES, "design"];
+const UNMAPPED_BUFF_LABELS = Object.freeze({
+  en: "Unmapped Buff",
+  "zh-CN": "\u672a\u6620\u5c04\u589e\u76ca",
+  "zh-TW": "\u672a\u5c0d\u61c9\u589e\u76ca",
+  ja: "\u672a\u30de\u30c3\u30d4\u30f3\u30b0\u30d0\u30d5",
+  "ko-KR": "\ub9e4\ud551\ub418\uc9c0 \uc54a\uc740 \ubc84\ud504",
+  fr: "Buff non mapp\u00e9",
+  de: "Nicht zugeordneter Buff",
+  es: "Mejora sin asignar",
+  "pt-BR": "B\u00f4nus n\u00e3o mapeado",
+  th: "\u0e1a\u0e31\u0e1f\u0e17\u0e35\u0e48\u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e41\u0e21\u0e1b",
+  id: "Buff belum dipetakan",
+});
 const IGNORED_MODIFIER_BUFF_IDS = [510072, 900122];
 
 function parseArgs(argv) {
@@ -81,7 +95,7 @@ function pickLocalizedMap(...maps) {
   for (const map of maps) {
     if (!map || typeof map !== "object") continue;
     const out = {};
-    for (const locale of LOCALES) {
+    for (const locale of DISPLAY_LOCALES) {
       const text = String(map[locale] || "").trim();
       if (text) out[locale] = text;
     }
@@ -90,8 +104,65 @@ function pickLocalizedMap(...maps) {
   return undefined;
 }
 
+function isUnmappedBuffPlaceholder(value, buffId) {
+  const text = String(value || "").trim();
+  const id = toPositiveNumber(buffId);
+  if (!text) return false;
+  if (/^Unknown Modifier$/i.test(text)) return true;
+  if (/^Buff \d+$/i.test(text) || /^Unmapped Buff \d+$/i.test(text)) return true;
+  if (id === null) return false;
+  return Object.values(UNMAPPED_BUFF_LABELS).some((prefix) => text === `${prefix} ${id}`);
+}
+
+function hasDesignOnlyPlaceholderEvidence(source) {
+  return (source?.evidence || []).some(
+    (item) => item?.relationshipKind === "design-only-buff-source-unmapped-placeholder",
+  );
+}
+
+function sourceDesignName(source, sourceNames) {
+  return String(
+    sourceNames?.design
+      || source?.sourceNames?.design
+      || (source?.evidence || []).find(
+        (item) => item?.relationshipKind === "design-only-buff-source-unmapped-placeholder",
+      )?.designName
+      || "",
+  ).trim();
+}
+
+function sanitizeSourceNames(source, observedBuffId) {
+  const sourceNames = pickLocalizedMap(source?.sourceNames);
+  if (!sourceNames) return undefined;
+  const design = sourceDesignName(source, sourceNames);
+  if (!design || !hasDesignOnlyPlaceholderEvidence(source)) return sourceNames;
+
+  const out = { design };
+  for (const [locale, value] of Object.entries(sourceNames)) {
+    const text = String(value || "").trim();
+    if (!text || locale === "design") continue;
+    if (isUnmappedBuffPlaceholder(text, observedBuffId)) continue;
+    out[locale] = text;
+  }
+  return out;
+}
+
+function preferredText(map, fallback = "", placeholderBuffId) {
+  for (const value of [
+    map?.en,
+    map?.["zh-CN"],
+    map?.design,
+    fallback,
+    ...Object.values(map || {}),
+  ]) {
+    const text = String(value || "").trim();
+    if (text && !isUnmappedBuffPlaceholder(text, placeholderBuffId)) return text;
+  }
+  return String(fallback || "").trim();
+}
+
 function englishText(map, fallback = "") {
-  return String(map?.en || map?.["zh-CN"] || map?.design || fallback || "").trim();
+  return preferredText(map, fallback);
 }
 
 function cleanDescriptionText(value) {
@@ -143,6 +214,64 @@ function targetIds(targets, kind, idField) {
 function uniqueStrings(values) {
   return [...new Set((values || []).map((value) => String(value || "").trim()).filter(Boolean))]
     .sort((left, right) => left.localeCompare(right));
+}
+
+function finiteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : undefined;
+}
+
+function compactOwnershipEvidence(evidence) {
+  if (!Array.isArray(evidence)) return undefined;
+  const rows = evidence.map((row) => stripUndefined({
+    kind: String(row?.kind || "").trim() || undefined,
+    specId: toPositiveNumber(row?.specId) ?? undefined,
+    matched: String(row?.matched || "").trim() || undefined,
+    weight: finiteNumber(row?.weight),
+    source: String(row?.source || "").trim() || undefined,
+  })).filter((row) => Object.keys(row).length > 0);
+  return rows.length ? rows : undefined;
+}
+
+function compactTalentOwnership(ownership) {
+  if (!ownership || typeof ownership !== "object") return undefined;
+  const dpsRelevance = ownership.dpsRelevance && typeof ownership.dpsRelevance === "object"
+    ? stripUndefined({
+      affectsDps: typeof ownership.dpsRelevance.affectsDps === "boolean"
+        ? ownership.dpsRelevance.affectsDps
+        : undefined,
+      status: String(ownership.dpsRelevance.status || "").trim() || undefined,
+      reasons: uniqueStrings(ownership.dpsRelevance.reasons),
+    })
+    : undefined;
+  const parserPolicy = ownership.parserPolicy && typeof ownership.parserPolicy === "object"
+    ? stripUndefined({
+      selectedTalentEvidenceRequired: typeof ownership.parserPolicy.selectedTalentEvidenceRequired === "boolean"
+        ? ownership.parserPolicy.selectedTalentEvidenceRequired
+        : undefined,
+      safeToRejectWrongSpec: typeof ownership.parserPolicy.safeToRejectWrongSpec === "boolean"
+        ? ownership.parserPolicy.safeToRejectWrongSpec
+        : undefined,
+      keepRuntimeEvidenceForAmbiguousRows: typeof ownership.parserPolicy.keepRuntimeEvidenceForAmbiguousRows === "boolean"
+        ? ownership.parserPolicy.keepRuntimeEvidenceForAmbiguousRows
+        : undefined,
+    })
+    : undefined;
+  return stripUndefined({
+    classId: toPositiveNumber(ownership.classId) ?? undefined,
+    className: String(ownership.className || "").trim() || undefined,
+    ownershipKind: String(ownership.ownershipKind || "").trim() || undefined,
+    ownershipStatus: String(ownership.ownershipStatus || "").trim() || undefined,
+    confidence: finiteNumber(ownership.confidence),
+    hardFilterEligible: typeof ownership.hardFilterEligible === "boolean" ? ownership.hardFilterEligible : undefined,
+    specIds: uniqueNumbers(ownership.specIds),
+    specNameKeys: uniqueStrings(ownership.specNameKeys),
+    specNames: uniqueStrings(ownership.specNames),
+    dpsRelevance,
+    generationSource: String(ownership.generationSource || "").trim() || undefined,
+    parserPolicy,
+    evidence: compactOwnershipEvidence(ownership.evidence),
+  });
 }
 
 function uidKindForSourceEntity(source) {
@@ -396,6 +525,29 @@ function addFormulaUidEdges(edges, attributionModel) {
   }
 }
 
+function addTalentOwnershipUidEdges(edges, ownership) {
+  if (!ownership || typeof ownership !== "object") return;
+  const source = String(ownership.generationSource || "TalentSpecOwnership.gen").trim();
+  const status = String(ownership.ownershipStatus || "").trim() || undefined;
+  const relationshipKind = String(ownership.ownershipKind || "").trim() || undefined;
+  addNumberUidEdge(edges, ownership.classId, {
+    edgeKind: "owner-class",
+    uidKind: "class",
+    role: "owner",
+    source,
+    status,
+    relationshipKind,
+  });
+  addNumberUidEdges(edges, ownership.specIds, {
+    edgeKind: "owner-spec",
+    uidKind: "spec",
+    role: "owner",
+    source,
+    status,
+    relationshipKind,
+  });
+}
+
 function modifierUidEdges(source, observedBuffId) {
   const edges = [];
   addNumberUidEdge(edges, observedBuffId, {
@@ -420,6 +572,7 @@ function modifierUidEdges(source, observedBuffId) {
   for (const evidence of source?.evidence || []) {
     if (evidence && typeof evidence === "object") addEvidenceUidEdges(edges, evidence);
   }
+  addTalentOwnershipUidEdges(edges, source?.talentOwnership);
   addFormulaUidEdges(edges, source?.attributionModel);
   return finalizeUidEdges(edges);
 }
@@ -520,7 +673,12 @@ function compactAttributionModel(model) {
       formulaTermIds: component.formulaTermIds,
       contributionGroups: component.contributionGroups,
       predicateTags: component.predicateTags,
+      requiredRuntimeEvidence: component.requiredRuntimeEvidence,
       valueTexts: component.valueTexts,
+      baseValues: component.baseValues,
+      valueTiers: component.valueTiers,
+      valueTextSource: component.valueTextSource,
+      inferenceSource: component.inferenceSource,
     })),
   };
   return stripUndefined(compact);
@@ -541,8 +699,8 @@ function rowPolicy(source, targetDamageIds, targetRecountIds) {
 function sourceToIndexEntry(source, observedBuffId) {
   const targetDamageIds = targetIds(source.targets, "damage", "damageId");
   const targetRecountIds = targetIds(source.targets, "recount", "recountId");
-  const sourceNames = pickLocalizedMap(source.sourceNames);
-  const sourceName = englishText(sourceNames, source.sourceName || `Buff ${observedBuffId}`);
+  const sourceNames = sanitizeSourceNames(source, observedBuffId);
+  const sourceName = preferredText(sourceNames, source.sourceName || `Buff ${observedBuffId}`, observedBuffId);
   const description = descriptionFields(source);
   return stripUndefined({
     sourceId: source.sourceId,
@@ -564,6 +722,7 @@ function sourceToIndexEntry(source, observedBuffId) {
     relationshipKinds: [...new Set(source.attributionModel?.relationshipKinds || [])].sort(),
     componentClasses: attributionComponentClasses(source),
     attributionModel: compactAttributionModel(source.attributionModel),
+    talentOwnership: compactTalentOwnership(source.talentOwnership),
     uidEdges: modifierUidEdges(source, observedBuffId),
     targetDamageIds,
     targetRecountIds,
@@ -634,6 +793,50 @@ function addEntry(index, buffId, entry) {
   }
 }
 
+function isTalentIndexEntry(entry) {
+  const sourceId = String(entry?.sourceId || "").toLowerCase();
+  return sourceId.startsWith("talent:");
+}
+
+function talentOwnershipStats(index) {
+  const seen = new Set();
+  const ownershipKindCounts = {};
+  const ownershipStatusCounts = {};
+  const missingSourceIds = [];
+  let missingOwnership = 0;
+  let talentSourceRules = 0;
+  let withOwnership = 0;
+  let hardFilterEligible = 0;
+  for (const entries of Object.values(index.byBuffId)) {
+    for (const entry of entries) {
+      const sourceId = String(entry.sourceId || "");
+      if (!sourceId || seen.has(sourceId) || !isTalentIndexEntry(entry)) continue;
+      seen.add(sourceId);
+      talentSourceRules += 1;
+      if (!entry.talentOwnership) {
+        missingOwnership += 1;
+        if (missingSourceIds.length < 50) missingSourceIds.push(sourceId);
+        continue;
+      }
+      withOwnership += 1;
+      if (entry.talentOwnership.hardFilterEligible === true) hardFilterEligible += 1;
+      const kind = entry.talentOwnership.ownershipKind || "unknown";
+      const status = entry.talentOwnership.ownershipStatus || "unknown";
+      ownershipKindCounts[kind] = (ownershipKindCounts[kind] || 0) + 1;
+      ownershipStatusCounts[status] = (ownershipStatusCounts[status] || 0) + 1;
+    }
+  }
+  return {
+    talentSourceRules,
+    withOwnership,
+    missingOwnership,
+    hardFilterEligible,
+    ownershipKindCounts,
+    ownershipStatusCounts,
+    missingSourceIds,
+  };
+}
+
 function buildIndex(effectSources, factors) {
   const effectSourcesById = effectSources.effectSourcesById || {};
   const buffIdToEffectSourceIds = effectSources.buffIdToEffectSourceIds || {};
@@ -686,6 +889,7 @@ function buildIndex(effectSources, factors) {
     entries: entryCount,
     reportPolicyCounts: policyCounts,
     rowPolicyCounts,
+    talentOwnership: talentOwnershipStats(index),
     uidEdges: uidEdgeCount,
     uidEdgeKindCounts,
     uidEdgeRoleCounts,

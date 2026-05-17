@@ -1,0 +1,1665 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-12T20:25:20.590Z",
+  "auditedStatus": "missing-value-data",
+  "totalRows": 21094,
+  "byCategory": {
+    "skills": 11155,
+    "items": 8208,
+    "buffs": 1432,
+    "talents": 90,
+    "seasonal-talents": 81,
+    "linktext-tooltips": 66,
+    "battle-imagines": 52,
+    "factors": 9,
+    "modifier-source-rules": 1
+  },
+  "byFormulaReadiness": {
+    "identity-only": 11862,
+    "description-grounded-needs-runtime-proof": 8838,
+    "overlap-only": 308,
+    "timing-model-required": 49,
+    "formula-replay-required": 36,
+    "mixed-exact-and-replay": 1
+  },
+  "byFormulaZone": {
+    "elementalDamage": 5502,
+    "generalDamage": 2573,
+    "baseAttackTerm": 2341,
+    "physicalMagicEnhancement": 1662,
+    "timingCadence": 813,
+    "critical": 504,
+    "luckyEnhancement": 430,
+    "allRoundDamage": 115,
+    "seasonDamage": 28,
+    "seasonSuppression": 26,
+    "finalDamage": 14,
+    "luckyStrikeBaseTerm": 7
+  },
+  "byBlocker": {
+    "missing-component-value-hint": 21094
+  },
+  "byWording": {
+    "no-sample-text": 21094
+  },
+  "byCategoryWording": {
+    "skills / no-sample-text": 11155,
+    "items / no-sample-text": 8208,
+    "buffs / no-sample-text": 1432,
+    "talents / no-sample-text": 90,
+    "seasonal-talents / no-sample-text": 81,
+    "linktext-tooltips / no-sample-text": 66,
+    "battle-imagines / no-sample-text": 52,
+    "factors / no-sample-text": 9,
+    "modifier-source-rules / no-sample-text": 1
+  },
+  "byScopeGap": {},
+  "byScopeGapCategory": {},
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "battle-imagines:1002440",
+      "uid": "1002440",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Super Critical",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "critical"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1002830",
+      "uid": "1002830",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Frostquake",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1010440",
+      "uid": "1010440",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Thunder Suppress",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "seasonSuppression"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1011010",
+      "uid": "1011010",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Lightning Smite",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1011214",
+      "uid": "1011214",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Cabbage Blitz",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1011906",
+      "uid": "1011906",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Blazing Flames",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1100504",
+      "uid": "1100504",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Frost Breath",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:1102306",
+      "uid": "1102306",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Flame Spirit's Fortune",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2002440",
+      "uid": "2002440",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Thunderfall Grasp",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2900640",
+      "uid": "2900640",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Heart of Flame",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2900715",
+      "uid": "2900715",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Allscape Sublimation",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "allRoundDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2900740",
+      "uid": "2900740",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Allscape Sublimation",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "allRoundDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3902",
+      "uid": "3902",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Thunderfall Grasp",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3903",
+      "uid": "3903",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Blazing Axe",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3904",
+      "uid": "3904",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Super Critical",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "critical"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3906",
+      "uid": "3906",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Frostquake",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3911",
+      "uid": "3911",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Heart of Flame",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3932",
+      "uid": "3932",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Flamewheel Dance",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3935",
+      "uid": "3935",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Thunder Roar",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3937",
+      "uid": "3937",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Thunder Suppress",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "seasonSuppression"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3950",
+      "uid": "3950",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Allscape Sublimation",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "allRoundDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3952",
+      "uid": "3952",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Blazing Flames",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3956",
+      "uid": "3956",
+      "category": "battle-imagines",
+      "sourceLabel": "Arcane! Flame Spirit's Fortune",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3958",
+      "uid": "3958",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Frost Breath",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3959",
+      "uid": "3959",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Lightning Smite",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3965",
+      "uid": "3965",
+      "category": "battle-imagines",
+      "sourceLabel": "Stunt! Cabbage Blitz",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110070",
+      "uid": "2110070",
+      "category": "battle-imagines",
+      "sourceLabel": "Demoralizing Roar",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110077",
+      "uid": "2110077",
+      "category": "battle-imagines",
+      "sourceLabel": "Intimidation",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110078",
+      "uid": "2110078",
+      "category": "battle-imagines",
+      "sourceLabel": "Shock Defense Break",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110110",
+      "uid": "2110110",
+      "category": "battle-imagines",
+      "sourceLabel": "Murloc's Luck",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110115",
+      "uid": "2110115",
+      "category": "battle-imagines",
+      "sourceLabel": "Boyce - Frostforce",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110126",
+      "uid": "2110126",
+      "category": "battle-imagines",
+      "sourceLabel": "Versatility Specialization",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "allRoundDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110132",
+      "uid": "2110132",
+      "category": "battle-imagines",
+      "sourceLabel": "Lucky Crit",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110061",
+      "uid": "2110061",
+      "category": "battle-imagines",
+      "sourceLabel": "Tatta - Heart of Flames",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110076",
+      "uid": "2110076",
+      "category": "battle-imagines",
+      "sourceLabel": "Breaking Out of the Cocoon",
+      "formulaReadiness": "overlap-only",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110101",
+      "uid": "2110101",
+      "category": "battle-imagines",
+      "sourceLabel": "Void Bzzar",
+      "formulaReadiness": "overlap-only",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110102",
+      "uid": "2110102",
+      "category": "battle-imagines",
+      "sourceLabel": "Wind Goblin King - Lucky enhancement",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110109",
+      "uid": "2110109",
+      "category": "battle-imagines",
+      "sourceLabel": "Goblin Crossbow - Lucky Goblin",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110114",
+      "uid": "2110114",
+      "category": "battle-imagines",
+      "sourceLabel": "Dorothy Aid",
+      "formulaReadiness": "overlap-only",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110119",
+      "uid": "2110119",
+      "category": "battle-imagines",
+      "sourceLabel": "Cabbage Is the Best",
+      "formulaReadiness": "overlap-only",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110125",
+      "uid": "2110125",
+      "category": "battle-imagines",
+      "sourceLabel": "Highland Lizard King - Highland Blood",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110127",
+      "uid": "2110127",
+      "category": "battle-imagines",
+      "sourceLabel": "Blade Intent Surge",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:3200013",
+      "uid": "3200013",
+      "category": "battle-imagines",
+      "sourceLabel": "Mutant Yeti - Active Muscles",
+      "formulaReadiness": "overlap-only",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110050",
+      "uid": "2110050",
+      "category": "battle-imagines",
+      "sourceLabel": "Element Stasis",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110055",
+      "uid": "2110055",
+      "category": "battle-imagines",
+      "sourceLabel": "Exhausted: Flame Devour",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110056",
+      "uid": "2110056",
+      "category": "battle-imagines",
+      "sourceLabel": "Time Stasis",
+      "formulaReadiness": "timing-model-required",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110057",
+      "uid": "2110057",
+      "category": "battle-imagines",
+      "sourceLabel": "Weakened: Wish Sealed",
+      "formulaReadiness": "timing-model-required",
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110060",
+      "uid": "2110060",
+      "category": "battle-imagines",
+      "sourceLabel": "Swift Vortex",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110103",
+      "uid": "2110103",
+      "category": "battle-imagines",
+      "sourceLabel": "Celestial Flier - Azure Gale",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110116",
+      "uid": "2110116",
+      "category": "battle-imagines",
+      "sourceLabel": "Boyce - Frostforce - EXT",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110122",
+      "uid": "2110122",
+      "category": "battle-imagines",
+      "sourceLabel": "Blackstone Sergeant - Sergeant's Motivation",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "battle-imagines:2110129",
+      "uid": "2110129",
+      "category": "battle-imagines",
+      "sourceLabel": "Emerald Caprahorn - Haste Specialization",
+      "formulaReadiness": "timing-model-required",
+      "formulaZoneIds": [
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:12101",
+      "uid": "12101",
+      "category": "buffs",
+      "sourceLabel": "冰矛发射特效",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:12301",
+      "uid": "12301",
+      "category": "buffs",
+      "sourceLabel": "法杖水矛冰矛增伤BUFF",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2010002",
+      "uid": "2010002",
+      "category": "buffs",
+      "sourceLabel": "Stat Boost",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2020001",
+      "uid": "2020001",
+      "category": "buffs",
+      "sourceLabel": "测试二级伤害类型",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2032020",
+      "uid": "2032020",
+      "category": "buffs",
+      "sourceLabel": "魔攻",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2032070",
+      "uid": "2032070",
+      "category": "buffs",
+      "sourceLabel": "魔攻+精英增伤",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033010",
+      "uid": "2033010",
+      "category": "buffs",
+      "sourceLabel": "元素强度·火",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033020",
+      "uid": "2033020",
+      "category": "buffs",
+      "sourceLabel": "元素强度·冰",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033030",
+      "uid": "2033030",
+      "category": "buffs",
+      "sourceLabel": "元素强度·森",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033040",
+      "uid": "2033040",
+      "category": "buffs",
+      "sourceLabel": "元素强度·岩",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033050",
+      "uid": "2033050",
+      "category": "buffs",
+      "sourceLabel": "元素强度·风",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033060",
+      "uid": "2033060",
+      "category": "buffs",
+      "sourceLabel": "元素强度·雷",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033080",
+      "uid": "2033080",
+      "category": "buffs",
+      "sourceLabel": "元素强度·暗",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033090",
+      "uid": "2033090",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·火",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033100",
+      "uid": "2033100",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·冰",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033110",
+      "uid": "2033110",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·森",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033120",
+      "uid": "2033120",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·岩",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033130",
+      "uid": "2033130",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·风",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033140",
+      "uid": "2033140",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·雷",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033150",
+      "uid": "2033150",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·光",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033160",
+      "uid": "2033160",
+      "category": "buffs",
+      "sourceLabel": "元素抗性·暗",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033170",
+      "uid": "2033170",
+      "category": "buffs",
+      "sourceLabel": "物理增效强度",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2033180",
+      "uid": "2033180",
+      "category": "buffs",
+      "sourceLabel": "魔法增效强度",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2100002",
+      "uid": "2100002",
+      "category": "buffs",
+      "sourceLabel": "Falling Star",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2100003",
+      "uid": "2100003",
+      "category": "buffs",
+      "sourceLabel": "幸运陨石触发BUFF",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2100101",
+      "uid": "2100101",
+      "category": "buffs",
+      "sourceLabel": "灌篮高手暴击叠层",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "critical"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2100210",
+      "uid": "2100210",
+      "category": "buffs",
+      "sourceLabel": "反制红光刷新技能CD",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:2110000",
+      "uid": "2110000",
+      "category": "buffs",
+      "sourceLabel": "雷电食人魔共鸣表现",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "missing-component-value-hint"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    }
+  ],
+  "topByWording": {
+    "no-sample-text": [
+      {
+        "key": "battle-imagines:1002440",
+        "uid": "1002440",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Super Critical",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "critical"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1002830",
+        "uid": "1002830",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Frostquake",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1010440",
+        "uid": "1010440",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Thunder Suppress",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "seasonSuppression"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1011010",
+        "uid": "1011010",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Lightning Smite",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1011214",
+        "uid": "1011214",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Cabbage Blitz",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1011906",
+        "uid": "1011906",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Blazing Flames",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1100504",
+        "uid": "1100504",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Frost Breath",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:1102306",
+        "uid": "1102306",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Flame Spirit's Fortune",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:2002440",
+        "uid": "2002440",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Thunderfall Grasp",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:2900640",
+        "uid": "2900640",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Heart of Flame",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:2900715",
+        "uid": "2900715",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Allscape Sublimation",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "allRoundDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:2900740",
+        "uid": "2900740",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Allscape Sublimation",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "allRoundDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3902",
+        "uid": "3902",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Thunderfall Grasp",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3903",
+        "uid": "3903",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Blazing Axe",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3904",
+        "uid": "3904",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Super Critical",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "critical"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3906",
+        "uid": "3906",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Frostquake",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3911",
+        "uid": "3911",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Heart of Flame",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3932",
+        "uid": "3932",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Flamewheel Dance",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3935",
+        "uid": "3935",
+        "category": "battle-imagines",
+        "sourceLabel": "Arcane! Thunder Roar",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "battle-imagines:3937",
+        "uid": "3937",
+        "category": "battle-imagines",
+        "sourceLabel": "Stunt! Thunder Suppress",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "seasonSuppression"
+        ],
+        "valueBlockers": [
+          "missing-component-value-hint"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      }
+    ]
+  }
+}

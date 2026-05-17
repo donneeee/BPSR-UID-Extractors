@@ -1,0 +1,249 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+const {
+  cleanDescriptionsByLocale,
+  cleanMarkup,
+  cleanMarkupPreserveBreaks,
+  descriptionParagraphsByLocale,
+  extractDecisionPlaceholders,
+  extractValueTexts,
+  preferredText,
+} = require("./effect-semantics.cjs");
+const { stripUndefined } = require("./modifier-table-common.cjs");
+
+const SEASON_EFFECT_DESCRIPTION_TABLE_HASH = 4192598123;
+const DEFAULT_OUTPUT_NAME = "SeasonEffectDescriptions.json";
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2), {
+    markdown: "",
+  });
+
+  if (args.help) {
+    common.printHelp(
+      "SeasonEffectDescriptions.gen - export direct UI effect descriptions keyed by buff/effect UID.",
+      `
+Options:
+  --markdown <path>   Optional Markdown summary output path.
+  --max-rows <count>  Optional row limit for debugging.
+
+Notes:
+  This promotes only the direct CTB:4192598123 schema already proven by
+  SeasonTalentNodeProbe.gen: field +0 is the buff/effect UID and field +4 is
+  the localized UI description id. It does not demote or infer modifier rows.
+`,
+    );
+    return;
+  }
+
+  const paths = common.resolvePaths(args, DEFAULT_OUTPUT_NAME);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const localizationTables = common.loadLocalizationTables(containerDir, { metaEntries });
+  const table = common.readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    SEASON_EFFECT_DESCRIPTION_TABLE_HASH,
+    `CTB:${SEASON_EFFECT_DESCRIPTION_TABLE_HASH} SeasonEffectDescription`,
+  );
+
+  const rows = readSeasonEffectDescriptionRows({
+    table,
+    localizationTables,
+    maxRows: Number(args.maxRows) || 0,
+    common,
+  });
+  const byBuffId = Object.fromEntries(rows.map((row) => [String(row.buffId), row]));
+  const output = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    source: {
+      generator: "SeasonEffectDescriptions.gen",
+      sourceTable: `CTB:${SEASON_EFFECT_DESCRIPTION_TABLE_HASH}`,
+      schema: "row +0 = buff/effect UID, row +4 = localized UI description id",
+      runtimeBoundary:
+        "Direct UI-page description text only. Runtime activation, selected factor/talent state, stacks, owner/party scope, and exact contribution math remain separate proof layers.",
+    },
+    summary: {
+      sourceTable: `CTB:${SEASON_EFFECT_DESCRIPTION_TABLE_HASH}`,
+      sourceRows: table.rowCount,
+      rowSize: table.rowSize,
+      exportedRows: rows.length,
+      rowsWithEnglish: rows.filter((row) => row.descriptions?.en).length,
+      rowsWithValueText: rows.filter((row) => row.valueTexts?.length).length,
+      rowsWithLinkText: rows.filter((row) => row.linkTexts?.length).length,
+      rowsWithParagraphBreaks: rows.filter((row) => row.descriptionParagraphs?.length > 1).length,
+      rowsWithDecisionPlaceholders: rows.filter((row) => row.decisionPlaceholders?.length).length,
+      unresolvedDecisionPlaceholders: rows.reduce((sum, row) => sum + (row.decisionPlaceholders?.length || 0), 0),
+    },
+    rows,
+    byBuffId,
+  };
+
+  console.log(`Season effect description rows: ${rows.length.toLocaleString()} / ${table.rowCount.toLocaleString()}`);
+  console.log(`Rows with English text: ${output.summary.rowsWithEnglish.toLocaleString()}`);
+  console.log(`Output: ${common.displayPath(paths.out)}`);
+  common.maybeWriteJson(paths.out, output, Boolean(args.dryRun));
+
+  const markdownPath = args.markdown
+    ? path.resolve(args.markdown)
+    : path.join(path.dirname(paths.out), "probing-reports", "SeasonEffectDescriptions.md");
+  if (!args.dryRun) {
+    fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+    fs.writeFileSync(markdownPath, renderMarkdown(output), "utf8");
+    console.log(`Markdown: ${common.displayPath(markdownPath)}`);
+  }
+}
+
+function readSeasonEffectDescriptionRows({ table, localizationTables, maxRows, common }) {
+  const rows = [];
+  const rowCount = maxRows > 0 ? Math.min(table.rowCount, maxRows) : table.rowCount;
+  for (let rowIndex = 0; rowIndex < rowCount; rowIndex += 1) {
+    const rowOffset = table.rowStart + rowIndex * table.rowSize;
+    const buffId = common.readU32(table.data, rowOffset);
+    const descriptionId = common.readU32(table.data, rowOffset + 4);
+    if (!buffId || !descriptionId) continue;
+
+    const descriptions = common.buildLocaleTextObject(
+      collectLocalizedTextEntries(descriptionId, localizationTables, common),
+      { includeDesign: false },
+    );
+    const cleanDescriptions = cleanDescriptionsByLocale(descriptions);
+    const description = preferredText(cleanDescriptions, preferredText(descriptions, ""));
+    if (!description) continue;
+    const descriptionParagraphsByLocaleMap = descriptionParagraphsByLocale(descriptions);
+    const descriptionParagraphs = preferredText(descriptionParagraphsByLocaleMap, []);
+    const decisionPlaceholders = collectDecisionPlaceholders(descriptions);
+
+    rows.push(stripUndefined({
+      sourceKind: "season-effect-description",
+      Id: buffId,
+      id: buffId,
+      buffId,
+      observedBuffId: buffId,
+      DescriptionId: descriptionId,
+      descriptionId,
+      textId: descriptionId,
+      description,
+      descriptions,
+      cleanDescription: description,
+      cleanDescriptions,
+      descriptionParagraphs,
+      descriptionParagraphsByLocale: descriptionParagraphsByLocaleMap,
+      valueTexts: extractValueTexts(description),
+      decisionPlaceholders,
+      hasUnresolvedDecisionPlaceholders: decisionPlaceholders.length ? true : undefined,
+      linkTexts: collectDescriptionLinkTexts(descriptions),
+      sourceTable: `CTB:${SEASON_EFFECT_DESCRIPTION_TABLE_HASH}`,
+      sourceRow: rowIndex,
+      sourceOffset: Number(table.entry?.offset || 0) + rowOffset,
+      evidence: ["direct-season-effect-description-row"],
+    }));
+  }
+  return rows.sort((left, right) => Number(left.buffId) - Number(right.buffId));
+}
+
+function collectDecisionPlaceholders(descriptions) {
+  const byKey = new Map();
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    for (const placeholder of extractDecisionPlaceholders(text)) {
+      const key = `${placeholder.functionName}:${placeholder.index}:${placeholder.token}`;
+      if (!byKey.has(key)) {
+        byKey.set(key, {
+          ...placeholder,
+          locales: [],
+          sourceTexts: [],
+        });
+      }
+      const current = byKey.get(key);
+      if (!current.locales.includes(localeId)) current.locales.push(localeId);
+      const sourceText = cleanMarkupPreserveBreaks(text);
+      if (sourceText && current.sourceTexts.length < 4 && !current.sourceTexts.includes(sourceText)) {
+        current.sourceTexts.push(sourceText);
+      }
+    }
+  }
+  return [...byKey.values()].sort((left, right) => {
+    if (left.index !== right.index) return left.index - right.index;
+    return left.functionName.localeCompare(right.functionName);
+  });
+}
+
+function collectLocalizedTextEntries(textId, localizationTables, common) {
+  const id = Number(textId);
+  if (!Number.isInteger(id) || id <= 0) return [];
+  const entries = [];
+  for (const table of localizationTables || []) {
+    const stringIndex = table.index?.get(id);
+    if (stringIndex === undefined || stringIndex < 0 || stringIndex >= table.strings.length) {
+      continue;
+    }
+    const text = common.normalizeText(table.strings[stringIndex] ?? "");
+    if (text) entries.push({ language: table.language, stringIndex, text });
+  }
+  return entries;
+}
+
+function collectDescriptionLinkTexts(descriptions) {
+  const byId = new Map();
+  for (const [localeId, text] of Object.entries(descriptions || {})) {
+    const regex = /<linktext=(\d+)[^>]*>(.*?)<\/linktext>/gis;
+    for (const match of String(text || "").matchAll(regex)) {
+      const linkTextId = Number(match[1]);
+      const label = cleanMarkup(match[2]);
+      if (!Number.isFinite(linkTextId) || !label) continue;
+      const current = byId.get(linkTextId) || { linkTextId, labels: {} };
+      current.labels[localeId] ||= label;
+      byId.set(linkTextId, current);
+    }
+  }
+  return [...byId.values()]
+    .map((row) => ({ ...row, label: preferredText(row.labels) }))
+    .sort((left, right) => Number(left.linkTextId) - Number(right.linkTextId));
+}
+
+function renderMarkdown(output) {
+  const rows = output.rows.slice(0, 80).map((row) => (
+    `| ${row.buffId} | ${row.descriptionId} | ${escapeMarkdown(row.description)} | ${row.valueTexts?.length || 0} | ${row.decisionPlaceholders?.length || 0} | ${row.linkTexts?.length || 0} |`
+  ));
+  return [
+    "# Season Effect Descriptions",
+    "",
+    `Generated by \`${output.source.generator}\`.`,
+    "",
+    "Direct source: `CTB:4192598123`, where field `+0` is the buff/effect UID and field `+4` is the localized UI description id.",
+    "",
+    "This file is description grounding only. It does not prove runtime activation, selected state, stack value, owner/party scope, or exact damage contribution.",
+    "",
+    "## Summary",
+    "",
+    `- Source rows: ${output.summary.sourceRows.toLocaleString()}`,
+    `- Exported rows: ${output.summary.exportedRows.toLocaleString()}`,
+    `- Rows with English text: ${output.summary.rowsWithEnglish.toLocaleString()}`,
+    `- Rows with value text: ${output.summary.rowsWithValueText.toLocaleString()}`,
+    `- Rows with paragraph breaks: ${output.summary.rowsWithParagraphBreaks.toLocaleString()}`,
+    `- Rows with unresolved Decision placeholders: ${output.summary.rowsWithDecisionPlaceholders.toLocaleString()}`,
+    `- Rows with linktext refs: ${output.summary.rowsWithLinkText.toLocaleString()}`,
+    "",
+    "## Sample Rows",
+    "",
+    "| Buff/effect UID | Description ID | Description | Value refs | Decision refs | Linktext refs |",
+    "|---:|---:|---|---:|---:|---:|",
+    ...rows,
+    "",
+  ].join("\n");
+}
+
+function escapeMarkdown(value) {
+  return String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/\|/g, "\\|")
+    .trim();
+}

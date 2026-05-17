@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T02:16:20.166Z",
+  "auditedStatus": "needs-value-polarity",
+  "totalRows": 5,
+  "byCategory": {
+    "buffs": 4,
+    "seasonal-talents": 1
+  },
+  "byFormulaReadiness": {
+    "description-grounded-needs-runtime-proof": 4,
+    "formula-replay-required": 1
+  },
+  "byFormulaZone": {
+    "baseAttackTerm": 4,
+    "finalDamage": 1,
+    "generalDamage": 1,
+    "seasonDamage": 1,
+    "skillMultiplier": 1
+  },
+  "byBlocker": {
+    "component:atk:value-polarity-selector-required": 4,
+    "component:atk:value-ramp-selector-required": 1,
+    "component:skill-multiplier:value-polarity-selector-required": 1
+  },
+  "byWording": {
+    "attack-wording": 4,
+    "generic-damage-wording": 1
+  },
+  "byCategoryWording": {
+    "buffs / attack-wording": 4,
+    "seasonal-talents / generic-damage-wording": 1
+  },
+  "byScopeGap": {
+    "final-damage:all": 1
+  },
+  "byScopeGapCategory": {
+    "seasonal-talents / final-damage:all": 1
+  },
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [
+    {
+      "key": "seasonal-talents:181",
+      "uid": "181",
+      "category": "seasonal-talents",
+      "runtimeKind": "selected-seasonal-talent",
+      "sourceLabel": "Dreamscape Transfer",
+      "componentKey": "final-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner",
+        "party"
+      ],
+      "missingValueScopes": [
+        "all"
+      ],
+      "values": "owner:-40%; party:+40%",
+      "valueBlockers": [
+        "component:skill-multiplier:value-polarity-selector-required"
+      ],
+      "proofRequirements": [
+        "canonical source polarity/sign must be resolved before contribution math consumes the value",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "final damage bonus snapshot at hit time",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "season damage bonus snapshot at hit time",
+        "skill id",
+        "sourceRuleId active on hit"
+      ],
+      "sourceRuleIds": [
+        "mrs:6864537c38c0"
+      ],
+      "sourceFiles": [
+        "probing-reports\\SeasonRogueEntryProbe.json"
+      ],
+      "sampleText": "Final damage dealt -40% | DMG akhir yang diakibatkan Battle Fantasy +40% | Final damage dealt by Battle Imagine +40% Final damage dealt -40%"
+    }
+  ],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "buffs:700031",
+      "uid": "700031",
+      "category": "buffs",
+      "sourceLabel": "ATK down",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-polarity-selector-required"
+      ],
+      "sampleText": "ATQ -50% ATK ลดลง 50% ATK berkurang 50% | ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 % | ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50%...",
+      "sampleTexts": [
+        "ATQ -50% ATK ลดลง 50% ATK berkurang 50%",
+        "ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+        "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50%...",
+        "1",
+        "50%"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "flat",
+          "rawTexts": [
+            "1"
+          ],
+          "sourceTexts": [
+            "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": -50,
+          "unit": "percent",
+          "rawTexts": [
+            "-50 %",
+            "-50%"
+          ],
+          "sourceTexts": [
+            "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+            "ATQ -50% ATK ลดลง 50% ATK berkurang 50%",
+            "ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+            "ATQ -50% ATK ลดลง 50% ATK berkurang 50%",
+            "ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "buffs:881758",
+      "uid": "881758",
+      "category": "buffs",
+      "sourceLabel": "Rock Serpents' Resent",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-polarity-selector-required",
+        "component:atk:value-ramp-selector-required"
+      ],
+      "sampleText": "ATK -30% per stack | ลดพลังโจมตีลง 30% ต่อชั้น Setiap lantai mengurangi 30% ATK | ANG −30 % pro Stapel",
+      "sampleTexts": [
+        "ATK -30% per stack",
+        "ลดพลังโจมตีลง 30% ต่อชั้น Setiap lantai mengurangi 30% ATK",
+        "ANG −30 % pro Stapel",
+        "ATQ -30% por acúmulo",
+        "Attaque -30 % par cumul"
+      ],
+      "samples": [
+        {
+          "value": -30,
+          "unit": "percent",
+          "rawTexts": [
+            "-30 %",
+            "-30%"
+          ],
+          "sourceTexts": [
+            "1スタックにつき攻撃力-30%",
+            "ATK -30% per stack",
+            "ATQ -30 % por acumulación",
+            "ATQ -30% por acúmulo",
+            "Attaque -30 % par cumul"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "ANG −30 % pro Stapel",
+            "ลดพลังโจมตีลง 30% ต่อชั้น Setiap lantai mengurangi 30% ATK",
+            "스택당 공격력이 30% 감소합니다",
+            "每层减少30%攻击力",
+            "每層減少30%攻擊力"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "buffs:882342",
+      "uid": "882342",
+      "category": "buffs",
+      "sourceLabel": "Weak",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-polarity-selector-required"
+      ],
+      "sampleText": "ATQ -50% ATK ลดลง 50% Attack Down 50% | ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 % | Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+      "sampleTexts": [
+        "ATQ -50% ATK ลดลง 50% Attack Down 50%",
+        "ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+        "Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+        "50%",
+        "-50%"
+      ],
+      "samples": [
+        {
+          "value": -50,
+          "unit": "percent",
+          "rawTexts": [
+            "-50 %",
+            "-50%"
+          ],
+          "sourceTexts": [
+            "ATQ -50% ATK ลดลง 50% Attack Down 50%",
+            "ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+            "Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "ATQ -50% ATK ลดลง 50% Attack Down 50%",
+            "ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+            "Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "buffs:995248",
+      "uid": "995248",
+      "category": "buffs",
+      "sourceLabel": "ATK -10%",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-polarity-selector-required"
+      ],
+      "sampleText": "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测 | 10% | -10%",
+      "sampleTexts": [
+        "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测",
+        "10%",
+        "-10%",
+        "10 %",
+        "-10 %"
+      ],
+      "samples": [
+        {
+          "value": -10,
+          "unit": "percent",
+          "rawTexts": [
+            "-10 %",
+            "-10%"
+          ],
+          "sourceTexts": [
+            "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 10,
+          "unit": "percent",
+          "rawTexts": [
+            "10 %",
+            "10%"
+          ],
+          "sourceTexts": [
+            "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:181",
+      "uid": "181",
+      "category": "seasonal-talents",
+      "sourceLabel": "Dreamscape Transfer",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "finalDamage",
+        "generalDamage",
+        "seasonDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:skill-multiplier:value-polarity-selector-required"
+      ],
+      "sampleText": "Final damage dealt -40% | DMG akhir yang diakibatkan Battle Fantasy +40% | Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+      "sampleTexts": [
+        "Final damage dealt -40%",
+        "DMG akhir yang diakibatkan Battle Fantasy +40%",
+        "Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+        "DMG สุดท้ายที่ตัวเองทำได้ -40% DMG สุดท้ายที่ Battle Imagine ทำได้ +40% DMG akhir yang diakibatkan diri sendiri -40%",
+        "Final damage dealt by Battle Imagine +40% 自身造成最终伤害-40%，战斗幻想造成的最终伤害+40% 自身造成最終傷害-40%，戰鬥幻想造成的最終傷害+40% 自身が与える最終ダメージ-40%、バトルイマジンが与える最終ダメージ+40% 자신이 준 최종 대미지가 40% 감소하며"
+      ],
+      "samples": [
+        {
+          "value": -40,
+          "unit": "percent",
+          "rawTexts": [
+            "-40 %",
+            "-40%"
+          ],
+          "sourceTexts": [
+            "Dano final causado -40%",
+            "Daño final infligido -40 %",
+            "Dégâts finaux infligés -40 %",
+            "DMG สุดท้ายที่ตัวเองทำได้ -40% DMG สุดท้ายที่ Battle Imagine ทำได้ +40% DMG akhir yang diakibatkan diri sendiri -40%",
+            "Dreamscape Transfer Dreamscape Transfer 梦境转移 夢境轉移 移りゆく夢 꿈 전이 Transfert Onirique Traumlandschaft-Transfer Transferencia Onírica Transferência Onírica เคลื่อนย้ายความฝัน Dream Transfer 「幻想」梦境转移 Final damage dealt -40%",
+            "Final damage dealt -40%",
+            "Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+            "Final damage dealt by Battle Imagine +40% 自身造成最终伤害-40%，战斗幻想造成的最终伤害+40% 自身造成最終傷害-40%，戰鬥幻想造成的最終傷害+40% 自身が与える最終ダメージ-40%、バトルイマジンが与える最終ダメージ+40% 자신이 준 최종 대미지가 40% 감소하며"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 40,
+          "unit": "percent",
+          "rawTexts": [
+            "+40 %",
+            "+40%",
+            "40 %",
+            "40%"
+          ],
+          "sourceTexts": [
+            "Dano final causado pelo Imaginar de Batalha +40%",
+            "Dégâts finaux infligés par l'Imagine de combat +40 %",
+            "DMG akhir yang diakibatkan Battle Fantasy +40%",
+            "DMG สุดท้ายที่ตัวเองทำได้ -40% DMG สุดท้ายที่ Battle Imagine ทำได้ +40% DMG akhir yang diakibatkan diri sendiri -40%",
+            "Endschaden der Kampfvorstellung +40 %",
+            "Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+            "Final damage dealt by Battle Imagine +40% 自身造成最终伤害-40%，战斗幻想造成的最终伤害+40% 自身造成最終傷害-40%，戰鬥幻想造成的最終傷害+40% 自身が与える最終ダメージ-40%、バトルイマジンが与える最終ダメージ+40% 자신이 준 최종 대미지가 40% 감소하며",
+            "배틀 이매진이 주는 최종 대미지가 40% 증가합니다"
+          ],
+          "confidence": "text"
+        }
+      ]
+    }
+  ],
+  "topByWording": {
+    "attack-wording": [
+      {
+        "key": "buffs:700031",
+        "uid": "700031",
+        "category": "buffs",
+        "sourceLabel": "ATK down",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "baseAttackTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-polarity-selector-required"
+        ],
+        "sampleText": "ATQ -50% ATK ลดลง 50% ATK berkurang 50% | ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 % | ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50%...",
+        "sampleTexts": [
+          "ATQ -50% ATK ลดลง 50% ATK berkurang 50%",
+          "ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+          "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50%...",
+          "1",
+          "50%"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "1"
+            ],
+            "sourceTexts": [
+              "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": -50,
+            "unit": "percent",
+            "rawTexts": [
+              "-50 %",
+              "-50%"
+            ],
+            "sourceTexts": [
+              "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+              "ATQ -50% ATK ลดลง 50% ATK berkurang 50%",
+              "ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "ATK down ATK down 攻击力降低 攻擊力降低 攻撃力低下 공격력 감소 Baisse d'attaque ANG-Verringerung ATQ reducido ATQ Reduzido ATK ลดลง Attack Down S1虚蚀残影降攻击力 ATK -50% ATK -50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+              "ATQ -50% ATK ลดลง 50% ATK berkurang 50%",
+              "ATQ -50% ATK ลดลง 50% ATK berkurang 50% ATK -50% 攻击力下降50% 攻擊力下降50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "buffs:881758",
+        "uid": "881758",
+        "category": "buffs",
+        "sourceLabel": "Rock Serpents' Resent",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "baseAttackTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-polarity-selector-required",
+          "component:atk:value-ramp-selector-required"
+        ],
+        "sampleText": "ATK -30% per stack | ลดพลังโจมตีลง 30% ต่อชั้น Setiap lantai mengurangi 30% ATK | ANG −30 % pro Stapel",
+        "sampleTexts": [
+          "ATK -30% per stack",
+          "ลดพลังโจมตีลง 30% ต่อชั้น Setiap lantai mengurangi 30% ATK",
+          "ANG −30 % pro Stapel",
+          "ATQ -30% por acúmulo",
+          "Attaque -30 % par cumul"
+        ],
+        "samples": [
+          {
+            "value": -30,
+            "unit": "percent",
+            "rawTexts": [
+              "-30 %",
+              "-30%"
+            ],
+            "sourceTexts": [
+              "1スタックにつき攻撃力-30%",
+              "ATK -30% per stack",
+              "ATQ -30 % por acumulación",
+              "ATQ -30% por acúmulo",
+              "Attaque -30 % par cumul"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "ANG −30 % pro Stapel",
+              "ลดพลังโจมตีลง 30% ต่อชั้น Setiap lantai mengurangi 30% ATK",
+              "스택당 공격력이 30% 감소합니다",
+              "每层减少30%攻击力",
+              "每層減少30%攻擊力"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "buffs:882342",
+        "uid": "882342",
+        "category": "buffs",
+        "sourceLabel": "Weak",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "baseAttackTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-polarity-selector-required"
+        ],
+        "sampleText": "ATQ -50% ATK ลดลง 50% Attack Down 50% | ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 % | Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+        "sampleTexts": [
+          "ATQ -50% ATK ลดลง 50% Attack Down 50%",
+          "ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+          "Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+          "50%",
+          "-50%"
+        ],
+        "samples": [
+          {
+            "value": -50,
+            "unit": "percent",
+            "rawTexts": [
+              "-50 %",
+              "-50%"
+            ],
+            "sourceTexts": [
+              "ATQ -50% ATK ลดลง 50% Attack Down 50%",
+              "ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+              "Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "ATQ -50% ATK ลดลง 50% Attack Down 50%",
+              "ATQ -50% ATK ลดลง 50% Attack Down 50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %",
+              "Weak Weak 削弱 削弱 弱体化 약화 Faiblesse Schwach Débil Fraco อ่อนแอ Weaken 光灵-减攻击力50% ATK -50% ATK -50% ATK -50% 攻击力降低50% 攻擊力降低50% 攻撃力-50% 공격력 50% 감소 Attaque -50 % ANG −50 % ATQ -50 %"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "buffs:995248",
+        "uid": "995248",
+        "category": "buffs",
+        "sourceLabel": "ATK -10%",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "baseAttackTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-polarity-selector-required"
+        ],
+        "sampleText": "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测 | 10% | -10%",
+        "sampleTexts": [
+          "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测",
+          "10%",
+          "-10%",
+          "10 %",
+          "-10 %"
+        ],
+        "samples": [
+          {
+            "value": -10,
+            "unit": "percent",
+            "rawTexts": [
+              "-10 %",
+              "-10%"
+            ],
+            "sourceTexts": [
+              "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 10,
+            "unit": "percent",
+            "rawTexts": [
+              "10 %",
+              "10%"
+            ],
+            "sourceTexts": [
+              "ATK -10% ATK -10% 攻击力降低10% 攻擊力降低10% 攻撃力-10% 공격력 10% 감소 Attaque -10 % ANG −10 % ATQ -10 % ATQ -10% ATK ลดลง 10% Attack Down 10% 攻击力降低10%-每秒检测"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "generic-damage-wording": [
+      {
+        "key": "seasonal-talents:181",
+        "uid": "181",
+        "category": "seasonal-talents",
+        "sourceLabel": "Dreamscape Transfer",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "finalDamage",
+          "generalDamage",
+          "seasonDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:skill-multiplier:value-polarity-selector-required"
+        ],
+        "sampleText": "Final damage dealt -40% | DMG akhir yang diakibatkan Battle Fantasy +40% | Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+        "sampleTexts": [
+          "Final damage dealt -40%",
+          "DMG akhir yang diakibatkan Battle Fantasy +40%",
+          "Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+          "DMG สุดท้ายที่ตัวเองทำได้ -40% DMG สุดท้ายที่ Battle Imagine ทำได้ +40% DMG akhir yang diakibatkan diri sendiri -40%",
+          "Final damage dealt by Battle Imagine +40% 自身造成最终伤害-40%，战斗幻想造成的最终伤害+40% 自身造成最終傷害-40%，戰鬥幻想造成的最終傷害+40% 自身が与える最終ダメージ-40%、バトルイマジンが与える最終ダメージ+40% 자신이 준 최종 대미지가 40% 감소하며"
+        ],
+        "samples": [
+          {
+            "value": -40,
+            "unit": "percent",
+            "rawTexts": [
+              "-40 %",
+              "-40%"
+            ],
+            "sourceTexts": [
+              "Dano final causado -40%",
+              "Daño final infligido -40 %",
+              "Dégâts finaux infligés -40 %",
+              "DMG สุดท้ายที่ตัวเองทำได้ -40% DMG สุดท้ายที่ Battle Imagine ทำได้ +40% DMG akhir yang diakibatkan diri sendiri -40%",
+              "Dreamscape Transfer Dreamscape Transfer 梦境转移 夢境轉移 移りゆく夢 꿈 전이 Transfert Onirique Traumlandschaft-Transfer Transferencia Onírica Transferência Onírica เคลื่อนย้ายความฝัน Dream Transfer 「幻想」梦境转移 Final damage dealt -40%",
+              "Final damage dealt -40%",
+              "Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+              "Final damage dealt by Battle Imagine +40% 自身造成最终伤害-40%，战斗幻想造成的最终伤害+40% 自身造成最終傷害-40%，戰鬥幻想造成的最終傷害+40% 自身が与える最終ダメージ-40%、バトルイマジンが与える最終ダメージ+40% 자신이 준 최종 대미지가 40% 감소하며"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 40,
+            "unit": "percent",
+            "rawTexts": [
+              "+40 %",
+              "+40%",
+              "40 %",
+              "40%"
+            ],
+            "sourceTexts": [
+              "Dano final causado pelo Imaginar de Batalha +40%",
+              "Dégâts finaux infligés par l'Imagine de combat +40 %",
+              "DMG akhir yang diakibatkan Battle Fantasy +40%",
+              "DMG สุดท้ายที่ตัวเองทำได้ -40% DMG สุดท้ายที่ Battle Imagine ทำได้ +40% DMG akhir yang diakibatkan diri sendiri -40%",
+              "Endschaden der Kampfvorstellung +40 %",
+              "Final damage dealt by Battle Imagine +40% Final damage dealt -40%",
+              "Final damage dealt by Battle Imagine +40% 自身造成最终伤害-40%，战斗幻想造成的最终伤害+40% 自身造成最終傷害-40%，戰鬥幻想造成的最終傷害+40% 自身が与える最終ダメージ-40%、バトルイマジンが与える最終ダメージ+40% 자신이 준 최종 대미지가 40% 감소하며",
+              "배틀 이매진이 주는 최종 대미지가 40% 증가합니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

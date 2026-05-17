@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T02:16:20.288Z",
+  "auditedStatus": "needs-value-ramp-model",
+  "totalRows": 2,
+  "byCategory": {
+    "buffs": 1,
+    "talents": 1
+  },
+  "byFormulaReadiness": {
+    "description-grounded-needs-runtime-proof": 1,
+    "formula-replay-required": 1
+  },
+  "byFormulaZone": {
+    "baseAttackTerm": 1,
+    "elementalDamage": 1,
+    "generalDamage": 1,
+    "luckyEnhancement": 1
+  },
+  "byBlocker": {
+    "component:atk:value-ramp-selector-required": 1,
+    "component:elemental-damage:value-ramp-selector-required": 1
+  },
+  "byWording": {
+    "attack-wording": 1,
+    "lucky-wording": 1
+  },
+  "byCategoryWording": {
+    "buffs / attack-wording": 1,
+    "talents / lucky-wording": 1
+  },
+  "byScopeGap": {
+    "generic-damage:all": 1
+  },
+  "byScopeGapCategory": {
+    "talents / generic-damage:all": 1
+  },
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [
+    {
+      "key": "talents:163",
+      "uid": "163",
+      "category": "talents",
+      "runtimeKind": "selected-talent",
+      "sourceLabel": "Enhanced Thunderstrike",
+      "componentKey": "generic-damage",
+      "scopeKinds": [
+        "all",
+        "owner",
+        "party"
+      ],
+      "candidateScopes": [
+        "owner",
+        "party"
+      ],
+      "missingValueScopes": [
+        "all"
+      ],
+      "values": "owner:20%; party:1%",
+      "valueBlockers": [
+        "component:elemental-damage:value-ramp-selector-required"
+      ],
+      "proofRequirements": [
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "owner/party scope resolved against encounter-local actors",
+        "runtime source scope must choose owner/self value vs party/external value",
+        "skill id",
+        "sourceRuleId active on hit",
+        "stack, interval, or accumulated ramp state must select the active description value",
+        "target/source predicate evaluation"
+      ],
+      "sourceRuleIds": [
+        "mrs:f5320a50c2c8"
+      ],
+      "sourceFiles": [
+        "probing-reports\\TalentEffectModelProbe.json",
+        "TalentSpecOwnership.json"
+      ],
+      "sampleText": "Increases the DMG dealt by Thunderstrike by 20% | Each 1% Luck grants Thunderstrike 1% more DMG dealt | Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost"
+    }
+  ],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "buffs:2205221",
+      "uid": "2205221",
+      "category": "buffs",
+      "sourceLabel": "Combat Expertise",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ramp-selector-required"
+      ],
+      "sampleText": "ATK +2 | 5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik | Combat Expertise Combat Expertise 战斗专长 戰鬥專長 戦闘熟練 전투 특화 Expertise de combat Kampfexpertise Pericia de Combate Perícia de Combate Combat Expertise Combat Expertise 战斗专长_属性 ATK +2",
+      "sampleTexts": [
+        "ATK +2",
+        "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+        "Combat Expertise Combat Expertise 战斗专长 戰鬥專長 戦闘熟練 전투 특화 Expertise de combat Kampfexpertise Pericia de Combate Perícia de Combate Combat Expertise Combat Expertise 战斗专长_属性 ATK +2",
+        "10s",
+        "até +10%"
+      ],
+      "samples": [
+        {
+          "value": 2,
+          "unit": "flat",
+          "rawTexts": [
+            "+2"
+          ],
+          "sourceTexts": [
+            "10초마다 공격력 +2",
+            "10秒ごとに攻撃力+2",
+            "ATK +2",
+            "Combat Expertise Combat Expertise 战斗专长 戰鬥專長 戦闘熟練 전투 특화 Expertise de combat Kampfexpertise Pericia de Combate Perícia de Combate Combat Expertise Combat Expertise 战斗专长_属性 ATK +2",
+            "每10秒攻击力+2",
+            "每10秒攻擊力+2"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 10,
+          "unit": "flat",
+          "rawTexts": [
+            "10",
+            "10s"
+          ],
+          "sourceTexts": [
+            "10초마다 공격력 +2",
+            "10秒ごとに攻撃力+2",
+            "5% every 10s",
+            "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+            "每10秒攻击力+2",
+            "每10秒攻擊力+2"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 2.5,
+          "unit": "percent",
+          "rawTexts": [
+            "+2,5 %",
+            "+2,5%",
+            "2,5 %"
+          ],
+          "sourceTexts": [
+            "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+            "ATQ +2,5% a cada 10 s",
+            "Attaque +2,5 % toutes les 10 s",
+            "um 2,5 %"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 5,
+          "unit": "percent",
+          "rawTexts": [
+            "5 %",
+            "5%"
+          ],
+          "sourceTexts": [
+            "5 % de ATQ cada 10 s",
+            "5% every 10s",
+            "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+            "5%，最高+10%",
+            "5%（最大+10%まで）"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:163",
+      "uid": "163",
+      "category": "talents",
+      "sourceLabel": "Enhanced Thunderstrike",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ramp-selector-required"
+      ],
+      "sampleText": "Increases the DMG dealt by Thunderstrike by 20% | Each 1% Luck grants Thunderstrike 1% more DMG dealt | Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost",
+      "sampleTexts": [
+        "Increases the DMG dealt by Thunderstrike by 20%",
+        "Each 1% Luck grants Thunderstrike 1% more DMG dealt",
+        "Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost",
+        "DMG ของLightning Strike + 20% Lucky ทุก 1% จะเพิ่มโบนัส DMG 1%Lightning Strike Thunderstrike DMG +20%",
+        "Augmente les dégâts infligés par Frappe-foudre de 20 %"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "+1%",
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de Sorte aumenta o dano causado por Golpe do Trovão em mais 1%",
+            "DMG ของLightning Strike + 20% Lucky ทุก 1% จะเพิ่มโบนัส DMG 1%Lightning Strike Thunderstrike DMG +20%",
+            "Each 1% Luck grants Thunderstrike 1% more DMG dealt",
+            "Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost",
+            "행운 1%당 뇌격 대미지 보너스가 1% 증가합니다",
+            "幸運1%につき、雷撃のダメージボーナス+1% 뇌격 대미지 +20%",
+            "每1%幸运提供1%雷击伤害加成",
+            "每1%幸運提供1%雷擊傷害加成"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 20,
+          "unit": "percent",
+          "rawTexts": [
+            "+20%",
+            "20 %",
+            "20%"
+          ],
+          "sourceTexts": [
+            "Augmente les dégâts infligés par Frappe-foudre de 20 %",
+            "Aumenta o dano causado por Golpe do Trovão em 20%",
+            "DMG ของLightning Strike + 20% Lucky ทุก 1% จะเพิ่มโบนัส DMG 1%Lightning Strike Thunderstrike DMG +20%",
+            "Increases the DMG dealt by Thunderstrike by 20%",
+            "幸運1%につき、雷撃のダメージボーナス+1% 뇌격 대미지 +20%",
+            "雷击伤害+20%",
+            "雷撃のダメージ+20%",
+            "雷擊傷害+20%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    }
+  ],
+  "topByWording": {
+    "attack-wording": [
+      {
+        "key": "buffs:2205221",
+        "uid": "2205221",
+        "category": "buffs",
+        "sourceLabel": "Combat Expertise",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "baseAttackTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ramp-selector-required"
+        ],
+        "sampleText": "ATK +2 | 5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik | Combat Expertise Combat Expertise 战斗专长 戰鬥專長 戦闘熟練 전투 특화 Expertise de combat Kampfexpertise Pericia de Combate Perícia de Combate Combat Expertise Combat Expertise 战斗专长_属性 ATK +2",
+        "sampleTexts": [
+          "ATK +2",
+          "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+          "Combat Expertise Combat Expertise 战斗专长 戰鬥專長 戦闘熟練 전투 특화 Expertise de combat Kampfexpertise Pericia de Combate Perícia de Combate Combat Expertise Combat Expertise 战斗专长_属性 ATK +2",
+          "10s",
+          "até +10%"
+        ],
+        "samples": [
+          {
+            "value": 2,
+            "unit": "flat",
+            "rawTexts": [
+              "+2"
+            ],
+            "sourceTexts": [
+              "10초마다 공격력 +2",
+              "10秒ごとに攻撃力+2",
+              "ATK +2",
+              "Combat Expertise Combat Expertise 战斗专长 戰鬥專長 戦闘熟練 전투 특화 Expertise de combat Kampfexpertise Pericia de Combate Perícia de Combate Combat Expertise Combat Expertise 战斗专长_属性 ATK +2",
+              "每10秒攻击力+2",
+              "每10秒攻擊力+2"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 10,
+            "unit": "flat",
+            "rawTexts": [
+              "10",
+              "10s"
+            ],
+            "sourceTexts": [
+              "10초마다 공격력 +2",
+              "10秒ごとに攻撃力+2",
+              "5% every 10s",
+              "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+              "每10秒攻击力+2",
+              "每10秒攻擊力+2"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 2.5,
+            "unit": "percent",
+            "rawTexts": [
+              "+2,5 %",
+              "+2,5%",
+              "2,5 %"
+            ],
+            "sourceTexts": [
+              "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+              "ATQ +2,5% a cada 10 s",
+              "Attaque +2,5 % toutes les 10 s",
+              "um 2,5 %"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "5 % de ATQ cada 10 s",
+              "5% every 10s",
+              "5% ทุก 10 วินาที สูงสุด +10% ATK +2,5% setiap 10 detik",
+              "5%，最高+10%",
+              "5%（最大+10%まで）"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "lucky-wording": [
+      {
+        "key": "talents:163",
+        "uid": "163",
+        "category": "talents",
+        "sourceLabel": "Enhanced Thunderstrike",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ramp-selector-required"
+        ],
+        "sampleText": "Increases the DMG dealt by Thunderstrike by 20% | Each 1% Luck grants Thunderstrike 1% more DMG dealt | Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost",
+        "sampleTexts": [
+          "Increases the DMG dealt by Thunderstrike by 20%",
+          "Each 1% Luck grants Thunderstrike 1% more DMG dealt",
+          "Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost",
+          "DMG ของLightning Strike + 20% Lucky ทุก 1% จะเพิ่มโบนัส DMG 1%Lightning Strike Thunderstrike DMG +20%",
+          "Augmente les dégâts infligés par Frappe-foudre de 20 %"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "+1%",
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de Sorte aumenta o dano causado por Golpe do Trovão em mais 1%",
+              "DMG ของLightning Strike + 20% Lucky ทุก 1% จะเพิ่มโบนัส DMG 1%Lightning Strike Thunderstrike DMG +20%",
+              "Each 1% Luck grants Thunderstrike 1% more DMG dealt",
+              "Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost",
+              "행운 1%당 뇌격 대미지 보너스가 1% 증가합니다",
+              "幸運1%につき、雷撃のダメージボーナス+1% 뇌격 대미지 +20%",
+              "每1%幸运提供1%雷击伤害加成",
+              "每1%幸運提供1%雷擊傷害加成"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 20,
+            "unit": "percent",
+            "rawTexts": [
+              "+20%",
+              "20 %",
+              "20%"
+            ],
+            "sourceTexts": [
+              "Augmente les dégâts infligés par Frappe-foudre de 20 %",
+              "Aumenta o dano causado por Golpe do Trovão em 20%",
+              "DMG ของLightning Strike + 20% Lucky ทุก 1% จะเพิ่มโบนัส DMG 1%Lightning Strike Thunderstrike DMG +20%",
+              "Increases the DMG dealt by Thunderstrike by 20%",
+              "幸運1%につき、雷撃のダメージボーナス+1% 뇌격 대미지 +20%",
+              "雷击伤害+20%",
+              "雷撃のダメージ+20%",
+              "雷擊傷害+20%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

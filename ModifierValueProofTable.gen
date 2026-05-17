@@ -1,0 +1,1982 @@
+#!/usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+
+const { uniqueStrings } = require("./modifier-formula-zones.cjs");
+const { stripUndefined } = require("./modifier-table-common.cjs");
+
+const ROOT = __dirname;
+const OUTPUT_DIR = path.join(ROOT, "output");
+const REPORT_DIR = path.join(OUTPUT_DIR, "probing-reports");
+
+const DEFAULT_TERM_TABLE = path.join(OUTPUT_DIR, "ModifierFormulaTermTable.json");
+const DEFAULT_OUTPUT = path.join(OUTPUT_DIR, "ModifierValueProofTable.json");
+const DEFAULT_RUNTIME_OUTPUT = path.join(OUTPUT_DIR, "ModifierValueProofRuntime.json");
+const DEFAULT_REPORT = path.join(REPORT_DIR, "ModifierValueProofTable.md");
+
+const NO_VALUE_RESOLUTIONS = new Set([
+  "",
+  "none",
+  "unknown",
+  "label-only",
+  "identity",
+  "identity-only",
+  "no-value",
+]);
+
+const FORMULA_VALUE_NOT_REQUIRED_READINESS = new Set([
+  "packet-exact-produced-damage",
+  "non-damage-or-support",
+]);
+
+const PROBABILITY_TERM_IDS = new Set([
+  "critical-hit-expected",
+  "lucky-strike-expected",
+  "lucky-effect-expected",
+]);
+
+const PROBABILITY_COMPONENT_PATTERN =
+  /(?:^|[-_])(critical-rate|crit-rate|critical-hit-rate|lucky-rate|lucky-chance|lucky-probability|luck-rate)(?:$|[-_])/i;
+
+const STAT_CONVERSION_COMPONENT_PATTERN =
+  /(?:^|[-_])(mastery-stat|adaptive-primary-stat|primary-stat|panel-stat|stat-conversion)(?:$|[-_])/i;
+
+const STAT_CONVERSION_TEXT_PATTERN =
+  /\b(?:every|each|per|for\s+every).{0,80}\b(?:agility|agi|intellect|int|strength|str|mastery|haste|versatility)\b.{0,120}\b(?:grants?|provides?|converts?|converted|becomes?|adds?|increase)|\b(?:agility|agi|intellect|int|strength|str|mastery|haste|versatility)\b.{0,80}\b(?:grants?|provides?|converts?|converted|becomes?).{0,80}\b(?:atk|attack|matk|haste|cooldown|cd|speed|resource|energy|versatility)|\b(?:converted|converts?)\s+(?:into|to)\b/i;
+
+const TARGET_STATE_COMPONENT_PATTERN =
+  /(?:^|[-_])(target-vulnerability|target-wound|wound|severe-wound|vulnerability|target-mitigation|target-resistance-mitigation|target-resistance|resistance-mitigation)(?:$|[-_])/i;
+
+const HIT_COUNT_COMPONENT_PATTERN =
+  /(?:^|[-_])(hit-count-model|hit-count|proc-count|extra-hit|additional-hit)(?:$|[-_])/i;
+
+const TIMING_MODEL_COMPONENTS = new Set([
+  "cooldown-or-resource",
+  "haste-or-attack-speed",
+]);
+
+const VALUE_RAMP_TEXT_PATTERN =
+  /\b(?:every|each|per|for\s+each|for\s+every|setiap|cada|toutes?|alle|jeden|por)\b.{0,100}\b(?:stack|stacks|layer|layers|sec|second|seconds|detik|seg|segundo|segundos|s\b|hit|hits|time|times|stapel|cumul|ac[uú]mulo)\b|(?:每|ごと|마다).{0,40}\d|(?:秒|초).{0,40}[+\-]?\d|\b(?:up\s+to|up\s+until|maximum|max\.?|cap|capped|caps?|limit|highest|até|jusqu|maximum|สูงสุด|最高|最大|최대)\b.{0,80}[+\-]?\d/i;
+
+const VALUE_POLARITY_TEXT_PATTERN =
+  /\b(?:down|decrease|decreases|decreased|reduce|reduces|reduced|reduction|lower|lowers|lowered|loss|penalty|weak|weaken|weakened|minus|negative|drain|dr)\b|[-−]\s*\d/i;
+
+const VALUE_THRESHOLD_TEXT_PATTERN =
+  /\b(?:threshold|reaches?|exceeds?|above|below|at\s+least|at\s+most|when|once)\b.{0,120}\d|\b(?:consume[sd]?|consuming|spent|spends?|sigils?|seals?|marks?|attack\s+count|hit\s+count|count\s*\+|based\s+on\s+the\s+number|depending\s+on\s+the\s+number)\b.{0,140}\d|\b(?:every|each|per|for\s+each|for\s+every)\s+\d+(?:\.\d+)?%?\b.{0,120}\d/i;
+
+const DEFENSIVE_BLOCK_TEXT_PATTERN =
+  /\b(?:block|lucky\s+block)\b.{0,80}\b(?:dmg|damage)?\s*(?:reduction|reduced|reduce|dr)\b|\b(?:dmg|damage)\s*(?:reduction|reduced|reduce|dr)\b.{0,80}\bblock\b/i;
+
+const EXPECTED_VALUE_MODELS = Object.freeze({
+  "critical-expected-v1": {
+    id: "critical-expected-v1",
+    label: "Critical rate expected value",
+    kind: "critical",
+    status: "contract-ready-unvalidated",
+    contributionReady: false,
+    formulaSketch: "expected critical multiplier = 1 + critChance * (critDamageMultiplier - 1)",
+    deltaFormulaSketch:
+      "expected added damage = eligible base damage * deltaCritChance * (critDamageMultiplier - 1)",
+    requiredInputs: [
+      "crit chance snapshot at hit time or active/inactive observed crit-rate delta",
+      "crit damage multiplier snapshot at hit time",
+      "eligible crittable hit count and observed crit flags",
+      "same damage/source/target lane baseline when validating contribution",
+    ],
+    outputFields: [
+      "eligibleHitCount",
+      "observedCritRate",
+      "expectedCritRateDelta",
+      "expectedMultiplier",
+      "expectedAddedDamage",
+    ],
+    validationPolicy: {
+      kind: "observed-rate-delta",
+      minEligibleHits: 100,
+      maxAbsoluteChanceError: 0.025,
+      requiredComparison: "same damage id, source actor, target lane, and active/inactive source window",
+    },
+  },
+  "lucky-expected-v1": {
+    id: "lucky-expected-v1",
+    label: "Lucky strike expected value",
+    kind: "lucky",
+    status: "contract-ready-unvalidated",
+    contributionReady: false,
+    formulaSketch:
+      "expected lucky multiplier = luckyChance * (0.4 + 0.25 * luckyChance) * (1 + luckyChance + lucky/general damage bonuses)",
+    deltaFormulaSketch:
+      "expected added damage requires the parent hit base lane plus lucky chance, lucky multiplier, and lucky/general damage bonus snapshots",
+    requiredInputs: [
+      "lucky chance snapshot at hit time or active/inactive observed lucky-rate delta",
+      "lucky multiplier derived from lucky chance",
+      "lucky/general damage bonus snapshot at hit time",
+      "parent hit pairing or exact emitted lucky damage row when explaining observed final damage",
+    ],
+    outputFields: [
+      "eligibleHitCount",
+      "observedLuckyRate",
+      "expectedLuckyRateDelta",
+      "expectedLuckyMultiplier",
+      "expectedAddedDamage",
+    ],
+    validationPolicy: {
+      kind: "paired-hit-or-observed-rate-delta",
+      minEligibleHits: 100,
+      maxAbsoluteChanceError: 0.025,
+      requiredComparison: "same damage id, parent hit lane, source actor, target lane, and active/inactive source window",
+    },
+  },
+});
+
+const OWNER_PARTY_SCOPE_PATTERN = /(owner|self|caster|user).*(party|ally|external)|party.*(owner|self|caster|user)/i;
+
+const SOURCE_LABEL_GRADE_DIAGNOSTIC_COMPONENTS = new Set([
+  "season-damage",
+  "seasonal-factor-damage",
+]);
+
+const SEASONAL_FACTOR_VALUE_COMPONENTS = new Set([
+  "seasonal-factor-damage",
+]);
+
+const FORMULA_ZONE_LABELS = Object.freeze({
+  allRoundDamage: "All-round damage",
+  baseAttackTerm: "Base attack term",
+  critical: "Critical expected multiplier",
+  elementalDamage: "Elemental damage",
+  exactLuckyProducedDamage: "Exact Lucky Strike produced damage",
+  finalDamage: "Final damage",
+  fixedDamage: "Fixed damage",
+  generalDamage: "General damage",
+  luckyChance: "Lucky chance",
+  luckyEnhancement: "Lucky enhancement",
+  luckyMultiplier: "Lucky multiplier",
+  luckyStrikeBaseTerm: "Lucky Strike base term",
+  physicalMagicEnhancement: "Physical/Magic enhancement",
+  seasonDamage: "Season factor / season damage",
+  seasonSuppression: "Season suppression",
+  skillMultiplier: "Skill multiplier",
+  timingCadence: "Timing/cadence",
+});
+
+function parseArgs(argv) {
+  const opts = {
+    termTable: DEFAULT_TERM_TABLE,
+    out: DEFAULT_OUTPUT,
+    runtimeOut: DEFAULT_RUNTIME_OUTPUT,
+    report: DEFAULT_REPORT,
+    dryRun: false,
+    help: false,
+  };
+
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    const next = () => {
+      i += 1;
+      if (i >= argv.length) {
+        throw new Error(`Missing value for ${arg}`);
+      }
+      return argv[i];
+    };
+
+    if (arg === "--help" || arg === "-h") opts.help = true;
+    else if (arg === "--dry-run") opts.dryRun = true;
+    else if (arg === "--term-table") opts.termTable = path.resolve(ROOT, next());
+    else if (arg === "--out") opts.out = path.resolve(ROOT, next());
+    else if (arg === "--runtime-out") opts.runtimeOut = path.resolve(ROOT, next());
+    else if (arg === "--report") opts.report = path.resolve(ROOT, next());
+    else {
+      throw new Error(`Unknown argument: ${arg}`);
+    }
+  }
+
+  return opts;
+}
+
+function printHelp() {
+  console.log(`Usage: node ModifierValueProofTable.gen [options]
+
+Builds a generated value-selection and proof table from ModifierFormulaTermTable.
+This is metadata for modifier work only; it does not change live parser behavior.
+
+Options:
+  --term-table <path>   Input ModifierFormulaTermTable.json
+  --out <path>          Full output JSON path
+  --runtime-out <path>  Compact runtime/probe JSON path
+  --report <path>       Markdown report path
+  --dry-run             Build and validate without writing files
+  --help                Show this help
+`);
+}
+
+function readJson(file) {
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
+function writeJson(file, value) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+function writeText(file, value) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, value);
+}
+
+function arrayOf(value) {
+  if (!value) return [];
+  return Array.isArray(value) ? value : [value];
+}
+
+function asObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+
+function toNumber(value) {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value !== "string") return null;
+  const normalized = value.replace(/,/g, "").trim();
+  if (!normalized) return null;
+  const parsed = Number(normalized);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function percentToDecimal(rawValue, unit) {
+  const numeric = toNumber(rawValue);
+  if (numeric === null) return null;
+  const unitText = String(unit || "").trim().toLowerCase();
+  if (
+    unitText.includes("%") ||
+    unitText === "percent" ||
+    unitText === "percentage" ||
+    unitText === "pct"
+  ) {
+    return numeric / 100;
+  }
+  return numeric;
+}
+
+function formulaValueAmount(row) {
+  if (
+    row &&
+    row.formulaAmount !== undefined &&
+    typeof row.formulaAmount !== "boolean"
+  ) {
+    return row.formulaAmount;
+  }
+  if (row && row.value !== undefined) return row.value;
+  if (row && row.amount !== undefined) return row.amount;
+  if (row && row.rawValue !== undefined) return row.rawValue;
+  return undefined;
+}
+
+function addCount(map, key, amount = 1) {
+  if (!key) return;
+  map.set(key, (map.get(key) || 0) + amount);
+}
+
+function topCounts(map, limit = 30) {
+  return Array.from(map.entries())
+    .sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0])))
+    .slice(0, limit)
+    .map(([key, count]) => ({ key, count }));
+}
+
+function compactCounts(map) {
+  return Object.fromEntries(
+    Array.from(map.entries()).sort((a, b) => String(a[0]).localeCompare(String(b[0])))
+  );
+}
+
+function normalizeScope(scope) {
+  const value = String(scope || "").trim().toLowerCase();
+  if (!value) return "unknown";
+  if (value === "all" || value === "global" || value === "any" || value === "shared") {
+    return "all";
+  }
+  if (
+    value === "owner" ||
+    value === "self" ||
+    value === "caster" ||
+    value === "user" ||
+    value === "source"
+  ) {
+    return "owner";
+  }
+  if (
+    value === "party" ||
+    value === "ally" ||
+    value === "allies" ||
+    value === "external" ||
+    value === "recipient" ||
+    value === "teammate"
+  ) {
+    return "party";
+  }
+  if (value === "target" || value === "enemy" || value === "monster" || value === "victim") {
+    return "target";
+  }
+  if (value.includes("owner") || value.includes("self") || value.includes("caster")) {
+    return "owner";
+  }
+  if (value.includes("party") || value.includes("ally") || value.includes("external")) {
+    return "party";
+  }
+  if (value.includes("target") || value.includes("enemy") || value.includes("monster")) {
+    return "target";
+  }
+  if (value.includes("ambiguous") || value.includes("unknown")) return "ambiguous";
+  return value;
+}
+
+function isDeterministicScope(scope) {
+  return scope && scope !== "unknown" && scope !== "ambiguous";
+}
+
+function isExplicitAmbiguousScope(scope) {
+  const value = String(scope || "").trim().toLowerCase();
+  return value.includes("ambiguous");
+}
+
+function fallbackScopeForValue(entry, hint) {
+  const hintScope = normalizeScope(
+    hint.valueScope || hint.contributionScope || hint.scope || hint.contributionScopeKind
+  );
+  if (isDeterministicScope(hintScope)) return hintScope;
+
+  const entryScopes = uniqueStrings(arrayOf(entry.scopeKinds).map(normalizeScope))
+    .filter(isDeterministicScope);
+  if (entryScopes.length === 1) return entryScopes[0];
+
+  return "unknown";
+}
+
+function scopeForValue(entry, hint, value) {
+  const rawScope = value.scope || value.valueScope || value.contributionScope;
+  const scope = normalizeScope(rawScope);
+  if (isDeterministicScope(scope) || isExplicitAmbiguousScope(rawScope)) return scope;
+  return fallbackScopeForValue(entry, hint);
+}
+
+function isProbabilityHint(hint) {
+  const terms = uniqueStrings(arrayOf(hint.formulaTermIds));
+  return (
+    PROBABILITY_COMPONENT_PATTERN.test(String(hint.componentKey || "")) ||
+    terms.some((termId) => PROBABILITY_TERM_IDS.has(termId))
+  );
+}
+
+function isStatConversionHint(hint) {
+  const componentKey = String(hint.componentKey || "");
+  const effectClass = String(hint.effectClass || "");
+  const groups = uniqueStrings(arrayOf(hint.contributionGroups)).join(" ");
+  const terms = uniqueStrings(arrayOf(hint.formulaTermIds)).join(" ");
+  const valueText = arrayOf(hint.values)
+    .map(asObject)
+    .flatMap((value) => [
+      value.sourceText,
+      ...(arrayOf(value.sourceTexts)),
+      value.rawText,
+      ...(arrayOf(value.rawTexts)),
+    ])
+    .filter(Boolean)
+    .join(" ");
+  return STAT_CONVERSION_COMPONENT_PATTERN.test(componentKey) ||
+    /(?:^|[-_])stat-conversion(?:$|[-_])/.test(effectClass) ||
+    /\bstatConversion\b/i.test(groups) ||
+    /\b(?:masteryStat|adaptivePrimaryStat|primaryStat)\b/i.test(terms) ||
+    STAT_CONVERSION_TEXT_PATTERN.test(valueText) ||
+    (
+      ["hit-timing", "versatility-stat"].includes(effectClass) &&
+      arrayOf(hint.values).some((value) => String(asObject(value).unit || "flat") === "flat")
+    );
+}
+
+function isHitCountHint(hint) {
+  const componentKey = String(hint.componentKey || "");
+  const effectClass = String(hint.effectClass || "");
+  const groups = uniqueStrings(arrayOf(hint.contributionGroups)).join(" ");
+  const terms = uniqueStrings(arrayOf(hint.formulaTermIds)).join(" ");
+  return HIT_COUNT_COMPONENT_PATTERN.test(componentKey) ||
+    HIT_COUNT_COMPONENT_PATTERN.test(effectClass) ||
+    /\bhitCount\b/i.test(groups) ||
+    /\bhitCount\b/i.test(terms);
+}
+
+function isTimingModelHint(hint) {
+  const componentKey = String(hint.componentKey || "");
+  const direction = String(hint.direction || "");
+  return TIMING_MODEL_COMPONENTS.has(componentKey) ||
+    (
+      direction === "timing" &&
+      !isHitCountHint(hint)
+    );
+}
+
+function isTargetStateHint(hint) {
+  const componentKey = String(hint.componentKey || "");
+  const effectClass = String(hint.effectClass || "");
+  const groups = uniqueStrings(arrayOf(hint.contributionGroups)).join(" ");
+  const terms = uniqueStrings(arrayOf(hint.formulaTermIds)).join(" ");
+  return String(hint.contributionScope || "") === "target" ||
+    TARGET_STATE_COMPONENT_PATTERN.test(componentKey) ||
+    TARGET_STATE_COMPONENT_PATTERN.test(effectClass) ||
+    TARGET_STATE_COMPONENT_PATTERN.test(groups) ||
+    TARGET_STATE_COMPONENT_PATTERN.test(terms);
+}
+
+function isSkillStageValueSelection(entry, hint, valuesByScope) {
+  if (String(entry.category || "") !== "skills") return false;
+  if (
+    isTimingModelHint(hint) ||
+    isHitCountHint(hint) ||
+    isProbabilityHint(hint) ||
+    isStatConversionHint(hint) ||
+    isTargetStateHint(hint)
+  ) {
+    return false;
+  }
+  const resolution = combinedValueResolution(entry, hint);
+  if (!resolution.includes("ambiguous-multiple-values")) return false;
+
+  const candidateRows = [];
+  for (const [scope, rows] of valuesByScope.entries()) {
+    if (!isDeterministicScope(scope)) continue;
+    const uniqueRows = dedupeEquivalentValueRows(rows, scope);
+    if (uniqueRows.length > 1) candidateRows.push(...uniqueRows);
+  }
+  if (candidateRows.length < 2) return false;
+
+  return candidateRows.every((row) => formulaValueAmount(row) !== undefined);
+}
+
+function valueSelectionText(entry, hint) {
+  return uniqueStrings([
+    entry.sourceLabel,
+    entry.localizedName,
+    entry.name,
+    entry.label,
+    entry.sampleText,
+    ...(arrayOf(entry.sampleTexts)),
+    hint.label,
+    hint.sourceLabel,
+    hint.sourceText,
+    ...(arrayOf(hint.sourceTexts)),
+    ...arrayOf(hint.values).flatMap((value) => {
+      const row = asObject(value);
+      return [
+        row.sourceText,
+        ...(arrayOf(row.sourceTexts)),
+        row.rawText,
+        ...(arrayOf(row.rawTexts)),
+        row.text,
+        row.label,
+      ];
+    }),
+  ].filter(Boolean)).join(" ");
+}
+
+function combinedValueResolution(entry, hint) {
+  return uniqueStrings([
+    entry.valueResolution,
+    hint.valueResolution,
+  ].filter(Boolean)).join(" ");
+}
+
+function ambiguousDeterministicValueRows(valuesByScope) {
+  const candidateRows = [];
+  for (const [scope, rows] of valuesByScope.entries()) {
+    if (!isDeterministicScope(scope)) continue;
+    const uniqueRows = dedupeEquivalentValueRows(rows, scope);
+    if (uniqueRows.length > 1) {
+      candidateRows.push(...uniqueRows.map((row) => ({ scope, row })));
+    }
+  }
+  return candidateRows;
+}
+
+function isValueRampSelection(entry, hint, valuesByScope) {
+  if (
+    isTimingModelHint(hint) ||
+    isHitCountHint(hint) ||
+    isProbabilityHint(hint) ||
+    isStatConversionHint(hint) ||
+    isTargetStateHint(hint)
+  ) {
+    return false;
+  }
+  const resolution = combinedValueResolution(entry, hint);
+  if (!resolution.includes("ambiguous-multiple-values")) return false;
+  const candidateRows = ambiguousDeterministicValueRows(valuesByScope);
+  if (candidateRows.length < 2) return false;
+  if (!candidateRows.every(({ row }) => formulaValueAmount(row) !== undefined)) return false;
+  return VALUE_RAMP_TEXT_PATTERN.test(valueSelectionText(entry, hint));
+}
+
+function isValuePolaritySelection(entry, hint, valuesByScope) {
+  if (
+    isTimingModelHint(hint) ||
+    isHitCountHint(hint) ||
+    isProbabilityHint(hint) ||
+    isStatConversionHint(hint)
+  ) {
+    return false;
+  }
+  const resolution = combinedValueResolution(entry, hint);
+  if (!resolution.includes("ambiguous-multiple-values")) return false;
+  const candidateRows = ambiguousDeterministicValueRows(valuesByScope);
+  if (candidateRows.length < 2) return false;
+
+  const values = candidateRows
+    .map(({ row }) => numericCandidateValue(row))
+    .filter((value) => value !== null);
+  if (values.length !== candidateRows.length) return false;
+
+  const magnitudes = uniqueStrings(values.map((value) => valueKeyPart(Math.abs(value))));
+  const hasPositive = values.some((value) => value > 0);
+  const hasNegative = values.some((value) => value < 0);
+  if (!(magnitudes.length === 1 && hasPositive && hasNegative)) return false;
+
+  return true;
+}
+
+function isThresholdValueSelection(entry, hint, valuesByScope) {
+  if (
+    isTimingModelHint(hint) ||
+    isHitCountHint(hint) ||
+    isProbabilityHint(hint) ||
+    isStatConversionHint(hint) ||
+    isTargetStateHint(hint)
+  ) {
+    return false;
+  }
+  const resolution = combinedValueResolution(entry, hint);
+  if (!resolution.includes("ambiguous-multiple-values")) return false;
+  const candidateRows = ambiguousDeterministicValueRows(valuesByScope);
+  if (candidateRows.length < 2) return false;
+  if (!candidateRows.every(({ row }) => formulaValueAmount(row) !== undefined)) return false;
+  const percentValues = candidateRows
+    .filter(({ row }) => String(row.unit || row.valueUnit || "") === "percent")
+    .map(({ row }) => numericCandidateValue(row))
+    .filter((value) => value !== null && value > 0)
+    .sort((a, b) => a - b);
+  if (percentValues.length >= 2) {
+    const smallest = percentValues[0];
+    const largest = percentValues[percentValues.length - 1];
+    if (smallest <= 500 && largest >= 1000 && largest >= smallest * 10) {
+      return true;
+    }
+  }
+  return VALUE_THRESHOLD_TEXT_PATTERN.test(valueSelectionText(entry, hint));
+}
+
+function hasOwnerPartySplit(entry, hint, selectedByScope) {
+  const resolution = String(entry.valueResolution || hint.valueResolution || "");
+  const scopes = Object.keys(selectedByScope || {});
+  const entryScopes = uniqueStrings(arrayOf(entry.scopeKinds).map(normalizeScope))
+    .filter(isDeterministicScope);
+  return (
+    OWNER_PARTY_SCOPE_PATTERN.test(resolution) ||
+    (scopes.includes("owner") && scopes.includes("party")) ||
+    (entryScopes.includes("owner") && entryScopes.includes("party"))
+  );
+}
+
+function hasAllScopeValue(selectedByScope, valuesByScope) {
+  return Boolean(selectedByScope?.all) || valuesByScope?.has?.("all");
+}
+
+function hasSpecificOwnerPartyValue(selectedByScope, valuesByScope) {
+  return ["owner", "party"].some((scope) =>
+    Boolean(selectedByScope?.[scope]) || valuesByScope?.has?.(scope)
+  );
+}
+
+function ownerPartyScopeRequiresRuntimeChoice(entry, hint, selectedByScope, valuesByScope) {
+  if (!hasOwnerPartySplit(entry, hint, selectedByScope)) return false;
+  if (hasSpecificOwnerPartyValue(selectedByScope, valuesByScope)) return true;
+  return !hasAllScopeValue(selectedByScope, valuesByScope);
+}
+
+function compactValueRow(valueRow, options = {}) {
+  const row = asObject(valueRow);
+  const rawValue = formulaValueAmount(row);
+  const unit = row.formulaUnit ?? row.unit ?? row.valueUnit;
+  const scope = normalizeScope(options.scopeOverride ?? row.scope ?? row.valueScope ?? row.contributionScope);
+  return stripUndefined({
+    scope,
+    rawScope: row.scope || row.valueScope || row.contributionScope,
+    value: rawValue,
+    decimalValue: percentToDecimal(rawValue, unit),
+    unit,
+    rawText: row.rawText || row.text || row.label,
+    sourceText: row.sourceText,
+    tier: row.tier ?? row.level ?? row.rank,
+    tierKind: row.tierKind,
+    key: row.key,
+    rawTableValue: row.rawTableValue,
+    valueKind: row.valueKind || row.kind,
+    equivalentValueCount: row.equivalentValueCount,
+    equivalentSourceTexts: row.equivalentSourceTexts,
+  });
+}
+
+function compactSelectedValue(hint, valueRow, scopeOverride) {
+  const value = compactValueRow(valueRow, { scopeOverride });
+  return stripUndefined({
+    componentKey: hint.componentKey,
+    sourceRuleId: hint.sourceRuleId,
+    effectClass: hint.effectClass,
+    formulaTermIds: uniqueStrings(arrayOf(hint.formulaTermIds)),
+    contributionGroups: uniqueStrings(arrayOf(hint.contributionGroups)),
+    scope: value.scope,
+    value: value.value,
+    decimalValue: value.decimalValue,
+    unit: value.unit,
+    rawText: value.rawText,
+    sourceText: value.sourceText,
+    tier: value.tier,
+    tierKind: value.tierKind,
+    equivalentValueCount: value.equivalentValueCount,
+  });
+}
+
+function valueKeyPart(value) {
+  const numeric = toNumber(value);
+  if (numeric !== null) return numeric.toFixed(8).replace(/\.?0+$/, "");
+  return String(value ?? "");
+}
+
+function valueTier(row) {
+  return row.tier ?? row.level ?? row.rank;
+}
+
+function hasTierCandidate(rows) {
+  return rows.some((row) => valueTier(asObject(row)) !== undefined);
+}
+
+function valueSignature(row, scope) {
+  const value = formulaValueAmount(row);
+  const tier = valueTier(row);
+  const tierPart = tier === undefined ? "no-tier" : `tier:${tier}:${row.tierKind || ""}`;
+  return [
+    scope,
+    String(row.formulaUnit ?? row.unit ?? row.valueUnit ?? ""),
+    valueKeyPart(value),
+    tierPart,
+    row.key || "",
+    row.valueKind || row.kind || "",
+  ].join("|");
+}
+
+function dedupeEquivalentValueRows(rows, scope) {
+  const bySignature = new Map();
+  for (const rawRow of rows) {
+    const row = asObject(rawRow);
+    const signature = valueSignature(row, scope);
+    const sourceText = row.sourceText || row.rawText || row.text || row.label;
+    if (!bySignature.has(signature)) {
+      bySignature.set(signature, {
+        row: { ...row },
+        equivalentSourceTexts: sourceText ? [sourceText] : [],
+      });
+    } else if (sourceText) {
+      bySignature.get(signature).equivalentSourceTexts.push(sourceText);
+    }
+  }
+
+  return Array.from(bySignature.values()).map((entry) => ({
+    ...entry.row,
+    equivalentValueCount: entry.equivalentSourceTexts.length > 1
+      ? entry.equivalentSourceTexts.length
+      : undefined,
+    equivalentSourceTexts: entry.equivalentSourceTexts.length > 1
+      ? uniqueStrings(entry.equivalentSourceTexts).slice(0, 6)
+      : undefined,
+  }));
+}
+
+function valueCandidatesByScope(entry, hint, values) {
+  const byScope = new Map();
+  for (const value of values) {
+    const scope = scopeForValue(entry, hint, asObject(value));
+    if (!byScope.has(scope)) byScope.set(scope, []);
+    byScope.get(scope).push(value);
+  }
+  return byScope;
+}
+
+function sortedValueCandidates(rows, scope) {
+  return dedupeEquivalentValueRows(rows, scope)
+    .map((row) => compactValueRow(row, { scopeOverride: scope }))
+    .sort((a, b) => {
+      const tierA = toNumber(a.tier);
+      const tierB = toNumber(b.tier);
+      if (tierA !== null && tierB !== null && tierA !== tierB) return tierA - tierB;
+      const valueA = toNumber(a.value);
+      const valueB = toNumber(b.value);
+      if (valueA !== null && valueB !== null && valueA !== valueB) return valueA - valueB;
+      return String(a.value ?? "").localeCompare(String(b.value ?? ""));
+    });
+}
+
+function numericCandidateValue(row) {
+  return toNumber(formulaValueAmount(row));
+}
+
+function inferGradeFromEntry(entry, maxGrade) {
+  const texts = uniqueStrings([
+    entry.sourceLabel,
+    entry.localizedName,
+    entry.name,
+    entry.label,
+  ]);
+  for (const text of texts) {
+    const match = String(text).match(/(?:^|[^a-z0-9])g\s*([1-9]\d?)(?:[^a-z0-9]|$)/i);
+    if (!match) continue;
+    const grade = Number(match[1]);
+    if (Number.isInteger(grade) && grade >= 1 && grade <= maxGrade) {
+      return { grade, inferredFrom: "label-grade" };
+    }
+  }
+
+  const uid = toNumber(entry.uid);
+  if (uid === null || !Number.isInteger(uid)) return null;
+  const tail = uid % 1000;
+  if (tail >= 10 && tail <= maxGrade * 10 && tail % 10 === 0) {
+    const grade = tail / 10;
+    if (grade >= 1 && grade <= maxGrade) {
+      return { grade, inferredFrom: "uid-tail", uidTail: tail };
+    }
+  }
+  return null;
+}
+
+function ladderCandidates(entry, hint, valuesByScope) {
+  const ambiguousRows = [
+    ...(valuesByScope.get("ambiguous") || []),
+    ...(valuesByScope.get("unknown") || []),
+  ];
+  if (ambiguousRows.length < 2) return null;
+
+  const candidateScope = fallbackScopeForValue(entry, hint);
+  const candidates = sortedValueCandidates(ambiguousRows, candidateScope)
+    .filter((candidate) => numericCandidateValue(candidate) !== null);
+  if (candidates.length !== ambiguousRows.length) return null;
+
+  const units = uniqueStrings(candidates.map((candidate) => candidate.unit));
+  if (units.length > 1) return null;
+
+  const values = candidates.map((candidate) => numericCandidateValue(candidate));
+  const uniqueValues = uniqueStrings(values.map((value) => valueKeyPart(value)));
+  if (uniqueValues.length !== candidates.length) return null;
+
+  const ascending = values.every((value, index) => index === 0 || value >= values[index - 1]);
+  const descending = values.every((value, index) => index === 0 || value <= values[index - 1]);
+  if (!ascending && !descending) return null;
+
+  return {
+    scope: isDeterministicScope(candidateScope) ? candidateScope : "all",
+    candidates: candidates.map((candidate, index) => ({
+      ...candidate,
+      grade: index + 1,
+      gradeKind: "value-ladder-index",
+    })),
+    monotonic: ascending ? "ascending" : "descending",
+  };
+}
+
+function buildValueLadderSelection(entry, hint, valuesByScope) {
+  const ladder = ladderCandidates(entry, hint, valuesByScope);
+  if (!ladder) return null;
+
+  const componentKey = String(hint.componentKey || "");
+  const grade = inferGradeFromEntry(entry, ladder.candidates.length);
+  const sourceLabelGradeIsDiagnostic = SOURCE_LABEL_GRADE_DIAGNOSTIC_COMPONENTS.has(componentKey);
+  const seasonalFactorLadder = SEASONAL_FACTOR_VALUE_COMPONENTS.has(componentKey);
+  const selectedCandidate = null;
+
+  return stripUndefined({
+    selectedValue: selectedCandidate
+      ? compactSelectedValue(hint, selectedCandidate, ladder.scope)
+      : undefined,
+    selector: {
+      kind: selectedCandidate
+        ? "static-uid-grade-ladder"
+        : seasonalFactorLadder
+          ? "seasonal-factor-loadout-selector"
+          : "runtime-value-ladder",
+      status: selectedCandidate
+        ? "selected-by-source-uid-grade"
+        : seasonalFactorLadder
+          ? "blocked-until-runtime-value-ladder-encounter-selected-factor-grade"
+          : "blocked-until-runtime-value-ladder",
+      componentKey: hint.componentKey,
+      valueResolution: entry.valueResolution || hint.valueResolution,
+      candidateCount: ladder.candidates.length,
+      selectedGrade: selectedCandidate ? grade?.grade : undefined,
+      inferredSourceGrade: !selectedCandidate && sourceLabelGradeIsDiagnostic ? grade?.grade : undefined,
+      gradeInferredFrom: grade?.inferredFrom,
+      uidTail: grade?.uidTail,
+      gradeSelectionPolicy: seasonalFactorLadder
+        ? "activeFactorBuffs/source UID prove factor identity only; encounter-local selected factor grade/loadout proof is required"
+        : sourceLabelGradeIsDiagnostic
+          ? "diagnostic-only; runtime/loadout factor grade proof required"
+          : undefined,
+      selectorProofKind: seasonalFactorLadder
+        ? "encounter-selected-seasonal-factor-grade"
+        : undefined,
+      scope: ladder.scope,
+      monotonic: ladder.monotonic,
+      selectedValue: selectedCandidate
+        ? compactValueRow(selectedCandidate, { scopeOverride: ladder.scope })
+        : undefined,
+      candidates: ladder.candidates.slice(0, 20),
+      requiredRuntimeProof: selectedCandidate
+        ? "source UID grade selects the active value ladder row"
+        : seasonalFactorLadder
+          ? "encounter-local selected seasonal factor item/grade/loadout row must choose the active grade value; ItemPackage ownership/unlock rows are not sufficient"
+          : "runtime/loadout grade, tier, stack, or value key must select the active ladder row",
+    },
+  });
+}
+
+function buildTierLevelSelector(entry, hint, valuesByScope, tierRequired) {
+  const candidateScopes = {};
+  let candidateCount = 0;
+
+  for (const [scope, rows] of valuesByScope.entries()) {
+    const candidates = sortedValueCandidates(rows, scope)
+      .filter((candidate) => candidate.tier !== undefined);
+    if (!candidates.length) continue;
+    candidateScopes[scope] = candidates;
+    candidateCount += candidates.length;
+  }
+
+  if (!tierRequired && !candidateCount) return null;
+
+  return stripUndefined({
+    kind: "runtime-tier-or-level",
+    status: "blocked-until-runtime-tier",
+    componentKey: hint.componentKey,
+    valueResolution: entry.valueResolution || hint.valueResolution,
+    candidateCount,
+    scopes: Object.keys(candidateScopes),
+    candidatesByScope: Object.keys(candidateScopes).length ? candidateScopes : undefined,
+    requiredRuntimeProof: "runtime or loadout tier/level state must select the active value",
+  });
+}
+
+function buildScopeSelector(entry, hint, selectedByScope, valuesByScope) {
+  if (!hasOwnerPartySplit(entry, hint, selectedByScope)) return null;
+
+  const scopeSet = new Set(
+    uniqueStrings([
+      ...arrayOf(entry.scopeKinds).map(normalizeScope),
+      ...Object.keys(selectedByScope || {}).map(normalizeScope),
+      ...Array.from(valuesByScope.keys()).map(normalizeScope),
+    ]).filter(isDeterministicScope)
+  );
+  const candidatesByScope = {};
+  const missingValueScopes = [];
+  const allScopeCoversSpecificScopes = hasAllScopeValue(selectedByScope, valuesByScope)
+    && !hasSpecificOwnerPartyValue(selectedByScope, valuesByScope);
+  for (const scope of ["owner", "party", "target", "all"]) {
+    if (!scopeSet.has(scope)) continue;
+    const selected = selectedByScope[scope];
+    if (selected) {
+      candidatesByScope[scope] = [selected];
+    } else if (valuesByScope.has(scope)) {
+      candidatesByScope[scope] = sortedValueCandidates(valuesByScope.get(scope), scope).slice(0, 12);
+    } else if (allScopeCoversSpecificScopes && (scope === "owner" || scope === "party" || scope === "target")) {
+      continue;
+    } else {
+      missingValueScopes.push(scope);
+    }
+  }
+  const scopes = ["owner", "party", "target", "all"].filter((scope) => scopeSet.has(scope));
+
+  if (
+    allScopeCoversSpecificScopes &&
+    !missingValueScopes.length &&
+    Object.keys(candidatesByScope).length <= 1
+  ) {
+    return null;
+  }
+
+  return stripUndefined({
+    kind: "runtime-scope",
+    status: "blocked-until-source-recipient-scope",
+    componentKey: hint.componentKey,
+    scopes,
+    candidatesByScope: Object.keys(candidatesByScope).length ? candidatesByScope : undefined,
+    missingValueScopes: missingValueScopes.length ? missingValueScopes : undefined,
+    requiredRuntimeProof: "runtime source and recipient actors must choose owner/self vs party/external value",
+  });
+}
+
+function expectedValueModelForHint(hint) {
+  const componentKey = String(hint.componentKey || "").toLowerCase();
+  const terms = uniqueStrings(arrayOf(hint.formulaTermIds)).map((termId) =>
+    String(termId || "").toLowerCase()
+  );
+  const combined = `${componentKey} ${terms.join(" ")}`;
+  if (combined.includes("lucky") || combined.includes("luck")) {
+    return EXPECTED_VALUE_MODELS["lucky-expected-v1"];
+  }
+  return EXPECTED_VALUE_MODELS["critical-expected-v1"];
+}
+
+function buildExpectedValueSelector(hint, probability, selectedByScope, valuesByScope) {
+  if (!probability) return null;
+  const model = expectedValueModelForHint(hint);
+  const selectedValues = Object.values(selectedByScope || {});
+  const candidateValues = selectedValues.length
+    ? selectedValues
+    : Array.from(valuesByScope.entries())
+      .flatMap(([scope, rows]) => sortedValueCandidates(rows, scope))
+      .slice(0, 8);
+  return stripUndefined({
+    kind: model.kind === "lucky" ? "lucky-expected-value" : "critical-expected-value",
+    status: "blocked-until-expected-value-model",
+    componentKey: hint.componentKey,
+    modelId: model.id,
+    modelStatus: model.status,
+    contributionReady: model.contributionReady,
+    formulaSketch: model.formulaSketch,
+    deltaFormulaSketch: model.deltaFormulaSketch,
+    requiredInputs: model.requiredInputs,
+    outputFields: model.outputFields,
+    validationPolicy: model.validationPolicy,
+    selectedValues: selectedValues.length ? selectedValues : undefined,
+    candidateValues: selectedValues.length ? undefined : candidateValues,
+    requiredRuntimeProof: "expected-value model required before this can be a deterministic contribution",
+  });
+}
+
+function buildStatConversionSelector(hint, statConversion, selectedByScope, valuesByScope) {
+  if (!statConversion) return null;
+  const selectedValues = Object.values(selectedByScope || {});
+  const candidateValues = selectedValues.length
+    ? selectedValues
+    : Array.from(valuesByScope.entries())
+      .flatMap(([scope, rows]) => sortedValueCandidates(rows, scope))
+      .slice(0, 8);
+  return stripUndefined({
+    kind: "stat-conversion-model",
+    status: "blocked-until-stat-conversion-model",
+    componentKey: hint.componentKey,
+    contributionReady: false,
+    selectedValues: selectedValues.length ? selectedValues : undefined,
+    candidateValues: selectedValues.length ? undefined : candidateValues,
+    requiredRuntimeFields: [
+      "modifierReplayHits.attackerAttrs",
+      "modifierReplayHits.targetAttrs",
+      "panel/equipment stat snapshot for the source actor at hit time",
+      "stat conversion formula for the component",
+      "same damage/source/target lane validation baseline",
+    ],
+    proofPolicy:
+      "flat stat values and converted percent stats require the source actor's current stat snapshot and a validated conversion formula before contribution math",
+    requiredRuntimeProof:
+      "panel/gear/stat conversion model required before this stat value can become deterministic damage contribution",
+  });
+}
+
+function buildTargetStateSelector(hint, targetState, selectedByScope, valuesByScope) {
+  if (!targetState) return null;
+  const selectedValues = Object.values(selectedByScope || {});
+  const candidateValues = selectedValues.length
+    ? selectedValues
+    : Array.from(valuesByScope.entries())
+      .flatMap(([scope, rows]) => sortedValueCandidates(rows, scope))
+      .slice(0, 8);
+  return stripUndefined({
+    kind: "target-window-state",
+    status: "blocked-until-target-side-runtime-window",
+    componentKey: hint.componentKey,
+    contributionReady: false,
+    selectedValues: selectedValues.length ? selectedValues : undefined,
+    candidateValues: selectedValues.length ? undefined : candidateValues,
+    requiredRuntimeProof:
+      "target-side debuff/window state at hit time must prove recipient, source, stack, and value before contribution replay",
+  });
+}
+
+function buildHitCountSelector(hint, hitCountModel, selectedByScope, valuesByScope) {
+  if (!hitCountModel) return null;
+  const selectedValues = Object.values(selectedByScope || {});
+  const candidateValues = selectedValues.length
+    ? selectedValues
+    : Array.from(valuesByScope.entries())
+      .flatMap(([scope, rows]) => sortedValueCandidates(rows, scope))
+      .slice(0, 8);
+  return stripUndefined({
+    kind: "hit-count-model",
+    status: "blocked-until-hit-count-model",
+    componentKey: hint.componentKey,
+    contributionReady: false,
+    selectedValues: selectedValues.length ? selectedValues : undefined,
+    candidateValues: selectedValues.length ? undefined : candidateValues,
+    requiredRuntimeFields: [
+      "modifierReplayHits.timestampMs",
+      "modifierReplayHits.damageId",
+      "modifierReplayHits.skillKey",
+      "modifierReplayHits.ownerId",
+      "modifierReplayHits.hitEventId",
+      "modifierReplayHits.activeModifiers",
+      "dmgSkills[damageId].hits",
+      "generated source-rule targetDamageIds/targetRecountIds where available",
+    ],
+    outputFields: [
+      "eligibleTriggerHits",
+      "observedProducedHits",
+      "observedProducedDamage",
+      "sourceActiveHits",
+      "expectedProducedHits",
+      "hitCountDelta",
+    ],
+    proofPolicy:
+      "extra-hit/proc count rows need produced child damage rows or a validated parent-hit pairing; source-active uptime alone cannot become hit-count contribution",
+    requiredRuntimeProof:
+      "proc/hit-count model and parent hit pairing required before this can become deterministic contribution math",
+  });
+}
+
+function buildTimingModelSelector(hint, timingModel, selectedByScope, valuesByScope) {
+  if (!timingModel) return null;
+  const selectedValues = Object.values(selectedByScope || {});
+  const candidateValues = selectedValues.length
+    ? selectedValues
+    : Array.from(valuesByScope.entries())
+      .flatMap(([scope, rows]) => sortedValueCandidates(rows, scope))
+      .slice(0, 12);
+  return stripUndefined({
+    kind: "timing-cadence-model",
+    status: "blocked-until-cast-timeline-or-resource-model",
+    componentKey: hint.componentKey,
+    contributionReady: false,
+    selectedValues: selectedValues.length ? selectedValues : undefined,
+    candidateValues: selectedValues.length ? undefined : candidateValues,
+    requiredRuntimeFields: [
+      "modifierReplayHits.timestampMs",
+      "modifierReplayHits.damageId",
+      "modifierReplayHits.ownerId",
+      "cast/skill timeline for eligible source actor",
+      "cooldown/resource state where available",
+      "haste/attack-speed stat snapshot where relevant",
+    ],
+    outputFields: [
+      "eligibleCastWindows",
+      "observedCastDelta",
+      "eligibleHitCount",
+      "observedDamageDelta",
+      "timingContributionModel",
+    ],
+    proofPolicy:
+      "timing, cooldown, resource, haste, and attack-speed rows change cadence or availability; they need a cast/resource timeline model before deterministic contribution math",
+    requiredRuntimeProof:
+      "cast timeline, cooldown/resource state, or haste/attack-speed model required before this can become deterministic damage contribution",
+  });
+}
+
+function buildSkillStageSelector(entry, hint, skillStageSelection, valuesByScope) {
+  if (!skillStageSelection) return null;
+  const candidatesByScope = {};
+  let candidateCount = 0;
+
+  for (const [scope, rows] of valuesByScope.entries()) {
+    if (!isDeterministicScope(scope)) continue;
+    const candidates = sortedValueCandidates(rows, scope);
+    if (candidates.length < 2) continue;
+    candidatesByScope[scope] = candidates.slice(0, 12);
+    candidateCount += candidates.length;
+  }
+
+  return stripUndefined({
+    kind: "skill-stage-or-charge-selector",
+    status: "blocked-until-skill-stage-or-charge-proof",
+    componentKey: hint.componentKey,
+    valueResolution: entry.valueResolution || hint.valueResolution,
+    contributionReady: false,
+    candidateCount,
+    scopes: Object.keys(candidatesByScope),
+    candidatesByScope: Object.keys(candidatesByScope).length ? candidatesByScope : undefined,
+    requiredRuntimeFields: [
+      "damageId or skill variant emitted for the hit",
+      "cast/charge stage when the client exposes it",
+      "generated skill/recount bridge for level/variant child ids",
+    ],
+    proofPolicy:
+      "skill descriptions can contain multiple stage, charge, or variant values; runtime damage id/skill stage must choose the active value before contribution math",
+    requiredRuntimeProof:
+      "skill stage, charge level, or emitted skill variant must select which description value applied",
+  });
+}
+
+function buildValueRampSelector(entry, hint, valueRampSelection, valuesByScope) {
+  if (!valueRampSelection) return null;
+  const candidatesByScope = {};
+  let candidateCount = 0;
+
+  for (const [scope, rows] of valuesByScope.entries()) {
+    if (!isDeterministicScope(scope)) continue;
+    const candidates = sortedValueCandidates(rows, scope);
+    if (candidates.length < 2) continue;
+    candidatesByScope[scope] = candidates.slice(0, 12);
+    candidateCount += candidates.length;
+  }
+
+  return stripUndefined({
+    kind: "value-ramp-or-stack-selector",
+    status: "blocked-until-value-ramp-proof",
+    componentKey: hint.componentKey,
+    valueResolution: entry.valueResolution || hint.valueResolution,
+    contributionReady: false,
+    candidateCount,
+    scopes: Object.keys(candidatesByScope),
+    candidatesByScope: Object.keys(candidatesByScope).length ? candidatesByScope : undefined,
+    requiredRuntimeFields: [
+      "stack count, layer, elapsed interval, or accumulated ramp state at hit time",
+      "cap/max state when the description exposes a maximum value",
+      "active source window linked to the hit",
+    ],
+    proofPolicy:
+      "ramp descriptions can expose per-stack/per-interval and maximum values; runtime state must choose the active value before contribution math",
+    requiredRuntimeProof:
+      "stack, interval, or accumulated ramp state must select which description value applied",
+  });
+}
+
+function buildValuePolaritySelector(entry, hint, polaritySelection, valuesByScope) {
+  if (!polaritySelection) return null;
+  const candidatesByScope = {};
+  let candidateCount = 0;
+
+  for (const [scope, rows] of valuesByScope.entries()) {
+    if (!isDeterministicScope(scope)) continue;
+    const candidates = sortedValueCandidates(rows, scope);
+    if (candidates.length < 2) continue;
+    candidatesByScope[scope] = candidates.slice(0, 12);
+    candidateCount += candidates.length;
+  }
+
+  return stripUndefined({
+    kind: "value-polarity-selector",
+    status: "blocked-until-value-polarity-proof",
+    componentKey: hint.componentKey,
+    valueResolution: entry.valueResolution || hint.valueResolution,
+    contributionReady: false,
+    candidateCount,
+    scopes: Object.keys(candidatesByScope),
+    candidatesByScope: Object.keys(candidatesByScope).length ? candidatesByScope : undefined,
+    requiredRuntimeFields: [
+      "canonical source text or structured sign/direction metadata",
+      "source component direction before contribution math consumes the value",
+    ],
+    proofPolicy:
+      "localized descriptions can encode reductions as positive text values; the extractor must prove sign/polarity before deterministic contribution math",
+    requiredRuntimeProof:
+      "canonical polarity/sign must be resolved before selecting the value",
+  });
+}
+
+function buildThresholdValueSelector(entry, hint, thresholdSelection, valuesByScope) {
+  if (!thresholdSelection) return null;
+  const candidatesByScope = {};
+  let candidateCount = 0;
+
+  for (const [scope, rows] of valuesByScope.entries()) {
+    const candidates = sortedValueCandidates(rows, scope);
+    if (!candidates.length) continue;
+    candidatesByScope[scope] = candidates.slice(0, 12);
+    candidateCount += candidates.length;
+  }
+
+  return stripUndefined({
+    kind: "threshold-or-consumed-state",
+    status: "blocked-until-threshold-state-model",
+    componentKey: hint.componentKey,
+    valueResolution: entry.valueResolution || hint.valueResolution,
+    contributionReady: false,
+    candidateCount,
+    scopes: Object.keys(candidatesByScope),
+    candidatesByScope,
+    requiredRuntimeFields: [
+      "modifierReplayHits.timestampMs",
+      "modifierReplayHits.damageId",
+      "modifierReplayHits.ownerId",
+      "modifierReplayHits.activeModifiers",
+      "replay stat snapshot for threshold attributes such as attack speed, crit, haste, or luck",
+      "runtime consumed stack/resource state such as sigils, seals, marks, or source-specific counters",
+    ],
+    proofPolicy:
+      "threshold and consumed-stack descriptions need the active threshold/counter state before selecting one value; description text alone cannot choose the active row",
+    requiredRuntimeProof:
+      "threshold/counter state at hit time must select the active description value before deterministic contribution math",
+  });
+}
+
+function buildStackSelector(entry) {
+  const stackPolicy = String(entry.stackPolicy || "");
+  if (!stackPolicy || stackPolicy === "none") return null;
+  const requiredRuntimeFields = [
+    "modifierHitBuckets.modifierLayer",
+    "modifierHitBuckets.modifierCount",
+    "modifierWindows.layer",
+    "modifierWindows.count",
+  ];
+  if (stackPolicy.includes("target-stack")) {
+    requiredRuntimeFields.push(
+      "target-side modifierWindows.layer",
+      "target-side modifierWindows.count",
+      "modifierSourceConfigId/sourceConfigId link",
+    );
+  }
+  return stripUndefined({
+    kind: "runtime-stack",
+    status: "blocked-until-hit-stack-state",
+    stackPolicy,
+    contributionReady: false,
+    requiredRuntimeFields,
+    proofPolicy:
+      "positive stack count or layer greater than 1 at the hit/window time; default layer 0/1 and count -1 are uptime only",
+    requiredRuntimeProof: "stack count/cap state at hit time must select the active value",
+  });
+}
+
+function dedupeSelectors(selectors) {
+  const seen = new Set();
+  const result = [];
+  for (const selector of selectors) {
+    const key = JSON.stringify(selector);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    result.push(selector);
+  }
+  return result;
+}
+
+function getFormulaValues(hint) {
+  return arrayOf(hint.values)
+    .map(asObject)
+    .filter((value) => formulaValueAmount(value) !== undefined);
+}
+
+function selectComponentValues(entry, hint) {
+  const blockers = [];
+  const proofRequirements = new Set();
+  const selectedByScope = {};
+  const formulaValues = getFormulaValues(hint);
+  const probability = isProbabilityHint(hint);
+  const fixedPhysicalMagicConversion =
+    String(hint.componentKey || "") === "physical-magic-enhancement" &&
+    formulaValues.some((value) => String(value.unit || "flat") === "flat");
+  const statConversion = isStatConversionHint(hint) || fixedPhysicalMagicConversion;
+  const hitCountModel = isHitCountHint(hint);
+  const timingModel = isTimingModelHint(hint);
+  const targetState = isTargetStateHint(hint);
+  const tierRequired =
+    Boolean(hint.tierSelectionRequired) ||
+    String(entry.valueResolution || hint.valueResolution || "").includes("tier");
+  const unresolvedDecisionParameters =
+    String(entry.valueResolution || hint.valueResolution || "").includes("description-decision-parameter-unresolved");
+  const valuesByScope = valueCandidatesByScope(entry, hint, formulaValues);
+  const valueLadderSelection = buildValueLadderSelection(entry, hint, valuesByScope);
+  const skillStageSelection = isSkillStageValueSelection(entry, hint, valuesByScope);
+  const valueRampSelection = isValueRampSelection(entry, hint, valuesByScope);
+  const valuePolaritySelection = isValuePolaritySelection(entry, hint, valuesByScope);
+  const thresholdValueSelection = isThresholdValueSelection(entry, hint, valuesByScope);
+
+  if (!formulaValues.length && unresolvedDecisionParameters) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:description-parameter-source-required`);
+    proofRequirements.add("Decision placeholder parameter source must be resolved from the owning UI/effect table");
+  } else if (!formulaValues.length) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:missing-formula-value`);
+  }
+
+  for (const [scope, rows] of valuesByScope.entries()) {
+    if (!isDeterministicScope(scope)) continue;
+    const uniqueRows = dedupeEquivalentValueRows(rows, scope);
+    const tierCandidate = hasTierCandidate(uniqueRows);
+    if (tierRequired && tierCandidate) {
+      continue;
+    }
+    if (uniqueRows.length === 1) {
+      selectedByScope[scope] = compactSelectedValue(hint, uniqueRows[0], scope);
+    } else if (timingModel) {
+      continue;
+    } else if (skillStageSelection) {
+      continue;
+    } else if (valueRampSelection) {
+      continue;
+    } else if (valuePolaritySelection) {
+      continue;
+    } else if (thresholdValueSelection) {
+      continue;
+    } else {
+      blockers.push(`component:${hint.componentKey || "unknown"}:ambiguous-scoped-value:${scope}`);
+    }
+  }
+
+  if (valueLadderSelection?.selectedValue && !Object.keys(selectedByScope).length) {
+    selectedByScope[valueLadderSelection.selectedValue.scope || "all"] = valueLadderSelection.selectedValue;
+  }
+
+  const ambiguousRows = [
+    ...(valuesByScope.get("ambiguous") || []),
+    ...(valuesByScope.get("unknown") || []),
+  ];
+  if (
+    ambiguousRows.length &&
+    !Object.keys(selectedByScope).length &&
+    !timingModel &&
+    !skillStageSelection &&
+    !valueRampSelection &&
+    !valuePolaritySelection &&
+    !thresholdValueSelection
+  ) {
+    blockers.push(valueLadderSelection
+      ? valueLadderSelection.selector?.kind === "seasonal-factor-loadout-selector"
+        ? `component:${hint.componentKey || "unknown"}:value-ladder-selection-required:encounter-selected-factor-grade-required`
+        : `component:${hint.componentKey || "unknown"}:value-ladder-selection-required`
+      : `component:${hint.componentKey || "unknown"}:ambiguous-value-selection-required`);
+  }
+
+  if (hasOwnerPartySplit(entry, hint, selectedByScope)) {
+    const entryScopes = uniqueStrings(arrayOf(entry.scopeKinds).map(normalizeScope))
+      .filter((scope) => ["owner", "party"].includes(scope));
+    for (const scope of entryScopes) {
+      if (selectedByScope[scope] || valuesByScope.has(scope)) continue;
+      if (hasAllScopeValue(selectedByScope, valuesByScope)) continue;
+      blockers.push(`component:${hint.componentKey || "unknown"}:scope-value-missing:${scope}`);
+      proofRequirements.add("numeric value for each proven owner/party scope must be mapped before deterministic contribution math");
+    }
+  }
+
+  if (tierRequired) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:tier-or-level-selection-required`);
+    proofRequirements.add("runtime or loadout tier/level state must select the active value");
+  }
+
+  if (probability) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:expected-value-model-required`);
+    proofRequirements.add("expected-value model required before this can be a deterministic contribution");
+  }
+
+  if (statConversion) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:stat-conversion-model-required`);
+    proofRequirements.add("panel/gear/stat conversion model required before deterministic contribution math");
+  }
+
+  if (hitCountModel) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:hit-count-model-required`);
+    proofRequirements.add("proc/hit-count model and parent hit pairing required before deterministic contribution math");
+  }
+
+  if (timingModel) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:timing-model-required`);
+    proofRequirements.add("cast timeline, cooldown/resource state, or haste/attack-speed model required before deterministic contribution math");
+  }
+
+  if (skillStageSelection) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:skill-stage-selector-required`);
+    proofRequirements.add("skill stage, charge level, or emitted skill variant must select the active description value");
+  }
+
+  if (valueRampSelection) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:value-ramp-selector-required`);
+    proofRequirements.add("stack, interval, or accumulated ramp state must select the active description value");
+  }
+
+  if (valuePolaritySelection) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:value-polarity-selector-required`);
+    proofRequirements.add("canonical source polarity/sign must be resolved before contribution math consumes the value");
+  }
+
+  if (thresholdValueSelection) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:threshold-state-selector-required`);
+    proofRequirements.add("threshold, consumed stack, or counter state must select the active description value");
+  }
+
+  if (targetState) {
+    blockers.push(`component:${hint.componentKey || "unknown"}:target-window-proof-required`);
+    proofRequirements.add("target-side debuff/window proof required before deterministic contribution math");
+  }
+
+  if (ownerPartyScopeRequiresRuntimeChoice(entry, hint, selectedByScope, valuesByScope)) {
+    proofRequirements.add("runtime source scope must choose owner/self value vs party/external value");
+  }
+
+  const selectors = [
+    valueLadderSelection?.selector,
+    buildTierLevelSelector(entry, hint, valuesByScope, tierRequired),
+    buildScopeSelector(entry, hint, selectedByScope, valuesByScope),
+    buildExpectedValueSelector(hint, probability, selectedByScope, valuesByScope),
+    buildStatConversionSelector(hint, statConversion, selectedByScope, valuesByScope),
+    buildHitCountSelector(hint, hitCountModel, selectedByScope, valuesByScope),
+    buildTimingModelSelector(hint, timingModel, selectedByScope, valuesByScope),
+    buildSkillStageSelector(entry, hint, skillStageSelection, valuesByScope),
+    buildValueRampSelector(entry, hint, valueRampSelection, valuesByScope),
+    buildValuePolaritySelector(entry, hint, valuePolaritySelection, valuesByScope),
+    buildThresholdValueSelector(entry, hint, thresholdValueSelection, valuesByScope),
+    buildTargetStateSelector(hint, targetState, selectedByScope, valuesByScope),
+    buildStackSelector(entry),
+  ].filter(Boolean);
+
+  for (const proof of arrayOf(entry.runtimeProofRequired)) {
+    proofRequirements.add(proof);
+  }
+
+  const selectedValues = Object.values(selectedByScope);
+  let status = "value-ready";
+  if (!selectedValues.length && formulaValues.length) status = "needs-value-selection";
+  if (!formulaValues.length) status = unresolvedDecisionParameters ? "needs-description-parameter-source" : "missing-value-data";
+  if (blockers.some((item) => item.includes("ambiguous"))) status = "needs-value-selection";
+  if (blockers.some((item) => item.includes("encounter-selected-factor-grade-required"))) {
+    status = "needs-seasonal-factor-selector";
+  } else if (blockers.some((item) => item.includes("value-ladder-selection-required"))) {
+    status = "needs-value-ladder-selector";
+  }
+  if (tierRequired) status = "needs-tier-selection";
+  if (probability) status = "needs-expected-model";
+  if (statConversion) status = "needs-stat-conversion-model";
+  if (hitCountModel) status = "needs-hit-count-model";
+  if (timingModel && formulaValues.length) status = "needs-timing-model";
+  if (skillStageSelection && formulaValues.length) status = "needs-skill-stage-selector";
+  if (valueRampSelection && formulaValues.length) status = "needs-value-ramp-model";
+  if (valuePolaritySelection && formulaValues.length) status = "needs-value-polarity";
+  if (thresholdValueSelection && formulaValues.length) status = "needs-threshold-model";
+  if (targetState) status = "needs-target-window-proof";
+  if (blockers.some((item) => item.includes("scope-value-missing"))) status = "needs-scope-value";
+  if (
+    status === "value-ready" &&
+    Array.from(proofRequirements).some((item) => item.includes("owner/self"))
+  ) {
+    status = "value-ready-runtime-scope";
+  }
+
+  return stripUndefined({
+    componentKey: hint.componentKey,
+    sourceRuleId: hint.sourceRuleId,
+    label: hint.label,
+    effectClass: hint.effectClass,
+    direction: hint.direction,
+    valueResolution: hint.valueResolution,
+    formulaTermIds: uniqueStrings(arrayOf(hint.formulaTermIds)),
+    contributionGroups: uniqueStrings(arrayOf(hint.contributionGroups)),
+    status,
+    selectedValues,
+    valueSelectors: selectors,
+    valueScopes: uniqueStrings(Array.from(valuesByScope.keys())),
+    valueCount: formulaValues.length,
+    uniqueValueCount: Array.from(valuesByScope.entries())
+      .reduce((count, [scope, rows]) => count + dedupeEquivalentValueRows(rows, scope).length, 0),
+    blockers: uniqueStrings(blockers),
+    proofRequirements: uniqueStrings(Array.from(proofRequirements)),
+    samples: Array.from(valuesByScope.entries())
+      .flatMap(([scope, rows]) => sortedValueCandidates(rows, scope))
+      .slice(0, 8),
+  });
+}
+
+function needsComponentMapping(entry) {
+  if (formulaValueNotRequired(entry)) return false;
+  const valueRows = arrayOf(entry.valueRows);
+  return valueRows.length > 0 && !arrayOf(entry.componentValueHints).length;
+}
+
+function formulaValueNotRequired(entry) {
+  return FORMULA_VALUE_NOT_REQUIRED_READINESS.has(String(entry.formulaReadiness || ""));
+}
+
+function formulaValueNotRequiredStatus(entry) {
+  const readiness = String(entry.formulaReadiness || "");
+  if (readiness === "packet-exact-produced-damage") return "packet-exact-value-not-required";
+  if (readiness === "non-damage-or-support") return "non-damage-or-support";
+  return undefined;
+}
+
+function defensiveOnlyValueStatus(entry, components) {
+  const text = uniqueStrings([
+    entry.sourceLabel,
+    entry.localizedName,
+    entry.name,
+    entry.label,
+    entry.sampleText,
+    ...(arrayOf(entry.sampleTexts)),
+    ...arrayOf(components).flatMap((component) => [
+      component.label,
+      ...(arrayOf(component.samples).flatMap((sample) => [
+        sample.rawText,
+        sample.sourceText,
+        sample.rawScope,
+      ])),
+    ]),
+  ].filter(Boolean)).join(" ");
+  if (!DEFENSIVE_BLOCK_TEXT_PATTERN.test(text)) return undefined;
+  return "non-damage-or-support";
+}
+
+function classifyEntryProof(entry) {
+  const components = arrayOf(entry.componentValueHints).map((hint) =>
+    selectComponentValues(entry, asObject(hint))
+  );
+  const allBlockers = uniqueStrings(components.flatMap((component) => arrayOf(component.blockers)));
+  const selectedValues = components.flatMap((component) => arrayOf(component.selectedValues));
+  const valueSelectors = dedupeSelectors(
+    components.flatMap((component) => arrayOf(component.valueSelectors))
+  );
+  const proofRequirements = new Set();
+
+  for (const component of components) {
+    for (const proof of arrayOf(component.proofRequirements)) proofRequirements.add(proof);
+  }
+  for (const proof of arrayOf(entry.runtimeProofRequired)) proofRequirements.add(proof);
+
+  const valueResolution = String(entry.valueResolution || "");
+  const missingResolution = NO_VALUE_RESOLUTIONS.has(valueResolution);
+  const unresolvedDecisionParameters = valueResolution.includes("description-decision-parameter-unresolved");
+  const hasComponentMappingGap = needsComponentMapping(entry);
+  const noFormulaValueStatus = formulaValueNotRequiredStatus(entry);
+  const defensiveOnlyStatus = defensiveOnlyValueStatus(entry, components);
+
+  if (hasComponentMappingGap) {
+    allBlockers.push("missing-component-value-hint");
+    proofRequirements.add("component mapping must connect description value rows to formula terms");
+  }
+
+  if (!noFormulaValueStatus && !components.length && !arrayOf(entry.valueRows).length && missingResolution) {
+    allBlockers.push("missing-component-value-hint");
+  }
+
+  let status = "value-ready";
+  if (noFormulaValueStatus || defensiveOnlyStatus) {
+    status = noFormulaValueStatus || defensiveOnlyStatus;
+    if (status === "packet-exact-value-not-required") {
+      proofRequirements.add("packet emitted damage row is the contribution truth for this UID");
+    } else {
+      proofRequirements.add("not an outgoing damage formula value; route to tanked/healing/support audits");
+    }
+  } else if (unresolvedDecisionParameters) {
+    status = "needs-description-parameter-source";
+    proofRequirements.add("Decision placeholder parameter source must be resolved from the owning UI/effect table");
+  } else if (!components.length && !arrayOf(entry.valueRows).length && missingResolution) {
+    status = "missing-value-data";
+  } else if (hasComponentMappingGap) {
+    status = "needs-component-mapping";
+  } else if (components.some((component) => component.status === "missing-value-data")) {
+    status = "missing-value-data";
+  } else if (components.some((component) => component.status === "needs-value-selection")) {
+    status = "needs-value-selection";
+  } else if (components.some((component) => component.status === "needs-scope-value")) {
+    status = "needs-scope-value";
+  } else if (components.some((component) => component.status === "needs-seasonal-factor-selector")) {
+    status = "needs-seasonal-factor-selector";
+  } else if (components.some((component) => component.status === "needs-value-ladder-selector")) {
+    status = "needs-value-ladder-selector";
+  } else if (components.some((component) => component.status === "needs-tier-selection")) {
+    status = "needs-tier-selection";
+  } else if (components.some((component) => component.status === "needs-expected-model")) {
+    status = "needs-expected-model";
+  } else if (components.some((component) => component.status === "needs-stat-conversion-model")) {
+    status = "needs-stat-conversion-model";
+  } else if (components.some((component) => component.status === "needs-hit-count-model")) {
+    status = "needs-hit-count-model";
+  } else if (components.some((component) => component.status === "needs-timing-model")) {
+    status = "needs-timing-model";
+  } else if (components.some((component) => component.status === "needs-skill-stage-selector")) {
+    status = "needs-skill-stage-selector";
+  } else if (components.some((component) => component.status === "needs-value-ramp-model")) {
+    status = "needs-value-ramp-model";
+  } else if (components.some((component) => component.status === "needs-value-polarity")) {
+    status = "needs-value-polarity";
+  } else if (components.some((component) => component.status === "needs-threshold-model")) {
+    status = "needs-threshold-model";
+  } else if (components.some((component) => component.status === "needs-target-window-proof")) {
+    status = "needs-target-window-proof";
+  } else if (components.some((component) => component.status === "value-ready-runtime-scope")) {
+    status = "value-ready-runtime-scope";
+  } else if (!components.length && !arrayOf(entry.valueRows).length) {
+    status = "no-value";
+  }
+
+  return stripUndefined({
+    status,
+    selectedValues,
+    valueSelectors,
+    components,
+    blockers: uniqueStrings(allBlockers),
+    proofRequirements: uniqueStrings(Array.from(proofRequirements)),
+    unmappedValueSamples: hasComponentMappingGap
+      ? arrayOf(entry.valueRows).slice(0, 8).map(compactValueRow)
+      : undefined,
+  });
+}
+
+function sourceLabel(entry) {
+  return (
+    entry.localizedName ||
+    entry.name ||
+    entry.label ||
+    entry.sourceLabel ||
+    entry.key ||
+    String(entry.uid || "")
+  );
+}
+
+function buildTable(termTable) {
+  const entries = Object.values(asObject(termTable.entriesByKey));
+  const entriesByKey = {};
+  const runtimeEntriesByKey = {};
+  const statusCounts = new Map();
+  const blockerCounts = new Map();
+  const componentCounts = new Map();
+  const termCounts = new Map();
+  const categoryCounts = new Map();
+  const sourceRuleCounts = new Map();
+  const formulaZoneCounts = new Map();
+  const selectorCounts = new Map();
+  const expectedModelCounts = new Map();
+  let selectedValueCount = 0;
+  let readySelectedValueCount = 0;
+
+  for (const entry of entries) {
+    const proof = classifyEntryProof(entry);
+    const include =
+      proof.status !== "no-value" ||
+      arrayOf(entry.componentValueHints).length > 0 ||
+      arrayOf(entry.valueRows).length > 0;
+
+    if (!include) continue;
+
+    selectedValueCount += arrayOf(proof.selectedValues).length;
+    if (proof.status === "value-ready" || proof.status === "value-ready-runtime-scope") {
+      readySelectedValueCount += arrayOf(proof.selectedValues).length;
+    }
+    addCount(statusCounts, proof.status);
+    addCount(categoryCounts, entry.category || "unknown");
+    for (const selector of arrayOf(proof.valueSelectors)) {
+      addCount(selectorCounts, selector.kind || "unknown");
+      addCount(expectedModelCounts, selector.modelId);
+    }
+
+    for (const blocker of arrayOf(proof.blockers)) addCount(blockerCounts, blocker);
+    for (const component of arrayOf(proof.components)) {
+      addCount(componentCounts, component.componentKey || "unknown");
+      for (const termId of arrayOf(component.formulaTermIds)) addCount(termCounts, termId);
+      if (component.sourceRuleId) addCount(sourceRuleCounts, component.sourceRuleId);
+    }
+    for (const termId of arrayOf(entry.formulaTermIds || entry.formulaZoneIds)) {
+      addCount(termCounts, termId);
+    }
+    for (const zoneId of arrayOf(entry.formulaZoneIds)) {
+      addCount(formulaZoneCounts, zoneId);
+    }
+
+    entriesByKey[entry.key] = stripUndefined({
+      key: entry.key,
+      uid: entry.uid,
+      category: entry.category,
+      runtimeKind: entry.runtimeKind,
+      sourceLabel: sourceLabel(entry),
+      formulaReadiness: entry.formulaReadiness,
+      valueProofStatus: proof.status,
+      valueResolution: entry.valueResolution,
+      scopeKinds: entry.scopeKinds,
+      stackPolicy: entry.stackPolicy,
+      formulaZoneIds: entry.formulaZoneIds,
+      formulaTermIds: entry.formulaTermIds,
+      sourceRuleIds: entry.sourceRuleIds,
+      directSourceRuleIds: entry.directSourceRuleIds,
+      runtimeProofRequired: entry.runtimeProofRequired,
+      selectedValues: proof.selectedValues,
+      valueSelectors: proof.valueSelectors,
+      components: proof.components,
+      valueBlockers: proof.blockers,
+      proofRequirements: proof.proofRequirements,
+      unmappedValueSamples: proof.unmappedValueSamples,
+    });
+
+    if (proof.status !== "missing-value-data" || arrayOf(proof.selectedValues).length) {
+      runtimeEntriesByKey[entry.key] = stripUndefined({
+        key: entry.key,
+        uid: entry.uid,
+        category: entry.category,
+        runtimeKind: entry.runtimeKind,
+        sourceLabel: sourceLabel(entry),
+        formulaReadiness: entry.formulaReadiness,
+        valueProofStatus: proof.status,
+        formulaZoneIds: entry.formulaZoneIds,
+        selectedValues: proof.selectedValues,
+        valueSelectors: proof.valueSelectors,
+        valueBlockers: proof.blockers,
+        proofRequirements: proof.proofRequirements,
+        sourceRuleIds: entry.sourceRuleIds,
+        directSourceRuleIds: entry.directSourceRuleIds,
+      });
+    }
+  }
+
+  const status = compactCounts(statusCounts);
+  const stats = {
+    generatedAt: new Date().toISOString(),
+    source: "ModifierFormulaTermTable.json",
+    formulaZoneCount: formulaZoneCounts.size,
+    sourceEntries: entries.length,
+    includedEntries: Object.keys(entriesByKey).length,
+    runtimeEntries: Object.keys(runtimeEntriesByKey).length,
+    selectedValueCount,
+    readySelectedValueCount,
+    byStatus: status,
+    byCategory: compactCounts(categoryCounts),
+    topBlockers: topCounts(blockerCounts),
+    topComponents: topCounts(componentCounts),
+    topFormulaTerms: topCounts(termCounts),
+    topFormulaZones: topCounts(formulaZoneCounts),
+    bySelectorKind: compactCounts(selectorCounts),
+    byExpectedValueModel: compactCounts(expectedModelCounts),
+    topSourceRules: topCounts(sourceRuleCounts),
+  };
+
+  return {
+    full: {
+      schemaVersion: 1,
+      description:
+        "Generated value-selection/proof metadata for modifier attribution. This does not compute contribution by itself.",
+      stats,
+      formulaZones: Array.from(formulaZoneCounts.keys())
+        .sort((a, b) => a.localeCompare(b))
+        .map((id) => ({ id, label: FORMULA_ZONE_LABELS[id] || id })),
+      expectedValueModels: Object.fromEntries(
+        Object.entries(EXPECTED_VALUE_MODELS).sort(([a], [b]) => a.localeCompare(b))
+      ),
+      entriesByKey: Object.fromEntries(
+        Object.entries(entriesByKey).sort(([a], [b]) => a.localeCompare(b))
+      ),
+    },
+    runtime: {
+      schemaVersion: 1,
+      description:
+        "Compact modifier value-proof metadata for probes/runtime experiments. Not a live DPS parser dependency.",
+      stats,
+      expectedValueModels: Object.fromEntries(
+        Object.entries(EXPECTED_VALUE_MODELS).sort(([a], [b]) => a.localeCompare(b))
+      ),
+      entriesByKey: Object.fromEntries(
+        Object.entries(runtimeEntriesByKey).sort(([a], [b]) => a.localeCompare(b))
+      ),
+    },
+  };
+}
+
+function markdownTable(headers, rows) {
+  if (!rows.length) return "_None._\n";
+  const escapeCell = (value) => String(value ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
+  const header = `| ${headers.map(escapeCell).join(" | ")} |`;
+  const divider = `| ${headers.map(() => "---").join(" | ")} |`;
+  const body = rows.map((row) => `| ${row.map(escapeCell).join(" | ")} |`);
+  return [header, divider, ...body].join("\n") + "\n";
+}
+
+function formatCountTable(counts, keyLabel) {
+  return markdownTable(
+    [keyLabel, "Count"],
+    Object.entries(counts || {})
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([key, count]) => [key, count])
+  );
+}
+
+function formatExpectedValueModels(models, counts) {
+  return markdownTable(
+    ["Model", "Kind", "Status", "Selectors", "Formula", "Validation"],
+    Object.values(models || {})
+      .sort((a, b) => a.id.localeCompare(b.id))
+      .map((model) => [
+        model.id,
+        model.kind,
+        model.status,
+        counts?.[model.id] || 0,
+        model.formulaSketch,
+        `${model.validationPolicy?.kind || "unknown"}; min hits ${model.validationPolicy?.minEligibleHits || "?"}`,
+      ])
+  );
+}
+
+function formatExamples(entriesByKey, predicate, limit = 20) {
+  const rows = Object.values(entriesByKey)
+    .filter(predicate)
+    .slice(0, limit)
+    .map((entry) => [
+      entry.key,
+      entry.sourceLabel,
+      entry.valueProofStatus,
+      arrayOf(entry.formulaZoneIds || entry.formulaTermIds).join(", "),
+      arrayOf(entry.selectedValues)
+        .slice(0, 3)
+        .map((value) => `${value.componentKey || "value"}:${value.scope}=${value.value}${value.unit || ""}`)
+        .join("; "),
+      arrayOf(entry.valueBlockers).slice(0, 3).join("; "),
+      arrayOf(entry.valueSelectors).slice(0, 3).map((selector) => selector.kind).join("; "),
+    ]);
+  return markdownTable(["Key", "Label", "Status", "Terms", "Selected Values", "Blockers", "Selectors"], rows);
+}
+
+function buildReport(table) {
+  const stats = table.stats;
+  const entries = table.entriesByKey;
+  const lines = [];
+
+  lines.push("# Modifier Value Proof Table");
+  lines.push("");
+  lines.push("This generated table selects deterministic modifier values where possible and records the proof still required before a value can become contribution math.");
+  lines.push("");
+  lines.push("It is intentionally metadata only. Packet final damage remains the truth source, and correlation rows are not numeric contribution.");
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  lines.push(markdownTable(["Metric", "Value"], [
+    ["Source entries", stats.sourceEntries],
+    ["Included entries", stats.includedEntries],
+    ["Runtime entries", stats.runtimeEntries],
+    ["Selected values", stats.selectedValueCount],
+    ["Ready selected values", stats.readySelectedValueCount],
+    ["Formula zones", stats.formulaZoneCount],
+    ["Selector kinds", Object.keys(stats.bySelectorKind || {}).length],
+  ]));
+  lines.push("");
+  lines.push("## Status Counts");
+  lines.push("");
+  lines.push(formatCountTable(stats.byStatus, "Status"));
+  lines.push("");
+  lines.push("## Top Blockers");
+  lines.push("");
+  lines.push(markdownTable(
+    ["Blocker", "Count"],
+    arrayOf(stats.topBlockers).map((item) => [item.key, item.count])
+  ));
+  lines.push("");
+  lines.push("## Selector Counts");
+  lines.push("");
+  lines.push(formatCountTable(stats.bySelectorKind, "Selector"));
+  lines.push("");
+  lines.push("## Expected Value Models");
+  lines.push("");
+  lines.push(formatExpectedValueModels(table.expectedValueModels, stats.byExpectedValueModel));
+  lines.push("");
+  lines.push("These contracts are still proof gates. They define the required inputs and validation policy for crit/lucky probability rows, but selector-blocked rows are not deterministic contribution totals.");
+  lines.push("");
+  lines.push("## Value Ready");
+  lines.push("");
+  lines.push(formatExamples(
+    entries,
+    (entry) => entry.valueProofStatus === "value-ready" || entry.valueProofStatus === "value-ready-runtime-scope",
+    30
+  ));
+  lines.push("");
+  lines.push("## Needs Expected Model");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-expected-model", 30));
+  lines.push("");
+  lines.push("## Needs Stat Conversion Model");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-stat-conversion-model", 30));
+  lines.push("");
+  lines.push("## Needs Hit Count Model");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-hit-count-model", 30));
+  lines.push("");
+  lines.push("## Needs Timing Model");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-timing-model", 30));
+  lines.push("");
+  lines.push("## Needs Skill Stage Selector");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-skill-stage-selector", 30));
+  lines.push("");
+  lines.push("## Needs Value Ramp Model");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-value-ramp-model", 30));
+  lines.push("");
+  lines.push("## Needs Value Polarity");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-value-polarity", 30));
+  lines.push("");
+  lines.push("## Needs Threshold Model");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-threshold-model", 30));
+  lines.push("");
+  lines.push("## Needs Target Window Proof");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-target-window-proof", 30));
+  lines.push("");
+  lines.push("## Needs Tier Or Level Selection");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-tier-selection", 30));
+  lines.push("");
+  lines.push("## Needs Seasonal Factor Selector");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-seasonal-factor-selector", 30));
+  lines.push("");
+  lines.push("## Needs Value Ladder Selector");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-value-ladder-selector", 30));
+  lines.push("");
+  lines.push("## Needs Value Selection");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-value-selection", 30));
+  lines.push("");
+  lines.push("## No Formula Value Needed");
+  lines.push("");
+  lines.push(formatExamples(
+    entries,
+    (entry) => entry.valueProofStatus === "packet-exact-value-not-required" ||
+      entry.valueProofStatus === "non-damage-or-support",
+    30
+  ));
+  lines.push("");
+  lines.push("## Needs Component Mapping");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "needs-component-mapping", 30));
+  lines.push("");
+  lines.push("## Missing Value Data");
+  lines.push("");
+  lines.push(formatExamples(entries, (entry) => entry.valueProofStatus === "missing-value-data", 30));
+  lines.push("");
+
+  return lines.join("\n");
+}
+
+function main() {
+  const opts = parseArgs(process.argv.slice(2));
+  if (opts.help) {
+    printHelp();
+    return;
+  }
+
+  const termTable = readJson(opts.termTable);
+  const { full, runtime } = buildTable(termTable);
+  const report = buildReport(full);
+
+  if (!opts.dryRun) {
+    writeJson(opts.out, full);
+    writeJson(opts.runtimeOut, runtime);
+    writeText(opts.report, report);
+  }
+
+  console.log(
+    [
+      `Built ${full.stats.includedEntries} modifier value-proof entries`,
+      `${full.stats.selectedValueCount} selected values`,
+      `${full.stats.runtimeEntries} runtime/probe entries`,
+      opts.dryRun ? "(dry run)" : "",
+    ]
+      .filter(Boolean)
+      .join("; ")
+  );
+}
+
+main();

@@ -1,0 +1,114 @@
+{
+  "GeneratedAt": "2026-05-12T13:28:26.107Z",
+  "SourceGroup": "ModifierObservedUidBridge",
+  "OutputDir": "output/icons/ModifierObservedUidBridge",
+  "AssetCount": 3,
+  "Assets": [
+    {
+      "AssetId": "ModifierObservedUidBridge|Sprite|1447258277|buff_talent_skill_300001|ModifierObservedUidBridge/buff_talent_skill_300001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierObservedUidBridge.json",
+      "SourceGroup": "ModifierObservedUidBridge",
+      "Field": "promotedSourcesByBuffId.683115.0.iconPath",
+      "Value": "ui/atlas/buff/buff_talent_skill_300001",
+      "Address": "ui/atlas/buff/buff_talent_skill_300001",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "ModifierObservedUidBridge/buff_talent_skill_300001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "observed-buff:683115",
+          "Name": "Power of Unity"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_talent_skill_300001",
+      "SpriteAddress": 1830061715,
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "ad1a260242de8dd44f8e4cc8342f414d884c477a7d07f620cc02dfdc1431bd9a",
+      "ObjectPathId": "3928582440410015275",
+      "SelectedObjectName": "buff_talent_skill_300001",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "ModifierObservedUidBridge|Sprite|1337047534|debuff_icon_18|ModifierObservedUidBridge/debuff_icon_18.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierObservedUidBridge.json",
+      "SourceGroup": "ModifierObservedUidBridge",
+      "Field": "promotedSourcesByBuffId.883213.0.iconPath",
+      "Value": "ui/atlas/debuff/debuff_icon_18",
+      "Address": "ui/atlas/debuff/debuff_icon_18",
+      "AddressHash": 512514690,
+      "BundleHash": 1337047534,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "ModifierObservedUidBridge/debuff_icon_18.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "observed-buff:883213",
+          "Name": "Drowsiness"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/debuff",
+      "AtlasHash": 512514690,
+      "SpriteName": "debuff_icon_18",
+      "SpriteAddress": 1266048013,
+      "PngExported": true,
+      "PngWidth": 51,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "42e74a3acc8535f3b3ca82bf3f8f3ffd5a0a51b2f18ba3d1a3e6aae8bba87645",
+      "ObjectPathId": "-4071924127998449065",
+      "SelectedObjectName": "debuff_icon_18",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "ModifierObservedUidBridge|Sprite|1300425262|mod_effect_icon_017|ModifierObservedUidBridge/mod_effect_icon_017.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierObservedUidBridge.json",
+      "SourceGroup": "ModifierObservedUidBridge",
+      "Field": "promotedSourcesByBuffId.2302120.0.iconPath",
+      "Value": "ui/atlas/mod_effect/mod_effect_icon_017",
+      "Address": "ui/atlas/mod_effect/mod_effect_icon_017",
+      "AddressHash": 3564913090,
+      "BundleHash": 1300425262,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "ModifierObservedUidBridge/mod_effect_icon_017.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "observed-buff:2302120",
+          "Name": "Team Luck & Crit"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/mod_effect",
+      "AtlasHash": 3564913090,
+      "SpriteName": "mod_effect_icon_017",
+      "SpriteAddress": 430986428,
+      "PngExported": true,
+      "PngWidth": 80,
+      "PngHeight": 80,
+      "PngMode": "RGBA",
+      "PixelSha256": "6b9d12e6f7e2b42d4a07a5db1a5800f3a649860346355689323b7b320b0e4a7f",
+      "ObjectPathId": "-8311557264962928151",
+      "SelectedObjectName": "mod_effect_icon_017",
+      "SelectedObjectType": "Sprite"
+    }
+  ],
+  "PngExportedAt": "2026-05-12T13:30:01.837Z",
+  "PngAssetCount": 3,
+  "PngFailedCount": 0,
+  "PngVerifiedCount": 0
+}

@@ -1,0 +1,784 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+const defaultReportDir = path.join(defaultOutputDir, "probing-reports");
+
+const CATEGORY_SOURCES = [
+  {
+    category: "buffs",
+    files: ["BuffName.json"],
+    runtimeRole: "runtime buff/debuff names, descriptions, levels, and stack-ish BuffTable evidence",
+    proposedOutput: "BuffDescriptions.json",
+  },
+  {
+    category: "skills",
+    files: ["skillnames.json", "SkillCooldowns.json", "SkillBreakdownDetails.json", "SkillDamageChainBridge.json"],
+    runtimeRole: "skill labels, descriptions, cooldowns, emitted damage rows, and child damage relationships",
+    proposedOutput: "SkillDescriptions.json",
+  },
+  {
+    category: "talents",
+    files: [path.join("probing-reports", "TalentEffectModelProbe.json"), "TalentSpecOwnership.json"],
+    runtimeRole: "talent/passive descriptions, class/spec ownership, activation aliases, and buff/source links",
+    proposedOutput: "TalentDescriptions.json",
+  },
+  {
+    category: "seasonal-talents",
+    files: [
+      path.join("probing-reports", "SeasonTalentNodeProbe.json"),
+      path.join("probing-reports", "SeasonRogueEntryProbe.json"),
+    ],
+    runtimeRole: "seasonal/slumberdream node and rogue-entry descriptions, predicates, and source links",
+    proposedOutput: "SeasonalTalentDescriptions.json",
+  },
+  {
+    category: "factors",
+    files: ["SeasonPhantomFactors.json", path.join("probing-reports", "SeasonPhantomFactorProbe.json")],
+    runtimeRole: "seasonal factor names, grade rows, values, icons, and affected damage/recount links",
+    proposedOutput: "FactorDescriptions.json",
+  },
+  {
+    category: "items-consumables",
+    files: ["itemnames.json", "ConsumableBuffBridge.json"],
+    runtimeRole: "item/consumable names, food/potion buff bridge rows, tiers, and static item text",
+    proposedOutput: "ItemDescriptions.json",
+  },
+  {
+    category: "imagines",
+    files: ["skill_aoyi_icons.json", "ModifierSourceIndex.json", "EffectSources.json"],
+    runtimeRole: "Battle Imagine owner/source rows, Aoyi skill labels, and runtime buff/debuff bridges",
+    proposedOutput: "BattleImagineDescriptions.json",
+  },
+  {
+    category: "linktext-tooltips",
+    files: ["LinkTextDescriptions.json"],
+    runtimeRole: "client linktext tooltip descriptions, including text embedded in other descriptions",
+    proposedOutput: "LinkTextDescriptions.json",
+  },
+  {
+    category: "modifier-master",
+    files: [
+      "EffectSources.json",
+      "ModifierSourceIndex.json",
+      "ModifierObservedUidBridge.json",
+      "ModifierRelationshipTable.json",
+      "ModifierRecountTable.json",
+      "ModifierClassificationTable.json",
+      "ModifierContributionTable.json",
+      "LuckyStrikeTable.json",
+    ],
+    runtimeRole: "UID relationships, reportability gates, role classification, and contribution-readiness metadata",
+    proposedOutput: "ModifierUidMaster.json",
+  },
+  {
+    category: "equipment-packet-derived",
+    files: [],
+    runtimeRole: "actual equipped gear statlines and rolled values must come from packets/runtime state, not game files",
+    proposedOutput: "EquipmentStatDecoder.json",
+    packetOnly: true,
+  },
+];
+
+const PROPOSED_CATEGORY_SCHEMA = {
+  identity: [
+    "category",
+    "uid",
+    "parentUid",
+    "sourceId",
+    "sourceKind",
+    "sourceType",
+    "level",
+    "tier",
+  ],
+  text: [
+    "name",
+    "names",
+    "description",
+    "descriptions",
+    "cleanDescriptions",
+    "descriptionIds",
+    "linkTextIds",
+  ],
+  semantics: [
+    "role: offensive | defensive | supportive | utility | unknown",
+    "domain: damage | tanked | healing | support",
+    "formulaTerms",
+    "activationAliases",
+    "targetScope: self | party | target | enemy | external | unknown",
+  ],
+  stacking: [
+    "stackBuffIds",
+    "maxStacks",
+    "valuePerStack",
+    "maxStackCap",
+    "thresholdEffects",
+    "targetStackEffects",
+    "linkedMaxStackBuffIds",
+    "runtimeStackEvidenceRequired",
+  ],
+  values: [
+    "valueRows: level/tier/stack/value/unit/formulaTerm/targetScope",
+    "ownerPartySplit",
+    "durationSeconds",
+    "cooldownSeconds",
+    "confidence",
+  ],
+  relationships: [
+    "buffIds",
+    "targetDamageIds",
+    "targetRecountIds",
+    "sourceEntityIds",
+    "ownerClassIds",
+    "ownerSpecIds",
+    "itemIds",
+    "factorIds",
+  ],
+  provenance: [
+    "sourceFiles",
+    "sourceTables",
+    "sourceOffsets",
+    "nameIds",
+    "descriptionIds",
+    "evidence",
+    "notes",
+  ],
+};
+
+const DESCRIPTION_KEYS = new Set([
+  "description",
+  "descriptions",
+  "cleanDescription",
+  "cleanDescriptions",
+  "note",
+  "notes",
+  "localizedDescription",
+  "localizedDescriptions",
+  "tooltip",
+  "tooltips",
+  "desc",
+  "text",
+  "texts",
+]);
+
+const NAME_KEYS = new Set([
+  "name",
+  "names",
+  "displayName",
+  "displayNames",
+  "sourceName",
+  "sourceNames",
+  "recountName",
+  "designName",
+  "Name",
+  "Names",
+]);
+
+const PROVENANCE_KEYS = new Set([
+  "source",
+  "sources",
+  "evidence",
+  "descriptionId",
+  "descriptionIds",
+  "nameId",
+  "nameIds",
+  "sourceOffset",
+  "SourceOffset",
+  "tableHash",
+  "rowId",
+  "ctb",
+  "provenance",
+]);
+
+function parseArgs(argv) {
+  const args = {
+    help: false,
+    dryRun: false,
+    outputDir: defaultOutputDir,
+    out: "",
+    markdown: "",
+    maxExamples: 12,
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--dry-run") {
+      args.dryRun = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.out = path.resolve(next);
+      index += 1;
+    } else if (arg === "--markdown" && next) {
+      args.markdown = path.resolve(next);
+      index += 1;
+    } else if (arg === "--max-examples" && next) {
+      args.maxExamples = Math.max(1, Number(next) || args.maxExamples);
+      index += 1;
+    }
+  }
+
+  args.out ||= path.join(args.outputDir, "probing-reports", "ModifierExtractionInventory.json");
+  args.markdown ||= path.join(path.dirname(args.out), "ModifierExtractionInventory.md");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierExtractionInventory.gen - audit extraction coverage before rebuilding modifier tables.");
+  console.log("");
+  console.log("Common options:");
+  console.log("  --out <path>              Output JSON report path.");
+  console.log("  --markdown <path>         Output Markdown report path.");
+  console.log("  --output-dir <path>       Generated output directory override.");
+  console.log("  --dry-run                 Scan and report without writing.");
+  console.log("  --max-examples <n>        Example rows per category.");
+}
+
+function readJsonIfExists(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    if (error && error.code === "ENOENT") return undefined;
+    throw new Error(`Failed to parse ${filePath}: ${error.message}`);
+  }
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeText(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${value.trimEnd()}\n`, "utf8");
+}
+
+function normalizeKey(key) {
+  return String(key || "").replace(/[_\s-]+/g, "").toLowerCase();
+}
+
+function isDescriptionKey(key) {
+  if (DESCRIPTION_KEYS.has(key)) return true;
+  const normalized = normalizeKey(key);
+  return normalized.includes("description") || normalized.includes("tooltip") || normalized === "desc";
+}
+
+function isNameKey(key) {
+  if (NAME_KEYS.has(key)) return true;
+  const normalized = normalizeKey(key);
+  return normalized.includes("name") || normalized === "label";
+}
+
+function isProvenanceKey(key) {
+  if (PROVENANCE_KEYS.has(key)) return true;
+  const normalized = normalizeKey(key);
+  return normalized.includes("sourceoffset")
+    || normalized.includes("descriptionid")
+    || normalized.includes("nameid")
+    || normalized.includes("tablehash")
+    || normalized.includes("evidence")
+    || normalized.includes("provenance");
+}
+
+function isValueKey(key) {
+  const normalized = normalizeKey(key);
+  return normalized.includes("value")
+    || normalized.includes("amount")
+    || normalized.includes("percent")
+    || normalized.includes("percentage")
+    || normalized.includes("multiplier")
+    || normalized.includes("formula")
+    || normalized.includes("component")
+    || normalized.includes("coefficient")
+    || normalized.includes("cooldown")
+    || normalized.includes("duration");
+}
+
+function isRelationshipKey(key) {
+  const normalized = normalizeKey(key);
+  return normalized.endsWith("ids")
+    || normalized.endsWith("id")
+    || normalized.includes("buffid")
+    || normalized.includes("skillid")
+    || normalized.includes("damageid")
+    || normalized.includes("recountid")
+    || normalized.includes("sourceid")
+    || normalized.includes("targetid")
+    || normalized.includes("alias")
+    || normalized.includes("relationship");
+}
+
+function textOf(value, limit = 18000) {
+  const parts = [];
+  const seen = new Set();
+  function visit(inner) {
+    if (parts.join(" ").length > limit) return;
+    if (inner === null || inner === undefined) return;
+    if (typeof inner === "string" || typeof inner === "number" || typeof inner === "boolean") {
+      const text = String(inner).trim();
+      if (text) parts.push(text);
+      return;
+    }
+    if (typeof inner !== "object") return;
+    if (seen.has(inner)) return;
+    seen.add(inner);
+    if (Array.isArray(inner)) {
+      for (const item of inner.slice(0, 80)) visit(item);
+      return;
+    }
+    for (const [key, child] of Object.entries(inner)) {
+      if (isDescriptionKey(key) || isNameKey(key) || key === "valueText" || key === "effectNameEn") {
+        visit(child);
+      }
+    }
+  }
+  visit(value);
+  return parts.join(" ");
+}
+
+function jsonRows(data) {
+  if (Array.isArray(data)) return data;
+  if (!data || typeof data !== "object") return [];
+  if (Array.isArray(data.rows)) return data.rows;
+  if (Array.isArray(data.entries)) return data.entries;
+  if (data.effectSourcesById && typeof data.effectSourcesById === "object") {
+    return Object.values(data.effectSourcesById);
+  }
+  if (data.sourcesByRuleId && typeof data.sourcesByRuleId === "object") {
+    return Object.entries(data.sourcesByRuleId).map(([ruleId, row]) => ({ ruleId, ...row }));
+  }
+  if (data.rulesById && typeof data.rulesById === "object") {
+    return Object.entries(data.rulesById).map(([ruleId, row]) => ({ ruleId, ...row }));
+  }
+  if (data.relationshipsByRuleId && typeof data.relationshipsByRuleId === "object") {
+    return Object.entries(data.relationshipsByRuleId).map(([ruleId, row]) => ({ ruleId, ...row }));
+  }
+  if (data.byBuffId && typeof data.byBuffId === "object") {
+    const rows = [];
+    for (const [buffId, entries] of Object.entries(data.byBuffId)) {
+      for (const entry of entries || []) rows.push({ observedBuffId: buffId, ...entry });
+    }
+    return rows;
+  }
+  if (data.bySourceId && typeof data.bySourceId === "object") {
+    return Object.entries(data.bySourceId).map(([sourceId, row]) => ({ sourceId, ...row }));
+  }
+  if (data.factorRows && Array.isArray(data.factorRows)) return data.factorRows;
+  if (data.talentRows && Array.isArray(data.talentRows)) return data.talentRows;
+  if (data.talentsById && typeof data.talentsById === "object") {
+    return Object.entries(data.talentsById).map(([talentId, row]) => ({ talentId, ...row }));
+  }
+  if (data.nodeRows && Array.isArray(data.nodeRows)) return data.nodeRows;
+  if (data.allRows && Array.isArray(data.allRows)) return data.allRows;
+  if (data.entries && Array.isArray(data.entries)) return data.entries;
+  if (data.factorsByBuffId && typeof data.factorsByBuffId === "object") {
+    return Object.entries(data.factorsByBuffId).map(([buffId, row]) => ({ buffId, ...row }));
+  }
+  if (data.groups && typeof data.groups === "object") {
+    const rows = [];
+    for (const [groupKey, group] of Object.entries(data.groups)) {
+      if (Array.isArray(group)) {
+        for (const row of group) rows.push({ groupKey, ...row });
+      } else if (group && typeof group === "object") {
+        for (const value of Object.values(group)) {
+          if (Array.isArray(value)) {
+            for (const row of value) rows.push({ groupKey, ...row });
+          }
+        }
+      }
+    }
+    if (rows.length > 0) return rows;
+  }
+  if (data.records && Array.isArray(data.records)) return data.records;
+  return Object.entries(data)
+    .filter(([, value]) => value && typeof value === "object" && !Array.isArray(value))
+    .map(([key, value]) => ({ key, ...value }));
+}
+
+function hasDeepKey(value, predicate, depth = 0) {
+  if (!value || typeof value !== "object" || depth > 6) return false;
+  if (Array.isArray(value)) return value.slice(0, 120).some((item) => hasDeepKey(item, predicate, depth + 1));
+  for (const [key, child] of Object.entries(value)) {
+    if (predicate(key, child)) return true;
+    if (child && typeof child === "object" && hasDeepKey(child, predicate, depth + 1)) return true;
+  }
+  return false;
+}
+
+function hasDescription(value) {
+  return hasDeepKey(value, (key, child) => isDescriptionKey(key) && hasUsefulText(child));
+}
+
+function hasCleanDescription(value) {
+  return hasDeepKey(value, (key, child) => normalizeKey(key).includes("cleandescription") && hasUsefulText(child));
+}
+
+function hasName(value) {
+  return hasDeepKey(value, (key, child) => isNameKey(key) && hasUsefulText(child));
+}
+
+function hasUsefulText(value) {
+  if (value === null || value === undefined) return false;
+  if (typeof value === "string") return value.trim().length > 0;
+  if (typeof value === "number") return Number.isFinite(value);
+  if (Array.isArray(value)) return value.some(hasUsefulText);
+  if (typeof value === "object") return Object.values(value).some(hasUsefulText);
+  return false;
+}
+
+function hasProvenance(value) {
+  return hasDeepKey(value, (key, child) => isProvenanceKey(key) && child !== undefined && child !== null);
+}
+
+function hasRelationships(value) {
+  return hasDeepKey(value, (key, child) => isRelationshipKey(key) && hasUsefulText(child));
+}
+
+function hasValueEvidence(value) {
+  if (hasDeepKey(value, (key, child) => isValueKey(key) && hasUsefulText(child))) return true;
+  const text = textOf(value);
+  return /(?:\+|-)?\d+(?:\.\d+)?\s*(?:%|s|sec|seconds|ATK|DMG|damage|crit|cooldown|CD|haste|stack)/i.test(text);
+}
+
+function hasRuntimeEvidence(value) {
+  return hasDeepKey(value, (key, child) => {
+    const normalized = normalizeKey(key);
+    return (normalized.includes("runtime")
+      || normalized.includes("activation")
+      || normalized.includes("observed")
+      || normalized.includes("window")
+      || normalized.includes("predicate")
+      || normalized.includes("requiredruntime")) && hasUsefulText(child);
+  });
+}
+
+function hasLevel(value) {
+  return hasDeepKey(value, (key, child) => /\blevel\b/i.test(key) && Number.isFinite(Number(child)));
+}
+
+function hasTier(value) {
+  return hasDeepKey(value, (key, child) => {
+    const normalized = normalizeKey(key);
+    return (normalized.includes("tier") || normalized.includes("grade") || normalized.includes("remodel")) && hasUsefulText(child);
+  });
+}
+
+function stackEvidence(value) {
+  const text = textOf(value);
+  const hasStack = /\bstack(?:s|ing)?\b|层|叠/u.test(text);
+  if (!hasStack) return { hasStack: false, hasMaxStack: false, hasThreshold: false, hasTargetStack: false };
+  return {
+    hasStack: true,
+    hasMaxStack: /\bmax(?:imum)? stacks?\b|\bup to\b|\bcap(?:ped)?\b|满层|上限/u.test(text),
+    hasThreshold: /\bat \d+ stacks?\b|\bevery \d+ stacks?\b|\bwhen .* stacks?\b|达到|每.*层|满层/u.test(text),
+    hasTargetStack: /\btarget\b|\bmark(?:ed)?\b|\bdebuff\b|\barrow\b|目标|标记|箭/u.test(text),
+  };
+}
+
+function displayName(row) {
+  const candidates = [
+    row.Name,
+    row.name,
+    row.sourceName,
+    row.SourceName,
+    row.displayName,
+    row.recountName,
+    row.designName,
+    row.effectNameEn,
+    row.ruleId,
+    row.sourceId,
+    row.Id,
+    row.id,
+    row.key,
+  ];
+  for (const candidate of candidates) {
+    const text = String(candidate || "").trim();
+    if (text) return text.slice(0, 160);
+  }
+  for (const names of [row.Names, row.names, row.sourceNames, row.displayNames]) {
+    if (!names || typeof names !== "object") continue;
+    const first = Object.values(names).map((value) => String(value || "").trim()).find(Boolean);
+    if (first) return first.slice(0, 160);
+  }
+  return "unnamed";
+}
+
+function exampleOf(row, file, reason) {
+  return {
+    file,
+    reason,
+    id: row.Id ?? row.id ?? row.sourceId ?? row.ruleId ?? row.key ?? row.buffId ?? row.skillId,
+    name: displayName(row),
+    sourceKind: row.sourceKind,
+    sourceType: row.sourceType,
+  };
+}
+
+function addExample(summary, bucket, row, file, reason, maxExamples) {
+  const list = summary.examples[bucket] || (summary.examples[bucket] = []);
+  if (list.length >= maxExamples) return;
+  list.push(exampleOf(row, file, reason));
+}
+
+function makeCategorySummary(sourceSpec) {
+  return {
+    category: sourceSpec.category,
+    runtimeRole: sourceSpec.runtimeRole,
+    proposedOutput: sourceSpec.proposedOutput,
+    packetOnly: Boolean(sourceSpec.packetOnly),
+    files: [],
+    rows: 0,
+    withName: 0,
+    withDescription: 0,
+    withCleanDescription: 0,
+    withValueEvidence: 0,
+    withStackEvidence: 0,
+    withMaxStackEvidence: 0,
+    withThresholdStackEvidence: 0,
+    withTargetStackEvidence: 0,
+    withLevelEvidence: 0,
+    withTierEvidence: 0,
+    withUidRelationships: 0,
+    withRuntimeEvidence: 0,
+    withProvenance: 0,
+    examples: {},
+    missingFiles: [],
+  };
+}
+
+function scanRows(summary, rows, file, maxExamples) {
+  for (const row of rows) {
+    summary.rows += 1;
+    const hasRowName = hasName(row);
+    const hasRowDescription = hasDescription(row);
+    const hasClean = hasCleanDescription(row);
+    const hasValue = hasValueEvidence(row);
+    const stack = stackEvidence(row);
+    const hasRowLevel = hasLevel(row);
+    const hasRowTier = hasTier(row);
+    const hasRel = hasRelationships(row);
+    const hasRuntime = hasRuntimeEvidence(row);
+    const hasProv = hasProvenance(row);
+
+    if (hasRowName) summary.withName += 1;
+    if (hasRowDescription) summary.withDescription += 1;
+    if (hasClean) summary.withCleanDescription += 1;
+    if (hasValue) summary.withValueEvidence += 1;
+    if (stack.hasStack) summary.withStackEvidence += 1;
+    if (stack.hasMaxStack) summary.withMaxStackEvidence += 1;
+    if (stack.hasThreshold) summary.withThresholdStackEvidence += 1;
+    if (stack.hasTargetStack) summary.withTargetStackEvidence += 1;
+    if (hasRowLevel) summary.withLevelEvidence += 1;
+    if (hasRowTier) summary.withTierEvidence += 1;
+    if (hasRel) summary.withUidRelationships += 1;
+    if (hasRuntime) summary.withRuntimeEvidence += 1;
+    if (hasProv) summary.withProvenance += 1;
+
+    if (!hasRowDescription) addExample(summary, "missingDescription", row, file, "no description-like field detected", maxExamples);
+    if (stack.hasStack && !hasValue) addExample(summary, "stackWithoutValue", row, file, "stack text detected but no structured value evidence", maxExamples);
+    if (hasValue && !hasRuntime) addExample(summary, "valueNeedsRuntimeEvidence", row, file, "value evidence found but no runtime/window predicate field detected", maxExamples);
+    if (!hasProv) addExample(summary, "missingProvenance", row, file, "no source/name/description id or offset evidence detected", maxExamples);
+  }
+}
+
+function pct(count, total) {
+  if (!total) return "0.0%";
+  return `${((count / total) * 100).toFixed(1)}%`;
+}
+
+function compactCategory(summary) {
+  const total = summary.rows;
+  return {
+    category: summary.category,
+    rows: total,
+    descriptionCoverage: pct(summary.withDescription, total),
+    valueCoverage: pct(summary.withValueEvidence, total),
+    stackCoverage: pct(summary.withStackEvidence, total),
+    uidRelationshipCoverage: pct(summary.withUidRelationships, total),
+    runtimeEvidenceCoverage: pct(summary.withRuntimeEvidence, total),
+    provenanceCoverage: pct(summary.withProvenance, total),
+    missingFiles: summary.missingFiles,
+  };
+}
+
+function scanCategory(sourceSpec, args) {
+  const summary = makeCategorySummary(sourceSpec);
+  for (const relativeFile of sourceSpec.files) {
+    const filePath = path.join(args.outputDir, relativeFile);
+    const data = readJsonIfExists(filePath);
+    if (!data) {
+      summary.missingFiles.push(relativeFile.replace(/\\/g, "/"));
+      continue;
+    }
+    const rows = jsonRows(data);
+    summary.files.push({
+      path: relativeFile.replace(/\\/g, "/"),
+      rows: rows.length,
+      bytes: fs.statSync(filePath).size,
+    });
+    scanRows(summary, rows, relativeFile.replace(/\\/g, "/"), args.maxExamples);
+  }
+  return summary;
+}
+
+function buildRecommendations(categories) {
+  const recommendations = [];
+  for (const category of categories) {
+    if (category.packetOnly) {
+      recommendations.push({
+        category: category.category,
+        priority: "high",
+        action: "Keep this as a packet/runtime decoder lane. Game files can only provide scaffolding for equipment.",
+      });
+      continue;
+    }
+    if (category.rows === 0) {
+      recommendations.push({
+        category: category.category,
+        priority: "high",
+        action: "No rows found from configured outputs. Verify generator dependencies or add source extraction.",
+      });
+      continue;
+    }
+    if (category.withDescription / category.rows < 0.5) {
+      recommendations.push({
+        category: category.category,
+        priority: "high",
+        action: `Description coverage is ${pct(category.withDescription, category.rows)}. Add or strengthen category-specific description extraction before formula work.`,
+      });
+    }
+    if (category.withStackEvidence > 0 && category.withMaxStackEvidence + category.withThresholdStackEvidence < category.withStackEvidence) {
+      recommendations.push({
+        category: category.category,
+        priority: "medium",
+        action: "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math.",
+      });
+    }
+    if (category.withValueEvidence > 0 && category.withRuntimeEvidence / category.withValueEvidence < 0.5) {
+      recommendations.push({
+        category: category.category,
+        priority: "medium",
+        action: "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only.",
+      });
+    }
+  }
+  return recommendations;
+}
+
+function buildReport(args) {
+  const categories = CATEGORY_SOURCES.map((sourceSpec) => scanCategory(sourceSpec, args));
+  const report = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    purpose: "Dev-only extraction coverage inventory for rebuilding modifier grounding from generator outputs before runtime changes.",
+    boundaries: [
+      "This report does not change parser/runtime behavior.",
+      "Description and value evidence are discovery/coverage signals, not final contribution math.",
+      "Actual equipped gear statlines are packet/runtime-derived; game files may only provide item scaffolding.",
+      "Stack, max-stack, threshold, and target-stack rows require runtime stack evidence before contribution can be factual.",
+    ],
+    categorySummaries: categories.map(compactCategory),
+    categories,
+    recommendations: buildRecommendations(categories),
+    proposedCategorySchema: PROPOSED_CATEGORY_SCHEMA,
+    proposedNextOutputs: CATEGORY_SOURCES.map((source) => ({
+      category: source.category,
+      output: source.proposedOutput,
+      packetOnly: Boolean(source.packetOnly),
+      role: source.runtimeRole,
+    })),
+  };
+  return report;
+}
+
+function markdownForReport(report) {
+  const lines = [];
+  lines.push("# Modifier Extraction Inventory");
+  lines.push("");
+  lines.push("Dev-only coverage report for rebuilding modifier grounding from generated/extracted data before runtime changes.");
+  lines.push("");
+  lines.push("## Boundaries");
+  for (const boundary of report.boundaries) lines.push(`- ${boundary}`);
+  lines.push("");
+  lines.push("## Category Coverage");
+  lines.push("");
+  lines.push("| Category | Rows | Desc | Value | Stack | UID Links | Runtime | Provenance | Missing Files |");
+  lines.push("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |");
+  for (const summary of report.categorySummaries) {
+    lines.push([
+      `| ${summary.category}`,
+      summary.rows.toLocaleString(),
+      summary.descriptionCoverage,
+      summary.valueCoverage,
+      summary.stackCoverage,
+      summary.uidRelationshipCoverage,
+      summary.runtimeEvidenceCoverage,
+      summary.provenanceCoverage,
+      summary.missingFiles.length ? summary.missingFiles.join(", ") : "-",
+    ].join(" | ") + " |");
+  }
+  lines.push("");
+  lines.push("## Proposed Category Schema");
+  for (const [section, fields] of Object.entries(report.proposedCategorySchema)) {
+    lines.push(`- **${section}:** ${fields.join(", ")}`);
+  }
+  lines.push("");
+  lines.push("## Recommendations");
+  for (const recommendation of report.recommendations) {
+    lines.push(`- **${recommendation.priority} / ${recommendation.category}:** ${recommendation.action}`);
+  }
+  lines.push("");
+  lines.push("## Proposed Output Split");
+  for (const output of report.proposedNextOutputs) {
+    const suffix = output.packetOnly ? " packet/runtime-derived" : "";
+    lines.push(`- \`${output.output}\`${suffix}: ${output.role}`);
+  }
+  lines.push("");
+  lines.push("## Example Gaps");
+  for (const category of report.categories) {
+    const entries = Object.entries(category.examples).filter(([, examples]) => examples.length > 0);
+    if (!entries.length) continue;
+    lines.push("");
+    lines.push(`### ${category.category}`);
+    for (const [bucket, examples] of entries) {
+      lines.push("");
+      lines.push(`**${bucket}**`);
+      for (const example of examples.slice(0, 8)) {
+        const id = example.id === undefined ? "" : ` id=${example.id}`;
+        const kind = example.sourceKind ? ` kind=${example.sourceKind}` : "";
+        lines.push(`- ${example.name}${id}${kind} (${example.file})`);
+      }
+    }
+  }
+  return lines.join("\n");
+}
+
+const args = parseArgs(process.argv.slice(2));
+if (args.help) {
+  printHelp();
+  process.exit(0);
+}
+
+const report = buildReport(args);
+if (args.dryRun) {
+  console.log("Dry run: modifier extraction inventory");
+  for (const summary of report.categorySummaries) {
+    console.log(
+      `${summary.category}: rows=${summary.rows.toLocaleString()} desc=${summary.descriptionCoverage} value=${summary.valueCoverage} stack=${summary.stackCoverage}`,
+    );
+  }
+  console.log(`Dry run: would write ${args.out}`);
+  console.log(`Dry run: would write ${args.markdown}`);
+} else {
+  writeJson(args.out, report);
+  writeText(args.markdown, markdownForReport(report));
+  console.log(`Modifier extraction inventory categories: ${report.categories.length}`);
+  console.log(`Wrote ${args.out}`);
+  console.log(`Wrote ${args.markdown}`);
+}

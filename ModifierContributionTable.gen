@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  compactFormulaZoneContract,
+  formulaZoneCounts,
+  formulaZoneIdsForEntry,
+} = require("./modifier-formula-zones.cjs");
 const { stripUndefined, sortedNumbers } = require("./modifier-table-common.cjs");
 
 const repoRoot = __dirname;
@@ -13,6 +18,15 @@ const defaultDamageFormulaPath = path.resolve(
   "logic",
   "DamageFormula.json",
 );
+const defaultFormulaZoneContractPath = path.resolve(
+  repoRoot,
+  "..",
+  "resonance-logs-global",
+  "src",
+  "lib",
+  "config",
+  "damage-formula-zone-contract.json",
+);
 
 function parseArgs(argv) {
   const args = {
@@ -22,6 +36,7 @@ function parseArgs(argv) {
     modifierRecountPath: "",
     modifierClassificationPath: "",
     damageFormulaPath: defaultDamageFormulaPath,
+    formulaZoneContractPath: defaultFormulaZoneContractPath,
     outPath: "",
     runtimeOutPath: "",
   };
@@ -44,6 +59,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (arg === "--damage-formula" && next) {
       args.damageFormulaPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--formula-zone-contract" && next) {
+      args.formulaZoneContractPath = path.resolve(next);
       index += 1;
     } else if (arg === "--out" && next) {
       args.outPath = path.resolve(next);
@@ -74,6 +92,7 @@ function printHelp() {
   console.log("  --modifier-recount <path>          ModifierRecountTable.json input.");
   console.log("  --modifier-classification <path>   ModifierClassificationTable.json input.");
   console.log("  --damage-formula <path>            DamageFormula.json input.");
+  console.log("  --formula-zone-contract <path>     Damage formula zone contract input.");
 }
 
 function readJson(filePath) {
@@ -164,7 +183,13 @@ const FORMULA_AMOUNT_COMPONENT_CLASSES = new Set([
   "critical-stat",
   "damage-modifier",
   "elemental-damage",
+  "final-damage",
   "offense-stat",
+  "physical-magic-enhancement",
+  "season-damage",
+  "seasonal-factor-damage",
+  "season-suppression",
+  "skill-coefficient",
 ]);
 
 function parseComponentValueText(rawText) {
@@ -266,14 +291,123 @@ function scopedComponentValues(component, parsedValues) {
   };
 }
 
+function tieredValueResolution(baseValues, tierValues) {
+  const scopes = uniqueStrings([
+    ...baseValues.map((value) => value.scope),
+    ...tierValues.flatMap((tier) => (tier.values || []).map((value) => value.scope)),
+  ]).filter(Boolean);
+  const scopeSuffix = scopes.includes("owner") && scopes.includes("party")
+    ? "owner-party-split"
+    : scopes.length === 1
+      ? scopes[0]
+      : scopes.length > 1
+        ? "scoped"
+        : "unscoped";
+  if (baseValues.length && tierValues.length) return `base-plus-modification-tier-${scopeSuffix}`;
+  if (tierValues.length) return `tiered-${scopeSuffix}`;
+  return `base-${scopeSuffix}`;
+}
+
+function tieredComponentValueHint(component) {
+  const base = component.baseValues && typeof component.baseValues === "object" ? component.baseValues : null;
+  const baseValues = (Array.isArray(base?.values) ? base.values : [])
+    .map((value) => stripUndefined({
+      scope: String(value.scope || "unknown").trim() || "unknown",
+      key: value.key,
+      rawText: value.rawText,
+      unit: value.unit || "percent",
+      value: value.value,
+      decimalValue: value.decimalValue,
+      formulaAmount: Boolean(value.formulaAmount),
+      rawTableValue: value.rawTableValue,
+    }))
+    .filter((value) => value.rawText && value.formulaAmount);
+  const tiers = Array.isArray(component.valueTiers) ? component.valueTiers : [];
+  const tierValues = tiers
+    .map((tier) => {
+      const values = (Array.isArray(tier.values) ? tier.values : [])
+        .map((value) => stripUndefined({
+          scope: String(value.scope || "unknown").trim() || "unknown",
+          key: value.key,
+          rawText: value.rawText,
+          unit: value.unit || "percent",
+          value: value.value,
+          decimalValue: value.decimalValue,
+          formulaAmount: Boolean(value.formulaAmount),
+          rawTableValue: value.rawTableValue,
+        }))
+        .filter((value) => value.rawText && value.formulaAmount);
+      if (values.length === 0) return null;
+      return stripUndefined({
+        tier: tier.tier,
+        tierKind: tier.tierKind,
+        values,
+        sourceTable: tier.sourceTable,
+        sourceOffset: tier.sourceOffset,
+        rowId: tier.rowId,
+      });
+    })
+    .filter(Boolean);
+  if (baseValues.length === 0 && tierValues.length === 0) return null;
+  const valueResolution = tieredValueResolution(baseValues, tierValues);
+
+  return stripUndefined({
+    componentKey: component.componentKey,
+    label: component.label,
+    effectClass: component.effectClass,
+    contributionScope: component.contributionScope,
+    direction: component.direction,
+    stat: component.stat,
+    valueScope: component.valueScope,
+    formulaTermIds: uniqueStrings(component.formulaTermIds || []),
+    contributionGroups: uniqueStrings(component.contributionGroups || []),
+    predicateTags: uniqueStrings(component.predicateTags || []),
+    valueTextSource: component.valueTextSource,
+    valueResolution,
+    tierSelectionRequired: tierValues.length > 1,
+    baseValues: baseValues.length > 0
+      ? stripUndefined({
+          values: baseValues,
+          sourceTable: base.sourceTable,
+          sourceOffset: base.sourceOffset,
+          skillLevelId: base.skillLevelId,
+          skillEffectId: base.skillEffectId,
+          level: base.level,
+          cooldownSeconds: base.cooldownSeconds,
+        })
+      : undefined,
+    tierValues,
+    values: [
+      ...baseValues.map((value) => ({
+        ...value,
+        tier: 0,
+        tierKind: "base-active-effect",
+      })),
+      ...tierValues.flatMap((tier) =>
+        tier.values.map((value) => ({
+          ...value,
+          tier: tier.tier,
+          tierKind: tier.tierKind,
+        })),
+      ),
+    ],
+  });
+}
+
 function componentValueHints(entry) {
   const hints = [];
   for (const component of entry.attributionModel?.components || []) {
+    const tieredHint = tieredComponentValueHint(component);
+    if (tieredHint) {
+      hints.push(tieredHint);
+      continue;
+    }
     const valueTexts = uniqueStrings(component.valueTexts || []);
     if (valueTexts.length === 0) continue;
     const parsedValues = valueTexts.map(parseComponentValueText).filter(Boolean);
     if (parsedValues.length === 0) continue;
-    const scoped = scopedComponentValues(component, parsedValues);
+    const formulaParsedValues = parsedValues.filter((value) => parsedValueIsFormulaAmount(value, component));
+    const scoped = scopedComponentValues(component, formulaParsedValues.length ? formulaParsedValues : parsedValues);
     if (!scoped.values.some((value) => value?.formulaAmount)) continue;
     hints.push(stripUndefined({
       componentKey: component.componentKey,
@@ -286,6 +420,7 @@ function componentValueHints(entry) {
       formulaTermIds: uniqueStrings(component.formulaTermIds || []),
       contributionGroups: uniqueStrings(component.contributionGroups || []),
       predicateTags: uniqueStrings(component.predicateTags || []),
+      valueTextSource: component.valueTextSource,
       valueResolution: scoped.valueResolution,
       values: scoped.values,
     }));
@@ -315,7 +450,19 @@ function isTimingOnly(entry, groups) {
   const status = String(entry.contributionStatus || entry.attributionModel?.status || "").toLowerCase();
   const rowPolicy = String(entry.rowPolicy || "").toLowerCase();
   const loweredGroups = lowerSet(groups);
-  const damageGroups = ["baseattack", "critical", "elemental", "genericdamage", "procdamage", "targetmitigation", "versatility"];
+  const damageGroups = [
+    "baseattack",
+    "critical",
+    "elemental",
+    "finaldamage",
+    "genericdamage",
+    "physicalmagicenhancement",
+    "procdamage",
+    "seasondamage",
+    "seasonsuppression",
+    "targetmitigation",
+    "versatility",
+  ];
   return status === "timing-only"
     || rowPolicy === "timing"
     || (loweredGroups.has("hittiming") && !hasAny(loweredGroups, damageGroups));
@@ -373,6 +520,19 @@ function requiredForFormulaTerms(formulaTermIds, groups) {
   }
   if (terms.has("skillmultiplier") || terms.has("flatdamage") || loweredGroups.has("skillcoefficient")) {
     required.add("skill coefficient mapping by damage id");
+  }
+  if (terms.has("physicalmagicenhancementpct") || loweredGroups.has("physicalmagicenhancement")) {
+    required.add("attacker physical/magic enhancement snapshot at hit time");
+    required.add("damage physical/magic lane");
+  }
+  if (terms.has("finaldamagepct") || loweredGroups.has("finaldamage")) {
+    required.add("final damage bonus snapshot at hit time");
+  }
+  if (terms.has("seasondamagepct") || loweredGroups.has("seasondamage")) {
+    required.add("season damage bonus snapshot at hit time");
+  }
+  if (terms.has("seasonsuppressionpct") || loweredGroups.has("seasonsuppression")) {
+    required.add("season suppression snapshot at hit time");
   }
   if (loweredGroups.has("hittiming")) {
     required.add("cast timeline or cooldown state");
@@ -507,9 +667,13 @@ function classifyContribution(entry, classification) {
   };
 }
 
-function compactContribution(sourceRuleId, entry, classification) {
+function compactContribution(sourceRuleId, entry, classification, formulaZoneContract) {
   const model = classifyContribution(entry, classification);
   const valueHints = componentValueHints(entry);
+  const formulaZoneIds = uniqueStrings([
+    ...(entry.formulaZoneIds || []),
+    ...formulaZoneIdsForEntry(entry, formulaZoneContract),
+  ]);
   return stripUndefined({
     sourceRuleId,
     sourceId: entry.sourceId,
@@ -527,6 +691,7 @@ function compactContribution(sourceRuleId, entry, classification) {
     contributionTier: model.contributionTier,
     confidence: model.confidence,
     formulaTermIds: model.formulaTermIds,
+    formulaZoneIds,
     contributionGroups: model.contributionGroups,
     componentClasses: model.componentClasses,
     predicateTags: model.predicateTags,
@@ -541,21 +706,23 @@ function compactContribution(sourceRuleId, entry, classification) {
   });
 }
 
-function buildContributionTable(modifierRecount, modifierClassification, damageFormula) {
+function buildContributionTable(modifierRecount, modifierClassification, damageFormula, formulaZoneContract) {
   const sourcesByRuleId = {};
   const byContributionMode = {};
   const byContributionTier = {};
   const byFormulaTermId = {};
+  const byFormulaZoneId = {};
   const byContributionGroup = {};
   const byRequiredRuntimeEvidence = {};
   const classificationsByRuleId = modifierClassification.sourcesByRuleId || {};
 
   for (const [sourceRuleId, entry] of Object.entries(modifierRecount.sourcesById || {})) {
-    const contribution = compactContribution(sourceRuleId, entry, classificationsByRuleId[sourceRuleId]);
+    const contribution = compactContribution(sourceRuleId, entry, classificationsByRuleId[sourceRuleId], formulaZoneContract);
     sourcesByRuleId[sourceRuleId] = contribution;
     addIndex(byContributionMode, contribution.contributionMode, sourceRuleId);
     addIndex(byContributionTier, contribution.contributionTier, sourceRuleId);
     for (const termId of contribution.formulaTermIds || []) addIndex(byFormulaTermId, termId, sourceRuleId);
+    for (const zoneId of contribution.formulaZoneIds || []) addIndex(byFormulaZoneId, zoneId, sourceRuleId);
     for (const groupId of contribution.contributionGroups || []) addIndex(byContributionGroup, groupId, sourceRuleId);
     for (const evidence of contribution.requiredRuntimeEvidence || []) addIndex(byRequiredRuntimeEvidence, evidence, sourceRuleId);
   }
@@ -564,6 +731,7 @@ function buildContributionTable(modifierRecount, modifierClassification, damageF
     byContributionMode,
     byContributionTier,
     byFormulaTermId,
+    byFormulaZoneId,
     byContributionGroup,
     byRequiredRuntimeEvidence,
   ]) {
@@ -578,7 +746,9 @@ function buildContributionTable(modifierRecount, modifierClassification, damageF
       modifierRecountTable: "output/ModifierRecountTable.json",
       modifierClassificationTable: "output/ModifierClassificationTable.json",
       damageFormula: "resonance-logs-global/parser-data/logic/DamageFormula.json",
+      formulaZoneContract: "resonance-logs-global/src/lib/config/damage-formula-zone-contract.json",
     },
+    formulaZoneContract: compactFormulaZoneContract(formulaZoneContract),
     damageFormula: stripUndefined({
       id: damageFormula.id,
       status: damageFormula.status,
@@ -592,11 +762,13 @@ function buildContributionTable(modifierRecount, modifierClassification, damageF
       formulaReplayCandidateRules: sources.filter((source) => source.contributionMode === "formula-replay-candidate").length,
       timingOnlyRules: sources.filter((source) => source.contributionMode === "timing-only").length,
       overlapOnlyRules: sources.filter((source) => source.contributionMode === "overlap-only").length,
+      formulaZoneCounts: formulaZoneCounts(sources),
     },
     sourcesByRuleId,
     byContributionMode,
     byContributionTier,
     byFormulaTermId,
+    byFormulaZoneId,
     byContributionGroup,
     byRequiredRuntimeEvidence,
   };
@@ -611,6 +783,7 @@ function runtimeContributionEntry(source) {
     contributionTier: source.contributionTier,
     confidence: source.confidence,
     formulaTermIds: includeReplayReadiness && source.formulaTermIds?.length ? source.formulaTermIds : undefined,
+    formulaZoneIds: source.formulaZoneIds?.length ? source.formulaZoneIds : undefined,
     contributionGroups: includeReplayReadiness && source.contributionGroups?.length ? source.contributionGroups : undefined,
     predicateTags: includeReplayReadiness && source.predicateTags?.length ? source.predicateTags : undefined,
     requiredRuntimeEvidence: includeReplayReadiness && source.requiredRuntimeEvidence?.length
@@ -648,7 +821,8 @@ function main() {
   const modifierRecount = readJson(args.modifierRecountPath);
   const modifierClassification = readOptionalJson(args.modifierClassificationPath, {});
   const damageFormula = readOptionalJson(args.damageFormulaPath, {});
-  const table = buildContributionTable(modifierRecount, modifierClassification, damageFormula);
+  const formulaZoneContract = readOptionalJson(args.formulaZoneContractPath, {});
+  const table = buildContributionTable(modifierRecount, modifierClassification, damageFormula, formulaZoneContract);
   const runtimeTable = buildRuntimeContributionTable(table);
 
   if (!args.dryRun) {

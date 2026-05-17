@@ -1,0 +1,465 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const repoRoot = __dirname;
+const defaultOutputDir = path.join(repoRoot, "output");
+const defaultReportDir = path.join(defaultOutputDir, "probing-reports");
+
+function parseArgs(argv) {
+  const args = {
+    help: false,
+    outputDir: defaultOutputDir,
+    reportDir: defaultReportDir,
+    status: "needs-component-mapping",
+    limit: 40,
+    outPath: "",
+    reportPath: "",
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    const next = argv[index + 1];
+    if (arg === "--help") {
+      args.help = true;
+    } else if (arg === "--output-dir" && next) {
+      args.outputDir = path.resolve(next);
+      args.reportDir = path.join(args.outputDir, "probing-reports");
+      index += 1;
+    } else if (arg === "--report-dir" && next) {
+      args.reportDir = path.resolve(next);
+      index += 1;
+    } else if (arg === "--status" && next) {
+      args.status = next;
+      index += 1;
+    } else if (arg === "--limit" && next) {
+      args.limit = Math.max(1, Number(next) || args.limit);
+      index += 1;
+    } else if (arg === "--out" && next) {
+      args.outPath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--report" && next) {
+      args.reportPath = path.resolve(next);
+      index += 1;
+    }
+  }
+
+  args.outPath ||= path.join(args.reportDir, "ModifierValueProofGapAudit.json");
+  args.reportPath ||= path.join(args.reportDir, "ModifierValueProofGapAudit.md");
+  return args;
+}
+
+function printHelp() {
+  console.log("ModifierValueProofGapAudit.gen - summarize value-proof blocker rows by category and wording.");
+  console.log("");
+  console.log("Options:");
+  console.log("  --output-dir <path>   Generated output directory override.");
+  console.log("  --report-dir <path>   Markdown/JSON report directory override.");
+  console.log("  --status <status>     Value proof status to audit. Default: needs-component-mapping.");
+  console.log("  --limit <n>           Example rows per section. Default: 40.");
+  console.log("  --out <path>          JSON report path.");
+  console.log("  --report <path>       Markdown report path.");
+}
+
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeText(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${value.trimEnd()}\n`, "utf8");
+}
+
+function arrayOf(value) {
+  return Array.isArray(value) ? value : value === undefined || value === null ? [] : [value];
+}
+
+function compactCounts(map, limit = 50) {
+  return Object.fromEntries([...map.entries()]
+    .filter(([, count]) => count > 0)
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .slice(0, limit));
+}
+
+function addCount(map, key, amount = 1) {
+  const safeKey = String(key || "unknown").trim() || "unknown";
+  map.set(safeKey, (map.get(safeKey) || 0) + amount);
+}
+
+function compactText(value, limit = 180) {
+  const text = String(value || "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (text.length <= limit) return text;
+  return `${text.slice(0, Math.max(20, limit - 1)).trimEnd()}...`;
+}
+
+function textQualityScore(value) {
+  const text = String(value || "");
+  let score = 0;
+  if (/[A-Za-z]/.test(text)) score += 4;
+  if (/[+\-]?\d/.test(text)) score += 2;
+  if (/\b(?:damage|dmg|atk|attack|crit|haste|cooldown|resource|element|season|dream|lucky|skill|fixed|multiplier)\b/i.test(text)) {
+    score += 4;
+  }
+  if (/Ã|Â|à¸|æ|ã|ì|ë/.test(text)) score -= 2;
+  score -= Math.min(3, Math.floor(text.length / 400));
+  return score;
+}
+
+function sampleTextCandidates(entry) {
+  const samples = arrayOf(entry.valueRows).length
+    ? arrayOf(entry.valueRows)
+    : arrayOf(entry.unmappedValueSamples);
+  const candidates = [];
+  for (const sample of samples) {
+    candidates.push(...arrayOf(sample.sourceTexts));
+    candidates.push(sample.sourceText);
+    candidates.push(...arrayOf(sample.rawTexts));
+    candidates.push(sample.rawText);
+  }
+  return [...new Set(candidates
+    .map((value) => String(value || "").trim())
+    .filter(Boolean))]
+    .sort((left, right) => textQualityScore(right) - textQualityScore(left)
+      || left.length - right.length
+      || left.localeCompare(right));
+}
+
+function sampleTexts(entry, limit = 3) {
+  return sampleTextCandidates(entry)
+    .slice(0, limit)
+    .map((text) => compactText(text));
+}
+
+function sampleText(entry) {
+  return sampleTexts(entry, 3).join(" | ");
+}
+
+function uniqueStrings(values) {
+  return [...new Set(arrayOf(values)
+    .map((value) => String(value || "").trim())
+    .filter(Boolean))];
+}
+
+function candidateValueSummary(selector, limit = 10) {
+  const byScope = selector?.candidatesByScope || {};
+  const parts = [];
+  for (const [scope, candidates] of Object.entries(byScope)) {
+    const values = uniqueStrings(arrayOf(candidates).map((candidate) => {
+      const rawText = candidate.rawText || (candidate.value !== undefined ? String(candidate.value) : "");
+      const tier = candidate.tier !== undefined ? ` t${candidate.tier}` : "";
+      const key = candidate.key ? ` ${candidate.key}` : "";
+      return `${scope}:${rawText}${tier}${key}`.trim();
+    })).slice(0, limit);
+    if (values.length) parts.push(...values);
+  }
+  return parts.join("; ");
+}
+
+function makeScopeGapRow(entry, selector, missingValueScopes) {
+  return {
+    key: entry.key,
+    uid: entry.uid,
+    category: entry.category,
+    runtimeKind: entry.runtimeKind,
+    sourceLabel: entry.sourceLabel,
+    componentKey: selector.componentKey || "unknown",
+    scopeKinds: uniqueStrings(entry.scopeKinds),
+    candidateScopes: Object.keys(selector.candidatesByScope || {}),
+    missingValueScopes,
+    values: candidateValueSummary(selector),
+    valueBlockers: arrayOf(entry.valueBlockers),
+    proofRequirements: arrayOf(entry.proofRequirements),
+    sourceRuleIds: arrayOf(entry.sourceRuleIds),
+    sourceFiles: arrayOf(entry.descriptionRef?.sourceFiles),
+    sampleText: sampleText(entry),
+  };
+}
+
+function sortScopeGapRows(rows) {
+  return rows.sort((left, right) =>
+    String(left.category || "").localeCompare(String(right.category || ""))
+    || String(left.componentKey || "").localeCompare(String(right.componentKey || ""))
+    || String(left.key || "").localeCompare(String(right.key || ""))
+  );
+}
+
+function scopeGapRows(entries, limit) {
+  const rows = [];
+  for (const entry of entries) {
+    for (const selector of arrayOf(entry.valueSelectors)) {
+      const missingValueScopes = uniqueStrings(selector.missingValueScopes);
+      if (!missingValueScopes.length) continue;
+      rows.push(makeScopeGapRow(entry, selector, missingValueScopes));
+    }
+  }
+  return sortScopeGapRows(rows).slice(0, limit);
+}
+
+function ownerPartyScopeGapRows(entries, limit) {
+  const rows = [];
+  for (const entry of entries) {
+    const scopes = uniqueStrings(entry.scopeKinds);
+    if (!scopes.includes("owner") || !scopes.includes("party")) continue;
+    for (const selector of arrayOf(entry.valueSelectors)) {
+      const missingValueScopes = uniqueStrings(selector.missingValueScopes)
+        .filter((scope) => scope === "owner" || scope === "party");
+      if (!missingValueScopes.length) continue;
+      rows.push(makeScopeGapRow(entry, selector, missingValueScopes));
+    }
+  }
+  return sortScopeGapRows(rows).slice(0, limit);
+}
+
+function wordingBucket(text) {
+  const value = String(text || "").toLowerCase();
+  if (!value) return "no-sample-text";
+  if (/\b(?:hp|health|shield|heal|healing|defense|defence|resistance|damage taken|damage reduction)\b/.test(value)) {
+    return "defensive-or-sustain-wording";
+  }
+  if (/\b(?:skill\s*power|skill\s*damage|skill\s*multiplier|fixed damage|constant)\b/.test(value)) return "skill-coefficient-wording";
+  if (/\b(?:atk|attack|matk|physical attack|magic attack)\b/.test(value)) return "attack-wording";
+  if (/\b(?:crit|critical|cdmg)\b/.test(value)) return "critical-wording";
+  if (/\b(?:season|seasonal|dream|slumber|breakthrough)\b/.test(value)) return "seasonal-wording";
+  if (/\b(?:element|fire|ice|frost|thunder|lightning|wind|light|dark|rock)\b/.test(value)) return "elemental-wording";
+  if (/\b(?:haste|cooldown|cd|resource|energy|attack speed)\b/.test(value)) return "timing-wording";
+  if (/\b(?:lucky|luck)\b/.test(value)) return "lucky-wording";
+  if (/\b(?:damage|dmg|bonus|increase|boost)\b/.test(value)) return "generic-damage-wording";
+  return "unbucketed-wording";
+}
+
+function rowFor(entry) {
+  const samples = arrayOf(entry.valueRows).length
+    ? arrayOf(entry.valueRows)
+    : arrayOf(entry.unmappedValueSamples);
+  return {
+    key: entry.key,
+    uid: entry.uid,
+    category: entry.category,
+    sourceLabel: entry.sourceLabel,
+    formulaReadiness: entry.formulaReadiness,
+    formulaZoneIds: entry.formulaZoneIds,
+    valueBlockers: entry.valueBlockers,
+    sampleText: sampleText(entry),
+    sampleTexts: sampleTexts(entry, 5),
+    samples: samples.slice(0, 4),
+  };
+}
+
+function buildAudit(valueProof, termTable, args) {
+  const termEntries = termTable.entriesByKey || {};
+  const entries = Object.values(valueProof.entriesByKey || {})
+    .filter((entry) => entry.valueProofStatus === args.status);
+  const enrichedEntries = entries.map((entry) => ({
+    ...entry,
+    descriptionRef: termEntries[entry.key]?.descriptionRef || entry.descriptionRef,
+    relationships: termEntries[entry.key]?.relationships || entry.relationships,
+    valueRows: termEntries[entry.key]?.valueRows,
+  }));
+
+  const byCategory = new Map();
+  const byReadiness = new Map();
+  const byZone = new Map();
+  const byBlocker = new Map();
+  const byWording = new Map();
+  const byCategoryWording = new Map();
+  const byScopeGap = new Map();
+  const byScopeGapCategory = new Map();
+  const byOwnerPartyScopeGap = new Map();
+  const byOwnerPartyScopeGapCategory = new Map();
+
+  for (const entry of enrichedEntries) {
+    addCount(byCategory, entry.category);
+    addCount(byReadiness, entry.formulaReadiness);
+    for (const zoneId of arrayOf(entry.formulaZoneIds)) addCount(byZone, zoneId);
+    for (const blocker of arrayOf(entry.valueBlockers)) addCount(byBlocker, blocker);
+    const bucket = wordingBucket(sampleText(entry));
+    addCount(byWording, bucket);
+    addCount(byCategoryWording, `${entry.category || "unknown"} / ${bucket}`);
+    for (const selector of arrayOf(entry.valueSelectors)) {
+      for (const missingScope of uniqueStrings(selector.missingValueScopes)) {
+        const componentKey = selector.componentKey || "unknown";
+        addCount(byScopeGap, `${componentKey}:${missingScope}`);
+        addCount(byScopeGapCategory, `${entry.category || "unknown"} / ${componentKey}:${missingScope}`);
+      }
+      const scopes = uniqueStrings(entry.scopeKinds);
+      if (scopes.includes("owner") && scopes.includes("party")) {
+        for (const missingScope of uniqueStrings(selector.missingValueScopes).filter((scope) => scope === "owner" || scope === "party")) {
+          const componentKey = selector.componentKey || "unknown";
+          addCount(byOwnerPartyScopeGap, `${componentKey}:${missingScope}`);
+          addCount(byOwnerPartyScopeGapCategory, `${entry.category || "unknown"} / ${componentKey}:${missingScope}`);
+        }
+      }
+    }
+  }
+
+  const examples = enrichedEntries
+    .sort((left, right) =>
+      String(left.category || "").localeCompare(String(right.category || ""))
+      || String(left.formulaReadiness || "").localeCompare(String(right.formulaReadiness || ""))
+      || String(left.key || "").localeCompare(String(right.key || ""))
+    )
+    .slice(0, args.limit)
+    .map(rowFor);
+
+  const topByWording = {};
+  for (const bucket of Object.keys(compactCounts(byWording))) {
+    topByWording[bucket] = enrichedEntries
+      .filter((entry) => wordingBucket(sampleText(entry)) === bucket)
+      .slice(0, Math.min(args.limit, 20))
+      .map(rowFor);
+  }
+
+  return {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    auditedStatus: args.status,
+    totalRows: entries.length,
+    byCategory: compactCounts(byCategory),
+    byFormulaReadiness: compactCounts(byReadiness),
+    byFormulaZone: compactCounts(byZone),
+    byBlocker: compactCounts(byBlocker),
+    byWording: compactCounts(byWording),
+    byCategoryWording: compactCounts(byCategoryWording),
+    byScopeGap: compactCounts(byScopeGap),
+    byScopeGapCategory: compactCounts(byScopeGapCategory),
+    byOwnerPartyScopeGap: compactCounts(byOwnerPartyScopeGap),
+    byOwnerPartyScopeGapCategory: compactCounts(byOwnerPartyScopeGapCategory),
+    scopeValueGaps: scopeGapRows(enrichedEntries, args.limit),
+    ownerPartyScopeValueGaps: ownerPartyScopeGapRows(enrichedEntries, args.limit),
+    examples,
+    topByWording,
+  };
+}
+
+function markdownTable(headers, rows) {
+  if (!rows.length) return "_None._\n";
+  const out = [
+    `| ${headers.join(" | ")} |`,
+    `| ${headers.map(() => "---").join(" | ")} |`,
+  ];
+  for (const row of rows) {
+    out.push(`| ${row.map((value) => String(value ?? "").replace(/\|/g, "\\|").replace(/\n/g, "<br>")).join(" | ")} |`);
+  }
+  return `${out.join("\n")}\n`;
+}
+
+function countRows(object) {
+  return Object.entries(object || {}).map(([key, count]) => [key, count]);
+}
+
+function renderReport(audit) {
+  const lines = [];
+  lines.push("# Modifier Value Proof Gap Audit");
+  lines.push("");
+  lines.push(`Status audited: \`${audit.auditedStatus}\``);
+  lines.push("");
+  lines.push(`Total rows: ${audit.totalRows}`);
+  lines.push("");
+  lines.push("## Category Counts");
+  lines.push("");
+  lines.push(markdownTable(["Category", "Count"], countRows(audit.byCategory)));
+  lines.push("");
+  lines.push("## Wording Buckets");
+  lines.push("");
+  lines.push(markdownTable(["Bucket", "Count"], countRows(audit.byWording)));
+  lines.push("");
+  lines.push("## Category / Wording");
+  lines.push("");
+  lines.push(markdownTable(["Category / Bucket", "Count"], countRows(audit.byCategoryWording)));
+  lines.push("");
+  lines.push("## Formula Readiness");
+  lines.push("");
+  lines.push(markdownTable(["Readiness", "Count"], countRows(audit.byFormulaReadiness)));
+  lines.push("");
+  lines.push("## Scope Value Gaps");
+  lines.push("");
+  lines.push(markdownTable(["Component / Missing Scope", "Count"], countRows(audit.byScopeGap)));
+  lines.push("");
+  lines.push("## Owner/Party Scope Value Gaps");
+  lines.push("");
+  lines.push(markdownTable(["Component / Missing Scope", "Count"], countRows(audit.byOwnerPartyScopeGap)));
+  lines.push("");
+  lines.push("## Owner/Party Scope Value Gaps By Category");
+  lines.push("");
+  lines.push(markdownTable(["Category / Component / Scope", "Count"], countRows(audit.byOwnerPartyScopeGapCategory)));
+  lines.push("");
+  lines.push("## Owner/Party Scope Value Gap Examples");
+  lines.push("");
+  lines.push(markdownTable(
+    ["Key", "Label", "Category", "Component", "Scopes", "Candidate Scopes", "Missing", "Values", "Sources", "Sample"],
+    arrayOf(audit.ownerPartyScopeValueGaps).map((entry) => [
+      entry.key,
+      entry.sourceLabel,
+      entry.category,
+      entry.componentKey,
+      arrayOf(entry.scopeKinds).join(", "),
+      arrayOf(entry.candidateScopes).join(", "),
+      arrayOf(entry.missingValueScopes).join(", "),
+      entry.values,
+      arrayOf(entry.sourceFiles).join(", "),
+      entry.sampleText,
+    ])
+  ));
+  lines.push("");
+  lines.push("## Scope Value Gaps By Category");
+  lines.push("");
+  lines.push(markdownTable(["Category / Component / Scope", "Count"], countRows(audit.byScopeGapCategory)));
+  lines.push("");
+  lines.push("## Scope Value Gap Examples");
+  lines.push("");
+  lines.push(markdownTable(
+    ["Key", "Label", "Category", "Component", "Scopes", "Candidate Scopes", "Missing", "Values", "Sources", "Sample"],
+    arrayOf(audit.scopeValueGaps).map((entry) => [
+      entry.key,
+      entry.sourceLabel,
+      entry.category,
+      entry.componentKey,
+      arrayOf(entry.scopeKinds).join(", "),
+      arrayOf(entry.candidateScopes).join(", "),
+      arrayOf(entry.missingValueScopes).join(", "),
+      entry.values,
+      arrayOf(entry.sourceFiles).join(", "),
+      entry.sampleText,
+    ])
+  ));
+  lines.push("");
+  lines.push("## Examples");
+  lines.push("");
+  lines.push(markdownTable(
+    ["Key", "Label", "Category", "Readiness", "Zones", "Sample"],
+    audit.examples.map((entry) => [
+      entry.key,
+      entry.sourceLabel,
+      entry.category,
+      entry.formulaReadiness,
+      arrayOf(entry.formulaZoneIds).join(", "),
+      entry.sampleText,
+    ])
+  ));
+  return lines.join("\n");
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+  const valueProof = readJson(path.join(args.outputDir, "ModifierValueProofTable.json"));
+  const termTable = readJson(path.join(args.outputDir, "ModifierFormulaTermTable.json"));
+  const audit = buildAudit(valueProof, termTable, args);
+  writeJson(args.outPath, audit);
+  writeText(args.reportPath, renderReport(audit));
+  console.log(`Modifier value-proof gap audit rows: ${audit.totalRows}`);
+  console.log(`Wrote ${args.outPath}`);
+  console.log(`Wrote ${args.reportPath}`);
+}
+
+main();

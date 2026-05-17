@@ -1,0 +1,2039 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-10T12:43:40.133Z",
+  "purpose": "Dev-only extraction coverage inventory for rebuilding modifier grounding from generator outputs before runtime changes.",
+  "boundaries": [
+    "This report does not change parser/runtime behavior.",
+    "Description and value evidence are discovery/coverage signals, not final contribution math.",
+    "Actual equipped gear statlines are packet/runtime-derived; game files may only provide item scaffolding.",
+    "Stack, max-stack, threshold, and target-stack rows require runtime stack evidence before contribution can be factual."
+  ],
+  "categorySummaries": [
+    {
+      "category": "buffs",
+      "rows": 8588,
+      "descriptionCoverage": "11.9%",
+      "valueCoverage": "2.3%",
+      "stackCoverage": "1.4%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "100.0%",
+      "missingFiles": []
+    },
+    {
+      "category": "skills",
+      "rows": 29555,
+      "descriptionCoverage": "21.6%",
+      "valueCoverage": "0.3%",
+      "stackCoverage": "0.2%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "100.0%",
+      "missingFiles": []
+    },
+    {
+      "category": "talents",
+      "rows": 1292,
+      "descriptionCoverage": "50.0%",
+      "valueCoverage": "50.0%",
+      "stackCoverage": "4.8%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "69.5%",
+      "missingFiles": []
+    },
+    {
+      "category": "seasonal-talents",
+      "rows": 358,
+      "descriptionCoverage": "100.0%",
+      "valueCoverage": "100.0%",
+      "stackCoverage": "10.6%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "100.0%",
+      "missingFiles": []
+    },
+    {
+      "category": "factors",
+      "rows": 1707,
+      "descriptionCoverage": "100.0%",
+      "valueCoverage": "100.0%",
+      "stackCoverage": "2.9%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "8.6%",
+      "provenanceCoverage": "100.0%",
+      "missingFiles": []
+    },
+    {
+      "category": "items-consumables",
+      "rows": 9165,
+      "descriptionCoverage": "0.0%",
+      "valueCoverage": "0.2%",
+      "stackCoverage": "0.0%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "100.0%",
+      "missingFiles": []
+    },
+    {
+      "category": "imagines",
+      "rows": 4726,
+      "descriptionCoverage": "77.7%",
+      "valueCoverage": "98.8%",
+      "stackCoverage": "4.3%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "97.8%",
+      "provenanceCoverage": "100.0%",
+      "missingFiles": []
+    },
+    {
+      "category": "linktext-tooltips",
+      "rows": 3,
+      "descriptionCoverage": "66.7%",
+      "valueCoverage": "33.3%",
+      "stackCoverage": "0.0%",
+      "uidRelationshipCoverage": "33.3%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "66.7%",
+      "missingFiles": []
+    },
+    {
+      "category": "modifier-master",
+      "rows": 13672,
+      "descriptionCoverage": "42.1%",
+      "valueCoverage": "63.1%",
+      "stackCoverage": "1.5%",
+      "uidRelationshipCoverage": "100.0%",
+      "runtimeEvidenceCoverage": "86.4%",
+      "provenanceCoverage": "71.8%",
+      "missingFiles": []
+    },
+    {
+      "category": "equipment-packet-derived",
+      "rows": 0,
+      "descriptionCoverage": "0.0%",
+      "valueCoverage": "0.0%",
+      "stackCoverage": "0.0%",
+      "uidRelationshipCoverage": "0.0%",
+      "runtimeEvidenceCoverage": "0.0%",
+      "provenanceCoverage": "0.0%",
+      "missingFiles": []
+    }
+  ],
+  "categories": [
+    {
+      "category": "buffs",
+      "runtimeRole": "runtime buff/debuff names, descriptions, levels, and stack-ish BuffTable evidence",
+      "proposedOutput": "BuffDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "BuffName.json",
+          "rows": 8588,
+          "bytes": 5960747
+        }
+      ],
+      "rows": 8588,
+      "withName": 8588,
+      "withDescription": 1025,
+      "withCleanDescription": 1025,
+      "withValueEvidence": 195,
+      "withStackEvidence": 122,
+      "withMaxStackEvidence": 3,
+      "withThresholdStackEvidence": 5,
+      "withTargetStackEvidence": 18,
+      "withLevelEvidence": 8588,
+      "withTierEvidence": 0,
+      "withUidRelationships": 8588,
+      "withRuntimeEvidence": 0,
+      "withProvenance": 8588,
+      "examples": {
+        "missingDescription": [
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 201,
+            "name": "201"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 301,
+            "name": "301"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 401,
+            "name": "401"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 501,
+            "name": "501"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 601,
+            "name": "601"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 701,
+            "name": "701"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 801,
+            "name": "801"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 901,
+            "name": "901"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 1001,
+            "name": "1001"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 1101,
+            "name": "1101"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 1201,
+            "name": "1201"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "no description-like field detected",
+            "id": 1301,
+            "name": "1301"
+          }
+        ],
+        "stackWithoutValue": [
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 6501,
+            "name": "6501"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 6601,
+            "name": "6601"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 27015,
+            "name": "27015"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 27016,
+            "name": "27016"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 41401,
+            "name": "41401"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 55313,
+            "name": "55313"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 55414,
+            "name": "55414"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 55415,
+            "name": "55415"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 600001,
+            "name": "600001"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 683135,
+            "name": "683135"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 683137,
+            "name": "683137"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 683148,
+            "name": "683148"
+          }
+        ],
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 21413,
+            "name": "21413"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 25201,
+            "name": "25201"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 25202,
+            "name": "25202"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 50034,
+            "name": "50034"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 50071,
+            "name": "50071"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 55306,
+            "name": "55306"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 55322,
+            "name": "55322"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 55430,
+            "name": "55430"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 501601,
+            "name": "501601"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 501707,
+            "name": "501707"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 501715,
+            "name": "501715"
+          },
+          {
+            "file": "BuffName.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 510091,
+            "name": "510091"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "skills",
+      "runtimeRole": "skill labels, descriptions, cooldowns, emitted damage rows, and child damage relationships",
+      "proposedOutput": "SkillDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "skillnames.json",
+          "rows": 24780,
+          "bytes": 51073782
+        },
+        {
+          "path": "SkillCooldowns.json",
+          "rows": 6,
+          "bytes": 40792001
+        },
+        {
+          "path": "SkillBreakdownDetails.json",
+          "rows": 4764,
+          "bytes": 17805528
+        },
+        {
+          "path": "SkillDamageChainBridge.json",
+          "rows": 5,
+          "bytes": 11495200
+        }
+      ],
+      "rows": 29555,
+      "withName": 29550,
+      "withDescription": 6371,
+      "withCleanDescription": 0,
+      "withValueEvidence": 96,
+      "withStackEvidence": 69,
+      "withMaxStackEvidence": 10,
+      "withThresholdStackEvidence": 2,
+      "withTargetStackEvidence": 6,
+      "withLevelEvidence": 2,
+      "withTierEvidence": 0,
+      "withUidRelationships": 29549,
+      "withRuntimeEvidence": 0,
+      "withProvenance": 29546,
+      "examples": {
+        "missingDescription": [
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 1,
+            "name": "Red Light Counter"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 2,
+            "name": "Lucky Strike"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 3,
+            "name": "Windborne Grace"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 4,
+            "name": "Gale Thrust"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 5,
+            "name": "Skyfall"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 6,
+            "name": "Typhoon Cleave"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 7,
+            "name": "Galeform"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 8,
+            "name": "Spiral Thrust"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 9,
+            "name": "Breach Pursuit"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 10,
+            "name": "Falcon Toss"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 11,
+            "name": "Instant Edge"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "no description-like field detected",
+            "id": 12,
+            "name": "Valor Cyclone"
+          }
+        ],
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1907,
+            "name": "Cracking Echo"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1927,
+            "name": "Sandshroud"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 90052,
+            "name": "2200101存储30%伤害"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 100732,
+            "name": "弩箭哥布林4s蓄力贯通箭-英雄本"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 100736,
+            "name": "弩箭哥布林4s蓄力分裂箭-英雄本"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 2002210,
+            "name": "哥布林巫师-害怕2"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3080111,
+            "name": "嫌疑人冲刺2"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3340150,
+            "name": "Nappo gets stunned after the 1st hit."
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3360106,
+            "name": "头前连炸1"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 10073201,
+            "name": "弩箭哥布林4s蓄力贯通箭-英雄本"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 10073601,
+            "name": "弩箭哥布林4s蓄力分裂箭-英雄本"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 10280001,
+            "name": "Solarshine - Basic Attack 01"
+          }
+        ],
+        "stackWithoutValue": [
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 1940,
+            "name": "Rage Burst"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90009,
+            "name": "【引燃】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90092,
+            "name": "【自然恩赐】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90093,
+            "name": "【治疗链】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90094,
+            "name": "【治疗种子】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90099,
+            "name": "玄武背击堆叠上限"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90103,
+            "name": "【锐利】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90128,
+            "name": "【剑盾】英勇盾击buff叠层"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90177,
+            "name": "【剑盾】英勇盾击层数增加"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90183,
+            "name": "【激怒】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90186,
+            "name": "【滋养】Buff堆叠上限变化"
+          },
+          {
+            "file": "skillnames.json",
+            "reason": "stack text detected but no structured value evidence",
+            "id": 90188,
+            "name": "【剑盾】神圣印记层数增加"
+          }
+        ],
+        "missingProvenance": [
+          {
+            "file": "SkillCooldowns.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "sources",
+            "name": "sources"
+          },
+          {
+            "file": "SkillCooldowns.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "summary",
+            "name": "summary"
+          },
+          {
+            "file": "SkillCooldowns.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "skillCooldownsBySkillId",
+            "name": "skillCooldownsBySkillId"
+          },
+          {
+            "file": "SkillCooldowns.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "cooldownTempAttrRules",
+            "name": "cooldownTempAttrRules"
+          },
+          {
+            "file": "SkillCooldowns.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "affectedSkillIdsByTempAttrId",
+            "name": "affectedSkillIdsByTempAttrId"
+          },
+          {
+            "file": "SkillDamageChainBridge.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "sources",
+            "name": "sources"
+          },
+          {
+            "file": "SkillDamageChainBridge.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "semantics",
+            "name": "semantics"
+          },
+          {
+            "file": "SkillDamageChainBridge.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "summary",
+            "name": "summary"
+          },
+          {
+            "file": "SkillDamageChainBridge.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "recountChains",
+            "name": "recountChains"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "talents",
+      "runtimeRole": "talent/passive descriptions, class/spec ownership, activation aliases, and buff/source links",
+      "proposedOutput": "TalentDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "probing-reports/TalentEffectModelProbe.json",
+          "rows": 646,
+          "bytes": 26285013
+        },
+        {
+          "path": "TalentSpecOwnership.json",
+          "rows": 646,
+          "bytes": 2235824
+        }
+      ],
+      "rows": 1292,
+      "withName": 1292,
+      "withDescription": 646,
+      "withCleanDescription": 611,
+      "withValueEvidence": 646,
+      "withStackEvidence": 62,
+      "withMaxStackEvidence": 34,
+      "withThresholdStackEvidence": 2,
+      "withTargetStackEvidence": 15,
+      "withLevelEvidence": 0,
+      "withTierEvidence": 0,
+      "withUidRelationships": 1292,
+      "withRuntimeEvidence": 0,
+      "withProvenance": 898,
+      "examples": {
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1348,
+            "name": "Absolute Center Stage"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1366,
+            "name": "Absolute Center Stage"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 154,
+            "name": "Advancement"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1251,
+            "name": "Adversity Enhancement"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1213,
+            "name": "Aegis Ward's Anthem"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1215,
+            "name": "Aegis Ward's Retribution"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3,
+            "name": "Agility"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 101,
+            "name": "Agility Conversion"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 300,
+            "name": "Agility Conversion"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1101,
+            "name": "Agility Conversion"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 419,
+            "name": "Air Dance Strike"
+          },
+          {
+            "file": "probing-reports/TalentEffectModelProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 944,
+            "name": "Amplified Earthfort"
+          }
+        ],
+        "missingDescription": [
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Strength"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Intellect"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Agility"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Endurance"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Crit"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Haste"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Luck"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Mastery"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Versatility"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Ice Attack"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Rock Attack"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no description-like field detected",
+            "name": "Thunder Attack"
+          }
+        ],
+        "missingProvenance": [
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Strength"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Intellect"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Agility"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Endurance"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Crit"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Haste"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Luck"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Mastery"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Versatility"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Ice Attack"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Rock Attack"
+          },
+          {
+            "file": "TalentSpecOwnership.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "Thunder Attack"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "seasonal-talents",
+      "runtimeRole": "seasonal/slumberdream node and rogue-entry descriptions, predicates, and source links",
+      "proposedOutput": "SeasonalTalentDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "probing-reports/SeasonTalentNodeProbe.json",
+          "rows": 116,
+          "bytes": 4239232
+        },
+        {
+          "path": "probing-reports/SeasonRogueEntryProbe.json",
+          "rows": 242,
+          "bytes": 3313603
+        }
+      ],
+      "rows": 358,
+      "withName": 358,
+      "withDescription": 358,
+      "withCleanDescription": 242,
+      "withValueEvidence": 358,
+      "withStackEvidence": 38,
+      "withMaxStackEvidence": 26,
+      "withThresholdStackEvidence": 0,
+      "withTargetStackEvidence": 4,
+      "withLevelEvidence": 358,
+      "withTierEvidence": 242,
+      "withUidRelationships": 358,
+      "withRuntimeEvidence": 0,
+      "withProvenance": 358,
+      "examples": {
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1001,
+            "name": "Fantasia Impact"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1002,
+            "name": "Linkage"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1003,
+            "name": "Reconstruct"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1004,
+            "name": "Time-Step"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1005,
+            "name": "Multi-Phasic Strike"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1006,
+            "name": "Ripple of Fate"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1007,
+            "name": "Dual"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1008,
+            "name": "Chrono Elixir"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1009,
+            "name": "Blink Breath"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1010,
+            "name": "Ultimate Fortune"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1101,
+            "name": "Phantom Execution"
+          },
+          {
+            "file": "probing-reports/SeasonTalentNodeProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1102,
+            "name": "Mirage Edge"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "factors",
+      "runtimeRole": "seasonal factor names, grade rows, values, icons, and affected damage/recount links",
+      "proposedOutput": "FactorDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "SeasonPhantomFactors.json",
+          "rows": 147,
+          "bytes": 1394717
+        },
+        {
+          "path": "probing-reports/SeasonPhantomFactorProbe.json",
+          "rows": 1560,
+          "bytes": 29674968
+        }
+      ],
+      "rows": 1707,
+      "withName": 1707,
+      "withDescription": 1707,
+      "withCleanDescription": 1617,
+      "withValueEvidence": 1707,
+      "withStackEvidence": 50,
+      "withMaxStackEvidence": 40,
+      "withThresholdStackEvidence": 0,
+      "withTargetStackEvidence": 0,
+      "withLevelEvidence": 0,
+      "withTierEvidence": 1707,
+      "withUidRelationships": 1707,
+      "withRuntimeEvidence": 147,
+      "withProvenance": 1707,
+      "examples": {
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G1"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G2"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G3"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G4"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G5"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G6"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G7"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G8"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G9"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X1 - G10"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X2 - G1"
+          },
+          {
+            "file": "probing-reports/SeasonPhantomFactorProbe.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "name": "Stormblade X2 - G2"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "items-consumables",
+      "runtimeRole": "item/consumable names, food/potion buff bridge rows, tiers, and static item text",
+      "proposedOutput": "ItemDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "itemnames.json",
+          "rows": 9163,
+          "bytes": 6725575
+        },
+        {
+          "path": "ConsumableBuffBridge.json",
+          "rows": 2,
+          "bytes": 632696
+        }
+      ],
+      "rows": 9165,
+      "withName": 9164,
+      "withDescription": 2,
+      "withCleanDescription": 1,
+      "withValueEvidence": 15,
+      "withStackEvidence": 0,
+      "withMaxStackEvidence": 0,
+      "withThresholdStackEvidence": 0,
+      "withTargetStackEvidence": 0,
+      "withLevelEvidence": 0,
+      "withTierEvidence": 1,
+      "withUidRelationships": 9165,
+      "withRuntimeEvidence": 2,
+      "withProvenance": 9165,
+      "examples": {
+        "missingDescription": [
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 1,
+            "name": "1"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 2,
+            "name": "2"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 3,
+            "name": "3"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 4,
+            "name": "4"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 5,
+            "name": "5"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 8,
+            "name": "8"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 9,
+            "name": "9"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 10,
+            "name": "10"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 11,
+            "name": "11"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 12,
+            "name": "12"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 50,
+            "name": "50"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "no description-like field detected",
+            "id": 60,
+            "name": "60"
+          }
+        ],
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1031179,
+            "name": "1031179"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1031191,
+            "name": "1031191"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1061076,
+            "name": "1061076"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1062102,
+            "name": "1062102"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1062103,
+            "name": "1062103"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1070101,
+            "name": "1070101"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1070102,
+            "name": "1070102"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1070103,
+            "name": "1070103"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 1070104,
+            "name": "1070104"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 9060130,
+            "name": "9060130"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 9061015,
+            "name": "9061015"
+          },
+          {
+            "file": "itemnames.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 9061016,
+            "name": "9061016"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "imagines",
+      "runtimeRole": "Battle Imagine owner/source rows, Aoyi skill labels, and runtime buff/debuff bridges",
+      "proposedOutput": "BattleImagineDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "skill_aoyi_icons.json",
+          "rows": 102,
+          "bytes": 328010
+        },
+        {
+          "path": "ModifierSourceIndex.json",
+          "rows": 2510,
+          "bytes": 16000026
+        },
+        {
+          "path": "EffectSources.json",
+          "rows": 2114,
+          "bytes": 20903524
+        }
+      ],
+      "rows": 4726,
+      "withName": 4726,
+      "withDescription": 3674,
+      "withCleanDescription": 1260,
+      "withValueEvidence": 4668,
+      "withStackEvidence": 202,
+      "withMaxStackEvidence": 139,
+      "withThresholdStackEvidence": 12,
+      "withTargetStackEvidence": 27,
+      "withLevelEvidence": 59,
+      "withTierEvidence": 206,
+      "withUidRelationships": 4726,
+      "withRuntimeEvidence": 4624,
+      "withProvenance": 4726,
+      "examples": {
+        "missingDescription": [
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 2350,
+            "name": "Legendary Boar - Howl"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3901,
+            "name": "Arcane! Flame Roar"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3902,
+            "name": "Arcane! Thunderfall Grasp"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3903,
+            "name": "Arcane! Blazing Axe"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3904,
+            "name": "Stunt! Super Critical"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3905,
+            "name": "Stunt! Boarrier Rush"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3906,
+            "name": "Arcane! Frostquake"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3907,
+            "name": "Stunt! Falling Star"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3908,
+            "name": "Arcane! Pulse Benediction"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3909,
+            "name": "Stunt! Fox Assault"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3910,
+            "name": "Stunt! Chaotic Barrage"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "no description-like field detected",
+            "id": 3911,
+            "name": "Arcane! Heart of Flame"
+          }
+        ],
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3903,
+            "name": "Arcane! Blazing Axe"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3904,
+            "name": "Stunt! Super Critical"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3905,
+            "name": "Stunt! Boarrier Rush"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3906,
+            "name": "Arcane! Frostquake"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3907,
+            "name": "Stunt! Falling Star"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3908,
+            "name": "Arcane! Pulse Benediction"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3911,
+            "name": "Arcane! Heart of Flame"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3913,
+            "name": "Stunt! Electro Bomb"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3914,
+            "name": "Stunt! Blade Sweep"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3915,
+            "name": "Stunt! Frenzied Shot"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3920,
+            "name": "Arcane! Blessing of Life"
+          },
+          {
+            "file": "skill_aoyi_icons.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": 3921,
+            "name": "Arcane! Time Decree"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "linktext-tooltips",
+      "runtimeRole": "client linktext tooltip descriptions, including text embedded in other descriptions",
+      "proposedOutput": "LinkTextDescriptions.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "LinkTextDescriptions.json",
+          "rows": 3,
+          "bytes": 1107858
+        }
+      ],
+      "rows": 3,
+      "withName": 2,
+      "withDescription": 2,
+      "withCleanDescription": 1,
+      "withValueEvidence": 1,
+      "withStackEvidence": 0,
+      "withMaxStackEvidence": 0,
+      "withThresholdStackEvidence": 0,
+      "withTargetStackEvidence": 0,
+      "withLevelEvidence": 0,
+      "withTierEvidence": 0,
+      "withUidRelationships": 1,
+      "withRuntimeEvidence": 0,
+      "withProvenance": 2,
+      "examples": {
+        "valueNeedsRuntimeEvidence": [
+          {
+            "file": "LinkTextDescriptions.json",
+            "reason": "value evidence found but no runtime/window predicate field detected",
+            "id": "linkTextsById",
+            "name": "linkTextsById"
+          }
+        ],
+        "missingDescription": [
+          {
+            "file": "LinkTextDescriptions.json",
+            "reason": "no description-like field detected",
+            "id": "descriptionKeyToLinkTextIds",
+            "name": "descriptionKeyToLinkTextIds"
+          }
+        ],
+        "missingProvenance": [
+          {
+            "file": "LinkTextDescriptions.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "descriptionKeyToLinkTextIds",
+            "name": "descriptionKeyToLinkTextIds"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "modifier-master",
+      "runtimeRole": "UID relationships, reportability gates, role classification, and contribution-readiness metadata",
+      "proposedOutput": "ModifierUidMaster.json",
+      "packetOnly": false,
+      "files": [
+        {
+          "path": "EffectSources.json",
+          "rows": 2114,
+          "bytes": 20903524
+        },
+        {
+          "path": "ModifierSourceIndex.json",
+          "rows": 2510,
+          "bytes": 16000026
+        },
+        {
+          "path": "ModifierObservedUidBridge.json",
+          "rows": 4,
+          "bytes": 76978
+        },
+        {
+          "path": "ModifierRelationshipTable.json",
+          "rows": 2086,
+          "bytes": 3812046
+        },
+        {
+          "path": "ModifierRecountTable.json",
+          "rows": 2610,
+          "bytes": 5197055
+        },
+        {
+          "path": "ModifierClassificationTable.json",
+          "rows": 2086,
+          "bytes": 5835042
+        },
+        {
+          "path": "ModifierContributionTable.json",
+          "rows": 2086,
+          "bytes": 4314908
+        },
+        {
+          "path": "LuckyStrikeTable.json",
+          "rows": 176,
+          "bytes": 813619
+        }
+      ],
+      "rows": 13672,
+      "withName": 7250,
+      "withDescription": 5762,
+      "withCleanDescription": 1260,
+      "withValueEvidence": 8622,
+      "withStackEvidence": 206,
+      "withMaxStackEvidence": 140,
+      "withThresholdStackEvidence": 13,
+      "withTargetStackEvidence": 29,
+      "withLevelEvidence": 20,
+      "withTierEvidence": 2248,
+      "withUidRelationships": 13671,
+      "withRuntimeEvidence": 11815,
+      "withProvenance": 9821,
+      "examples": {
+        "missingDescription": [
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:1401",
+            "name": "Windborne Grace",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:1601",
+            "name": "水剑粒子显示",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:1701",
+            "name": "Judgment Cut",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:1901",
+            "name": "Granite",
+            "sourceKind": "talent-skill",
+            "sourceType": "talent"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:2101",
+            "name": "法杖冰盾BUFF",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:2301",
+            "name": "Resonant Strings",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:2401",
+            "name": "Blade of Justice",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:3001",
+            "name": "冰法杖3技能BD替换技能",
+            "sourceKind": "talent-skill",
+            "sourceType": "talent"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:3101",
+            "name": "鬼人化效果生效Buff",
+            "sourceKind": "talent-skill",
+            "sourceType": "talent"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:3201",
+            "name": "鬼人化效果解除",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:3401",
+            "name": "鬼人计combo计数管理",
+            "sourceKind": "talent-skill",
+            "sourceType": "talent"
+          },
+          {
+            "file": "ModifierSourceIndex.json",
+            "reason": "no description-like field detected",
+            "id": "buff-source:3501",
+            "name": "鬼人计combo计数",
+            "sourceKind": "buff-proc",
+            "sourceType": "buff"
+          }
+        ],
+        "missingProvenance": [
+          {
+            "file": "ModifierObservedUidBridge.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "inputs",
+            "name": "inputs"
+          },
+          {
+            "file": "ModifierObservedUidBridge.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "stats",
+            "name": "stats"
+          },
+          {
+            "file": "ModifierRelationshipTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "observed-buff:683115",
+            "name": "mrs:131bb151b5d4"
+          },
+          {
+            "file": "ModifierRelationshipTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "id": "observed-buff:2302120",
+            "name": "mrs:87e94739c6f0"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          },
+          {
+            "file": "ModifierRecountTable.json",
+            "reason": "no source/name/description id or offset evidence detected",
+            "name": "unnamed"
+          }
+        ]
+      },
+      "missingFiles": []
+    },
+    {
+      "category": "equipment-packet-derived",
+      "runtimeRole": "actual equipped gear statlines and rolled values must come from packets/runtime state, not game files",
+      "proposedOutput": "EquipmentStatDecoder.json",
+      "packetOnly": true,
+      "files": [],
+      "rows": 0,
+      "withName": 0,
+      "withDescription": 0,
+      "withCleanDescription": 0,
+      "withValueEvidence": 0,
+      "withStackEvidence": 0,
+      "withMaxStackEvidence": 0,
+      "withThresholdStackEvidence": 0,
+      "withTargetStackEvidence": 0,
+      "withLevelEvidence": 0,
+      "withTierEvidence": 0,
+      "withUidRelationships": 0,
+      "withRuntimeEvidence": 0,
+      "withProvenance": 0,
+      "examples": {},
+      "missingFiles": []
+    }
+  ],
+  "recommendations": [
+    {
+      "category": "buffs",
+      "priority": "high",
+      "action": "Description coverage is 11.9%. Add or strengthen category-specific description extraction before formula work."
+    },
+    {
+      "category": "buffs",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "buffs",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "skills",
+      "priority": "high",
+      "action": "Description coverage is 21.6%. Add or strengthen category-specific description extraction before formula work."
+    },
+    {
+      "category": "skills",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "skills",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "talents",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "talents",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "seasonal-talents",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "seasonal-talents",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "factors",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "factors",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "items-consumables",
+      "priority": "high",
+      "action": "Description coverage is 0.0%. Add or strengthen category-specific description extraction before formula work."
+    },
+    {
+      "category": "items-consumables",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "imagines",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "linktext-tooltips",
+      "priority": "medium",
+      "action": "Value-like text exists but runtime predicate/window evidence is sparse. Keep these rows as replay-required/evidence-only."
+    },
+    {
+      "category": "modifier-master",
+      "priority": "high",
+      "action": "Description coverage is 42.1%. Add or strengthen category-specific description extraction before formula work."
+    },
+    {
+      "category": "modifier-master",
+      "priority": "medium",
+      "action": "Stack text exists without enough max/threshold classification. Add first-class stack schema before promoting contribution math."
+    },
+    {
+      "category": "equipment-packet-derived",
+      "priority": "high",
+      "action": "Keep this as a packet/runtime decoder lane. Game files can only provide scaffolding for equipment."
+    }
+  ],
+  "proposedCategorySchema": {
+    "identity": [
+      "category",
+      "uid",
+      "parentUid",
+      "sourceId",
+      "sourceKind",
+      "sourceType",
+      "level",
+      "tier"
+    ],
+    "text": [
+      "name",
+      "names",
+      "description",
+      "descriptions",
+      "cleanDescriptions",
+      "descriptionIds",
+      "linkTextIds"
+    ],
+    "semantics": [
+      "role: offensive | defensive | supportive | utility | unknown",
+      "domain: damage | tanked | healing | support",
+      "formulaTerms",
+      "activationAliases",
+      "targetScope: self | party | target | enemy | external | unknown"
+    ],
+    "stacking": [
+      "stackBuffIds",
+      "maxStacks",
+      "valuePerStack",
+      "maxStackCap",
+      "thresholdEffects",
+      "targetStackEffects",
+      "linkedMaxStackBuffIds",
+      "runtimeStackEvidenceRequired"
+    ],
+    "values": [
+      "valueRows: level/tier/stack/value/unit/formulaTerm/targetScope",
+      "ownerPartySplit",
+      "durationSeconds",
+      "cooldownSeconds",
+      "confidence"
+    ],
+    "relationships": [
+      "buffIds",
+      "targetDamageIds",
+      "targetRecountIds",
+      "sourceEntityIds",
+      "ownerClassIds",
+      "ownerSpecIds",
+      "itemIds",
+      "factorIds"
+    ],
+    "provenance": [
+      "sourceFiles",
+      "sourceTables",
+      "sourceOffsets",
+      "nameIds",
+      "descriptionIds",
+      "evidence",
+      "notes"
+    ]
+  },
+  "proposedNextOutputs": [
+    {
+      "category": "buffs",
+      "output": "BuffDescriptions.json",
+      "packetOnly": false,
+      "role": "runtime buff/debuff names, descriptions, levels, and stack-ish BuffTable evidence"
+    },
+    {
+      "category": "skills",
+      "output": "SkillDescriptions.json",
+      "packetOnly": false,
+      "role": "skill labels, descriptions, cooldowns, emitted damage rows, and child damage relationships"
+    },
+    {
+      "category": "talents",
+      "output": "TalentDescriptions.json",
+      "packetOnly": false,
+      "role": "talent/passive descriptions, class/spec ownership, activation aliases, and buff/source links"
+    },
+    {
+      "category": "seasonal-talents",
+      "output": "SeasonalTalentDescriptions.json",
+      "packetOnly": false,
+      "role": "seasonal/slumberdream node and rogue-entry descriptions, predicates, and source links"
+    },
+    {
+      "category": "factors",
+      "output": "FactorDescriptions.json",
+      "packetOnly": false,
+      "role": "seasonal factor names, grade rows, values, icons, and affected damage/recount links"
+    },
+    {
+      "category": "items-consumables",
+      "output": "ItemDescriptions.json",
+      "packetOnly": false,
+      "role": "item/consumable names, food/potion buff bridge rows, tiers, and static item text"
+    },
+    {
+      "category": "imagines",
+      "output": "BattleImagineDescriptions.json",
+      "packetOnly": false,
+      "role": "Battle Imagine owner/source rows, Aoyi skill labels, and runtime buff/debuff bridges"
+    },
+    {
+      "category": "linktext-tooltips",
+      "output": "LinkTextDescriptions.json",
+      "packetOnly": false,
+      "role": "client linktext tooltip descriptions, including text embedded in other descriptions"
+    },
+    {
+      "category": "modifier-master",
+      "output": "ModifierUidMaster.json",
+      "packetOnly": false,
+      "role": "UID relationships, reportability gates, role classification, and contribution-readiness metadata"
+    },
+    {
+      "category": "equipment-packet-derived",
+      "output": "EquipmentStatDecoder.json",
+      "packetOnly": true,
+      "role": "actual equipped gear statlines and rolled values must come from packets/runtime state, not game files"
+    }
+  ]
+}

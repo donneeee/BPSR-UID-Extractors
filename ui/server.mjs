@@ -89,6 +89,13 @@ const scripts = [
     outputFile: "SeasonPhantomFactors.json",
   },
   {
+    id: "linktext-descriptions",
+    fileName: "LinkTextDescriptions.gen",
+    label: "Linktext Descriptions",
+    description: "Builds localized linktext tooltip descriptions from game CTB rows.",
+    outputFile: "LinkTextDescriptions.json",
+  },
+  {
     id: "effect-sources",
     fileName: "EffectSources.gen",
     label: "Effect Sources",
@@ -136,6 +143,7 @@ const outputFiles = [
   "SkillBreakdownDetails.json",
   "skillnames.json",
   "SeasonPhantomFactors.json",
+  "LinkTextDescriptions.json",
   "EffectSources.json",
   "icons/IconManifest.json",
   "parser-assets/manifest.json",

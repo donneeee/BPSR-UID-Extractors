@@ -1,0 +1,3065 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T02:17:17.685Z",
+  "auditedStatus": "needs-value-ladder-selector",
+  "totalRows": 42,
+  "byCategory": {
+    "talents": 14,
+    "buffs": 10,
+    "seasonal-talents": 10,
+    "factors": 8
+  },
+  "byFormulaReadiness": {
+    "formula-replay-required": 42
+  },
+  "byFormulaZone": {
+    "baseAttackTerm": 22,
+    "luckyStrikeBaseTerm": 19,
+    "elementalDamage": 17,
+    "generalDamage": 16,
+    "critical": 12,
+    "luckyEnhancement": 7,
+    "timingCadence": 6,
+    "skillMultiplier": 2,
+    "finalDamage": 1,
+    "physicalMagicEnhancement": 1,
+    "seasonDamage": 1
+  },
+  "byBlocker": {
+    "component:atk:value-ladder-selection-required": 17,
+    "component:elemental-damage:value-ladder-selection-required": 14,
+    "component:critical-damage:value-ladder-selection-required": 9,
+    "component:critical-rate:expected-value-model-required": 6,
+    "component:haste-or-attack-speed:timing-model-required": 4,
+    "component:adaptive-primary-stat:stat-conversion-model-required": 3,
+    "component:critical-rate:value-ladder-selection-required": 3,
+    "component:mastery-stat:stat-conversion-model-required": 3,
+    "component:matk:value-ladder-selection-required": 2,
+    "component:cooldown-or-resource:timing-model-required": 1,
+    "component:generic-damage:value-ladder-selection-required": 1,
+    "component:hit-count-model:hit-count-model-required": 1
+  },
+  "byWording": {
+    "no-sample-text": 23,
+    "attack-wording": 9,
+    "critical-wording": 5,
+    "elemental-wording": 2,
+    "seasonal-wording": 2,
+    "unbucketed-wording": 1
+  },
+  "byCategoryWording": {
+    "buffs / no-sample-text": 10,
+    "talents / no-sample-text": 6,
+    "factors / no-sample-text": 4,
+    "talents / attack-wording": 4,
+    "factors / attack-wording": 3,
+    "seasonal-talents / no-sample-text": 3,
+    "seasonal-talents / attack-wording": 2,
+    "seasonal-talents / critical-wording": 2,
+    "seasonal-talents / seasonal-wording": 2,
+    "talents / critical-wording": 2,
+    "talents / elemental-wording": 2,
+    "factors / critical-wording": 1,
+    "seasonal-talents / unbucketed-wording": 1
+  },
+  "byScopeGap": {},
+  "byScopeGapCategory": {},
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "buffs:1301",
+      "uid": "1301",
+      "category": "buffs",
+      "sourceLabel": "法杖天生回能量BUFF",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050110",
+      "uid": "3050110",
+      "category": "buffs",
+      "sourceLabel": "雷影G11",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3050120",
+      "uid": "3050120",
+      "category": "buffs",
+      "sourceLabel": "终极一斩不再限制伤害上限",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3054060",
+      "uid": "3054060",
+      "category": "buffs",
+      "sourceLabel": "神盾G6",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3054110",
+      "uid": "3054110",
+      "category": "buffs",
+      "sourceLabel": "神盾G11",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3054130",
+      "uid": "3054130",
+      "category": "buffs",
+      "sourceLabel": "神盾狂想-挨打清算",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3055050",
+      "uid": "3055050",
+      "category": "buffs",
+      "sourceLabel": "巨刃G5",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3055150",
+      "uid": "3055150",
+      "category": "buffs",
+      "sourceLabel": "巨刃狂想-岩怒反击",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:3056070",
+      "uid": "3056070",
+      "category": "buffs",
+      "sourceLabel": "森语G7",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:matk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "buffs:5001",
+      "uid": "5001",
+      "category": "buffs",
+      "sourceLabel": "斩计数Buff",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required",
+        "component:critical-rate:expected-value-model-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "factors:3050110",
+      "uid": "3050110",
+      "category": "factors",
+      "sourceLabel": "uid:3050110",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "factors:3050120",
+      "uid": "3050120",
+      "category": "factors",
+      "sourceLabel": "uid:3050120",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "generalDamage",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK | Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK | Ultimate Slash จะไม่จำกัดเพดาน DMG อีกต่อไป พร้อมขยายเวลาการย้อน DMG เป็น 60 วินาที ทุกครั้งที่ Ultimate Slash ใช้ Mark of Thunder 1 ชิ้น สร้าง DMG จาก 150% ของ ATK เป็น ของ ATK D...",
+      "sampleTexts": [
+        "DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK",
+        "Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK",
+        "Ultimate Slash จะไม่จำกัดเพดาน DMG อีกต่อไป พร้อมขยายเวลาการย้อน DMG เป็น 60 วินาที ทุกครั้งที่ Ultimate Slash ใช้ Mark of Thunder 1 ชิ้น สร้าง DMG จาก 150% ของ ATK เป็น ของ ATK D...",
+        "O dano causado por Símbolo do Trovão consumido pelo Corte Supremo aumenta de 150% do ATQ para do ATQ",
+        "150%"
+      ],
+      "samples": [
+        {
+          "value": 150,
+          "unit": "percent",
+          "rawTexts": [
+            "150 %",
+            "150%"
+          ],
+          "sourceTexts": [
+            "Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK",
+            "DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK",
+            "O dano causado por Símbolo do Trovão consumido pelo Corte Supremo aumenta de 150% do ATQ para do ATQ",
+            "Ultimate Slash จะไม่จำกัดเพดาน DMG อีกต่อไป พร้อมขยายเวลาการย้อน DMG เป็น 60 วินาที ทุกครั้งที่ Ultimate Slash ใช้ Mark of Thunder 1 ชิ้น สร้าง DMG จาก 150% ของ ATK เป็น ของ ATK DMG dari Final Slash tidak lagi terbatas",
+            "궁극의 참격은 번개의 인장을 1개 소모할 때마다 공격력 150%의 대미지를 주던 효과가 공격력 만큼까지 증가합니다",
+            "終極一斬每消耗1枚雷之印造成傷害從150%攻擊力提升至攻擊力",
+            "终极一斩每消耗1枚雷之印造成伤害从150%攻击力提升至攻击力",
+            "雷極一閃が雷印を1つ消費するたび、与えるダメージが攻撃力の150%からにアップする"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "factors:3054060",
+      "uid": "3054060",
+      "category": "factors",
+      "sourceLabel": "uid:3054060",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+      "sampleTexts": [
+        "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+        "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+        "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+        "1%",
+        "1 %"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Setiap 1% Mastery memberikan ATK",
+            "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+            "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "factors:3054110",
+      "uid": "3054110",
+      "category": "factors",
+      "sourceLabel": "uid:3054110",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "factors:3054130",
+      "uid": "3054130",
+      "category": "factors",
+      "sourceLabel": "uid:3054130",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required",
+        "component:hit-count-model:hit-count-model-required"
+      ],
+      "sampleText": "there is a 30% fixed chance to trigger Inferno Reckon | 5 วินาที CRIT DMG ของ Inferno Reckon + Menerima serangan berpeluang tetap 30% memicu Blazing Reckon | há 30% de chance fixa de ativar o Inferno do Juízo",
+      "sampleTexts": [
+        "there is a 30% fixed chance to trigger Inferno Reckon",
+        "5 วินาที CRIT DMG ของ Inferno Reckon + Menerima serangan berpeluang tetap 30% memicu Blazing Reckon",
+        "há 30% de chance fixa de ativar o Inferno do Juízo",
+        "เมื่อถูกโจมตี มีโอกาสคงที่ 30% ที่จะเกิดผล Inferno Reckon เอฟเฟกต์นี้ทำงานสูงสุดหนึ่งครั้งในทุกๆ 0",
+        "30%"
+      ],
+      "samples": [
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "5 วินาที CRIT DMG ของ Inferno Reckon + Menerima serangan berpeluang tetap 30% memicu Blazing Reckon",
+            "há 30% de chance fixa de ativar o Inferno do Juízo",
+            "there is a 30% fixed chance to trigger Inferno Reckon",
+            "เมื่อถูกโจมตี มีโอกาสคงที่ 30% ที่จะเกิดผล Inferno Reckon เอฟเฟกต์นี้ทำงานสูงสุดหนึ่งครั้งในทุกๆ 0",
+            "공격을 받을 때 30%의 고정 확률로 열화의 숙청이 발동됩니다",
+            "受到攻击时有30%固定几率触发炽热清算，该效果每0",
+            "受到攻擊時有30%固定機率觸發熾熱清算，該效果每0",
+            "攻撃を受けると30%の固定確率でブレイズレコニングを発動する"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "factors:3055050",
+      "uid": "3055050",
+      "category": "factors",
+      "sourceLabel": "uid:3055050",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+      "sampleTexts": [
+        "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+        "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+        "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+        "1%",
+        "1 %"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Setiap 1% Mastery memberikan ATK",
+            "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+            "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "factors:3055150",
+      "uid": "3055150",
+      "category": "factors",
+      "sourceLabel": "uid:3055150",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "factors:3056070",
+      "uid": "3056070",
+      "category": "factors",
+      "sourceLabel": "uid:3056070",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm",
+        "physicalMagicEnhancement"
+      ],
+      "valueBlockers": [
+        "component:matk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "seasonal-talents:112",
+      "uid": "112",
+      "category": "seasonal-talents",
+      "sourceLabel": "Blood Pact (Curse)",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "seasonal-talents:113",
+      "uid": "113",
+      "category": "seasonal-talents",
+      "sourceLabel": "Bloodwrath Conversion",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "3% ATK | 3 % de ATQ | 3% หากมี Attribute \"Bloodwrath\" อยู่ ผลลัพธ์นี้จะเพิ่มขึ้น 0",
+      "sampleTexts": [
+        "3% ATK",
+        "3 % de ATQ",
+        "3% หากมี Attribute \"Bloodwrath\" อยู่ ผลลัพธ์นี้จะเพิ่มขึ้น 0",
+        "3%",
+        "3 %"
+      ],
+      "samples": [
+        {
+          "value": 3,
+          "unit": "percent",
+          "rawTexts": [
+            "3 %",
+            "3%"
+          ],
+          "sourceTexts": [
+            "3 % de ATQ",
+            "3% ATK",
+            "3% หากมี Attribute \"Bloodwrath\" อยู่ ผลลัพธ์นี้จะเพิ่มขึ้น 0",
+            "3% 증가합니다",
+            "3%攻击力，每持有一个「血怒」词条该效果增加0",
+            "3%攻擊力，每持有一個「血怒」詞條該效果增加0"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:115",
+      "uid": "115",
+      "category": "seasonal-talents",
+      "sourceLabel": "Tide-Turner's Resolve",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "component:generic-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "seasonal-talents:1301",
+      "uid": "1301",
+      "category": "seasonal-talents",
+      "sourceLabel": "Mirage Dream",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyStrikeBaseTerm",
+        "seasonDamage"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "melee skills count +1 | Nahkampffähigkeiten zählen +1 | compteur +1 pour les compétences de mêlée",
+      "sampleTexts": [
+        "melee skills count +1",
+        "Nahkampffähigkeiten zählen +1",
+        "compteur +1 pour les compétences de mêlée",
+        "las habilidades cuerpo a cuerpo suman +1 al contador",
+        "+1"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "flat",
+          "rawTexts": [
+            "+1"
+          ],
+          "sourceTexts": [
+            "compteur +1 pour les compétences de mêlée",
+            "las habilidades cuerpo a cuerpo suman +1 al contador",
+            "melee skills count +1",
+            "Nahkampffähigkeiten zählen +1",
+            "근접 스킬은 +1로 계산",
+            "普通攻击、特殊攻击对主目标每造成12次伤害（近战技能计数额外+1），触发持续8秒的迷幻梦境，最多叠加10层",
+            "普通攻擊、特殊攻擊對主目標每造成12次傷害（近戰技能計數額外+1），觸發持續8秒的迷幻夢境，最多疊加10層",
+            "通常攻撃や特殊攻撃でメイン対象にダメージを12回与えるたびに（近接スキルはカウント数+1追加）、8秒間、夢幻迷界を発動する"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:1302",
+      "uid": "1302",
+      "category": "seasonal-talents",
+      "sourceLabel": "Dual Ascension Formation",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "Increases Mirage Dream max stack count by 3 | Erhöht die maximale Stapelanzahl von Trugbildtraum um 3 | Augmente le nombre maximum de cumuls de Rêve de mirage de 3",
+      "sampleTexts": [
+        "Increases Mirage Dream max stack count by 3",
+        "Erhöht die maximale Stapelanzahl von Trugbildtraum um 3",
+        "Augmente le nombre maximum de cumuls de Rêve de mirage de 3",
+        "Aumenta o número máximo de acúmulos de Sonho de Miragem em 3",
+        "Aumenta en 3 el número máximo de acumulaciones de Ensueño Ilusorio"
+      ],
+      "samples": [
+        {
+          "value": 3,
+          "unit": "flat",
+          "rawTexts": [
+            "+3",
+            "3"
+          ],
+          "sourceTexts": [
+            "Augmente le nombre maximum de cumuls de Rêve de mirage de 3",
+            "Aumenta en 3 el número máximo de acumulaciones de Ensueño Ilusorio",
+            "Aumenta o número máximo de acúmulos de Sonho de Miragem em 3",
+            "Erhöht die maximale Stapelanzahl von Trugbildtraum um 3",
+            "Increases Mirage Dream max stack count by 3",
+            "夢幻迷界の最大スタック数+3",
+            "迷幻夢境最多疊加層數+3",
+            "迷幻梦境最多叠加层数+3"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:1303",
+      "uid": "1303",
+      "category": "seasonal-talents",
+      "sourceLabel": "Battlestart - Rare",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "seasonal-talents:1305",
+      "uid": "1305",
+      "category": "seasonal-talents",
+      "sourceLabel": "Rapid Assault Stacks",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "luckyStrikeBaseTerm",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required",
+        "component:haste-or-attack-speed:timing-model-required"
+      ],
+      "sampleText": "5% Attack SPD | 5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed | 5 % de VEL de ATQ",
+      "sampleTexts": [
+        "5% Attack SPD",
+        "5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed",
+        "5 % de VEL de ATQ",
+        "Jeder Stapel von Trugbildtraum gewährt 0,5 % Angriff-GES",
+        "Cada acúmulo de Sonho de Miragem concede 0,5% de VEL de Ataque"
+      ],
+      "samples": [
+        {
+          "value": 0.5,
+          "unit": "percent",
+          "rawTexts": [
+            "0,5 %",
+            "0,5%"
+          ],
+          "sourceTexts": [
+            "5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed",
+            "Cada acúmulo de Sonho de Miragem concede 0,5% de VEL de Ataque",
+            "Chaque cumul de Rêve de mirage confère 0,5 % de vitesse d'attaque",
+            "Jeder Stapel von Trugbildtraum gewährt 0,5 % Angriff-GES"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 5,
+          "unit": "percent",
+          "rawTexts": [
+            "5 %",
+            "5%"
+          ],
+          "sourceTexts": [
+            "5 % de VEL de ATQ",
+            "5% Attack SPD",
+            "5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed",
+            "5% 증가합니다",
+            "5%攻击速度",
+            "5%攻擊速度"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:1310",
+      "uid": "1310",
+      "category": "seasonal-talents",
+      "sourceLabel": "Grace",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "finalDamage",
+        "luckyEnhancement",
+        "luckyStrikeBaseTerm",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required",
+        "component:critical-rate:expected-value-model-required",
+        "component:haste-or-attack-speed:timing-model-required",
+        "component:mastery-stat:stat-conversion-model-required"
+      ],
+      "sampleText": "Mastery จะมีค่าเปอร์เซ็นต์สุดท้ายเพิ่มขึ้น +5% Saat Illusionary Dream mencapai tumpukan tertinggi | by 5% | atau Mastery akan mendapat +5% pada nilai persentase finalnya",
+      "sampleTexts": [
+        "Mastery จะมีค่าเปอร์เซ็นต์สุดท้ายเพิ่มขึ้น +5% Saat Illusionary Dream mencapai tumpukan tertinggi",
+        "by 5%",
+        "atau Mastery akan mendapat +5% pada nilai persentase finalnya",
+        "aumenta em 5% o atributo mais alto entre os 4 seguintes: Crítico",
+        "5%"
+      ],
+      "samples": [
+        {
+          "value": 5,
+          "unit": "percent",
+          "rawTexts": [
+            "+5%",
+            "5 %",
+            "5%"
+          ],
+          "sourceTexts": [
+            "atau Mastery akan mendapat +5% pada nilai persentase finalnya",
+            "aumenta em 5% o atributo mais alto entre os 4 seguintes: Crítico",
+            "by 5%",
+            "Mastery จะมีค่าเปอร์เซ็นต์สุดท้ายเพิ่มขึ้น +5% Saat Illusionary Dream mencapai tumpukan tertinggi",
+            "숙련 4개의 능력치 중 가장 높은 능력치의 최종 퍼센트 수치가 5% 증가합니다",
+            "夢幻迷界が最大スタック数に達したとき、会心、ファスト、幸運、器用さの4ステータスのうち、最も高い1項目の最終値+5%",
+            "迷幻夢境達到最大層數時，暴擊、急速、幸運、精通這4項屬性中值最高的一項其最終百分比值+5%",
+            "迷幻梦境达到最大层数时，暴击、急速、幸运、精通这4项属性中值最高的一项其最终百分比值+5%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:138",
+      "uid": "138",
+      "category": "seasonal-talents",
+      "sourceLabel": "Overload Crit",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:value-ladder-selection-required"
+      ],
+      "sampleText": "Crit +30% | Crit Rate +30% | every 2% is converted to 1% Crit DMG",
+      "sampleTexts": [
+        "Crit +30%",
+        "Crit Rate +30%",
+        "every 2% is converted to 1% Crit DMG",
+        "For any permanent Crit Rate above 50%",
+        "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "2%마다 1%의 치명타 대미지로 전환됩니다",
+            "Bei einer permanenten Krit-Rate über 50 % werden jeweils 2 % in 1 % Krit-SCH umgewandelt",
+            "cada 2% é convertido em 1% de dano crítico",
+            "chaque tranche de 2 % est convertie en 1 % de dégâts critiques",
+            "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+            "every 2% is converted to 1% Crit DMG",
+            "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+            "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 2,
+          "unit": "percent",
+          "rawTexts": [
+            "2 %",
+            "2%"
+          ],
+          "sourceTexts": [
+            "2%마다 1%의 치명타 대미지로 전환됩니다",
+            "Bei einer permanenten Krit-Rate über 50 % werden jeweils 2 % in 1 % Krit-SCH umgewandelt",
+            "cada 2% é convertido em 1% de dano crítico",
+            "chaque tranche de 2 % est convertie en 1 % de dégâts critiques",
+            "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+            "every 2% is converted to 1% Crit DMG",
+            "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+            "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "+30 %",
+            "+30%",
+            "30%"
+          ],
+          "sourceTexts": [
+            "Crit +30%",
+            "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+            "Crit Rate +30%",
+            "Krit-Rate +30 %",
+            "Overload Crit Overload Crit 超载暴击 超載暴擊 過負荷会心 치명타 과부하 Surcharge critique Überladener Krit Sobrecarga Crítica Sobrecarga Crítica โอเวอร์โหลด CRIT Overload Critical 「暴虐」超载暴击 Crit Rate +30%",
+            "Taux de critique +30 %",
+            "Taxa de Crítico +30%",
+            "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "até 50%",
+            "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+            "For any permanent Crit Rate above 50%",
+            "Para qualquer Taxa de Crítico permanente acima de 50%",
+            "up to 50%",
+            "상시 치명타가 50%를 초과하는 부분은",
+            "최대 50%",
+            "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "seasonal-talents:5001",
+      "uid": "5001",
+      "category": "seasonal-talents",
+      "sourceLabel": "Overload Crit",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "generalDamage"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required",
+        "component:critical-rate:expected-value-model-required"
+      ],
+      "sampleText": "For any permanent Crit above 50% | every 2% is converted to 1% Crit DMG | Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+      "sampleTexts": [
+        "For any permanent Crit above 50%",
+        "every 2% is converted to 1% Crit DMG",
+        "Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+        "membawa atribut Epic [Crit] Overload Critical: Crit +30%",
+        "เริ่มต้นพร้อมคำอธิบายระดับ Epic \"Crit\" Overload Crit: Crit +30%"
+      ],
+      "samples": [
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "cada 2% é convertido em 1% de dano crítico",
+            "chaque 2 % sont convertis en 1 % de dégâts critiques",
+            "Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+            "every 2% is converted to 1% Crit DMG",
+            "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+            "상시 치명타 능력치 중 50%를 초과하는 부분은 2%마다 1%의 치명타 대미지로 전환됩니다",
+            "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%",
+            "通常会心の50%を超過した部分は、2%毎に1%の会心ダメージに変換する（上限は50%） 시작 시 다음 에픽 옵션을 보유합니다"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 2,
+          "unit": "percent",
+          "rawTexts": [
+            "2 %",
+            "2%"
+          ],
+          "sourceTexts": [
+            "cada 2% é convertido em 1% de dano crítico",
+            "chaque 2 % sont convertis en 1 % de dégâts critiques",
+            "Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+            "every 2% is converted to 1% Crit DMG",
+            "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+            "상시 치명타 능력치 중 50%를 초과하는 부분은 2%마다 1%의 치명타 대미지로 전환됩니다",
+            "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%",
+            "通常会心の50%を超過した部分は、2%毎に1%の会心ダメージに変換する（上限は50%） 시작 시 다음 에픽 옵션을 보유합니다"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "+30 %",
+            "+30%"
+          ],
+          "sourceTexts": [
+            "- 「치명타」 치명타 과부하: 치명타 +30%",
+            "Comece o combate com o incremento épico de \"Crítico\" – Sobrecarga de Crítico: crítico +30%",
+            "Commence le combat avec l'affixe \"Critique\" épique - Surcharge critique : Critique +30 %",
+            "membawa atribut Epic [Crit] Overload Critical: Crit +30%",
+            "Overload Crit Overload Crit 超载暴击 超載暴擊 過負荷会心 치명타 과부하 Surcharge critique Überladener Krit Sobrecarga Crítica Sobrecarga Crítica โอเวอร์โหลด CRIT Overload Critical 「暴虐」超载暴击 Start combat with the Epic \"Crit\" entry — Overload Crit: Crit +30%",
+            "Start combat with the Epic \"Crit\" entry — Overload Crit: Crit +30%",
+            "เริ่มต้นพร้อมคำอธิบายระดับ Epic \"Crit\" Overload Crit: Crit +30%",
+            "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 50,
+          "unit": "percent",
+          "rawTexts": [
+            "50 %",
+            "50%"
+          ],
+          "sourceTexts": [
+            "até 50%",
+            "For any permanent Crit above 50%",
+            "Para qualquer crítico permanente acima de 50%",
+            "up to 50%",
+            "상시 치명타 능력치 중 50%를 초과하는 부분은 2%마다 1%의 치명타 대미지로 전환됩니다",
+            "최대 50%",
+            "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%",
+            "通常会心の50%を超過した部分は、2%毎に1%の会心ダメージに変換する（上限は50%） 시작 시 다음 에픽 옵션을 보유합니다"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:105",
+      "uid": "105",
+      "category": "talents",
+      "sourceLabel": "Iaido Mastery",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "component:critical-damage:value-ladder-selection-required",
+        "component:critical-rate:expected-value-model-required",
+        "component:critical-rate:value-ladder-selection-required",
+        "component:elemental-damage:value-ladder-selection-required",
+        "component:mastery-stat:stat-conversion-model-required"
+      ],
+      "sampleText": "Iaido Slash Crit +10% | Each 1% Crit chance grants 0 | When Crit chance exceeds 60%",
+      "sampleTexts": [
+        "Iaido Slash Crit +10%",
+        "Each 1% Crit chance grants 0",
+        "When Crit chance exceeds 60%",
+        "15% Crit DMG for skills that consume Thunder Sigils",
+        "32% Crit DMG for skills that consume Thunder Sigils"
+      ],
+      "samples": [
+        {
+          "value": 0.15,
+          "unit": "percent",
+          "rawTexts": [
+            "0,15 %",
+            "0,15%"
+          ],
+          "sourceTexts": [
+            "Cada 1% de chance de crítico concede 0,15% de dano crítico para habilidades que consomem Símbolos do Trovão",
+            "Chaque 1 % de chances de coup critique confère 0,15 % de dégâts critiques aux compétences consommant des Sceaux de foudre",
+            "Jedes 1 % Krit-Chance gewährt 0,15 % Krit-SCH für Fähigkeiten",
+            "Setiap 1% Critical Chance dapat memberikan 0,15% Crit DMG untuk skill yang menggunakan Thunder Seal"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 0.32,
+          "unit": "percent",
+          "rawTexts": [
+            "0,32 %",
+            "0,32%"
+          ],
+          "sourceTexts": [
+            "cada 1% excedente concede 0,32% de dano crítico adicional para habilidades que consomem Símbolos do Trovão",
+            "chaque 1 % supplémentaire confère 0,32 % de dégâts critiques supplémentaires aux compétences consommant des Sceaux de foudre",
+            "gewährt jedes weitere 1 % zusätzlich 0,32 % Krit-SCH für Fähigkeiten",
+            "setiap 1% kelebihannya akan memberikan 0,32% Crit DMG tambahan untuk skill yang menggunakan Thunder Seal"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "Each 1% Crit chance grants 0",
+            "every extra 1% grants an additional 0",
+            "会心確率1%につき、雷印を消費するスキルの会心ダメージ+0",
+            "会心確率が60%を上回っていた場合、超過1%につき、雷印を消費するスキルの会心ダメージさらに+0",
+            "当暴击几率超过60%后，超出部分每1%额外为消耗雷之印的技能提供0",
+            "每1%暴击几率可为消耗雷之印的技能提供0",
+            "每1%暴擊機率可為消耗雷之印的技能提供0",
+            "當暴擊機率超過60%後，超出部分每1%額外為消耗雷之印的技能提供0"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 10,
+          "unit": "percent",
+          "rawTexts": [
+            "+10 %",
+            "+10%"
+          ],
+          "sourceTexts": [
+            "Crítico do Corte de Iaido +10%",
+            "Iaido Mastery Iaido Mastery 居合天授 居合天授 居合の才 하늘이 내린 발도 Maîtrise de l'Iaido Iaido-Meisterschaft Maestría de Iaido Maestria em Iaido Iaido Mastery Slash Mastery 居合天授 Iaido Slash Crit +10%",
+            "Iaido Slash Crit +10%",
+            "Iaido Slash CRIT +10% ทุกๆ อัตรา CRIT 1% จะเพิ่ม CRIT DMG 0",
+            "발도 치명타 +10%",
+            "居合斩暴击+10%",
+            "居合斬暴擊+10%",
+            "雷刃抜刀の会心+10%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1106",
+      "uid": "1106",
+      "category": "talents",
+      "sourceLabel": "Direwolf's Hunger",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "generalDamage",
+        "luckyStrikeBaseTerm",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:adaptive-primary-stat:stat-conversion-model-required",
+        "component:atk:value-ladder-selection-required",
+        "component:haste-or-attack-speed:timing-model-required"
+      ],
+      "sampleText": "2% ATK | When Haste exceeds 35% | Setelah Haste melebihi 35%",
+      "sampleTexts": [
+        "2% ATK",
+        "When Haste exceeds 35%",
+        "Setelah Haste melebihi 35%",
+        "every extra 1% of Haste grants 0",
+        "2% Saat Wildwolf mengakibatkan Crit DMG"
+      ],
+      "samples": [
+        {
+          "value": 0.2,
+          "unit": "percent",
+          "rawTexts": [
+            "0,2 %",
+            "0,2%"
+          ],
+          "sourceTexts": [
+            "cada 1% de Celeridade adicional concede 0,2% de ATQ",
+            "chaque 1 % de célérité supplémentaire confère 0,2 % d'attaque",
+            "gewährt jedes zusätzliche 1 % Tempo 0,2 % des ANG",
+            "setiap 1% kelebihannya akan memberikan 0,2% ATK"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 1,
+          "unit": "percent",
+          "rawTexts": [
+            "1 %",
+            "1%"
+          ],
+          "sourceTexts": [
+            "cada 1% de Celeridade adicional concede 0,2% de ATQ",
+            "every extra 1% of Haste grants 0",
+            "setiap 1% kelebihannya akan memberikan 0,2% ATK",
+            "เมื่อ Wild Wolf ทำ CRIT DMG จะทำให้คุณและสัตว์ของคุณได้รับ Haste +2% เป็นเวลา 10 วินาที ซ้อนทับได้สูงสุด 5 Stack เมื่อค่า Haste เกิน 35% ส่วนที่เกินทุกๆ 1% จะเปลี่ยนเป็น ATK 0",
+            "속공 초과분 1%당 공격력이 0",
+            "ファストが35%を超えると、超過したファスト1%につき、攻撃力+0",
+            "当急速超过35%后，超出部分每1%急速提供0",
+            "當急速超過35%後，超出部分每1%急速提供0"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 2,
+          "unit": "percent",
+          "rawTexts": [
+            "+2%",
+            "2 %",
+            "2%"
+          ],
+          "sourceTexts": [
+            "2% ATK",
+            "2% Saat Wildwolf mengakibatkan Crit DMG",
+            "2% 증가합니다",
+            "2%攻击力",
+            "2%攻擊力",
+            "você e sua Fera recebem 2% de Celeridade por 10 s",
+            "you and your Beast gain 2% Haste for 10s",
+            "野狼造成暴击伤害时，使得你和你的野兽急速+2%，持续10秒，最多叠加5层"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 35,
+          "unit": "percent",
+          "rawTexts": [
+            "35 %",
+            "35%"
+          ],
+          "sourceTexts": [
+            "Quando a Celeridade exceder 35%",
+            "Setelah Haste melebihi 35%",
+            "When Haste exceeds 35%",
+            "เมื่อ Wild Wolf ทำ CRIT DMG จะทำให้คุณและสัตว์ของคุณได้รับ Haste +2% เป็นเวลา 10 วินาที ซ้อนทับได้สูงสุด 5 Stack เมื่อค่า Haste เกิน 35% ส่วนที่เกินทุกๆ 1% จะเปลี่ยนเป็น ATK 0",
+            "속공이 35%보다 높으면",
+            "ファストが35%を超えると、超過したファスト1%につき、攻撃力+0",
+            "当急速超过35%后，超出部分每1%急速提供0",
+            "當急速超過35%後，超出部分每1%急速提供0"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:1108",
+      "uid": "1108",
+      "category": "talents",
+      "sourceLabel": "Phantom Wolfstrike",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "there is a fixed 30% chance to summon a Phantom Direwolf using Pounce and Bite to attack the current enemy | há 30% de chance fixa de invocar um Lobo Atroz Espectral que usa Pulo e Mordida para atacar o inimigo atual | il y a 30 % de chances fixes d'invoquer un Loup sinistre fantôme qui utilise Bond mordant pour attaquer l'ennemi actuel",
+      "sampleTexts": [
+        "there is a fixed 30% chance to summon a Phantom Direwolf using Pounce and Bite to attack the current enemy",
+        "há 30% de chance fixa de invocar um Lobo Atroz Espectral que usa Pulo e Mordida para atacar o inimigo atual",
+        "il y a 30 % de chances fixes d'invoquer un Loup sinistre fantôme qui utilise Bond mordant pour attaquer l'ennemi actuel",
+        "berpeluang tetap 30% memanggil seekor Phantom Demonwolf yang akan melancarkan Pounce Bite pada musuh yang ditargetkan saat ini",
+        "30%"
+      ],
+      "samples": [
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "berpeluang tetap 30% memanggil seekor Phantom Demonwolf yang akan melancarkan Pounce Bite pada musuh yang ditargetkan saat ini",
+            "há 30% de chance fixa de invocar um Lobo Atroz Espectral que usa Pulo e Mordida para atacar o inimigo atual",
+            "il y a 30 % de chances fixes d'invoquer un Loup sinistre fantôme qui utilise Bond mordant pour attaquer l'ennemi actuel",
+            "there is a fixed 30% chance to summon a Phantom Direwolf using Pounce and Bite to attack the current enemy",
+            "꼬리 휩쓸기를 발동할 때 30%의 고정 확률로 환영 늑대 마수 1마리를 소환해 현재 공격 대상을 물어뜯기로 공격합니다",
+            "臣狼が協力攻撃、掃撃を発動すると、30%の固定確率で幻影魔狼を召喚し、咬撃を発動する",
+            "野狼触发协同攻击、扫尾时有30%固定几率召唤一只幻影魔狼扑咬当前敌方目标",
+            "野狼觸發協同攻擊、掃尾時有30%固定機率召喚一隻幻影魔狼撲咬當前敵方目標"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:114",
+      "uid": "114",
+      "category": "talents",
+      "sourceLabel": "Touch of Thunder Soul",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike | Moon Blade เมื่อ Lucky Strike ทำงาน มีโอกาสคงที่ 60% ปล่อย Lightning Strike DMG ที่ Lightning Strike สร้างจะทวีคูณ Saat Moonblade memicu Lucky Hit | terdapat 60% peluang tetap untuk melancarkan Thunderstrike",
+      "sampleTexts": [
+        "Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike",
+        "Moon Blade เมื่อ Lucky Strike ทำงาน มีโอกาสคงที่ 60% ปล่อย Lightning Strike DMG ที่ Lightning Strike สร้างจะทวีคูณ Saat Moonblade memicu Lucky Hit",
+        "terdapat 60% peluang tetap untuk melancarkan Thunderstrike",
+        "Lâminas Lunares têm uma chance fixa de 60% de lançar Golpe do Trovão ao acertar um Golpe de Sorte",
+        "60%"
+      ],
+      "samples": [
+        {
+          "value": 60,
+          "unit": "percent",
+          "rawTexts": [
+            "60 %",
+            "60%"
+          ],
+          "sourceTexts": [
+            "60%의 고정 확률로 뇌격을 시전합니다",
+            "Lâminas Lunares têm uma chance fixa de 60% de lançar Golpe do Trovão ao acertar um Golpe de Sorte",
+            "Moon Blade เมื่อ Lucky Strike ทำงาน มีโอกาสคงที่ 60% ปล่อย Lightning Strike DMG ที่ Lightning Strike สร้างจะทวีคูณ Saat Moonblade memicu Lucky Hit",
+            "Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike",
+            "terdapat 60% peluang tetap untuk melancarkan Thunderstrike",
+            "月刃の攻撃が幸運の一撃になった場合、60%の固定確率で雷撃を発動する",
+            "月刃触发幸运一击时，有60%固定几率施放雷击",
+            "月刃觸發幸運一擊時，有60%固定機率施放雷擊"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:115",
+      "uid": "115",
+      "category": "talents",
+      "sourceLabel": "Breath of Mark",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1231",
+      "uid": "1231",
+      "category": "talents",
+      "sourceLabel": "Lightforged Fortitude",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1242",
+      "uid": "1242",
+      "category": "talents",
+      "sourceLabel": "Holy Heal",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1243",
+      "uid": "1243",
+      "category": "talents",
+      "sourceLabel": "Light Protection",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1263",
+      "uid": "1263",
+      "category": "talents",
+      "sourceLabel": "Light Healing",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:1264",
+      "uid": "1264",
+      "category": "talents",
+      "sourceLabel": "Light Protection",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "elementalDamage"
+      ],
+      "valueBlockers": [
+        "component:elemental-damage:value-ladder-selection-required"
+      ],
+      "sampleText": "",
+      "sampleTexts": [],
+      "samples": []
+    },
+    {
+      "key": "talents:212",
+      "uid": "212",
+      "category": "talents",
+      "sourceLabel": "Frostbeam Spec",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "generalDamage",
+        "luckyEnhancement",
+        "timingCadence"
+      ],
+      "valueBlockers": [
+        "component:adaptive-primary-stat:stat-conversion-model-required",
+        "component:cooldown-or-resource:timing-model-required",
+        "component:elemental-damage:value-ladder-selection-required",
+        "component:mastery-stat:stat-conversion-model-required"
+      ],
+      "sampleText": "85% DMG bonus | DMG dari Ice Ray +15% | ทุกๆ 10% ของค่า Mastery จะเพิ่ม DMG อีก 0",
+      "sampleTexts": [
+        "85% DMG bonus",
+        "DMG dari Ice Ray +15%",
+        "ทุกๆ 10% ของค่า Mastery จะเพิ่ม DMG อีก 0",
+        "Every Frost Crystal increases Frostbeam DMG by 15%",
+        "เปลี่ยนการโจมตีพิเศษเป็น Frostbeam และเพิ่มความสามารถเมื่อใช้ Skills นี้ ทุกครั้งที่มี Dark Ice จะทำให้ DMG ของ Frostbeam +15%"
+      ],
+      "samples": [
+        {
+          "value": 0.85,
+          "unit": "percent",
+          "rawTexts": [
+            "0,85 %",
+            "0,85%"
+          ],
+          "sourceTexts": [
+            "Alle 10 % Meisterschaft gewähren einen zusätzlichen SCH-Bonus von 0,85 %",
+            "Cada 10% de Maestria concede um bônus de dano adicional de 0,85%",
+            "Chaque tranche de 10 % de maîtrise confère un bonus de dégâts supplémentaire de 0,85 %",
+            "setiap 10% Mastery akan memberi tambahan peningkatan 0,85%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 10,
+          "unit": "percent",
+          "rawTexts": [
+            "10 %",
+            "10%"
+          ],
+          "sourceTexts": [
+            "Cada 10% de Maestria concede um bônus de dano adicional de 0,85%",
+            "Each 10% Mastery grants an additional 0",
+            "setiap 10% Mastery akan memberi tambahan peningkatan 0,85%",
+            "ทุกๆ 10% ของค่า Mastery จะเพิ่ม DMG อีก 0",
+            "숙련 10%당 0",
+            "保有する玄氷1つにつきフロストレイのダメージ+15%、さらに器用さ10%につき+0",
+            "每拥有一个玄冰使得寒冰射线伤害+15%，每10%精通额外提升0",
+            "每擁有一個玄冰使得寒冰射線傷害+15%，每10%精通額外提升0"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 15,
+          "unit": "percent",
+          "rawTexts": [
+            "+15%",
+            "15 %",
+            "15%"
+          ],
+          "sourceTexts": [
+            "Cada Cristal de Gelo aumenta o dano do Raio de Gelo em 15%",
+            "DMG dari Ice Ray +15%",
+            "Every Frost Crystal increases Frostbeam DMG by 15%",
+            "เปลี่ยนการโจมตีพิเศษเป็น Frostbeam และเพิ่มความสามารถเมื่อใช้ Skills นี้ ทุกครั้งที่มี Dark Ice จะทำให้ DMG ของ Frostbeam +15%",
+            "보유한 미스틱 아이스 1개당 프로스트 레이의 대미지가 15% 증가하며",
+            "保有する玄氷1つにつきフロストレイのダメージ+15%、さらに器用さ10%につき+0",
+            "每拥有一个玄冰使得寒冰射线伤害+15%，每10%精通额外提升0",
+            "每擁有一個玄冰使得寒冰射線傷害+15%，每10%精通額外提升0"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 30,
+          "unit": "percent",
+          "rawTexts": [
+            "+30%",
+            "30 %",
+            "30%"
+          ],
+          "sourceTexts": [
+            "85%（不超过5%）同时消耗的寒冰能量+30%",
+            "85%（不超過5%）同時消耗的寒冰能量+30%",
+            "85%（最大5%まで）、かつ消費する凍源+30%",
+            "and increases the Ice Energy consumed by 30%",
+            "e aumenta a Energia de Gelo consumida em 30%",
+            "lalu juga konsumsi Ice Energy +30%",
+            "พร้อมทั้งเพิ่มการใช้ Ice Energy +30% เมื่อ Frostbeam โจมตีโดนเป้าหมาย ทุกครั้งที่สร้าง DMG ครบ 13 ครั้ง จะลดเวลา CD ที่เหลือของ Permafrost ลง 1 วินาที",
+            "아이스 에너지 소모량이 30% 증가합니다"
+          ],
+          "confidence": "text"
+        }
+      ]
+    },
+    {
+      "key": "talents:248",
+      "uid": "248",
+      "category": "talents",
+      "sourceLabel": "Infusion Sublimation",
+      "formulaReadiness": "formula-replay-required",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "elementalDamage",
+        "luckyStrikeBaseTerm"
+      ],
+      "valueBlockers": [
+        "component:atk:value-ladder-selection-required"
+      ],
+      "sampleText": "Ice ATK increases by 150 | o ATQ de Gelo aumenta em 150 | el ATQ de hielo aumenta en 150",
+      "sampleTexts": [
+        "Ice ATK increases by 150",
+        "o ATQ de Gelo aumenta em 150",
+        "el ATQ de hielo aumenta en 150",
+        "l'attaque de givre augmente de 150",
+        "Während Permafrost erhöht sich der Eis-ANG um 150"
+      ],
+      "samples": [
+        {
+          "value": 150,
+          "unit": "flat",
+          "rawTexts": [
+            "+150",
+            "150"
+          ],
+          "sourceTexts": [
+            "el ATQ de hielo aumenta en 150",
+            "Ice ATK increases by 150",
+            "l'attaque de givre augmente de 150",
+            "o ATQ de Gelo aumenta em 150",
+            "Während Permafrost erhöht sich der Eis-ANG um 150",
+            "パーマフロストの有効中、氷属性攻撃力+150",
+            "冰之灌注持续期间，冰元素攻击+150",
+            "冰之灌注持續期間，冰元素攻擊+150"
+          ],
+          "confidence": "text"
+        }
+      ]
+    }
+  ],
+  "topByWording": {
+    "no-sample-text": [
+      {
+        "key": "buffs:1301",
+        "uid": "1301",
+        "category": "buffs",
+        "sourceLabel": "法杖天生回能量BUFF",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050110",
+        "uid": "3050110",
+        "category": "buffs",
+        "sourceLabel": "雷影G11",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3050120",
+        "uid": "3050120",
+        "category": "buffs",
+        "sourceLabel": "终极一斩不再限制伤害上限",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3054060",
+        "uid": "3054060",
+        "category": "buffs",
+        "sourceLabel": "神盾G6",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3054110",
+        "uid": "3054110",
+        "category": "buffs",
+        "sourceLabel": "神盾G11",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3054130",
+        "uid": "3054130",
+        "category": "buffs",
+        "sourceLabel": "神盾狂想-挨打清算",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3055050",
+        "uid": "3055050",
+        "category": "buffs",
+        "sourceLabel": "巨刃G5",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3055150",
+        "uid": "3055150",
+        "category": "buffs",
+        "sourceLabel": "巨刃狂想-岩怒反击",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:3056070",
+        "uid": "3056070",
+        "category": "buffs",
+        "sourceLabel": "森语G7",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:matk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "buffs:5001",
+        "uid": "5001",
+        "category": "buffs",
+        "sourceLabel": "斩计数Buff",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required",
+          "component:critical-rate:expected-value-model-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "factors:3050110",
+        "uid": "3050110",
+        "category": "factors",
+        "sourceLabel": "uid:3050110",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "factors:3054110",
+        "uid": "3054110",
+        "category": "factors",
+        "sourceLabel": "uid:3054110",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "factors:3055150",
+        "uid": "3055150",
+        "category": "factors",
+        "sourceLabel": "uid:3055150",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "factors:3056070",
+        "uid": "3056070",
+        "category": "factors",
+        "sourceLabel": "uid:3056070",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm",
+          "physicalMagicEnhancement"
+        ],
+        "valueBlockers": [
+          "component:matk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "seasonal-talents:112",
+        "uid": "112",
+        "category": "seasonal-talents",
+        "sourceLabel": "Blood Pact (Curse)",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "seasonal-talents:115",
+        "uid": "115",
+        "category": "seasonal-talents",
+        "sourceLabel": "Tide-Turner's Resolve",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement"
+        ],
+        "valueBlockers": [
+          "component:generic-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "seasonal-talents:1303",
+        "uid": "1303",
+        "category": "seasonal-talents",
+        "sourceLabel": "Battlestart - Rare",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:115",
+        "uid": "115",
+        "category": "talents",
+        "sourceLabel": "Breath of Mark",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1231",
+        "uid": "1231",
+        "category": "talents",
+        "sourceLabel": "Lightforged Fortitude",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      },
+      {
+        "key": "talents:1242",
+        "uid": "1242",
+        "category": "talents",
+        "sourceLabel": "Holy Heal",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "",
+        "sampleTexts": [],
+        "samples": []
+      }
+    ],
+    "attack-wording": [
+      {
+        "key": "factors:3050120",
+        "uid": "3050120",
+        "category": "factors",
+        "sourceLabel": "uid:3050120",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "elementalDamage",
+          "generalDamage",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK | Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK | Ultimate Slash จะไม่จำกัดเพดาน DMG อีกต่อไป พร้อมขยายเวลาการย้อน DMG เป็น 60 วินาที ทุกครั้งที่ Ultimate Slash ใช้ Mark of Thunder 1 ชิ้น สร้าง DMG จาก 150% ของ ATK เป็น ของ ATK D...",
+        "sampleTexts": [
+          "DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK",
+          "Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK",
+          "Ultimate Slash จะไม่จำกัดเพดาน DMG อีกต่อไป พร้อมขยายเวลาการย้อน DMG เป็น 60 วินาที ทุกครั้งที่ Ultimate Slash ใช้ Mark of Thunder 1 ชิ้น สร้าง DMG จาก 150% ของ ATK เป็น ของ ATK D...",
+          "O dano causado por Símbolo do Trovão consumido pelo Corte Supremo aumenta de 150% do ATQ para do ATQ",
+          "150%"
+        ],
+        "samples": [
+          {
+            "value": 150,
+            "unit": "percent",
+            "rawTexts": [
+              "150 %",
+              "150%"
+            ],
+            "sourceTexts": [
+              "Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK",
+              "DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK",
+              "O dano causado por Símbolo do Trovão consumido pelo Corte Supremo aumenta de 150% do ATQ para do ATQ",
+              "Ultimate Slash จะไม่จำกัดเพดาน DMG อีกต่อไป พร้อมขยายเวลาการย้อน DMG เป็น 60 วินาที ทุกครั้งที่ Ultimate Slash ใช้ Mark of Thunder 1 ชิ้น สร้าง DMG จาก 150% ของ ATK เป็น ของ ATK DMG dari Final Slash tidak lagi terbatas",
+              "궁극의 참격은 번개의 인장을 1개 소모할 때마다 공격력 150%의 대미지를 주던 효과가 공격력 만큼까지 증가합니다",
+              "終極一斬每消耗1枚雷之印造成傷害從150%攻擊力提升至攻擊力",
+              "终极一斩每消耗1枚雷之印造成伤害从150%攻击力提升至攻击力",
+              "雷極一閃が雷印を1つ消費するたび、与えるダメージが攻撃力の150%からにアップする"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3054060",
+        "uid": "3054060",
+        "category": "factors",
+        "sourceLabel": "uid:3054060",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+        "sampleTexts": [
+          "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+          "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+          "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+          "1%",
+          "1 %"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Setiap 1% Mastery memberikan ATK",
+              "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+              "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "factors:3055050",
+        "uid": "3055050",
+        "category": "factors",
+        "sourceLabel": "uid:3055050",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다 | Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+        "sampleTexts": [
+          "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+          "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+          "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Se...",
+          "1%",
+          "1 %"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Chaque 1 % d'Expertise octroie d'attaque Jedes 1 % Expertise gewährt ANG Cada 1 % de pericia otorga de ATQ Cada 1% de Maestria concede de ATQ ทุกๆ 1% ของค่า Mastery จะเพิ่ม ATK Setiap 1% Mastery memberikan ATK",
+              "Each 1% Mastery grants ATK Each 1% Mastery grants ATK Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다",
+              "Each 1% Mastery grants ATK 每1%精通提供攻击力 每1%精通提供攻擊力 器用さ1%につき、攻撃力+ 숙련 1%당 공격력이 제공됩니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "seasonal-talents:113",
+        "uid": "113",
+        "category": "seasonal-talents",
+        "sourceLabel": "Bloodwrath Conversion",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "3% ATK | 3 % de ATQ | 3% หากมี Attribute \"Bloodwrath\" อยู่ ผลลัพธ์นี้จะเพิ่มขึ้น 0",
+        "sampleTexts": [
+          "3% ATK",
+          "3 % de ATQ",
+          "3% หากมี Attribute \"Bloodwrath\" อยู่ ผลลัพธ์นี้จะเพิ่มขึ้น 0",
+          "3%",
+          "3 %"
+        ],
+        "samples": [
+          {
+            "value": 3,
+            "unit": "percent",
+            "rawTexts": [
+              "3 %",
+              "3%"
+            ],
+            "sourceTexts": [
+              "3 % de ATQ",
+              "3% ATK",
+              "3% หากมี Attribute \"Bloodwrath\" อยู่ ผลลัพธ์นี้จะเพิ่มขึ้น 0",
+              "3% 증가합니다",
+              "3%攻击力，每持有一个「血怒」词条该效果增加0",
+              "3%攻擊力，每持有一個「血怒」詞條該效果增加0"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "seasonal-talents:1305",
+        "uid": "1305",
+        "category": "seasonal-talents",
+        "sourceLabel": "Rapid Assault Stacks",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required",
+          "component:haste-or-attack-speed:timing-model-required"
+        ],
+        "sampleText": "5% Attack SPD | 5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed | 5 % de VEL de ATQ",
+        "sampleTexts": [
+          "5% Attack SPD",
+          "5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed",
+          "5 % de VEL de ATQ",
+          "Jeder Stapel von Trugbildtraum gewährt 0,5 % Angriff-GES",
+          "Cada acúmulo de Sonho de Miragem concede 0,5% de VEL de Ataque"
+        ],
+        "samples": [
+          {
+            "value": 0.5,
+            "unit": "percent",
+            "rawTexts": [
+              "0,5 %",
+              "0,5%"
+            ],
+            "sourceTexts": [
+              "5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed",
+              "Cada acúmulo de Sonho de Miragem concede 0,5% de VEL de Ataque",
+              "Chaque cumul de Rêve de mirage confère 0,5 % de vitesse d'attaque",
+              "Jeder Stapel von Trugbildtraum gewährt 0,5 % Angriff-GES"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "5 % de VEL de ATQ",
+              "5% Attack SPD",
+              "5% Setiap tumpuk Illusionary Dream memberikan 0,5% Attack Speed",
+              "5% 증가합니다",
+              "5%攻击速度",
+              "5%攻擊速度"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1106",
+        "uid": "1106",
+        "category": "talents",
+        "sourceLabel": "Direwolf's Hunger",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "critical",
+          "generalDamage",
+          "luckyStrikeBaseTerm",
+          "skillMultiplier",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:adaptive-primary-stat:stat-conversion-model-required",
+          "component:atk:value-ladder-selection-required",
+          "component:haste-or-attack-speed:timing-model-required"
+        ],
+        "sampleText": "2% ATK | When Haste exceeds 35% | Setelah Haste melebihi 35%",
+        "sampleTexts": [
+          "2% ATK",
+          "When Haste exceeds 35%",
+          "Setelah Haste melebihi 35%",
+          "every extra 1% of Haste grants 0",
+          "2% Saat Wildwolf mengakibatkan Crit DMG"
+        ],
+        "samples": [
+          {
+            "value": 0.2,
+            "unit": "percent",
+            "rawTexts": [
+              "0,2 %",
+              "0,2%"
+            ],
+            "sourceTexts": [
+              "cada 1% de Celeridade adicional concede 0,2% de ATQ",
+              "chaque 1 % de célérité supplémentaire confère 0,2 % d'attaque",
+              "gewährt jedes zusätzliche 1 % Tempo 0,2 % des ANG",
+              "setiap 1% kelebihannya akan memberikan 0,2% ATK"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "cada 1% de Celeridade adicional concede 0,2% de ATQ",
+              "every extra 1% of Haste grants 0",
+              "setiap 1% kelebihannya akan memberikan 0,2% ATK",
+              "เมื่อ Wild Wolf ทำ CRIT DMG จะทำให้คุณและสัตว์ของคุณได้รับ Haste +2% เป็นเวลา 10 วินาที ซ้อนทับได้สูงสุด 5 Stack เมื่อค่า Haste เกิน 35% ส่วนที่เกินทุกๆ 1% จะเปลี่ยนเป็น ATK 0",
+              "속공 초과분 1%당 공격력이 0",
+              "ファストが35%を超えると、超過したファスト1%につき、攻撃力+0",
+              "当急速超过35%后，超出部分每1%急速提供0",
+              "當急速超過35%後，超出部分每1%急速提供0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 2,
+            "unit": "percent",
+            "rawTexts": [
+              "+2%",
+              "2 %",
+              "2%"
+            ],
+            "sourceTexts": [
+              "2% ATK",
+              "2% Saat Wildwolf mengakibatkan Crit DMG",
+              "2% 증가합니다",
+              "2%攻击力",
+              "2%攻擊力",
+              "você e sua Fera recebem 2% de Celeridade por 10 s",
+              "you and your Beast gain 2% Haste for 10s",
+              "野狼造成暴击伤害时，使得你和你的野兽急速+2%，持续10秒，最多叠加5层"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 35,
+            "unit": "percent",
+            "rawTexts": [
+              "35 %",
+              "35%"
+            ],
+            "sourceTexts": [
+              "Quando a Celeridade exceder 35%",
+              "Setelah Haste melebihi 35%",
+              "When Haste exceeds 35%",
+              "เมื่อ Wild Wolf ทำ CRIT DMG จะทำให้คุณและสัตว์ของคุณได้รับ Haste +2% เป็นเวลา 10 วินาที ซ้อนทับได้สูงสุด 5 Stack เมื่อค่า Haste เกิน 35% ส่วนที่เกินทุกๆ 1% จะเปลี่ยนเป็น ATK 0",
+              "속공이 35%보다 높으면",
+              "ファストが35%を超えると、超過したファスト1%につき、攻撃力+0",
+              "当急速超过35%后，超出部分每1%急速提供0",
+              "當急速超過35%後，超出部分每1%急速提供0"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:1108",
+        "uid": "1108",
+        "category": "talents",
+        "sourceLabel": "Phantom Wolfstrike",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "critical",
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "there is a fixed 30% chance to summon a Phantom Direwolf using Pounce and Bite to attack the current enemy | há 30% de chance fixa de invocar um Lobo Atroz Espectral que usa Pulo e Mordida para atacar o inimigo atual | il y a 30 % de chances fixes d'invoquer un Loup sinistre fantôme qui utilise Bond mordant pour attaquer l'ennemi actuel",
+        "sampleTexts": [
+          "there is a fixed 30% chance to summon a Phantom Direwolf using Pounce and Bite to attack the current enemy",
+          "há 30% de chance fixa de invocar um Lobo Atroz Espectral que usa Pulo e Mordida para atacar o inimigo atual",
+          "il y a 30 % de chances fixes d'invoquer un Loup sinistre fantôme qui utilise Bond mordant pour attaquer l'ennemi actuel",
+          "berpeluang tetap 30% memanggil seekor Phantom Demonwolf yang akan melancarkan Pounce Bite pada musuh yang ditargetkan saat ini",
+          "30%"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "berpeluang tetap 30% memanggil seekor Phantom Demonwolf yang akan melancarkan Pounce Bite pada musuh yang ditargetkan saat ini",
+              "há 30% de chance fixa de invocar um Lobo Atroz Espectral que usa Pulo e Mordida para atacar o inimigo atual",
+              "il y a 30 % de chances fixes d'invoquer un Loup sinistre fantôme qui utilise Bond mordant pour attaquer l'ennemi actuel",
+              "there is a fixed 30% chance to summon a Phantom Direwolf using Pounce and Bite to attack the current enemy",
+              "꼬리 휩쓸기를 발동할 때 30%의 고정 확률로 환영 늑대 마수 1마리를 소환해 현재 공격 대상을 물어뜯기로 공격합니다",
+              "臣狼が協力攻撃、掃撃を発動すると、30%の固定確率で幻影魔狼を召喚し、咬撃を発動する",
+              "野狼触发协同攻击、扫尾时有30%固定几率召唤一只幻影魔狼扑咬当前敌方目标",
+              "野狼觸發協同攻擊、掃尾時有30%固定機率召喚一隻幻影魔狼撲咬當前敵方目標"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:248",
+        "uid": "248",
+        "category": "talents",
+        "sourceLabel": "Infusion Sublimation",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "elementalDamage",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "Ice ATK increases by 150 | o ATQ de Gelo aumenta em 150 | el ATQ de hielo aumenta en 150",
+        "sampleTexts": [
+          "Ice ATK increases by 150",
+          "o ATQ de Gelo aumenta em 150",
+          "el ATQ de hielo aumenta en 150",
+          "l'attaque de givre augmente de 150",
+          "Während Permafrost erhöht sich der Eis-ANG um 150"
+        ],
+        "samples": [
+          {
+            "value": 150,
+            "unit": "flat",
+            "rawTexts": [
+              "+150",
+              "150"
+            ],
+            "sourceTexts": [
+              "el ATQ de hielo aumenta en 150",
+              "Ice ATK increases by 150",
+              "l'attaque de givre augmente de 150",
+              "o ATQ de Gelo aumenta em 150",
+              "Während Permafrost erhöht sich der Eis-ANG um 150",
+              "パーマフロストの有効中、氷属性攻撃力+150",
+              "冰之灌注持续期间，冰元素攻击+150",
+              "冰之灌注持續期間，冰元素攻擊+150"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:427",
+        "uid": "427",
+        "category": "talents",
+        "sourceLabel": "Catcher",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "ATK +50 for 30s | ATK +50 selama 30 detik | จะเพิ่ม ATK +50 เป็นเวลา 30 วินาที ซ้อนทับได้สูงสุด 500 Dalam pertarungan",
+        "sampleTexts": [
+          "ATK +50 for 30s",
+          "ATK +50 selama 30 detik",
+          "จะเพิ่ม ATK +50 เป็นเวลา 30 วินาที ซ้อนทับได้สูงสุด 500 Dalam pertarungan",
+          "30s",
+          "um +50"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "flat",
+            "rawTexts": [
+              "30",
+              "30s"
+            ],
+            "sourceTexts": [
+              "30초 지속",
+              "ATK +50 for 30s",
+              "ATK +50 selama 30 detik",
+              "จะเพิ่ม ATK +50 เป็นเวลา 30 วินาที ซ้อนทับได้สูงสุด 500 Dalam pertarungan",
+              "战斗中，每参与（队伍内生效）击败1个敌方目标，攻击力+50，持续30秒，最高上限500",
+              "戰鬥中，每參與（隊伍內生效）擊敗1個敵方目標，攻擊力+50，持續30秒，最高上限500",
+              "持続30秒"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 50,
+            "unit": "flat",
+            "rawTexts": [
+              "+50",
+              "50"
+            ],
+            "sourceTexts": [
+              "ATK +50 for 30s",
+              "ATQ +50 durante 30 s",
+              "ATQ +50 por 30 s",
+              "um +50",
+              "จะเพิ่ม ATK +50 เป็นเวลา 30 วินาที ซ้อนทับได้สูงสุด 500 Dalam pertarungan",
+              "战斗中，每参与（队伍内生效）击败1个敌方目标，攻击力+50，持续30秒，最高上限500",
+              "戦闘中、攻撃に参加（パーティ内有効）したエネミー対象が1体倒されるごとに攻撃力+50（最大500）",
+              "戰鬥中，每參與（隊伍內生效）擊敗1個敵方目標，攻擊力+50，持續30秒，最高上限500"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "critical-wording": [
+      {
+        "key": "factors:3054130",
+        "uid": "3054130",
+        "category": "factors",
+        "sourceLabel": "uid:3054130",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "generalDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required",
+          "component:hit-count-model:hit-count-model-required"
+        ],
+        "sampleText": "there is a 30% fixed chance to trigger Inferno Reckon | 5 วินาที CRIT DMG ของ Inferno Reckon + Menerima serangan berpeluang tetap 30% memicu Blazing Reckon | há 30% de chance fixa de ativar o Inferno do Juízo",
+        "sampleTexts": [
+          "there is a 30% fixed chance to trigger Inferno Reckon",
+          "5 วินาที CRIT DMG ของ Inferno Reckon + Menerima serangan berpeluang tetap 30% memicu Blazing Reckon",
+          "há 30% de chance fixa de ativar o Inferno do Juízo",
+          "เมื่อถูกโจมตี มีโอกาสคงที่ 30% ที่จะเกิดผล Inferno Reckon เอฟเฟกต์นี้ทำงานสูงสุดหนึ่งครั้งในทุกๆ 0",
+          "30%"
+        ],
+        "samples": [
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "5 วินาที CRIT DMG ของ Inferno Reckon + Menerima serangan berpeluang tetap 30% memicu Blazing Reckon",
+              "há 30% de chance fixa de ativar o Inferno do Juízo",
+              "there is a 30% fixed chance to trigger Inferno Reckon",
+              "เมื่อถูกโจมตี มีโอกาสคงที่ 30% ที่จะเกิดผล Inferno Reckon เอฟเฟกต์นี้ทำงานสูงสุดหนึ่งครั้งในทุกๆ 0",
+              "공격을 받을 때 30%의 고정 확률로 열화의 숙청이 발동됩니다",
+              "受到攻击时有30%固定几率触发炽热清算，该效果每0",
+              "受到攻擊時有30%固定機率觸發熾熱清算，該效果每0",
+              "攻撃を受けると30%の固定確率でブレイズレコニングを発動する"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "seasonal-talents:138",
+        "uid": "138",
+        "category": "seasonal-talents",
+        "sourceLabel": "Overload Crit",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required",
+          "component:critical-rate:expected-value-model-required",
+          "component:critical-rate:value-ladder-selection-required"
+        ],
+        "sampleText": "Crit +30% | Crit Rate +30% | every 2% is converted to 1% Crit DMG",
+        "sampleTexts": [
+          "Crit +30%",
+          "Crit Rate +30%",
+          "every 2% is converted to 1% Crit DMG",
+          "For any permanent Crit Rate above 50%",
+          "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "2%마다 1%의 치명타 대미지로 전환됩니다",
+              "Bei einer permanenten Krit-Rate über 50 % werden jeweils 2 % in 1 % Krit-SCH umgewandelt",
+              "cada 2% é convertido em 1% de dano crítico",
+              "chaque tranche de 2 % est convertie en 1 % de dégâts critiques",
+              "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+              "every 2% is converted to 1% Crit DMG",
+              "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+              "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 2,
+            "unit": "percent",
+            "rawTexts": [
+              "2 %",
+              "2%"
+            ],
+            "sourceTexts": [
+              "2%마다 1%의 치명타 대미지로 전환됩니다",
+              "Bei einer permanenten Krit-Rate über 50 % werden jeweils 2 % in 1 % Krit-SCH umgewandelt",
+              "cada 2% é convertido em 1% de dano crítico",
+              "chaque tranche de 2 % est convertie en 1 % de dégâts critiques",
+              "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+              "every 2% is converted to 1% Crit DMG",
+              "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+              "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "+30 %",
+              "+30%",
+              "30%"
+            ],
+            "sourceTexts": [
+              "Crit +30%",
+              "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+              "Crit Rate +30%",
+              "Krit-Rate +30 %",
+              "Overload Crit Overload Crit 超载暴击 超載暴擊 過負荷会心 치명타 과부하 Surcharge critique Überladener Krit Sobrecarga Crítica Sobrecarga Crítica โอเวอร์โหลด CRIT Overload Critical 「暴虐」超载暴击 Crit Rate +30%",
+              "Taux de critique +30 %",
+              "Taxa de Crítico +30%",
+              "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "até 50%",
+              "CRIT +30% ส่วนที่เกิน 50% ของ CRIT ถาวร ทุกๆ 2% จะเปลี่ยนเป็น 1% CRIT DMG",
+              "For any permanent Crit Rate above 50%",
+              "Para qualquer Taxa de Crítico permanente acima de 50%",
+              "up to 50%",
+              "상시 치명타가 50%를 초과하는 부분은",
+              "최대 50%",
+              "暴击+30%，常驻暴击超过50%的部分，每2%会转换为1%暴击伤害（上限50%） 暴擊+30%，常駐暴擊超過50%的部分，每2%會轉換為1%暴擊傷害（上限50%） 会心+30%、通常会心の50%を超過した部分2%につき、1%の会心ダメージに変換する（上限50%） 치명타가 30% 증가합니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "seasonal-talents:5001",
+        "uid": "5001",
+        "category": "seasonal-talents",
+        "sourceLabel": "Overload Crit",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "generalDamage"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required",
+          "component:critical-rate:expected-value-model-required"
+        ],
+        "sampleText": "For any permanent Crit above 50% | every 2% is converted to 1% Crit DMG | Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+        "sampleTexts": [
+          "For any permanent Crit above 50%",
+          "every 2% is converted to 1% Crit DMG",
+          "Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+          "membawa atribut Epic [Crit] Overload Critical: Crit +30%",
+          "เริ่มต้นพร้อมคำอธิบายระดับ Epic \"Crit\" Overload Crit: Crit +30%"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "cada 2% é convertido em 1% de dano crítico",
+              "chaque 2 % sont convertis en 1 % de dégâts critiques",
+              "Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+              "every 2% is converted to 1% Crit DMG",
+              "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+              "상시 치명타 능력치 중 50%를 초과하는 부분은 2%마다 1%의 치명타 대미지로 전환됩니다",
+              "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%",
+              "通常会心の50%を超過した部分は、2%毎に1%の会心ダメージに変換する（上限は50%） 시작 시 다음 에픽 옵션을 보유합니다"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 2,
+            "unit": "percent",
+            "rawTexts": [
+              "2 %",
+              "2%"
+            ],
+            "sourceTexts": [
+              "cada 2% é convertido em 1% de dano crítico",
+              "chaque 2 % sont convertis en 1 % de dégâts critiques",
+              "Crit ที่เกิน 50% แบบคงที่ ทุกๆ 2% จะกลายเป็น 1% DMG Crit",
+              "every 2% is converted to 1% Crit DMG",
+              "setiap 2% dari Crit reguler yang melebihi 50% akan dikonversi menjadi 1% Crit DMG",
+              "상시 치명타 능력치 중 50%를 초과하는 부분은 2%마다 1%의 치명타 대미지로 전환됩니다",
+              "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%",
+              "通常会心の50%を超過した部分は、2%毎に1%の会心ダメージに変換する（上限は50%） 시작 시 다음 에픽 옵션을 보유합니다"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "+30 %",
+              "+30%"
+            ],
+            "sourceTexts": [
+              "- 「치명타」 치명타 과부하: 치명타 +30%",
+              "Comece o combate com o incremento épico de \"Crítico\" – Sobrecarga de Crítico: crítico +30%",
+              "Commence le combat avec l'affixe \"Critique\" épique - Surcharge critique : Critique +30 %",
+              "membawa atribut Epic [Crit] Overload Critical: Crit +30%",
+              "Overload Crit Overload Crit 超载暴击 超載暴擊 過負荷会心 치명타 과부하 Surcharge critique Überladener Krit Sobrecarga Crítica Sobrecarga Crítica โอเวอร์โหลด CRIT Overload Critical 「暴虐」超载暴击 Start combat with the Epic \"Crit\" entry — Overload Crit: Crit +30%",
+              "Start combat with the Epic \"Crit\" entry — Overload Crit: Crit +30%",
+              "เริ่มต้นพร้อมคำอธิบายระดับ Epic \"Crit\" Overload Crit: Crit +30%",
+              "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 50,
+            "unit": "percent",
+            "rawTexts": [
+              "50 %",
+              "50%"
+            ],
+            "sourceTexts": [
+              "até 50%",
+              "For any permanent Crit above 50%",
+              "Para qualquer crítico permanente acima de 50%",
+              "up to 50%",
+              "상시 치명타 능력치 중 50%를 초과하는 부분은 2%마다 1%의 치명타 대미지로 전환됩니다",
+              "최대 50%",
+              "初始携带史诗词条「暴击」超载暴击：暴击+30%，常驻暴击超过50%的部分，每2%转换为1%暴击伤害（上限50%） 初始攜帶史詩詞條「暴擊」超載暴擊：暴擊+30%，常駐暴擊超過50%的部分，每2%轉換為1%暴擊傷害（上限50%） エピックオプション「凶暴」過負荷会心を獲得する 会心+30%",
+              "通常会心の50%を超過した部分は、2%毎に1%の会心ダメージに変換する（上限は50%） 시작 시 다음 에픽 옵션을 보유합니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:105",
+        "uid": "105",
+        "category": "talents",
+        "sourceLabel": "Iaido Mastery",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement"
+        ],
+        "valueBlockers": [
+          "component:critical-damage:value-ladder-selection-required",
+          "component:critical-rate:expected-value-model-required",
+          "component:critical-rate:value-ladder-selection-required",
+          "component:elemental-damage:value-ladder-selection-required",
+          "component:mastery-stat:stat-conversion-model-required"
+        ],
+        "sampleText": "Iaido Slash Crit +10% | Each 1% Crit chance grants 0 | When Crit chance exceeds 60%",
+        "sampleTexts": [
+          "Iaido Slash Crit +10%",
+          "Each 1% Crit chance grants 0",
+          "When Crit chance exceeds 60%",
+          "15% Crit DMG for skills that consume Thunder Sigils",
+          "32% Crit DMG for skills that consume Thunder Sigils"
+        ],
+        "samples": [
+          {
+            "value": 0.15,
+            "unit": "percent",
+            "rawTexts": [
+              "0,15 %",
+              "0,15%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de chance de crítico concede 0,15% de dano crítico para habilidades que consomem Símbolos do Trovão",
+              "Chaque 1 % de chances de coup critique confère 0,15 % de dégâts critiques aux compétences consommant des Sceaux de foudre",
+              "Jedes 1 % Krit-Chance gewährt 0,15 % Krit-SCH für Fähigkeiten",
+              "Setiap 1% Critical Chance dapat memberikan 0,15% Crit DMG untuk skill yang menggunakan Thunder Seal"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 0.32,
+            "unit": "percent",
+            "rawTexts": [
+              "0,32 %",
+              "0,32%"
+            ],
+            "sourceTexts": [
+              "cada 1% excedente concede 0,32% de dano crítico adicional para habilidades que consomem Símbolos do Trovão",
+              "chaque 1 % supplémentaire confère 0,32 % de dégâts critiques supplémentaires aux compétences consommant des Sceaux de foudre",
+              "gewährt jedes weitere 1 % zusätzlich 0,32 % Krit-SCH für Fähigkeiten",
+              "setiap 1% kelebihannya akan memberikan 0,32% Crit DMG tambahan untuk skill yang menggunakan Thunder Seal"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Each 1% Crit chance grants 0",
+              "every extra 1% grants an additional 0",
+              "会心確率1%につき、雷印を消費するスキルの会心ダメージ+0",
+              "会心確率が60%を上回っていた場合、超過1%につき、雷印を消費するスキルの会心ダメージさらに+0",
+              "当暴击几率超过60%后，超出部分每1%额外为消耗雷之印的技能提供0",
+              "每1%暴击几率可为消耗雷之印的技能提供0",
+              "每1%暴擊機率可為消耗雷之印的技能提供0",
+              "當暴擊機率超過60%後，超出部分每1%額外為消耗雷之印的技能提供0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 10,
+            "unit": "percent",
+            "rawTexts": [
+              "+10 %",
+              "+10%"
+            ],
+            "sourceTexts": [
+              "Crítico do Corte de Iaido +10%",
+              "Iaido Mastery Iaido Mastery 居合天授 居合天授 居合の才 하늘이 내린 발도 Maîtrise de l'Iaido Iaido-Meisterschaft Maestría de Iaido Maestria em Iaido Iaido Mastery Slash Mastery 居合天授 Iaido Slash Crit +10%",
+              "Iaido Slash Crit +10%",
+              "Iaido Slash CRIT +10% ทุกๆ อัตรา CRIT 1% จะเพิ่ม CRIT DMG 0",
+              "발도 치명타 +10%",
+              "居合斩暴击+10%",
+              "居合斬暴擊+10%",
+              "雷刃抜刀の会心+10%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:453",
+        "uid": "453",
+        "category": "talents",
+        "sourceLabel": "Dragon's Fury Flame",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "critical",
+          "elementalDamage",
+          "generalDamage",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:adaptive-primary-stat:stat-conversion-model-required",
+          "component:critical-damage:value-ladder-selection-required",
+          "component:critical-rate:expected-value-model-required",
+          "component:critical-rate:value-ladder-selection-required",
+          "component:haste-or-attack-speed:timing-model-required"
+        ],
+        "sampleText": "Each 1% Haste grants 0 | 5% Crit DMG for Drake Cannon and Vortex Strike | Crit DMG untuk Dragon Blast dan Divine Spiral +8%",
+        "sampleTexts": [
+          "Each 1% Haste grants 0",
+          "5% Crit DMG for Drake Cannon and Vortex Strike",
+          "Crit DMG untuk Dragon Blast dan Divine Spiral +8%",
+          "Increases the Crit DMG of Drake Cannon and Vortex Strike by 8%",
+          "Setiap 1% Haste memberikan 0,5% Crit DMG untuk Dragon Blast dan Divine Spiral"
+        ],
+        "samples": [
+          {
+            "value": 0.5,
+            "unit": "percent",
+            "rawTexts": [
+              "0,5 %",
+              "0,5%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de Celeridade concede 0,5% de dano crítico para o Canhão Draco e o Golpe de Vórtice",
+              "Chaque 1 % de célérité confère 0,5 % de dégâts critiques supplémentaires à Canon draconique et Frappe du vortex",
+              "Jedes 1 % Tempo gewährt 0,5 % Krit-SCH für Drachenkanone und Wirbelschlag",
+              "Setiap 1% Haste memberikan 0,5% Crit DMG untuk Dragon Blast dan Divine Spiral"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 1,
+            "unit": "percent",
+            "rawTexts": [
+              "1 %",
+              "1%"
+            ],
+            "sourceTexts": [
+              "Cada 1% de Celeridade concede 0,5% de dano crítico para o Canhão Draco e o Golpe de Vórtice",
+              "Chaque 1 % de célérité confère 0,5 % de dégâts critiques supplémentaires à Canon draconique et Frappe du vortex",
+              "Each 1% Haste grants 0",
+              "Setiap 1% Haste memberikan 0,5% Crit DMG untuk Dragon Blast dan Divine Spiral",
+              "โอกาสติด CRIT ของ Drake Cannon และ Vortex Strike เพิ่มขึ้นเป็นสองเท่า CRIT DMG ของ Drake Cannon และ Vortex Strike +8% ทุกๆ 1% ของ Haste จะเพิ่ม CRIT DMG ของ Drake Cannon และ Vortex Strike 0",
+              "속공 1%당 용격포",
+              "ファスト1%につき龍撃陣、瞬影螺旋の会心ダメージ+0",
+              "每1%急速提供0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "5 % de DÑO crítico para Cañón Dragontino y Ataque Torbellino",
+              "5% Crit DMG for Drake Cannon and Vortex Strike",
+              "5% Critical Chance untuk Dragon Blast dan Divine Spiral menjadi dua kali lipat",
+              "5%씩 증가합니다",
+              "5%龍擊炮、神影螺旋暴擊傷害",
+              "5%龙击炮、神影螺旋暴击伤害"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 8,
+            "unit": "percent",
+            "rawTexts": [
+              "+8%",
+              "8 %",
+              "8%"
+            ],
+            "sourceTexts": [
+              "Aumenta o dano crítico do Canhão Draco e do Golpe de Vórtice em 8%",
+              "Crit DMG untuk Dragon Blast dan Divine Spiral +8%",
+              "Increases the Crit DMG of Drake Cannon and Vortex Strike by 8%",
+              "โอกาสติด CRIT ของ Drake Cannon และ Vortex Strike เพิ่มขึ้นเป็นสองเท่า CRIT DMG ของ Drake Cannon และ Vortex Strike +8% ทุกๆ 1% ของ Haste จะเพิ่ม CRIT DMG ของ Drake Cannon และ Vortex Strike 0",
+              "그림자 나선의 치명타 대미지 +8%",
+              "龍撃陣、瞬影螺旋の会心ダメージ+8%",
+              "龍擊炮、神影螺旋暴擊傷害+8%",
+              "龙击炮、神影螺旋暴击伤害+8%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "elemental-wording": [
+      {
+        "key": "talents:114",
+        "uid": "114",
+        "category": "talents",
+        "sourceLabel": "Touch of Thunder Soul",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement"
+        ],
+        "valueBlockers": [
+          "component:elemental-damage:value-ladder-selection-required"
+        ],
+        "sampleText": "Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike | Moon Blade เมื่อ Lucky Strike ทำงาน มีโอกาสคงที่ 60% ปล่อย Lightning Strike DMG ที่ Lightning Strike สร้างจะทวีคูณ Saat Moonblade memicu Lucky Hit | terdapat 60% peluang tetap untuk melancarkan Thunderstrike",
+        "sampleTexts": [
+          "Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike",
+          "Moon Blade เมื่อ Lucky Strike ทำงาน มีโอกาสคงที่ 60% ปล่อย Lightning Strike DMG ที่ Lightning Strike สร้างจะทวีคูณ Saat Moonblade memicu Lucky Hit",
+          "terdapat 60% peluang tetap untuk melancarkan Thunderstrike",
+          "Lâminas Lunares têm uma chance fixa de 60% de lançar Golpe do Trovão ao acertar um Golpe de Sorte",
+          "60%"
+        ],
+        "samples": [
+          {
+            "value": 60,
+            "unit": "percent",
+            "rawTexts": [
+              "60 %",
+              "60%"
+            ],
+            "sourceTexts": [
+              "60%의 고정 확률로 뇌격을 시전합니다",
+              "Lâminas Lunares têm uma chance fixa de 60% de lançar Golpe do Trovão ao acertar um Golpe de Sorte",
+              "Moon Blade เมื่อ Lucky Strike ทำงาน มีโอกาสคงที่ 60% ปล่อย Lightning Strike DMG ที่ Lightning Strike สร้างจะทวีคูณ Saat Moonblade memicu Lucky Hit",
+              "Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike",
+              "terdapat 60% peluang tetap untuk melancarkan Thunderstrike",
+              "月刃の攻撃が幸運の一撃になった場合、60%の固定確率で雷撃を発動する",
+              "月刃触发幸运一击时，有60%固定几率施放雷击",
+              "月刃觸發幸運一擊時，有60%固定機率施放雷擊"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "talents:212",
+        "uid": "212",
+        "category": "talents",
+        "sourceLabel": "Frostbeam Spec",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "elementalDamage",
+          "generalDamage",
+          "luckyEnhancement",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:adaptive-primary-stat:stat-conversion-model-required",
+          "component:cooldown-or-resource:timing-model-required",
+          "component:elemental-damage:value-ladder-selection-required",
+          "component:mastery-stat:stat-conversion-model-required"
+        ],
+        "sampleText": "85% DMG bonus | DMG dari Ice Ray +15% | ทุกๆ 10% ของค่า Mastery จะเพิ่ม DMG อีก 0",
+        "sampleTexts": [
+          "85% DMG bonus",
+          "DMG dari Ice Ray +15%",
+          "ทุกๆ 10% ของค่า Mastery จะเพิ่ม DMG อีก 0",
+          "Every Frost Crystal increases Frostbeam DMG by 15%",
+          "เปลี่ยนการโจมตีพิเศษเป็น Frostbeam และเพิ่มความสามารถเมื่อใช้ Skills นี้ ทุกครั้งที่มี Dark Ice จะทำให้ DMG ของ Frostbeam +15%"
+        ],
+        "samples": [
+          {
+            "value": 0.85,
+            "unit": "percent",
+            "rawTexts": [
+              "0,85 %",
+              "0,85%"
+            ],
+            "sourceTexts": [
+              "Alle 10 % Meisterschaft gewähren einen zusätzlichen SCH-Bonus von 0,85 %",
+              "Cada 10% de Maestria concede um bônus de dano adicional de 0,85%",
+              "Chaque tranche de 10 % de maîtrise confère un bonus de dégâts supplémentaire de 0,85 %",
+              "setiap 10% Mastery akan memberi tambahan peningkatan 0,85%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 10,
+            "unit": "percent",
+            "rawTexts": [
+              "10 %",
+              "10%"
+            ],
+            "sourceTexts": [
+              "Cada 10% de Maestria concede um bônus de dano adicional de 0,85%",
+              "Each 10% Mastery grants an additional 0",
+              "setiap 10% Mastery akan memberi tambahan peningkatan 0,85%",
+              "ทุกๆ 10% ของค่า Mastery จะเพิ่ม DMG อีก 0",
+              "숙련 10%당 0",
+              "保有する玄氷1つにつきフロストレイのダメージ+15%、さらに器用さ10%につき+0",
+              "每拥有一个玄冰使得寒冰射线伤害+15%，每10%精通额外提升0",
+              "每擁有一個玄冰使得寒冰射線傷害+15%，每10%精通額外提升0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 15,
+            "unit": "percent",
+            "rawTexts": [
+              "+15%",
+              "15 %",
+              "15%"
+            ],
+            "sourceTexts": [
+              "Cada Cristal de Gelo aumenta o dano do Raio de Gelo em 15%",
+              "DMG dari Ice Ray +15%",
+              "Every Frost Crystal increases Frostbeam DMG by 15%",
+              "เปลี่ยนการโจมตีพิเศษเป็น Frostbeam และเพิ่มความสามารถเมื่อใช้ Skills นี้ ทุกครั้งที่มี Dark Ice จะทำให้ DMG ของ Frostbeam +15%",
+              "보유한 미스틱 아이스 1개당 프로스트 레이의 대미지가 15% 증가하며",
+              "保有する玄氷1つにつきフロストレイのダメージ+15%、さらに器用さ10%につき+0",
+              "每拥有一个玄冰使得寒冰射线伤害+15%，每10%精通额外提升0",
+              "每擁有一個玄冰使得寒冰射線傷害+15%，每10%精通額外提升0"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 30,
+            "unit": "percent",
+            "rawTexts": [
+              "+30%",
+              "30 %",
+              "30%"
+            ],
+            "sourceTexts": [
+              "85%（不超过5%）同时消耗的寒冰能量+30%",
+              "85%（不超過5%）同時消耗的寒冰能量+30%",
+              "85%（最大5%まで）、かつ消費する凍源+30%",
+              "and increases the Ice Energy consumed by 30%",
+              "e aumenta a Energia de Gelo consumida em 30%",
+              "lalu juga konsumsi Ice Energy +30%",
+              "พร้อมทั้งเพิ่มการใช้ Ice Energy +30% เมื่อ Frostbeam โจมตีโดนเป้าหมาย ทุกครั้งที่สร้าง DMG ครบ 13 ครั้ง จะลดเวลา CD ที่เหลือของ Permafrost ลง 1 วินาที",
+              "아이스 에너지 소모량이 30% 증가합니다"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "seasonal-wording": [
+      {
+        "key": "seasonal-talents:1302",
+        "uid": "1302",
+        "category": "seasonal-talents",
+        "sourceLabel": "Dual Ascension Formation",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "luckyStrikeBaseTerm"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "Increases Mirage Dream max stack count by 3 | Erhöht die maximale Stapelanzahl von Trugbildtraum um 3 | Augmente le nombre maximum de cumuls de Rêve de mirage de 3",
+        "sampleTexts": [
+          "Increases Mirage Dream max stack count by 3",
+          "Erhöht die maximale Stapelanzahl von Trugbildtraum um 3",
+          "Augmente le nombre maximum de cumuls de Rêve de mirage de 3",
+          "Aumenta o número máximo de acúmulos de Sonho de Miragem em 3",
+          "Aumenta en 3 el número máximo de acumulaciones de Ensueño Ilusorio"
+        ],
+        "samples": [
+          {
+            "value": 3,
+            "unit": "flat",
+            "rawTexts": [
+              "+3",
+              "3"
+            ],
+            "sourceTexts": [
+              "Augmente le nombre maximum de cumuls de Rêve de mirage de 3",
+              "Aumenta en 3 el número máximo de acumulaciones de Ensueño Ilusorio",
+              "Aumenta o número máximo de acúmulos de Sonho de Miragem em 3",
+              "Erhöht die maximale Stapelanzahl von Trugbildtraum um 3",
+              "Increases Mirage Dream max stack count by 3",
+              "夢幻迷界の最大スタック数+3",
+              "迷幻夢境最多疊加層數+3",
+              "迷幻梦境最多叠加层数+3"
+            ],
+            "confidence": "text"
+          }
+        ]
+      },
+      {
+        "key": "seasonal-talents:1310",
+        "uid": "1310",
+        "category": "seasonal-talents",
+        "sourceLabel": "Grace",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "critical",
+          "finalDamage",
+          "luckyEnhancement",
+          "luckyStrikeBaseTerm",
+          "timingCadence"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required",
+          "component:critical-rate:expected-value-model-required",
+          "component:haste-or-attack-speed:timing-model-required",
+          "component:mastery-stat:stat-conversion-model-required"
+        ],
+        "sampleText": "Mastery จะมีค่าเปอร์เซ็นต์สุดท้ายเพิ่มขึ้น +5% Saat Illusionary Dream mencapai tumpukan tertinggi | by 5% | atau Mastery akan mendapat +5% pada nilai persentase finalnya",
+        "sampleTexts": [
+          "Mastery จะมีค่าเปอร์เซ็นต์สุดท้ายเพิ่มขึ้น +5% Saat Illusionary Dream mencapai tumpukan tertinggi",
+          "by 5%",
+          "atau Mastery akan mendapat +5% pada nilai persentase finalnya",
+          "aumenta em 5% o atributo mais alto entre os 4 seguintes: Crítico",
+          "5%"
+        ],
+        "samples": [
+          {
+            "value": 5,
+            "unit": "percent",
+            "rawTexts": [
+              "+5%",
+              "5 %",
+              "5%"
+            ],
+            "sourceTexts": [
+              "atau Mastery akan mendapat +5% pada nilai persentase finalnya",
+              "aumenta em 5% o atributo mais alto entre os 4 seguintes: Crítico",
+              "by 5%",
+              "Mastery จะมีค่าเปอร์เซ็นต์สุดท้ายเพิ่มขึ้น +5% Saat Illusionary Dream mencapai tumpukan tertinggi",
+              "숙련 4개의 능력치 중 가장 높은 능력치의 최종 퍼센트 수치가 5% 증가합니다",
+              "夢幻迷界が最大スタック数に達したとき、会心、ファスト、幸運、器用さの4ステータスのうち、最も高い1項目の最終値+5%",
+              "迷幻夢境達到最大層數時，暴擊、急速、幸運、精通這4項屬性中值最高的一項其最終百分比值+5%",
+              "迷幻梦境达到最大层数时，暴击、急速、幸运、精通这4项属性中值最高的一项其最终百分比值+5%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ],
+    "unbucketed-wording": [
+      {
+        "key": "seasonal-talents:1301",
+        "uid": "1301",
+        "category": "seasonal-talents",
+        "sourceLabel": "Mirage Dream",
+        "formulaReadiness": "formula-replay-required",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "generalDamage",
+          "luckyStrikeBaseTerm",
+          "seasonDamage"
+        ],
+        "valueBlockers": [
+          "component:atk:value-ladder-selection-required"
+        ],
+        "sampleText": "melee skills count +1 | Nahkampffähigkeiten zählen +1 | compteur +1 pour les compétences de mêlée",
+        "sampleTexts": [
+          "melee skills count +1",
+          "Nahkampffähigkeiten zählen +1",
+          "compteur +1 pour les compétences de mêlée",
+          "las habilidades cuerpo a cuerpo suman +1 al contador",
+          "+1"
+        ],
+        "samples": [
+          {
+            "value": 1,
+            "unit": "flat",
+            "rawTexts": [
+              "+1"
+            ],
+            "sourceTexts": [
+              "compteur +1 pour les compétences de mêlée",
+              "las habilidades cuerpo a cuerpo suman +1 al contador",
+              "melee skills count +1",
+              "Nahkampffähigkeiten zählen +1",
+              "근접 스킬은 +1로 계산",
+              "普通攻击、特殊攻击对主目标每造成12次伤害（近战技能计数额外+1），触发持续8秒的迷幻梦境，最多叠加10层",
+              "普通攻擊、特殊攻擊對主目標每造成12次傷害（近戰技能計數額外+1），觸發持續8秒的迷幻夢境，最多疊加10層",
+              "通常攻撃や特殊攻撃でメイン対象にダメージを12回与えるたびに（近接スキルはカウント数+1追加）、8秒間、夢幻迷界を発動する"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

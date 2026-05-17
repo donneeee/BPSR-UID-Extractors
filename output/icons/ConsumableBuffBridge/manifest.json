@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-05-06T04:09:13.614Z",
+  "GeneratedAt": "2026-05-12T13:28:26.041Z",
   "SourceGroup": "ConsumableBuffBridge",
   "OutputDir": "output/icons/ConsumableBuffBridge",
   "AssetCount": 142,
@@ -18,7 +18,7 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ConsumableBuffBridge/buff_food_up.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 26,
+      "RefCount": 94,
       "Rows": [
         {
           "Id": 2032011,
@@ -37,6 +37,22 @@
           "Name": "Cuisine - ATK Lv.4"
         },
         {
+          "Id": 2032015,
+          "Name": "Cuisine - ATK Lv.5"
+        },
+        {
+          "Id": 2032016,
+          "Name": "Cuisine - ATK Lv.6"
+        },
+        {
+          "Id": 2032017,
+          "Name": "Cuisine - ATK Lv.7"
+        },
+        {
+          "Id": 2032018,
+          "Name": "Cuisine - ATK Lv.8"
+        },
+        {
           "Id": 2032021,
           "Name": "Cuisine - MATK Lv.1"
         },
@@ -51,6 +67,22 @@
         {
           "Id": 2032024,
           "Name": "Cuisine - MATK Lv.4"
+        },
+        {
+          "Id": 2032025,
+          "Name": "Cuisine - MATK Lv.5"
+        },
+        {
+          "Id": 2032026,
+          "Name": "Cuisine - MATK Lv.6"
+        },
+        {
+          "Id": 2032027,
+          "Name": "Cuisine - MATK Lv.7"
+        },
+        {
+          "Id": 2032028,
+          "Name": "Cuisine - MATK Lv.8"
         },
         {
           "Id": 2032031,
@@ -69,6 +101,22 @@
           "Name": "Cuisine - Armor Lv.4"
         },
         {
+          "Id": 2032035,
+          "Name": "Cuisine - Armor Lv.5"
+        },
+        {
+          "Id": 2032036,
+          "Name": "Cuisine - Armor Lv.6"
+        },
+        {
+          "Id": 2032037,
+          "Name": "Cuisine - Armor Lv.7"
+        },
+        {
+          "Id": 2032038,
+          "Name": "Cuisine - Armor Lv.8"
+        },
+        {
           "Id": 2032041,
           "Name": "Cuisine - Stamina Lv.1"
         },
@@ -85,6 +133,22 @@
           "Name": "Cuisine - HP Lv.4"
         },
         {
+          "Id": 2032045,
+          "Name": "Cuisine - HP Lv.5"
+        },
+        {
+          "Id": 2032046,
+          "Name": "Cuisine - HP Lv.6"
+        },
+        {
+          "Id": 2032047,
+          "Name": "Cuisine - HP Lv.7"
+        },
+        {
+          "Id": 2032048,
+          "Name": "Cuisine - HP Lv.8"
+        },
+        {
           "Id": 2032051,
           "Name": "Cuisine - HP Regen Lv.1"
         },
@@ -99,6 +163,22 @@
         {
           "Id": 2032054,
           "Name": "Cuisine - HP Regen Lv.4"
+        },
+        {
+          "Id": 2032055,
+          "Name": "Cuisine - HP Regen Lv.5"
+        },
+        {
+          "Id": 2032056,
+          "Name": "Cuisine - HP Regen Lv.6"
+        },
+        {
+          "Id": 2032057,
+          "Name": "Cuisine - HP Regen Lv.7"
+        },
+        {
+          "Id": 2032058,
+          "Name": "Cuisine - HP Regen Lv.8"
         },
         {
           "Id": 2032065,
@@ -123,6 +203,198 @@
         {
           "Id": 2032088,
           "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
+        },
+        {
+          "Id": 2032111,
+          "Name": "Cuisine - ATK Lv.1"
+        },
+        {
+          "Id": 2032112,
+          "Name": "Cuisine - ATK Lv.2"
+        },
+        {
+          "Id": 2032113,
+          "Name": "Cuisine - ATK Lv.3"
+        },
+        {
+          "Id": 2032114,
+          "Name": "Cuisine - ATK Lv.4"
+        },
+        {
+          "Id": 2032115,
+          "Name": "Cuisine - ATK Lv.5"
+        },
+        {
+          "Id": 2032116,
+          "Name": "Cuisine - ATK Lv.6"
+        },
+        {
+          "Id": 2032121,
+          "Name": "Cuisine - MATK Lv.1"
+        },
+        {
+          "Id": 2032122,
+          "Name": "Cuisine - MATK Lv.2"
+        },
+        {
+          "Id": 2032123,
+          "Name": "Cuisine - MATK Lv.3"
+        },
+        {
+          "Id": 2032124,
+          "Name": "Cuisine - MATK Lv.4"
+        },
+        {
+          "Id": 2032125,
+          "Name": "Cuisine - MATK Lv.5"
+        },
+        {
+          "Id": 2032126,
+          "Name": "Cuisine - MATK Lv.6"
+        },
+        {
+          "Id": 2032131,
+          "Name": "Cuisine - Armor Lv.1"
+        },
+        {
+          "Id": 2032132,
+          "Name": "Cuisine - Armor Lv.2"
+        },
+        {
+          "Id": 2032133,
+          "Name": "Cuisine - Armor Lv.3"
+        },
+        {
+          "Id": 2032134,
+          "Name": "Cuisine - Armor Lv.4"
+        },
+        {
+          "Id": 2032135,
+          "Name": "Cuisine - Armor Lv.5"
+        },
+        {
+          "Id": 2032136,
+          "Name": "Cuisine - Armor Lv.6"
+        },
+        {
+          "Id": 2032141,
+          "Name": "Cuisine - HP Lv.1"
+        },
+        {
+          "Id": 2032142,
+          "Name": "Cuisine - HP Lv.2"
+        },
+        {
+          "Id": 2032143,
+          "Name": "Cuisine - HP Lv.3"
+        },
+        {
+          "Id": 2032144,
+          "Name": "Cuisine - HP Lv.4"
+        },
+        {
+          "Id": 2032145,
+          "Name": "Cuisine - HP Lv.5"
+        },
+        {
+          "Id": 2032146,
+          "Name": "Cuisine - HP Lv.6"
+        },
+        {
+          "Id": 2032151,
+          "Name": "Cuisine - HP Regen Lv.1"
+        },
+        {
+          "Id": 2032152,
+          "Name": "Cuisine - HP Regen Lv.2"
+        },
+        {
+          "Id": 2032153,
+          "Name": "Cuisine - HP Regen Lv.3"
+        },
+        {
+          "Id": 2032154,
+          "Name": "Cuisine - HP Regen Lv.4"
+        },
+        {
+          "Id": 2032155,
+          "Name": "Cuisine - HP Regen Lv.5"
+        },
+        {
+          "Id": 2032156,
+          "Name": "Cuisine - HP Regen Lv.6"
+        },
+        {
+          "Id": 2032161,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.1"
+        },
+        {
+          "Id": 2032162,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.2"
+        },
+        {
+          "Id": 2032163,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.3"
+        },
+        {
+          "Id": 2032164,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.4"
+        },
+        {
+          "Id": 2032165,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.5"
+        },
+        {
+          "Id": 2032166,
+          "Name": "Cuisine - ATK + DMG to Elites Lv.6"
+        },
+        {
+          "Id": 2032171,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.1"
+        },
+        {
+          "Id": 2032172,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.2"
+        },
+        {
+          "Id": 2032173,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.3"
+        },
+        {
+          "Id": 2032174,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.4"
+        },
+        {
+          "Id": 2032175,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.5"
+        },
+        {
+          "Id": 2032176,
+          "Name": "Cuisine - MATK + DMG to Elites Lv.6"
+        },
+        {
+          "Id": 2032181,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.1"
+        },
+        {
+          "Id": 2032182,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
+        },
+        {
+          "Id": 2032183,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.3"
+        },
+        {
+          "Id": 2032184,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.4"
+        },
+        {
+          "Id": 2032185,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.5"
+        },
+        {
+          "Id": 2032186,
+          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.6"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -134,28 +406,96 @@
         "foodBuffSourcesByBuffId.2032012.iconPath",
         "foodBuffSourcesByBuffId.2032013.iconPath",
         "foodBuffSourcesByBuffId.2032014.iconPath",
+        "foodBuffSourcesByBuffId.2032015.iconPath",
+        "foodBuffSourcesByBuffId.2032016.iconPath",
+        "foodBuffSourcesByBuffId.2032017.iconPath",
+        "foodBuffSourcesByBuffId.2032018.iconPath",
         "foodBuffSourcesByBuffId.2032021.iconPath",
         "foodBuffSourcesByBuffId.2032022.iconPath",
         "foodBuffSourcesByBuffId.2032023.iconPath",
         "foodBuffSourcesByBuffId.2032024.iconPath",
+        "foodBuffSourcesByBuffId.2032025.iconPath",
+        "foodBuffSourcesByBuffId.2032026.iconPath",
+        "foodBuffSourcesByBuffId.2032027.iconPath",
+        "foodBuffSourcesByBuffId.2032028.iconPath",
         "foodBuffSourcesByBuffId.2032031.iconPath",
         "foodBuffSourcesByBuffId.2032032.iconPath",
         "foodBuffSourcesByBuffId.2032033.iconPath",
         "foodBuffSourcesByBuffId.2032034.iconPath",
+        "foodBuffSourcesByBuffId.2032035.iconPath",
+        "foodBuffSourcesByBuffId.2032036.iconPath",
+        "foodBuffSourcesByBuffId.2032037.iconPath",
+        "foodBuffSourcesByBuffId.2032038.iconPath",
         "foodBuffSourcesByBuffId.2032041.iconPath",
         "foodBuffSourcesByBuffId.2032042.iconPath",
         "foodBuffSourcesByBuffId.2032043.iconPath",
         "foodBuffSourcesByBuffId.2032044.iconPath",
+        "foodBuffSourcesByBuffId.2032045.iconPath",
+        "foodBuffSourcesByBuffId.2032046.iconPath",
+        "foodBuffSourcesByBuffId.2032047.iconPath",
+        "foodBuffSourcesByBuffId.2032048.iconPath",
         "foodBuffSourcesByBuffId.2032051.iconPath",
         "foodBuffSourcesByBuffId.2032052.iconPath",
         "foodBuffSourcesByBuffId.2032053.iconPath",
         "foodBuffSourcesByBuffId.2032054.iconPath",
+        "foodBuffSourcesByBuffId.2032055.iconPath",
+        "foodBuffSourcesByBuffId.2032056.iconPath",
+        "foodBuffSourcesByBuffId.2032057.iconPath",
+        "foodBuffSourcesByBuffId.2032058.iconPath",
         "foodBuffSourcesByBuffId.2032065.iconPath",
         "foodBuffSourcesByBuffId.2032067.iconPath",
         "foodBuffSourcesByBuffId.2032075.iconPath",
         "foodBuffSourcesByBuffId.2032077.iconPath",
         "foodBuffSourcesByBuffId.2032086.iconPath",
-        "foodBuffSourcesByBuffId.2032088.iconPath"
+        "foodBuffSourcesByBuffId.2032088.iconPath",
+        "foodBuffSourcesByBuffId.2032111.iconPath",
+        "foodBuffSourcesByBuffId.2032112.iconPath",
+        "foodBuffSourcesByBuffId.2032113.iconPath",
+        "foodBuffSourcesByBuffId.2032114.iconPath",
+        "foodBuffSourcesByBuffId.2032115.iconPath",
+        "foodBuffSourcesByBuffId.2032116.iconPath",
+        "foodBuffSourcesByBuffId.2032121.iconPath",
+        "foodBuffSourcesByBuffId.2032122.iconPath",
+        "foodBuffSourcesByBuffId.2032123.iconPath",
+        "foodBuffSourcesByBuffId.2032124.iconPath",
+        "foodBuffSourcesByBuffId.2032125.iconPath",
+        "foodBuffSourcesByBuffId.2032126.iconPath",
+        "foodBuffSourcesByBuffId.2032131.iconPath",
+        "foodBuffSourcesByBuffId.2032132.iconPath",
+        "foodBuffSourcesByBuffId.2032133.iconPath",
+        "foodBuffSourcesByBuffId.2032134.iconPath",
+        "foodBuffSourcesByBuffId.2032135.iconPath",
+        "foodBuffSourcesByBuffId.2032136.iconPath",
+        "foodBuffSourcesByBuffId.2032141.iconPath",
+        "foodBuffSourcesByBuffId.2032142.iconPath",
+        "foodBuffSourcesByBuffId.2032143.iconPath",
+        "foodBuffSourcesByBuffId.2032144.iconPath",
+        "foodBuffSourcesByBuffId.2032145.iconPath",
+        "foodBuffSourcesByBuffId.2032146.iconPath",
+        "foodBuffSourcesByBuffId.2032151.iconPath",
+        "foodBuffSourcesByBuffId.2032152.iconPath",
+        "foodBuffSourcesByBuffId.2032153.iconPath",
+        "foodBuffSourcesByBuffId.2032154.iconPath",
+        "foodBuffSourcesByBuffId.2032155.iconPath",
+        "foodBuffSourcesByBuffId.2032156.iconPath",
+        "foodBuffSourcesByBuffId.2032161.iconPath",
+        "foodBuffSourcesByBuffId.2032162.iconPath",
+        "foodBuffSourcesByBuffId.2032163.iconPath",
+        "foodBuffSourcesByBuffId.2032164.iconPath",
+        "foodBuffSourcesByBuffId.2032165.iconPath",
+        "foodBuffSourcesByBuffId.2032166.iconPath",
+        "foodBuffSourcesByBuffId.2032171.iconPath",
+        "foodBuffSourcesByBuffId.2032172.iconPath",
+        "foodBuffSourcesByBuffId.2032173.iconPath",
+        "foodBuffSourcesByBuffId.2032174.iconPath",
+        "foodBuffSourcesByBuffId.2032175.iconPath",
+        "foodBuffSourcesByBuffId.2032176.iconPath",
+        "foodBuffSourcesByBuffId.2032181.iconPath",
+        "foodBuffSourcesByBuffId.2032182.iconPath",
+        "foodBuffSourcesByBuffId.2032183.iconPath",
+        "foodBuffSourcesByBuffId.2032184.iconPath",
+        "foodBuffSourcesByBuffId.2032185.iconPath",
+        "foodBuffSourcesByBuffId.2032186.iconPath"
       ],
       "Values": [
         "ui/atlas/buff/buff_food_up"
@@ -6538,7 +6878,7 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-06T04:10:19.764Z",
+  "PngExportedAt": "2026-05-12T13:30:01.748Z",
   "PngAssetCount": 142,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0

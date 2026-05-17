@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require("node:fs");
 const path = require("node:path");
+const { cleanDescriptionsByLocale } = require("./effect-semantics.cjs");
 let buildLocaleTextObject;
 let localeIdFromGameLanguage;
 
@@ -128,7 +129,7 @@ Buff-specific options:
   --row-size <bytes>         BuffTable fixed row size. Default: ${DEFAULT_ROW_SIZE}.
 
 Output shape:
-  Id, Level, NameDesign, NameId, NameOffset, DesignName, Names, SourceOffset, NameSourceOffset.
+  Id, Level, NameDesign, NameId, NameOffset, DesignName, Names, optional Descriptions, SourceOffset, NameSourceOffset.
   NameId is the BuffTable mlstring id when present. NameOffset is the row's design-name string offset.
   Names is a locale-keyed object such as { en, fr, de, es, pt-BR, ja, ko-KR, zh-CN, zh-TW, th, id, design }.
 
@@ -169,6 +170,7 @@ Notes:
   const rawRows = [];
   const buffIds = new Set();
   const wantedNameIds = new Set();
+  const wantedDescriptionIds = new Set();
 
   for (let index = 0; index < rowCount; index += 1) {
     const sourceOffset = rowStart + index * rowSize;
@@ -176,10 +178,14 @@ Notes:
     const level = readU32(pkg, sourceOffset + 4);
     const nameOffset = readU32(pkg, sourceOffset + 8);
     const nameMlStringId = readU32(pkg, sourceOffset + 16);
+    const descriptionId = readU32(pkg, sourceOffset + 24);
     const designName = readStringAtOffset(pkg, stringBase, nameOffset, readU16);
 
     if (nameMlStringId) {
       wantedNameIds.add(nameMlStringId);
+    }
+    if (descriptionId) {
+      wantedDescriptionIds.add(descriptionId);
     }
     if (id) {
       buffIds.add(id);
@@ -191,6 +197,7 @@ Notes:
       level,
       nameOffset,
       nameMlStringId,
+      descriptionId,
       designName,
       sourceOffset
     });
@@ -212,6 +219,7 @@ Notes:
   }
 
   const localizedNamesById = collectLocalizedNamesById(wantedNameIds, localizationTables);
+  const localizedDescriptionsById = collectLocalizedTextsById(wantedDescriptionIds, localizationTables);
   const entries = [];
 
   for (const row of rawRows) {
@@ -254,6 +262,12 @@ Notes:
     const names = buildLocaleTextObject([...directLocaleEntries, ...linkedLocaleEntries], {
       designText: row.designName
     });
+    const localizedDescription = row.descriptionId
+      ? localizedDescriptionsById.get(row.descriptionId)
+      : null;
+    const cleanDescriptions = localizedDescription?.texts
+      ? cleanDescriptionsByLocale(localizedDescription.texts)
+      : {};
     const preferredName =
       directPreferredName || linkedPreferredName || choosePreferredLabel(localizedNames) || row.designName;
 
@@ -268,8 +282,11 @@ Notes:
       NameId: row.nameMlStringId || (linkedName?.composeParts ? null : linkedName?.nameIds?.[0]) || null,
       NameIdSource: row.nameMlStringId ? "BuffTable" : linkedName?.source ?? null,
       NameOffset: row.nameOffset,
+      ...(row.descriptionId ? { DescriptionId: row.descriptionId } : {}),
       DesignName: row.designName,
       Names: names,
+      ...(localizedDescription?.texts ? { Descriptions: localizedDescription.texts } : {}),
+      ...(Object.keys(cleanDescriptions).length ? { CleanDescriptions: cleanDescriptions } : {}),
       ...(linkedIconPaths.length
         ? {
             IconPath: linkedIconPaths[0],
@@ -306,8 +323,10 @@ Notes:
   console.log(`BuffTable row data offset: ${rowStart}`);
   console.log(`BuffTable string base: ${stringBase}`);
   console.log(`BuffTable mlstring ids: ${wantedNameIds.size}`);
+  console.log(`BuffTable description ids: ${wantedDescriptionIds.size}`);
   console.log(`Loaded localization files: ${localizationTables.length}`);
   console.log(`Resolved mlstring ids: ${localizedNamesById.size}`);
+  console.log(`Resolved description ids: ${localizedDescriptionsById.size}`);
   console.log(`Secondary table direct buff-name links: ${baseLinkedNames.size}`);
   console.log(`Derived localized buff-term links: ${derivedBuffNames.size}`);
   console.log(`Secondary table links after adjacent buff inheritance: ${linkedBuffNames.size}`);
@@ -378,6 +397,37 @@ function collectLocalizedNamesById(wantedNameIds, localizationTables) {
         preferredLabel: preferredLabel || labels[0]
       });
     }
+  }
+  return out;
+}
+
+function collectLocalizedTextsById(wantedIds, localizationTables) {
+  const out = new Map();
+  for (const id of wantedIds) {
+    const localeEntries = [];
+    for (const table of localizationTables) {
+      const stringIndex = table.index.get(id);
+      if (stringIndex === undefined) {
+        continue;
+      }
+      const text = String(table.strings[stringIndex] || "").trim();
+      if (!text) {
+        continue;
+      }
+      localeEntries.push({
+        localeId: localeIdFromGameLanguage(table.language),
+        language: table.language,
+        stringIndex,
+        text
+      });
+    }
+    if (!localeEntries.length) {
+      continue;
+    }
+    out.set(id, {
+      localeEntries,
+      texts: buildLocaleTextObject(localeEntries, { includeDesign: false }),
+    });
   }
   return out;
 }

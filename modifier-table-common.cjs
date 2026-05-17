@@ -143,8 +143,12 @@ const RUNTIME_WINDOW_GROUPS = new Set([
   "baseAttack",
   "critical",
   "elemental",
+  "finalDamage",
   "genericDamage",
   "hitTiming",
+  "physicalMagicEnhancement",
+  "seasonDamage",
+  "seasonSuppression",
   "targetMitigation",
   "versatility",
 ]);
@@ -240,8 +244,24 @@ function prepareRecountEntry(rawEntry) {
   return { entry, sourceIndexPolicy, effective };
 }
 
-function sourceRuleIdForRecountEntry(entry) {
-  return `mrs:${hashEntry(entry)}`;
+function recountIdentity(entry, source = "source-index") {
+  return {
+    source,
+    sourceId: entry.sourceId,
+    sourceKind: entry.sourceKind,
+    sourceType: entry.sourceType,
+    sourceEntityId: entry.sourceEntityId,
+    runtimeDetection: entry.runtimeDetection,
+    buffIds: entry.buffIds,
+    targetDamageIds: entry.targetDamageIds,
+    targetRecountIds: entry.targetRecountIds,
+    rowPolicy: entry.rowPolicy,
+    providerAggregation: entry.providerAggregation,
+  };
+}
+
+function sourceRuleIdForRecountEntry(entry, source) {
+  return `mrs:${hashEntry(recountIdentity(entry, source))}`;
 }
 
 module.exports = {
@@ -252,6 +272,7 @@ module.exports = {
   hashEntry,
   isRuntimeWindowTransportEntry,
   prepareRecountEntry,
+  recountIdentity,
   sourceRuleIdForRecountEntry,
   sortedNumbers,
   stripUndefined,

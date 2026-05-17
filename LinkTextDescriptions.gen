@@ -1,0 +1,231 @@
+#!/usr/bin/env node
+const path = require("node:path");
+const { extractValueTexts } = require("./effect-semantics.cjs");
+
+const LINK_TEXT_TABLE_HASH = 2325832469;
+const DESCRIPTION_REFERENCE_TABLE_HASH = 4192598123;
+const DEFAULT_OUTPUT_NAME = "LinkTextDescriptions.json";
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const common = await import("./generator-common.mjs");
+  const args = common.parseArgs(process.argv.slice(2));
+  if (args.help) {
+    common.printHelp(
+      "LinkTextDescriptions.gen - export game-file linktext tooltip names and descriptions.",
+      `
+Options:
+  --max-rows <count>  Optional row scan limit for debugging.
+
+Notes:
+  This follows the client linktext tooltip table. Description ids are resolved
+  through the game localization byte tables and CTB:4192598123 fallback refs.
+`,
+    );
+    return;
+  }
+
+  const paths = common.resolvePaths(args, DEFAULT_OUTPUT_NAME);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = common.loadMetaEntries(containerDir);
+  const localizationTables = common.loadLocalizationTables(containerDir, { metaEntries });
+  const localization = buildLocalizationResolver(common, localizationTables);
+  const linkTextTable = common.readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    LINK_TEXT_TABLE_HASH,
+    `CTB:${LINK_TEXT_TABLE_HASH}`,
+  );
+  const descriptionReferenceTable = common.readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    DESCRIPTION_REFERENCE_TABLE_HASH,
+    `CTB:${DESCRIPTION_REFERENCE_TABLE_HASH}`,
+  );
+  const descriptionIdsByKey = readDescriptionReferenceRows(descriptionReferenceTable, common);
+  const linkTextsById = readLinkTextRows({
+    table: linkTextTable,
+    localization,
+    descriptionIdsByKey,
+    maxRows: Number(args.maxRows) || 0,
+    common,
+  });
+  const linkTextIds = Object.keys(linkTextsById).sort((left, right) => Number(left) - Number(right));
+  const descriptionKeyToLinkTextIds = {};
+  for (const id of linkTextIds) {
+    const key = linkTextsById[id]?.descriptionKey;
+    if (!key) continue;
+    const textKey = String(key);
+    descriptionKeyToLinkTextIds[textKey] ||= [];
+    descriptionKeyToLinkTextIds[textKey].push(Number(id));
+  }
+
+  const output = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    summary: {
+      source: "LinkTextDescriptions.gen",
+      linkTextTable: `CTB:${LINK_TEXT_TABLE_HASH}`,
+      descriptionReferenceTable: `CTB:${DESCRIPTION_REFERENCE_TABLE_HASH}`,
+      linkTextRows: linkTextIds.length,
+      rowsWithNames: linkTextIds.filter((id) => Object.keys(linkTextsById[id]?.names ?? {}).length).length,
+      rowsWithDescriptions: linkTextIds.filter((id) => Object.keys(linkTextsById[id]?.descriptions ?? {}).length).length,
+      rowsWithReferenceDescriptions: linkTextIds.filter((id) => (linkTextsById[id]?.descriptionReferenceIds ?? []).length).length,
+    },
+    linkTextIds: linkTextIds.map(Number),
+    linkTextsById,
+    descriptionKeyToLinkTextIds: Object.fromEntries(
+      Object.entries(descriptionKeyToLinkTextIds)
+        .sort((left, right) => Number(left[0]) - Number(right[0]))
+        .map(([key, ids]) => [key, [...new Set(ids)].sort((left, right) => left - right)]),
+    ),
+  };
+
+  common.maybeWriteJson(paths.out, output, Boolean(args.dryRun));
+  console.log(
+    `${args.dryRun ? "Dry run:" : "Linktext descriptions:"} ${output.summary.rowsWithDescriptions.toLocaleString()} described rows / ${output.summary.linkTextRows.toLocaleString()} rows`,
+  );
+}
+
+function buildLocalizationResolver(common, localizationTables) {
+  const byLocale = new Map();
+  for (const table of localizationTables) {
+    const localeId = common.localeIdFromGameLanguage(table.language);
+    const values = new Map();
+    for (const [id, index] of table.index.entries()) {
+      const text = common.normalizeText(table.strings[index] ?? "");
+      if (text) values.set(Number(id), text);
+    }
+    byLocale.set(localeId, values);
+  }
+  const localeOrder = common.DEFAULT_LOCALE_ID_ORDER.filter((localeId) => localeId !== "design");
+  return {
+    textByIds(ids) {
+      const out = {};
+      const sourceIds = [];
+      for (const id of uniqueNumbers(ids)) {
+        let used = false;
+        for (const localeId of localeOrder) {
+          if (out[localeId]) continue;
+          const text = byLocale.get(localeId)?.get(id);
+          if (!text) continue;
+          out[localeId] = text;
+          used = true;
+        }
+        if (used) sourceIds.push(id);
+      }
+      return { texts: out, sourceIds };
+    },
+  };
+}
+
+function readDescriptionReferenceRows(table, common) {
+  const out = new Map();
+  for (let row = 0; row < table.rowCount; row += 1) {
+    const offset = table.rowStart + row * table.rowSize;
+    const descriptionKey = common.readU32(table.data, offset);
+    const descriptionId = common.readU32(table.data, offset + 4);
+    if (!descriptionKey || !descriptionId) continue;
+    const ids = out.get(descriptionKey) ?? [];
+    ids.push(descriptionId);
+    out.set(descriptionKey, ids);
+  }
+  return out;
+}
+
+function readLinkTextRows({ table, localization, descriptionIdsByKey, maxRows, common }) {
+  const out = {};
+  const rowCount = maxRows > 0 ? Math.min(table.rowCount, maxRows) : table.rowCount;
+  for (let row = 0; row < rowCount; row += 1) {
+    const offset = table.rowStart + row * table.rowSize;
+    const linkTextId = common.readU32(table.data, offset);
+    if (!linkTextId) continue;
+    const nameId = common.readU32(table.data, offset + 4);
+    const category = common.readU32(table.data, offset + 8);
+    const descriptionKey = common.readU32(table.data, offset + 12);
+    const directDescriptionId = common.readU32(table.data, offset + 16);
+    const flags = common.readU32(table.data, offset + 20);
+    const referenceDescriptionIds = descriptionIdsByKey.get(descriptionKey) ?? [];
+    const descriptionIds = uniqueNumbers([directDescriptionId, ...referenceDescriptionIds]);
+    const names = localization.textByIds([nameId]);
+    const descriptions = localization.textByIds(descriptionIds);
+    const cleanDescriptions = cleanDescriptionMap(descriptions.texts);
+    out[String(linkTextId)] = stripUndefined({
+      linkTextId,
+      nameId,
+      nameIds: names.sourceIds,
+      names: names.texts,
+      name: preferredText(names.texts),
+      category,
+      descriptionKey,
+      directDescriptionId,
+      descriptionReferenceIds: uniqueNumbers(referenceDescriptionIds),
+      descriptionIds,
+      descriptions: descriptions.texts,
+      cleanDescriptions,
+      description: preferredText(cleanDescriptions),
+      valueTexts: extractValueTexts(preferredText(cleanDescriptions)),
+      sourceRows: [{
+        sourceTable: `CTB:${LINK_TEXT_TABLE_HASH}`,
+        row,
+        rowOffset: offset,
+      }],
+    });
+  }
+  return Object.fromEntries(
+    Object.entries(out).sort((left, right) => Number(left[0]) - Number(right[0])),
+  );
+}
+
+function cleanDescriptionMap(map) {
+  const out = {};
+  for (const [localeId, text] of Object.entries(map ?? {})) {
+    const clean = cleanDescriptionText(text);
+    if (clean) out[localeId] = clean;
+  }
+  return out;
+}
+
+function cleanDescriptionText(value) {
+  return String(value || "")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<\/?style[^>]*>/gi, "")
+    .replace(/<\/?linktext[^>]*>/gi, "")
+    .replace(/\{\*[^}]*\*\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function preferredText(map) {
+  return String(map?.en || map?.["zh-CN"] || Object.values(map ?? {}).find(Boolean) || "").trim();
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values ?? [])
+    .map((value) => Number(value))
+    .filter((value) => Number.isFinite(value) && value > 0))]
+    .sort((left, right) => left - right);
+}
+
+function stripUndefined(value) {
+  if (Array.isArray(value)) return value.map(stripUndefined).filter((entry) => entry !== undefined);
+  if (!value || typeof value !== "object") return value;
+  const out = {};
+  for (const [key, inner] of Object.entries(value)) {
+    if (inner === undefined || inner === null || inner === "") continue;
+    if (Array.isArray(inner) && inner.length === 0) continue;
+    if (inner && typeof inner === "object" && !Array.isArray(inner)) {
+      const stripped = stripUndefined(inner);
+      if (stripped === undefined) continue;
+      if (Object.keys(stripped).length === 0) continue;
+      out[key] = stripped;
+      continue;
+    }
+    out[key] = inner;
+  }
+  return Object.keys(out).length ? out : undefined;
+}

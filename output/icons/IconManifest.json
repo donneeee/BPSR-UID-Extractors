@@ -1,7 +1,7 @@
 {
-  "GeneratedAt": "2026-05-06T04:09:13.685Z",
+  "GeneratedAt": "2026-05-12T13:28:26.131Z",
   "OutputDir": "output/icons",
-  "JsonFilesScanned": 23,
+  "JsonFilesScanned": 44,
   "ProbeImageDirs": [
     "Probing Sources/images"
   ],
@@ -10,14 +10,14 @@
   ],
   "ProbeImageFilesScanned": 0,
   "ProbeTextFilesScanned": 0,
-  "GeneratedReferencesFound": 34819,
+  "GeneratedReferencesFound": 43870,
   "ProbeImageReferencesFound": 0,
   "ProbeTextReferencesFound": 0,
-  "UniqueReferences": 34819,
-  "AddressCatalogEntries": 193085,
-  "SpriteCatalogEntries": 8388,
-  "ResolvedAssetCount": 10428,
-  "MissingAssetCount": 1128,
+  "UniqueReferences": 43870,
+  "AddressCatalogEntries": 194502,
+  "SpriteCatalogEntries": 8416,
+  "ResolvedAssetCount": 14658,
+  "MissingAssetCount": 1220,
   "AmbiguousAssetCount": 101,
   "GroupManifests": [
     {
@@ -41,9 +41,24 @@
       "AssetCount": 1059
     },
     {
+      "SourceGroup": "ItemDescriptionSources",
+      "Manifest": "ItemDescriptionSources/manifest.json",
+      "AssetCount": 3949
+    },
+    {
       "SourceGroup": "itemnames",
       "Manifest": "itemnames/manifest.json",
-      "AssetCount": 3553
+      "AssetCount": 3595
+    },
+    {
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Manifest": "LuckyStrikeRuntime/manifest.json",
+      "AssetCount": 117
+    },
+    {
+      "SourceGroup": "LuckyStrikeTable",
+      "Manifest": "LuckyStrikeTable/manifest.json",
+      "AssetCount": 117
     },
     {
       "SourceGroup": "ModifierClassificationTable",
@@ -53,7 +68,12 @@
     {
       "SourceGroup": "ModifierDisplayTable",
       "Manifest": "ModifierDisplayTable/manifest.json",
-      "AssetCount": 936
+      "AssetCount": 938
+    },
+    {
+      "SourceGroup": "ModifierObservedUidBridge",
+      "Manifest": "ModifierObservedUidBridge/manifest.json",
+      "AssetCount": 3
     },
     {
       "SourceGroup": "ModifierSourceIndex",
@@ -2734,6 +2754,2036 @@
     },
     {
       "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.1.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_03",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_03"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_03"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_03"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "1",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.2.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_05",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_05"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_05"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_05"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "2",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.3.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_01",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_01"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_01"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_01"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "3",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.4.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_02",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_02"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_02"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_02"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "4",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.5.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_04",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_04"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_04"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_04"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "5",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.8.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_07",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_07"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_07"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_07"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "8",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_06",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_06"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_06"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_06"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.10.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_04",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_04"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_04"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_04"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "10",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.11.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_07",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_07"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_07"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_07"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "11",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.12.iconPath",
+      "Value": "ui/atlas/weap_icon/weap_equip_square_05",
+      "CandidateAddresses": [
+        "ui/atlas/weap_icon/weap_equip_square_05"
+      ],
+      "CandidateNames": [
+        "weap_equip_square_05"
+      ],
+      "AtlasSpriteCandidates": [
+        {
+          "atlasAddress": "ui/atlas/weap_icon",
+          "spriteName": "weap_equip_square_05"
+        }
+      ],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "12",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.20001.iconPath",
+      "Value": "item_icon_bloodvial",
+      "CandidateAddresses": [
+        "item_icon_bloodvial"
+      ],
+      "CandidateNames": [
+        "item_icon_bloodvial"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "20001",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.1076046.iconPath",
+      "Value": "item_icons_drawing166",
+      "CandidateAddresses": [
+        "item_icons_drawing166"
+      ],
+      "CandidateNames": [
+        "item_icons_drawing166"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "1076046",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.1076047.iconPath",
+      "Value": "item_icons_drawing168",
+      "CandidateAddresses": [
+        "item_icons_drawing168"
+      ],
+      "CandidateNames": [
+        "item_icons_drawing168"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "1076047",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.1076048.iconPath",
+      "Value": "item_icons_drawing170",
+      "CandidateAddresses": [
+        "item_icons_drawing170"
+      ],
+      "CandidateNames": [
+        "item_icons_drawing170"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "1076048",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.1094015.iconPath",
+      "Value": "item_icons_fish27",
+      "CandidateAddresses": [
+        "item_icons_fish27"
+      ],
+      "CandidateNames": [
+        "item_icons_fish27"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "1094015",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015093.iconPath",
+      "Value": "clothes_icon_m_dressmaker01",
+      "CandidateAddresses": [
+        "clothes_icon_m_dressmaker01"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015093",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015094.iconPath",
+      "Value": "clothes_icon_f_dressmaker01",
+      "CandidateAddresses": [
+        "clothes_icon_f_dressmaker01"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015094",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015095.iconPath",
+      "Value": "clothes_icon_m_dressmaker06",
+      "CandidateAddresses": [
+        "clothes_icon_m_dressmaker06"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015095",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015096.iconPath",
+      "Value": "clothes_icon_f_dressmaker06",
+      "CandidateAddresses": [
+        "clothes_icon_f_dressmaker06"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015096",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015121.iconPath",
+      "Value": "clothes_icon_m_christmas02",
+      "CandidateAddresses": [
+        "clothes_icon_m_christmas02"
+      ],
+      "CandidateNames": [
+        "clothes_icon_m_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015121",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015122.iconPath",
+      "Value": "clothes_icon_f_christmas02",
+      "CandidateAddresses": [
+        "clothes_icon_f_christmas02"
+      ],
+      "CandidateNames": [
+        "clothes_icon_f_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015122",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015135.iconPath",
+      "Value": "simplesuit_icon_m_flower01",
+      "CandidateAddresses": [
+        "simplesuit_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "simplesuit_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015135",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7015136.iconPath",
+      "Value": "simplesuit_icon_f_flower01",
+      "CandidateAddresses": [
+        "simplesuit_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "simplesuit_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7015136",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115093.iconPath",
+      "Value": "gloves_icon_m_dressmaker01",
+      "CandidateAddresses": [
+        "gloves_icon_m_dressmaker01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115093",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115094.iconPath",
+      "Value": "gloves_icon_f_dressmaker01",
+      "CandidateAddresses": [
+        "gloves_icon_f_dressmaker01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115094",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115095.iconPath",
+      "Value": "gloves_icon_m_dressmaker06",
+      "CandidateAddresses": [
+        "gloves_icon_m_dressmaker06"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115095",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115096.iconPath",
+      "Value": "gloves_icon_f_dressmaker06",
+      "CandidateAddresses": [
+        "gloves_icon_f_dressmaker06"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115096",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115121.iconPath",
+      "Value": "gloves_icon_m_christmas02",
+      "CandidateAddresses": [
+        "gloves_icon_m_christmas02"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115121",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115122.iconPath",
+      "Value": "gloves_icon_f_christmas02",
+      "CandidateAddresses": [
+        "gloves_icon_f_christmas02"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115122",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115135.iconPath",
+      "Value": "gloves_icon_m_flower01",
+      "CandidateAddresses": [
+        "gloves_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115135",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7115136.iconPath",
+      "Value": "gloves_icon_f_flower01",
+      "CandidateAddresses": [
+        "gloves_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "gloves_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7115136",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125093.iconPath",
+      "Value": "shoes_icon_m_dressmaker01",
+      "CandidateAddresses": [
+        "shoes_icon_m_dressmaker01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125093",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125094.iconPath",
+      "Value": "shoes_icon_f_dressmaker01",
+      "CandidateAddresses": [
+        "shoes_icon_f_dressmaker01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_dressmaker01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125094",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125095.iconPath",
+      "Value": "shoes_icon_m_dressmaker06",
+      "CandidateAddresses": [
+        "shoes_icon_m_dressmaker06"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125095",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125096.iconPath",
+      "Value": "shoes_icon_f_dressmaker06",
+      "CandidateAddresses": [
+        "shoes_icon_f_dressmaker06"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_dressmaker06"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125096",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125121.iconPath",
+      "Value": "shoes_icon_m_christmas02",
+      "CandidateAddresses": [
+        "shoes_icon_m_christmas02"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125121",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125122.iconPath",
+      "Value": "shoes_icon_f_christmas02",
+      "CandidateAddresses": [
+        "shoes_icon_f_christmas02"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_christmas02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125122",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125135.iconPath",
+      "Value": "shoes_icon_m_flower01",
+      "CandidateAddresses": [
+        "shoes_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125135",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7125136.iconPath",
+      "Value": "shoes_icon_f_flower01",
+      "CandidateAddresses": [
+        "shoes_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "shoes_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7125136",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130327.iconPath",
+      "Value": "headwear_icon_c_mahjong01",
+      "CandidateAddresses": [
+        "headwear_icon_c_mahjong01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_mahjong01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130327",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130336.iconPath",
+      "Value": "headwear_icon_m_flower01",
+      "CandidateAddresses": [
+        "headwear_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130336",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130337.iconPath",
+      "Value": "headwear_icon_f_flower01",
+      "CandidateAddresses": [
+        "headwear_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130337",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130338.iconPath",
+      "Value": "headwear_icon_m_flower01up01",
+      "CandidateAddresses": [
+        "headwear_icon_m_flower01up01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_m_flower01up01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130338",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130339.iconPath",
+      "Value": "headwear_icon_f_flower01up01",
+      "CandidateAddresses": [
+        "headwear_icon_f_flower01up01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_f_flower01up01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130339",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130340.iconPath",
+      "Value": "headwear_icon_c_olvera01",
+      "CandidateAddresses": [
+        "headwear_icon_c_olvera01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_olvera01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130340",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7130341.iconPath",
+      "Value": "headwear_icon_c_jerrad01",
+      "CandidateAddresses": [
+        "headwear_icon_c_jerrad01"
+      ],
+      "CandidateNames": [
+        "headwear_icon_c_jerrad01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7130341",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7150021.iconPath",
+      "Value": "mouthwear_icon_c_television01",
+      "CandidateAddresses": [
+        "mouthwear_icon_c_television01"
+      ],
+      "CandidateNames": [
+        "mouthwear_icon_c_television01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7150021",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7170001.iconPath",
+      "Value": "back_icon_c_wings01",
+      "CandidateAddresses": [
+        "back_icon_c_wings01"
+      ],
+      "CandidateNames": [
+        "back_icon_c_wings01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7170001",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7170033.iconPath",
+      "Value": "back_icon_c_flower01",
+      "CandidateAddresses": [
+        "back_icon_c_flower01"
+      ],
+      "CandidateNames": [
+        "back_icon_c_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7170033",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7170034.iconPath",
+      "Value": "back_icon_c_flower02",
+      "CandidateAddresses": [
+        "back_icon_c_flower02"
+      ],
+      "CandidateNames": [
+        "back_icon_c_flower02"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7170034",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7210028.iconPath",
+      "Value": "ears_icon_c_earring04",
+      "CandidateAddresses": [
+        "ears_icon_c_earring04"
+      ],
+      "CandidateNames": [
+        "ears_icon_c_earring04"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7210028",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7210031.iconPath",
+      "Value": "ears_icon_c_tassels010",
+      "CandidateAddresses": [
+        "ears_icon_c_tassels010"
+      ],
+      "CandidateNames": [
+        "ears_icon_c_tassels010"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7210031",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7210039.iconPath",
+      "Value": "ears_icon_c_flower01",
+      "CandidateAddresses": [
+        "ears_icon_c_flower01"
+      ],
+      "CandidateNames": [
+        "ears_icon_c_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7210039",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7220041.iconPath",
+      "Value": "neck_icon_m_flower01",
+      "CandidateAddresses": [
+        "neck_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "neck_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7220041",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7220042.iconPath",
+      "Value": "neck_icon_f_flower01",
+      "CandidateAddresses": [
+        "neck_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "neck_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7220042",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7230047.iconPath",
+      "Value": "ring_icon_m_flower01",
+      "CandidateAddresses": [
+        "ring_icon_m_flower01"
+      ],
+      "CandidateNames": [
+        "ring_icon_m_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7230047",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7230048.iconPath",
+      "Value": "ring_icon_f_flower01",
+      "CandidateAddresses": [
+        "ring_icon_f_flower01"
+      ],
+      "CandidateNames": [
+        "ring_icon_f_flower01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7230048",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7310008.iconPath",
+      "Value": "ch_wp_olvera_08_01",
+      "CandidateAddresses": [
+        "ch_wp_olvera_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_olvera_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7310008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7320008.iconPath",
+      "Value": "ch_wp_boyce_08_01",
+      "CandidateAddresses": [
+        "ch_wp_boyce_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_boyce_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7320008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7330000.iconPath",
+      "Value": "ch_wp_tata_01_01",
+      "CandidateAddresses": [
+        "ch_wp_tata_01_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_tata_01_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7330000",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7340008.iconPath",
+      "Value": "ch_wp_tina_08_01",
+      "CandidateAddresses": [
+        "ch_wp_tina_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_tina_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7340008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7350008.iconPath",
+      "Value": "ch_wp_iruna_08_01",
+      "CandidateAddresses": [
+        "ch_wp_iruna_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_iruna_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7350008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7360000.iconPath",
+      "Value": "ch_wp_taurus_01_01",
+      "CandidateAddresses": [
+        "ch_wp_taurus_01_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_taurus_01_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7360000",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7370008.iconPath",
+      "Value": "ch_wp_comeau_08_01",
+      "CandidateAddresses": [
+        "ch_wp_comeau_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_comeau_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7370008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7380000.iconPath",
+      "Value": "ch_wp_rorola_01_01",
+      "CandidateAddresses": [
+        "ch_wp_rorola_01_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_rorola_01_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7380000",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7390008.iconPath",
+      "Value": "ch_wp_rodri_08_01",
+      "CandidateAddresses": [
+        "ch_wp_rodri_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_rodri_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7390008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7400008.iconPath",
+      "Value": "ch_wp_farfara_08_01",
+      "CandidateAddresses": [
+        "ch_wp_farfara_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_farfara_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7400008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.7410008.iconPath",
+      "Value": "ch_wp_guitar_08_01",
+      "CandidateAddresses": [
+        "ch_wp_guitar_08_01"
+      ],
+      "CandidateNames": [
+        "ch_wp_guitar_08_01"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "7410008",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9040117.iconPath",
+      "Value": "personalzone_medal_icon_01_120",
+      "CandidateAddresses": [
+        "personalzone_medal_icon_01_120"
+      ],
+      "CandidateNames": [
+        "personalzone_medal_icon_01_120"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9040117",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070011.iconPath",
+      "Value": "monthly_reward_card_item_icon_12",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_12"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_12"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070011",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070012.iconPath",
+      "Value": "monthly_reward_card_item_icon_13",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_13"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_13"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070012",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070013.iconPath",
+      "Value": "monthly_reward_card_item_icon_14",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_14"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_14"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070013",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070014.iconPath",
+      "Value": "monthly_reward_card_item_icon_15",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_15"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_15"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070014",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070015.iconPath",
+      "Value": "monthly_reward_card_item_icon_16",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_16"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_16"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070015",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070016.iconPath",
+      "Value": "monthly_reward_card_item_icon_17",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_17"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_17"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070016",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070017.iconPath",
+      "Value": "monthly_reward_card_item_icon_18",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_18"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_18"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070017",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070018.iconPath",
+      "Value": "monthly_reward_card_item_icon_19",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_19"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_19"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070018",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070019.iconPath",
+      "Value": "monthly_reward_card_item_icon_20",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_20"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_20"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070019",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070020.iconPath",
+      "Value": "monthly_reward_card_item_icon_21",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_21"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_21"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070020",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070021.iconPath",
+      "Value": "monthly_reward_card_item_icon_22",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_22"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_22"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070021",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070022.iconPath",
+      "Value": "monthly_reward_card_item_icon_23",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_23"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_23"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070022",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070023.iconPath",
+      "Value": "monthly_reward_card_item_icon_24",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_24"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_24"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070023",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070024.iconPath",
+      "Value": "monthly_reward_card_item_icon_25",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_25"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_25"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070024",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070025.iconPath",
+      "Value": "monthly_reward_card_item_icon_26",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_26"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_26"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070025",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070026.iconPath",
+      "Value": "monthly_reward_card_item_icon_27",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_27"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_27"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070026",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070027.iconPath",
+      "Value": "monthly_reward_card_item_icon_28",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_28"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_28"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070027",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070028.iconPath",
+      "Value": "monthly_reward_card_item_icon_29",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_29"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_29"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070028",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070029.iconPath",
+      "Value": "monthly_reward_card_item_icon_30",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_30"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_30"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070029",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070030.iconPath",
+      "Value": "monthly_reward_card_item_icon_31",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_31"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_31"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070030",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ItemDescriptionSources.json",
+      "SourceGroup": "ItemDescriptionSources",
+      "Field": "descriptionsByItemId.9070031.iconPath",
+      "Value": "monthly_reward_card_item_icon_32",
+      "CandidateAddresses": [
+        "monthly_reward_card_item_icon_32"
+      ],
+      "CandidateNames": [
+        "monthly_reward_card_item_icon_32"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "9070031",
+          "Name": ""
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
       "Field": "0.IconPath",
@@ -3028,7 +5078,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "2916.IconPath",
+      "Field": "2925.IconPath",
       "Value": "item_icons_drawing166",
       "CandidateAddresses": [
         "item_icons_drawing166"
@@ -3050,7 +5100,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "2917.IconPath",
+      "Field": "2926.IconPath",
       "Value": "item_icons_drawing168",
       "CandidateAddresses": [
         "item_icons_drawing168"
@@ -3072,7 +5122,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "2918.IconPath",
+      "Field": "2927.IconPath",
       "Value": "item_icons_drawing170",
       "CandidateAddresses": [
         "item_icons_drawing170"
@@ -3094,7 +5144,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "3503.IconPath",
+      "Field": "3524.IconPath",
       "Value": "item_icons_fish27",
       "CandidateAddresses": [
         "item_icons_fish27"
@@ -3116,7 +5166,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7223.IconPath",
+      "Field": "7244.IconPath",
       "Value": "clothes_icon_m_dressmaker01",
       "CandidateAddresses": [
         "clothes_icon_m_dressmaker01"
@@ -3138,7 +5188,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7224.IconPath",
+      "Field": "7245.IconPath",
       "Value": "clothes_icon_f_dressmaker01",
       "CandidateAddresses": [
         "clothes_icon_f_dressmaker01"
@@ -3160,7 +5210,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7225.IconPath",
+      "Field": "7246.IconPath",
       "Value": "clothes_icon_m_dressmaker06",
       "CandidateAddresses": [
         "clothes_icon_m_dressmaker06"
@@ -3182,7 +5232,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7226.IconPath",
+      "Field": "7247.IconPath",
       "Value": "clothes_icon_f_dressmaker06",
       "CandidateAddresses": [
         "clothes_icon_f_dressmaker06"
@@ -3204,7 +5254,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7243.IconPath",
+      "Field": "7264.IconPath",
       "Value": "clothes_icon_m_armourpower03",
       "CandidateAddresses": [
         "clothes_icon_m_armourpower03"
@@ -3226,7 +5276,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7244.IconPath",
+      "Field": "7265.IconPath",
       "Value": "clothes_icon_f_armourpower03",
       "CandidateAddresses": [
         "clothes_icon_f_armourpower03"
@@ -3248,7 +5298,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7245.IconPath",
+      "Field": "7266.IconPath",
       "Value": "clothes_icon_m_armourmagic03",
       "CandidateAddresses": [
         "clothes_icon_m_armourmagic03"
@@ -3270,7 +5320,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7246.IconPath",
+      "Field": "7267.IconPath",
       "Value": "clothes_icon_f_armourmagic03",
       "CandidateAddresses": [
         "clothes_icon_f_armourmagic03"
@@ -3292,7 +5342,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7247.IconPath",
+      "Field": "7268.IconPath",
       "Value": "clothes_icon_m_armouragile03",
       "CandidateAddresses": [
         "clothes_icon_m_armouragile03"
@@ -3314,7 +5364,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7248.IconPath",
+      "Field": "7269.IconPath",
       "Value": "clothes_icon_f_armouragile03",
       "CandidateAddresses": [
         "clothes_icon_f_armouragile03"
@@ -3336,7 +5386,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7251.IconPath",
+      "Field": "7272.IconPath",
       "Value": "clothes_icon_m_christmas02",
       "CandidateAddresses": [
         "clothes_icon_m_christmas02"
@@ -3358,7 +5408,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7252.IconPath",
+      "Field": "7273.IconPath",
       "Value": "clothes_icon_f_christmas02",
       "CandidateAddresses": [
         "clothes_icon_f_christmas02"
@@ -3380,7 +5430,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7265.IconPath",
+      "Field": "7286.IconPath",
       "Value": "simplesuit_icon_m_flower01",
       "CandidateAddresses": [
         "simplesuit_icon_m_flower01"
@@ -3402,7 +5452,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7266.IconPath",
+      "Field": "7287.IconPath",
       "Value": "simplesuit_icon_f_flower01",
       "CandidateAddresses": [
         "simplesuit_icon_f_flower01"
@@ -3424,7 +5474,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7481.IconPath",
+      "Field": "7510.IconPath",
       "Value": "gloves_icon_m_dressmaker01",
       "CandidateAddresses": [
         "gloves_icon_m_dressmaker01"
@@ -3446,7 +5496,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7482.IconPath",
+      "Field": "7511.IconPath",
       "Value": "gloves_icon_f_dressmaker01",
       "CandidateAddresses": [
         "gloves_icon_f_dressmaker01"
@@ -3468,7 +5518,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7483.IconPath",
+      "Field": "7512.IconPath",
       "Value": "gloves_icon_m_dressmaker06",
       "CandidateAddresses": [
         "gloves_icon_m_dressmaker06"
@@ -3490,7 +5540,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7484.IconPath",
+      "Field": "7513.IconPath",
       "Value": "gloves_icon_f_dressmaker06",
       "CandidateAddresses": [
         "gloves_icon_f_dressmaker06"
@@ -3512,7 +5562,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7501.IconPath",
+      "Field": "7530.IconPath",
       "Value": "gloves_icon_m_armourpower03",
       "CandidateAddresses": [
         "gloves_icon_m_armourpower03"
@@ -3534,7 +5584,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7502.IconPath",
+      "Field": "7531.IconPath",
       "Value": "gloves_icon_f_armourpower03",
       "CandidateAddresses": [
         "gloves_icon_f_armourpower03"
@@ -3556,7 +5606,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7503.IconPath",
+      "Field": "7532.IconPath",
       "Value": "gloves_icon_m_armourmagic03",
       "CandidateAddresses": [
         "gloves_icon_m_armourmagic03"
@@ -3578,7 +5628,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7504.IconPath",
+      "Field": "7533.IconPath",
       "Value": "gloves_icon_f_armourmagic03",
       "CandidateAddresses": [
         "gloves_icon_f_armourmagic03"
@@ -3600,7 +5650,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7505.IconPath",
+      "Field": "7534.IconPath",
       "Value": "gloves_icon_m_armouragile03",
       "CandidateAddresses": [
         "gloves_icon_m_armouragile03"
@@ -3622,7 +5672,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7506.IconPath",
+      "Field": "7535.IconPath",
       "Value": "gloves_icon_f_armouragile03",
       "CandidateAddresses": [
         "gloves_icon_f_armouragile03"
@@ -3644,7 +5694,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7509.IconPath",
+      "Field": "7538.IconPath",
       "Value": "gloves_icon_m_christmas02",
       "CandidateAddresses": [
         "gloves_icon_m_christmas02"
@@ -3666,7 +5716,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7510.IconPath",
+      "Field": "7539.IconPath",
       "Value": "gloves_icon_f_christmas02",
       "CandidateAddresses": [
         "gloves_icon_f_christmas02"
@@ -3688,7 +5738,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7523.IconPath",
+      "Field": "7552.IconPath",
       "Value": "gloves_icon_m_flower01",
       "CandidateAddresses": [
         "gloves_icon_m_flower01"
@@ -3710,7 +5760,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7524.IconPath",
+      "Field": "7553.IconPath",
       "Value": "gloves_icon_f_flower01",
       "CandidateAddresses": [
         "gloves_icon_f_flower01"
@@ -3732,7 +5782,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7639.IconPath",
+      "Field": "7668.IconPath",
       "Value": "shoes_icon_m_dressmaker01",
       "CandidateAddresses": [
         "shoes_icon_m_dressmaker01"
@@ -3754,7 +5804,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7640.IconPath",
+      "Field": "7669.IconPath",
       "Value": "shoes_icon_f_dressmaker01",
       "CandidateAddresses": [
         "shoes_icon_f_dressmaker01"
@@ -3776,7 +5826,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7641.IconPath",
+      "Field": "7670.IconPath",
       "Value": "shoes_icon_m_dressmaker06",
       "CandidateAddresses": [
         "shoes_icon_m_dressmaker06"
@@ -3798,7 +5848,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7642.IconPath",
+      "Field": "7671.IconPath",
       "Value": "shoes_icon_f_dressmaker06",
       "CandidateAddresses": [
         "shoes_icon_f_dressmaker06"
@@ -3820,7 +5870,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7659.IconPath",
+      "Field": "7688.IconPath",
       "Value": "shoes_icon_m_armourpower03",
       "CandidateAddresses": [
         "shoes_icon_m_armourpower03"
@@ -3842,7 +5892,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7660.IconPath",
+      "Field": "7689.IconPath",
       "Value": "shoes_icon_f_armourpower03",
       "CandidateAddresses": [
         "shoes_icon_f_armourpower03"
@@ -3864,7 +5914,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7661.IconPath",
+      "Field": "7690.IconPath",
       "Value": "shoes_icon_m_armourmagic03",
       "CandidateAddresses": [
         "shoes_icon_m_armourmagic03"
@@ -3886,7 +5936,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7662.IconPath",
+      "Field": "7691.IconPath",
       "Value": "shoes_icon_f_armourmagic03",
       "CandidateAddresses": [
         "shoes_icon_f_armourmagic03"
@@ -3908,7 +5958,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7663.IconPath",
+      "Field": "7692.IconPath",
       "Value": "shoes_icon_m_armouragile03",
       "CandidateAddresses": [
         "shoes_icon_m_armouragile03"
@@ -3930,7 +5980,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7664.IconPath",
+      "Field": "7693.IconPath",
       "Value": "shoes_icon_f_armouragile03",
       "CandidateAddresses": [
         "shoes_icon_f_armouragile03"
@@ -3952,7 +6002,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7667.IconPath",
+      "Field": "7696.IconPath",
       "Value": "shoes_icon_m_christmas02",
       "CandidateAddresses": [
         "shoes_icon_m_christmas02"
@@ -3974,7 +6024,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7668.IconPath",
+      "Field": "7697.IconPath",
       "Value": "shoes_icon_f_christmas02",
       "CandidateAddresses": [
         "shoes_icon_f_christmas02"
@@ -3996,7 +6046,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7681.IconPath",
+      "Field": "7710.IconPath",
       "Value": "shoes_icon_m_flower01",
       "CandidateAddresses": [
         "shoes_icon_m_flower01"
@@ -4018,7 +6068,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7682.IconPath",
+      "Field": "7711.IconPath",
       "Value": "shoes_icon_f_flower01",
       "CandidateAddresses": [
         "shoes_icon_f_flower01"
@@ -4040,7 +6090,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7965.IconPath",
+      "Field": "7996.IconPath",
       "Value": "headwear_icon_c_armourpower03",
       "CandidateAddresses": [
         "headwear_icon_c_armourpower03"
@@ -4062,7 +6112,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7966.IconPath",
+      "Field": "7997.IconPath",
       "Value": "headwear_icon_c_armourmagic03",
       "CandidateAddresses": [
         "headwear_icon_c_armourmagic03"
@@ -4084,7 +6134,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7967.IconPath",
+      "Field": "7998.IconPath",
       "Value": "headwear_icon_c_armouragile03",
       "CandidateAddresses": [
         "headwear_icon_c_armouragile03"
@@ -4106,7 +6156,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7985.IconPath",
+      "Field": "8016.IconPath",
       "Value": "headwear_icon_c_mahjong01",
       "CandidateAddresses": [
         "headwear_icon_c_mahjong01"
@@ -4128,7 +6178,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7994.IconPath",
+      "Field": "8025.IconPath",
       "Value": "headwear_icon_m_flower01",
       "CandidateAddresses": [
         "headwear_icon_m_flower01"
@@ -4150,7 +6200,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7995.IconPath",
+      "Field": "8026.IconPath",
       "Value": "headwear_icon_f_flower01",
       "CandidateAddresses": [
         "headwear_icon_f_flower01"
@@ -4172,7 +6222,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7996.IconPath",
+      "Field": "8027.IconPath",
       "Value": "headwear_icon_m_flower01up01",
       "CandidateAddresses": [
         "headwear_icon_m_flower01up01"
@@ -4194,7 +6244,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7997.IconPath",
+      "Field": "8028.IconPath",
       "Value": "headwear_icon_f_flower01up01",
       "CandidateAddresses": [
         "headwear_icon_f_flower01up01"
@@ -4216,7 +6266,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7998.IconPath",
+      "Field": "8029.IconPath",
       "Value": "headwear_icon_c_olvera01",
       "CandidateAddresses": [
         "headwear_icon_c_olvera01"
@@ -4238,7 +6288,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "7999.IconPath",
+      "Field": "8030.IconPath",
       "Value": "headwear_icon_c_jerrad01",
       "CandidateAddresses": [
         "headwear_icon_c_jerrad01"
@@ -4260,7 +6310,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8069.IconPath",
+      "Field": "8103.IconPath",
       "Value": "mouthwear_icon_c_television01",
       "CandidateAddresses": [
         "mouthwear_icon_c_television01"
@@ -4282,7 +6332,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8089.IconPath",
+      "Field": "8123.IconPath",
       "Value": "back_icon_c_wings01",
       "CandidateAddresses": [
         "back_icon_c_wings01"
@@ -4304,7 +6354,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8121.IconPath",
+      "Field": "8155.IconPath",
       "Value": "back_icon_c_flower01",
       "CandidateAddresses": [
         "back_icon_c_flower01"
@@ -4326,7 +6376,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8122.IconPath",
+      "Field": "8156.IconPath",
       "Value": "back_icon_c_flower02",
       "CandidateAddresses": [
         "back_icon_c_flower02"
@@ -4348,7 +6398,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8154.IconPath",
+      "Field": "8188.IconPath",
       "Value": "ears_icon_c_earring04",
       "CandidateAddresses": [
         "ears_icon_c_earring04"
@@ -4370,7 +6420,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8157.IconPath",
+      "Field": "8191.IconPath",
       "Value": "ears_icon_c_tassels010",
       "CandidateAddresses": [
         "ears_icon_c_tassels010"
@@ -4392,7 +6442,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8165.IconPath",
+      "Field": "8199.IconPath",
       "Value": "ears_icon_c_flower01",
       "CandidateAddresses": [
         "ears_icon_c_flower01"
@@ -4414,7 +6464,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8207.IconPath",
+      "Field": "8241.IconPath",
       "Value": "neck_icon_m_flower01",
       "CandidateAddresses": [
         "neck_icon_m_flower01"
@@ -4436,7 +6486,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8208.IconPath",
+      "Field": "8242.IconPath",
       "Value": "neck_icon_f_flower01",
       "CandidateAddresses": [
         "neck_icon_f_flower01"
@@ -4458,7 +6508,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8257.IconPath",
+      "Field": "8291.IconPath",
       "Value": "ring_icon_m_flower01",
       "CandidateAddresses": [
         "ring_icon_m_flower01"
@@ -4480,7 +6530,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8258.IconPath",
+      "Field": "8292.IconPath",
       "Value": "ring_icon_f_flower01",
       "CandidateAddresses": [
         "ring_icon_f_flower01"
@@ -4502,7 +6552,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8569.IconPath",
+      "Field": "8609.IconPath",
       "Value": "personalzone_medal_icon_01_120",
       "CandidateAddresses": [
         "personalzone_medal_icon_01_120"
@@ -4524,7 +6574,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "8576.IconPath",
+      "Field": "8622.IconPath",
       "Value": "ui/atlas/personalzone_medal/personalzone_medal_icon_03_01",
       "CandidateAddresses": [
         "ui/atlas/personalzone_medal/personalzone_medal_icon_03_01"
@@ -4551,7 +6601,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9142.IconPath",
+      "Field": "9195.IconPath",
       "Value": "monthly_reward_card_item_icon_12",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_12"
@@ -4573,7 +6623,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9143.IconPath",
+      "Field": "9196.IconPath",
       "Value": "monthly_reward_card_item_icon_13",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_13"
@@ -4595,7 +6645,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9144.IconPath",
+      "Field": "9197.IconPath",
       "Value": "monthly_reward_card_item_icon_14",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_14"
@@ -4617,7 +6667,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9145.IconPath",
+      "Field": "9198.IconPath",
       "Value": "monthly_reward_card_item_icon_15",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_15"
@@ -4639,7 +6689,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9146.IconPath",
+      "Field": "9199.IconPath",
       "Value": "monthly_reward_card_item_icon_16",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_16"
@@ -4661,7 +6711,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9147.IconPath",
+      "Field": "9200.IconPath",
       "Value": "monthly_reward_card_item_icon_17",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_17"
@@ -4683,7 +6733,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9148.IconPath",
+      "Field": "9201.IconPath",
       "Value": "monthly_reward_card_item_icon_18",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_18"
@@ -4705,7 +6755,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9149.IconPath",
+      "Field": "9202.IconPath",
       "Value": "monthly_reward_card_item_icon_19",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_19"
@@ -4727,7 +6777,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9150.IconPath",
+      "Field": "9203.IconPath",
       "Value": "monthly_reward_card_item_icon_20",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_20"
@@ -4749,7 +6799,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9151.IconPath",
+      "Field": "9204.IconPath",
       "Value": "monthly_reward_card_item_icon_21",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_21"
@@ -4771,7 +6821,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9152.IconPath",
+      "Field": "9205.IconPath",
       "Value": "monthly_reward_card_item_icon_22",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_22"
@@ -4793,7 +6843,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9153.IconPath",
+      "Field": "9206.IconPath",
       "Value": "monthly_reward_card_item_icon_23",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_23"
@@ -4815,7 +6865,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9154.IconPath",
+      "Field": "9207.IconPath",
       "Value": "monthly_reward_card_item_icon_24",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_24"
@@ -4837,7 +6887,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9155.IconPath",
+      "Field": "9208.IconPath",
       "Value": "monthly_reward_card_item_icon_25",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_25"
@@ -4859,7 +6909,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9156.IconPath",
+      "Field": "9209.IconPath",
       "Value": "monthly_reward_card_item_icon_26",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_26"
@@ -4881,7 +6931,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9157.IconPath",
+      "Field": "9210.IconPath",
       "Value": "monthly_reward_card_item_icon_27",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_27"
@@ -4903,7 +6953,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9158.IconPath",
+      "Field": "9211.IconPath",
       "Value": "monthly_reward_card_item_icon_28",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_28"
@@ -4925,7 +6975,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9159.IconPath",
+      "Field": "9212.IconPath",
       "Value": "monthly_reward_card_item_icon_29",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_29"
@@ -4947,7 +6997,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9160.IconPath",
+      "Field": "9213.IconPath",
       "Value": "monthly_reward_card_item_icon_30",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_30"
@@ -4969,7 +7019,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9161.IconPath",
+      "Field": "9214.IconPath",
       "Value": "monthly_reward_card_item_icon_31",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_31"
@@ -4991,7 +7041,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "9162.IconPath",
+      "Field": "9215.IconPath",
       "Value": "monthly_reward_card_item_icon_32",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_32"
@@ -5011,75 +7061,31 @@
     },
     {
       "SourceKind": "generated-json",
-      "SourceFile": "ModifierClassificationTable.json",
-      "SourceGroup": "ModifierClassificationTable",
-      "Field": "sourcesByRuleId.mrs:f0ac31e9a7f3.iconPath",
-      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.buff-source:3601.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
       "CandidateAddresses": [
-        "ui/textures/talent_passive/talent_skill_300101"
+        "ui/textures/talent_passive/talent_skill_360101"
       ],
       "CandidateNames": [
-        "talent_skill_300101"
+        "talent_skill_360101"
       ],
       "AtlasSpriteCandidates": [],
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "buff-source:3001",
-          "Name": "Unmapped Buff 3001"
+          "Id": "buff-source:3601",
+          "Name": "Unmapped Buff 3601"
         }
       ],
       "Reason": "No address or sprite catalog entry"
     },
     {
       "SourceKind": "generated-json",
-      "SourceFile": "ModifierClassificationTable.json",
-      "SourceGroup": "ModifierClassificationTable",
-      "Field": "sourcesByRuleId.mrs:c1afcfe3eb34.iconPath",
-      "Value": "ui/textures/talent_passive/talent_skill_310101",
-      "CandidateAddresses": [
-        "ui/textures/talent_passive/talent_skill_310101"
-      ],
-      "CandidateNames": [
-        "talent_skill_310101"
-      ],
-      "AtlasSpriteCandidates": [],
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:3101",
-          "Name": "Unmapped Buff 3101"
-        }
-      ],
-      "Reason": "No address or sprite catalog entry"
-    },
-    {
-      "SourceKind": "generated-json",
-      "SourceFile": "ModifierClassificationTable.json",
-      "SourceGroup": "ModifierClassificationTable",
-      "Field": "sourcesByRuleId.mrs:a1519c6ac365.iconPath",
-      "Value": "ui/textures/talent_passive/talent_skill_340101",
-      "CandidateAddresses": [
-        "ui/textures/talent_passive/talent_skill_340101"
-      ],
-      "CandidateNames": [
-        "talent_skill_340101"
-      ],
-      "AtlasSpriteCandidates": [],
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:3401",
-          "Name": "Unmapped Buff 3401"
-        }
-      ],
-      "Reason": "No address or sprite catalog entry"
-    },
-    {
-      "SourceKind": "generated-json",
-      "SourceFile": "ModifierClassificationTable.json",
-      "SourceGroup": "ModifierClassificationTable",
-      "Field": "sourcesByRuleId.mrs:e9165f6703cf.iconPath",
+      "SourceFile": "LuckyStrikeTable.json",
+      "SourceGroup": "LuckyStrikeTable",
+      "Field": "sourcesById.buff-source:3601.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_360101",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_360101"
@@ -5101,29 +7107,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "ModifierClassificationTable.json",
       "SourceGroup": "ModifierClassificationTable",
-      "Field": "sourcesByRuleId.mrs:137347df6c63.iconPath",
-      "Value": "ui/textures/talent_passive/talent_skill_370101",
-      "CandidateAddresses": [
-        "ui/textures/talent_passive/talent_skill_370101"
-      ],
-      "CandidateNames": [
-        "talent_skill_370101"
-      ],
-      "AtlasSpriteCandidates": [],
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:3701",
-          "Name": "Unmapped Buff 3701"
-        }
-      ],
-      "Reason": "No address or sprite catalog entry"
-    },
-    {
-      "SourceKind": "generated-json",
-      "SourceFile": "ModifierDisplayTable.json",
-      "SourceGroup": "ModifierDisplayTable",
-      "Field": "sourcesByRuleId.mrs:f0ac31e9a7f3.iconPath",
+      "Field": "sourcesByRuleId.mrs:9ff32f929915.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_300101",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_300101"
@@ -5136,16 +7120,16 @@
       "Rows": [
         {
           "Id": "buff-source:3001",
-          "Name": "Unmapped Buff 3001"
+          "Name": "冰法杖3技能BD替换技能"
         }
       ],
       "Reason": "No address or sprite catalog entry"
     },
     {
       "SourceKind": "generated-json",
-      "SourceFile": "ModifierDisplayTable.json",
-      "SourceGroup": "ModifierDisplayTable",
-      "Field": "sourcesByRuleId.mrs:c1afcfe3eb34.iconPath",
+      "SourceFile": "ModifierClassificationTable.json",
+      "SourceGroup": "ModifierClassificationTable",
+      "Field": "sourcesByRuleId.mrs:cfac69df7b5d.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_310101",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_310101"
@@ -5158,16 +7142,16 @@
       "Rows": [
         {
           "Id": "buff-source:3101",
-          "Name": "Unmapped Buff 3101"
+          "Name": "鬼人化效果生效Buff"
         }
       ],
       "Reason": "No address or sprite catalog entry"
     },
     {
       "SourceKind": "generated-json",
-      "SourceFile": "ModifierDisplayTable.json",
-      "SourceGroup": "ModifierDisplayTable",
-      "Field": "sourcesByRuleId.mrs:a1519c6ac365.iconPath",
+      "SourceFile": "ModifierClassificationTable.json",
+      "SourceGroup": "ModifierClassificationTable",
+      "Field": "sourcesByRuleId.mrs:ac2adafacbb0.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_340101",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_340101"
@@ -5180,16 +7164,16 @@
       "Rows": [
         {
           "Id": "buff-source:3401",
-          "Name": "Unmapped Buff 3401"
+          "Name": "鬼人计combo计数管理"
         }
       ],
       "Reason": "No address or sprite catalog entry"
     },
     {
       "SourceKind": "generated-json",
-      "SourceFile": "ModifierDisplayTable.json",
-      "SourceGroup": "ModifierDisplayTable",
-      "Field": "sourcesByRuleId.mrs:e9165f6703cf.iconPath",
+      "SourceFile": "ModifierClassificationTable.json",
+      "SourceGroup": "ModifierClassificationTable",
+      "Field": "sourcesByRuleId.mrs:4ae436541b7b.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_360101",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_360101"
@@ -5202,16 +7186,16 @@
       "Rows": [
         {
           "Id": "buff-source:3601",
-          "Name": "Unmapped Buff 3601"
+          "Name": "鬼人QTE特效"
         }
       ],
       "Reason": "No address or sprite catalog entry"
     },
     {
       "SourceKind": "generated-json",
-      "SourceFile": "ModifierDisplayTable.json",
-      "SourceGroup": "ModifierDisplayTable",
-      "Field": "sourcesByRuleId.mrs:137347df6c63.iconPath",
+      "SourceFile": "ModifierClassificationTable.json",
+      "SourceGroup": "ModifierClassificationTable",
+      "Field": "sourcesByRuleId.mrs:17c11c691e04.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_370101",
       "CandidateAddresses": [
         "ui/textures/talent_passive/talent_skill_370101"
@@ -5224,7 +7208,117 @@
       "Rows": [
         {
           "Id": "buff-source:3701",
-          "Name": "Unmapped Buff 3701"
+          "Name": "鬼人化关闭标记buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierDisplayTable.json",
+      "SourceGroup": "ModifierDisplayTable",
+      "Field": "sourcesByRuleId.mrs:9ff32f929915.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_300101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_300101"
+      ],
+      "CandidateNames": [
+        "talent_skill_300101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3001",
+          "Name": "冰法杖3技能BD替换技能"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierDisplayTable.json",
+      "SourceGroup": "ModifierDisplayTable",
+      "Field": "sourcesByRuleId.mrs:cfac69df7b5d.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_310101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_310101"
+      ],
+      "CandidateNames": [
+        "talent_skill_310101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3101",
+          "Name": "鬼人化效果生效Buff"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierDisplayTable.json",
+      "SourceGroup": "ModifierDisplayTable",
+      "Field": "sourcesByRuleId.mrs:ac2adafacbb0.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_340101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_340101"
+      ],
+      "CandidateNames": [
+        "talent_skill_340101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3401",
+          "Name": "鬼人计combo计数管理"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierDisplayTable.json",
+      "SourceGroup": "ModifierDisplayTable",
+      "Field": "sourcesByRuleId.mrs:4ae436541b7b.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_360101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_360101"
+      ],
+      "CandidateNames": [
+        "talent_skill_360101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3601",
+          "Name": "鬼人QTE特效"
+        }
+      ],
+      "Reason": "No address or sprite catalog entry"
+    },
+    {
+      "SourceKind": "generated-json",
+      "SourceFile": "ModifierDisplayTable.json",
+      "SourceGroup": "ModifierDisplayTable",
+      "Field": "sourcesByRuleId.mrs:17c11c691e04.iconPath",
+      "Value": "ui/textures/talent_passive/talent_skill_370101",
+      "CandidateAddresses": [
+        "ui/textures/talent_passive/talent_skill_370101"
+      ],
+      "CandidateNames": [
+        "talent_skill_370101"
+      ],
+      "AtlasSpriteCandidates": [],
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:3701",
+          "Name": "鬼人化关闭标记buff"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -5246,7 +7340,7 @@
       "Rows": [
         {
           "Id": "buff-source:3001",
-          "Name": "Unmapped Buff 3001"
+          "Name": "冰法杖3技能BD替换技能"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -5268,7 +7362,7 @@
       "Rows": [
         {
           "Id": "buff-source:3101",
-          "Name": "Unmapped Buff 3101"
+          "Name": "鬼人化效果生效Buff"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -5290,7 +7384,7 @@
       "Rows": [
         {
           "Id": "buff-source:3401",
-          "Name": "Unmapped Buff 3401"
+          "Name": "鬼人计combo计数管理"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -5312,7 +7406,7 @@
       "Rows": [
         {
           "Id": "buff-source:3601",
-          "Name": "Unmapped Buff 3601"
+          "Name": "鬼人QTE特效"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -5334,7 +7428,7 @@
       "Rows": [
         {
           "Id": "buff-source:3701",
-          "Name": "Unmapped Buff 3701"
+          "Name": "鬼人化关闭标记buff"
         }
       ],
       "Reason": "No address or sprite catalog entry"
@@ -28804,8 +30898,8 @@
       ]
     }
   ],
-  "PngExportedAt": "2026-05-06T04:10:19.846Z",
-  "PngAssetCount": 10428,
+  "PngExportedAt": "2026-05-12T13:30:01.869Z",
+  "PngAssetCount": 14658,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0,
   "PngFailures": []

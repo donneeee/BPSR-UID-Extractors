@@ -294,7 +294,7 @@ function buildDescriptions(sourceIndex, recountDescriptions, effectSourcesById, 
       const sourceId = String(entry.sourceId || "").trim();
       if (!sourceId) continue;
       const { entry: recountEntry } = prepareRecountEntry(entry);
-      const sourceRuleId = sourceRuleIdForRecountEntry(recountEntry);
+      const sourceRuleId = sourceRuleIdForRecountEntry(recountEntry, "source-index");
       if (sourcesByRuleId[sourceRuleId]) {
         sourceRuleIdsBySourceId[sourceId] ||= [];
         if (!sourceRuleIdsBySourceId[sourceId].includes(sourceRuleId)) {

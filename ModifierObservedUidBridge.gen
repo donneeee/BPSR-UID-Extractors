@@ -1,0 +1,822 @@
+#!/usr/bin/env node
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = __dirname;
+const DEFAULT_OUTPUT_DIR = path.join(ROOT, 'output');
+const DEFAULT_AUDIT_PATH = firstExistingPath([
+  path.resolve(ROOT, '..', 'DEV_exports', 'unresolved-modifier-uids-audit.json'),
+  path.resolve(ROOT, '..', 'resonance-logs-global', 'DEV_exports', 'unresolved-modifier-uids-audit.json'),
+]);
+const DEFAULT_OUT_PATH = path.join(DEFAULT_OUTPUT_DIR, 'ModifierObservedUidBridge.json');
+const DEFAULT_MARKDOWN_PATH = path.join(DEFAULT_OUTPUT_DIR, 'probing-reports', 'ModifierObservedUidBridge.md');
+
+const PROMOTED_BUFF_IDS = new Map([
+  [683115, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'observed-buff',
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    notes: ['Localized buff row observed in encounter modifier windows. Numeric contribution still needs stat-state proof.'],
+  }],
+  [2302120, {
+    sourceKind: 'module-buff',
+    sourceType: 'module-buff',
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    notes: ['ModEffect-backed module buff observed in encounter modifier windows. Effect text is not captured yet.'],
+  }],
+  [2405250, {
+    sourceKind: 'set-effect',
+    sourceType: 'equipment-set-buff',
+    sourceName: 'S2 Set 2B',
+    sourceNames: { en: 'S2 Set 2B' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only S2 set buff observed as a self-owned runtime modifier window. Numeric contribution still needs formula replay.'],
+  }],
+  [2405260, {
+    sourceKind: 'set-effect',
+    sourceType: 'equipment-set-buff',
+    sourceName: 'S2 Set 4B',
+    sourceNames: { en: 'S2 Set 4B' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only S2 set buff observed as a self-owned runtime modifier window. Numeric contribution still needs formula replay.'],
+  }],
+  [2405150, {
+    sourceKind: 'set-effect',
+    sourceType: 'equipment-set-buff',
+    sourceName: 'S2 Set 2A',
+    sourceNames: { en: 'S2 Set 2A' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only S2 set buff observed in saved exports with zero hit contribution so far; promoted to prevent future raw labels.'],
+  }],
+  [2405160, {
+    sourceKind: 'set-effect',
+    sourceType: 'equipment-set-buff',
+    sourceName: 'S2 Set 4A',
+    sourceNames: { en: 'S2 Set 4A' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only S2 set buff observed in saved exports with zero hit contribution so far; promoted to prevent future raw labels.'],
+  }],
+  [3003690, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'board-bond-buff',
+    sourceName: 'Board 4 - Bond',
+    sourceNames: { en: 'Board 4 - Bond' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only board/bond buff observed as a self-owned runtime modifier window.'],
+  }],
+  [2404261, {
+    sourceKind: 'set-effect',
+    sourceType: 'equipment-set-buff',
+    sourceName: 'S2 Set 2B',
+    sourceNames: { en: 'S2 Set 2B' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Observed external S2 set buff child/base row. Provider must remain encounter-local and source-uid split.'],
+  }],
+  [2031009, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'class-passive-buff',
+    sourceName: 'Bow - Dexterity',
+    sourceNames: { en: 'Bow - Dexterity' },
+    sourceCategory: 'offensive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'offensive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only Falconeer/Bow passive observed as a self-owned runtime modifier window.'],
+  }],
+  [2010012, {
+    sourceKind: 'consumable',
+    sourceType: 'guild-food-buff',
+    sourceName: 'Guild Buff - Meat +1',
+    sourceNames: { en: 'Guild Buff - Meat +1' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only guild food buff observed as a self-owned runtime modifier window.'],
+  }],
+  [828114, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'encounter-aura-buff',
+    sourceName: 'Prayer Fountain - Twins (Nightmare)',
+    sourceNames: { en: 'Prayer Fountain - Twins (Nightmare)' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only encounter aura observed on player damage windows. Kept as uptime evidence until formula role is proven.'],
+  }],
+  [828120, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'encounter-aura-buff',
+    sourceName: 'Prayer Fountain - Armor (Nightmare)',
+    sourceNames: { en: 'Prayer Fountain - Armor (Nightmare)' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only encounter aura observed on player damage windows. Kept as uptime evidence until formula role is proven.'],
+  }],
+  [2207252, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'party-support-buff',
+    sourceName: 'Audio Domain Expansion - Main Attribute',
+    sourceNames: { en: 'Audio Domain Expansion - Main Attribute' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Observed external support buff with source-config/base pair. Provider must remain encounter-local.'],
+  }],
+  [3210030, {
+    sourceKind: 'imagine',
+    sourceType: 'battle-imagine-passive',
+    sourceName: 'Thunder Ogre - Passive',
+    sourceNames: { en: 'Thunder Ogre - Passive' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Design-only battle imagine passive observed as a runtime modifier window.'],
+  }],
+  [55407, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'holy-domain-buff',
+    sourceName: 'Holy Domain Protection',
+    sourceNames: { en: 'Holy Domain Protection' },
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Source-config/base pair observed from encounter-local source UIDs; source actor names are not always available in saved exports.'],
+  }],
+  [2100402, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'skill-buff',
+    sourceCategory: 'supportive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'supportive',
+    providerAggregation: 'source-uid',
+    notes: ['Localized skill buff row paired with source skill 3612. Numeric contribution still needs formula replay.'],
+  }],
+  [883213, {
+    sourceKind: 'runtime-buff',
+    sourceType: 'encounter-debuff',
+    sourceCategory: 'defensive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'defensive',
+    providerAggregation: 'source-uid',
+    notes: ['Localized encounter debuff; design text indicates player damage reduction. Kept as factual uptime evidence.'],
+  }],
+  [2033070, {
+    sourceKind: 'consumable',
+    sourceType: 'elemental-strength-buff',
+    sourceName: 'Elemental Strength - Light',
+    sourceNames: { en: 'Elemental Strength - Light' },
+    sourceCategory: 'offensive',
+    contributionStatus: 'uptime-only',
+    rowPolicy: 'uptime',
+    reportPolicy: 'include',
+    role: 'offensive',
+    providerAggregation: 'source-uid',
+    notes: ['Observed source-config row for light elemental strength. The paired potion action UID remains unresolved because it is too broad to alias globally.'],
+  }],
+]);
+
+const MANUAL_SIBLING_ALIASES = new Map([
+  [683114, 683115],
+  [2302121, 2302120],
+  [999, 701010],
+  [2404260, 2404261],
+  [2207251, 2207252],
+  [2203011, 2203010],
+  [55406, 55407],
+  [3612, 2100402],
+  [3350121, 883204],
+  [3350123, 883204],
+  [3350111, 883252],
+  [3350153, 883252],
+  [883242, 883246],
+  [3350151, 883210],
+  [3350152, 883209],
+  [3350133, 883213],
+  [10300205, 828124],
+  [500112, 500113],
+]);
+
+const MANUAL_IGNORED_BUFF_IDS = new Map([
+  [999, {
+    reason: 'season-marker-source-config',
+    notes: ['Observed only as source-config paired with 701010, whose design name is a current-season marker. Not a reportable modifier source.'],
+  }],
+  [701010, {
+    reason: 'season-marker',
+    notes: ['Design name identifies this as a current-season marker row, not a damage contribution modifier.'],
+  }],
+  [882272, {
+    reason: 'encounter-difficulty-marker',
+    notes: ['Design name identifies a Nightmare difficulty marker buff, not a player modifier source.'],
+  }],
+  [501401, {
+    reason: 'weapon-switch-state',
+    notes: ['Design name identifies a weapon-switch dissolve state with zero hit contribution in saved exports.'],
+  }],
+  [620701, {
+    reason: 'monster-spawn-state',
+    notes: ['Design name identifies a generic monster spawn buff with zero hit contribution in saved exports.'],
+  }],
+  [823238, {
+    reason: 'skill-lockout-state',
+    notes: ['Design name identifies a skill-release lockout state, not a damage contribution source.'],
+  }],
+  [828128, {
+    reason: 'encounter-screen-effect',
+    notes: ['Design name identifies an Erosion Bloom screen transition effect, not a damage contribution source.'],
+  }],
+  [883204, {
+    reason: 'encounter-visual-mechanic',
+    notes: ['Localized Disorientation row, but design name identifies a screen/effect mechanic rather than a damage contribution source.'],
+  }],
+  [883211, {
+    reason: 'encounter-visual-mechanic',
+    notes: ['Localized Disorientation row, but design name identifies a screen-loop visual mechanic rather than a damage contribution source.'],
+  }],
+  [883252, {
+    reason: 'encounter-movement-mechanic',
+    notes: ['Localized Oppression row, but design name identifies a no-dodge mechanic rather than a damage contribution source.'],
+  }],
+  [883246, {
+    reason: 'encounter-movement-mechanic',
+    notes: ['Localized Heavy Shackles row, but design name identifies a stacking slow mechanic rather than a damage contribution source.'],
+  }],
+  [883243, {
+    reason: 'encounter-link-mechanic',
+    notes: ['Design-only Dreamling link mechanic, not a damage contribution source.'],
+  }],
+  [883209, {
+    reason: 'encounter-target-marker',
+    notes: ['Design-only target marker/filler row, not a damage contribution source.'],
+  }],
+  [883210, {
+    reason: 'encounter-target-marker',
+    notes: ['Design-only target marker/filler row, not a damage contribution source.'],
+  }],
+  [828124, {
+    reason: 'encounter-target-marker',
+    notes: ['Design-only Erosion Bloom target marker row, not a damage contribution source.'],
+  }],
+  [2032002, {
+    reason: 'healing-action',
+    notes: ['Generic healing effect row, not a damage modifier source.'],
+  }],
+  [2032001, {
+    reason: 'generic-consumable-action',
+    notes: ['Generic potion/drink action row. Kept out of the report while paired source-config rows carry the real consumable buff identity.'],
+  }],
+  [2033000, {
+    reason: 'healing-action',
+    notes: ['Generic healing row, not a damage modifier source.'],
+  }],
+  [500111, {
+    reason: 'revive-state',
+    notes: ['Observed revive-family state with no damage modifier evidence.'],
+  }],
+  [500113, {
+    reason: 'revive-state',
+    notes: ['Localized revive invincibility row, not a damage modifier source.'],
+  }],
+  [902901, {
+    reason: 'dungeon-end-invincibility',
+    notes: ['Design name identifies an end-of-dungeon invincibility state, not a damage modifier source.'],
+  }],
+  [10300108, {
+    reason: 'encounter-screen-effect-source',
+    notes: ['Source-config skill paired with the ignored Erosion Bloom screen transition effect.'],
+  }],
+]);
+
+const IGNORE_NAME_PATTERNS = [
+  /\u68c0\u6d4b/u,
+  /\u76d1\u63a7/u,
+  /\u627e\u76ee\u6807/u,
+  /\u67e5\u627e/u,
+  /\u5c4f\u5e55/u,
+  /\u7279\u6548/u,
+  /\u8ba1\u65f6/u,
+  /\u53e0\u5c42/u,
+  /\u5c4f\u853d/u,
+  /\u5e9f\u5f03/u,
+  /\u8868\u73b0/u,
+  /\u4e2d\u8f6c/u,
+  /\u56de\u590d\u901f\u7387/u,
+  /\u5c5e\u6027\s*buff/iu,
+  /buff\s*\u673a/iu,
+  /\b(?:visual|screen|monitor|detector|placeholder|internal|timer|stack helper|cooldown helper)\b/iu,
+];
+
+const args = parseArgs(process.argv.slice(2));
+if (args.help) {
+  printHelp();
+  process.exit(0);
+}
+
+const outputDir = path.resolve(args.outputDir || DEFAULT_OUTPUT_DIR);
+const auditPath = path.resolve(args.audit || DEFAULT_AUDIT_PATH);
+const outPath = path.resolve(args.out || DEFAULT_OUT_PATH);
+const markdownPath = path.resolve(args.markdown || DEFAULT_MARKDOWN_PATH);
+
+const buffNames = readJson(path.join(outputDir, 'BuffName.json'), []);
+const auditMissing = !fs.existsSync(auditPath);
+const audit = readJson(auditPath, {
+  unmappedObservedBuffIds: [],
+  observedPairedAliases: [],
+});
+
+const predicateAudit = readJson(path.join(outputDir, 'EffectPredicateAudit.json'), null);
+const componentWorklist = readJson(path.join(outputDir, 'EffectComponentWorklist.json'), null);
+const previousBridge = readJson(outPath, null);
+
+const bridge = buildBridge({ buffNames, audit, auditMissing, previousBridge, predicateAudit, componentWorklist });
+
+if (args.dryRun) {
+  console.log(JSON.stringify({
+    generatedBy: bridge.generatedBy,
+    stats: bridge.stats,
+    outPath,
+    markdownPath,
+  }, null, 2));
+  process.exit(0);
+}
+
+fs.mkdirSync(path.dirname(outPath), { recursive: true });
+fs.writeFileSync(outPath, `${JSON.stringify(bridge, null, 2)}\n`);
+
+if (!args.noMarkdown) {
+  fs.mkdirSync(path.dirname(markdownPath), { recursive: true });
+  fs.writeFileSync(markdownPath, renderMarkdown(bridge));
+}
+
+console.log(`Wrote ${path.relative(process.cwd(), outPath)}`);
+if (!args.noMarkdown) {
+  console.log(`Wrote ${path.relative(process.cwd(), markdownPath)}`);
+}
+console.log(JSON.stringify(bridge.stats, null, 2));
+
+function parseArgs(argv) {
+  const parsed = {};
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    if (arg === '--help' || arg === '-h') parsed.help = true;
+    else if (arg === '--dry-run') parsed.dryRun = true;
+    else if (arg === '--no-markdown') parsed.noMarkdown = true;
+    else if (arg === '--output-dir') parsed.outputDir = argv[++i];
+    else if (arg === '--audit') parsed.audit = argv[++i];
+    else if (arg === '--out') parsed.out = argv[++i];
+    else if (arg === '--markdown') parsed.markdown = argv[++i];
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return parsed;
+}
+
+function printHelp() {
+  console.log(`Usage: node ModifierObservedUidBridge.gen [options]
+
+Builds a compact evidence bridge for observed modifier UIDs that are not direct
+EffectSources rows. The bridge is consumed by the modifier recount/display
+generators so runtime can stay table-driven.
+
+Options:
+  --dry-run             Print summary only
+  --output-dir <path>   Generated parser output directory
+  --audit <path>        unresolved-modifier-uids-audit.json path
+  --out <path>          Output JSON path
+  --markdown <path>     Output Markdown report path
+  --no-markdown         Skip Markdown report
+  -h, --help            Show this help
+`);
+}
+
+function firstExistingPath(paths) {
+  return paths.find((filePath) => fs.existsSync(filePath)) || paths[0];
+}
+
+function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (error) {
+    if (fallback !== undefined) return fallback;
+    throw error;
+  }
+}
+
+function buildBridge({ buffNames, audit, auditMissing, previousBridge, predicateAudit, componentWorklist }) {
+  const buffNameById = new Map();
+  for (const row of Array.isArray(buffNames) ? buffNames : []) {
+    const id = numberOrNull(row?.BuffId ?? row?.Id ?? row?.id);
+    if (id != null) buffNameById.set(id, row);
+  }
+
+  const aliasMap = new Map();
+  const ignored = new Map();
+  const promoted = new Map();
+  const worklist = [];
+
+  seedPreviousBridge(previousBridge, aliasMap, promoted, ignored);
+
+  for (const [buffId, parentBuffId] of MANUAL_SIBLING_ALIASES) {
+    addAlias(aliasMap, buffId, {
+      parentBuffIds: [parentBuffId],
+      relationshipKind: 'observed-sibling-alias',
+      confidence: 'high',
+      evidence: [`manual-sibling-alias:${buffId}->${parentBuffId}`, ...buffEvidence(buffNameById.get(buffId)), ...buffEvidence(buffNameById.get(parentBuffId))],
+      notes: ['Helper/child observed UID is tied to a promoted localized sibling UID.'],
+    });
+  }
+
+  for (const [buffId, override] of MANUAL_IGNORED_BUFF_IDS) {
+    const row = buffNameById.get(buffId);
+    addIgnored(ignored, buffId, {
+      buffId,
+      reason: override.reason,
+      confidence: 'high',
+      displayName: override.displayName || displayName(row) || `buff:${buffId}`,
+      evidence: [
+        `manual-ignore:${override.reason}:${buffId}`,
+        ...buffEvidence(row),
+      ],
+      notes: override.notes || [],
+    });
+  }
+
+  for (const alias of audit?.observedPairedAliases || []) {
+    const buffId = numberOrNull(alias?.buffId);
+    if (buffId == null) continue;
+    const parentBuffIds = uniqueNumbers(alias?.pairedKnownIds || alias?.knownBuffIds || []);
+    if (parentBuffIds.length === 0) continue;
+    addAlias(aliasMap, buffId, {
+      parentBuffIds,
+      relationshipKind: 'observed-paired-alias',
+      confidence: 'high',
+      observedHits: numberOrNull(alias?.hits),
+      observedDamage: numberOrNull(alias?.damage),
+      evidence: [
+        `unresolved-audit:observed-paired-alias:${buffId}`,
+        ...buffEvidence(buffNameById.get(buffId)),
+      ],
+      notes: ['Observed UID appeared on the same runtime bucket as already reportable source UID(s).'],
+    });
+  }
+
+  for (const [buffId, override] of PROMOTED_BUFF_IDS) {
+    const row = buffNameById.get(buffId);
+    const entry = buildPromotedEntry(buffId, row, override, predicateAudit, componentWorklist);
+    addPromoted(promoted, buffId, entry);
+  }
+
+  const mappedBuffIds = new Set([
+    ...aliasMap.keys(),
+    ...promoted.keys(),
+    ...ignored.keys(),
+  ]);
+
+  for (const unresolved of audit?.unmappedObservedBuffIds || audit?.unmappedObservedBuffs || []) {
+    const buffId = numberOrNull(unresolved?.buffId);
+    if (buffId == null || mappedBuffIds.has(buffId)) continue;
+    const row = buffNameById.get(buffId);
+    const name = displayName(row) || unresolved?.sampleLabel || '';
+    if (isStrongIgnoreName(name)) {
+      addIgnored(ignored, buffId, {
+        buffId,
+        reason: 'helper-or-internal-observed-state',
+        confidence: 'high',
+        observedHits: numberOrNull(unresolved?.hits),
+        observedDamage: numberOrNull(unresolved?.damage),
+        displayName: name || `buff:${buffId}`,
+        evidence: [
+          `unresolved-audit:unmapped-observed-buff:${buffId}`,
+          ...buffEvidence(row),
+        ],
+      });
+      continue;
+    }
+    worklist.push({
+      buffId,
+      displayName: name || `buff:${buffId}`,
+      observedHits: numberOrNull(unresolved?.hits),
+      observedDamage: numberOrNull(unresolved?.damage),
+      candidateState: row ? 'has-buff-name-row' : 'missing-buff-name-row',
+      evidence: buffEvidence(row),
+      nextStep: row ? 'needs direct source/effect bridge before runtime promotion' : 'needs raw package source lookup',
+    });
+  }
+
+  worklist.sort((a, b) => (b.observedHits || 0) - (a.observedHits || 0) || a.buffId - b.buffId);
+
+  const aliasesByBuffId = Object.fromEntries([...aliasMap.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([buffId, entries]) => [String(buffId), entries]));
+
+  const promotedSourcesByBuffId = Object.fromEntries([...promoted.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([buffId, entries]) => [String(buffId), entries]));
+
+  const ignoredBuffIds = [...ignored.values()].sort((a, b) => a.buffId - b.buffId);
+
+  return {
+    schemaVersion: 1,
+    generatedBy: 'ModifierObservedUidBridge.gen',
+    generatedAt: new Date().toISOString(),
+    inputs: {
+      auditPath,
+      auditMissing,
+      buffNameRows: buffNameById.size,
+    },
+    aliasesByBuffId,
+    promotedSourcesByBuffId,
+    ignoredBuffIds,
+    worklist,
+    stats: {
+      aliases: Object.values(aliasesByBuffId).reduce((sum, entries) => sum + entries.length, 0),
+      aliasBuffIds: Object.keys(aliasesByBuffId).length,
+      promotedSources: Object.values(promotedSourcesByBuffId).reduce((sum, entries) => sum + entries.length, 0),
+      promotedBuffIds: Object.keys(promotedSourcesByBuffId).length,
+      ignoredBuffIds: ignoredBuffIds.length,
+      remainingWorklist: worklist.length,
+    },
+  };
+}
+
+function seedPreviousBridge(previousBridge, aliasMap, promoted, ignored) {
+  if (!previousBridge || typeof previousBridge !== 'object') return;
+  for (const [buffIdText, entries] of Object.entries(previousBridge.aliasesByBuffId || {})) {
+    const buffId = numberOrNull(buffIdText);
+    if (buffId == null) continue;
+    for (const entry of entries || []) {
+      addAlias(aliasMap, buffId, entry);
+    }
+  }
+  for (const [buffIdText, entries] of Object.entries(previousBridge.promotedSourcesByBuffId || {})) {
+    const buffId = numberOrNull(buffIdText);
+    if (buffId == null) continue;
+    for (const entry of entries || []) {
+      addPromoted(promoted, buffId, entry);
+    }
+  }
+  for (const entry of previousBridge.ignoredBuffIds || []) {
+    const buffId = numberOrNull(entry?.buffId ?? entry);
+    if (buffId == null) continue;
+    ignored.set(buffId, entry);
+  }
+}
+
+function addAlias(map, buffId, entry) {
+  const list = map.get(buffId) || [];
+  const existingKeys = new Set(list.map((item) => `${item.relationshipKind}:${(item.parentBuffIds || []).join(',')}`));
+  const key = `${entry.relationshipKind}:${(entry.parentBuffIds || []).join(',')}`;
+  if (!existingKeys.has(key)) list.push(entry);
+  map.set(buffId, list);
+}
+
+function addPromoted(map, buffId, entry) {
+  const list = map.get(buffId) || [];
+  if (!list.some((item) => item.sourceId === entry.sourceId)) list.push(entry);
+  map.set(buffId, list);
+}
+
+function addIgnored(map, buffId, entry) {
+  const existing = map.get(buffId);
+  map.set(buffId, {
+    ...(existing && typeof existing === 'object' ? existing : {}),
+    ...entry,
+    buffId,
+    evidence: uniqueStrings([
+      ...(existing?.evidence || []),
+      ...(entry.evidence || []),
+    ]),
+    notes: uniqueStrings([
+      ...(existing?.notes || []),
+      ...(entry.notes || []),
+    ]),
+  });
+}
+
+function buildPromotedEntry(buffId, row, override, predicateAudit, componentWorklist) {
+  const names = {
+    ...namesFor(row),
+    ...(override.sourceNames || {}),
+  };
+  const sourceName = override.sourceName || displayNameFromNames(names) || displayName(row) || `buff:${buffId}`;
+  const evidence = [
+    `observed-uid-bridge:promoted:${buffId}`,
+    ...buffEvidence(row),
+    ...predicateEvidence(buffId, predicateAudit),
+    ...worklistEvidence(buffId, componentWorklist),
+  ];
+  return {
+    sourceId: `observed-buff:${buffId}`,
+    sourceKind: override.sourceKind,
+    sourceType: override.sourceType,
+    sourceCategory: override.sourceCategory,
+    sourceEntityId: buffId,
+    sourceName,
+    sourceNames: names,
+    iconPath: override.iconPath || iconFor(row),
+    buffIds: [buffId],
+    sourceBuffIds: [buffId],
+    runtimeDetection: 'active-buff',
+    ...(override.providerAggregation ? { providerAggregation: override.providerAggregation } : {}),
+    reportPolicy: override.reportPolicy,
+    rowPolicy: override.rowPolicy,
+    role: override.role,
+    contributionStatus: override.contributionStatus,
+    contributionGroups: override.contributionGroups || [],
+    formulaZoneIds: override.formulaZoneIds || [],
+    targetDamageIds: override.targetDamageIds || [],
+    targetRecountIds: override.targetRecountIds || [],
+    predicateTags: override.predicateTags || [],
+    componentClasses: override.componentClasses || [],
+    uidEdges: [{
+      edgeKind: 'source-buff',
+      uidKind: 'buff',
+      uid: buffId,
+      role: 'source',
+      source: 'ModifierObservedUidBridge.promotedSourcesByBuffId',
+      status: 'observed',
+      contributionScope: override.contributionStatus,
+    }],
+    evidence: uniqueStrings(evidence),
+    notes: override.notes || [],
+  };
+}
+
+function buffEvidence(row) {
+  if (!row) return [];
+  const evidence = [];
+  const id = numberOrNull(row?.BuffId ?? row?.Id ?? row?.id);
+  if (id != null) evidence.push(`BuffName:${id}`);
+  if (row?.NameIdSource) evidence.push(`BuffName:NameIdSource=${row.NameIdSource}`);
+  if (row?.LinkedRowKind) evidence.push(`BuffName:LinkedRowKind=${row.LinkedRowKind}`);
+  if (row?.LinkedEffectId != null) evidence.push(`BuffName:LinkedEffectId=${row.LinkedEffectId}`);
+  if (row?.Icon || row?.IconPath) evidence.push('BuffName:icon');
+  if (displayName(row)) evidence.push('BuffName:display-name');
+  return uniqueStrings(evidence);
+}
+
+function predicateEvidence(buffId, predicateAudit) {
+  if (!predicateAudit || typeof predicateAudit !== 'object') return [];
+  const matches = [];
+  const text = JSON.stringify(predicateAudit);
+  if (text.includes(`module-buff:${buffId}`)) matches.push(`EffectPredicateAudit:module-buff:${buffId}`);
+  if (text.includes(`buff:${buffId}`)) matches.push(`EffectPredicateAudit:buff:${buffId}`);
+  return uniqueStrings(matches);
+}
+
+function worklistEvidence(buffId, componentWorklist) {
+  if (!componentWorklist || typeof componentWorklist !== 'object') return [];
+  const text = JSON.stringify(componentWorklist);
+  const matches = [];
+  if (text.includes(`module-buff:${buffId}`)) matches.push(`EffectComponentWorklist:module-buff:${buffId}`);
+  if (text.includes(`buff:${buffId}`)) matches.push(`EffectComponentWorklist:buff:${buffId}`);
+  return uniqueStrings(matches);
+}
+
+function namesFor(row) {
+  const names = {};
+  const rawNames = row?.Names || row?.names || {};
+  for (const [locale, value] of Object.entries(rawNames)) {
+    if (typeof value === 'string' && value.trim()) names[locale] = value.trim();
+  }
+  const design = row?.DesignName || row?.designName || row?.Design || row?.design;
+  if (typeof design === 'string' && design.trim()) names.design = design.trim();
+  return names;
+}
+
+function displayName(row) {
+  if (!row) return '';
+  return displayNameFromNames(namesFor(row)) || row?.Name || row?.name || '';
+}
+
+function displayNameFromNames(names) {
+  return names.en_US || names.en || names.design || '';
+}
+
+function iconFor(row) {
+  return row?.IconPath || row?.Icon || row?.iconPath || row?.icon || null;
+}
+
+function isStrongIgnoreName(name) {
+  if (!name) return false;
+  return IGNORE_NAME_PATTERNS.some((pattern) => pattern.test(name));
+}
+
+function uniqueNumbers(values) {
+  return [...new Set((values || []).map(numberOrNull).filter((value) => value != null))].sort((a, b) => a - b);
+}
+
+function uniqueStrings(values) {
+  return [...new Set((values || []).filter((value) => typeof value === 'string' && value.trim()))].sort();
+}
+
+function numberOrNull(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function renderMarkdown(bridge) {
+  const lines = [];
+  lines.push('# Modifier Observed UID Bridge');
+  lines.push('');
+  lines.push(`Generated: ${bridge.generatedAt}`);
+  lines.push('');
+  lines.push('## Summary');
+  lines.push('');
+  for (const [key, value] of Object.entries(bridge.stats)) {
+    lines.push(`- ${key}: ${value}`);
+  }
+  lines.push('');
+  lines.push('## Promoted Sources');
+  lines.push('');
+  for (const [buffId, entries] of Object.entries(bridge.promotedSourcesByBuffId)) {
+    for (const entry of entries) {
+      lines.push(`- ${buffId}: ${entry.sourceName} (${entry.sourceKind}, ${entry.contributionStatus})`);
+    }
+  }
+  lines.push('');
+  lines.push('## Alias Buff IDs');
+  lines.push('');
+  for (const [buffId, entries] of Object.entries(bridge.aliasesByBuffId).slice(0, 80)) {
+    const parents = entries.flatMap((entry) => entry.parentBuffIds || []);
+    lines.push(`- ${buffId} -> ${[...new Set(parents)].join(', ')}`);
+  }
+  lines.push('');
+  lines.push('## Ignored Helper/Internal Buff IDs');
+  lines.push('');
+  for (const ignored of bridge.ignoredBuffIds.slice(0, 80)) {
+    lines.push(`- ${ignored.buffId}: ${ignored.displayName}`);
+  }
+  lines.push('');
+  lines.push('## Remaining Worklist');
+  lines.push('');
+  for (const item of bridge.worklist.slice(0, 80)) {
+    lines.push(`- ${item.buffId}: ${item.displayName} (${item.candidateState}, hits=${item.observedHits || 0})`);
+  }
+  lines.push('');
+  return `${lines.join('\n')}\n`;
+}

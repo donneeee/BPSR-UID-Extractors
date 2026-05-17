@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T02:16:18.074Z",
+  "auditedStatus": "needs-threshold-model",
+  "totalRows": 1,
+  "byCategory": {
+    "linktext-tooltips": 1
+  },
+  "byFormulaReadiness": {
+    "description-grounded-needs-runtime-proof": 1
+  },
+  "byFormulaZone": {
+    "baseAttackTerm": 1,
+    "skillMultiplier": 1
+  },
+  "byBlocker": {
+    "component:elemental-attack:threshold-state-selector-required": 1
+  },
+  "byWording": {
+    "attack-wording": 1
+  },
+  "byCategoryWording": {
+    "linktext-tooltips / attack-wording": 1
+  },
+  "byScopeGap": {},
+  "byScopeGapCategory": {},
+  "byOwnerPartyScopeGap": {},
+  "byOwnerPartyScopeGapCategory": {},
+  "scopeValueGaps": [],
+  "ownerPartyScopeValueGaps": [],
+  "examples": [
+    {
+      "key": "linktext-tooltips:1105",
+      "uid": "1105",
+      "category": "linktext-tooltips",
+      "sourceLabel": "Ultimate Slash",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "skillMultiplier"
+      ],
+      "valueBlockers": [
+        "component:elemental-attack:threshold-state-selector-required"
+      ],
+      "sampleText": "Each Thunder Sigil consumed deals Attack DMG equal to 150% ATK | Mengakibatkan PDMG sebesar 150% ATK untuk setiap 1 Thunder Seal yang dikonsumsi | DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+      "sampleTexts": [
+        "Each Thunder Sigil consumed deals Attack DMG equal to 150% ATK",
+        "Mengakibatkan PDMG sebesar 150% ATK untuk setiap 1 Thunder Seal yang dikonsumsi",
+        "DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+        "Cada Símbolo do Trovão consumido causa Dano de Ataque equivalente a 150% de ATQ",
+        "150%"
+      ],
+      "samples": [
+        {
+          "value": 150,
+          "unit": "percent",
+          "rawTexts": [
+            "150 %",
+            "150%"
+          ],
+          "sourceTexts": [
+            "Cada Símbolo do Trovão consumido causa Dano de Ataque equivalente a 150% de ATQ",
+            "DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+            "Each Thunder Sigil consumed deals Attack DMG equal to 150% ATK",
+            "Mengakibatkan PDMG sebesar 150% ATK untuk setiap 1 Thunder Seal yang dikonsumsi",
+            "소모한 번개의 인장 1개당 공격력 150%만큼의 물리 대미지를 입힙니다",
+            "每消耗1枚雷之印造成150%攻击力物理伤害，最高不超过15000%",
+            "每消耗1枚雷之印造成150%攻擊力物理傷害，最高不超過15000%",
+            "雷印を1つ消費するたび、攻撃力の150%の物理ダメージを与える（最大で15000%"
+          ],
+          "confidence": "text"
+        },
+        {
+          "value": 15000,
+          "unit": "percent",
+          "rawTexts": [
+            "15000%"
+          ],
+          "sourceTexts": [
+            "15000%",
+            "DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+            "每消耗1枚雷之印造成150%攻击力物理伤害，最高不超过15000%",
+            "每消耗1枚雷之印造成150%攻擊力物理傷害，最高不超過15000%",
+            "雷印を1つ消費するたび、攻撃力の150%の物理ダメージを与える（最大で15000%"
+          ],
+          "confidence": "text"
+        }
+      ]
+    }
+  ],
+  "topByWording": {
+    "attack-wording": [
+      {
+        "key": "linktext-tooltips:1105",
+        "uid": "1105",
+        "category": "linktext-tooltips",
+        "sourceLabel": "Ultimate Slash",
+        "formulaReadiness": "description-grounded-needs-runtime-proof",
+        "formulaZoneIds": [
+          "baseAttackTerm",
+          "skillMultiplier"
+        ],
+        "valueBlockers": [
+          "component:elemental-attack:threshold-state-selector-required"
+        ],
+        "sampleText": "Each Thunder Sigil consumed deals Attack DMG equal to 150% ATK | Mengakibatkan PDMG sebesar 150% ATK untuk setiap 1 Thunder Seal yang dikonsumsi | DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+        "sampleTexts": [
+          "Each Thunder Sigil consumed deals Attack DMG equal to 150% ATK",
+          "Mengakibatkan PDMG sebesar 150% ATK untuk setiap 1 Thunder Seal yang dikonsumsi",
+          "DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+          "Cada Símbolo do Trovão consumido causa Dano de Ataque equivalente a 150% de ATQ",
+          "150%"
+        ],
+        "samples": [
+          {
+            "value": 150,
+            "unit": "percent",
+            "rawTexts": [
+              "150 %",
+              "150%"
+            ],
+            "sourceTexts": [
+              "Cada Símbolo do Trovão consumido causa Dano de Ataque equivalente a 150% de ATQ",
+              "DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+              "Each Thunder Sigil consumed deals Attack DMG equal to 150% ATK",
+              "Mengakibatkan PDMG sebesar 150% ATK untuk setiap 1 Thunder Seal yang dikonsumsi",
+              "소모한 번개의 인장 1개당 공격력 150%만큼의 물리 대미지를 입힙니다",
+              "每消耗1枚雷之印造成150%攻击力物理伤害，最高不超过15000%",
+              "每消耗1枚雷之印造成150%攻擊力物理傷害，最高不超過15000%",
+              "雷印を1つ消費するたび、攻撃力の150%の物理ダメージを与える（最大で15000%"
+            ],
+            "confidence": "text"
+          },
+          {
+            "value": 15000,
+            "unit": "percent",
+            "rawTexts": [
+              "15000%"
+            ],
+            "sourceTexts": [
+              "15000%",
+              "DMG 150% ของ ATK สูงสุดไม่เกิน 15000% Mengakibatkan DMG besar berdasarkan jumlah Thunder Seal yang telah dikonsumsi dalam 10 detik terakhir",
+              "每消耗1枚雷之印造成150%攻击力物理伤害，最高不超过15000%",
+              "每消耗1枚雷之印造成150%攻擊力物理傷害，最高不超過15000%",
+              "雷印を1つ消費するたび、攻撃力の150%の物理ダメージを与える（最大で15000%"
+            ],
+            "confidence": "text"
+          }
+        ]
+      }
+    ]
+  }
+}

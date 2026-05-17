@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-05-06T04:09:13.660Z",
+  "GeneratedAt": "2026-05-12T13:28:26.107Z",
   "SourceGroup": "ModifierSourceIndex",
   "OutputDir": "output/icons/ModifierSourceIndex",
   "AssetCount": 936,
@@ -84,7 +84,7 @@
         },
         {
           "Id": "buff-source:2110100",
-          "Name": "Arcane! Infernal Thrust - Healing Prohibition"
+          "Name": "Iron Fang - Healing Prohibition"
         }
       ],
       "AtlasAddress": "ui/atlas/debuff",
@@ -454,11 +454,11 @@
       "Rows": [
         {
           "Id": "buff-source:2110026",
-          "Name": "Stunt! Boarrier Rush - Wound"
+          "Name": "Boarrier Tyrant - Wound"
         },
         {
           "Id": "buff-source:2110026",
-          "Name": "Stunt! Boarrier Rush - Wound"
+          "Name": "Boarrier Tyrant - Wound"
         }
       ],
       "AtlasAddress": "ui/atlas/debuff",
@@ -1044,7 +1044,7 @@
       "MatchKind": "sprite-name",
       "PngFile": "ModifierSourceIndex/buff_blue_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 9,
+      "RefCount": 10,
       "Rows": [
         {
           "Id": "buff-source:31201",
@@ -1052,7 +1052,11 @@
         },
         {
           "Id": "buff-source:2110024",
-          "Name": "Stunt! Super Critical - Super Critical"
+          "Name": "Muku Warrior - Super Critical"
+        },
+        {
+          "Id": "buff-source:2110024",
+          "Name": "Muku Warrior - Super Critical"
         },
         {
           "Id": "buff-source:2110062",
@@ -1064,7 +1068,7 @@
         },
         {
           "Id": "buff-source:2110095",
-          "Name": "Stunt! Super Critical - Crit Enhancement"
+          "Name": "Muku Warrior - Crit Enhancement"
         },
         {
           "Id": "buff-source:2110132",
@@ -1089,6 +1093,7 @@
       "SpriteAddress": 1737416673,
       "Fields": [
         "byBuffId.31201.0.iconPath",
+        "byBuffId.2110023.0.iconPath",
         "byBuffId.2110024.0.iconPath",
         "byBuffId.2110062.0.iconPath",
         "byBuffId.2110077.0.iconPath",
@@ -1108,7 +1113,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "d2ec7eeaa190eb325ad858c9dd849850ee4d5f0852f3d412070246f299c63f4b",
+      "PixelSha256": "efafe5bd3430eb28fdea350b137ec9889f994fae03746ced2ab49fb54531e703",
       "ObjectPathId": "-7930843873503020716",
       "SelectedObjectName": "buff_blue_atk",
       "SelectedObjectType": "Sprite"
@@ -1183,7 +1188,7 @@
         },
         {
           "Id": "buff-source:2110068",
-          "Name": "Arcane! Shrine Field - Protective Field"
+          "Name": "Inferno Ogre - Protective Field"
         },
         {
           "Id": "buff-source:2110084",
@@ -1436,7 +1441,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "a3d34a0d5a3a6dec44003d480d81a479c8804a3a442b49ce461c86889d54e380",
+      "PixelSha256": "ea1d3b32b3abdf15d1b8d064af903e7185fb406864b870051af63bdfb6bbdc70",
       "ObjectPathId": "-5154019358626773797",
       "SelectedObjectName": "buff_blue_def",
       "SelectedObjectType": "Sprite"
@@ -1494,7 +1499,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "6ac22d04fb7343c8a54b52aca3b0233df0f0307bdf7954ac21395758c0507763",
+      "PixelSha256": "96d130ba45033a97234a8e4c8d7af6c619063c9a649767df4b1ef63216ef480c",
       "ObjectPathId": "-5712323321751886046",
       "SelectedObjectName": "buff_blue_heal",
       "SelectedObjectType": "Sprite"
@@ -1547,7 +1552,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "9366252b22d5d71f810020de17645b16b97936703067dd17ac92878784fbe4d4",
+      "PixelSha256": "6860790ec4eec2217fa7515d772dcf2a7a4c59db8ac7814c2da095f7e027f047",
       "ObjectPathId": "5186678679856357195",
       "SelectedObjectName": "buff_blue_hp",
       "SelectedObjectType": "Sprite"
@@ -1581,7 +1586,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "47675dd49d2444a32c54f625aa9aaae0dc3b26432c8505658c8872c353dac54a",
+      "PixelSha256": "649ce8ed96eba86b8f90c040f1055053f6784c8288f1cd2ebe5d8bd749e624c4",
       "ObjectPathId": "-8445327950560153236",
       "SelectedObjectName": "buff_blue_lucky",
       "SelectedObjectType": "Sprite"
@@ -1612,7 +1617,7 @@
         },
         {
           "Id": "buff-source:2110103",
-          "Name": "Arcane! Azure Gale - Azure Gale"
+          "Name": "Celestial Flier - Azure Gale"
         }
       ],
       "AtlasAddress": "ui/atlas/hud",
@@ -1634,7 +1639,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "88d18f25622e24459f407bb72b0aad636ec4eef0dc322cf23fac0fb917158524",
+      "PixelSha256": "069e93c93eecfda58c6733c009ba44a1190c3b665c5f61328481b57dbb8b4590",
       "ObjectPathId": "4016095574016347854",
       "SelectedObjectName": "buff_blue_movespeed",
       "SelectedObjectType": "Sprite"
@@ -2548,7 +2553,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110129",
-          "Name": "Stunt! Twin Fangs - Haste Specialization"
+          "Name": "Emerald Caprahorn - Haste Specialization"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -2785,7 +2790,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110121",
-          "Name": "Arcane! Phantom Ambush - Phantom Rally"
+          "Name": "Crimson Foxen - Phantom Rally"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -3028,7 +3033,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "ModifierSourceIndex.json",
       "SourceGroup": "ModifierSourceIndex",
-      "Field": "byBuffId.2110107.0.iconPath",
+      "Field": "byBuffId.2110025.1.iconPath",
       "Value": "ui/atlas/buff/buff_icon32",
       "Address": "ui/atlas/buff/buff_icon32",
       "AddressHash": 2047329081,
@@ -3037,17 +3042,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ModifierSourceIndex/buff_icon32.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": "buff-source:2110107",
-          "Name": "Stunt! Boarrier Rush - Enhanced Special Attack"
+          "Name": "Boarrier Tyrant - Enhanced Special Attack"
+        },
+        {
+          "Id": "buff-source:2110107",
+          "Name": "Boarrier Tyrant - Enhanced Special Attack"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_icon32",
       "SpriteAddress": 3368385752,
+      "Fields": [
+        "byBuffId.2110025.1.iconPath",
+        "byBuffId.2110107.0.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon32"
+      ],
+      "SourceFiles": [
+        "ModifierSourceIndex.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -3139,17 +3158,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ModifierSourceIndex/buff_icon53.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": "buff-source:2110117",
-          "Name": "Arcane! Guardian's Boundary - Caprahorn Shield"
+          "Name": "Fafala - Caprahorn Shield"
+        },
+        {
+          "Id": "buff-source:2110117",
+          "Name": "Fafala - Caprahorn Shield"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_icon53",
       "SpriteAddress": 3368385819,
+      "Fields": [
+        "byBuffId.2110117.0.iconPath",
+        "byBuffId.2110134.0.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon53"
+      ],
+      "SourceFiles": [
+        "ModifierSourceIndex.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -3198,7 +3231,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "ModifierSourceIndex.json",
       "SourceGroup": "ModifierSourceIndex",
-      "Field": "byBuffId.2110114.0.iconPath",
+      "Field": "byBuffId.2110112.0.iconPath",
       "Value": "ui/atlas/buff/buff_icon65",
       "Address": "ui/atlas/buff/buff_icon65",
       "AddressHash": 2047329081,
@@ -3207,17 +3240,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ModifierSourceIndex/buff_icon65.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": "buff-source:2110114",
-          "Name": "Arcane! Illusion Resonance - Dorothy Aid"
+          "Name": "Dorothy Aid"
+        },
+        {
+          "Id": "buff-source:2110114",
+          "Name": "Dorothy Aid"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_icon65",
       "SpriteAddress": 3368385854,
+      "Fields": [
+        "byBuffId.2110112.0.iconPath",
+        "byBuffId.2110114.0.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_icon65"
+      ],
+      "SourceFiles": [
+        "ModifierSourceIndex.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -3374,7 +3421,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "ModifierSourceIndex.json",
       "SourceGroup": "ModifierSourceIndex",
-      "Field": "byBuffId.2110125.0.iconPath",
+      "Field": "byBuffId.2110124.0.iconPath",
       "Value": "ui/atlas/buff/buff_icon78",
       "Address": "ui/atlas/buff/buff_icon78",
       "AddressHash": 2047329081,
@@ -3383,8 +3430,12 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ModifierSourceIndex/buff_icon78.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 3,
       "Rows": [
+        {
+          "Id": "buff-source:2110125",
+          "Name": "Highland Lizard King - Highland Blood"
+        },
         {
           "Id": "buff-source:2110125",
           "Name": "Highland Lizard King - Highland Blood"
@@ -3399,6 +3450,7 @@
       "SpriteName": "buff_icon78",
       "SpriteAddress": 3368385890,
       "Fields": [
+        "byBuffId.2110124.0.iconPath",
         "byBuffId.2110125.0.iconPath",
         "byBuffId.2110127.0.iconPath"
       ],
@@ -3443,11 +3495,11 @@
         },
         {
           "Id": "buff-source:2110065",
-          "Name": "Arcane! Blazing Axe - Fiery Battle Will"
+          "Name": "Brigand Leader - Fiery Battle Will"
         },
         {
           "Id": "buff-source:2110065",
-          "Name": "Arcane! Blazing Axe - Fiery Battle Will"
+          "Name": "Brigand Leader - Fiery Battle Will"
         },
         {
           "Id": "buff-source:43201",
@@ -3591,11 +3643,11 @@
       "Rows": [
         {
           "Id": "buff-source:2110042",
-          "Name": "Arcane! Phantom Ambush - Haste"
+          "Name": "Crimson Foxen - Haste"
         },
         {
           "Id": "buff-source:2110042",
-          "Name": "Arcane! Phantom Ambush - Haste"
+          "Name": "Crimson Foxen - Haste"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -3703,17 +3755,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ModifierSourceIndex/buff_passive_icon_general_sup_inspireex.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": "buff-source:2110118",
-          "Name": "Arcane! Guardian's Boundary - Edge of Defense"
+          "Name": "Fafala - Edge of Defense"
+        },
+        {
+          "Id": "buff-source:2110118",
+          "Name": "Fafala - Edge of Defense"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "buff_passive_icon_general_sup_inspireex",
       "SpriteAddress": 648508215,
+      "Fields": [
+        "byBuffId.2110118.0.iconPath",
+        "byBuffId.2110134.1.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_passive_icon_general_sup_inspireex"
+      ],
+      "SourceFiles": [
+        "ModifierSourceIndex.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -3834,7 +3900,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "b8972b64c15be5ffb47fcd964e61bc75f3ce179f812183e21cd5365b5cd5e832",
+      "PixelSha256": "26a83a946818f42b8481b1a959348cb19907083697de6bf3947474b2f5e91e7f",
       "ObjectPathId": "3284302867017518745",
       "SelectedObjectName": "buff_red_atk",
       "SelectedObjectType": "Sprite"
@@ -3869,7 +3935,7 @@
         },
         {
           "Id": "buff-source:2110111",
-          "Name": "Arcane! Divine Reliance - Enchantment"
+          "Name": "Rorola - Enchantment"
         }
       ],
       "AtlasAddress": "ui/atlas/hud",
@@ -3892,7 +3958,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "0334368dcfac45c5d50cdeeed955553cb1258a2b2ce36efc89d72040875dc719",
+      "PixelSha256": "70821f6d9c0a63265f4af18b1867ede8200f81d5d0e3f44e77374c2ceee7801a",
       "ObjectPathId": "2516734868688990745",
       "SelectedObjectName": "buff_red_def",
       "SelectedObjectType": "Sprite"
@@ -3970,7 +4036,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "0d59df8dc1c52a29a67e87ce770438ae07e26846e6d6bfd407080691c323cb27",
+      "PixelSha256": "5a1446838e876c3211fe0cceca9c3f2468232d6bf58316df171baf4a3b1c502f",
       "ObjectPathId": "7631201784644749282",
       "SelectedObjectName": "buff_red_hp",
       "SelectedObjectType": "Sprite"
@@ -4113,7 +4179,7 @@
         },
         {
           "Id": "buff-source:2110101",
-          "Name": "Stunt! Transform into Bee - Void Bzzar"
+          "Name": "Void Bzzar"
         },
         {
           "Id": "buff-source:55223",
@@ -4240,11 +4306,11 @@
       "Rows": [
         {
           "Id": "buff-source:2110053",
-          "Name": "Arcane! Pulse Benediction - Mastery Increase"
+          "Name": "Muku King - Mastery Increase"
         },
         {
           "Id": "buff-source:2110053",
-          "Name": "Arcane! Pulse Benediction - Mastery Increase"
+          "Name": "Muku King - Mastery Increase"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -4296,11 +4362,11 @@
         },
         {
           "Id": "buff-source:2110034",
-          "Name": "Arcane! Time Decree - Lower CD"
+          "Name": "Tina - Lower CD"
         },
         {
           "Id": "buff-source:2110034",
-          "Name": "Arcane! Time Decree - Lower CD"
+          "Name": "Tina - Lower CD"
         },
         {
           "Id": "buff-source:21412",
@@ -24717,7 +24783,7 @@
       "Rows": [
         {
           "Id": "buff-source:2110066",
-          "Name": "Stunt! Earth Shield - Earth Shield"
+          "Name": "Brigand Guard Captain - Earth Shield"
         }
       ],
       "TextureName": "skill_aoyi_skill_icon_033",
@@ -24934,7 +25000,7 @@
       "Rows": [
         {
           "Id": "buff-source:4601",
-          "Name": "Unmapped Buff 4601"
+          "Name": "引爆引燃Buff"
         }
       ],
       "TextureName": "skill_vehicle_yacht_01",
@@ -26771,17 +26837,31 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ModifierSourceIndex/talent_passive_icon_general_dps_arrtuprandom.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": "buff-source:2110123",
-          "Name": "Arcane! Flame Spirit's Fortune - Flame of Luck"
+          "Name": "Flamehorn - Flame of Luck"
+        },
+        {
+          "Id": "buff-source:2110123",
+          "Name": "Flamehorn - Flame of Luck"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
       "AtlasHash": 2047329081,
       "SpriteName": "talent_passive_icon_general_dps_arrtuprandom",
       "SpriteAddress": 1757527187,
+      "Fields": [
+        "byBuffId.2110123.0.iconPath",
+        "byBuffId.2110133.0.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/talent_passive_icon_general_dps_arrtuprandom"
+      ],
+      "SourceFiles": [
+        "ModifierSourceIndex.json"
+      ],
       "PngExported": true,
       "PngWidth": 49,
       "PngHeight": 59,
@@ -27828,11 +27908,11 @@
       "Rows": [
         {
           "Id": "buff-source:2110115",
-          "Name": "Arcane! Allscape Sublimation - Frostforce"
+          "Name": "Boyce - Frostforce"
         },
         {
           "Id": "buff-source:2110116",
-          "Name": "Arcane! Allscape Sublimation - Frostforce - EXT"
+          "Name": "Boyce - Frostforce - EXT"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -31137,7 +31217,7 @@
         },
         {
           "Id": "buff-source:2110061",
-          "Name": "Arcane! Heart of Flame - Heart of Flames"
+          "Name": "Tatta - Heart of Flames"
         },
         {
           "Id": "buff-source:50049",
@@ -34374,7 +34454,7 @@
       "Rows": [
         {
           "Id": "buff-source:1601",
-          "Name": "Unmapped Buff 1601"
+          "Name": "水剑粒子显示"
         }
       ],
       "TextureName": "weapon_sf-01_skill_atk01",
@@ -39558,7 +39638,7 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-06T04:10:19.821Z",
+  "PngExportedAt": "2026-05-12T13:30:01.838Z",
   "PngAssetCount": 936,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0

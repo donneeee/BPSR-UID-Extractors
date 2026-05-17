@@ -2,9 +2,24 @@
 const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  compactFormulaZoneContract,
+  formulaZoneCounts,
+  formulaZoneIdsForEntry,
+  uniqueStrings,
+} = require("./modifier-formula-zones.cjs");
 
 const repoRoot = __dirname;
 const defaultOutputDir = path.join(repoRoot, "output");
+const defaultFormulaZoneContractPath = path.resolve(
+  repoRoot,
+  "..",
+  "resonance-logs-global",
+  "src",
+  "lib",
+  "config",
+  "damage-formula-zone-contract.json",
+);
 
 function parseArgs(argv) {
   const args = {
@@ -12,8 +27,10 @@ function parseArgs(argv) {
     help: false,
     outputDir: defaultOutputDir,
     sourceIndexPath: "",
+    observedBridgePath: "",
     buffNamePath: "",
     recountTablePath: "",
+    formulaZoneContractPath: defaultFormulaZoneContractPath,
     outPath: "",
     relationshipOutPath: "",
   };
@@ -31,11 +48,17 @@ function parseArgs(argv) {
     } else if (arg === "--source-index" && next) {
       args.sourceIndexPath = path.resolve(next);
       index += 1;
+    } else if (arg === "--observed-uid-bridge" && next) {
+      args.observedBridgePath = path.resolve(next);
+      index += 1;
     } else if (arg === "--buff-name" && next) {
       args.buffNamePath = path.resolve(next);
       index += 1;
     } else if (arg === "--recount-table" && next) {
       args.recountTablePath = path.resolve(next);
+      index += 1;
+    } else if (arg === "--formula-zone-contract" && next) {
+      args.formulaZoneContractPath = path.resolve(next);
       index += 1;
     } else if (arg === "--out" && next) {
       args.outPath = path.resolve(next);
@@ -47,6 +70,7 @@ function parseArgs(argv) {
   }
 
   args.sourceIndexPath ||= path.join(args.outputDir, "ModifierSourceIndex.json");
+  args.observedBridgePath ||= path.join(args.outputDir, "ModifierObservedUidBridge.json");
   args.buffNamePath ||= path.join(args.outputDir, "BuffName.json");
   args.recountTablePath ||= path.join(args.outputDir, "RecountTable.json");
   args.outPath ||= path.join(args.outputDir, "ModifierRecountTable.json");
@@ -64,13 +88,19 @@ function printHelp() {
   console.log("");
   console.log("Options:");
   console.log("  --source-index <path>     ModifierSourceIndex.json input.");
+  console.log("  --observed-uid-bridge <path> ModifierObservedUidBridge.json input.");
   console.log("  --buff-name <path>        BuffName.json input for sibling runtime aliases.");
   console.log("  --recount-table <path>    RecountTable.json input for recount target expansion.");
+  console.log("  --formula-zone-contract <path>  Damage formula zone contract input.");
   console.log("  --relationship-out <path> ModifierRelationshipTable.json sidecar output.");
 }
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readOptionalJson(filePath, fallback) {
+  return filePath && fs.existsSync(filePath) ? readJson(filePath) : fallback;
 }
 
 function writeJson(filePath, value) {
@@ -251,7 +281,7 @@ function expandTargetDamageIds(entry, recountDamageIdsById) {
   return sortedNumbers(damageIds);
 }
 
-function compactEntry(entry, recountDamageIdsById) {
+function compactEntry(entry, recountDamageIdsById, formulaZoneContract) {
   const out = {};
   for (const key of [
     "sourceId",
@@ -285,6 +315,8 @@ function compactEntry(entry, recountDamageIdsById) {
   out.targetRecountIds = sortedNumbers(out.targetRecountIds);
   out.evidence = [...new Set(out.evidence || [])].sort();
   out.uidEdges = targetUidEdges(out, out.uidEdges);
+  const formulaZoneIds = formulaZoneIdsForEntry(out, formulaZoneContract);
+  if (formulaZoneIds.length > 0) out.formulaZoneIds = formulaZoneIds;
   return out;
 }
 
@@ -321,8 +353,12 @@ const RUNTIME_WINDOW_GROUPS = new Set([
   "baseAttack",
   "critical",
   "elemental",
+  "finalDamage",
   "genericDamage",
   "hitTiming",
+  "physicalMagicEnhancement",
+  "seasonDamage",
+  "seasonSuppression",
   "targetMitigation",
   "versatility",
 ]);
@@ -475,6 +511,315 @@ function buildSiblingBuffAliases(buffRows, byBuffId, sourcesById, reportableBuff
   return { aliasBuffIds, aliasRefs };
 }
 
+const STATE_SIBLING_ALIAS_PATTERNS = [
+  /\b(?:stack|stacks|count|counter|state)\b/iu,
+  /\u53e0\u5c42/u,
+  /\u5c42\u6570/u,
+  /\u8ba1\u6570/u,
+];
+
+function isStateSiblingBuffName(row) {
+  const text = buffRowNames(row).join("\n");
+  return matchesAnyPattern(text, STATE_SIBLING_ALIAS_PATTERNS);
+}
+
+function addRelationshipAliasEdges(relationshipsByRuleId, entryId, buffId, parentBuffIds) {
+  const relationship = relationshipsByRuleId[entryId];
+  if (!relationship) return false;
+  const edges = [...(relationship.uidEdges || [])];
+  for (const parentBuffId of sortedNumbers(parentBuffIds)) {
+    edges.push({
+      edgeKind: "runtime-state-child-alias",
+      uidKind: "buff",
+      uid: buffId,
+      role: "runtime-state",
+      source: "ModifierRecountTable.state-sibling-alias",
+      status: "state-only",
+      relationshipKind: "same-buff-family-state-child",
+      parentUidKind: "buff",
+      parentUid: parentBuffId,
+    });
+  }
+  relationship.uidEdges = finalizeUidEdges(edges);
+  return true;
+}
+
+function addRefsForMap(byBuffId, buffId, entryIds) {
+  if (entryIds.length === 0) return 0;
+  const key = String(buffId);
+  const before = byBuffId[key]?.length || 0;
+  byBuffId[key] = [...new Set([...(byBuffId[key] || []), ...entryIds])].sort();
+  return byBuffId[key].length - before;
+}
+
+function buildStateSiblingBuffAliases(buffRows, byBuffId, sourcesById, relationshipsByRuleId, debugBuffIds, ignoredBuffIds) {
+  const rowsById = new Map();
+  const idsByFamily = new Map();
+  for (const row of buffRows || []) {
+    const id = toPositiveNumber(row?.Id ?? row?.id);
+    if (id === null) continue;
+    rowsById.set(id, row);
+    const family = Math.floor(id / 10);
+    const ids = idsByFamily.get(family) || [];
+    ids.push(id);
+    idsByFamily.set(family, ids);
+  }
+
+  let aliasBuffIds = 0;
+  let aliasRefs = 0;
+  let aliasEdges = 0;
+  for (const [buffId, row] of rowsById.entries()) {
+    if (ignoredBuffIds.has(buffId)) continue;
+    if ((byBuffId[String(buffId)] || []).length > 0) continue;
+    if (!isStateSiblingBuffName(row)) continue;
+
+    const family = Math.floor(buffId / 10);
+    const parentBuffIds = [];
+    const candidateEntryIds = new Set();
+    for (const siblingId of idsByFamily.get(family) || []) {
+      if (siblingId === buffId) continue;
+      const siblingEntryIds = byBuffId[String(siblingId)] || [];
+      if (siblingEntryIds.length === 0) continue;
+      parentBuffIds.push(siblingId);
+      for (const entryId of siblingEntryIds) {
+        const source = sourcesById[entryId];
+        if (!source || source.reportPolicy === "ignore") continue;
+        if (source.contributionStatus === "observed-only") continue;
+        candidateEntryIds.add(entryId);
+      }
+    }
+
+    const entryIds = [...candidateEntryIds].sort();
+    if (entryIds.length === 0) continue;
+    const added = addRefsForMap(byBuffId, buffId, entryIds);
+    if (added === 0) continue;
+    debugBuffIds.add(buffId);
+    aliasBuffIds += 1;
+    aliasRefs += added;
+    for (const entryId of entryIds) {
+      if (addRelationshipAliasEdges(relationshipsByRuleId, entryId, buffId, parentBuffIds)) {
+        aliasEdges += 1;
+      }
+    }
+  }
+
+  return { aliasBuffIds, aliasRefs, aliasEdges };
+}
+
+const OBSERVED_ONLY_IGNORE_NAME_PATTERNS = [
+  /parkour/i,
+  /air dance/i,
+  /horizontal jump/i,
+  /wall jump/i,
+  /wall run/i,
+  /auto-vault/i,
+  /multi-jump/i,
+  /\b(?:visual|screen|monitor|detector|placeholder|presentation|transition)\b/iu,
+  /\u8dd1\u9177/u,
+  /\u5e7b\u5f71\u51b2\u523aqte/u,
+  /\u6f02\u6d6e/u,
+  /\u6ed1\u7fd4/u,
+  /\u817e\u7a7a/u,
+  /\u6c34\u5e73\u8df3/u,
+  /\u7acb\u9762/u,
+  /\u68c0\u6d4b/u,
+  /\u76d1\u63a7/u,
+  /\u627e\u76ee\u6807/u,
+  /\u67e5\u627e/u,
+  /\u5c4f\u5e55/u,
+  /\u7279\u6548/u,
+  /\u7eaf\u8868\u73b0/u,
+  /\u8868\u73b0/u,
+  /\u4e2d\u8f6c/u,
+  /\u586b\u5145/u,
+  /\u914d\u7f6e\u65f6\u95f4\u7ed3\u675f/u,
+];
+
+const OBSERVED_ONLY_SOURCE_HINT_PATTERNS = [
+  /\b(?:buff|debuff|bonus|increase|decrease|damage|dmg|atk|crit|luck|healing|heal|shield|armor|binding|silence|stun)\b/iu,
+  /\u589e\u4f24/u,
+  /\u52a0\u653b/u,
+  /\u63d0\u9ad8/u,
+  /\u964d\u4f4e/u,
+  /\u51cf\u901f/u,
+  /\u653b\u51fb/u,
+  /\u7269\u653b/u,
+  /\u667a\u529b/u,
+  /\u654f\u6377/u,
+  /\u529b\u91cf/u,
+  /\u5e78\u8fd0/u,
+  /\u6cbb\u7597/u,
+  /\u62a4\u76fe/u,
+  /\u9632\u5fa1/u,
+  /\u51cf\u4f24/u,
+  /\u66b4\u51fb/u,
+  /\u5fc5\u7206/u,
+  /\u6025\u901f/u,
+  /\u51b7\u5374/u,
+  /\u56de\u80fd/u,
+  /\u5c5e\u6027/u,
+  /\u9886\u57df/u,
+  /\u82b1\u682a/u,
+  /\u6807\u8bb0/u,
+  /\u70b9\u540d/u,
+  /\u88c5\u7f6e/u,
+  /\u5c42\u6570/u,
+  /\u8ba1\u6570/u,
+  /\u675f\u7f1a/u,
+  /\u6c89\u9ed8/u,
+  /\u5632\u8bbd/u,
+];
+
+const OBSERVED_ONLY_TIMING_PATTERNS = [
+  /\b(?:cooldown|haste|speed|energy|resource|timer)\b/iu,
+  /\u51b7\u5374/u,
+  /\u6025\u901f/u,
+  /\u52a0\u901f/u,
+  /\u56de\u80fd/u,
+  /\u8ba1\u65f6/u,
+  /\u5b9a\u65f6/u,
+];
+
+const OBSERVED_ONLY_HEALING_PATTERNS = [
+  /\b(?:healing|heal)\b/iu,
+  /\u6cbb\u7597/u,
+  /\u56de\u8840/u,
+  /\u6062\u590d/u,
+];
+
+const OBSERVED_ONLY_DEFENSIVE_PATTERNS = [
+  /\b(?:armor|shield|defense|damage reduction|pdef|mdef)\b/iu,
+  /\u62a4\u76fe/u,
+  /\u9632\u5fa1/u,
+  /\u51cf\u4f24/u,
+  /\u62a4\u7532/u,
+];
+
+const OBSERVED_ONLY_STATE_PATTERNS = [
+  /\b(?:binding|silence|stun|slow|marker|device|stack|count)\b/iu,
+  /\u6807\u8bb0/u,
+  /\u70b9\u540d/u,
+  /\u88c5\u7f6e/u,
+  /\u5c42\u6570/u,
+  /\u8ba1\u6570/u,
+  /\u675f\u7f1a/u,
+  /\u6c89\u9ed8/u,
+  /\u5632\u8bbd/u,
+  /\u51cf\u901f/u,
+];
+
+const OBSERVED_ONLY_OFFENSIVE_PATTERNS = [
+  /\b(?:damage|dmg|atk|crit|luck|elemental)\b/iu,
+  /\u589e\u4f24/u,
+  /\u52a0\u653b/u,
+  /\u653b\u51fb/u,
+  /\u7269\u653b/u,
+  /\u66b4\u51fb/u,
+  /\u5fc5\u7206/u,
+  /\u5e78\u8fd0/u,
+  /\u5c5e\u6027/u,
+];
+
+function buffRowNames(row) {
+  return sortedStrings([
+    row?.Name,
+    row?.NameDesign,
+    row?.DesignName,
+    ...Object.values(row?.Names || {}),
+  ]);
+}
+
+function buffRowDescriptions(row) {
+  return sortedStrings([
+    row?.Desc,
+    row?.Description,
+    ...Object.values(row?.Descs || {}),
+    ...Object.values(row?.Descriptions || {}),
+  ]);
+}
+
+function buffRowEvidenceText(row) {
+  return [...buffRowNames(row), ...buffRowDescriptions(row)].join("\n");
+}
+
+function matchesAnyPattern(text, patterns) {
+  return patterns.some((pattern) => pattern.test(text));
+}
+
+function isObservedOnlyIgnoredBuffName(row) {
+  const text = buffRowNames(row).join("\n");
+  return matchesAnyPattern(text, OBSERVED_ONLY_IGNORE_NAME_PATTERNS);
+}
+
+function addObservedOnlyIgnoredBuffIds(buffRows, sourceIndex, ignoredBuffIds) {
+  let added = 0;
+  for (const row of buffRows || []) {
+    const id = toPositiveNumber(row?.Id ?? row?.id);
+    if (id === null) continue;
+    if ((sourceIndex.byBuffId?.[String(id)] || []).length > 0) continue;
+    if (!isObservedOnlyIgnoredBuffName(row)) continue;
+    if (!ignoredBuffIds.has(id)) {
+      ignoredBuffIds.add(id);
+      added += 1;
+    }
+  }
+  return added;
+}
+
+function observedOnlySourceType(row) {
+  const text = buffRowEvidenceText(row);
+  if (matchesAnyPattern(text, OBSERVED_ONLY_HEALING_PATTERNS)) return "observed-healing-buff";
+  if (matchesAnyPattern(text, OBSERVED_ONLY_DEFENSIVE_PATTERNS)) return "observed-defensive-buff";
+  if (matchesAnyPattern(text, OBSERVED_ONLY_TIMING_PATTERNS)) return "observed-timing-buff";
+  if (matchesAnyPattern(text, OBSERVED_ONLY_STATE_PATTERNS)) return "observed-state-buff";
+  if (matchesAnyPattern(text, OBSERVED_ONLY_OFFENSIVE_PATTERNS)) return "observed-offensive-buff";
+  return "observed-buff";
+}
+
+function isObservedOnlySourceCandidate(row) {
+  const text = buffRowEvidenceText(row);
+  if (!text.trim()) return false;
+  if (buffRowDescriptions(row).length > 0) return true;
+  if (matchesAnyPattern(text, OBSERVED_ONLY_SOURCE_HINT_PATTERNS)) return true;
+  return buffRowNames(row).length > 0;
+}
+
+function observedOnlyBuffSourceEntry(row, buffId) {
+  const sourceType = observedOnlySourceType(row);
+  const category = sourceType.includes("offensive")
+    ? "offensive"
+    : sourceType.includes("defensive")
+      ? "defensive"
+      : "supportive";
+  return {
+    sourceId: `observed-buff:${buffId}`,
+    sourceKind: "runtime-buff",
+    sourceType,
+    sourceEntityId: buffId,
+    runtimeDetection: "active-buff",
+    buffIds: [buffId],
+    evidence: [`observed-only-buffname:${buffId}`],
+    reportPolicy: "debug-only",
+    rowPolicy: "debug",
+    sourceCategory: category,
+    contributionStatus: "observed-only",
+    contributionGroups: [],
+    predicateTags: [
+      "evidence.observed-buff-window",
+      `observed-only.${sourceType}`,
+    ],
+    providerAggregation: "source-uid",
+    uidEdges: [{
+      edgeKind: "observed-buff",
+      uidKind: "buff",
+      uid: buffId,
+      role: "runtime",
+      source: "ModifierRecountTable.observed-only-buffname",
+      status: "debug-only",
+    }],
+  };
+}
+
 function relationshipEdgeStats(relationshipsByRuleId) {
   const uidEdgeKindCounts = {};
   const uidEdgeRoleCounts = {};
@@ -494,11 +839,67 @@ function relationshipEdgeStats(relationshipsByRuleId) {
   };
 }
 
-function buildRecountTable(sourceIndex, buffRows, recountTable) {
+function isTalentRecountEntry(entry) {
+  const sourceId = String(entry?.sourceId || "").toLowerCase();
+  return sourceId.startsWith("talent:");
+}
+
+function talentOwnershipStats(sourcesById) {
+  const ownershipKindCounts = {};
+  const ownershipStatusCounts = {};
+  const missingRuleIds = [];
+  let talentSourceRules = 0;
+  let withOwnership = 0;
+  let missingOwnership = 0;
+  let hardFilterEligible = 0;
+  for (const [ruleId, entry] of Object.entries(sourcesById)) {
+    if (!isTalentRecountEntry(entry)) continue;
+    talentSourceRules += 1;
+    if (!entry.talentOwnership) {
+      missingOwnership += 1;
+      if (missingRuleIds.length < 50) missingRuleIds.push(ruleId);
+      continue;
+    }
+    withOwnership += 1;
+    if (entry.talentOwnership.hardFilterEligible === true) hardFilterEligible += 1;
+    const kind = entry.talentOwnership.ownershipKind || "unknown";
+    const status = entry.talentOwnership.ownershipStatus || "unknown";
+    ownershipKindCounts[kind] = (ownershipKindCounts[kind] || 0) + 1;
+    ownershipStatusCounts[status] = (ownershipStatusCounts[status] || 0) + 1;
+  }
+  return {
+    talentSourceRules,
+    withOwnership,
+    missingOwnership,
+    hardFilterEligible,
+    ownershipKindCounts,
+    ownershipStatusCounts,
+    missingRuleIds,
+  };
+}
+
+function recountIdentity(entry, targetDamageIds, source) {
+  return {
+    source,
+    sourceId: entry.sourceId,
+    sourceKind: entry.sourceKind,
+    sourceType: entry.sourceType,
+    sourceEntityId: entry.sourceEntityId,
+    runtimeDetection: entry.runtimeDetection,
+    buffIds: entry.buffIds,
+    targetDamageIds,
+    targetRecountIds: entry.targetRecountIds,
+    rowPolicy: entry.rowPolicy,
+    providerAggregation: entry.providerAggregation,
+  };
+}
+
+function buildRecountTable(sourceIndex, observedBridge, buffRows, recountTable, formulaZoneContract) {
   const recountDamageIdsById = recountDamageIdsByRecountId(recountTable);
   const sourcesById = {};
   const relationshipsByRuleId = {};
   const byBuffId = {};
+  const byFormulaZoneId = {};
   const reportableBuffIds = new Set();
   const debugBuffIds = new Set();
   const ignoredBuffIds = new Set(sortedNumbers(sourceIndex.ignoredBuffIds));
@@ -506,56 +907,170 @@ function buildRecountTable(sourceIndex, buffRows, recountTable) {
   const sourceIndexPolicyCounts = {};
   const reportReasonCounts = {};
   const rowPolicyCounts = {};
+  const observedBridgeStats = {
+    promotedSources: 0,
+    aliasBuffIds: 0,
+    aliasRefs: 0,
+    ignoredBuffIds: 0,
+  };
+
+  function addRecountEntry(buffId, rawEntry, source) {
+    const hashTargetDamageIds = sortedNumbers(rawEntry?.targetDamageIds);
+    const entry = compactEntry(rawEntry || {}, recountDamageIdsById, formulaZoneContract);
+    const sourceIndexPolicy = entry.reportPolicy || "include";
+    const effective = effectiveReportPolicy(entry);
+    entry.sourceIndexReportPolicy = sourceIndexPolicy;
+    entry.reportPolicy = effective.policy;
+    entry.runtimeReportReason = effective.reason;
+    const policy = entry.reportPolicy;
+    const rowPolicy = entry.rowPolicy || "unknown";
+    sourceIndexPolicyCounts[sourceIndexPolicy] = (sourceIndexPolicyCounts[sourceIndexPolicy] || 0) + 1;
+    policyCounts[policy] = (policyCounts[policy] || 0) + 1;
+    reportReasonCounts[effective.reason] = (reportReasonCounts[effective.reason] || 0) + 1;
+    rowPolicyCounts[rowPolicy] = (rowPolicyCounts[rowPolicy] || 0) + 1;
+    if (policy === "ignore") {
+      ignoredBuffIds.add(buffId);
+    } else if (policy === "debug-only") {
+      debugBuffIds.add(buffId);
+      if (isRuntimeWindowTransportEntry(entry)) {
+        reportableBuffIds.add(buffId);
+      }
+    } else {
+      reportableBuffIds.add(buffId);
+    }
+
+    const entryId = `mrs:${hashEntry(recountIdentity(entry, hashTargetDamageIds, source))}`;
+    if (!relationshipsByRuleId[entryId]) {
+      relationshipsByRuleId[entryId] = stripUndefined({
+        sourceId: entry.sourceId,
+        talentOwnership: entry.talentOwnership,
+        uidEdges: entry.uidEdges,
+      });
+    }
+    const recountEntry = { ...entry };
+    delete recountEntry.uidEdges;
+    sourcesById[entryId] ||= recountEntry;
+    if (source === "observed-bridge") observedBridgeStats.promotedSources += 1;
+    return entryId;
+  }
+
+  function addRefsForBuff(buffId, entryIds) {
+    if (entryIds.length === 0) return 0;
+    const key = String(buffId);
+    const before = byBuffId[key]?.length || 0;
+    byBuffId[key] = [...new Set([...(byBuffId[key] || []), ...entryIds])].sort();
+    return byBuffId[key].length - before;
+  }
 
   for (const [buffIdText, rawEntries] of Object.entries(sourceIndex.byBuffId || {})) {
     const buffId = toPositiveNumber(buffIdText);
     if (buffId === null) continue;
     const entryIds = [];
     for (const rawEntry of rawEntries || []) {
-      const hashTargetDamageIds = sortedNumbers(rawEntry?.targetDamageIds);
-      const entry = compactEntry(rawEntry || {}, recountDamageIdsById);
-      const sourceIndexPolicy = entry.reportPolicy || "include";
-      const effective = effectiveReportPolicy(entry);
-      entry.sourceIndexReportPolicy = sourceIndexPolicy;
-      entry.reportPolicy = effective.policy;
-      entry.runtimeReportReason = effective.reason;
-      const policy = entry.reportPolicy;
-      const rowPolicy = entry.rowPolicy || "unknown";
-      sourceIndexPolicyCounts[sourceIndexPolicy] = (sourceIndexPolicyCounts[sourceIndexPolicy] || 0) + 1;
-      policyCounts[policy] = (policyCounts[policy] || 0) + 1;
-      reportReasonCounts[effective.reason] = (reportReasonCounts[effective.reason] || 0) + 1;
-      rowPolicyCounts[rowPolicy] = (rowPolicyCounts[rowPolicy] || 0) + 1;
-      if (policy === "ignore") {
-        ignoredBuffIds.add(buffId);
-      } else if (policy === "debug-only") {
-        debugBuffIds.add(buffId);
-        if (isRuntimeWindowTransportEntry(entry)) {
-          reportableBuffIds.add(buffId);
-        }
-      } else {
-        reportableBuffIds.add(buffId);
-      }
-
-      const entryId = `mrs:${hashEntry({
-        ...entry,
-        targetDamageIds: hashTargetDamageIds,
-        uidEdges: undefined,
-      })}`;
-      if (!relationshipsByRuleId[entryId]) {
-        relationshipsByRuleId[entryId] = stripUndefined({
-          sourceId: entry.sourceId,
-          uidEdges: entry.uidEdges,
-        });
-      }
-      const recountEntry = { ...entry };
-      delete recountEntry.uidEdges;
-      sourcesById[entryId] ||= recountEntry;
-      entryIds.push(entryId);
+      entryIds.push(addRecountEntry(buffId, rawEntry, "source-index"));
     }
-    if (entryIds.length > 0) byBuffId[String(buffId)] = [...new Set(entryIds)].sort();
+    addRefsForBuff(buffId, entryIds);
   }
+
+  for (const [buffIdText, rawEntries] of Object.entries(observedBridge?.promotedSourcesByBuffId || {})) {
+    const buffId = toPositiveNumber(buffIdText);
+    if (buffId === null) continue;
+    const entryIds = [];
+    for (const rawEntry of rawEntries || []) {
+      entryIds.push(addRecountEntry(buffId, rawEntry, "observed-bridge"));
+    }
+    addRefsForBuff(buffId, entryIds);
+  }
+
+  for (const ignored of observedBridge?.ignoredBuffIds || []) {
+    const buffId = toPositiveNumber(ignored?.buffId ?? ignored);
+    if (buffId === null) continue;
+    if (!byBuffId[String(buffId)]?.length && !ignoredBuffIds.has(buffId)) {
+      ignoredBuffIds.add(buffId);
+      observedBridgeStats.ignoredBuffIds += 1;
+    }
+  }
+
+  function applyObservedBridgeAliases() {
+    for (const [buffIdText, aliases] of Object.entries(observedBridge?.aliasesByBuffId || {})) {
+      const buffId = toPositiveNumber(buffIdText);
+      if (buffId === null || ignoredBuffIds.has(buffId)) continue;
+      const entryIds = [];
+      const parentBuffIds = [];
+      for (const alias of aliases || []) {
+        for (const parentBuffId of sortedNumbers(alias?.parentBuffIds)) {
+          parentBuffIds.push(parentBuffId);
+          entryIds.push(...(byBuffId[String(parentBuffId)] || []));
+        }
+      }
+      if (entryIds.length === 0 && parentBuffIds.length > 0 && parentBuffIds.every((parentBuffId) => ignoredBuffIds.has(parentBuffId))) {
+        ignoredBuffIds.add(buffId);
+        observedBridgeStats.ignoredBuffIds += 1;
+        continue;
+      }
+      const added = addRefsForBuff(buffId, entryIds);
+      if (added > 0) {
+        observedBridgeStats.aliasBuffIds += 1;
+        observedBridgeStats.aliasRefs += added;
+        if (entryIds.some((entryId) => sourcesById[entryId]?.reportPolicy === "include")) {
+          reportableBuffIds.add(buffId);
+        } else if (entryIds.length > 0) {
+          debugBuffIds.add(buffId);
+        }
+      }
+    }
+  }
+
+  function addObservedOnlyBuffSources() {
+    const stats = {
+      sourceBuffIds: 0,
+      sourceRefs: 0,
+      sourceTypeCounts: {},
+    };
+    for (const row of buffRows || []) {
+      const buffId = toPositiveNumber(row?.Id ?? row?.id);
+      if (buffId === null) continue;
+      if (ignoredBuffIds.has(buffId)) continue;
+      if ((byBuffId[String(buffId)] || []).length > 0) continue;
+      if ((sourceIndex.byBuffId?.[String(buffId)] || []).length > 0) continue;
+      if (!isObservedOnlySourceCandidate(row)) continue;
+
+      const rawEntry = observedOnlyBuffSourceEntry(row, buffId);
+      const entryId = addRecountEntry(buffId, rawEntry, "observed-only-buffname");
+      const added = addRefsForBuff(buffId, [entryId]);
+      if (added > 0) {
+        stats.sourceBuffIds += 1;
+        stats.sourceRefs += added;
+        stats.sourceTypeCounts[rawEntry.sourceType] = (stats.sourceTypeCounts[rawEntry.sourceType] || 0) + 1;
+      }
+    }
+    return stats;
+  }
+
+  applyObservedBridgeAliases();
   const aliasStats = buildSiblingBuffAliases(buffRows, byBuffId, sourcesById, reportableBuffIds, ignoredBuffIds);
+  const stateSiblingAliasStats = buildStateSiblingBuffAliases(
+    buffRows,
+    byBuffId,
+    sourcesById,
+    relationshipsByRuleId,
+    debugBuffIds,
+    ignoredBuffIds,
+  );
+  const observedOnlyIgnoredBuffIds = addObservedOnlyIgnoredBuffIds(buffRows, sourceIndex, ignoredBuffIds);
+  applyObservedBridgeAliases();
+  const observedOnlySourceStats = addObservedOnlyBuffSources();
   const relationshipStats = relationshipEdgeStats(relationshipsByRuleId);
+  const ownershipStats = talentOwnershipStats(sourcesById);
+  for (const [entryId, entry] of Object.entries(sourcesById)) {
+    for (const zoneId of entry.formulaZoneIds || []) {
+      byFormulaZoneId[zoneId] ||= [];
+      byFormulaZoneId[zoneId].push(entryId);
+    }
+  }
+  for (const zoneId of Object.keys(byFormulaZoneId)) {
+    byFormulaZoneId[zoneId] = uniqueStrings(byFormulaZoneId[zoneId]);
+  }
 
   const tableStats = {
     buffIds: Object.keys(byBuffId).length,
@@ -566,10 +1081,23 @@ function buildRecountTable(sourceIndex, buffRows, recountTable) {
     ignoredBuffIds: ignoredBuffIds.size,
     siblingAliasBuffIds: aliasStats.aliasBuffIds,
     siblingAliasRefs: aliasStats.aliasRefs,
+    stateSiblingAliasBuffIds: stateSiblingAliasStats.aliasBuffIds,
+    stateSiblingAliasRefs: stateSiblingAliasStats.aliasRefs,
+    stateSiblingAliasEdges: stateSiblingAliasStats.aliasEdges,
+    observedOnlyIgnoredBuffIds,
+    observedOnlySourceBuffIds: observedOnlySourceStats.sourceBuffIds,
+    observedOnlySourceRefs: observedOnlySourceStats.sourceRefs,
+    observedOnlySourceTypeCounts: observedOnlySourceStats.sourceTypeCounts,
+    observedBridgePromotedSources: observedBridgeStats.promotedSources,
+    observedBridgeAliasBuffIds: observedBridgeStats.aliasBuffIds,
+    observedBridgeAliasRefs: observedBridgeStats.aliasRefs,
+    observedBridgeIgnoredBuffIds: observedBridgeStats.ignoredBuffIds,
     sourceIndexReportPolicyCounts: sourceIndexPolicyCounts,
     reportPolicyCounts: policyCounts,
     runtimeReportReasonCounts: reportReasonCounts,
     rowPolicyCounts,
+    formulaZoneCounts: formulaZoneCounts(Object.values(sourcesById)),
+    talentOwnership: ownershipStats,
     uidEdges: relationshipStats.uidEdges,
     uidEdgeKindCounts: relationshipStats.uidEdgeKindCounts,
     uidEdgeRoleCounts: relationshipStats.uidEdgeRoleCounts,
@@ -581,6 +1109,8 @@ function buildRecountTable(sourceIndex, buffRows, recountTable) {
       generatedBy: "ModifierRecountTable.gen",
       sourcesById,
       byBuffId,
+      byFormulaZoneId,
+      formulaZoneContract: compactFormulaZoneContract(formulaZoneContract),
       reportableBuffIds: sortedNumbers(reportableBuffIds),
       debugBuffIds: sortedNumbers(debugBuffIds),
       ignoredBuffIds: sortedNumbers(ignoredBuffIds),
@@ -604,9 +1134,11 @@ function main() {
   }
 
   const sourceIndex = readJson(args.sourceIndexPath);
+  const observedBridge = readOptionalJson(args.observedBridgePath, null);
   const buffRows = fs.existsSync(args.buffNamePath) ? readJson(args.buffNamePath) : [];
   const recountTable = fs.existsSync(args.recountTablePath) ? readJson(args.recountTablePath) : {};
-  const { table, relationshipTable } = buildRecountTable(sourceIndex, buffRows, recountTable);
+  const formulaZoneContract = readOptionalJson(args.formulaZoneContractPath, {});
+  const { table, relationshipTable } = buildRecountTable(sourceIndex, observedBridge, buffRows, recountTable, formulaZoneContract);
   if (!args.dryRun) {
     writeJson(args.outPath, table);
     writeJson(args.relationshipOutPath, relationshipTable);
