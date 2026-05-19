@@ -38,6 +38,7 @@ const CATEGORY_SPECS = [
   {
     category: "skills",
     output: "SkillDescriptions.json",
+    splitByLocale: true,
     sources: [
       { file: "skillnames.json" },
       { file: "SkillCooldowns.json" },
@@ -80,6 +81,7 @@ const CATEGORY_SPECS = [
   {
     category: "items",
     output: "ItemDescriptions.json",
+    splitByLocale: true,
     sources: [
       { file: "ItemDescriptionSources.json" },
       { file: "itemnames.json" },
@@ -1307,6 +1309,245 @@ function summarizeEntries(entriesByUid, scannedRows, missingSources) {
   };
 }
 
+function localeFileStem(outputName) {
+  return path.basename(outputName, ".json");
+}
+
+function safeLocaleFileName(locale) {
+  return String(locale || "und").replace(/[^A-Za-z0-9_-]/g, "_");
+}
+
+function localeSplitDirectory(outputName) {
+  return `${localeFileStem(outputName)}.locales`;
+}
+
+function pickLocaleMap(map, locale) {
+  if (!map || typeof map !== "object" || Array.isArray(map)) return undefined;
+  const value = String(map[locale] || "").trim();
+  return value ? { [locale]: value } : undefined;
+}
+
+function pickLocaleArrayMap(map, locale) {
+  if (!map || typeof map !== "object" || Array.isArray(map)) return undefined;
+  const values = arrayOf(map[locale])
+    .flatMap((item) => Array.isArray(item) ? item : [item])
+    .map((value) => String(value || "").trim())
+    .filter(Boolean);
+  return values.length ? { [locale]: values } : undefined;
+}
+
+function localeText(map, locale) {
+  return pickLocaleMap(map, locale)?.[locale];
+}
+
+function localeParagraphs(map, locale) {
+  return pickLocaleArrayMap(map, locale)?.[locale];
+}
+
+function addMapLocales(locales, map) {
+  if (!map || typeof map !== "object" || Array.isArray(map)) return;
+  for (const [locale, value] of Object.entries(map)) {
+    if (value !== undefined && value !== null && String(value).trim() !== "") locales.add(locale);
+  }
+}
+
+function addArrayMapLocales(locales, map) {
+  if (!map || typeof map !== "object" || Array.isArray(map)) return;
+  for (const [locale, value] of Object.entries(map)) {
+    if (arrayOf(value).some((item) => String(item || "").trim())) locales.add(locale);
+  }
+}
+
+function collectBlockLocales(locales, block) {
+  addMapLocales(locales, block?.descriptions);
+  addMapLocales(locales, block?.cleanDescriptions);
+  addArrayMapLocales(locales, block?.descriptionParagraphsByLocale);
+}
+
+function collectEntryLocales(entry) {
+  const locales = new Set();
+  addMapLocales(locales, entry.names);
+  addMapLocales(locales, entry.descriptions);
+  addMapLocales(locales, entry.cleanDescriptions);
+  addArrayMapLocales(locales, entry.descriptionParagraphsByLocale);
+  addMapLocales(locales, entry.scopeDescriptions);
+  addMapLocales(locales, entry.cleanScopeDescriptions);
+  addArrayMapLocales(locales, entry.scopeDescriptionParagraphsByLocale);
+  for (const block of arrayOf(entry.descriptionBlocks)) collectBlockLocales(locales, block);
+  for (const block of arrayOf(entry.bridgedPageContexts)) collectBlockLocales(locales, block);
+  return sortedUnique([...locales]);
+}
+
+function collectCatalogLocales(catalog) {
+  const locales = new Set();
+  for (const entry of Object.values(catalog.entriesByUid || {})) {
+    for (const locale of collectEntryLocales(entry)) locales.add(locale);
+  }
+  return sortedUnique([...locales]);
+}
+
+function stripLocalizedBlock(block) {
+  if (!block || typeof block !== "object") return block;
+  const {
+    descriptions,
+    cleanDescriptions,
+    descriptionParagraphsByLocale,
+    ...rest
+  } = block;
+  return stripUndefined(rest);
+}
+
+function stripLocalizedEntry(entry) {
+  const {
+    names,
+    descriptions,
+    cleanDescriptions,
+    descriptionParagraphsByLocale,
+    scopeDescriptions,
+    cleanScopeDescriptions,
+    scopeDescriptionParagraphsByLocale,
+    ...rest
+  } = entry;
+  return stripUndefined({
+    ...rest,
+    descriptionBlocks: arrayOf(rest.descriptionBlocks).map(stripLocalizedBlock),
+    bridgedPageContexts: arrayOf(rest.bridgedPageContexts).map(stripLocalizedBlock),
+  });
+}
+
+function localizedBlockForLocale(block, locale) {
+  if (!block || typeof block !== "object") return undefined;
+  const descriptions = pickLocaleMap(block.descriptions, locale);
+  const cleanDescriptions = pickLocaleMap(block.cleanDescriptions, locale);
+  const descriptionParagraphsByLocaleMap = pickLocaleArrayMap(block.descriptionParagraphsByLocale, locale);
+  if (!descriptions && !cleanDescriptions && !descriptionParagraphsByLocaleMap) return undefined;
+  return stripUndefined({
+    sourceFile: block.sourceFile,
+    sourcePath: block.sourcePath,
+    kind: block.kind,
+    bridgeSourceCategory: block.bridgeSourceCategory,
+    bridgeSourceUid: block.bridgeSourceUid,
+    bridgeKind: block.bridgeKind,
+    description: localeText(block.descriptions, locale),
+    descriptions,
+    cleanDescription: localeText(block.cleanDescriptions, locale),
+    cleanDescriptions,
+    descriptionParagraphs: localeParagraphs(block.descriptionParagraphsByLocale, locale),
+    descriptionParagraphsByLocale: descriptionParagraphsByLocaleMap,
+  });
+}
+
+function localizedEntryForLocale(entry, locale) {
+  const names = pickLocaleMap(entry.names, locale);
+  const descriptions = pickLocaleMap(entry.descriptions, locale);
+  const cleanDescriptions = pickLocaleMap(entry.cleanDescriptions, locale);
+  const descriptionParagraphsByLocaleMap = pickLocaleArrayMap(entry.descriptionParagraphsByLocale, locale);
+  const scopeDescriptions = pickLocaleMap(entry.scopeDescriptions, locale);
+  const cleanScopeDescriptions = pickLocaleMap(entry.cleanScopeDescriptions, locale);
+  const scopeDescriptionParagraphsByLocaleMap = pickLocaleArrayMap(entry.scopeDescriptionParagraphsByLocale, locale);
+  const descriptionBlocks = arrayOf(entry.descriptionBlocks)
+    .map((block) => localizedBlockForLocale(block, locale))
+    .filter(Boolean);
+  const bridgedPageContexts = arrayOf(entry.bridgedPageContexts)
+    .map((block) => localizedBlockForLocale(block, locale))
+    .filter(Boolean);
+
+  const hasLocaleText = names
+    || descriptions
+    || cleanDescriptions
+    || descriptionParagraphsByLocaleMap
+    || scopeDescriptions
+    || cleanScopeDescriptions
+    || scopeDescriptionParagraphsByLocaleMap
+    || descriptionBlocks.length
+    || bridgedPageContexts.length;
+  if (!hasLocaleText) return undefined;
+
+  return stripUndefined({
+    uid: entry.uid,
+    category: entry.category,
+    name: localeText(entry.names, locale),
+    names,
+    description: localeText(entry.descriptions, locale),
+    descriptions,
+    cleanDescription: localeText(entry.cleanDescriptions, locale),
+    cleanDescriptions,
+    descriptionParagraphs: localeParagraphs(entry.descriptionParagraphsByLocale, locale),
+    descriptionParagraphsByLocale: descriptionParagraphsByLocaleMap,
+    scopeDescription: localeText(entry.scopeDescriptions, locale),
+    scopeDescriptions,
+    cleanScopeDescription: localeText(entry.cleanScopeDescriptions, locale),
+    cleanScopeDescriptions,
+    scopeDescriptionParagraphs: localeParagraphs(entry.scopeDescriptionParagraphsByLocale, locale),
+    scopeDescriptionParagraphsByLocale: scopeDescriptionParagraphsByLocaleMap,
+    descriptionBlocks,
+    bridgedPageContexts,
+  });
+}
+
+function prepareLocaleSplit(args, output) {
+  if (!output.splitByLocale) return;
+
+  const sourceEntries = output.catalog.entriesByUid || {};
+  const locales = collectCatalogLocales(output.catalog);
+  const splitDir = localeSplitDirectory(output.output);
+  const localeFiles = {};
+  const localeOutputs = [];
+
+  for (const locale of locales) {
+    const entriesByUid = {};
+    for (const [uid, entry] of Object.entries(sourceEntries)) {
+      const localized = localizedEntryForLocale(entry, locale);
+      if (localized) entriesByUid[uid] = localized;
+    }
+    if (Object.keys(entriesByUid).length === 0) continue;
+    const relativePath = path.join(splitDir, `${safeLocaleFileName(locale)}.json`).replace(/\\/g, "/");
+    localeFiles[locale] = relativePath;
+    localeOutputs.push({
+      locale,
+      relativePath,
+      path: path.join(args.outputDir, relativePath),
+      catalog: {
+        schemaVersion: 1,
+        generatedAt: output.catalog.generatedAt,
+        category: output.catalog.category,
+        locale,
+        sourceCatalog: output.output,
+        note: "Locale text split from the core modifier description catalog. Runtime/parser code can load only the locale it needs.",
+        stats: {
+          entries: Object.keys(entriesByUid).length,
+          withDescriptions: Object.values(entriesByUid).filter((entry) => entry.description || entry.descriptions || entry.cleanDescriptions).length,
+          withDescriptionBlocks: Object.values(entriesByUid).filter((entry) => entry.descriptionBlocks?.length).length,
+          withBridgedPageContexts: Object.values(entriesByUid).filter((entry) => entry.bridgedPageContexts?.length).length,
+        },
+        entriesByUid,
+      },
+    });
+  }
+
+  const coreEntriesByUid = Object.fromEntries(
+    Object.entries(sourceEntries).map(([uid, entry]) => [uid, stripLocalizedEntry(entry)]),
+  );
+  output.catalog = stripUndefined({
+    ...output.catalog,
+    splitByLocale: {
+      directory: splitDir,
+      locales: Object.keys(localeFiles),
+      files: localeFiles,
+      note: "Large localized text maps live in per-locale sidecar files; this core catalog keeps default display text and structured evidence.",
+    },
+    stats: {
+      ...output.catalog.stats,
+      localeSplit: {
+        locales: Object.keys(localeFiles).length,
+        localizedFiles: localeOutputs.length,
+      },
+    },
+    entriesByUid: coreEntriesByUid,
+  });
+  output.localeOutputs = localeOutputs;
+}
+
 function normalizedSearchText(text) {
   return cleanMarkup(String(text || ""))
     .toLowerCase()
@@ -1700,6 +1941,7 @@ function buildIndex(generatedAt, outputs) {
     catalogs: outputs.map((output) => ({
       category: output.category,
       output: output.output,
+      splitByLocale: output.catalog.splitByLocale,
       stats: output.catalog.stats,
       note: output.catalog.note,
     })),
@@ -1722,6 +1964,9 @@ function renderMarkdown(index) {
   lines.push("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |");
   for (const catalog of index.catalogs) {
     const stats = catalog.stats;
+    const outputLabel = catalog.splitByLocale
+      ? `\`${catalog.output}\` + \`${catalog.splitByLocale.directory}/\` (${catalog.splitByLocale.locales.length} locales)`
+      : `\`${catalog.output}\``;
     lines.push([
       `| ${catalog.category}`,
       stats.entries,
@@ -1737,7 +1982,7 @@ function renderMarkdown(index) {
       stats.withMaxStackEvidence,
       stats.withTargetStackEvidence,
       stats.withOwnerPartySplitCandidates,
-      `\`${catalog.output}\` |`,
+      `${outputLabel} |`,
     ].join(" | "));
   }
   lines.push("");
@@ -1763,11 +2008,13 @@ function main() {
       output: spec.output,
       path: path.join(args.outputDir, spec.output),
       catalog,
+      splitByLocale: Boolean(spec.splitByLocale),
     });
   }
   propagateItemBattleImaginePageDescriptions(outputs);
   propagateBattleImagineScopeDescriptions(outputs);
   propagateEffectSourceOwnerPageDescriptions(args, outputs);
+  for (const output of outputs) prepareLocaleSplit(args, output);
 
   const index = buildIndex(generatedAt, outputs);
   const indexPath = path.join(args.outputDir, "ModifierDescriptionCatalogs.json");
@@ -1780,13 +2027,19 @@ function main() {
       console.log(
         `  ${output.category}: ${stats.entries.toLocaleString()} entries, ${stats.withDescriptions.toLocaleString()} descriptions, ${stats.withParagraphBreaks.toLocaleString()} paragraph-break rows, ${stats.withDescriptionBlocks.toLocaleString()} page contexts, ${stats.withValueRows.toLocaleString()} value rows, ${stats.withUnresolvedDecisionPlaceholders.toLocaleString()} unresolved Decision rows`
       );
+      for (const localeOutput of output.localeOutputs || []) {
+        console.log(`    split locale ${localeOutput.locale}: ${localeOutput.catalog.stats.entries.toLocaleString()} entries -> ${localeOutput.relativePath}`);
+      }
     }
     console.log(`Dry run: would write ${indexPath}`);
     console.log(`Dry run: would write ${markdownPath}`);
     return;
   }
 
-  for (const output of outputs) writeJson(output.path, output.catalog);
+  for (const output of outputs) {
+    writeJson(output.path, output.catalog);
+    for (const localeOutput of output.localeOutputs || []) writeJson(localeOutput.path, localeOutput.catalog);
+  }
   writeJson(indexPath, index);
   writeText(markdownPath, renderMarkdown(index));
 

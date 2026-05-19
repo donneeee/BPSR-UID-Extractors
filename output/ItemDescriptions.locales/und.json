@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-19T11:46:23.928Z",
+  "category": "items",
+  "locale": "und",
+  "sourceCatalog": "ItemDescriptions.json",
+  "note": "Locale text split from the core modifier description catalog. Runtime/parser code can load only the locale it needs.",
+  "stats": {
+    "entries": 29,
+    "withDescriptions": 0,
+    "withDescriptionBlocks": 0,
+    "withBridgedPageContexts": 0
+  },
+  "entriesByUid": {
+    "1061170": {
+      "uid": "1061170",
+      "category": "items",
+      "name": "Star Overseer - Armour",
+      "names": {
+        "und": "Star Overseer - Armour"
+      }
+    },
+    "1061171": {
+      "uid": "1061171",
+      "category": "items",
+      "name": "Star Overseer - Headwear",
+      "names": {
+        "und": "Star Overseer - Headwear"
+      }
+    },
+    "1061172": {
+      "uid": "1061172",
+      "category": "items",
+      "name": "Starlit Promise Pack",
+      "names": {
+        "und": "Starlit Promise Pack"
+      }
+    },
+    "1061190": {
+      "uid": "1061190",
+      "category": "items",
+      "name": "Crunchyroll Pulse Gloves",
+      "names": {
+        "und": "Crunchyroll Pulse Gloves"
+      }
+    },
+    "1061191": {
+      "uid": "1061191",
+      "category": "items",
+      "name": "Crunchyroll Pulse Boots",
+      "names": {
+        "und": "Crunchyroll Pulse Boots"
+      }
+    },
+    "1061209": {
+      "uid": "1061209",
+      "category": "items",
+      "name": "Crunchyroll Pulse Jacket",
+      "names": {
+        "und": "Crunchyroll Pulse Jacket"
+      }
+    },
+    "1061210": {
+      "uid": "1061210",
+      "category": "items",
+      "name": "Crunchyroll Pulse Pants",
+      "names": {
+        "und": "Crunchyroll Pulse Pants"
+      }
+    },
+    "7027071": {
+      "uid": "7027071",
+      "category": "items",
+      "name": "Crunchyroll Pulse Jacket",
+      "names": {
+        "und": "Crunchyroll Pulse Jacket"
+      }
+    },
+    "7027072": {
+      "uid": "7027072",
+      "category": "items",
+      "name": "Crunchyroll Pulse Jacket",
+      "names": {
+        "und": "Crunchyroll Pulse Jacket"
+      }
+    },
+    "7037071": {
+      "uid": "7037071",
+      "category": "items",
+      "name": "Crunchyroll Pulse Pants",
+      "names": {
+        "und": "Crunchyroll Pulse Pants"
+      }
+    },
+    "7037072": {
+      "uid": "7037072",
+      "category": "items",
+      "name": "Crunchyroll Pulse Pants",
+      "names": {
+        "und": "Crunchyroll Pulse Pants"
+      }
+    },
+    "7115139": {
+      "uid": "7115139",
+      "category": "items",
+      "name": "Crunchyroll Pulse Gloves",
+      "names": {
+        "und": "Crunchyroll Pulse Gloves"
+      }
+    },
+    "7115140": {
+      "uid": "7115140",
+      "category": "items",
+      "name": "Crunchyroll Pulse Gloves",
+      "names": {
+        "und": "Crunchyroll Pulse Gloves"
+      }
+    },
+    "7125139": {
+      "uid": "7125139",
+      "category": "items",
+      "name": "Crunchyroll Pulse Boots",
+      "names": {
+        "und": "Crunchyroll Pulse Boots"
+      }
+    },
+    "7125140": {
+      "uid": "7125140",
+      "category": "items",
+      "name": "Crunchyroll Pulse Boots",
+      "names": {
+        "und": "Crunchyroll Pulse Boots"
+      }
+    },
+    "7130310": {
+      "uid": "7130310",
+      "category": "items",
+      "name": "Crunchyroll Cap",
+      "names": {
+        "und": "Crunchyroll Cap"
+      }
+    },
+    "7140042": {
+      "uid": "7140042",
+      "category": "items",
+      "name": "Crunchyroll Eye Mask",
+      "names": {
+        "und": "Crunchyroll Eye Mask"
+      }
+    },
+    "9020042": {
+      "uid": "9020042",
+      "category": "items",
+      "name": "Avatar Frame - Crunchyroll Says Hi",
+      "names": {
+        "und": "Avatar Frame - Crunchyroll Says Hi"
+      }
+    },
+    "9020043": {
+      "uid": "9020043",
+      "category": "items",
+      "name": "Avatar Frame - A Plus Says Hi",
+      "names": {
+        "und": "Avatar Frame - A Plus Says Hi"
+      }
+    },
+    "9020061": {
+      "uid": "9020061",
+      "category": "items",
+      "name": "Avatar Frame - Stellar Creator",
+      "names": {
+        "und": "Avatar Frame - Stellar Creator"
+      }
+    },
+    "9020062": {
+      "uid": "9020062",
+      "category": "items",
+      "name": "Avatar Frame - Stellar Diligent",
+      "names": {
+        "und": "Avatar Frame - Stellar Diligent"
+      }
+    },
+    "9020063": {
+      "uid": "9020063",
+      "category": "items",
+      "name": "Avatar Frame - Stellar Viral",
+      "names": {
+        "und": "Avatar Frame - Stellar Viral"
+      }
+    },
+    "9060231": {
+      "uid": "9060231",
+      "category": "items",
+      "name": "Title - Stellar Creator",
+      "names": {
+        "und": "Title - Stellar Creator"
+      }
+    },
+    "9060232": {
+      "uid": "9060232",
+      "category": "items",
+      "name": "Title - Stellar Diligent",
+      "names": {
+        "und": "Title - Stellar Diligent"
+      }
+    },
+    "9060233": {
+      "uid": "9060233",
+      "category": "items",
+      "name": "Title - Stellar Viral",
+      "names": {
+        "und": "Title - Stellar Viral"
+      }
+    },
+    "9060241": {
+      "uid": "9060241",
+      "category": "items",
+      "name": "Title - BPFes 2026",
+      "names": {
+        "und": "Title - BPFes 2026"
+      }
+    },
+    "9062024": {
+      "uid": "9062024",
+      "category": "items",
+      "name": "Title - Light of Regnus",
+      "names": {
+        "und": "Title - Light of Regnus"
+      }
+    },
+    "9062025": {
+      "uid": "9062025",
+      "category": "items",
+      "name": "Title - Dream Chaser",
+      "names": {
+        "und": "Title - Dream Chaser"
+      }
+    },
+    "9062026": {
+      "uid": "9062026",
+      "category": "items",
+      "name": "Title - Illusion Breaker",
+      "names": {
+        "und": "Title - Illusion Breaker"
+      }
+    }
+  }
+}

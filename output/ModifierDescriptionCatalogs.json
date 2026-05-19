@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-15T01:20:44.197Z",
+  "generatedAt": "2026-05-19T11:46:23.928Z",
   "status": "description-value-grounding",
   "boundaries": [
     "These catalogs are generated evidence for modifier work, not runtime contribution math.",
@@ -39,6 +39,38 @@
     {
       "category": "skills",
       "output": "SkillDescriptions.json",
+      "splitByLocale": {
+        "directory": "SkillDescriptions.locales",
+        "locales": [
+          "de",
+          "design",
+          "en",
+          "es",
+          "fr",
+          "id",
+          "ja",
+          "ko-KR",
+          "pt-BR",
+          "th",
+          "zh-CN",
+          "zh-TW"
+        ],
+        "files": {
+          "de": "SkillDescriptions.locales/de.json",
+          "design": "SkillDescriptions.locales/design.json",
+          "en": "SkillDescriptions.locales/en.json",
+          "es": "SkillDescriptions.locales/es.json",
+          "fr": "SkillDescriptions.locales/fr.json",
+          "id": "SkillDescriptions.locales/id.json",
+          "ja": "SkillDescriptions.locales/ja.json",
+          "ko-KR": "SkillDescriptions.locales/ko-KR.json",
+          "pt-BR": "SkillDescriptions.locales/pt-BR.json",
+          "th": "SkillDescriptions.locales/th.json",
+          "zh-CN": "SkillDescriptions.locales/zh-CN.json",
+          "zh-TW": "SkillDescriptions.locales/zh-TW.json"
+        },
+        "note": "Large localized text maps live in per-locale sidecar files; this core catalog keeps default display text and structured evidence."
+      },
       "stats": {
         "scannedRows": 33848,
         "entries": 24948,
@@ -58,7 +90,11 @@
         "withRuntimeStackEvidenceRequired": 1263,
         "withScopeDescriptions": 0,
         "withRelationships": 8480,
-        "withProvenance": 24948
+        "withProvenance": 24948,
+        "localeSplit": {
+          "locales": 12,
+          "localizedFiles": 12
+        }
       },
       "note": "Skill, recount, cooldown, and child-damage identity/text rows. Final damage remains packet truth."
     },
@@ -143,6 +179,40 @@
     {
       "category": "items",
       "output": "ItemDescriptions.json",
+      "splitByLocale": {
+        "directory": "ItemDescriptions.locales",
+        "locales": [
+          "de",
+          "design",
+          "en",
+          "es",
+          "fr",
+          "id",
+          "ja",
+          "ko-KR",
+          "pt-BR",
+          "th",
+          "und",
+          "zh-CN",
+          "zh-TW"
+        ],
+        "files": {
+          "de": "ItemDescriptions.locales/de.json",
+          "design": "ItemDescriptions.locales/design.json",
+          "en": "ItemDescriptions.locales/en.json",
+          "es": "ItemDescriptions.locales/es.json",
+          "fr": "ItemDescriptions.locales/fr.json",
+          "id": "ItemDescriptions.locales/id.json",
+          "ja": "ItemDescriptions.locales/ja.json",
+          "ko-KR": "ItemDescriptions.locales/ko-KR.json",
+          "pt-BR": "ItemDescriptions.locales/pt-BR.json",
+          "th": "ItemDescriptions.locales/th.json",
+          "und": "ItemDescriptions.locales/und.json",
+          "zh-CN": "ItemDescriptions.locales/zh-CN.json",
+          "zh-TW": "ItemDescriptions.locales/zh-TW.json"
+        },
+        "note": "Large localized text maps live in per-locale sidecar files; this core catalog keeps default display text and structured evidence."
+      },
       "stats": {
         "scannedRows": 17921,
         "entries": 9216,
@@ -162,7 +232,11 @@
         "withRuntimeStackEvidenceRequired": 88,
         "withScopeDescriptions": 0,
         "withRelationships": 8701,
-        "withProvenance": 9216
+        "withProvenance": 9216,
+        "localeSplit": {
+          "locales": 13,
+          "localizedFiles": 13
+        }
       },
       "note": "Static item/gear descriptions and consumable scaffolding. Actual equipped gear statlines are packet/runtime-derived, not game-file-derived."
     },

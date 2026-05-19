@@ -431,10 +431,113 @@ function countBy(values) {
   return Object.fromEntries(Object.entries(out).sort(([left], [right]) => left.localeCompare(right)));
 }
 
-function jsonCatalogEntries(data) {
+function mergeLocaleTextMaps(left, right) {
+  const out = {};
+  for (const map of [left, right]) {
+    if (!map || typeof map !== "object" || Array.isArray(map)) continue;
+    for (const [locale, value] of Object.entries(map)) {
+      const text = String(value || "").trim();
+      if (text && !out[locale]) out[locale] = text;
+    }
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+
+function mergeLocaleArrayMaps(left, right) {
+  const out = {};
+  for (const map of [left, right]) {
+    if (!map || typeof map !== "object" || Array.isArray(map)) continue;
+    for (const [locale, value] of Object.entries(map)) {
+      const parts = arrayOf(value).flatMap((item) => Array.isArray(item) ? item : [item]);
+      for (const part of parts) {
+        const text = String(part || "").trim();
+        if (!text) continue;
+        out[locale] ||= [];
+        if (!out[locale].includes(text)) out[locale].push(text);
+      }
+    }
+  }
+  return Object.keys(out).length ? out : undefined;
+}
+
+function splitBlockKey(block) {
+  return [
+    block?.sourceFile,
+    block?.sourcePath,
+    block?.kind,
+    block?.bridgeSourceCategory,
+    block?.bridgeSourceUid,
+    block?.bridgeKind,
+  ].map((value) => String(value ?? "")).join(":");
+}
+
+function mergeSplitBlocks(left, right) {
+  const byKey = new Map();
+  for (const block of [...arrayOf(left), ...arrayOf(right)]) {
+    if (!block || typeof block !== "object") continue;
+    const key = splitBlockKey(block);
+    const current = byKey.get(key) || {};
+    byKey.set(key, stripUndefined({
+      ...current,
+      ...block,
+      descriptions: mergeLocaleTextMaps(current.descriptions, block.descriptions),
+      cleanDescriptions: mergeLocaleTextMaps(current.cleanDescriptions, block.cleanDescriptions),
+      descriptionParagraphsByLocale: mergeLocaleArrayMaps(
+        current.descriptionParagraphsByLocale,
+        block.descriptionParagraphsByLocale,
+      ),
+      descriptionParagraphs: current.descriptionParagraphs || block.descriptionParagraphs,
+    }));
+  }
+  return [...byKey.values()];
+}
+
+function mergeSplitLocaleEntry(base, patch) {
+  if (!patch || typeof patch !== "object") return base;
+  return stripUndefined({
+    ...base,
+    name: base.name || patch.name,
+    description: base.description || patch.description,
+    cleanDescription: base.cleanDescription || patch.cleanDescription,
+    descriptionParagraphs: base.descriptionParagraphs || patch.descriptionParagraphs,
+    scopeDescriptionParagraphs: base.scopeDescriptionParagraphs || patch.scopeDescriptionParagraphs,
+    names: mergeLocaleTextMaps(base.names, patch.names),
+    descriptions: mergeLocaleTextMaps(base.descriptions, patch.descriptions),
+    cleanDescriptions: mergeLocaleTextMaps(base.cleanDescriptions, patch.cleanDescriptions),
+    descriptionParagraphsByLocale: mergeLocaleArrayMaps(base.descriptionParagraphsByLocale, patch.descriptionParagraphsByLocale),
+    scopeDescriptions: mergeLocaleTextMaps(base.scopeDescriptions, patch.scopeDescriptions),
+    cleanScopeDescriptions: mergeLocaleTextMaps(base.cleanScopeDescriptions, patch.cleanScopeDescriptions),
+    scopeDescriptionParagraphsByLocale: mergeLocaleArrayMaps(
+      base.scopeDescriptionParagraphsByLocale,
+      patch.scopeDescriptionParagraphsByLocale,
+    ),
+    descriptionBlocks: mergeSplitBlocks(base.descriptionBlocks, patch.descriptionBlocks),
+    bridgedPageContexts: mergeSplitBlocks(base.bridgedPageContexts, patch.bridgedPageContexts),
+  });
+}
+
+function hydrateSplitLocaleEntries(data, entriesByUid, baseDir) {
+  const files = data?.splitByLocale?.files;
+  if (!files || typeof files !== "object") return entriesByUid;
+
+  for (const relativePath of Object.values(files)) {
+    const localePath = path.resolve(baseDir, String(relativePath));
+    const localeCatalog = readOptionalJson(localePath, {});
+    const localeEntries = localeCatalog.entriesByUid || {};
+    for (const [uid, patch] of Object.entries(localeEntries)) {
+      const current = entriesByUid[uid] || { uid };
+      entriesByUid[uid] = mergeSplitLocaleEntry(current, patch);
+    }
+  }
+
+  return entriesByUid;
+}
+
+function jsonCatalogEntries(data, baseDir = defaultOutputDir) {
   if (!data || typeof data !== "object") return [];
   if (data.entriesByUid && typeof data.entriesByUid === "object") {
-    return Object.entries(data.entriesByUid).map(([uid, entry]) => ({ uid, ...entry }));
+    const entriesByUid = hydrateSplitLocaleEntries(data, { ...data.entriesByUid }, baseDir);
+    return Object.entries(entriesByUid).map(([uid, entry]) => ({ uid, ...entry }));
   }
   if (Array.isArray(data.entries)) return data.entries;
   if (Array.isArray(data.rows)) return data.rows;
@@ -1781,7 +1884,7 @@ function buildTable(args) {
   for (const spec of CATALOG_SPECS) {
     const filePath = path.join(args.outputDir, spec.file);
     const data = readOptionalJson(filePath, {});
-    const rows = jsonCatalogEntries(data).map((row) => ({
+    const rows = jsonCatalogEntries(data, args.outputDir).map((row) => ({
       ...row,
       uid: toUid(row.uid),
       category: row.category || spec.category,

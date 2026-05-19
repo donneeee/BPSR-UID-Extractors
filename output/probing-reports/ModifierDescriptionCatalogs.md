@@ -1,6 +1,6 @@
 # Modifier Description Catalogs
 
-Generated: 2026-05-15T01:20:44.197Z
+Generated: 2026-05-19T11:46:23.928Z
 
 ## Boundaries
 
@@ -15,11 +15,11 @@ Generated: 2026-05-15T01:20:44.197Z
 | Category | Entries | Descriptions | Paragraph Breaks | Page Context | Bridged Context | Values | Structured Values | Decision Refs | Unresolved Decision Refs | Stack | Max Stack | Target Stack | Owner/Party Candidates | Output |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | buffs | 8751 | 2291 | 470 | 2262 | 318 | 2659 | 31 | 344 | 344 | 424 | 31 | 118 | 325 | `BuffDescriptions.json` |
-| skills | 24948 | 6374 | 1 | 6374 | 0 | 9777 | 0 | 0 | 0 | 1263 | 99 | 602 | 602 | `SkillDescriptions.json` |
+| skills | 24948 | 6374 | 1 | 6374 | 0 | 9777 | 0 | 0 | 0 | 1263 | 99 | 602 | 602 | `SkillDescriptions.json` + `SkillDescriptions.locales/` (12 locales) |
 | talents | 646 | 611 | 163 | 611 | 0 | 604 | 0 | 0 | 0 | 72 | 3 | 30 | 123 | `TalentDescriptions.json` |
 | seasonal-talents | 358 | 358 | 131 | 358 | 0 | 323 | 0 | 0 | 0 | 43 | 8 | 10 | 63 | `SeasonalTalentDescriptions.json` |
 | factors | 147 | 147 | 28 | 147 | 0 | 142 | 0 | 147 | 0 | 5 | 0 | 0 | 1 | `FactorDescriptions.json` |
-| items | 9216 | 8701 | 1446 | 8701 | 0 | 2276 | 0 | 0 | 0 | 88 | 1 | 5 | 1 | `ItemDescriptions.json` |
+| items | 9216 | 8701 | 1446 | 8701 | 0 | 2276 | 0 | 0 | 0 | 88 | 1 | 5 | 1 | `ItemDescriptions.json` + `ItemDescriptions.locales/` (13 locales) |
 | battle-imagines | 165 | 117 | 68 | 50 | 68 | 52 | 44 | 0 | 0 | 2 | 1 | 2 | 43 | `BattleImagineDescriptions.json` |
 | linktext-tooltips | 363 | 231 | 9 | 231 | 0 | 113 | 0 | 0 | 0 | 13 | 1 | 3 | 22 | `LinkTextTooltipDescriptions.json` |
 
