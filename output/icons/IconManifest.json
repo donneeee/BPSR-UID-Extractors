@@ -1,7 +1,7 @@
 {
-  "GeneratedAt": "2026-05-12T13:28:26.131Z",
+  "GeneratedAt": "2026-05-27T06:11:05.873Z",
   "OutputDir": "output/icons",
-  "JsonFilesScanned": 44,
+  "JsonFilesScanned": 45,
   "ProbeImageDirs": [
     "Probing Sources/images"
   ],
@@ -10,13 +10,13 @@
   ],
   "ProbeImageFilesScanned": 0,
   "ProbeTextFilesScanned": 0,
-  "GeneratedReferencesFound": 43870,
+  "GeneratedReferencesFound": 43912,
   "ProbeImageReferencesFound": 0,
   "ProbeTextReferencesFound": 0,
-  "UniqueReferences": 43870,
-  "AddressCatalogEntries": 194502,
+  "UniqueReferences": 43912,
+  "AddressCatalogEntries": 194510,
   "SpriteCatalogEntries": 8416,
-  "ResolvedAssetCount": 14658,
+  "ResolvedAssetCount": 14703,
   "MissingAssetCount": 1220,
   "AmbiguousAssetCount": 101,
   "GroupManifests": [
@@ -38,7 +38,7 @@
     {
       "SourceGroup": "EffectSources",
       "Manifest": "EffectSources/manifest.json",
-      "AssetCount": 1059
+      "AssetCount": 1068
     },
     {
       "SourceGroup": "ItemDescriptionSources",
@@ -63,12 +63,12 @@
     {
       "SourceGroup": "ModifierClassificationTable",
       "Manifest": "ModifierClassificationTable/manifest.json",
-      "AssetCount": 936
+      "AssetCount": 945
     },
     {
       "SourceGroup": "ModifierDisplayTable",
       "Manifest": "ModifierDisplayTable/manifest.json",
-      "AssetCount": 938
+      "AssetCount": 947
     },
     {
       "SourceGroup": "ModifierObservedUidBridge",
@@ -78,7 +78,7 @@
     {
       "SourceGroup": "ModifierSourceIndex",
       "Manifest": "ModifierSourceIndex/manifest.json",
-      "AssetCount": 936
+      "AssetCount": 945
     },
     {
       "SourceGroup": "RecountTable",
@@ -88,7 +88,7 @@
     {
       "SourceGroup": "SeasonPhantomFactors",
       "Manifest": "SeasonPhantomFactors/manifest.json",
-      "AssetCount": 147
+      "AssetCount": 156
     },
     {
       "SourceGroup": "skill_aoyi_icons",
@@ -30898,8 +30898,8 @@
       ]
     }
   ],
-  "PngExportedAt": "2026-05-12T13:30:01.869Z",
-  "PngAssetCount": 14658,
+  "PngExportedAt": "2026-05-27T06:13:21.536Z",
+  "PngAssetCount": 14703,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0,
   "PngFailures": []

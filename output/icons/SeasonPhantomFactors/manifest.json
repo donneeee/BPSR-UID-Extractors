@@ -1,8 +1,8 @@
 {
-  "GeneratedAt": "2026-05-12T13:28:26.116Z",
+  "GeneratedAt": "2026-05-27T06:11:05.854Z",
   "SourceGroup": "SeasonPhantomFactors",
   "OutputDir": "output/icons/SeasonPhantomFactors",
-  "AssetCount": 147,
+  "AssetCount": 156,
   "Assets": [
     {
       "AssetId": "SeasonPhantomFactors|Texture2D|3366991421|kuangxiangyinzi_s2_01_001|SeasonPhantomFactors/kuangxiangyinzi_s2_01_001.png",
@@ -3725,6 +3725,130 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SeasonPhantomFactors|Texture2D|120508088|yinzi_s2_common_001|SeasonPhantomFactors/yinzi_s2_common_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3058010.iconPath",
+      "Value": "yinzi_s2_common_001",
+      "Address": "yinzi_s2_common_001",
+      "AddressHash": 2182887348,
+      "BundleHash": 120508088,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3058010,
+          "Name": "Polarity X1"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "44ea6903e16f2f6ef667b25026b9421b72d378c7aec3f16c722b098cc3ed1c22",
+      "ObjectPathId": "9192291900018514976",
+      "SelectedObjectName": "yinzi_s2_common_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|121694009|yinzi_s2_common_002|SeasonPhantomFactors/yinzi_s2_common_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3058020.iconPath",
+      "Value": "yinzi_s2_common_002",
+      "Address": "yinzi_s2_common_002",
+      "AddressHash": 2182887349,
+      "BundleHash": 121694009,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3058020,
+          "Name": "Polarity X2"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d41fbf6092e66184aad20f70f863945475103c7ec72ff7096dc85526fd8474d5",
+      "ObjectPathId": "8013794252090991765",
+      "SelectedObjectName": "yinzi_s2_common_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|122879930|yinzi_s2_common_003|SeasonPhantomFactors/yinzi_s2_common_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3058030.iconPath",
+      "Value": "yinzi_s2_common_003",
+      "Address": "yinzi_s2_common_003",
+      "AddressHash": 2182887350,
+      "BundleHash": 122879930,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3058030,
+          "Name": "Polarity X3"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "3828f8085514a6153d09599bc8401e0e899658349f7fbdd1339813957f443ca3",
+      "ObjectPathId": "-5942200323353216918",
+      "SelectedObjectName": "yinzi_s2_common_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|124065851|yinzi_s2_common_004|SeasonPhantomFactors/yinzi_s2_common_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3058040.iconPath",
+      "Value": "yinzi_s2_common_004",
+      "Address": "yinzi_s2_common_004",
+      "AddressHash": 2182887351,
+      "BundleHash": 124065851,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3058040,
+          "Name": "Polarity X4"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "082b2173e56aa31bb34a26a02a9beecd3d7c5e9afc54cb995757f2f6c72493cc",
+      "ObjectPathId": "-6601425470328545714",
+      "SelectedObjectName": "yinzi_s2_common_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SeasonPhantomFactors|Texture2D|125251772|yinzi_s2_common_005|SeasonPhantomFactors/yinzi_s2_common_005.png",
       "SourceKind": "generated-json",
       "SourceFile": "SeasonPhantomFactors.json",
@@ -3942,6 +4066,130 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SeasonPhantomFactors|Texture2D|160829402|yinzi_s2_common_012|SeasonPhantomFactors/yinzi_s2_common_012.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059010.iconPath",
+      "Value": "yinzi_s2_common_012",
+      "Address": "yinzi_s2_common_012",
+      "AddressHash": 2182887382,
+      "BundleHash": 160829402,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_012.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059010,
+          "Name": "Stasis X1"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_012",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f419c5e0ae955b35a3654c721e3331ec0324f49dc63dc1dd2c51842f9369b92c",
+      "ObjectPathId": "-1844623003452237526",
+      "SelectedObjectName": "yinzi_s2_common_012",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|162015323|yinzi_s2_common_013|SeasonPhantomFactors/yinzi_s2_common_013.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059020.iconPath",
+      "Value": "yinzi_s2_common_013",
+      "Address": "yinzi_s2_common_013",
+      "AddressHash": 2182887383,
+      "BundleHash": 162015323,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_013.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059020,
+          "Name": "Stasis X2"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_013",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d05a13c59b0b8f84074a0582c53787aac7bf5a03230a47960629926d04522a0f",
+      "ObjectPathId": "-5423308449143554050",
+      "SelectedObjectName": "yinzi_s2_common_013",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|163201244|yinzi_s2_common_014|SeasonPhantomFactors/yinzi_s2_common_014.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059030.iconPath",
+      "Value": "yinzi_s2_common_014",
+      "Address": "yinzi_s2_common_014",
+      "AddressHash": 2182887384,
+      "BundleHash": 163201244,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_014.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059030,
+          "Name": "Stasis X3"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_014",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "accdcfc4708fc21d17c957a1cffd47b0547e84a382c5bbd5b23999644fc2ce46",
+      "ObjectPathId": "3163314508263344653",
+      "SelectedObjectName": "yinzi_s2_common_014",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|164387165|yinzi_s2_common_015|SeasonPhantomFactors/yinzi_s2_common_015.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059040.iconPath",
+      "Value": "yinzi_s2_common_015",
+      "Address": "yinzi_s2_common_015",
+      "AddressHash": 2182887385,
+      "BundleHash": 164387165,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_015.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059040,
+          "Name": "Stasis X4"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_015",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d794dc549f0ffc6cd209e57e189c54bf266804808d356d05587be6560eb684bc",
+      "ObjectPathId": "-3122606724695260834",
+      "SelectedObjectName": "yinzi_s2_common_015",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SeasonPhantomFactors|Texture2D|165573086|yinzi_s2_common_016|SeasonPhantomFactors/yinzi_s2_common_016.png",
       "SourceKind": "generated-json",
       "SourceFile": "SeasonPhantomFactors.json",
@@ -4063,6 +4311,37 @@
       "PixelSha256": "bece94f9abf9964de3d71c133fe0625521e402a0154a9583e9451b858926e47d",
       "ObjectPathId": "-1131081507067207396",
       "SelectedObjectName": "yinzi_s2_common_019",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|197592953|yinzi_s2_common_020|SeasonPhantomFactors/yinzi_s2_common_020.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059090.iconPath",
+      "Value": "yinzi_s2_common_020",
+      "Address": "yinzi_s2_common_020",
+      "AddressHash": 2182887413,
+      "BundleHash": 197592953,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_020.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059090,
+          "Name": "Stasis X9"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_020",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "97020e6e31018ec055e64187fde1c5fa687d691630f3bc779640d616c6d032bd",
+      "ObjectPathId": "4298585637812697345",
+      "SelectedObjectName": "yinzi_s2_common_020",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -4562,8 +4841,8 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-12T13:30:01.849Z",
-  "PngAssetCount": 147,
+  "PngExportedAt": "2026-05-27T06:13:21.512Z",
+  "PngAssetCount": 156,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

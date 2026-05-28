@@ -222,10 +222,21 @@ function baseSourceId(sourceId) {
   return String(sourceId || "").split("|")[0];
 }
 
+function shouldUseEffectEvidenceForDescription(entry, evidence) {
+  if (
+    entry?.sourceKind === "runtime-buff"
+    && evidence?.relationshipKind === "design-only-runtime-buff-row"
+  ) {
+    return false;
+  }
+  return true;
+}
+
 function descriptionFromEffectSourceOwner(entry, effectSourcesById, skillDescriptionsById) {
   const source = effectSourcesById[baseSourceId(entry.sourceId)];
   if (!source) return undefined;
   for (const evidence of source.evidence ?? []) {
+    if (!shouldUseEffectEvidenceForDescription(entry, evidence)) continue;
     const ownerSourceId = finitePositiveNumber(evidence?.ownerSourceId ?? evidence?.ownerSkillId);
     if (ownerSourceId === null) continue;
     const description = skillDescriptionsById.get(ownerSourceId);
@@ -238,6 +249,7 @@ function descriptionFromEffectSourceEvidence(entry, effectSourcesById, recountDe
   const source = effectSourcesById[baseSourceId(entry.sourceId)];
   if (!source) return undefined;
   for (const evidence of source.evidence ?? []) {
+    if (!shouldUseEffectEvidenceForDescription(entry, evidence)) continue;
     const recountId = finitePositiveNumber(evidence?.recountId);
     const recountDescription = recountId !== null
       ? recountDescriptions.byRecountId.get(recountId)

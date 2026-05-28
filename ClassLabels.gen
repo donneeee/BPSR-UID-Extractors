@@ -234,5 +234,7 @@ function normalizeSpecEvidence(value, locale, fallback) {
 }
 
 function normalizeText(value) {
-  return typeof value === "string" ? value.trim() : "";
+  return typeof value === "string"
+    ? value.replace(/[\u200B-\u200D\uFEFF]/g, "").replace(/\s+/g, " ").trim()
+    : "";
 }

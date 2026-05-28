@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "ModifierDisplayTable.gen",
-  "generatedAt": "2026-05-12T13:38:03.592Z",
+  "generatedAt": "2026-05-28T01:11:34.475Z",
   "sourcesByRuleId": {
     "mrs:10821ca3d6ef": {
       "sourceId": "buff-source:1401",
@@ -475,7 +475,7 @@
         "zh-TW": "生機湧動",
         "ja": "ライフサージ",
         "ko-KR": "넘치는 생기",
-        "fr": "​Poussée vitale​",
+        "fr": "Poussée vitale",
         "de": "Vitalwelle",
         "es": "Aumento Vital",
         "pt-BR": "Surto Vital",
@@ -890,7 +890,7 @@
         "zh-TW": "風姿卓絕",
         "ja": "風姿卓絶",
         "ko-KR": "비범한 풍모",
-        "fr": "​Forme de bourrasque​",
+        "fr": "Forme de bourrasque",
         "de": "Sturmform",
         "es": "Forma de Vendaval",
         "pt-BR": "Forma do Vendaval",
@@ -1106,7 +1106,7 @@
         "zh-TW": "繚亂兜割",
         "ja": "繚乱兜割",
         "ko-KR": "흩날리는 칼날",
-        "fr": "​Briseur du chaos​",
+        "fr": "Briseur du chaos",
         "de": "Chaosbrecher",
         "es": "Rompecaos",
         "pt-BR": "Destruidor do Caos",
@@ -1534,7 +1534,7 @@
       },
       "iconPath": "ui/atlas/hud/buff/buff_blue_def"
     },
-    "mrs:aaa80f11d229": {
+    "mrs:44bda2ca8b54": {
       "sourceId": "talent:913",
       "sourceName": "Fortune Bastion",
       "sourceNames": {
@@ -1875,17 +1875,17 @@
     },
     "mrs:47444c9b4348": {
       "sourceId": "buff-source:55235",
-      "sourceName": "​Quadraflare​",
+      "sourceName": "Quadraflare",
       "sourceNames": {
-        "en": "​Quadraflare​",
+        "en": "Quadraflare",
         "zh-CN": "光意·四连矢",
         "zh-TW": "光意·四連矢",
         "ja": "クアッドブラスト",
         "ko-KR": "빛의 의지・쿼드러플 애로우",
-        "fr": "​Quadraflamboiement​​",
-        "de": "​Quadralodern​",
-        "es": "​Llamarada Cuádruple​",
-        "pt-BR": "​Explosão Quádrupla​",
+        "fr": "Quadraflamboiement",
+        "de": "Quadralodern",
+        "es": "Llamarada Cuádruple",
+        "pt-BR": "Explosão Quádrupla",
         "th": "Quadraflare",
         "id": "Lightwill - Quadraflare",
         "design": "强化特攻小箭AOE"
@@ -2174,7 +2174,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1327"
     },
-    "mrs:f2495ff634ef": {
+    "mrs:82b78ace20af": {
       "sourceId": "talent:1331",
       "sourceName": "Encore Chain",
       "sourceNames": {
@@ -2192,7 +2192,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1331"
     },
-    "mrs:8aeb60704e1c": {
+    "mrs:191070b501f4": {
       "sourceId": "talent:1345",
       "sourceName": "Encore Persistence",
       "sourceNames": {
@@ -2210,7 +2210,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1345"
     },
-    "mrs:0e3da721ed63": {
+    "mrs:900db670ced5": {
       "sourceId": "talent:1346",
       "sourceName": "Encore Luck Boost",
       "sourceNames": {
@@ -2246,7 +2246,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1347"
     },
-    "mrs:a8fab8e2ffdd": {
+    "mrs:7af12e8c7296": {
       "sourceId": "talent:1362",
       "sourceName": "Encore Chain",
       "sourceNames": {
@@ -2666,7 +2666,7 @@
       },
       "iconPath": "ui/atlas/buff/buff_icon70"
     },
-    "mrs:e2288801345b": {
+    "mrs:64ae2e279e78": {
       "sourceId": "talent:1119",
       "sourceName": "Meteor",
       "sourceNames": {
@@ -2702,7 +2702,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_11/gongjian1159"
     },
-    "mrs:dd731093e15f": {
+    "mrs:b712182f2cb2": {
       "sourceId": "talent:1161",
       "sourceName": "Radiant Charge",
       "sourceNames": {
@@ -4352,7 +4352,7 @@
         "design": "噬魂之兽光环回复生命值"
       }
     },
-    "mrs:98c8fd278229": {
+    "mrs:3a5d8c69be48": {
       "sourceId": "talent:244",
       "sourceName": "Frost Blade",
       "sourceNames": {
@@ -7040,7 +7040,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry077"
     },
-    "mrs:3efea56bfd28": {
+    "mrs:1516aedc6f31": {
       "sourceId": "season-rogue-entry:164",
       "sourceName": "Fateful Strike",
       "sourceNames": {
@@ -7058,7 +7058,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry078"
     },
-    "mrs:a2cee57c9d39": {
+    "mrs:26ec4475c53f": {
       "sourceId": "season-rogue-entry:165",
       "sourceName": "Fate Linkage",
       "sourceNames": {
@@ -7384,7 +7384,7 @@
       "iconPath": "ui/atlas/rouge_entry_icon/rogue_icon_entry096",
       "displayOwnerKind": "battle-imagine"
     },
-    "mrs:068c81be8c25": {
+    "mrs:97d57a8a00dd": {
       "sourceId": "season-rogue-entry:182",
       "sourceName": "Imagine Absorption",
       "sourceNames": {
@@ -7751,7 +7751,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry115"
     },
-    "mrs:00a489856984": {
+    "mrs:06428adcb89b": {
       "sourceId": "season-rogue-entry:202",
       "sourceName": "Coordinated Suppress",
       "sourceNames": {
@@ -7909,7 +7909,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry123"
     },
-    "mrs:fa046d0f4c57": {
+    "mrs:d363aab2831b": {
       "sourceId": "season-rogue-entry:210",
       "sourceName": "Charged Synergy",
       "sourceNames": {
@@ -7953,7 +7953,7 @@
       },
       "iconPath": "ui/atlas/rouge_entry_icon/rogue_icon_entry125"
     },
-    "mrs:e4d99700f135": {
+    "mrs:c56a71d41595": {
       "sourceId": "season-rogue-entry:211",
       "sourceName": "Healing Feedback",
       "sourceNames": {
@@ -8363,7 +8363,7 @@
         "design": "肉鸽词条-圣焰冲击2"
       }
     },
-    "mrs:033f988f7a41": {
+    "mrs:af710af061e5": {
       "sourceId": "season-rogue-entry:129",
       "sourceName": "Sacred Flame Strike",
       "sourceNames": {
@@ -8833,25 +8833,25 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry040"
     },
-    "mrs:da20320a2163": {
+    "mrs:bcdaa46f04f6": {
       "sourceId": "season-rogue-entry:100",
-      "sourceName": "​Physical Sacred Blade​",
+      "sourceName": "Physical Sacred Blade",
       "sourceNames": {
-        "en": "​Physical Sacred Blade​",
+        "en": "Physical Sacred Blade",
         "zh-CN": "物理圣剑",
         "zh-TW": "物理聖劍",
         "ja": "物理聖剣",
         "ko-KR": "물리 성스러운 검",
-        "fr": "​Lame sacrée physique​",
-        "de": "​Physische Heilige Klinge​",
-        "es": "​Hoja Sagrada Física​",
-        "pt-BR": "​Lâmina Sagrada Física​",
+        "fr": "Lame sacrée physique",
+        "de": "Physische Heilige Klinge",
+        "es": "Hoja Sagrada Física",
+        "pt-BR": "Lâmina Sagrada Física",
         "th": "Physical Holy Sword",
         "id": "Physical Holysword"
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry009"
     },
-    "mrs:4993b6af5c57": {
+    "mrs:f926f26ad7b9": {
       "sourceId": "season-rogue-entry:101",
       "sourceName": "Magical Sacred Blade",
       "sourceNames": {
@@ -8869,7 +8869,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry010"
     },
-    "mrs:2e02be3e0fad": {
+    "mrs:519e18527ece": {
       "sourceId": "season-rogue-entry:104",
       "sourceName": "Tempered Expertise",
       "sourceNames": {
@@ -8887,7 +8887,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry015"
     },
-    "mrs:1fa1a3e4ed10": {
+    "mrs:d472cc2ffaaf": {
       "sourceId": "season-rogue-entry:105",
       "sourceName": "Tempered Strike",
       "sourceNames": {
@@ -11049,7 +11049,7 @@
         "fr": "Sérum d'échine de lézard flamboyant niv. 1",
         "de": "Flammen-Echsenwirbelserum St. 1",
         "es": "React. llameante de espinagarto nv. 1",
-        "pt-BR": "Soro Flamejante de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Soro Flamejante de Espinha de Lagarto Nv. 1",
         "th": "Flame Lizard Spine Reagent Lv.1",
         "id": "Lizardback Reagent - Lv. 1"
       },
@@ -11067,7 +11067,7 @@
         "fr": "Sérum d'échine de lézard flamboyant niv. 2",
         "de": "Flammen-Echsenwirbelserum St. 2",
         "es": "React. llameante de espinagarto nv. 2",
-        "pt-BR": "Soro Flamejante de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Soro Flamejante de Espinha de Lagarto Nv. 2",
         "th": "Flame Lizard Spine Reagent Lv.2",
         "id": "Lizardback Reagent - Lv. 2"
       },
@@ -11085,7 +11085,7 @@
         "fr": "Sérum d'échine de lézard flamboyant niv. 3",
         "de": "Flammen-Echsenwirbelserum St. 3",
         "es": "React. llameante de espinagarto nv. 3",
-        "pt-BR": "Soro Flamejante de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Soro Flamejante de Espinha de Lagarto Nv. 3",
         "th": "Flame Lizard Spine Reagent Lv.3",
         "id": "Lizardback Reagent - Lv. 3"
       },
@@ -11157,7 +11157,7 @@
         "fr": "Pastille de feu d'échine de lézard niv. 1",
         "de": "Echsenwirbel­Feuerpastille St. 1",
         "es": "Pastilla ígnea de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Fogo de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Fogo de Espinha de Lagarto Nv. 1",
         "th": "Fire-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Fire Lizardback Lozenge - Lv. 1"
       },
@@ -11175,7 +11175,7 @@
         "fr": "Pastille de feu d'échine de lézard niv. 2",
         "de": "Echsenwirbel­Feuerpastille St. 2",
         "es": "Pastilla ígnea de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Fogo de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Fogo de Espinha de Lagarto Nv. 2",
         "th": "Fire-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Fire Lizardback Lozenge - Lv. 2"
       },
@@ -11193,7 +11193,7 @@
         "fr": "Pastille de feu d'échine de lézard niv. 3",
         "de": "Echsenwirbel­Feuerpastille St. 3",
         "es": "Pastilla ígnea de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Fogo de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Fogo de Espinha de Lagarto Nv. 3",
         "th": "Fire-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Fire Lizardback Lozenge - Lv. 3"
       },
@@ -11373,7 +11373,7 @@
         "fr": "Pastille de glace d'échine de lézard niv. 1",
         "de": "Echsenwirbel-Eispastille St. 1",
         "es": "Pastilla gélida de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Gelo de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Gelo de Espinha de Lagarto Nv. 1",
         "th": "Cold-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Ice Lizardback Lozenge - Lv. 1"
       },
@@ -11391,7 +11391,7 @@
         "fr": "Pastille de glace d'échine de lézard niv. 2",
         "de": "Echsenwirbel-Eispastille St. 2",
         "es": "Pastilla gélida de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Gelo de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Gelo de Espinha de Lagarto Nv. 2",
         "th": "Cold-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Ice Lizardback Lozenge - Lv. 2"
       },
@@ -11409,7 +11409,7 @@
         "fr": "Pastille de glace d'échine de lézard niv. 3",
         "de": "Echsenwirbel-Eispastille St. 3",
         "es": "Pastilla gélida de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Gelo de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Gelo de Espinha de Lagarto Nv. 3",
         "th": "Cold-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Ice Lizardback Lozenge - Lv. 3"
       },
@@ -11481,7 +11481,7 @@
         "fr": "Sérum d'échine de lézard verdoyant niv. 1",
         "de": "Blattader­Echsenwirbelserum St. 1",
         "es": "React. frondoso de espinagarto nv. 1",
-        "pt-BR": "Soro Verdejante de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Soro Verdejante de Espinha de Lagarto Nv. 1",
         "th": "Leaf Vein Lizard Spine Reagent Lv.1",
         "id": "Leaf Vein Lizardback Reagent - Lv. 1"
       },
@@ -11499,7 +11499,7 @@
         "fr": "Sérum d'échine de lézard verdoyant niv. 2",
         "de": "Blattader­Echsenwirbelserum St. 2",
         "es": "React. frondoso de espinagarto nv. 2",
-        "pt-BR": "Soro Verdejante de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Soro Verdejante de Espinha de Lagarto Nv. 2",
         "th": "Leaf Vein Lizard Spine Reagent Lv.2",
         "id": "Leaf Vein Lizardback Reagent - Lv. 2"
       },
@@ -11517,7 +11517,7 @@
         "fr": "Sérum d'échine de lézard verdoyant niv. 3",
         "de": "Blattader­Echsenwirbelserum St. 3",
         "es": "React. frondoso de espinagarto nv. 3",
-        "pt-BR": "Soro Verdejante de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Soro Verdejante de Espinha de Lagarto Nv. 3",
         "th": "Leaf Vein Lizard Spine Reagent Lv.3",
         "id": "Leaf Vein Lizardback Reagent - Lv. 3"
       },
@@ -11589,7 +11589,7 @@
         "fr": "Pastille de givre d'échine de lézard niv. 1",
         "de": "Echsenwirbel­Frostpastille St. 1",
         "es": "Pastilla helada de espinagarto nv. 1",
-        "pt-BR": "Pastilha Gélida de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha Gélida de Espinha de Lagarto Nv. 1",
         "th": "Fungal-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Mold Lizardback Lozenge - Lv. 1"
       },
@@ -11607,7 +11607,7 @@
         "fr": "Pastille de givre d'échine de lézard niv. 2",
         "de": "Echsenwirbel­Frostpastille St. 2",
         "es": "Pastilla helada de espinagarto nv. 2",
-        "pt-BR": "Pastilha Gélida de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha Gélida de Espinha de Lagarto Nv. 2",
         "th": "Fungal-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Mold Lizardback Lozenge - Lv. 2"
       },
@@ -11625,7 +11625,7 @@
         "fr": "Pastille de givre d'échine de lézard niv. 3",
         "de": "Echsenwirbel­Frostpastille St. 3",
         "es": "Pastilla helada de espinagarto nv. 3",
-        "pt-BR": "Pastilha Gélida de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha Gélida de Espinha de Lagarto Nv. 3",
         "th": "Fungal-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Mold Lizardback Lozenge - Lv. 3"
       },
@@ -11805,7 +11805,7 @@
         "fr": "Pastille de roche d'Échine de lézard niv. 1",
         "de": "Echsenwirbel­Steinpastille St. 1",
         "es": "Pastilla rocosa de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Rocha de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Rocha de Espinha de Lagarto Nv. 1",
         "th": "Sand-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Sand Lizardback Lozenge - Lv. 1"
       },
@@ -11823,7 +11823,7 @@
         "fr": "Pastille de roche d'Échine de lézard niv. 2",
         "de": "Echsenwirbel­Steinpastille St. 2",
         "es": "Pastilla rocosa de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Rocha de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Rocha de Espinha de Lagarto Nv. 2",
         "th": "Sand-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Sand Lizardback Lozenge - Lv. 2"
       },
@@ -11841,7 +11841,7 @@
         "fr": "Pastille de roche d'Échine de lézard niv. 3",
         "de": "Echsenwirbel­Steinpastille St. 3",
         "es": "Pastilla rocosa de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Rocha de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Rocha de Espinha de Lagarto Nv. 3",
         "th": "Sand-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Sand Lizardback Lozenge - Lv. 3"
       },
@@ -11913,7 +11913,7 @@
         "fr": "Sérum d'échine de lézard carilloneur niv. 1",
         "de": "Windspiel­Echsenwirbelserum St. 1",
         "es": "React. resonaviento de espinagarto nv. 1",
-        "pt-BR": "Soro do Sino dos Ventos de​ Espinha de Lagarto Nv. 1",
+        "pt-BR": "Soro do Sino dos Ventos de Espinha de Lagarto Nv. 1",
         "th": "Wind Lizard Spine Reagent Lv.1",
         "id": "Windchime Lizardback Reagent - Lv. 1"
       },
@@ -11931,7 +11931,7 @@
         "fr": "Sérum d'échine de lézard carilloneur niv. 2",
         "de": "Windspiel­Echsenwirbelserum St. 2",
         "es": "React. resonaviento de espinagarto nv. 2",
-        "pt-BR": "Soro do Sino dos Ventos de​ Espinha de Lagarto Nv. 2",
+        "pt-BR": "Soro do Sino dos Ventos de Espinha de Lagarto Nv. 2",
         "th": "Wind Lizard Spine Reagent Lv.2",
         "id": "Windchime Lizardback Reagent - Lv. 2"
       },
@@ -11949,7 +11949,7 @@
         "fr": "Sérum d'échine de lézard carilloneur niv. 3",
         "de": "Windspiel­Echsenwirbelserum St. 3",
         "es": "React. resonaviento de espinagarto nv. 3",
-        "pt-BR": "Soro do Sino dos Ventos de​ Espinha de Lagarto Nv. 3",
+        "pt-BR": "Soro do Sino dos Ventos de Espinha de Lagarto Nv. 3",
         "th": "Wind Lizard Spine Reagent Lv.3",
         "id": "Windchime Lizardback Reagent - Lv. 3"
       },
@@ -12021,7 +12021,7 @@
         "fr": "Pastille de vent d'Échine de lézard niv. 1",
         "de": "Echsenwirbel-Windpastille St. 1",
         "es": "Pastilla eólica de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Vento de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Vento de Espinha de Lagarto Nv. 1",
         "th": "Wind-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Wind Lizardback Lozenge - Lv. 1"
       },
@@ -12039,7 +12039,7 @@
         "fr": "Pastille de vent d'Échine de lézard niv. 2",
         "de": "Echsenwirbel-Windpastille St. 2",
         "es": "Pastilla eólica de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Vento de Espinha​​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Vento de Espinha de Lagarto Nv. 2",
         "th": "Wind-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Wind Lizardback Lozenge - Lv. 2"
       },
@@ -12057,7 +12057,7 @@
         "fr": "Pastille de vent d'Échine de lézard niv. 3",
         "de": "Echsenwirbel-Windpastille St. 3",
         "es": "Pastilla eólica de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Vento de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Vento de Espinha de Lagarto Nv. 3",
         "th": "Wind-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Wind Lizardback Lozenge - Lv. 3"
       },
@@ -12237,7 +12237,7 @@
         "fr": "Pastille de foudre d'Échine de lézard niv. 1",
         "de": "Echsenwirbel­Donnerpastille St. 1",
         "es": "Pastilla atronadora de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Trovão de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Trovão de Espinha de Lagarto Nv. 1",
         "th": "Lightning-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Thunder Lizardback Lozenge - Lv. 1"
       },
@@ -12255,7 +12255,7 @@
         "fr": "Pastille de foudre d'Échine de lézard niv. 2",
         "de": "Echsenwirbel­Donnerpastille St. 2",
         "es": "Pastilla atronadora de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Trovão de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Trovão de Espinha de Lagarto Nv. 2",
         "th": "Lightning-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Thunder Lizardback Lozenge - Lv. 2"
       },
@@ -12273,7 +12273,7 @@
         "fr": "Pastille de foudre d'Échine de lézard niv. 3",
         "de": "Echsenwirbel­Donnerpastille St. 3",
         "es": "Pastilla atronadora de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Trovão de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Trovão de Espinha de Lagarto Nv. 3",
         "th": "Lightning-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Thunder Lizardback Lozenge - Lv. 3"
       },
@@ -12453,7 +12453,7 @@
         "fr": "Pastille de lumière d'Échine de lézard niv. 1",
         "de": "Echsenwirbel­Lichtpastille St. 1",
         "es": "Pastilla lumínica de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Luz de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Luz de Espinha de Lagarto Nv. 1",
         "th": "Radiant-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Light Lizardback Lozenge - Lv. 1"
       },
@@ -12471,7 +12471,7 @@
         "fr": "Pastille de lumière d'Échine de lézard niv. 2",
         "de": "Echsenwirbel­Lichtpastille St. 2",
         "es": "Pastilla lumínica de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Luz de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Luz de Espinha de Lagarto Nv. 2",
         "th": "Radiant-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Light Lizardback Lozenge - Lv. 2"
       },
@@ -12489,7 +12489,7 @@
         "fr": "Pastille de lumière d'Échine de lézard niv. 3",
         "de": "Echsenwirbel­Lichtpastille St. 3",
         "es": "Pastilla lumínica de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Luz de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Luz de Espinha de Lagarto Nv. 3",
         "th": "Radiant-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Light Lizardback Lozenge - Lv. 3"
       },
@@ -12561,7 +12561,7 @@
         "fr": "Sérum d'échine de lézard du crépuscule niv. 1",
         "de": "Dämmer-Echsenwirbelserum St. 1",
         "es": "React. crepuscular de espinagarto nv. 1",
-        "pt-BR": "Soro Crepuscular de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Soro Crepuscular de Espinha de Lagarto Nv. 1",
         "th": "Dark Lizard Spine Reagent Lv.1",
         "id": "Dim Lizardback Reagent - Lv. 1"
       },
@@ -12579,7 +12579,7 @@
         "fr": "Sérum d'échine de lézard du crépuscule niv. 2",
         "de": "Dämmer-Echsenwirbelserum St. 2",
         "es": "React. crepuscular de espinagarto nv. 2",
-        "pt-BR": "Soro Crepuscular de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Soro Crepuscular de Espinha de Lagarto Nv. 2",
         "th": "Dark Lizard Spine Reagent Lv.2",
         "id": "Dim Lizardback Reagent - Lv. 2"
       },
@@ -12597,7 +12597,7 @@
         "fr": "Sérum d'échine de lézard du crépuscule niv. 3",
         "de": "Dämmer-Echsenwirbelserum St. 3",
         "es": "React. crepuscular de espinagarto nv. 3",
-        "pt-BR": "Soro Crepuscular de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Soro Crepuscular de Espinha de Lagarto Nv. 3",
         "th": "Dark Lizard Spine Reagent Lv.3",
         "id": "Dim Lizardback Reagent - Lv. 3"
       },
@@ -12669,7 +12669,7 @@
         "fr": "Pastille des ténèbres d'Échine de lézard niv. 1",
         "de": "Echsenwirbel­Dunkelpastille St. 1",
         "es": "Pastilla oscura de espinagarto nv. 1",
-        "pt-BR": "Pastilha de Trevas de Espinha​ de Lagarto Nv. 1",
+        "pt-BR": "Pastilha de Trevas de Espinha de Lagarto Nv. 1",
         "th": "Dark-Resistant Lizard Spine Lozenge Lv.1",
         "id": "Anti Night Lizardback Lozenge - Lv. 1"
       },
@@ -12687,7 +12687,7 @@
         "fr": "Pastille des ténèbres d'Échine de lézard niv. 2",
         "de": "Echsenwirbel­Dunkelpastille St. 2",
         "es": "Pastilla oscura de espinagarto nv. 2",
-        "pt-BR": "Pastilha de Trevas de Espinha​ de Lagarto Nv. 2",
+        "pt-BR": "Pastilha de Trevas de Espinha de Lagarto Nv. 2",
         "th": "Dark-Resistant Lizard Spine Lozenge Lv.2",
         "id": "Anti Night Lizardback Lozenge - Lv. 2"
       },
@@ -12705,7 +12705,7 @@
         "fr": "Pastille des ténèbres d'Échine de lézard niv. 3",
         "de": "Echsenwirbel­Dunkelpastille St. 3",
         "es": "Pastilla oscura de espinagarto nv. 3",
-        "pt-BR": "Pastilha de Trevas de Espinha​ de Lagarto Nv. 3",
+        "pt-BR": "Pastilha de Trevas de Espinha de Lagarto Nv. 3",
         "th": "Dark-Resistant Lizard Spine Lozenge Lv.3",
         "id": "Anti Night Lizardback Lozenge - Lv. 3"
       },
@@ -14501,7 +14501,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_thunderrepro"
     },
-    "mrs:0f8a7018b5aa": {
+    "mrs:eea33019e62c": {
       "sourceId": "talent:116",
       "sourceName": "Phantom Delay",
       "sourceNames": {
@@ -14519,7 +14519,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_thunderseed"
     },
-    "mrs:64aca37108a5": {
+    "mrs:70397733fad1": {
       "sourceId": "talent:118",
       "sourceName": "Phantom Scythe Realm I",
       "sourceNames": {
@@ -14609,7 +14609,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_thundercurse"
     },
-    "mrs:ea3d0d3deb52": {
+    "mrs:c957ecc92d49": {
       "sourceId": "talent:124",
       "sourceName": "Duel Awareness",
       "sourceNames": {
@@ -14879,7 +14879,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_1/taidao141"
     },
-    "mrs:b8bfc1f6504e": {
+    "mrs:112bdeeb0b3d": {
       "sourceId": "talent:142",
       "sourceName": "Unmatched Raijin Dash",
       "sourceNames": {
@@ -15167,7 +15167,7 @@
         "design": "替换神罚之镰"
       }
     },
-    "mrs:bdc2a71cdfe7": {
+    "mrs:70abd4740acb": {
       "sourceId": "talent:159",
       "sourceName": "Moonlight Charge",
       "sourceNames": {
@@ -15257,7 +15257,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_1/taidao163"
     },
-    "mrs:2a399c39b00a": {
+    "mrs:549849285be9": {
       "sourceId": "talent:164",
       "sourceName": "Charge Catcher",
       "sourceNames": {
@@ -15311,7 +15311,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_1/taidao168"
     },
-    "mrs:5ef8f7bb8098": {
+    "mrs:a8cb6acc33fd": {
       "sourceId": "talent:169",
       "sourceName": "Raijin Dash Charge",
       "sourceNames": {
@@ -15383,7 +15383,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_angerinhibit"
     },
-    "mrs:563a5027b750": {
+    "mrs:2de40cf63a52": {
       "sourceId": "talent:902",
       "sourceName": "Life Suppress",
       "sourceNames": {
@@ -15696,7 +15696,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_9/talent_passive_icon_sup_melee04"
     },
-    "mrs:b0db066fd3a7": {
+    "mrs:c8ec25c98374": {
       "sourceId": "talent:928",
       "sourceName": "Group Suppress",
       "sourceNames": {
@@ -15750,7 +15750,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_shieldcounter"
     },
-    "mrs:bca1a3f66256": {
+    "mrs:24ea1db8113b": {
       "sourceId": "talent:932",
       "sourceName": "Resonant Domain",
       "sourceNames": {
@@ -16118,7 +16118,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_9/weiren951"
     },
-    "mrs:b0ab888122ab": {
+    "mrs:aaa131e05f2c": {
       "sourceId": "talent:952",
       "sourceName": "Star Shatter Pursuit",
       "sourceNames": {
@@ -16492,7 +16492,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_5/talent_passive_icon_dps_luckyconversion"
     },
-    "mrs:cf23db001a1c": {
+    "mrs:f4d29a049d8c": {
       "sourceId": "talent:506",
       "sourceName": "Arcane of Green",
       "sourceNames": {
@@ -17299,7 +17299,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_5/fahuan541"
     },
-    "mrs:e59fd2ad98bf": {
+    "mrs:7c65b9f0973d": {
       "sourceId": "talent:542",
       "sourceName": "Feral Seed Symbiosis",
       "sourceNames": {
@@ -17335,7 +17335,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_5/fahuan543"
     },
-    "mrs:061c3e937c97": {
+    "mrs:cf65dca9de7d": {
       "sourceId": "talent:544",
       "sourceName": "Wide-area Thorns",
       "sourceNames": {
@@ -17353,7 +17353,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_5/fahuan544"
     },
-    "mrs:fae661f36d02": {
+    "mrs:8010c804c2de": {
       "sourceId": "talent:545",
       "sourceName": "Thornbreaker",
       "sourceNames": {
@@ -17407,7 +17407,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_5/fahuan547"
     },
-    "mrs:7edd5854dc7f": {
+    "mrs:cf5915b7059a": {
       "sourceId": "talent:548",
       "sourceName": "Pulse Retrospect",
       "sourceNames": {
@@ -17461,7 +17461,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_5/fahuan550"
     },
-    "mrs:ad8a380cd4ea": {
+    "mrs:c9fbeffb9909": {
       "sourceId": "talent:551",
       "sourceName": "Symbiosis Extension",
       "sourceNames": {
@@ -17578,7 +17578,7 @@
         "zh-TW": "盛放注能",
         "ja": "ブルームチャージ",
         "ko-KR": "에너지 주입",
-        "fr": "​Charge florale",
+        "fr": "Charge florale",
         "de": "Blütenansturm",
         "es": "Carga Floral",
         "pt-BR": "Carga Florescente",
@@ -17597,7 +17597,7 @@
         "zh-TW": "盛放注能",
         "ja": "ブルームチャージ",
         "ko-KR": "에너지 주입",
-        "fr": "​Charge florale",
+        "fr": "Charge florale",
         "de": "Blütenansturm",
         "es": "Carga Floral",
         "pt-BR": "Carga Florescente",
@@ -17607,7 +17607,7 @@
       },
       "iconPath": "ui/textures/skill_weapon_fh/weapon_fh-01_kx07"
     },
-    "mrs:62d1ef078966": {
+    "mrs:1a22bbc84bff": {
       "sourceId": "talent:555",
       "sourceName": "Wild Luck",
       "sourceNames": {
@@ -18136,7 +18136,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_resetbite"
     },
-    "mrs:4d6f1da230a6": {
+    "mrs:6719cc701d7f": {
       "sourceId": "talent:1112",
       "sourceName": "Twin Arrows",
       "sourceNames": {
@@ -18287,7 +18287,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_skyhitcrilight"
     },
-    "mrs:0d19a5cf0e22": {
+    "mrs:24748645e407": {
       "sourceId": "talent:1124",
       "sourceName": "Valiant Heart",
       "sourceNames": {
@@ -18403,7 +18403,7 @@
         "design": "苍穹之落-子BUFF"
       }
     },
-    "mrs:1c5ca8ae84e1": {
+    "mrs:fba5edf77db1": {
       "sourceId": "talent:1130",
       "sourceName": "Wolf Dancer",
       "sourceNames": {
@@ -18565,7 +18565,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_11/gongjian1138"
     },
-    "mrs:14ea3deb1890": {
+    "mrs:388665a72229": {
       "sourceId": "talent:1139",
       "sourceName": "Life Hunt",
       "sourceNames": {
@@ -18763,7 +18763,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_11/gongjian1149"
     },
-    "mrs:830e96cd0170": {
+    "mrs:65b351f4037b": {
       "sourceId": "talent:1150",
       "sourceName": "Wolf's Bite",
       "sourceNames": {
@@ -19688,7 +19688,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_2/mozhang243"
     },
-    "mrs:5a757fbc4205": {
+    "mrs:3f125e621759": {
       "sourceId": "talent:245",
       "sourceName": "Deep Cold Magic Spear",
       "sourceNames": {
@@ -19742,7 +19742,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_2/mozhang247"
     },
-    "mrs:7f506e81d6fa": {
+    "mrs:41610153d928": {
       "sourceId": "talent:249",
       "sourceName": "Deadly Frost Lance",
       "sourceNames": {
@@ -20012,7 +20012,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_2/mozhang270"
     },
-    "mrs:eaa10f98f72b": {
+    "mrs:0818356ca975": {
       "sourceId": "talent:271",
       "sourceName": "Intellect Amp",
       "sourceNames": {
@@ -21808,7 +21808,7 @@
         "design": "神圣之力"
       }
     },
-    "mrs:09c893f530fc": {
+    "mrs:878b91c8b5b6": {
       "sourceId": "talent:1227",
       "sourceName": "Divine Circle Resonance",
       "sourceNames": {
@@ -21862,7 +21862,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_12/jiandun1229"
     },
-    "mrs:8d86a6b84811": {
+    "mrs:846e84fcdd7f": {
       "sourceId": "talent:1230",
       "sourceName": "Lightforged Balance",
       "sourceNames": {
@@ -22168,7 +22168,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_12/jiandun1246"
     },
-    "mrs:638f18a0da6b": {
+    "mrs:a96956608dea": {
       "sourceId": "talent:1247",
       "sourceName": "Ultimate Strike",
       "sourceNames": {
@@ -22368,7 +22368,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_12/jiandun1257"
     },
-    "mrs:9f94a10f910a": {
+    "mrs:b04afc83795b": {
       "sourceId": "talent:1258",
       "sourceName": "Holy Sigil Enhancement",
       "sourceNames": {
@@ -22584,7 +22584,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1305"
     },
-    "mrs:12e23a33f9e4": {
+    "mrs:3d2607290f1e": {
       "sourceId": "talent:1306",
       "sourceName": "Flame Pursuit",
       "sourceNames": {
@@ -22602,7 +22602,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1306"
     },
-    "mrs:4725e5494035": {
+    "mrs:d6843886ca48": {
       "sourceId": "talent:1307",
       "sourceName": "Flame Pursuit II",
       "sourceNames": {
@@ -22656,7 +22656,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1310"
     },
-    "mrs:de612630ca35": {
+    "mrs:6adaf0d762ce": {
       "sourceId": "talent:1311",
       "sourceName": "Severed Chapter",
       "sourceNames": {
@@ -22915,7 +22915,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1323"
     },
-    "mrs:7e5d929d3276": {
+    "mrs:86249e1a50ea": {
       "sourceId": "talent:1355",
       "sourceName": "Heated Tower Flame Blast",
       "sourceNames": {
@@ -23366,7 +23366,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1352"
     },
-    "mrs:f221ac4ec53f": {
+    "mrs:00418429c77f": {
       "sourceId": "talent:1353",
       "sourceName": "Tower Flame Blast",
       "sourceNames": {
@@ -23384,7 +23384,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1353"
     },
-    "mrs:3d80e3c9dae1": {
+    "mrs:263e10c4549b": {
       "sourceId": "talent:1354",
       "sourceName": "Multi-Target Heat Amp",
       "sourceNames": {
@@ -23420,7 +23420,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_13/gita1356"
     },
-    "mrs:455964c7632a": {
+    "mrs:74f71e222912": {
       "sourceId": "talent:1357",
       "sourceName": "Harmonic Amplifier",
       "sourceNames": {
@@ -24100,7 +24100,7 @@
       },
       "iconPath": "ui/atlas/talent_passive_4/talent_passive_icon_tank_violent03"
     },
-    "mrs:c6c051033bf2": {
+    "mrs:11c4758a77e7": {
       "sourceId": "talent:329",
       "sourceName": "Formless Combo",
       "sourceNames": {
@@ -27272,7 +27272,7 @@
         "id": "Epic Double"
       }
     },
-    "mrs:76a74c3110c4": {
+    "mrs:db9fe07d4c1f": {
       "sourceId": "phantom-factor:3050010",
       "sourceName": "Stormblade X1",
       "sourceNames": {
@@ -27290,7 +27290,7 @@
       },
       "iconPath": "yinzi_s2_01_001"
     },
-    "mrs:074308d23138": {
+    "mrs:999481405983": {
       "sourceId": "phantom-factor:3050020",
       "sourceName": "Stormblade X2",
       "sourceNames": {
@@ -27308,7 +27308,7 @@
       },
       "iconPath": "yinzi_s2_01_002"
     },
-    "mrs:bb4d3ece8ff3": {
+    "mrs:b87b8be9e03b": {
       "sourceId": "phantom-factor:3050030",
       "sourceName": "Stormblade X3",
       "sourceNames": {
@@ -27326,7 +27326,7 @@
       },
       "iconPath": "yinzi_s2_01_003"
     },
-    "mrs:cd39e213cb60": {
+    "mrs:ee547194414d": {
       "sourceId": "phantom-factor:3050040",
       "sourceName": "Stormblade X4",
       "sourceNames": {
@@ -27344,7 +27344,7 @@
       },
       "iconPath": "yinzi_s2_01_004"
     },
-    "mrs:3ae47dfe5376": {
+    "mrs:25169073fb33": {
       "sourceId": "phantom-factor:3050050",
       "sourceName": "Stormblade X5",
       "sourceNames": {
@@ -27362,7 +27362,7 @@
       },
       "iconPath": "yinzi_s2_01_005"
     },
-    "mrs:416a601f39ed": {
+    "mrs:fd2530f06fee": {
       "sourceId": "phantom-factor:3050060",
       "sourceName": "Stormblade X6",
       "sourceNames": {
@@ -27380,7 +27380,7 @@
       },
       "iconPath": "yinzi_s2_01_006"
     },
-    "mrs:eb67e4ac430c": {
+    "mrs:aff13e8b8d76": {
       "sourceId": "phantom-factor:3050070",
       "sourceName": "Stormblade X7",
       "sourceNames": {
@@ -27398,7 +27398,7 @@
       },
       "iconPath": "yinzi_s2_01_007"
     },
-    "mrs:55c3db4bce48": {
+    "mrs:58b24ec42371": {
       "sourceId": "phantom-factor:3050080",
       "sourceName": "Stormblade X8",
       "sourceNames": {
@@ -27416,7 +27416,7 @@
       },
       "iconPath": "yinzi_s2_01_008"
     },
-    "mrs:324f8c9c41d9": {
+    "mrs:d0b8d8c8dbf0": {
       "sourceId": "phantom-factor:3050090",
       "sourceName": "Stormblade X9",
       "sourceNames": {
@@ -27434,7 +27434,7 @@
       },
       "iconPath": "yinzi_s2_01_009"
     },
-    "mrs:9dde7b523983": {
+    "mrs:6b06a9df6720": {
       "sourceId": "phantom-factor:3050100",
       "sourceName": "Stormblade X10",
       "sourceNames": {
@@ -27452,7 +27452,7 @@
       },
       "iconPath": "yinzi_s2_01_010"
     },
-    "mrs:7b53703c9f7e": {
+    "mrs:97312edee09d": {
       "sourceId": "phantom-factor:3050110",
       "sourceName": "Stormblade X11",
       "sourceNames": {
@@ -27470,7 +27470,7 @@
       },
       "iconPath": "yinzi_s2_01_011"
     },
-    "mrs:4a6898cd0283": {
+    "mrs:1c3a1e54df31": {
       "sourceId": "phantom-factor:3050120",
       "sourceName": "Stormblade Rhapsody X1",
       "sourceNames": {
@@ -27488,7 +27488,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_01_001"
     },
-    "mrs:a41da6f06e66": {
+    "mrs:621efad68e24": {
       "sourceId": "phantom-factor:3050130",
       "sourceName": "Stormblade Rhapsody X2",
       "sourceNames": {
@@ -27506,7 +27506,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_01_002"
     },
-    "mrs:45a03d53781c": {
+    "mrs:5da4cb6dbfcd": {
       "sourceId": "phantom-factor:3050140",
       "sourceName": "Stormblade Rhapsody X3",
       "sourceNames": {
@@ -27524,7 +27524,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_01_003"
     },
-    "mrs:cfd2fc68100e": {
+    "mrs:1a1db6a0fd05": {
       "sourceId": "phantom-factor:3050150",
       "sourceName": "Stormblade Rhapsody X4",
       "sourceNames": {
@@ -27830,7 +27830,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry028"
     },
-    "mrs:9fbe9ca5f53d": {
+    "mrs:66f54d268016": {
       "sourceId": "phantom-factor:3051010",
       "sourceName": "Wind Knight X1",
       "sourceNames": {
@@ -27848,7 +27848,7 @@
       },
       "iconPath": "yinzi_s2_04_001"
     },
-    "mrs:6d5fc808b50d": {
+    "mrs:9c417d1bfb08": {
       "sourceId": "phantom-factor:3051020",
       "sourceName": "Wind Knight X2",
       "sourceNames": {
@@ -27866,7 +27866,7 @@
       },
       "iconPath": "yinzi_s2_04_002"
     },
-    "mrs:88b80a95d560": {
+    "mrs:20f1e6029764": {
       "sourceId": "phantom-factor:3051030",
       "sourceName": "Wind Knight X3",
       "sourceNames": {
@@ -27884,7 +27884,7 @@
       },
       "iconPath": "yinzi_s2_04_003"
     },
-    "mrs:0d4509de331d": {
+    "mrs:8673fb9c676b": {
       "sourceId": "phantom-factor:3051040",
       "sourceName": "Wind Knight X4",
       "sourceNames": {
@@ -27902,7 +27902,7 @@
       },
       "iconPath": "yinzi_s2_04_004"
     },
-    "mrs:9ca6ca7d42d9": {
+    "mrs:919f6d99167d": {
       "sourceId": "phantom-factor:3051050",
       "sourceName": "Wind Knight X5",
       "sourceNames": {
@@ -27920,7 +27920,7 @@
       },
       "iconPath": "yinzi_s2_04_005"
     },
-    "mrs:5f212d2e9467": {
+    "mrs:0fd84841479c": {
       "sourceId": "phantom-factor:3051060",
       "sourceName": "Wind Knight X6",
       "sourceNames": {
@@ -27938,7 +27938,7 @@
       },
       "iconPath": "yinzi_s2_04_006"
     },
-    "mrs:64e9ef650dd7": {
+    "mrs:a71b531e6cd2": {
       "sourceId": "phantom-factor:3051070",
       "sourceName": "Wind Knight X7",
       "sourceNames": {
@@ -27956,7 +27956,7 @@
       },
       "iconPath": "yinzi_s2_04_007"
     },
-    "mrs:d5fd69fd5ff7": {
+    "mrs:918ffd6cceae": {
       "sourceId": "phantom-factor:3051080",
       "sourceName": "Wind Knight X8",
       "sourceNames": {
@@ -27974,7 +27974,7 @@
       },
       "iconPath": "yinzi_s2_04_008"
     },
-    "mrs:619e75b2fb23": {
+    "mrs:09c03f3773e3": {
       "sourceId": "phantom-factor:3051090",
       "sourceName": "Wind Knight X9",
       "sourceNames": {
@@ -27992,7 +27992,7 @@
       },
       "iconPath": "yinzi_s2_04_009"
     },
-    "mrs:6e7c7cfa30db": {
+    "mrs:0c507479421f": {
       "sourceId": "phantom-factor:3051100",
       "sourceName": "Wind Knight X10",
       "sourceNames": {
@@ -28010,7 +28010,7 @@
       },
       "iconPath": "yinzi_s2_04_010"
     },
-    "mrs:382030ee415f": {
+    "mrs:c7649e959883": {
       "sourceId": "phantom-factor:3051110",
       "sourceName": "Wind Knight X11",
       "sourceNames": {
@@ -28028,7 +28028,7 @@
       },
       "iconPath": "yinzi_s2_04_011"
     },
-    "mrs:bb0e2575ba00": {
+    "mrs:06d4b85b23a2": {
       "sourceId": "phantom-factor:3051120",
       "sourceName": "Wind Knight Rhapsody X1",
       "sourceNames": {
@@ -28046,7 +28046,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_04_001"
     },
-    "mrs:352410e0c96f": {
+    "mrs:ddee3fa851b1": {
       "sourceId": "phantom-factor:3051130",
       "sourceName": "Wind Knight Rhapsody X2",
       "sourceNames": {
@@ -28064,7 +28064,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_04_002"
     },
-    "mrs:ba9c97baf0e4": {
+    "mrs:aebceee128ba": {
       "sourceId": "phantom-factor:3051140",
       "sourceName": "Wind Knight Rhapsody X3",
       "sourceNames": {
@@ -28082,7 +28082,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_04_003"
     },
-    "mrs:ac5b68c3fc2d": {
+    "mrs:80d35d5facb8": {
       "sourceId": "phantom-factor:3051150",
       "sourceName": "Wind Knight Rhapsody X4",
       "sourceNames": {
@@ -28388,7 +28388,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry094"
     },
-    "mrs:1550bddc4506": {
+    "mrs:a8f0e8dcf025": {
       "sourceId": "phantom-factor:3052010",
       "sourceName": "Frost Mage X1",
       "sourceNames": {
@@ -28406,7 +28406,7 @@
       },
       "iconPath": "yinzi_s2_02_001"
     },
-    "mrs:2ddbcdb165fa": {
+    "mrs:cb5efe5fe631": {
       "sourceId": "phantom-factor:3052020",
       "sourceName": "Frost Mage X2",
       "sourceNames": {
@@ -28424,7 +28424,7 @@
       },
       "iconPath": "yinzi_s2_02_002"
     },
-    "mrs:422fe3407db8": {
+    "mrs:d895ac27bc59": {
       "sourceId": "phantom-factor:3052030",
       "sourceName": "Frost Mage X3",
       "sourceNames": {
@@ -28442,7 +28442,7 @@
       },
       "iconPath": "yinzi_s2_02_003"
     },
-    "mrs:59b7fa99ffe1": {
+    "mrs:153d5eae7448": {
       "sourceId": "phantom-factor:3052040",
       "sourceName": "Frost Mage X4",
       "sourceNames": {
@@ -28460,7 +28460,7 @@
       },
       "iconPath": "yinzi_s2_02_004"
     },
-    "mrs:de2774818b6b": {
+    "mrs:46bb719f459c": {
       "sourceId": "phantom-factor:3052050",
       "sourceName": "Frost Mage X5",
       "sourceNames": {
@@ -28478,7 +28478,7 @@
       },
       "iconPath": "yinzi_s2_02_005"
     },
-    "mrs:23a459df03e5": {
+    "mrs:d2ffcf621731": {
       "sourceId": "phantom-factor:3052060",
       "sourceName": "Frost Mage X6",
       "sourceNames": {
@@ -28496,7 +28496,7 @@
       },
       "iconPath": "yinzi_s2_02_006"
     },
-    "mrs:f9f9c860ac13": {
+    "mrs:a98c0abcfe69": {
       "sourceId": "phantom-factor:3052070",
       "sourceName": "Frost Mage X7",
       "sourceNames": {
@@ -28514,7 +28514,7 @@
       },
       "iconPath": "yinzi_s2_02_007"
     },
-    "mrs:17cdbfa9b51b": {
+    "mrs:2d037af6d63a": {
       "sourceId": "phantom-factor:3052080",
       "sourceName": "Frost Mage X8",
       "sourceNames": {
@@ -28532,7 +28532,7 @@
       },
       "iconPath": "yinzi_s2_02_008"
     },
-    "mrs:6b2848effeaf": {
+    "mrs:a2d9e898ae40": {
       "sourceId": "phantom-factor:3052090",
       "sourceName": "Frost Mage X9",
       "sourceNames": {
@@ -28550,7 +28550,7 @@
       },
       "iconPath": "yinzi_s2_02_009"
     },
-    "mrs:bd595a8db205": {
+    "mrs:f13e8cc76a76": {
       "sourceId": "phantom-factor:3052100",
       "sourceName": "Frost Mage X10",
       "sourceNames": {
@@ -28568,7 +28568,7 @@
       },
       "iconPath": "yinzi_s2_02_010"
     },
-    "mrs:56dbb49f286a": {
+    "mrs:4c94502d3b4d": {
       "sourceId": "phantom-factor:3052110",
       "sourceName": "Frost Mage X11",
       "sourceNames": {
@@ -28604,7 +28604,7 @@
         "design": "AOE造成伤害"
       }
     },
-    "mrs:aae80ca429fa": {
+    "mrs:758ec961e7c2": {
       "sourceId": "phantom-factor:3052120",
       "sourceName": "Frost Mage Rhapsody X1",
       "sourceNames": {
@@ -28623,7 +28623,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_02_001"
     },
-    "mrs:d2d0f7c8a32d": {
+    "mrs:7af0d2cb9e9f": {
       "sourceId": "phantom-factor:3052130",
       "sourceName": "Frost Mage Rhapsody X2",
       "sourceNames": {
@@ -28641,7 +28641,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_02_002"
     },
-    "mrs:1ef571d2ff81": {
+    "mrs:61224bb2eca4": {
       "sourceId": "phantom-factor:3052140",
       "sourceName": "Frost Mage Rhapsody X3",
       "sourceNames": {
@@ -28659,7 +28659,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_02_003"
     },
-    "mrs:705abf91b626": {
+    "mrs:993457f1b4ad": {
       "sourceId": "phantom-factor:3052150",
       "sourceName": "Frost Mage Rhapsody X4",
       "sourceNames": {
@@ -28979,7 +28979,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry032"
     },
-    "mrs:32b0670cd093": {
+    "mrs:98c5b6fc745c": {
       "sourceId": "phantom-factor:3053010",
       "sourceName": "Marksman X1",
       "sourceNames": {
@@ -28997,7 +28997,7 @@
       },
       "iconPath": "yinzi_s2_11_001"
     },
-    "mrs:0d5f242cd19f": {
+    "mrs:3f0404334c85": {
       "sourceId": "phantom-factor:3053020",
       "sourceName": "Marksman X2",
       "sourceNames": {
@@ -29015,7 +29015,7 @@
       },
       "iconPath": "yinzi_s2_11_002"
     },
-    "mrs:65caa9c2f649": {
+    "mrs:6a8258614643": {
       "sourceId": "phantom-factor:3053030",
       "sourceName": "Marksman X3",
       "sourceNames": {
@@ -29033,7 +29033,7 @@
       },
       "iconPath": "yinzi_s2_11_003"
     },
-    "mrs:c4dda323a515": {
+    "mrs:fa9bc3962f9d": {
       "sourceId": "phantom-factor:3053040",
       "sourceName": "Marksman X4",
       "sourceNames": {
@@ -29051,7 +29051,7 @@
       },
       "iconPath": "yinzi_s2_11_004"
     },
-    "mrs:ec427bb475eb": {
+    "mrs:bb58bd04e1ae": {
       "sourceId": "phantom-factor:3053050",
       "sourceName": "Marksman X5",
       "sourceNames": {
@@ -29069,7 +29069,7 @@
       },
       "iconPath": "yinzi_s2_11_005"
     },
-    "mrs:d44262b95e61": {
+    "mrs:ab0e93155b75": {
       "sourceId": "phantom-factor:3053060",
       "sourceName": "Marksman X6",
       "sourceNames": {
@@ -29087,7 +29087,7 @@
       },
       "iconPath": "yinzi_s2_11_006"
     },
-    "mrs:1d3e1b4904b5": {
+    "mrs:a1257a86494c": {
       "sourceId": "phantom-factor:3053070",
       "sourceName": "Marksman X7",
       "sourceNames": {
@@ -29105,7 +29105,7 @@
       },
       "iconPath": "yinzi_s2_11_007"
     },
-    "mrs:b9b90ecbad9c": {
+    "mrs:3b5f2fdd8449": {
       "sourceId": "phantom-factor:3053080",
       "sourceName": "Marksman X8",
       "sourceNames": {
@@ -29123,7 +29123,7 @@
       },
       "iconPath": "yinzi_s2_11_008"
     },
-    "mrs:6f78a79cfb6a": {
+    "mrs:99157ae37d04": {
       "sourceId": "phantom-factor:3053090",
       "sourceName": "Marksman X9",
       "sourceNames": {
@@ -29141,7 +29141,7 @@
       },
       "iconPath": "yinzi_s2_11_009"
     },
-    "mrs:06a1180100f3": {
+    "mrs:c8b3a6d54fa0": {
       "sourceId": "phantom-factor:3053100",
       "sourceName": "Marksman X10",
       "sourceNames": {
@@ -29159,7 +29159,7 @@
       },
       "iconPath": "yinzi_s2_11_010"
     },
-    "mrs:9c89957215c8": {
+    "mrs:43e913ff5f0d": {
       "sourceId": "phantom-factor:3053110",
       "sourceName": "Marksman X11",
       "sourceNames": {
@@ -29178,7 +29178,7 @@
       },
       "iconPath": "yinzi_s2_11_011"
     },
-    "mrs:0a534165e802": {
+    "mrs:823eba6adfb7": {
       "sourceId": "phantom-factor:3053120",
       "sourceName": "Marksman Rhapsody X1",
       "sourceNames": {
@@ -29190,13 +29190,13 @@
         "fr": "Rhapsodie de Tireur d'élite X1",
         "de": "Scharfschützen-Rhapsodie X1",
         "es": "Rapsodia: Tirador X1",
-        "pt-BR": "Rapsódia do Atirador​ de Elite X1",
+        "pt-BR": "Rapsódia do Atirador de Elite X1",
         "th": "Markman Rhapsody X1",
         "id": "Divine Rhapsody X1.G1"
       },
       "iconPath": "kuangxiangyinzi_s2_11_001"
     },
-    "mrs:6989b666d2ad": {
+    "mrs:43b347baf910": {
       "sourceId": "phantom-factor:3053130",
       "sourceName": "Marksman Rhapsody X2",
       "sourceNames": {
@@ -29208,13 +29208,13 @@
         "fr": "Rhapsodie de Tireur d'élite X2",
         "de": "Scharfschützen-Rhapsodie X2",
         "es": "Rapsodia: Tirador X2",
-        "pt-BR": "Rapsódia do Atirador​ de Elite X2",
+        "pt-BR": "Rapsódia do Atirador de Elite X2",
         "th": "Markman Rhapsody X2",
         "id": "Divine Rhapsody X2.G1"
       },
       "iconPath": "kuangxiangyinzi_s2_11_002"
     },
-    "mrs:3bca58640a56": {
+    "mrs:a4e8564407c0": {
       "sourceId": "phantom-factor:3053140",
       "sourceName": "Marksman Rhapsody X3",
       "sourceNames": {
@@ -29226,13 +29226,13 @@
         "fr": "Rhapsodie de Tireur d'élite X3",
         "de": "Scharfschützen-Rhapsodie X3",
         "es": "Rapsodia: Tirador X3",
-        "pt-BR": "Rapsódia do Atirador​ de Elite X3",
+        "pt-BR": "Rapsódia do Atirador de Elite X3",
         "th": "Markman Rhapsody X3",
         "id": "Divine Rhapsody X3.G1"
       },
       "iconPath": "kuangxiangyinzi_s2_11_003"
     },
-    "mrs:4b09ac128835": {
+    "mrs:f777bf290553": {
       "sourceId": "phantom-factor:3053150",
       "sourceName": "Marksman Rhapsody X4",
       "sourceNames": {
@@ -29244,7 +29244,7 @@
         "fr": "Rhapsodie de Tireur d'élite X4",
         "de": "Scharfschützen-Rhapsodie X4",
         "es": "Rapsodia: Tirador X4",
-        "pt-BR": "Rapsódia do Atirador​ de Elite X4",
+        "pt-BR": "Rapsódia do Atirador de Elite X4",
         "th": "Markman Rhapsody X4",
         "id": "Divine Rhapsody X4.G1"
       },
@@ -29538,7 +29538,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry062"
     },
-    "mrs:de66e6fc3d6b": {
+    "mrs:4bda788d452c": {
       "sourceId": "phantom-factor:3054010",
       "sourceName": "Shield Knight X1",
       "sourceNames": {
@@ -29556,7 +29556,7 @@
       },
       "iconPath": "yinzi_s2_12_001"
     },
-    "mrs:6e9ff6f12f04": {
+    "mrs:5263343b4652": {
       "sourceId": "phantom-factor:3054020",
       "sourceName": "Shield Knight X2",
       "sourceNames": {
@@ -29574,7 +29574,7 @@
       },
       "iconPath": "yinzi_s2_12_002"
     },
-    "mrs:91fc0e042aa2": {
+    "mrs:b7cb6544c542": {
       "sourceId": "phantom-factor:3054030",
       "sourceName": "Shield Knight X3",
       "sourceNames": {
@@ -29592,7 +29592,7 @@
       },
       "iconPath": "yinzi_s2_12_003"
     },
-    "mrs:33bcc02f125f": {
+    "mrs:e5fc4ed8bc26": {
       "sourceId": "phantom-factor:3054040",
       "sourceName": "Shield Knight X4",
       "sourceNames": {
@@ -29610,7 +29610,7 @@
       },
       "iconPath": "yinzi_s2_12_004"
     },
-    "mrs:ea16001136af": {
+    "mrs:744d60945ea1": {
       "sourceId": "phantom-factor:3054050",
       "sourceName": "Shield Knight X5",
       "sourceNames": {
@@ -29628,7 +29628,7 @@
       },
       "iconPath": "yinzi_s2_12_005"
     },
-    "mrs:0905eb73e776": {
+    "mrs:f7e44b840f77": {
       "sourceId": "phantom-factor:3054060",
       "sourceName": "Shield Knight X6",
       "sourceNames": {
@@ -29646,7 +29646,7 @@
       },
       "iconPath": "yinzi_s2_12_006"
     },
-    "mrs:5a41533fb6f0": {
+    "mrs:a2ff70799c13": {
       "sourceId": "phantom-factor:3054070",
       "sourceName": "Shield Knight X7",
       "sourceNames": {
@@ -29664,7 +29664,7 @@
       },
       "iconPath": "yinzi_s2_12_007"
     },
-    "mrs:5a7a85ef3cc7": {
+    "mrs:de9edc489127": {
       "sourceId": "phantom-factor:3054080",
       "sourceName": "Shield Knight X8",
       "sourceNames": {
@@ -29682,7 +29682,7 @@
       },
       "iconPath": "yinzi_s2_12_008"
     },
-    "mrs:71936252fb06": {
+    "mrs:7a4a507c1316": {
       "sourceId": "phantom-factor:3054090",
       "sourceName": "Shield Knight X9",
       "sourceNames": {
@@ -29700,7 +29700,7 @@
       },
       "iconPath": "yinzi_s2_12_009"
     },
-    "mrs:70a125b7c790": {
+    "mrs:dfff18ff5e3c": {
       "sourceId": "phantom-factor:3054100",
       "sourceName": "Shield Knight X10",
       "sourceNames": {
@@ -29718,7 +29718,7 @@
       },
       "iconPath": "yinzi_s2_12_010"
     },
-    "mrs:99c2f4cea586": {
+    "mrs:a760858b7068": {
       "sourceId": "phantom-factor:3054110",
       "sourceName": "Shield Knight X11",
       "sourceNames": {
@@ -29736,7 +29736,7 @@
       },
       "iconPath": "yinzi_s2_12_011"
     },
-    "mrs:6cee7ce75b6f": {
+    "mrs:214b1023d056": {
       "sourceId": "phantom-factor:3054120",
       "sourceName": "Shield Knight Rhapsody X1",
       "sourceNames": {
@@ -29755,7 +29755,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_12_001"
     },
-    "mrs:1903edf92d52": {
+    "mrs:144950247ffc": {
       "sourceId": "phantom-factor:3054130",
       "sourceName": "Shield Knight Rhapsody X2",
       "sourceNames": {
@@ -29773,7 +29773,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_12_002"
     },
-    "mrs:a518e53be4b0": {
+    "mrs:e8e5212b086d": {
       "sourceId": "phantom-factor:3054140",
       "sourceName": "Shield Knight Rhapsody X3",
       "sourceNames": {
@@ -29791,7 +29791,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_12_003"
     },
-    "mrs:26a4196b8872": {
+    "mrs:1f1994afebaf": {
       "sourceId": "phantom-factor:3054150",
       "sourceName": "Shield Knight Rhapsody X4",
       "sourceNames": {
@@ -30143,7 +30143,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry110"
     },
-    "mrs:20062f5d1f0f": {
+    "mrs:806e2d07990f": {
       "sourceId": "phantom-factor:3055010",
       "sourceName": "Heavy Guardian X1",
       "sourceNames": {
@@ -30161,7 +30161,7 @@
       },
       "iconPath": "yinzi_s2_09_001"
     },
-    "mrs:d947faf7abd2": {
+    "mrs:12d6072e7527": {
       "sourceId": "phantom-factor:3055020",
       "sourceName": "Heavy Guardian X2",
       "sourceNames": {
@@ -30179,7 +30179,7 @@
       },
       "iconPath": "yinzi_s2_09_002"
     },
-    "mrs:13b575d342e6": {
+    "mrs:8956cac52386": {
       "sourceId": "phantom-factor:3055030",
       "sourceName": "Heavy Guardian X3",
       "sourceNames": {
@@ -30197,7 +30197,7 @@
       },
       "iconPath": "yinzi_s2_09_003"
     },
-    "mrs:4d5a7c7373fd": {
+    "mrs:ac67023f4975": {
       "sourceId": "phantom-factor:3055040",
       "sourceName": "Heavy Guardian X4",
       "sourceNames": {
@@ -30215,7 +30215,7 @@
       },
       "iconPath": "yinzi_s2_09_004"
     },
-    "mrs:439f26f262b7": {
+    "mrs:62053750112f": {
       "sourceId": "phantom-factor:3055050",
       "sourceName": "Heavy Guardian X5",
       "sourceNames": {
@@ -30233,7 +30233,7 @@
       },
       "iconPath": "yinzi_s2_09_005"
     },
-    "mrs:141dae6a317b": {
+    "mrs:405326bef8c0": {
       "sourceId": "phantom-factor:3055060",
       "sourceName": "Heavy Guardian X6",
       "sourceNames": {
@@ -30251,7 +30251,7 @@
       },
       "iconPath": "yinzi_s2_09_006"
     },
-    "mrs:73e94e2ec603": {
+    "mrs:7feac936f9c0": {
       "sourceId": "phantom-factor:3055070",
       "sourceName": "Heavy Guardian X7",
       "sourceNames": {
@@ -30269,7 +30269,7 @@
       },
       "iconPath": "yinzi_s2_09_007"
     },
-    "mrs:06f1b6c210c1": {
+    "mrs:595e07ccb057": {
       "sourceId": "phantom-factor:3055080",
       "sourceName": "Heavy Guardian X8",
       "sourceNames": {
@@ -30287,7 +30287,7 @@
       },
       "iconPath": "yinzi_s2_09_008"
     },
-    "mrs:ca0222539991": {
+    "mrs:d9173bedfc9d": {
       "sourceId": "phantom-factor:3055090",
       "sourceName": "Heavy Guardian X9",
       "sourceNames": {
@@ -30305,7 +30305,7 @@
       },
       "iconPath": "yinzi_s2_09_009"
     },
-    "mrs:310d71e5ee87": {
+    "mrs:c95b8fccb6d0": {
       "sourceId": "phantom-factor:3055100",
       "sourceName": "Heavy Guardian X10",
       "sourceNames": {
@@ -30323,7 +30323,7 @@
       },
       "iconPath": "yinzi_s2_09_010"
     },
-    "mrs:d90efd35906e": {
+    "mrs:8992caeea9da": {
       "sourceId": "phantom-factor:3055110",
       "sourceName": "Heavy Guardian X11",
       "sourceNames": {
@@ -30341,7 +30341,7 @@
       },
       "iconPath": "yinzi_s2_09_011"
     },
-    "mrs:c36f480182b8": {
+    "mrs:8810e65dd0f2": {
       "sourceId": "phantom-factor:3055120",
       "sourceName": "Heavy Guardian Rhapsody X1",
       "sourceNames": {
@@ -30359,7 +30359,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_09_001"
     },
-    "mrs:d22f9500d44c": {
+    "mrs:f290b3f49d60": {
       "sourceId": "phantom-factor:3055130",
       "sourceName": "Heavy Guardian Rhapsody X2",
       "sourceNames": {
@@ -30377,7 +30377,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_09_002"
     },
-    "mrs:5d85027eb687": {
+    "mrs:8f1e550c56d0": {
       "sourceId": "phantom-factor:3055140",
       "sourceName": "Heavy Guardian Rhapsody X3",
       "sourceNames": {
@@ -30395,7 +30395,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_09_003"
     },
-    "mrs:f0656a11a553": {
+    "mrs:2e340e7fb79b": {
       "sourceId": "phantom-factor:3055150",
       "sourceName": "Heavy Guardian Rhapsody X4",
       "sourceNames": {
@@ -30739,7 +30739,7 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry126"
     },
-    "mrs:825481d4168d": {
+    "mrs:b70c83918ca0": {
       "sourceId": "phantom-factor:3056010",
       "sourceName": "Verdant Oracle X1",
       "sourceNames": {
@@ -30757,7 +30757,7 @@
       },
       "iconPath": "yinzi_s2_05_001"
     },
-    "mrs:5ed915c7b920": {
+    "mrs:f29773be9e42": {
       "sourceId": "phantom-factor:3056020",
       "sourceName": "Verdant Oracle X2",
       "sourceNames": {
@@ -30775,7 +30775,7 @@
       },
       "iconPath": "yinzi_s2_05_005"
     },
-    "mrs:db340a5c0d31": {
+    "mrs:0e0f78a797d6": {
       "sourceId": "phantom-factor:3056030",
       "sourceName": "Verdant Oracle X3",
       "sourceNames": {
@@ -30793,7 +30793,7 @@
       },
       "iconPath": "yinzi_s2_05_007"
     },
-    "mrs:6c35e9e03a5c": {
+    "mrs:2f41c32685e2": {
       "sourceId": "phantom-factor:3056040",
       "sourceName": "Verdant Oracle X4",
       "sourceNames": {
@@ -30811,7 +30811,7 @@
       },
       "iconPath": "yinzi_s2_05_004"
     },
-    "mrs:25cdc53f0894": {
+    "mrs:0a5c663d9324": {
       "sourceId": "phantom-factor:3056050",
       "sourceName": "Verdant Oracle X5",
       "sourceNames": {
@@ -30829,7 +30829,7 @@
       },
       "iconPath": "yinzi_s2_05_006"
     },
-    "mrs:8133f97b50de": {
+    "mrs:8145018d9c96": {
       "sourceId": "phantom-factor:3056060",
       "sourceName": "Verdant Oracle X6",
       "sourceNames": {
@@ -30847,7 +30847,7 @@
       },
       "iconPath": "yinzi_s2_05_010"
     },
-    "mrs:f59d56a6ad94": {
+    "mrs:a6db335d8946": {
       "sourceId": "phantom-factor:3056070",
       "sourceName": "Verdant Oracle X7",
       "sourceNames": {
@@ -30865,7 +30865,7 @@
       },
       "iconPath": "yinzi_s2_05_008"
     },
-    "mrs:73d55b7463ed": {
+    "mrs:59e0e30bc191": {
       "sourceId": "phantom-factor:3056080",
       "sourceName": "Verdant Oracle X8",
       "sourceNames": {
@@ -30883,7 +30883,7 @@
       },
       "iconPath": "yinzi_s2_05_003"
     },
-    "mrs:8139a266fd9d": {
+    "mrs:a726b168f425": {
       "sourceId": "phantom-factor:3056090",
       "sourceName": "Verdant Oracle X9",
       "sourceNames": {
@@ -30901,7 +30901,7 @@
       },
       "iconPath": "yinzi_s2_05_009"
     },
-    "mrs:3a186a9e1488": {
+    "mrs:bbbc870c769b": {
       "sourceId": "phantom-factor:3056100",
       "sourceName": "Verdant Oracle X10",
       "sourceNames": {
@@ -30919,7 +30919,7 @@
       },
       "iconPath": "yinzi_s2_05_002"
     },
-    "mrs:6f7d2da167e2": {
+    "mrs:98c1efa2e628": {
       "sourceId": "phantom-factor:3056110",
       "sourceName": "Verdant Oracle X11",
       "sourceNames": {
@@ -30937,7 +30937,7 @@
       },
       "iconPath": "yinzi_s2_05_011"
     },
-    "mrs:62f886052949": {
+    "mrs:a8800856ae3e": {
       "sourceId": "phantom-factor:3056120",
       "sourceName": "Verdant Oracle Rhapsody X1",
       "sourceNames": {
@@ -30955,7 +30955,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_05_001"
     },
-    "mrs:b17f71170dd1": {
+    "mrs:cf00786e9f02": {
       "sourceId": "phantom-factor:3056130",
       "sourceName": "Verdant Oracle Rhapsody X2",
       "sourceNames": {
@@ -30973,7 +30973,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_05_002"
     },
-    "mrs:45590742b5d2": {
+    "mrs:127c64bee41c": {
       "sourceId": "phantom-factor:3056140",
       "sourceName": "Verdant Oracle Rhapsody X3",
       "sourceNames": {
@@ -30991,7 +30991,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_05_003"
     },
-    "mrs:73b7649cd58c": {
+    "mrs:6cffcd72cd20": {
       "sourceId": "phantom-factor:3056150",
       "sourceName": "Verdant Oracle Rhapsody X4",
       "sourceNames": {
@@ -31318,7 +31318,7 @@
         "design": "生命汲取"
       }
     },
-    "mrs:aec05bcc563f": {
+    "mrs:1d62ceb710b6": {
       "sourceId": "phantom-factor:3057010",
       "sourceName": "Beat Performer X1",
       "sourceNames": {
@@ -31336,7 +31336,7 @@
       },
       "iconPath": "yinzi_s2_13_001"
     },
-    "mrs:3df5b5cb4087": {
+    "mrs:4ccb9baa2949": {
       "sourceId": "phantom-factor:3057020",
       "sourceName": "Beat Performer X2",
       "sourceNames": {
@@ -31354,7 +31354,7 @@
       },
       "iconPath": "yinzi_s2_13_002"
     },
-    "mrs:a7b25b6a1510": {
+    "mrs:6bee17cf5fa3": {
       "sourceId": "phantom-factor:3057030",
       "sourceName": "Beat Performer X3",
       "sourceNames": {
@@ -31372,7 +31372,7 @@
       },
       "iconPath": "yinzi_s2_13_003"
     },
-    "mrs:50354eebd854": {
+    "mrs:1e9440e38da6": {
       "sourceId": "phantom-factor:3057040",
       "sourceName": "Beat Performer X4",
       "sourceNames": {
@@ -31390,7 +31390,7 @@
       },
       "iconPath": "yinzi_s2_13_004"
     },
-    "mrs:4c5c170bb6c7": {
+    "mrs:a498517327b8": {
       "sourceId": "phantom-factor:3057050",
       "sourceName": "Beat Performer X5",
       "sourceNames": {
@@ -31408,7 +31408,7 @@
       },
       "iconPath": "yinzi_s2_13_005"
     },
-    "mrs:82dc1b3b5fdf": {
+    "mrs:e8dd11299c9c": {
       "sourceId": "phantom-factor:3057060",
       "sourceName": "Beat Performer X6",
       "sourceNames": {
@@ -31426,7 +31426,7 @@
       },
       "iconPath": "yinzi_s2_13_006"
     },
-    "mrs:1c2fdc47ecde": {
+    "mrs:f965c065ede3": {
       "sourceId": "phantom-factor:3057070",
       "sourceName": "Beat Performer X7",
       "sourceNames": {
@@ -31444,7 +31444,7 @@
       },
       "iconPath": "yinzi_s2_13_007"
     },
-    "mrs:08c91ad54d59": {
+    "mrs:60f2f328cb8a": {
       "sourceId": "phantom-factor:3057080",
       "sourceName": "Beat Performer X8",
       "sourceNames": {
@@ -31462,7 +31462,7 @@
       },
       "iconPath": "yinzi_s2_13_008"
     },
-    "mrs:e9d62a5086ff": {
+    "mrs:cc81e1fb65fe": {
       "sourceId": "phantom-factor:3057090",
       "sourceName": "Beat Performer X9",
       "sourceNames": {
@@ -31480,7 +31480,7 @@
       },
       "iconPath": "yinzi_s2_13_009"
     },
-    "mrs:df324ea904a2": {
+    "mrs:bb4c7cca10f2": {
       "sourceId": "phantom-factor:3057100",
       "sourceName": "Beat Performer X10",
       "sourceNames": {
@@ -31498,7 +31498,7 @@
       },
       "iconPath": "yinzi_s2_13_010"
     },
-    "mrs:669b61cf8491": {
+    "mrs:3162f9e4ee10": {
       "sourceId": "phantom-factor:3057110",
       "sourceName": "Beat Performer X11",
       "sourceNames": {
@@ -31534,7 +31534,7 @@
         "design": "五重奏溢出检测"
       }
     },
-    "mrs:877eeb13a3d3": {
+    "mrs:e428c3230919": {
       "sourceId": "phantom-factor:3057120",
       "sourceName": "Beat Performer Rhapsody X1",
       "sourceNames": {
@@ -31552,7 +31552,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_13_001"
     },
-    "mrs:b0a54db3f2ab": {
+    "mrs:cd6e9fb8f8d8": {
       "sourceId": "phantom-factor:3057130",
       "sourceName": "Beat Performer Rhapsody X2",
       "sourceNames": {
@@ -31570,7 +31570,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_13_002"
     },
-    "mrs:33585e1aaa96": {
+    "mrs:86b0f9266f47": {
       "sourceId": "phantom-factor:3057140",
       "sourceName": "Beat Performer Rhapsody X3",
       "sourceNames": {
@@ -31588,7 +31588,7 @@
       },
       "iconPath": "kuangxiangyinzi_s2_13_003"
     },
-    "mrs:4a377273c28f": {
+    "mrs:115b0bc04028": {
       "sourceId": "phantom-factor:3057150",
       "sourceName": "Beat Performer Rhapsody X4",
       "sourceNames": {
@@ -31908,7 +31908,79 @@
       },
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry026"
     },
-    "mrs:490a5155fe3f": {
+    "mrs:4c012bca61cb": {
+      "sourceId": "phantom-factor:3058010",
+      "sourceName": "Polarity X1",
+      "sourceNames": {
+        "en": "Polarity X1",
+        "zh-CN": "极性X1",
+        "zh-TW": "極性X1",
+        "ja": "極性X1",
+        "ko-KR": "극성X1",
+        "fr": "Polarité X1",
+        "de": "Polarität X1",
+        "es": "Polaridad X1",
+        "pt-BR": "Polaridade X1",
+        "th": "Polarity X1",
+        "id": "Polarity X1"
+      },
+      "iconPath": "yinzi_s2_common_001"
+    },
+    "mrs:7798624136fb": {
+      "sourceId": "phantom-factor:3058020",
+      "sourceName": "Polarity X2",
+      "sourceNames": {
+        "en": "Polarity X2",
+        "zh-CN": "极性X2",
+        "zh-TW": "極性X2",
+        "ja": "極性X2",
+        "ko-KR": "극성X2",
+        "fr": "Polarité X2",
+        "de": "Polarität X2",
+        "es": "Polaridad X2",
+        "pt-BR": "Polaridade X2",
+        "th": "Polarity X2",
+        "id": "Polarity X2"
+      },
+      "iconPath": "yinzi_s2_common_002"
+    },
+    "mrs:9be35c9fc068": {
+      "sourceId": "phantom-factor:3058030",
+      "sourceName": "Polarity X3",
+      "sourceNames": {
+        "en": "Polarity X3",
+        "zh-CN": "极性X3",
+        "zh-TW": "極性X3",
+        "ja": "極性X3",
+        "ko-KR": "극성X3",
+        "fr": "Polarité X3",
+        "de": "Polarität X3",
+        "es": "Polaridad X3",
+        "pt-BR": "Polaridade X3",
+        "th": "Polarity X3",
+        "id": "Polarity X3"
+      },
+      "iconPath": "yinzi_s2_common_003"
+    },
+    "mrs:f1e90cc6d360": {
+      "sourceId": "phantom-factor:3058040",
+      "sourceName": "Polarity X4",
+      "sourceNames": {
+        "en": "Polarity X4",
+        "zh-CN": "极性X4",
+        "zh-TW": "極性X4",
+        "ja": "極性X4",
+        "ko-KR": "극성X4",
+        "fr": "Polarité X4",
+        "de": "Polarität X4",
+        "es": "Polaridad X4",
+        "pt-BR": "Polaridade X4",
+        "th": "Polarity X4",
+        "id": "Polarity X4"
+      },
+      "iconPath": "yinzi_s2_common_004"
+    },
+    "mrs:8c84641a5eba": {
       "sourceId": "phantom-factor:3058050",
       "sourceName": "Polarity X5",
       "sourceNames": {
@@ -31926,7 +31998,7 @@
       },
       "iconPath": "yinzi_s2_common_005"
     },
-    "mrs:493820b11f63": {
+    "mrs:f9e98ead7134": {
       "sourceId": "phantom-factor:3058060",
       "sourceName": "Polarity X6",
       "sourceNames": {
@@ -31944,7 +32016,7 @@
       },
       "iconPath": "yinzi_s2_common_006"
     },
-    "mrs:6f75fbd51252": {
+    "mrs:c72d30f60fe1": {
       "sourceId": "phantom-factor:3058070",
       "sourceName": "Polarity X7",
       "sourceNames": {
@@ -31962,7 +32034,7 @@
       },
       "iconPath": "yinzi_s2_common_007"
     },
-    "mrs:b96d12b166b3": {
+    "mrs:1f9fd9aee2c0": {
       "sourceId": "phantom-factor:3058080",
       "sourceName": "Polarity X8",
       "sourceNames": {
@@ -31980,7 +32052,7 @@
       },
       "iconPath": "yinzi_s2_common_008"
     },
-    "mrs:3f8eef2006ae": {
+    "mrs:15f4db8b52cc": {
       "sourceId": "phantom-factor:3058090",
       "sourceName": "Polarity X9",
       "sourceNames": {
@@ -31998,7 +32070,7 @@
       },
       "iconPath": "yinzi_s2_common_009"
     },
-    "mrs:6b2fb3465a1d": {
+    "mrs:48eb612230b2": {
       "sourceId": "phantom-factor:3058100",
       "sourceName": "Polarity X10",
       "sourceNames": {
@@ -32016,7 +32088,7 @@
       },
       "iconPath": "yinzi_s2_common_010"
     },
-    "mrs:130714060500": {
+    "mrs:05c27e1a3b1f": {
       "sourceId": "phantom-factor:3058110",
       "sourceName": "Polarity X11",
       "sourceNames": {
@@ -32034,7 +32106,79 @@
       },
       "iconPath": "yinzi_s2_common_011"
     },
-    "mrs:352130049e61": {
+    "mrs:54b12472a21e": {
+      "sourceId": "phantom-factor:3059010",
+      "sourceName": "Stasis X1",
+      "sourceNames": {
+        "en": "Stasis X1",
+        "zh-CN": "稳态X1",
+        "zh-TW": "穩態X1",
+        "ja": "恒常性X1",
+        "ko-KR": "안정X1",
+        "fr": "Stase X1",
+        "de": "Stase X1",
+        "es": "Estasis X1",
+        "pt-BR": "Estase X1",
+        "th": "Steady X1",
+        "id": "Steady X1"
+      },
+      "iconPath": "yinzi_s2_common_012"
+    },
+    "mrs:86991716cf05": {
+      "sourceId": "phantom-factor:3059020",
+      "sourceName": "Stasis X2",
+      "sourceNames": {
+        "en": "Stasis X2",
+        "zh-CN": "稳态X2",
+        "zh-TW": "穩態X2",
+        "ja": "恒常性X2",
+        "ko-KR": "안정X2",
+        "fr": "Stase X2",
+        "de": "Stase X2",
+        "es": "Estasis X2",
+        "pt-BR": "Estase X2",
+        "th": "Steady X2",
+        "id": "Steady X2"
+      },
+      "iconPath": "yinzi_s2_common_013"
+    },
+    "mrs:4900fc2c74a3": {
+      "sourceId": "phantom-factor:3059030",
+      "sourceName": "Stasis X3",
+      "sourceNames": {
+        "en": "Stasis X3",
+        "zh-CN": "稳态X3",
+        "zh-TW": "穩態X3",
+        "ja": "恒常性X3",
+        "ko-KR": "안정X3",
+        "fr": "Stase X3",
+        "de": "Stase X3",
+        "es": "Estasis X3",
+        "pt-BR": "Estase X3",
+        "th": "Steady X3",
+        "id": "Steady X3"
+      },
+      "iconPath": "yinzi_s2_common_014"
+    },
+    "mrs:b8bfa684a7d2": {
+      "sourceId": "phantom-factor:3059040",
+      "sourceName": "Stasis X4",
+      "sourceNames": {
+        "en": "Stasis X4",
+        "zh-CN": "稳态X4",
+        "zh-TW": "穩態X4",
+        "ja": "恒常性X4",
+        "ko-KR": "안정X4",
+        "fr": "Stase X4",
+        "de": "Stase X4",
+        "es": "Estasis X4",
+        "pt-BR": "Estase X4",
+        "th": "Steady X4",
+        "id": "Steady X4"
+      },
+      "iconPath": "yinzi_s2_common_015"
+    },
+    "mrs:41ca8c9c34f7": {
       "sourceId": "phantom-factor:3059050",
       "sourceName": "Stasis X5",
       "sourceNames": {
@@ -32052,7 +32196,7 @@
       },
       "iconPath": "yinzi_s2_common_016"
     },
-    "mrs:71ea00abde1e": {
+    "mrs:9626cf0d52df": {
       "sourceId": "phantom-factor:3059060",
       "sourceName": "Stasis X6",
       "sourceNames": {
@@ -32070,7 +32214,7 @@
       },
       "iconPath": "yinzi_s2_common_017"
     },
-    "mrs:764033c9f8c4": {
+    "mrs:b2a4c4258899": {
       "sourceId": "phantom-factor:3059070",
       "sourceName": "Stasis X7",
       "sourceNames": {
@@ -32088,7 +32232,7 @@
       },
       "iconPath": "yinzi_s2_common_018"
     },
-    "mrs:7d494abb7a63": {
+    "mrs:84a866a76383": {
       "sourceId": "phantom-factor:3059080",
       "sourceName": "Stasis X8",
       "sourceNames": {
@@ -32107,7 +32251,25 @@
       },
       "iconPath": "yinzi_s2_common_019"
     },
-    "mrs:2011d2503ad4": {
+    "mrs:5340074abdc0": {
+      "sourceId": "phantom-factor:3059090",
+      "sourceName": "Stasis X9",
+      "sourceNames": {
+        "en": "Stasis X9",
+        "zh-CN": "稳态X9",
+        "zh-TW": "穩態X9",
+        "ja": "恒常性X9",
+        "ko-KR": "안정X9",
+        "fr": "Stase X9",
+        "de": "Stase X9",
+        "es": "Estasis X9",
+        "pt-BR": "Estase X9",
+        "th": "Steady X9",
+        "id": "Steady X9"
+      },
+      "iconPath": "yinzi_s2_common_020"
+    },
+    "mrs:9b5b7604d2c6": {
       "sourceId": "phantom-factor:3059100",
       "sourceName": "Stormblade Stasis X1",
       "sourceNames": {
@@ -32143,7 +32305,7 @@
         "design": "稳态G10-子BUFF"
       }
     },
-    "mrs:509b5a1b3df5": {
+    "mrs:cb4907879ef0": {
       "sourceId": "phantom-factor:3059110",
       "sourceName": "Stormblade Stasis X2",
       "sourceNames": {
@@ -32161,7 +32323,7 @@
       },
       "iconPath": "yinzi_s2_common_022"
     },
-    "mrs:111674dc51a2": {
+    "mrs:2ca447d81824": {
       "sourceId": "phantom-factor:3059120",
       "sourceName": "Wind Knight Stasis X1",
       "sourceNames": {
@@ -32179,7 +32341,7 @@
       },
       "iconPath": "yinzi_s2_common_023"
     },
-    "mrs:e06b8f2e96c5": {
+    "mrs:7a9cc832b65a": {
       "sourceId": "phantom-factor:3059130",
       "sourceName": "Wind Knight Stasis X2",
       "sourceNames": {
@@ -32197,7 +32359,7 @@
       },
       "iconPath": "yinzi_s2_common_024"
     },
-    "mrs:79e61a64f232": {
+    "mrs:27d021aeb4ea": {
       "sourceId": "phantom-factor:3059140",
       "sourceName": "Frost Mage Stasis X1",
       "sourceNames": {
@@ -32215,7 +32377,7 @@
       },
       "iconPath": "yinzi_s2_common_025"
     },
-    "mrs:daa198651251": {
+    "mrs:9a7e929fdca3": {
       "sourceId": "phantom-factor:3059150",
       "sourceName": "Frost Mage Stasis X2",
       "sourceNames": {
@@ -32233,7 +32395,7 @@
       },
       "iconPath": "yinzi_s2_common_026"
     },
-    "mrs:30cb96f28ac2": {
+    "mrs:be4ac463ac51": {
       "sourceId": "phantom-factor:3059160",
       "sourceName": "Marksman Stasis X1",
       "sourceNames": {
@@ -32245,13 +32407,13 @@
         "fr": "Stase de Tireur d'élite X1",
         "de": "Scharfschütze-Stase X1",
         "es": "Estasis: Tirador X1",
-        "pt-BR": "Estase do Atirador​ de Elite X1",
+        "pt-BR": "Estase do Atirador de Elite X1",
         "th": "Marksman Steady X1",
         "id": "Divine Steady X1"
       },
       "iconPath": "yinzi_s2_common_027"
     },
-    "mrs:4ab6a04a4b2b": {
+    "mrs:88d5bb5b692f": {
       "sourceId": "phantom-factor:3059170",
       "sourceName": "Marksman Stasis X2",
       "sourceNames": {
@@ -32263,13 +32425,13 @@
         "fr": "Stase de Tireur d'élite X2",
         "de": "Scharfschütze-Stase X2",
         "es": "Estasis: Tirador X2",
-        "pt-BR": "Estase do Atirador​ de Elite X2",
+        "pt-BR": "Estase do Atirador de Elite X2",
         "th": "Marksman Steady X2",
         "id": "Divine Steady X2"
       },
       "iconPath": "yinzi_s2_common_028"
     },
-    "mrs:244c0c57841b": {
+    "mrs:995c7368c2da": {
       "sourceId": "phantom-factor:3059180",
       "sourceName": "Shield Knight Stasis X1",
       "sourceNames": {
@@ -32287,7 +32449,7 @@
       },
       "iconPath": "yinzi_s2_common_029"
     },
-    "mrs:178062c0f6b4": {
+    "mrs:4f805353c989": {
       "sourceId": "phantom-factor:3059190",
       "sourceName": "Shield Knight Stasis X2",
       "sourceNames": {
@@ -32305,7 +32467,7 @@
       },
       "iconPath": "yinzi_s2_common_030"
     },
-    "mrs:0f0f08ef0ebc": {
+    "mrs:988255b8c5ad": {
       "sourceId": "phantom-factor:3059200",
       "sourceName": "Heavy Guardian Stasis X1",
       "sourceNames": {
@@ -32323,7 +32485,7 @@
       },
       "iconPath": "yinzi_s2_common_031"
     },
-    "mrs:01b633216b19": {
+    "mrs:01d132928941": {
       "sourceId": "phantom-factor:3059210",
       "sourceName": "Heavy Guardian Stasis X2",
       "sourceNames": {
@@ -32342,7 +32504,7 @@
       },
       "iconPath": "yinzi_s2_common_032"
     },
-    "mrs:34059ec9cbb7": {
+    "mrs:d667c3c9587f": {
       "sourceId": "phantom-factor:3059220",
       "sourceName": "Verdant Oracle Stasis X1",
       "sourceNames": {
@@ -32367,7 +32529,7 @@
         "design": "森语稳态G1-护盾"
       }
     },
-    "mrs:fb7634d6b4f0": {
+    "mrs:a8ba5b6de0cf": {
       "sourceId": "phantom-factor:3059230",
       "sourceName": "Verdant Oracle Stasis X2",
       "sourceNames": {
@@ -32385,7 +32547,7 @@
       },
       "iconPath": "yinzi_s2_common_034"
     },
-    "mrs:4e07ac6c2c85": {
+    "mrs:94c208891edd": {
       "sourceId": "phantom-factor:3059240",
       "sourceName": "Beat Performer Stasis X1",
       "sourceNames": {
@@ -32403,7 +32565,7 @@
       },
       "iconPath": "yinzi_s2_common_035"
     },
-    "mrs:73040839aa11": {
+    "mrs:dec93120bd96": {
       "sourceId": "phantom-factor:3059250",
       "sourceName": "Beat Performer Stasis X2",
       "sourceNames": {
@@ -33189,7 +33351,7 @@
       "mrs:9ecedd6a403e"
     ],
     "talent:913": [
-      "mrs:aaa80f11d229"
+      "mrs:44bda2ca8b54"
     ],
     "talent:933": [
       "mrs:7f42a8b2002e"
@@ -33312,19 +33474,19 @@
       "mrs:0921845145a5"
     ],
     "talent:1331": [
-      "mrs:f2495ff634ef"
+      "mrs:82b78ace20af"
     ],
     "talent:1345": [
-      "mrs:8aeb60704e1c"
+      "mrs:191070b501f4"
     ],
     "talent:1346": [
-      "mrs:0e3da721ed63"
+      "mrs:900db670ced5"
     ],
     "talent:1347": [
       "mrs:742cc85dd8d5"
     ],
     "talent:1362": [
-      "mrs:a8fab8e2ffdd"
+      "mrs:7af12e8c7296"
     ],
     "buff-source:55339": [
       "mrs:8cde8e9d1316"
@@ -33393,13 +33555,13 @@
       "mrs:fda9379c9776"
     ],
     "talent:1119": [
-      "mrs:e2288801345b"
+      "mrs:64ae2e279e78"
     ],
     "talent:1159": [
       "mrs:e70f3bf728d3"
     ],
     "talent:1161": [
-      "mrs:dd731093e15f"
+      "mrs:b712182f2cb2"
     ],
     "talent:1225": [
       "mrs:61dee985a16a"
@@ -33903,7 +34065,7 @@
       "mrs:b739c6737617"
     ],
     "talent:244": [
-      "mrs:98c8fd278229"
+      "mrs:3a5d8c69be48"
     ],
     "buff-source:864201": [
       "mrs:c746b7090066"
@@ -34656,10 +34818,10 @@
       "mrs:2b3fce25a40d"
     ],
     "season-rogue-entry:164": [
-      "mrs:3efea56bfd28"
+      "mrs:1516aedc6f31"
     ],
     "season-rogue-entry:165": [
-      "mrs:a2cee57c9d39"
+      "mrs:26ec4475c53f"
     ],
     "season-rogue-entry:166": [
       "mrs:4d274ef2858c"
@@ -34713,7 +34875,7 @@
       "mrs:7c0822afdb00"
     ],
     "season-rogue-entry:182": [
-      "mrs:068c81be8c25"
+      "mrs:97d57a8a00dd"
     ],
     "season-rogue-entry:183": [
       "mrs:eba2fa01b62e"
@@ -34776,7 +34938,7 @@
       "mrs:202009948c35"
     ],
     "season-rogue-entry:202": [
-      "mrs:00a489856984"
+      "mrs:06428adcb89b"
     ],
     "season-rogue-entry:203": [
       "mrs:89d372114812"
@@ -34806,7 +34968,7 @@
       "mrs:e516aaa016f4"
     ],
     "season-rogue-entry:210": [
-      "mrs:fa046d0f4c57"
+      "mrs:d363aab2831b"
     ],
     "buff-source:997540": [
       "mrs:ccac226a4ae1"
@@ -34815,7 +34977,7 @@
       "mrs:8259d92f809e"
     ],
     "season-rogue-entry:211": [
-      "mrs:e4d99700f135"
+      "mrs:c56a71d41595"
     ],
     "season-rogue-entry:212": [
       "mrs:761d5c0b3960"
@@ -34896,7 +35058,7 @@
       "mrs:7d7496b310e4"
     ],
     "season-rogue-entry:129": [
-      "mrs:033f988f7a41"
+      "mrs:af710af061e5"
     ],
     "season-rogue-entry:131": [
       "mrs:097336140be9"
@@ -34977,16 +35139,16 @@
       "mrs:80477810f2fa"
     ],
     "season-rogue-entry:100": [
-      "mrs:da20320a2163"
+      "mrs:bcdaa46f04f6"
     ],
     "season-rogue-entry:101": [
-      "mrs:4993b6af5c57"
+      "mrs:f926f26ad7b9"
     ],
     "season-rogue-entry:104": [
-      "mrs:2e02be3e0fad"
+      "mrs:519e18527ece"
     ],
     "season-rogue-entry:105": [
-      "mrs:1fa1a3e4ed10"
+      "mrs:d472cc2ffaaf"
     ],
     "buff-source:998952": [
       "mrs:c2e95f188074"
@@ -35970,10 +36132,10 @@
       "mrs:c992b0951dc1"
     ],
     "talent:116": [
-      "mrs:0f8a7018b5aa"
+      "mrs:eea33019e62c"
     ],
     "talent:118": [
-      "mrs:64aca37108a5"
+      "mrs:70397733fad1"
     ],
     "talent:119": [
       "mrs:35f04c4584b6"
@@ -35988,7 +36150,7 @@
       "mrs:d951c3b0786d"
     ],
     "talent:124": [
-      "mrs:ea3d0d3deb52"
+      "mrs:c957ecc92d49"
     ],
     "talent:126": [
       "mrs:8cd7453c84f8"
@@ -36033,7 +36195,7 @@
       "mrs:5f9c0a2499f0"
     ],
     "talent:142": [
-      "mrs:b8bfc1f6504e"
+      "mrs:112bdeeb0b3d"
     ],
     "talent:143": [
       "mrs:cae9407644b6"
@@ -36081,7 +36243,7 @@
       "mrs:1085f188cc89"
     ],
     "talent:159": [
-      "mrs:bdc2a71cdfe7"
+      "mrs:70abd4740acb"
     ],
     "talent:160": [
       "mrs:3096dc39077a"
@@ -36096,7 +36258,7 @@
       "mrs:f5320a50c2c8"
     ],
     "talent:164": [
-      "mrs:2a399c39b00a"
+      "mrs:549849285be9"
     ],
     "talent:165": [
       "mrs:17c2a44c7915"
@@ -36105,7 +36267,7 @@
       "mrs:8a00c4119ebe"
     ],
     "talent:169": [
-      "mrs:5ef8f7bb8098"
+      "mrs:a8cb6acc33fd"
     ],
     "talent:170": [
       "mrs:05e8637e12dd"
@@ -36117,7 +36279,7 @@
       "mrs:e9a77c12157d"
     ],
     "talent:902": [
-      "mrs:563a5027b750"
+      "mrs:2de40cf63a52"
     ],
     "talent:903": [
       "mrs:87e00059c9d6"
@@ -36171,7 +36333,7 @@
       "mrs:f043d1debab7"
     ],
     "talent:928": [
-      "mrs:b0db066fd3a7"
+      "mrs:c8ec25c98374"
     ],
     "talent:929": [
       "mrs:d547411f8eb8"
@@ -36180,7 +36342,7 @@
       "mrs:24eb6060520e"
     ],
     "talent:932": [
-      "mrs:bca1a3f66256"
+      "mrs:24ea1db8113b"
     ],
     "buff-source:2201343": [
       "mrs:9ca34d004297"
@@ -36243,7 +36405,7 @@
       "mrs:8f50b1a0c486"
     ],
     "talent:952": [
-      "mrs:b0ab888122ab"
+      "mrs:aaa131e05f2c"
     ],
     "talent:953": [
       "mrs:451518e3c661"
@@ -36309,7 +36471,7 @@
       "mrs:9b81a7e4f1fd"
     ],
     "talent:506": [
-      "mrs:cf23db001a1c"
+      "mrs:f4d29a049d8c"
     ],
     "talent:507": [
       "mrs:595c2f77dfab"
@@ -36447,16 +36609,16 @@
       "mrs:ee6eb57b0dcb"
     ],
     "talent:542": [
-      "mrs:e59fd2ad98bf"
+      "mrs:7c65b9f0973d"
     ],
     "talent:543": [
       "mrs:009065ad0b63"
     ],
     "talent:544": [
-      "mrs:061c3e937c97"
+      "mrs:cf65dca9de7d"
     ],
     "talent:545": [
-      "mrs:fae661f36d02"
+      "mrs:8010c804c2de"
     ],
     "talent:546": [
       "mrs:02f58394d010"
@@ -36465,7 +36627,7 @@
       "mrs:68330fac83ee"
     ],
     "talent:548": [
-      "mrs:7edd5854dc7f"
+      "mrs:cf5915b7059a"
     ],
     "talent:549": [
       "mrs:7e44fa5fb1a4"
@@ -36474,7 +36636,7 @@
       "mrs:ff9d395ec458"
     ],
     "talent:551": [
-      "mrs:ad8a380cd4ea"
+      "mrs:c9fbeffb9909"
     ],
     "talent:552": [
       "mrs:1ac147be94d4"
@@ -36498,7 +36660,7 @@
       "mrs:53a9e67b5841"
     ],
     "talent:555": [
-      "mrs:62d1ef078966"
+      "mrs:1a22bbc84bff"
     ],
     "talent:556": [
       "mrs:4203b11bc2b7"
@@ -36588,7 +36750,7 @@
       "mrs:cf78f91dc5a5"
     ],
     "talent:1112": [
-      "mrs:4d6f1da230a6"
+      "mrs:6719cc701d7f"
     ],
     "talent:1114": [
       "mrs:47ddcb429203"
@@ -36615,7 +36777,7 @@
       "mrs:0ca233bd8570"
     ],
     "talent:1124": [
-      "mrs:0d19a5cf0e22"
+      "mrs:24748645e407"
     ],
     "talent:1125": [
       "mrs:250e3533d517"
@@ -36636,7 +36798,7 @@
       "mrs:911cf59a2cc7"
     ],
     "talent:1130": [
-      "mrs:1c5ca8ae84e1"
+      "mrs:fba5edf77db1"
     ],
     "buff-source:2203302": [
       "mrs:76239a707058"
@@ -36663,7 +36825,7 @@
       "mrs:68b39e07b823"
     ],
     "talent:1139": [
-      "mrs:14ea3deb1890"
+      "mrs:388665a72229"
     ],
     "talent:1140": [
       "mrs:16c1ba0632e5"
@@ -36696,7 +36858,7 @@
       "mrs:a1d3db43fd4b"
     ],
     "talent:1150": [
-      "mrs:830e96cd0170"
+      "mrs:65b351f4037b"
     ],
     "talent:1151": [
       "mrs:66998c806359"
@@ -36852,7 +37014,7 @@
       "mrs:b5c21567f4a9"
     ],
     "talent:245": [
-      "mrs:5a757fbc4205"
+      "mrs:3f125e621759"
     ],
     "talent:246": [
       "mrs:37f72c0ca409"
@@ -36861,7 +37023,7 @@
       "mrs:731f02fdc074"
     ],
     "talent:249": [
-      "mrs:7f506e81d6fa"
+      "mrs:41610153d928"
     ],
     "talent:251": [
       "mrs:b3bbb7061322"
@@ -36906,7 +37068,7 @@
       "mrs:43a1684ab88d"
     ],
     "talent:271": [
-      "mrs:eaa10f98f72b"
+      "mrs:0818356ca975"
     ],
     "talent:400": [
       "mrs:2aca417f2313"
@@ -37212,7 +37374,7 @@
       "mrs:c9f8a3f324a5"
     ],
     "talent:1227": [
-      "mrs:09c893f530fc"
+      "mrs:878b91c8b5b6"
     ],
     "talent:1228": [
       "mrs:14ebef1ba449"
@@ -37221,7 +37383,7 @@
       "mrs:f531e5f44c41"
     ],
     "talent:1230": [
-      "mrs:8d86a6b84811"
+      "mrs:846e84fcdd7f"
     ],
     "talent:1231": [
       "mrs:b71410c2ecd2"
@@ -37272,7 +37434,7 @@
       "mrs:49534d51b8d2"
     ],
     "talent:1247": [
-      "mrs:638f18a0da6b"
+      "mrs:a96956608dea"
     ],
     "talent:1248": [
       "mrs:73d766ad20d5"
@@ -37305,7 +37467,7 @@
       "mrs:e0091f1e75f9"
     ],
     "talent:1258": [
-      "mrs:9f94a10f910a"
+      "mrs:b04afc83795b"
     ],
     "talent:1259": [
       "mrs:3fd7856f72b0"
@@ -37341,10 +37503,10 @@
       "mrs:dc836a3be30e"
     ],
     "talent:1306": [
-      "mrs:12e23a33f9e4"
+      "mrs:3d2607290f1e"
     ],
     "talent:1307": [
-      "mrs:4725e5494035"
+      "mrs:d6843886ca48"
     ],
     "talent:1309": [
       "mrs:a6e772333373"
@@ -37353,7 +37515,7 @@
       "mrs:73b8121ac13a"
     ],
     "talent:1311": [
-      "mrs:de612630ca35"
+      "mrs:6adaf0d762ce"
     ],
     "talent:1312": [
       "mrs:e941219a7c91"
@@ -37398,7 +37560,7 @@
       "mrs:246d22310256"
     ],
     "talent:1355": [
-      "mrs:7e5d929d3276"
+      "mrs:86249e1a50ea"
     ],
     "talent:1324": [
       "mrs:b269828c48e4"
@@ -37473,16 +37635,16 @@
       "mrs:301a51a0135d"
     ],
     "talent:1353": [
-      "mrs:f221ac4ec53f"
+      "mrs:00418429c77f"
     ],
     "talent:1354": [
-      "mrs:3d80e3c9dae1"
+      "mrs:263e10c4549b"
     ],
     "talent:1356": [
       "mrs:16084164d69b"
     ],
     "talent:1357": [
-      "mrs:455964c7632a"
+      "mrs:74f71e222912"
     ],
     "talent:1358": [
       "mrs:6185f15d5722"
@@ -37599,7 +37761,7 @@
       "mrs:c49f5ad91ded"
     ],
     "talent:329": [
-      "mrs:c6c051033bf2"
+      "mrs:11c4758a77e7"
     ],
     "talent:330": [
       "mrs:f517ef3b8866"
@@ -38148,49 +38310,49 @@
       "mrs:c3ef8cc40872"
     ],
     "phantom-factor:3050010": [
-      "mrs:76a74c3110c4"
+      "mrs:db9fe07d4c1f"
     ],
     "phantom-factor:3050020": [
-      "mrs:074308d23138"
+      "mrs:999481405983"
     ],
     "phantom-factor:3050030": [
-      "mrs:bb4d3ece8ff3"
+      "mrs:b87b8be9e03b"
     ],
     "phantom-factor:3050040": [
-      "mrs:cd39e213cb60"
+      "mrs:ee547194414d"
     ],
     "phantom-factor:3050050": [
-      "mrs:3ae47dfe5376"
+      "mrs:25169073fb33"
     ],
     "phantom-factor:3050060": [
-      "mrs:416a601f39ed"
+      "mrs:fd2530f06fee"
     ],
     "phantom-factor:3050070": [
-      "mrs:eb67e4ac430c"
+      "mrs:aff13e8b8d76"
     ],
     "phantom-factor:3050080": [
-      "mrs:55c3db4bce48"
+      "mrs:58b24ec42371"
     ],
     "phantom-factor:3050090": [
-      "mrs:324f8c9c41d9"
+      "mrs:d0b8d8c8dbf0"
     ],
     "phantom-factor:3050100": [
-      "mrs:9dde7b523983"
+      "mrs:6b06a9df6720"
     ],
     "phantom-factor:3050110": [
-      "mrs:7b53703c9f7e"
+      "mrs:97312edee09d"
     ],
     "phantom-factor:3050120": [
-      "mrs:4a6898cd0283"
+      "mrs:1c3a1e54df31"
     ],
     "phantom-factor:3050130": [
-      "mrs:a41da6f06e66"
+      "mrs:621efad68e24"
     ],
     "phantom-factor:3050140": [
-      "mrs:45a03d53781c"
+      "mrs:5da4cb6dbfcd"
     ],
     "phantom-factor:3050150": [
-      "mrs:cfd2fc68100e"
+      "mrs:1a1db6a0fd05"
     ],
     "season-rogue-entry:215": [
       "mrs:7a4d12843d4a"
@@ -38241,49 +38403,49 @@
       "mrs:910ff95d4a16"
     ],
     "phantom-factor:3051010": [
-      "mrs:9fbe9ca5f53d"
+      "mrs:66f54d268016"
     ],
     "phantom-factor:3051020": [
-      "mrs:6d5fc808b50d"
+      "mrs:9c417d1bfb08"
     ],
     "phantom-factor:3051030": [
-      "mrs:88b80a95d560"
+      "mrs:20f1e6029764"
     ],
     "phantom-factor:3051040": [
-      "mrs:0d4509de331d"
+      "mrs:8673fb9c676b"
     ],
     "phantom-factor:3051050": [
-      "mrs:9ca6ca7d42d9"
+      "mrs:919f6d99167d"
     ],
     "phantom-factor:3051060": [
-      "mrs:5f212d2e9467"
+      "mrs:0fd84841479c"
     ],
     "phantom-factor:3051070": [
-      "mrs:64e9ef650dd7"
+      "mrs:a71b531e6cd2"
     ],
     "phantom-factor:3051080": [
-      "mrs:d5fd69fd5ff7"
+      "mrs:918ffd6cceae"
     ],
     "phantom-factor:3051090": [
-      "mrs:619e75b2fb23"
+      "mrs:09c03f3773e3"
     ],
     "phantom-factor:3051100": [
-      "mrs:6e7c7cfa30db"
+      "mrs:0c507479421f"
     ],
     "phantom-factor:3051110": [
-      "mrs:382030ee415f"
+      "mrs:c7649e959883"
     ],
     "phantom-factor:3051120": [
-      "mrs:bb0e2575ba00"
+      "mrs:06d4b85b23a2"
     ],
     "phantom-factor:3051130": [
-      "mrs:352410e0c96f"
+      "mrs:ddee3fa851b1"
     ],
     "phantom-factor:3051140": [
-      "mrs:ba9c97baf0e4"
+      "mrs:aebceee128ba"
     ],
     "phantom-factor:3051150": [
-      "mrs:ac5b68c3fc2d"
+      "mrs:80d35d5facb8"
     ],
     "season-rogue-entry:279": [
       "mrs:127ff34ce2f9"
@@ -38334,52 +38496,52 @@
       "mrs:2948ce3dee3c"
     ],
     "phantom-factor:3052010": [
-      "mrs:1550bddc4506"
+      "mrs:a8f0e8dcf025"
     ],
     "phantom-factor:3052020": [
-      "mrs:2ddbcdb165fa"
+      "mrs:cb5efe5fe631"
     ],
     "phantom-factor:3052030": [
-      "mrs:422fe3407db8"
+      "mrs:d895ac27bc59"
     ],
     "phantom-factor:3052040": [
-      "mrs:59b7fa99ffe1"
+      "mrs:153d5eae7448"
     ],
     "phantom-factor:3052050": [
-      "mrs:de2774818b6b"
+      "mrs:46bb719f459c"
     ],
     "phantom-factor:3052060": [
-      "mrs:23a459df03e5"
+      "mrs:d2ffcf621731"
     ],
     "phantom-factor:3052070": [
-      "mrs:f9f9c860ac13"
+      "mrs:a98c0abcfe69"
     ],
     "phantom-factor:3052080": [
-      "mrs:17cdbfa9b51b"
+      "mrs:2d037af6d63a"
     ],
     "phantom-factor:3052090": [
-      "mrs:6b2848effeaf"
+      "mrs:a2d9e898ae40"
     ],
     "phantom-factor:3052100": [
-      "mrs:bd595a8db205"
+      "mrs:f13e8cc76a76"
     ],
     "phantom-factor:3052110": [
-      "mrs:56dbb49f286a"
+      "mrs:4c94502d3b4d"
     ],
     "buff-source:3052112": [
       "mrs:b1162fbffae6"
     ],
     "phantom-factor:3052120": [
-      "mrs:aae80ca429fa"
+      "mrs:758ec961e7c2"
     ],
     "phantom-factor:3052130": [
-      "mrs:d2d0f7c8a32d"
+      "mrs:7af0d2cb9e9f"
     ],
     "phantom-factor:3052140": [
-      "mrs:1ef571d2ff81"
+      "mrs:61224bb2eca4"
     ],
     "phantom-factor:3052150": [
-      "mrs:705abf91b626"
+      "mrs:993457f1b4ad"
     ],
     "buff-source:3052151": [
       "mrs:dabdf3f4aeb1"
@@ -38436,49 +38598,49 @@
       "mrs:a615550ff10c"
     ],
     "phantom-factor:3053010": [
-      "mrs:32b0670cd093"
+      "mrs:98c5b6fc745c"
     ],
     "phantom-factor:3053020": [
-      "mrs:0d5f242cd19f"
+      "mrs:3f0404334c85"
     ],
     "phantom-factor:3053030": [
-      "mrs:65caa9c2f649"
+      "mrs:6a8258614643"
     ],
     "phantom-factor:3053040": [
-      "mrs:c4dda323a515"
+      "mrs:fa9bc3962f9d"
     ],
     "phantom-factor:3053050": [
-      "mrs:ec427bb475eb"
+      "mrs:bb58bd04e1ae"
     ],
     "phantom-factor:3053060": [
-      "mrs:d44262b95e61"
+      "mrs:ab0e93155b75"
     ],
     "phantom-factor:3053070": [
-      "mrs:1d3e1b4904b5"
+      "mrs:a1257a86494c"
     ],
     "phantom-factor:3053080": [
-      "mrs:b9b90ecbad9c"
+      "mrs:3b5f2fdd8449"
     ],
     "phantom-factor:3053090": [
-      "mrs:6f78a79cfb6a"
+      "mrs:99157ae37d04"
     ],
     "phantom-factor:3053100": [
-      "mrs:06a1180100f3"
+      "mrs:c8b3a6d54fa0"
     ],
     "phantom-factor:3053110": [
-      "mrs:9c89957215c8"
+      "mrs:43e913ff5f0d"
     ],
     "phantom-factor:3053120": [
-      "mrs:0a534165e802"
+      "mrs:823eba6adfb7"
     ],
     "phantom-factor:3053130": [
-      "mrs:6989b666d2ad"
+      "mrs:43b347baf910"
     ],
     "phantom-factor:3053140": [
-      "mrs:3bca58640a56"
+      "mrs:a4e8564407c0"
     ],
     "phantom-factor:3053150": [
-      "mrs:4b09ac128835"
+      "mrs:f777bf290553"
     ],
     "season-rogue-entry:247": [
       "mrs:5b65a266a5ab"
@@ -38529,49 +38691,49 @@
       "mrs:6bca60c2aa04"
     ],
     "phantom-factor:3054010": [
-      "mrs:de66e6fc3d6b"
+      "mrs:4bda788d452c"
     ],
     "phantom-factor:3054020": [
-      "mrs:6e9ff6f12f04"
+      "mrs:5263343b4652"
     ],
     "phantom-factor:3054030": [
-      "mrs:91fc0e042aa2"
+      "mrs:b7cb6544c542"
     ],
     "phantom-factor:3054040": [
-      "mrs:33bcc02f125f"
+      "mrs:e5fc4ed8bc26"
     ],
     "phantom-factor:3054050": [
-      "mrs:ea16001136af"
+      "mrs:744d60945ea1"
     ],
     "phantom-factor:3054060": [
-      "mrs:0905eb73e776"
+      "mrs:f7e44b840f77"
     ],
     "phantom-factor:3054070": [
-      "mrs:5a41533fb6f0"
+      "mrs:a2ff70799c13"
     ],
     "phantom-factor:3054080": [
-      "mrs:5a7a85ef3cc7"
+      "mrs:de9edc489127"
     ],
     "phantom-factor:3054090": [
-      "mrs:71936252fb06"
+      "mrs:7a4a507c1316"
     ],
     "phantom-factor:3054100": [
-      "mrs:70a125b7c790"
+      "mrs:dfff18ff5e3c"
     ],
     "phantom-factor:3054110": [
-      "mrs:99c2f4cea586"
+      "mrs:a760858b7068"
     ],
     "phantom-factor:3054120": [
-      "mrs:6cee7ce75b6f"
+      "mrs:214b1023d056"
     ],
     "phantom-factor:3054130": [
-      "mrs:1903edf92d52"
+      "mrs:144950247ffc"
     ],
     "phantom-factor:3054140": [
-      "mrs:a518e53be4b0"
+      "mrs:e8e5212b086d"
     ],
     "phantom-factor:3054150": [
-      "mrs:26a4196b8872"
+      "mrs:1f1994afebaf"
     ],
     "buff-source:3054151": [
       "mrs:94863360c8a7"
@@ -38631,49 +38793,49 @@
       "mrs:9b44647e2ec5"
     ],
     "phantom-factor:3055010": [
-      "mrs:20062f5d1f0f"
+      "mrs:806e2d07990f"
     ],
     "phantom-factor:3055020": [
-      "mrs:d947faf7abd2"
+      "mrs:12d6072e7527"
     ],
     "phantom-factor:3055030": [
-      "mrs:13b575d342e6"
+      "mrs:8956cac52386"
     ],
     "phantom-factor:3055040": [
-      "mrs:4d5a7c7373fd"
+      "mrs:ac67023f4975"
     ],
     "phantom-factor:3055050": [
-      "mrs:439f26f262b7"
+      "mrs:62053750112f"
     ],
     "phantom-factor:3055060": [
-      "mrs:141dae6a317b"
+      "mrs:405326bef8c0"
     ],
     "phantom-factor:3055070": [
-      "mrs:73e94e2ec603"
+      "mrs:7feac936f9c0"
     ],
     "phantom-factor:3055080": [
-      "mrs:06f1b6c210c1"
+      "mrs:595e07ccb057"
     ],
     "phantom-factor:3055090": [
-      "mrs:ca0222539991"
+      "mrs:d9173bedfc9d"
     ],
     "phantom-factor:3055100": [
-      "mrs:310d71e5ee87"
+      "mrs:c95b8fccb6d0"
     ],
     "phantom-factor:3055110": [
-      "mrs:d90efd35906e"
+      "mrs:8992caeea9da"
     ],
     "phantom-factor:3055120": [
-      "mrs:c36f480182b8"
+      "mrs:8810e65dd0f2"
     ],
     "phantom-factor:3055130": [
-      "mrs:d22f9500d44c"
+      "mrs:f290b3f49d60"
     ],
     "phantom-factor:3055140": [
-      "mrs:5d85027eb687"
+      "mrs:8f1e550c56d0"
     ],
     "phantom-factor:3055150": [
-      "mrs:f0656a11a553"
+      "mrs:2e340e7fb79b"
     ],
     "season-rogue-entry:310": [
       "mrs:ef0d8c6d2d95"
@@ -38730,49 +38892,49 @@
       "mrs:ecd284f80a0a"
     ],
     "phantom-factor:3056010": [
-      "mrs:825481d4168d"
+      "mrs:b70c83918ca0"
     ],
     "phantom-factor:3056020": [
-      "mrs:5ed915c7b920"
+      "mrs:f29773be9e42"
     ],
     "phantom-factor:3056030": [
-      "mrs:db340a5c0d31"
+      "mrs:0e0f78a797d6"
     ],
     "phantom-factor:3056040": [
-      "mrs:6c35e9e03a5c"
+      "mrs:2f41c32685e2"
     ],
     "phantom-factor:3056050": [
-      "mrs:25cdc53f0894"
+      "mrs:0a5c663d9324"
     ],
     "phantom-factor:3056060": [
-      "mrs:8133f97b50de"
+      "mrs:8145018d9c96"
     ],
     "phantom-factor:3056070": [
-      "mrs:f59d56a6ad94"
+      "mrs:a6db335d8946"
     ],
     "phantom-factor:3056080": [
-      "mrs:73d55b7463ed"
+      "mrs:59e0e30bc191"
     ],
     "phantom-factor:3056090": [
-      "mrs:8139a266fd9d"
+      "mrs:a726b168f425"
     ],
     "phantom-factor:3056100": [
-      "mrs:3a186a9e1488"
+      "mrs:bbbc870c769b"
     ],
     "phantom-factor:3056110": [
-      "mrs:6f7d2da167e2"
+      "mrs:98c1efa2e628"
     ],
     "phantom-factor:3056120": [
-      "mrs:62f886052949"
+      "mrs:a8800856ae3e"
     ],
     "phantom-factor:3056130": [
-      "mrs:b17f71170dd1"
+      "mrs:cf00786e9f02"
     ],
     "phantom-factor:3056140": [
-      "mrs:45590742b5d2"
+      "mrs:127c64bee41c"
     ],
     "phantom-factor:3056150": [
-      "mrs:73b7649cd58c"
+      "mrs:6cffcd72cd20"
     ],
     "buff-source:3056152": [
       "mrs:c3c608b05b5e"
@@ -38832,52 +38994,52 @@
       "mrs:147102700837"
     ],
     "phantom-factor:3057010": [
-      "mrs:aec05bcc563f"
+      "mrs:1d62ceb710b6"
     ],
     "phantom-factor:3057020": [
-      "mrs:3df5b5cb4087"
+      "mrs:4ccb9baa2949"
     ],
     "phantom-factor:3057030": [
-      "mrs:a7b25b6a1510"
+      "mrs:6bee17cf5fa3"
     ],
     "phantom-factor:3057040": [
-      "mrs:50354eebd854"
+      "mrs:1e9440e38da6"
     ],
     "phantom-factor:3057050": [
-      "mrs:4c5c170bb6c7"
+      "mrs:a498517327b8"
     ],
     "phantom-factor:3057060": [
-      "mrs:82dc1b3b5fdf"
+      "mrs:e8dd11299c9c"
     ],
     "phantom-factor:3057070": [
-      "mrs:1c2fdc47ecde"
+      "mrs:f965c065ede3"
     ],
     "phantom-factor:3057080": [
-      "mrs:08c91ad54d59"
+      "mrs:60f2f328cb8a"
     ],
     "phantom-factor:3057090": [
-      "mrs:e9d62a5086ff"
+      "mrs:cc81e1fb65fe"
     ],
     "phantom-factor:3057100": [
-      "mrs:df324ea904a2"
+      "mrs:bb4c7cca10f2"
     ],
     "phantom-factor:3057110": [
-      "mrs:669b61cf8491"
+      "mrs:3162f9e4ee10"
     ],
     "buff-source:3057111": [
       "mrs:2e05d80feb6f"
     ],
     "phantom-factor:3057120": [
-      "mrs:877eeb13a3d3"
+      "mrs:e428c3230919"
     ],
     "phantom-factor:3057130": [
-      "mrs:b0a54db3f2ab"
+      "mrs:cd6e9fb8f8d8"
     ],
     "phantom-factor:3057140": [
-      "mrs:33585e1aaa96"
+      "mrs:86b0f9266f47"
     ],
     "phantom-factor:3057150": [
-      "mrs:4a377273c28f"
+      "mrs:115b0bc04028"
     ],
     "buff-source:3057151": [
       "mrs:86e858b8394f"
@@ -38933,92 +39095,119 @@
     "season-rogue-entry:341": [
       "mrs:71ce5dc01eac"
     ],
+    "phantom-factor:3058010": [
+      "mrs:4c012bca61cb"
+    ],
+    "phantom-factor:3058020": [
+      "mrs:7798624136fb"
+    ],
+    "phantom-factor:3058030": [
+      "mrs:9be35c9fc068"
+    ],
+    "phantom-factor:3058040": [
+      "mrs:f1e90cc6d360"
+    ],
     "phantom-factor:3058050": [
-      "mrs:490a5155fe3f"
+      "mrs:8c84641a5eba"
     ],
     "phantom-factor:3058060": [
-      "mrs:493820b11f63"
+      "mrs:f9e98ead7134"
     ],
     "phantom-factor:3058070": [
-      "mrs:6f75fbd51252"
+      "mrs:c72d30f60fe1"
     ],
     "phantom-factor:3058080": [
-      "mrs:b96d12b166b3"
+      "mrs:1f9fd9aee2c0"
     ],
     "phantom-factor:3058090": [
-      "mrs:3f8eef2006ae"
+      "mrs:15f4db8b52cc"
     ],
     "phantom-factor:3058100": [
-      "mrs:6b2fb3465a1d"
+      "mrs:48eb612230b2"
     ],
     "phantom-factor:3058110": [
-      "mrs:130714060500"
+      "mrs:05c27e1a3b1f"
+    ],
+    "phantom-factor:3059010": [
+      "mrs:54b12472a21e"
+    ],
+    "phantom-factor:3059020": [
+      "mrs:86991716cf05"
+    ],
+    "phantom-factor:3059030": [
+      "mrs:4900fc2c74a3"
+    ],
+    "phantom-factor:3059040": [
+      "mrs:b8bfa684a7d2"
     ],
     "phantom-factor:3059050": [
-      "mrs:352130049e61"
+      "mrs:41ca8c9c34f7"
     ],
     "phantom-factor:3059060": [
-      "mrs:71ea00abde1e"
+      "mrs:9626cf0d52df"
     ],
     "phantom-factor:3059070": [
-      "mrs:764033c9f8c4"
+      "mrs:b2a4c4258899"
     ],
     "phantom-factor:3059080": [
-      "mrs:7d494abb7a63"
+      "mrs:84a866a76383"
+    ],
+    "phantom-factor:3059090": [
+      "mrs:5340074abdc0"
     ],
     "phantom-factor:3059100": [
-      "mrs:2011d2503ad4"
+      "mrs:9b5b7604d2c6"
     ],
     "buff-source:3059101": [
       "mrs:32018b7082a1"
     ],
     "phantom-factor:3059110": [
-      "mrs:509b5a1b3df5"
+      "mrs:cb4907879ef0"
     ],
     "phantom-factor:3059120": [
-      "mrs:111674dc51a2"
+      "mrs:2ca447d81824"
     ],
     "phantom-factor:3059130": [
-      "mrs:e06b8f2e96c5"
+      "mrs:7a9cc832b65a"
     ],
     "phantom-factor:3059140": [
-      "mrs:79e61a64f232"
+      "mrs:27d021aeb4ea"
     ],
     "phantom-factor:3059150": [
-      "mrs:daa198651251"
+      "mrs:9a7e929fdca3"
     ],
     "phantom-factor:3059160": [
-      "mrs:30cb96f28ac2"
+      "mrs:be4ac463ac51"
     ],
     "phantom-factor:3059170": [
-      "mrs:4ab6a04a4b2b"
+      "mrs:88d5bb5b692f"
     ],
     "phantom-factor:3059180": [
-      "mrs:244c0c57841b"
+      "mrs:995c7368c2da"
     ],
     "phantom-factor:3059190": [
-      "mrs:178062c0f6b4"
+      "mrs:4f805353c989"
     ],
     "phantom-factor:3059200": [
-      "mrs:0f0f08ef0ebc"
+      "mrs:988255b8c5ad"
     ],
     "phantom-factor:3059210": [
-      "mrs:01b633216b19"
+      "mrs:01d132928941"
     ],
     "phantom-factor:3059220": [
-      "mrs:34059ec9cbb7"
+      "mrs:d667c3c9587f"
     ],
     "buff-source:3059221": [
       "mrs:34c2c384db86"
     ],
     "phantom-factor:3059230": [
-      "mrs:fb7634d6b4f0"
+      "mrs:a8ba5b6de0cf"
     ],
     "phantom-factor:3059240": [
-      "mrs:4e07ac6c2c85"
+      "mrs:94c208891edd"
     ],
     "phantom-factor:3059250": [
-      "mrs:73040839aa11"
+      "mrs:dec93120bd96"
     ],
     "buff-source:3200013": [
       "mrs:15bad18988b9"
@@ -39115,10 +39304,10 @@
     ]
   },
   "stats": {
-    "scannedEntries": 2537,
-    "sourceRulesWithDisplay": 2086,
-    "entriesWithDisplay": 2086,
+    "scannedEntries": 2546,
+    "sourceRulesWithDisplay": 2095,
+    "entriesWithDisplay": 2095,
     "observedBridgePromotedSources": 18,
-    "sourceIds": 2086
+    "sourceIds": 2095
   }
 }

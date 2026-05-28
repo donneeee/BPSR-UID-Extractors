@@ -22,7 +22,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_001",
     "IconPathOffset": 15953,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604785908
+    "SourceOffset": 604798683
   },
   {
     "id": 3901,
@@ -43,13 +43,14 @@
     },
     "NameDesign": "奥义！琉火咆哮",
     "NameId": 1818023896,
+    "DescriptionId": 1505418390,
     "Icon": "skill_aoyi_skill_icon_017.png",
     "IconTexture": "skill_aoyi_advanced_texture017",
     "IconTextureOffset": 0,
     "Sprite": "as_mon_shouren_idle",
     "SpriteOffset": 32,
     "SkillEffectId": 390101,
-    "SkillEffectSourceOffset": 604050953,
+    "SkillEffectSourceOffset": 604063728,
     "MonsterNameId": 1203463582,
     "MonsterNames": {
       "en": "Inferno Ogre",
@@ -79,8 +80,8 @@
       "id": "Berkobarlah wahai api! Hanguskan segalanya!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137090,
-    "SkillTableSourceOffset": 604808135
+    "SourceOffset": 785028936,
+    "SkillTableSourceOffset": 604820910
   },
   {
     "id": 3902,
@@ -101,13 +102,14 @@
     },
     "NameDesign": "奥义！雷霆天引",
     "NameId": 1818023897,
+    "DescriptionId": 1505418391,
     "Icon": "skill_aoyi_skill_icon_014.png",
     "IconTexture": "skill_aoyi_advanced_texture014",
     "IconTextureOffset": 53,
     "Sprite": "as_mon_shouren-ds_fidle",
     "SpriteOffset": 85,
     "SkillEffectId": 390201,
-    "SkillEffectSourceOffset": 604051020,
+    "SkillEffectSourceOffset": 604063795,
     "MonsterNameId": 1203463583,
     "MonsterNames": {
       "en": "Tempest Ogre",
@@ -137,8 +139,8 @@
       "id": "Kegelapan, hendaknya sirna oleh petir!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137159,
-    "SkillTableSourceOffset": 604808374
+    "SourceOffset": 785029005,
+    "SkillTableSourceOffset": 604821149
   },
   {
     "id": 3903,
@@ -159,13 +161,14 @@
     },
     "NameDesign": "奥义！炽炎战斧",
     "NameId": 1818023898,
+    "DescriptionId": 1505418392,
     "Icon": "skill_aoyi_skill_icon_018.png",
     "IconTexture": "skill_aoyi_advanced_texture018",
     "IconTextureOffset": 110,
     "Sprite": "as_mon_solider-sssword_idle",
     "SpriteOffset": 142,
     "SkillEffectId": 390301,
-    "SkillEffectSourceOffset": 604051087,
+    "SkillEffectSourceOffset": 604063862,
     "MonsterNameId": 1203463584,
     "MonsterNames": {
       "en": "Brigand Leader",
@@ -214,7 +217,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526408526,
+      "sourceOffset": 526418579,
       "skillLevelId": 390301,
       "skillEffectId": 390301,
       "level": 1,
@@ -242,7 +245,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409564,
+        "sourceOffset": 595422339,
         "rowId": 56
       },
       {
@@ -266,7 +269,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409620,
+        "sourceOffset": 595422395,
         "rowId": 57
       },
       {
@@ -290,7 +293,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409676,
+        "sourceOffset": 595422451,
         "rowId": 58
       },
       {
@@ -314,7 +317,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409732,
+        "sourceOffset": 595422507,
         "rowId": 59
       },
       {
@@ -338,13 +341,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409788,
+        "sourceOffset": 595422563,
         "rowId": 60
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137228,
-    "SkillTableSourceOffset": 604808613
+    "SourceOffset": 785029074,
+    "SkillTableSourceOffset": 604821388
   },
   {
     "id": 3904,
@@ -365,13 +368,14 @@
     },
     "NameDesign": "绝技！超会心",
     "NameId": 1818023899,
+    "DescriptionId": 1505418393,
     "Icon": "skill_aoyi_skill_icon_026.png",
     "IconTexture": "skill_aoyi_advanced_texture026",
     "IconTextureOffset": 171,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 390401,
-    "SkillEffectSourceOffset": 604051154,
+    "SkillEffectSourceOffset": 604063929,
     "MonsterNameId": 1203463585,
     "MonsterNames": {
       "en": "Muku Warrior",
@@ -433,7 +437,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526408587,
+      "sourceOffset": 526418640,
       "skillLevelId": 390401,
       "skillEffectId": 390401,
       "level": 1,
@@ -474,7 +478,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595406764,
+        "sourceOffset": 595419539,
         "rowId": 6
       },
       {
@@ -511,7 +515,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595406820,
+        "sourceOffset": 595419595,
         "rowId": 7
       },
       {
@@ -548,7 +552,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595406876,
+        "sourceOffset": 595419651,
         "rowId": 8
       },
       {
@@ -585,7 +589,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595406932,
+        "sourceOffset": 595419707,
         "rowId": 9
       },
       {
@@ -622,13 +626,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595406988,
+        "sourceOffset": 595419763,
         "rowId": 10
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137297,
-    "SkillTableSourceOffset": 604808852
+    "SourceOffset": 785029143,
+    "SkillTableSourceOffset": 604821627
   },
   {
     "id": 3905,
@@ -649,13 +653,14 @@
     },
     "NameDesign": "绝技！猪突猛进",
     "NameId": 1818023900,
+    "DescriptionId": 1505418394,
     "Icon": "skill_aoyi_skill_icon_001.png",
     "IconTexture": "skill_aoyi_advanced_texture001",
     "IconTextureOffset": 227,
     "Sprite": "as_mon_yezhu_idle",
     "SpriteOffset": 259,
     "SkillEffectId": 390501,
-    "SkillEffectSourceOffset": 604051221,
+    "SkillEffectSourceOffset": 604063996,
     "MonsterNameId": 1203463586,
     "MonsterNames": {
       "en": "Boarrier Tyrant",
@@ -696,7 +701,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526408648,
+      "sourceOffset": 526418701,
       "skillLevelId": 390501,
       "skillEffectId": 390501,
       "level": 1,
@@ -716,7 +721,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407604,
+        "sourceOffset": 595420379,
         "rowId": 21
       },
       {
@@ -732,7 +737,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407660,
+        "sourceOffset": 595420435,
         "rowId": 22
       },
       {
@@ -748,7 +753,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407716,
+        "sourceOffset": 595420491,
         "rowId": 23
       },
       {
@@ -764,7 +769,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407772,
+        "sourceOffset": 595420547,
         "rowId": 24
       },
       {
@@ -780,13 +785,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407828,
+        "sourceOffset": 595420603,
         "rowId": 25
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137366,
-    "SkillTableSourceOffset": 604809091
+    "SourceOffset": 785029212,
+    "SkillTableSourceOffset": 604821866
   },
   {
     "id": 3906,
@@ -807,13 +812,14 @@
     },
     "NameDesign": "奥义！冰霜震荡",
     "NameId": 1818023901,
+    "DescriptionId": 1505418395,
     "Icon": "skill_aoyi_skill_icon_015.png",
     "IconTexture": "skill_aoyi_advanced_texture015",
     "IconTextureOffset": 278,
     "Sprite": "as_mon_shouren-ds_fidle",
     "SpriteOffset": 85,
     "SkillEffectId": 390601,
-    "SkillEffectSourceOffset": 604051288,
+    "SkillEffectSourceOffset": 604064063,
     "MonsterNameId": 1203463587,
     "MonsterNames": {
       "en": "Frost Ogre",
@@ -854,7 +860,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526408709,
+      "sourceOffset": 526418762,
       "skillLevelId": 390601,
       "skillEffectId": 390601,
       "level": 1,
@@ -874,7 +880,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408724,
+        "sourceOffset": 595421499,
         "rowId": 41
       },
       {
@@ -890,7 +896,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408780,
+        "sourceOffset": 595421555,
         "rowId": 42
       },
       {
@@ -906,7 +912,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408836,
+        "sourceOffset": 595421611,
         "rowId": 43
       },
       {
@@ -922,7 +928,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408892,
+        "sourceOffset": 595421667,
         "rowId": 44
       },
       {
@@ -938,13 +944,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408948,
+        "sourceOffset": 595421723,
         "rowId": 45
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137435,
-    "SkillTableSourceOffset": 604809330
+    "SourceOffset": 785029281,
+    "SkillTableSourceOffset": 604822105
   },
   {
     "id": 3907,
@@ -965,13 +971,14 @@
     },
     "NameDesign": "绝技！碎星陨落",
     "NameId": 1818023902,
+    "DescriptionId": 1505418396,
     "Icon": "skill_aoyi_skill_icon_008.png",
     "IconTexture": "skill_aoyi_advanced_texture008",
     "IconTextureOffset": 310,
     "Sprite": "as_mon_gebulin-ds_idle",
     "SpriteOffset": 342,
     "SkillEffectId": 390701,
-    "SkillEffectSourceOffset": 604051355,
+    "SkillEffectSourceOffset": 604064130,
     "MonsterNameId": 1203463588,
     "MonsterNames": {
       "en": "Inferno Goblin Mage",
@@ -1012,7 +1019,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526408770,
+      "sourceOffset": 526418823,
       "skillLevelId": 390701,
       "skillEffectId": 390701,
       "level": 1,
@@ -1032,7 +1039,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407044,
+        "sourceOffset": 595419819,
         "rowId": 11
       },
       {
@@ -1048,7 +1055,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407100,
+        "sourceOffset": 595419875,
         "rowId": 12
       },
       {
@@ -1064,7 +1071,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407156,
+        "sourceOffset": 595419931,
         "rowId": 13
       },
       {
@@ -1080,7 +1087,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407212,
+        "sourceOffset": 595419987,
         "rowId": 14
       },
       {
@@ -1096,13 +1103,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407268,
+        "sourceOffset": 595420043,
         "rowId": 15
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137504,
-    "SkillTableSourceOffset": 604809569
+    "SourceOffset": 785029350,
+    "SkillTableSourceOffset": 604822344
   },
   {
     "id": 3908,
@@ -1123,13 +1130,14 @@
     },
     "NameDesign": "奥义！脉冲祝祷",
     "NameId": 1818023903,
+    "DescriptionId": 1505418397,
     "Icon": "skill_aoyi_skill_icon_012.png",
     "IconTexture": "skill_aoyi_advanced_texture012",
     "IconTextureOffset": 366,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 390801,
-    "SkillEffectSourceOffset": 604051422,
+    "SkillEffectSourceOffset": 604064197,
     "MonsterNameId": 1203463589,
     "MonsterNames": {
       "en": "Muku King",
@@ -1170,7 +1178,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526408831,
+      "sourceOffset": 526418884,
       "skillLevelId": 390801,
       "skillEffectId": 390801,
       "level": 1,
@@ -1190,7 +1198,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407884,
+        "sourceOffset": 595420659,
         "rowId": 26
       },
       {
@@ -1206,7 +1214,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407940,
+        "sourceOffset": 595420715,
         "rowId": 27
       },
       {
@@ -1222,7 +1230,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407996,
+        "sourceOffset": 595420771,
         "rowId": 28
       },
       {
@@ -1238,7 +1246,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408052,
+        "sourceOffset": 595420827,
         "rowId": 29
       },
       {
@@ -1254,13 +1262,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408108,
+        "sourceOffset": 595420883,
         "rowId": 30
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137573,
-    "SkillTableSourceOffset": 604809808
+    "SourceOffset": 785029419,
+    "SkillTableSourceOffset": 604822583
   },
   {
     "id": 3909,
@@ -1281,11 +1289,12 @@
     },
     "NameDesign": "绝技！灵狐突袭",
     "NameId": 1818023904,
+    "DescriptionId": 1505418398,
     "Icon": "skill_aoyi_skill_icon_011.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_011",
     "IconPathOffset": 20801,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604810047
+    "SourceOffset": 604822822
   },
   {
     "id": 3910,
@@ -1306,16 +1315,17 @@
     },
     "NameDesign": "绝技！缭乱飞弹",
     "NameId": 1818023928,
+    "DescriptionId": 1505418422,
     "Icon": "skill_aoyi_skill_icon_009.png",
     "IconTexture": "skill_aoyi_advanced_texture009",
     "IconTextureOffset": 398,
     "Sprite": "as_mon_shouren_idle",
     "SpriteOffset": 32,
     "SkillEffectId": 391001,
-    "SkillEffectSourceOffset": 604051556,
+    "SkillEffectSourceOffset": 604064331,
     "MonsterNameId": 1203463614,
     "MonsterNames": {
-      "en": "​Void Ogre",
+      "en": "Void Ogre",
       "zh-CN": "虚蚀食人魔",
       "zh-TW": "虛蝕食人魔",
       "ja": "虚蝕オーガ",
@@ -1342,8 +1352,8 @@
       "id": "Inilah pertarungan!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137642,
-    "SkillTableSourceOffset": 604810286
+    "SourceOffset": 785029488,
+    "SkillTableSourceOffset": 604823061
   },
   {
     "id": 3911,
@@ -1364,13 +1374,14 @@
     },
     "NameDesign": "奥义！烈焰之心",
     "NameId": 1818023929,
+    "DescriptionId": 1505418423,
     "Icon": "skill_aoyi_skill_icon_042.png",
     "IconTexture": "skill_aoyi_advanced_texture042",
     "IconTextureOffset": 430,
     "Sprite": "as_wpnpc_m_base_tata_idle",
     "SpriteOffset": 462,
     "SkillEffectId": 391101,
-    "SkillEffectSourceOffset": 604051623,
+    "SkillEffectSourceOffset": 604064398,
     "MonsterNameId": 1203463615,
     "MonsterNames": {
       "en": "Tatta",
@@ -1417,7 +1428,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409014,
+      "sourceOffset": 526419067,
       "skillLevelId": 391101,
       "skillEffectId": 391101,
       "level": 1,
@@ -1443,7 +1454,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414324,
+        "sourceOffset": 595427099,
         "rowId": 141
       },
       {
@@ -1465,7 +1476,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414380,
+        "sourceOffset": 595427155,
         "rowId": 142
       },
       {
@@ -1487,7 +1498,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414436,
+        "sourceOffset": 595427211,
         "rowId": 143
       },
       {
@@ -1509,7 +1520,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414492,
+        "sourceOffset": 595427267,
         "rowId": 144
       },
       {
@@ -1531,13 +1542,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414548,
+        "sourceOffset": 595427323,
         "rowId": 145
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137711,
-    "SkillTableSourceOffset": 604810525
+    "SourceOffset": 785029557,
+    "SkillTableSourceOffset": 604823300
   },
   {
     "id": 3913,
@@ -1558,13 +1569,14 @@
     },
     "NameDesign": "绝技！电磁爆弹",
     "NameId": 1818023931,
+    "DescriptionId": 1505418425,
     "Icon": "skill_aoyi_skill_icon_010.png",
     "IconTexture": "skill_aoyi_advanced_texture010",
     "IconTextureOffset": 489,
     "Sprite": "as_mon_solider-rifle_idle",
     "SpriteOffset": 521,
     "SkillEffectId": 391301,
-    "SkillEffectSourceOffset": 604051690,
+    "SkillEffectSourceOffset": 604064465,
     "MonsterNameId": 1203463617,
     "MonsterNames": {
       "en": "Shadow Captain",
@@ -1605,7 +1617,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409136,
+      "sourceOffset": 526419189,
       "skillLevelId": 391301,
       "skillEffectId": 391301,
       "level": 1,
@@ -1625,7 +1637,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407324,
+        "sourceOffset": 595420099,
         "rowId": 16
       },
       {
@@ -1641,7 +1653,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407380,
+        "sourceOffset": 595420155,
         "rowId": 17
       },
       {
@@ -1657,7 +1669,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407436,
+        "sourceOffset": 595420211,
         "rowId": 18
       },
       {
@@ -1673,7 +1685,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407492,
+        "sourceOffset": 595420267,
         "rowId": 19
       },
       {
@@ -1689,13 +1701,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595407548,
+        "sourceOffset": 595420323,
         "rowId": 20
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137780,
-    "SkillTableSourceOffset": 604810764
+    "SourceOffset": 785029626,
+    "SkillTableSourceOffset": 604823539
   },
   {
     "id": 3914,
@@ -1716,13 +1728,14 @@
     },
     "NameDesign": "绝技！剑刃横扫",
     "NameId": 1818023932,
+    "DescriptionId": 1505418426,
     "Icon": "skill_aoyi_skill_icon_019.png",
     "IconTexture": "skill_aoyi_advanced_texture019",
     "IconTextureOffset": 548,
     "Sprite": "as_mon_gebulin-ssfc_idle",
     "SpriteOffset": 580,
     "SkillEffectId": 391401,
-    "SkillEffectSourceOffset": 604051757,
+    "SkillEffectSourceOffset": 604064532,
     "MonsterNameId": 1203463618,
     "MonsterNames": {
       "en": "Goblin Guard",
@@ -1770,7 +1783,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409197,
+      "sourceOffset": 526419250,
       "skillLevelId": 391401,
       "skillEffectId": 391401,
       "level": 1,
@@ -1797,7 +1810,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409844,
+        "sourceOffset": 595422619,
         "rowId": 61
       },
       {
@@ -1820,7 +1833,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409900,
+        "sourceOffset": 595422675,
         "rowId": 62
       },
       {
@@ -1843,7 +1856,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409956,
+        "sourceOffset": 595422731,
         "rowId": 63
       },
       {
@@ -1866,7 +1879,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410012,
+        "sourceOffset": 595422787,
         "rowId": 64
       },
       {
@@ -1889,13 +1902,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410068,
+        "sourceOffset": 595422843,
         "rowId": 65
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137849,
-    "SkillTableSourceOffset": 604811003
+    "SourceOffset": 785029695,
+    "SkillTableSourceOffset": 604823778
   },
   {
     "id": 3915,
@@ -1916,13 +1929,14 @@
     },
     "NameDesign": "绝技！乱射",
     "NameId": 1818023933,
+    "DescriptionId": 1505418427,
     "Icon": "skill_aoyi_skill_icon_020.png",
     "IconTexture": "skill_aoyi_advanced_texture020",
     "IconTextureOffset": 606,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 391501,
-    "SkillEffectSourceOffset": 604051824,
+    "SkillEffectSourceOffset": 604064599,
     "MonsterNameId": 1203463619,
     "MonsterNames": {
       "en": "Goblin Warrior",
@@ -1984,7 +1998,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409258,
+      "sourceOffset": 526419311,
       "skillLevelId": 391501,
       "skillEffectId": 391501,
       "level": 1,
@@ -2025,7 +2039,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410124,
+        "sourceOffset": 595422899,
         "rowId": 66
       },
       {
@@ -2062,7 +2076,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410180,
+        "sourceOffset": 595422955,
         "rowId": 67
       },
       {
@@ -2099,7 +2113,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410236,
+        "sourceOffset": 595423011,
         "rowId": 68
       },
       {
@@ -2136,7 +2150,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410292,
+        "sourceOffset": 595423067,
         "rowId": 69
       },
       {
@@ -2173,13 +2187,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410348,
+        "sourceOffset": 595423123,
         "rowId": 70
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137918,
-    "SkillTableSourceOffset": 604811242
+    "SourceOffset": 785029764,
+    "SkillTableSourceOffset": 604824017
   },
   {
     "id": 3916,
@@ -2200,11 +2214,12 @@
     },
     "NameDesign": "绝技！贯穿矢",
     "NameId": 1818023934,
+    "DescriptionId": 1505418428,
     "Icon": "skill_aoyi_skill_icon_021.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_021",
     "IconPathOffset": 21230,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604811481
+    "SourceOffset": 604824256
   },
   {
     "id": 3917,
@@ -2225,13 +2240,14 @@
     },
     "NameDesign": "绝技！超重斩",
     "NameId": 1818023935,
+    "DescriptionId": 1505418429,
     "Icon": "skill_aoyi_skill_icon_022.png",
     "IconTexture": "skill_aoyi_advanced_texture022",
     "IconTextureOffset": 638,
     "Sprite": "as_mon_solider-sssword_idle",
     "SpriteOffset": 142,
     "SkillEffectId": 391701,
-    "SkillEffectSourceOffset": 604051958,
+    "SkillEffectSourceOffset": 604064733,
     "MonsterNameId": 1203463621,
     "MonsterNames": {
       "en": "Shadow Commander",
@@ -2261,8 +2277,8 @@
       "id": "Tebasan ini, memutus lebih dari sekadar jalan mundur ...."
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785137987,
-    "SkillTableSourceOffset": 604811720
+    "SourceOffset": 785029833,
+    "SkillTableSourceOffset": 604824495
   },
   {
     "id": 3918,
@@ -2283,11 +2299,12 @@
     },
     "NameDesign": "奥义！狐影破袭",
     "NameId": 1818023936,
+    "DescriptionId": 1505418430,
     "Icon": "skill_aoyi_skill_icon_023.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_023",
     "IconPathOffset": 21373,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604811959
+    "SourceOffset": 604824734
   },
   {
     "id": 3919,
@@ -2308,11 +2325,12 @@
     },
     "NameDesign": "奥义！强袭炮台",
     "NameId": 1818023937,
+    "DescriptionId": 1505418431,
     "Icon": "skill_aoyi_skill_icon_024.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_024",
     "IconPathOffset": 21446,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604812198
+    "SourceOffset": 604824973
   },
   {
     "id": 3920,
@@ -2333,13 +2351,14 @@
     },
     "NameDesign": "奥义！生命祈愿",
     "NameId": 1818023961,
+    "DescriptionId": 1505418455,
     "Icon": "skill_aoyi_skill_icon_013.png",
     "IconTexture": "skill_aoyi_advanced_texture013",
     "IconTextureOffset": 670,
     "Sprite": "as_wpnpc_f_base_iruna_idle",
     "SpriteOffset": 702,
     "SkillEffectId": 392001,
-    "SkillEffectSourceOffset": 604052159,
+    "SkillEffectSourceOffset": 604064934,
     "MonsterNameId": 1203463647,
     "MonsterNames": {
       "en": "Airona",
@@ -2387,7 +2406,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409563,
+      "sourceOffset": 526419616,
       "skillLevelId": 392001,
       "skillEffectId": 392001,
       "level": 1,
@@ -2414,7 +2433,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408164,
+        "sourceOffset": 595420939,
         "rowId": 31
       },
       {
@@ -2437,7 +2456,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408220,
+        "sourceOffset": 595420995,
         "rowId": 32
       },
       {
@@ -2460,7 +2479,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408276,
+        "sourceOffset": 595421051,
         "rowId": 33
       },
       {
@@ -2483,7 +2502,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408332,
+        "sourceOffset": 595421107,
         "rowId": 34
       },
       {
@@ -2506,13 +2525,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595408388,
+        "sourceOffset": 595421163,
         "rowId": 35
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138056,
-    "SkillTableSourceOffset": 604812437
+    "SourceOffset": 785029902,
+    "SkillTableSourceOffset": 604825212
   },
   {
     "id": 3921,
@@ -2533,13 +2552,14 @@
     },
     "NameDesign": "奥义！时间法令",
     "NameId": 1818023962,
+    "DescriptionId": 1505418456,
     "Icon": "skill_aoyi_skill_icon_016.png",
     "IconTexture": "skill_aoyi_advanced_texture016",
     "IconTextureOffset": 730,
     "Sprite": "as_wpnpc_f_base_tina_idle",
     "SpriteOffset": 762,
     "SkillEffectId": 392101,
-    "SkillEffectSourceOffset": 604052226,
+    "SkillEffectSourceOffset": 604065001,
     "MonsterNameId": 1203463648,
     "MonsterNames": {
       "en": "Tina",
@@ -2580,7 +2600,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409624,
+      "sourceOffset": 526419677,
       "skillLevelId": 392101,
       "skillEffectId": 392101,
       "level": 1,
@@ -2600,7 +2620,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409004,
+        "sourceOffset": 595421779,
         "rowId": 46
       },
       {
@@ -2616,7 +2636,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409060,
+        "sourceOffset": 595421835,
         "rowId": 47
       },
       {
@@ -2632,7 +2652,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409116,
+        "sourceOffset": 595421891,
         "rowId": 48
       },
       {
@@ -2648,7 +2668,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409172,
+        "sourceOffset": 595421947,
         "rowId": 49
       },
       {
@@ -2664,13 +2684,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595409228,
+        "sourceOffset": 595422003,
         "rowId": 50
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138125,
-    "SkillTableSourceOffset": 604812676
+    "SourceOffset": 785029971,
+    "SkillTableSourceOffset": 604825451
   },
   {
     "id": 3922,
@@ -2691,13 +2711,14 @@
     },
     "NameDesign": "奥义！瞬即斩",
     "NameId": 1818023963,
+    "DescriptionId": 1505418457,
     "Icon": "skill_aoyi_skill_icon_025.png",
     "IconTexture": "skill_aoyi_advanced_texture025",
     "IconTextureOffset": 789,
     "Sprite": "as_wpnpc_f_base_olvera_idle",
     "SpriteOffset": 821,
     "SkillEffectId": 392201,
-    "SkillEffectSourceOffset": 604052293,
+    "SkillEffectSourceOffset": 604065068,
     "MonsterNameId": 1203463649,
     "MonsterNames": {
       "en": "Olvera",
@@ -2737,7 +2758,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409685,
+      "sourceOffset": 526419738,
       "skillLevelId": 392201,
       "skillEffectId": 392201,
       "level": 1,
@@ -2756,7 +2777,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410684,
+        "sourceOffset": 595423459,
         "rowId": 76
       },
       {
@@ -2771,7 +2792,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410740,
+        "sourceOffset": 595423515,
         "rowId": 77
       },
       {
@@ -2786,7 +2807,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410796,
+        "sourceOffset": 595423571,
         "rowId": 78
       },
       {
@@ -2801,7 +2822,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410852,
+        "sourceOffset": 595423627,
         "rowId": 79
       },
       {
@@ -2816,13 +2837,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410908,
+        "sourceOffset": 595423683,
         "rowId": 80
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138194,
-    "SkillTableSourceOffset": 604812915
+    "SourceOffset": 785030040,
+    "SkillTableSourceOffset": 604825690
   },
   {
     "id": 3923,
@@ -2843,13 +2864,14 @@
     },
     "NameDesign": "奥义！重锤狂袭",
     "NameId": 1818023964,
+    "DescriptionId": 1505418458,
     "Icon": "skill_aoyi_skill_icon_005.png",
     "IconTexture": "skill_aoyi_advanced_texture005",
     "IconTextureOffset": 850,
     "Sprite": "as_mon_gebulin-ds_idle",
     "SpriteOffset": 342,
     "SkillEffectId": 392301,
-    "SkillEffectSourceOffset": 604052360,
+    "SkillEffectSourceOffset": 604065135,
     "MonsterNameId": 1203463650,
     "MonsterNames": {
       "en": "Muku Chief",
@@ -2911,7 +2933,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409746,
+      "sourceOffset": 526419799,
       "skillLevelId": 392301,
       "skillEffectId": 392301,
       "level": 1,
@@ -2952,7 +2974,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595410964,
+        "sourceOffset": 595423739,
         "rowId": 81
       },
       {
@@ -2989,7 +3011,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411020,
+        "sourceOffset": 595423795,
         "rowId": 82
       },
       {
@@ -3026,7 +3048,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411076,
+        "sourceOffset": 595423851,
         "rowId": 83
       },
       {
@@ -3063,7 +3085,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411132,
+        "sourceOffset": 595423907,
         "rowId": 84
       },
       {
@@ -3100,13 +3122,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411188,
+        "sourceOffset": 595423963,
         "rowId": 85
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138263,
-    "SkillTableSourceOffset": 604813154
+    "SourceOffset": 785030109,
+    "SkillTableSourceOffset": 604825929
   },
   {
     "id": 3924,
@@ -3127,11 +3149,12 @@
     },
     "NameDesign": "绝技！风影缄默",
     "NameId": 1818023965,
+    "DescriptionId": 1505418459,
     "Icon": "skill_aoyi_skill_icon_027.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_027",
     "IconPathOffset": 21808,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604813393
+    "SourceOffset": 604826168
   },
   {
     "id": 3925,
@@ -3152,13 +3175,14 @@
     },
     "NameDesign": "绝技！无形冲击",
     "NameId": 1818023966,
+    "DescriptionId": 1505418460,
     "Icon": "skill_aoyi_skill_icon_034.png",
     "IconTexture": "skill_aoyi_advanced_texture034",
     "IconTextureOffset": 882,
     "Sprite": "as_mon_shouren_idle",
     "SpriteOffset": 32,
     "SkillEffectId": 392501,
-    "SkillEffectSourceOffset": 604052494,
+    "SkillEffectSourceOffset": 604065269,
     "MonsterNameId": 1203463652,
     "MonsterNames": {
       "en": "Mighty Colossus",
@@ -3199,7 +3223,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409868,
+      "sourceOffset": 526419921,
       "skillLevelId": 392501,
       "skillEffectId": 392501,
       "level": 1,
@@ -3219,7 +3243,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411244,
+        "sourceOffset": 595424019,
         "rowId": 86
       },
       {
@@ -3235,7 +3259,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411300,
+        "sourceOffset": 595424075,
         "rowId": 87
       },
       {
@@ -3251,7 +3275,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411356,
+        "sourceOffset": 595424131,
         "rowId": 88
       },
       {
@@ -3267,7 +3291,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411412,
+        "sourceOffset": 595424187,
         "rowId": 89
       },
       {
@@ -3283,13 +3307,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411468,
+        "sourceOffset": 595424243,
         "rowId": 90
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138332,
-    "SkillTableSourceOffset": 604813632
+    "SourceOffset": 785030178,
+    "SkillTableSourceOffset": 604826407
   },
   {
     "id": 3926,
@@ -3310,13 +3334,14 @@
     },
     "NameDesign": "奥义！流星陨落",
     "NameId": 1818023967,
+    "DescriptionId": 1505418461,
     "Icon": "skill_aoyi_skill_icon_029.png",
     "IconTexture": "skill_aoyi_advanced_texture029",
     "IconTextureOffset": 914,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 392601,
-    "SkillEffectSourceOffset": 604052561,
+    "SkillEffectSourceOffset": 604065336,
     "MonsterNameId": 1203463653,
     "MonsterNames": {
       "en": "Storm Goblin King",
@@ -3378,7 +3403,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409929,
+      "sourceOffset": 526419982,
       "skillLevelId": 392601,
       "skillEffectId": 392601,
       "level": 1,
@@ -3419,7 +3444,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411524,
+        "sourceOffset": 595424299,
         "rowId": 91
       },
       {
@@ -3456,7 +3481,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411580,
+        "sourceOffset": 595424355,
         "rowId": 92
       },
       {
@@ -3493,7 +3518,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411636,
+        "sourceOffset": 595424411,
         "rowId": 93
       },
       {
@@ -3530,7 +3555,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411692,
+        "sourceOffset": 595424467,
         "rowId": 94
       },
       {
@@ -3567,13 +3592,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411748,
+        "sourceOffset": 595424523,
         "rowId": 95
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138401,
-    "SkillTableSourceOffset": 604813871
+    "SourceOffset": 785030247,
+    "SkillTableSourceOffset": 604826646
   },
   {
     "id": 3927,
@@ -3594,13 +3619,14 @@
     },
     "NameDesign": "绝技！怒吼指令",
     "NameId": 1818023968,
+    "DescriptionId": 1505418462,
     "Icon": "skill_aoyi_skill_icon_030.png",
     "IconTexture": "skill_aoyi_advanced_texture030",
     "IconTextureOffset": 946,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 392701,
-    "SkillEffectSourceOffset": 604052628,
+    "SkillEffectSourceOffset": 604065403,
     "MonsterNameId": 1203463654,
     "MonsterNames": {
       "en": "Jungle Goblin Warrior",
@@ -3641,7 +3667,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526409990,
+      "sourceOffset": 526420043,
       "skillLevelId": 392701,
       "skillEffectId": 392701,
       "level": 1,
@@ -3661,7 +3687,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411804,
+        "sourceOffset": 595424579,
         "rowId": 96
       },
       {
@@ -3677,7 +3703,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411860,
+        "sourceOffset": 595424635,
         "rowId": 97
       },
       {
@@ -3693,7 +3719,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411916,
+        "sourceOffset": 595424691,
         "rowId": 98
       },
       {
@@ -3709,7 +3735,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595411972,
+        "sourceOffset": 595424747,
         "rowId": 99
       },
       {
@@ -3725,13 +3751,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412028,
+        "sourceOffset": 595424803,
         "rowId": 100
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138470,
-    "SkillTableSourceOffset": 604814110
+    "SourceOffset": 785030316,
+    "SkillTableSourceOffset": 604826885
   },
   {
     "id": 3928,
@@ -3752,13 +3778,14 @@
     },
     "NameDesign": "绝技！追猎猛斩",
     "NameId": 1818023969,
+    "DescriptionId": 1505418463,
     "Icon": "skill_aoyi_skill_icon_031.png",
     "IconTexture": "skill_aoyi_advanced_texture031",
     "IconTextureOffset": 978,
     "Sprite": "as_mon_gebulin-ds_idle",
     "SpriteOffset": 342,
     "SkillEffectId": 392801,
-    "SkillEffectSourceOffset": 604052695,
+    "SkillEffectSourceOffset": 604065470,
     "MonsterNameId": 1203463655,
     "MonsterNames": {
       "en": "Muku Scout",
@@ -3798,7 +3825,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410051,
+      "sourceOffset": 526420104,
       "skillLevelId": 392801,
       "skillEffectId": 392801,
       "level": 1,
@@ -3817,7 +3844,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412084,
+        "sourceOffset": 595424859,
         "rowId": 101
       },
       {
@@ -3832,7 +3859,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412140,
+        "sourceOffset": 595424915,
         "rowId": 102
       },
       {
@@ -3847,7 +3874,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412196,
+        "sourceOffset": 595424971,
         "rowId": 103
       },
       {
@@ -3862,7 +3889,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412252,
+        "sourceOffset": 595425027,
         "rowId": 104
       },
       {
@@ -3877,13 +3904,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412308,
+        "sourceOffset": 595425083,
         "rowId": 105
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138539,
-    "SkillTableSourceOffset": 604814349
+    "SourceOffset": 785030385,
+    "SkillTableSourceOffset": 604827124
   },
   {
     "id": 3929,
@@ -3904,13 +3931,14 @@
     },
     "NameDesign": "绝技！缩壳防御",
     "NameId": 1818023970,
+    "DescriptionId": 1505418464,
     "Icon": "skill_aoyi_skill_icon_032.png",
     "IconTexture": "skill_aoyi_advanced_texture032",
     "IconTextureOffset": 1010,
     "Sprite": "as_mon_xiezhu_idle",
     "SpriteOffset": 1042,
     "SkillEffectId": 392901,
-    "SkillEffectSourceOffset": 604052762,
+    "SkillEffectSourceOffset": 604065537,
     "MonsterNameId": 1203463656,
     "MonsterNames": {
       "en": "Void Arachnocrab",
@@ -3940,8 +3968,8 @@
       "id": "Tak tergoyahkan!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138608,
-    "SkillTableSourceOffset": 604814588
+    "SourceOffset": 785030454,
+    "SkillTableSourceOffset": 604827363
   },
   {
     "id": 3930,
@@ -3962,13 +3990,14 @@
     },
     "NameDesign": "绝技！大地之盾",
     "NameId": 1818023994,
+    "DescriptionId": 1505418488,
     "Icon": "skill_aoyi_skill_icon_033.png",
     "IconTexture": "skill_aoyi_advanced_texture033",
     "IconTextureOffset": 1062,
     "Sprite": "as_mon_solider-shield_idle",
     "SpriteOffset": 1094,
     "SkillEffectId": 393001,
-    "SkillEffectSourceOffset": 604052829,
+    "SkillEffectSourceOffset": 604065604,
     "MonsterNameId": 1203463680,
     "MonsterNames": {
       "en": "Brigand Guard Captain",
@@ -4016,7 +4045,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410173,
+      "sourceOffset": 526420226,
       "skillLevelId": 393001,
       "skillEffectId": 393001,
       "level": 1,
@@ -4043,7 +4072,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412644,
+        "sourceOffset": 595425419,
         "rowId": 111
       },
       {
@@ -4066,7 +4095,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412700,
+        "sourceOffset": 595425475,
         "rowId": 112
       },
       {
@@ -4089,7 +4118,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412756,
+        "sourceOffset": 595425531,
         "rowId": 113
       },
       {
@@ -4112,7 +4141,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412812,
+        "sourceOffset": 595425587,
         "rowId": 114
       },
       {
@@ -4135,13 +4164,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412868,
+        "sourceOffset": 595425643,
         "rowId": 115
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138677,
-    "SkillTableSourceOffset": 604814827
+    "SourceOffset": 785030523,
+    "SkillTableSourceOffset": 604827602
   },
   {
     "id": 3931,
@@ -4162,11 +4191,12 @@
     },
     "NameDesign": "奥义！护佑领域",
     "NameId": 1818023995,
+    "DescriptionId": 1505418489,
     "Icon": "skill_aoyi_skill_icon_034.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_034",
     "IconPathOffset": 22319,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604815066
+    "SourceOffset": 604827841
   },
   {
     "id": 3932,
@@ -4187,11 +4217,12 @@
     },
     "NameDesign": "绝技！飞轮火舞",
     "NameId": 1818023996,
+    "DescriptionId": 1505418490,
     "Icon": "skill_aoyi_skill_icon_035.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_035",
     "IconPathOffset": 22392,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604815305
+    "SourceOffset": 604828080
   },
   {
     "id": 3933,
@@ -4212,11 +4243,12 @@
     },
     "NameDesign": "绝技！挫志咆哮",
     "NameId": 1818023997,
+    "DescriptionId": 1505418491,
     "Icon": "skill_aoyi_skill_icon_036.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_036",
     "IconPathOffset": 22465,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 604815544
+    "SourceOffset": 604828319
   },
   {
     "id": 3934,
@@ -4237,13 +4269,14 @@
     },
     "NameDesign": "绝技！瞬步奇袭",
     "NameId": 1818023998,
+    "DescriptionId": 1505418492,
     "Icon": "skill_aoyi_skill_icon_037.png",
     "IconTexture": "skill_aoyi_advanced_texture037",
     "IconTextureOffset": 1122,
     "Sprite": "as_mon_solider-dagger_idle",
     "SpriteOffset": 1154,
     "SkillEffectId": 393401,
-    "SkillEffectSourceOffset": 604053097,
+    "SkillEffectSourceOffset": 604065872,
     "MonsterNameId": 1203463684,
     "MonsterNames": {
       "en": "Brigand Scout Leader",
@@ -4284,7 +4317,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410417,
+      "sourceOffset": 526420470,
       "skillLevelId": 393401,
       "skillEffectId": 393401,
       "level": 1,
@@ -4304,7 +4337,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412924,
+        "sourceOffset": 595425699,
         "rowId": 116
       },
       {
@@ -4320,7 +4353,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595412980,
+        "sourceOffset": 595425755,
         "rowId": 117
       },
       {
@@ -4336,7 +4369,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413036,
+        "sourceOffset": 595425811,
         "rowId": 118
       },
       {
@@ -4352,7 +4385,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413092,
+        "sourceOffset": 595425867,
         "rowId": 119
       },
       {
@@ -4368,13 +4401,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413148,
+        "sourceOffset": 595425923,
         "rowId": 120
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138746,
-    "SkillTableSourceOffset": 604815783
+    "SourceOffset": 785030592,
+    "SkillTableSourceOffset": 604828558
   },
   {
     "id": 3935,
@@ -4395,13 +4428,14 @@
     },
     "NameDesign": "奥义！雷霆咆哮",
     "NameId": 1818023999,
+    "DescriptionId": 1505418493,
     "Icon": "skill_aoyi_skill_icon_038.png",
     "IconTexture": "skill_aoyi_advanced_texture038",
     "IconTextureOffset": 1182,
     "Sprite": "as_mon_yezhu_idle",
     "SpriteOffset": 259,
     "SkillEffectId": 393501,
-    "SkillEffectSourceOffset": 604053164,
+    "SkillEffectSourceOffset": 604065939,
     "MonsterNameId": 1203463685,
     "MonsterNames": {
       "en": "Golden Juggernaut",
@@ -4441,7 +4475,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410478,
+      "sourceOffset": 526420531,
       "skillLevelId": 393501,
       "skillEffectId": 393501,
       "level": 1,
@@ -4460,7 +4494,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413204,
+        "sourceOffset": 595425979,
         "rowId": 121
       },
       {
@@ -4475,7 +4509,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413260,
+        "sourceOffset": 595426035,
         "rowId": 122
       },
       {
@@ -4490,7 +4524,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413316,
+        "sourceOffset": 595426091,
         "rowId": 123
       },
       {
@@ -4505,7 +4539,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413372,
+        "sourceOffset": 595426147,
         "rowId": 124
       },
       {
@@ -4520,13 +4554,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413428,
+        "sourceOffset": 595426203,
         "rowId": 125
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138815,
-    "SkillTableSourceOffset": 604816022
+    "SourceOffset": 785030661,
+    "SkillTableSourceOffset": 604828797
   },
   {
     "id": 3936,
@@ -4547,13 +4581,14 @@
     },
     "NameDesign": "绝技！静默之水",
     "NameId": 1818024000,
+    "DescriptionId": 1505418494,
     "Icon": "skill_aoyi_skill_icon_039.png",
     "IconTexture": "skill_aoyi_advanced_texture039",
     "IconTextureOffset": 1214,
     "Sprite": "as_mon_yuren-ds_idle",
     "SpriteOffset": 1246,
     "SkillEffectId": 393601,
-    "SkillEffectSourceOffset": 604053231,
+    "SkillEffectSourceOffset": 604066006,
     "MonsterNameId": 1203463686,
     "MonsterNames": {
       "en": "Lizardman Mage",
@@ -4594,7 +4629,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410539,
+      "sourceOffset": 526420592,
       "skillLevelId": 393601,
       "skillEffectId": 393601,
       "level": 1,
@@ -4614,7 +4649,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413484,
+        "sourceOffset": 595426259,
         "rowId": 126
       },
       {
@@ -4630,7 +4665,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413540,
+        "sourceOffset": 595426315,
         "rowId": 127
       },
       {
@@ -4646,7 +4681,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413596,
+        "sourceOffset": 595426371,
         "rowId": 128
       },
       {
@@ -4662,7 +4697,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413652,
+        "sourceOffset": 595426427,
         "rowId": 129
       },
       {
@@ -4678,13 +4713,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413708,
+        "sourceOffset": 595426483,
         "rowId": 130
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138884,
-    "SkillTableSourceOffset": 604816261
+    "SourceOffset": 785030730,
+    "SkillTableSourceOffset": 604829036
   },
   {
     "id": 3937,
@@ -4705,13 +4740,14 @@
     },
     "NameDesign": "绝技！强压之雷",
     "NameId": 1818024001,
+    "DescriptionId": 1505418495,
     "Icon": "skill_aoyi_skill_icon_040.png",
     "IconTexture": "skill_aoyi_advanced_texture040",
     "IconTextureOffset": 1268,
     "Sprite": "as_mon_yuren-ds_idle",
     "SpriteOffset": 1246,
     "SkillEffectId": 393701,
-    "SkillEffectSourceOffset": 604053298,
+    "SkillEffectSourceOffset": 604066073,
     "MonsterNameId": 1203463687,
     "MonsterNames": {
       "en": "Lizardman Hunter",
@@ -4773,7 +4809,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410600,
+      "sourceOffset": 526420653,
       "skillLevelId": 393701,
       "skillEffectId": 393701,
       "level": 1,
@@ -4814,7 +4850,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413764,
+        "sourceOffset": 595426539,
         "rowId": 131
       },
       {
@@ -4851,7 +4887,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413820,
+        "sourceOffset": 595426595,
         "rowId": 132
       },
       {
@@ -4888,7 +4924,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413876,
+        "sourceOffset": 595426651,
         "rowId": 133
       },
       {
@@ -4925,7 +4961,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413932,
+        "sourceOffset": 595426707,
         "rowId": 134
       },
       {
@@ -4962,13 +4998,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595413988,
+        "sourceOffset": 595426763,
         "rowId": 135
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785138953,
-    "SkillTableSourceOffset": 604816500
+    "SourceOffset": 785030799,
+    "SkillTableSourceOffset": 604829275
   },
   {
     "id": 3938,
@@ -4989,13 +5025,14 @@
     },
     "NameDesign": "奥义！茧房术",
     "NameId": 1818024002,
+    "DescriptionId": 1505418496,
     "Icon": "skill_aoyi_skill_icon_041.png",
     "IconTexture": "skill_aoyi_advanced_texture041",
     "IconTextureOffset": 1300,
     "Sprite": "as_mon_xiezhu_idle",
     "SpriteOffset": 1042,
     "SkillEffectId": 393801,
-    "SkillEffectSourceOffset": 604053365,
+    "SkillEffectSourceOffset": 604066140,
     "MonsterNameId": 1203463688,
     "MonsterNames": {
       "en": "Phantom Arachnocrab",
@@ -5036,7 +5073,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410661,
+      "sourceOffset": 526420714,
       "skillLevelId": 393801,
       "skillEffectId": 393801,
       "level": 1,
@@ -5056,7 +5093,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414044,
+        "sourceOffset": 595426819,
         "rowId": 136
       },
       {
@@ -5072,7 +5109,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414100,
+        "sourceOffset": 595426875,
         "rowId": 137
       },
       {
@@ -5088,7 +5125,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414156,
+        "sourceOffset": 595426931,
         "rowId": 138
       },
       {
@@ -5104,7 +5141,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414212,
+        "sourceOffset": 595426987,
         "rowId": 139
       },
       {
@@ -5120,13 +5157,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414268,
+        "sourceOffset": 595427043,
         "rowId": 140
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139022,
-    "SkillTableSourceOffset": 604816739
+    "SourceOffset": 785030868,
+    "SkillTableSourceOffset": 604829514
   },
   {
     "id": 3939,
@@ -5147,13 +5184,14 @@
     },
     "NameDesign": "绝技！雷光球",
     "NameId": 1818024003,
+    "DescriptionId": 1505418497,
     "Icon": "skill_aoyi_skill_icon_043.png",
     "IconTexture": "skill_aoyi_advanced_texture043",
     "IconTextureOffset": 1332,
     "Sprite": "as_mon_yezhu_idle",
     "SpriteOffset": 259,
     "SkillEffectId": 393901,
-    "SkillEffectSourceOffset": 604053432,
+    "SkillEffectSourceOffset": 604066207,
     "MonsterNameId": 1203463689,
     "MonsterNames": {
       "en": "Great Warhog",
@@ -5194,7 +5232,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410722,
+      "sourceOffset": 526420775,
       "skillLevelId": 393901,
       "skillEffectId": 393901,
       "level": 1,
@@ -5214,7 +5252,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414604,
+        "sourceOffset": 595427379,
         "rowId": 146
       },
       {
@@ -5230,7 +5268,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414660,
+        "sourceOffset": 595427435,
         "rowId": 147
       },
       {
@@ -5246,7 +5284,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414716,
+        "sourceOffset": 595427491,
         "rowId": 148
       },
       {
@@ -5262,7 +5300,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414772,
+        "sourceOffset": 595427547,
         "rowId": 149
       },
       {
@@ -5278,13 +5316,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414828,
+        "sourceOffset": 595427603,
         "rowId": 150
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139091,
-    "SkillTableSourceOffset": 604816978
+    "SourceOffset": 785030937,
+    "SkillTableSourceOffset": 604829753
   },
   {
     "id": 3940,
@@ -5305,13 +5343,14 @@
     },
     "NameDesign": "绝技！旋风打击",
     "NameId": 1818024027,
+    "DescriptionId": 1505418521,
     "Icon": "skill_aoyi_skill_icon_044.png",
     "IconTexture": "skill_aoyi_advanced_texture044",
     "IconTextureOffset": 1364,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 394001,
-    "SkillEffectSourceOffset": 604053499,
+    "SkillEffectSourceOffset": 604066274,
     "MonsterNameId": 1203463713,
     "MonsterNames": {
       "en": "Storm Goblin Warrior",
@@ -5352,7 +5391,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410783,
+      "sourceOffset": 526420836,
       "skillLevelId": 394001,
       "skillEffectId": 394001,
       "level": 1,
@@ -5372,7 +5411,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414884,
+        "sourceOffset": 595427659,
         "rowId": 151
       },
       {
@@ -5388,7 +5427,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414940,
+        "sourceOffset": 595427715,
         "rowId": 152
       },
       {
@@ -5404,7 +5443,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595414996,
+        "sourceOffset": 595427771,
         "rowId": 153
       },
       {
@@ -5420,7 +5459,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415052,
+        "sourceOffset": 595427827,
         "rowId": 154
       },
       {
@@ -5436,13 +5475,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415108,
+        "sourceOffset": 595427883,
         "rowId": 155
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139160,
-    "SkillTableSourceOffset": 604817217
+    "SourceOffset": 785031006,
+    "SkillTableSourceOffset": 604829992
   },
   {
     "id": 3941,
@@ -5463,13 +5502,14 @@
     },
     "NameDesign": "绝技！变身蜜蜂",
     "NameId": 1818024028,
+    "DescriptionId": 1505418522,
     "Icon": "skill_aoyi_skill_icon_045.png",
     "IconTexture": "skill_aoyi_advanced_texture045",
     "IconTextureOffset": 1396,
     "Sprite": "as_mon_huangfeng_idle",
     "SpriteOffset": 1428,
     "SkillEffectId": 394101,
-    "SkillEffectSourceOffset": 604053566,
+    "SkillEffectSourceOffset": 604066341,
     "MonsterNameId": 1203463714,
     "MonsterNames": {
       "en": "Void Bzzar",
@@ -5509,7 +5549,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410844,
+      "sourceOffset": 526420897,
       "skillLevelId": 394101,
       "skillEffectId": 394101,
       "level": 1,
@@ -5528,7 +5568,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415164,
+        "sourceOffset": 595427939,
         "rowId": 156
       },
       {
@@ -5543,7 +5583,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415220,
+        "sourceOffset": 595427995,
         "rowId": 157
       },
       {
@@ -5558,7 +5598,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415276,
+        "sourceOffset": 595428051,
         "rowId": 158
       },
       {
@@ -5573,7 +5613,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415332,
+        "sourceOffset": 595428107,
         "rowId": 159
       },
       {
@@ -5588,13 +5628,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415388,
+        "sourceOffset": 595428163,
         "rowId": 160
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139229,
-    "SkillTableSourceOffset": 604817456
+    "SourceOffset": 785031075,
+    "SkillTableSourceOffset": 604830231
   },
   {
     "id": 3942,
@@ -5615,13 +5655,14 @@
     },
     "NameDesign": "奥义！毒爆",
     "NameId": 1818024029,
+    "DescriptionId": 1505418523,
     "Icon": "skill_aoyi_skill_icon_046.png",
     "IconTexture": "skill_aoyi_advanced_texture046",
     "IconTextureOffset": 1451,
     "Sprite": "as_mon_fengchao_idle",
     "SpriteOffset": 1483,
     "SkillEffectId": 394201,
-    "SkillEffectSourceOffset": 604053633,
+    "SkillEffectSourceOffset": 604066408,
     "MonsterNameId": 1203463715,
     "MonsterNames": {
       "en": "Venobzzar Incubator",
@@ -5670,7 +5711,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526410905,
+      "sourceOffset": 526420958,
       "skillLevelId": 394201,
       "skillEffectId": 394201,
       "level": 1,
@@ -5698,7 +5739,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415444,
+        "sourceOffset": 595428219,
         "rowId": 161
       },
       {
@@ -5722,7 +5763,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415500,
+        "sourceOffset": 595428275,
         "rowId": 162
       },
       {
@@ -5746,7 +5787,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415556,
+        "sourceOffset": 595428331,
         "rowId": 163
       },
       {
@@ -5770,7 +5811,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415612,
+        "sourceOffset": 595428387,
         "rowId": 164
       },
       {
@@ -5794,13 +5835,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595415668,
+        "sourceOffset": 595428443,
         "rowId": 165
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139298,
-    "SkillTableSourceOffset": 604817695
+    "SourceOffset": 785031144,
+    "SkillTableSourceOffset": 604830470
   },
   {
     "id": 3943,
@@ -5821,13 +5862,14 @@
     },
     "NameDesign": "奥义！地狱突刺",
     "NameId": 1818024030,
+    "DescriptionId": 1505418524,
     "Icon": "skill_aoyi_skill_icon_047.png",
     "IconTexture": "skill_aoyi_advanced_texture047",
     "IconTextureOffset": 1505,
     "Sprite": "as_mon_yezhu_idle",
     "SpriteOffset": 259,
     "SkillEffectId": 394301,
-    "SkillEffectSourceOffset": 604053700,
+    "SkillEffectSourceOffset": 604066475,
     "MonsterNameId": 1203463716,
     "MonsterNames": {
       "en": "Iron Fang",
@@ -5857,8 +5899,8 @@
       "id": "Melompat, menusuk, menghancurkan segalanya!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139367,
-    "SkillTableSourceOffset": 604817934
+    "SourceOffset": 785031213,
+    "SkillTableSourceOffset": 604830709
   },
   {
     "id": 3944,
@@ -5879,13 +5921,14 @@
     },
     "NameDesign": "奥义！沧澜风啸",
     "NameId": 1818024031,
+    "DescriptionId": 1505418525,
     "Icon": "skill_aoyi_skill_icon_048.png",
     "IconTexture": "skill_aoyi_advanced_texture048",
     "IconTextureOffset": 1537,
     "Sprite": "as_mon_feiyu_idle",
     "SpriteOffset": 1569,
     "SkillEffectId": 394401,
-    "SkillEffectSourceOffset": 604053767,
+    "SkillEffectSourceOffset": 604066542,
     "MonsterNameId": 1203463717,
     "MonsterNames": {
       "en": "Celestial Flier",
@@ -5926,7 +5969,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411027,
+      "sourceOffset": 526421080,
       "skillLevelId": 394401,
       "skillEffectId": 394401,
       "level": 1,
@@ -5946,7 +5989,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416004,
+        "sourceOffset": 595428779,
         "rowId": 171
       },
       {
@@ -5962,7 +6005,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416060,
+        "sourceOffset": 595428835,
         "rowId": 172
       },
       {
@@ -5978,7 +6021,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416116,
+        "sourceOffset": 595428891,
         "rowId": 173
       },
       {
@@ -5994,7 +6037,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416172,
+        "sourceOffset": 595428947,
         "rowId": 174
       },
       {
@@ -6010,13 +6053,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416228,
+        "sourceOffset": 595429003,
         "rowId": 175
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139436,
-    "SkillTableSourceOffset": 604818173
+    "SourceOffset": 785031282,
+    "SkillTableSourceOffset": 604830948
   },
   {
     "id": 3945,
@@ -6037,13 +6080,14 @@
     },
     "NameDesign": "奥义！静默潮汐",
     "NameId": 1818024032,
+    "DescriptionId": 1505418526,
     "Icon": "skill_aoyi_skill_icon_049.png",
     "IconTexture": "skill_aoyi_advanced_texture049",
     "IconTextureOffset": 1588,
     "Sprite": "as_mon_yuren-ds_idle",
     "SpriteOffset": 1246,
     "SkillEffectId": 394501,
-    "SkillEffectSourceOffset": 604053834,
+    "SkillEffectSourceOffset": 604066609,
     "MonsterNameId": 1203463718,
     "MonsterNames": {
       "en": "Lizardman King",
@@ -6073,8 +6117,8 @@
       "id": "Gelombang pasang, menenangkan segalanya!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139505,
-    "SkillTableSourceOffset": 604818412
+    "SourceOffset": 785031351,
+    "SkillTableSourceOffset": 604831187
   },
   {
     "id": 3946,
@@ -6095,13 +6139,14 @@
     },
     "NameDesign": "奥义！哥布林大行军",
     "NameId": 1818024033,
+    "DescriptionId": 1505418527,
     "Icon": "skill_aoyi_skill_icon_050.png",
     "IconTexture": "skill_aoyi_advanced_texture050",
     "IconTextureOffset": 1620,
     "Sprite": "as_mon_gebulin-ss_idle",
     "SpriteOffset": 203,
     "SkillEffectId": 394601,
-    "SkillEffectSourceOffset": 604053901,
+    "SkillEffectSourceOffset": 604066676,
     "MonsterNameId": 1203463719,
     "MonsterNames": {
       "en": "Goblin King",
@@ -6232,7 +6277,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411149,
+      "sourceOffset": 526421202,
       "skillLevelId": 394601,
       "skillEffectId": 394601,
       "level": 1,
@@ -6342,7 +6387,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416564,
+        "sourceOffset": 595429339,
         "rowId": 181
       },
       {
@@ -6448,7 +6493,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416620,
+        "sourceOffset": 595429395,
         "rowId": 182
       },
       {
@@ -6554,7 +6599,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416676,
+        "sourceOffset": 595429451,
         "rowId": 183
       },
       {
@@ -6660,7 +6705,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416732,
+        "sourceOffset": 595429507,
         "rowId": 184
       },
       {
@@ -6766,13 +6811,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416788,
+        "sourceOffset": 595429563,
         "rowId": 185
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139574,
-    "SkillTableSourceOffset": 604818651
+    "SourceOffset": 785031420,
+    "SkillTableSourceOffset": 604831426
   },
   {
     "id": 3947,
@@ -6793,13 +6838,14 @@
     },
     "NameDesign": "绝技！螺旋断界",
     "NameId": 1818024034,
+    "DescriptionId": 1505418528,
     "Icon": "skill_aoyi_skill_icon_051.png",
     "IconTexture": "skill_aoyi_advanced_texture051",
     "IconTextureOffset": 1652,
     "Sprite": "as_mon_gebulin-ssfc_idle",
     "SpriteOffset": 580,
     "SkillEffectId": 394701,
-    "SkillEffectSourceOffset": 604053968,
+    "SkillEffectSourceOffset": 604066743,
     "MonsterNameId": 1203463720,
     "MonsterNames": {
       "en": "Muku Vanguard",
@@ -6840,7 +6886,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411210,
+      "sourceOffset": 526421263,
       "skillLevelId": 394701,
       "skillEffectId": 394701,
       "level": 1,
@@ -6860,7 +6906,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416844,
+        "sourceOffset": 595429619,
         "rowId": 186
       },
       {
@@ -6876,7 +6922,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416900,
+        "sourceOffset": 595429675,
         "rowId": 187
       },
       {
@@ -6892,7 +6938,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595416956,
+        "sourceOffset": 595429731,
         "rowId": 188
       },
       {
@@ -6908,7 +6954,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417012,
+        "sourceOffset": 595429787,
         "rowId": 189
       },
       {
@@ -6924,13 +6970,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417068,
+        "sourceOffset": 595429843,
         "rowId": 190
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139643,
-    "SkillTableSourceOffset": 604818890
+    "SourceOffset": 785031489,
+    "SkillTableSourceOffset": 604831665
   },
   {
     "id": 3948,
@@ -6951,13 +6997,14 @@
     },
     "NameDesign": "奥义！神灵依凭",
     "NameId": 1818024035,
+    "DescriptionId": 1505418529,
     "Icon": "skill_aoyi_skill_icon_052.png",
     "IconTexture": "skill_aoyi_advanced_texture052",
     "IconTextureOffset": 1684,
     "Sprite": "as_f_rorola-01_fidle",
     "SpriteOffset": 1716,
     "SkillEffectId": 394801,
-    "SkillEffectSourceOffset": 604054035,
+    "SkillEffectSourceOffset": 604066810,
     "MonsterNameId": 1203463721,
     "MonsterNames": {
       "en": "Rorola",
@@ -7012,7 +7059,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411271,
+      "sourceOffset": 526421324,
       "skillLevelId": 394801,
       "skillEffectId": 394801,
       "level": 1,
@@ -7046,7 +7093,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417124,
+        "sourceOffset": 595429899,
         "rowId": 191
       },
       {
@@ -7076,7 +7123,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417180,
+        "sourceOffset": 595429955,
         "rowId": 192
       },
       {
@@ -7106,7 +7153,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417236,
+        "sourceOffset": 595430011,
         "rowId": 193
       },
       {
@@ -7136,7 +7183,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417292,
+        "sourceOffset": 595430067,
         "rowId": 194
       },
       {
@@ -7166,13 +7213,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417348,
+        "sourceOffset": 595430123,
         "rowId": 195
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139712,
-    "SkillTableSourceOffset": 604819129
+    "SourceOffset": 785031558,
+    "SkillTableSourceOffset": 604831904
   },
   {
     "id": 3949,
@@ -7193,13 +7240,14 @@
     },
     "NameDesign": "奥义！幻象共鸣",
     "NameId": 1818024036,
+    "DescriptionId": 1505418530,
     "Icon": "skill_aoyi_skill_icon_053.png",
     "IconTexture": "skill_aoyi_advanced_texture053",
     "IconTextureOffset": 1846,
     "Sprite": "as_f_taurus-01_fidle",
     "SpriteOffset": 1878,
     "SkillEffectId": 394901,
-    "SkillEffectSourceOffset": 604054102,
+    "SkillEffectSourceOffset": 604066877,
     "MonsterNameId": 1203463722,
     "MonsterNames": {
       "en": "Dorothy",
@@ -7229,8 +7277,8 @@
       "id": "Keterampilan berasal dari latihan, tapi ketekunan pengrajin berasal dari tanggung jawab."
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139919,
-    "SkillTableSourceOffset": 604819368
+    "SourceOffset": 785031765,
+    "SkillTableSourceOffset": 604832143
   },
   {
     "id": 3950,
@@ -7251,13 +7299,14 @@
     },
     "NameDesign": "奥义！万象升华",
     "NameId": 1818024060,
+    "DescriptionId": 1505418554,
     "Icon": "skill_aoyi_skill_icon_055.png",
     "IconTexture": "skill_aoyi_advanced_texture055",
     "IconTextureOffset": 1738,
     "Sprite": "as_f_boyce-01_fidle",
     "SpriteOffset": 1770,
     "SkillEffectId": 395001,
-    "SkillEffectSourceOffset": 604054169,
+    "SkillEffectSourceOffset": 604066944,
     "MonsterNameId": 1203463746,
     "MonsterNames": {
       "en": "Boyce",
@@ -7319,7 +7368,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411393,
+      "sourceOffset": 526421446,
       "skillLevelId": 395001,
       "skillEffectId": 395001,
       "level": 1,
@@ -7360,7 +7409,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417684,
+        "sourceOffset": 595430459,
         "rowId": 201
       },
       {
@@ -7397,7 +7446,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417740,
+        "sourceOffset": 595430515,
         "rowId": 202
       },
       {
@@ -7434,7 +7483,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417796,
+        "sourceOffset": 595430571,
         "rowId": 203
       },
       {
@@ -7471,7 +7520,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417852,
+        "sourceOffset": 595430627,
         "rowId": 204
       },
       {
@@ -7508,13 +7557,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417908,
+        "sourceOffset": 595430683,
         "rowId": 205
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139781,
-    "SkillTableSourceOffset": 604819607
+    "SourceOffset": 785031627,
+    "SkillTableSourceOffset": 604832382
   },
   {
     "id": 3951,
@@ -7535,13 +7584,14 @@
     },
     "NameDesign": "奥义！佑世边界",
     "NameId": 1818024061,
+    "DescriptionId": 1505418555,
     "Icon": "skill_aoyi_skill_icon_054.png",
     "IconTexture": "skill_aoyi_advanced_texture054",
     "IconTextureOffset": 1791,
     "Sprite": "as_f_farfara-01_fidle",
     "SpriteOffset": 1823,
     "SkillEffectId": 395101,
-    "SkillEffectSourceOffset": 604054236,
+    "SkillEffectSourceOffset": 604067011,
     "MonsterNameId": 1203463747,
     "MonsterNames": {
       "en": "Fafala",
@@ -7603,7 +7653,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411454,
+      "sourceOffset": 526421507,
       "skillLevelId": 395101,
       "skillEffectId": 395101,
       "level": 1,
@@ -7644,7 +7694,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595417964,
+        "sourceOffset": 595430739,
         "rowId": 206
       },
       {
@@ -7681,7 +7731,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418020,
+        "sourceOffset": 595430795,
         "rowId": 207
       },
       {
@@ -7718,7 +7768,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418076,
+        "sourceOffset": 595430851,
         "rowId": 208
       },
       {
@@ -7755,7 +7805,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418132,
+        "sourceOffset": 595430907,
         "rowId": 209
       },
       {
@@ -7792,13 +7842,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418188,
+        "sourceOffset": 595430963,
         "rowId": 210
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139850,
-    "SkillTableSourceOffset": 604819846
+    "SourceOffset": 785031696,
+    "SkillTableSourceOffset": 604832621
   },
   {
     "id": 3952,
@@ -7819,13 +7869,14 @@
     },
     "NameDesign": "奥义！熊熊烈焰",
     "NameId": 1818024062,
+    "DescriptionId": 1505418556,
     "Icon": "skill_aoyi_skill_icon_060.png",
     "IconTexture": "skill_aoyi_advanced_texture060",
     "IconTextureOffset": 1900,
     "Sprite": "as_mon_solider-sword_idle",
     "SpriteOffset": 1932,
     "SkillEffectId": 395201,
-    "SkillEffectSourceOffset": 604054303,
+    "SkillEffectSourceOffset": 604067078,
     "MonsterNameId": 1203463748,
     "MonsterNames": {
       "en": "Blackstone Captain",
@@ -7872,7 +7923,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411515,
+      "sourceOffset": 526421568,
       "skillLevelId": 395201,
       "skillEffectId": 395201,
       "level": 1,
@@ -7898,7 +7949,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418244,
+        "sourceOffset": 595431019,
         "rowId": 211
       },
       {
@@ -7920,7 +7971,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418300,
+        "sourceOffset": 595431075,
         "rowId": 212
       },
       {
@@ -7942,7 +7993,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418356,
+        "sourceOffset": 595431131,
         "rowId": 213
       },
       {
@@ -7964,7 +8015,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418412,
+        "sourceOffset": 595431187,
         "rowId": 214
       },
       {
@@ -7986,13 +8037,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418468,
+        "sourceOffset": 595431243,
         "rowId": 215
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785139988,
-    "SkillTableSourceOffset": 604820085
+    "SourceOffset": 785031834,
+    "SkillTableSourceOffset": 604832860
   },
   {
     "id": 3953,
@@ -8013,13 +8064,14 @@
     },
     "NameDesign": "奥义！无双突刺",
     "NameId": 1818024063,
+    "DescriptionId": 1505418557,
     "Icon": "skill_aoyi_skill_icon_063.png",
     "IconTexture": "skill_aoyi_advanced_texture063",
     "IconTextureOffset": 1959,
     "Sprite": "as_mon_gebulin-ssfc_idle",
     "SpriteOffset": 580,
     "SkillEffectId": 395301,
-    "SkillEffectSourceOffset": 604054370,
+    "SkillEffectSourceOffset": 604067145,
     "MonsterNameId": 1203463749,
     "MonsterNames": {
       "en": "Goblin Chief",
@@ -8067,7 +8119,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411576,
+      "sourceOffset": 526421629,
       "skillLevelId": 395301,
       "skillEffectId": 395301,
       "level": 1,
@@ -8094,7 +8146,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418524,
+        "sourceOffset": 595431299,
         "rowId": 216
       },
       {
@@ -8117,7 +8169,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418580,
+        "sourceOffset": 595431355,
         "rowId": 217
       },
       {
@@ -8140,7 +8192,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418636,
+        "sourceOffset": 595431411,
         "rowId": 218
       },
       {
@@ -8163,7 +8215,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418692,
+        "sourceOffset": 595431467,
         "rowId": 219
       },
       {
@@ -8186,13 +8238,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418748,
+        "sourceOffset": 595431523,
         "rowId": 220
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140057,
-    "SkillTableSourceOffset": 604820324
+    "SourceOffset": 785031903,
+    "SkillTableSourceOffset": 604833099
   },
   {
     "id": 3954,
@@ -8213,13 +8265,14 @@
     },
     "NameDesign": "奥义！魅影奇袭",
     "NameId": 1818024064,
+    "DescriptionId": 1505418558,
     "Icon": "skill_aoyi_skill_icon_068.png",
     "IconTexture": "skill_aoyi_advanced_texture068",
     "IconTextureOffset": 1991,
     "Sprite": "as_mon_dihu_idle",
     "SpriteOffset": 2023,
     "SkillEffectId": 395401,
-    "SkillEffectSourceOffset": 604054437,
+    "SkillEffectSourceOffset": 604067212,
     "MonsterNameId": 1203463750,
     "MonsterNames": {
       "en": "Crimson Foxen",
@@ -8260,7 +8313,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411637,
+      "sourceOffset": 526421690,
       "skillLevelId": 395401,
       "skillEffectId": 395401,
       "level": 1,
@@ -8280,7 +8333,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418804,
+        "sourceOffset": 595431579,
         "rowId": 221
       },
       {
@@ -8296,7 +8349,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418860,
+        "sourceOffset": 595431635,
         "rowId": 222
       },
       {
@@ -8312,7 +8365,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418916,
+        "sourceOffset": 595431691,
         "rowId": 223
       },
       {
@@ -8328,7 +8381,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595418972,
+        "sourceOffset": 595431747,
         "rowId": 224
       },
       {
@@ -8344,13 +8397,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419028,
+        "sourceOffset": 595431803,
         "rowId": 225
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140126,
-    "SkillTableSourceOffset": 604820563
+    "SourceOffset": 785031972,
+    "SkillTableSourceOffset": 604833338
   },
   {
     "id": 3955,
@@ -8371,13 +8424,14 @@
     },
     "NameDesign": "奥义！卷心菜重锤",
     "NameId": 1818024065,
+    "DescriptionId": 1505418559,
     "Icon": "skill_aoyi_skill_icon_066.png",
     "IconTexture": "skill_aoyi_advanced_texture066",
     "IconTextureOffset": 2041,
     "Sprite": "as_mon_solider-sword_idle",
     "SpriteOffset": 1932,
     "SkillEffectId": 395501,
-    "SkillEffectSourceOffset": 604054504,
+    "SkillEffectSourceOffset": 604067279,
     "MonsterNameId": 1203463751,
     "MonsterNames": {
       "en": "Cabbage Kingpin",
@@ -8407,8 +8461,8 @@
       "id": "Penguncian akurasi! Tembak! .... (Meleset) Uhuk-uhuk, ini cuma buat menakut-nakuti saja!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140195,
-    "SkillTableSourceOffset": 604820802
+    "SourceOffset": 785032041,
+    "SkillTableSourceOffset": 604833577
   },
   {
     "id": 3956,
@@ -8429,13 +8483,14 @@
     },
     "NameDesign": "奥义！炎灵之幸",
     "NameId": 1818024066,
+    "DescriptionId": 1505418560,
     "Icon": "skill_aoyi_skill_icon_070.png",
     "IconTexture": "skill_aoyi_advanced_texture070",
     "IconTextureOffset": 2073,
     "Sprite": "as_mon_niuyang_idle",
     "SpriteOffset": 2105,
     "SkillEffectId": 395601,
-    "SkillEffectSourceOffset": 604054571,
+    "SkillEffectSourceOffset": 604067346,
     "MonsterNameId": 1203463752,
     "MonsterNames": {
       "en": "Flamehorn",
@@ -8465,8 +8520,8 @@
       "id": "Aku amarah bumi dan bara api di dalam hutan!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140264,
-    "SkillTableSourceOffset": 604821041
+    "SourceOffset": 785032110,
+    "SkillTableSourceOffset": 604833816
   },
   {
     "id": 3957,
@@ -8487,13 +8542,14 @@
     },
     "NameDesign": "奥义！绝命螺旋",
     "NameId": 1818024067,
+    "DescriptionId": 1505418561,
     "Icon": "skill_aoyi_skill_icon_057.png",
     "IconTexture": "skill_aoyi_advanced_texture057",
     "IconTextureOffset": 2126,
     "Sprite": "as_mon_xiyi_idle",
     "SpriteOffset": 2158,
     "SkillEffectId": 395701,
-    "SkillEffectSourceOffset": 604054638,
+    "SkillEffectSourceOffset": 604067413,
     "MonsterNameId": 1203463753,
     "MonsterNames": {
       "en": "Basilisk",
@@ -8534,7 +8590,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411820,
+      "sourceOffset": 526421873,
       "skillLevelId": 395701,
       "skillEffectId": 395701,
       "level": 1,
@@ -8554,7 +8610,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419644,
+        "sourceOffset": 595432419,
         "rowId": 236
       },
       {
@@ -8570,7 +8626,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419700,
+        "sourceOffset": 595432475,
         "rowId": 237
       },
       {
@@ -8586,7 +8642,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419756,
+        "sourceOffset": 595432531,
         "rowId": 238
       },
       {
@@ -8602,7 +8658,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419812,
+        "sourceOffset": 595432587,
         "rowId": 239
       },
       {
@@ -8618,13 +8674,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419868,
+        "sourceOffset": 595432643,
         "rowId": 240
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140333,
-    "SkillTableSourceOffset": 604821280
+    "SourceOffset": 785032179,
+    "SkillTableSourceOffset": 604834055
   },
   {
     "id": 3958,
@@ -8645,13 +8701,14 @@
     },
     "NameDesign": "绝技！寒霜喷吐",
     "NameId": 1818024068,
+    "DescriptionId": 1505418562,
     "Icon": "skill_aoyi_skill_icon_056.png",
     "IconTexture": "skill_aoyi_advanced_texture056",
     "IconTextureOffset": 2176,
     "Sprite": "as_mon_xiyi_idle",
     "SpriteOffset": 2158,
     "SkillEffectId": 395801,
-    "SkillEffectSourceOffset": 604054705,
+    "SkillEffectSourceOffset": 604067480,
     "MonsterNameId": 1203463754,
     "MonsterNames": {
       "en": "Bluespine Lizard",
@@ -8692,7 +8749,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411881,
+      "sourceOffset": 526421934,
       "skillLevelId": 395801,
       "skillEffectId": 395801,
       "level": 1,
@@ -8712,7 +8769,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419924,
+        "sourceOffset": 595432699,
         "rowId": 241
       },
       {
@@ -8728,7 +8785,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595419980,
+        "sourceOffset": 595432755,
         "rowId": 242
       },
       {
@@ -8744,7 +8801,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420036,
+        "sourceOffset": 595432811,
         "rowId": 243
       },
       {
@@ -8760,7 +8817,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420092,
+        "sourceOffset": 595432867,
         "rowId": 244
       },
       {
@@ -8776,13 +8833,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420148,
+        "sourceOffset": 595432923,
         "rowId": 245
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140402,
-    "SkillTableSourceOffset": 604821519
+    "SourceOffset": 785032248,
+    "SkillTableSourceOffset": 604834294
   },
   {
     "id": 3959,
@@ -8803,13 +8860,14 @@
     },
     "NameDesign": "绝技！落雷惩戒",
     "NameId": 1818024069,
+    "DescriptionId": 1505418563,
     "Icon": "skill_aoyi_skill_icon_058.png",
     "IconTexture": "skill_aoyi_advanced_texture058",
     "IconTextureOffset": 2208,
     "Sprite": "as_mon_solider-spear_idle",
     "SpriteOffset": 2240,
     "SkillEffectId": 395901,
-    "SkillEffectSourceOffset": 604054772,
+    "SkillEffectSourceOffset": 604067547,
     "MonsterNameId": 1203463755,
     "MonsterNames": {
       "en": "Blackstone Commander",
@@ -8856,7 +8914,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526411942,
+      "sourceOffset": 526421995,
       "skillLevelId": 395901,
       "skillEffectId": 395901,
       "level": 1,
@@ -8882,7 +8940,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420204,
+        "sourceOffset": 595432979,
         "rowId": 246
       },
       {
@@ -8904,7 +8962,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420260,
+        "sourceOffset": 595433035,
         "rowId": 247
       },
       {
@@ -8926,7 +8984,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420316,
+        "sourceOffset": 595433091,
         "rowId": 248
       },
       {
@@ -8948,7 +9006,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420372,
+        "sourceOffset": 595433147,
         "rowId": 249
       },
       {
@@ -8970,13 +9028,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595420428,
+        "sourceOffset": 595433203,
         "rowId": 250
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140471,
-    "SkillTableSourceOffset": 604821758
+    "SourceOffset": 785032317,
+    "SkillTableSourceOffset": 604834533
   },
   {
     "id": 3960,
@@ -8997,13 +9055,14 @@
     },
     "NameDesign": "绝技！剑刃风暴",
     "NameId": 1818024093,
+    "DescriptionId": 1505418587,
     "Icon": "skill_aoyi_skill_icon_059.png",
     "IconTexture": "skill_aoyi_advanced_texture059",
     "IconTextureOffset": 2267,
     "Sprite": "as_mon_solider-dagger_fidle",
     "SpriteOffset": 2299,
     "SkillEffectId": 396001,
-    "SkillEffectSourceOffset": 604054839,
+    "SkillEffectSourceOffset": 604067614,
     "MonsterNameId": 1203463779,
     "MonsterNames": {
       "en": "Blackstone Vanguard",
@@ -9033,8 +9092,8 @@
       "id": "Akhirnya ada target hidup! Ayo rasakan ketajaman pedangku!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140540,
-    "SkillTableSourceOffset": 604821997
+    "SourceOffset": 785032386,
+    "SkillTableSourceOffset": 604834772
   },
   {
     "id": 3961,
@@ -9055,13 +9114,14 @@
     },
     "NameDesign": "绝技！全场轰炸",
     "NameId": 1818024094,
+    "DescriptionId": 1505418588,
     "Icon": "skill_aoyi_skill_icon_061.png",
     "IconTexture": "skill_aoyi_advanced_texture061",
     "IconTextureOffset": 2360,
     "Sprite": "as_mon_gebulin-ds_idle",
     "SpriteOffset": 342,
     "SkillEffectId": 396101,
-    "SkillEffectSourceOffset": 604054906,
+    "SkillEffectSourceOffset": 604067681,
     "MonsterNameId": 1203463780,
     "MonsterNames": {
       "en": "Goblin Trickster",
@@ -9091,8 +9151,8 @@
       "id": "Kamu kena jebakan buatan 'teman baikku'!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140678,
-    "SkillTableSourceOffset": 604822236
+    "SourceOffset": 785032524,
+    "SkillTableSourceOffset": 604835011
   },
   {
     "id": 3962,
@@ -9113,13 +9173,14 @@
     },
     "NameDesign": "绝技！治疗爆弹",
     "NameId": 1818024095,
+    "DescriptionId": 1505418589,
     "Icon": "skill_aoyi_skill_icon_062.png",
     "IconTexture": "skill_aoyi_advanced_texture062",
     "IconTextureOffset": 2328,
     "Sprite": "as_mon_gebulin-ds_idle",
     "SpriteOffset": 342,
     "SkillEffectId": 396201,
-    "SkillEffectSourceOffset": 604054973,
+    "SkillEffectSourceOffset": 604067748,
     "MonsterNameId": 1203463781,
     "MonsterNames": {
       "en": "Goblin Shaman",
@@ -9159,7 +9220,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526412125,
+      "sourceOffset": 526422178,
       "skillLevelId": 396201,
       "skillEffectId": 396201,
       "level": 1,
@@ -9178,7 +9239,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421044,
+        "sourceOffset": 595433819,
         "rowId": 261
       },
       {
@@ -9193,7 +9254,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421100,
+        "sourceOffset": 595433875,
         "rowId": 262
       },
       {
@@ -9208,7 +9269,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421156,
+        "sourceOffset": 595433931,
         "rowId": 263
       },
       {
@@ -9223,7 +9284,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421212,
+        "sourceOffset": 595433987,
         "rowId": 264
       },
       {
@@ -9238,13 +9299,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421268,
+        "sourceOffset": 595434043,
         "rowId": 265
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140609,
-    "SkillTableSourceOffset": 604822475
+    "SourceOffset": 785032455,
+    "SkillTableSourceOffset": 604835250
   },
   {
     "id": 3963,
@@ -9265,13 +9326,14 @@
     },
     "NameDesign": "绝技！灵动出击",
     "NameId": 1818024096,
+    "DescriptionId": 1505418590,
     "Icon": "skill_aoyi_skill_icon_067.png",
     "IconTexture": "skill_aoyi_advanced_texture067",
     "IconTextureOffset": 2392,
     "Sprite": "as_mon_dihu_idle",
     "SpriteOffset": 2023,
     "SkillEffectId": 396301,
-    "SkillEffectSourceOffset": 604055040,
+    "SkillEffectSourceOffset": 604067815,
     "MonsterNameId": 1203463782,
     "MonsterNames": {
       "en": "Blackfire Foxen",
@@ -9312,7 +9374,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526412186,
+      "sourceOffset": 526422239,
       "skillLevelId": 396301,
       "skillEffectId": 396301,
       "level": 1,
@@ -9332,7 +9394,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421324,
+        "sourceOffset": 595434099,
         "rowId": 266
       },
       {
@@ -9348,7 +9410,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421380,
+        "sourceOffset": 595434155,
         "rowId": 267
       },
       {
@@ -9364,7 +9426,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421436,
+        "sourceOffset": 595434211,
         "rowId": 268
       },
       {
@@ -9380,7 +9442,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421492,
+        "sourceOffset": 595434267,
         "rowId": 269
       },
       {
@@ -9396,13 +9458,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421548,
+        "sourceOffset": 595434323,
         "rowId": 270
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140747,
-    "SkillTableSourceOffset": 604822714
+    "SourceOffset": 785032593,
+    "SkillTableSourceOffset": 604835489
   },
   {
     "id": 3964,
@@ -9423,13 +9485,14 @@
     },
     "NameDesign": "绝技！卷心菜回旋刃",
     "NameId": 1818024097,
+    "DescriptionId": 1505418591,
     "Icon": "skill_aoyi_skill_icon_064.png",
     "IconTexture": "skill_aoyi_advanced_texture064",
     "IconTextureOffset": 2424,
     "Sprite": "as_mon_solider-sword_idle",
     "SpriteOffset": 1932,
     "SkillEffectId": 396401,
-    "SkillEffectSourceOffset": 604055107,
+    "SkillEffectSourceOffset": 604067882,
     "MonsterNameId": 1203463783,
     "MonsterNames": {
       "en": "Gloomy Cabbage",
@@ -9546,7 +9609,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526412247,
+      "sourceOffset": 526422300,
       "skillLevelId": 396401,
       "skillEffectId": 396401,
       "level": 1,
@@ -9642,7 +9705,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421604,
+        "sourceOffset": 595434379,
         "rowId": 271
       },
       {
@@ -9734,7 +9797,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421660,
+        "sourceOffset": 595434435,
         "rowId": 272
       },
       {
@@ -9826,7 +9889,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421716,
+        "sourceOffset": 595434491,
         "rowId": 273
       },
       {
@@ -9918,7 +9981,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421772,
+        "sourceOffset": 595434547,
         "rowId": 274
       },
       {
@@ -10010,13 +10073,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595421828,
+        "sourceOffset": 595434603,
         "rowId": 275
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140816,
-    "SkillTableSourceOffset": 604822953
+    "SourceOffset": 785032662,
+    "SkillTableSourceOffset": 604835728
   },
   {
     "id": 3965,
@@ -10037,13 +10100,14 @@
     },
     "NameDesign": "绝技！卷心菜霹雳闪",
     "NameId": 1818024098,
+    "DescriptionId": 1505418592,
     "Icon": "skill_aoyi_skill_icon_065.png",
     "IconTexture": "skill_aoyi_advanced_texture065",
     "IconTextureOffset": 2456,
     "Sprite": "as_mon_solider-sword_idle",
     "SpriteOffset": 1932,
     "SkillEffectId": 396501,
-    "SkillEffectSourceOffset": 604055174,
+    "SkillEffectSourceOffset": 604067949,
     "MonsterNameId": 1203463784,
     "MonsterNames": {
       "en": "Ruthless Cabbage",
@@ -10073,8 +10137,8 @@
       "id": "Dengarkan irama sihir ini! —Hachiuuu!"
     },
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140885,
-    "SkillTableSourceOffset": 604823192
+    "SourceOffset": 785032731,
+    "SkillTableSourceOffset": 604835967
   },
   {
     "id": 3966,
@@ -10095,13 +10159,14 @@
     },
     "NameDesign": "绝技！双重牙",
     "NameId": 1818024099,
+    "DescriptionId": 1505418593,
     "Icon": "skill_aoyi_skill_icon_069.png",
     "IconTexture": "skill_aoyi_advanced_texture069",
     "IconTextureOffset": 2488,
     "Sprite": "as_mon_niuyang_idle",
     "SpriteOffset": 2105,
     "SkillEffectId": 396601,
-    "SkillEffectSourceOffset": 604055241,
+    "SkillEffectSourceOffset": 604068016,
     "MonsterNameId": 1203463785,
     "MonsterNames": {
       "en": "Emerald Caprahorn",
@@ -10142,7 +10207,7 @@
         }
       ],
       "sourceTable": "SkillFightLevelTable.ctb",
-      "sourceOffset": 526412369,
+      "sourceOffset": 526422422,
       "skillLevelId": 396601,
       "skillEffectId": 396601,
       "level": 1,
@@ -10162,7 +10227,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595422164,
+        "sourceOffset": 595434939,
         "rowId": 281
       },
       {
@@ -10178,7 +10243,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595422220,
+        "sourceOffset": 595434995,
         "rowId": 282
       },
       {
@@ -10194,7 +10259,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595422276,
+        "sourceOffset": 595435051,
         "rowId": 283
       },
       {
@@ -10210,7 +10275,7 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595422332,
+        "sourceOffset": 595435107,
         "rowId": 284
       },
       {
@@ -10226,13 +10291,13 @@
           }
         ],
         "sourceTable": "SkillAoyiStarTable.ctb",
-        "sourceOffset": 595422388,
+        "sourceOffset": 595435163,
         "rowId": 285
       }
     ],
     "Source": "SkillAoyiTable",
-    "SourceOffset": 785140954,
-    "SkillTableSourceOffset": 604823431
+    "SourceOffset": 785032800,
+    "SkillTableSourceOffset": 604836206
   },
   {
     "id": 420140,
@@ -10253,11 +10318,12 @@
     },
     "NameDesign": "绝技！缭乱飞弹",
     "NameId": 2026418646,
+    "DescriptionId": 901438996,
     "Icon": "skill_aoyi_skill_icon_009.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_009",
     "IconPathOffset": 20874,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605193881
+    "SourceOffset": 605206656
   },
   {
     "id": 1002440,
@@ -10278,11 +10344,12 @@
     },
     "NameDesign": "绝技！超会心",
     "NameId": 642150950,
+    "DescriptionId": 25044516,
     "Icon": "skill_aoyi_skill_icon_026.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_026",
     "IconPathOffset": 20486,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605262235
+    "SourceOffset": 605275010
   },
   {
     "id": 1002830,
@@ -10303,11 +10370,12 @@
     },
     "NameDesign": "奥义！冰霜震荡",
     "NameId": 642155273,
+    "DescriptionId": 25048839,
     "Icon": "skill_aoyi_skill_icon_015.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_015",
     "IconPathOffset": 20582,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605265820
+    "SourceOffset": 605278595
   },
   {
     "id": 1005240,
@@ -10328,11 +10396,12 @@
     },
     "NameDesign": "绝技！追猎猛斩",
     "NameId": 642256583,
+    "DescriptionId": 25150149,
     "Icon": "skill_aoyi_skill_icon_031.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_031",
     "IconPathOffset": 22100,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605272990
+    "SourceOffset": 605285765
   },
   {
     "id": 1006940,
@@ -10353,11 +10422,12 @@
     },
     "NameDesign": "奥义！茧房术",
     "NameId": 642300143,
+    "DescriptionId": 25193709,
     "Icon": "skill_aoyi_skill_icon_041.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_041",
     "IconPathOffset": 22827,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605290915
+    "SourceOffset": 605303690
   },
   {
     "id": 1008440,
@@ -10382,7 +10452,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_048",
     "IconPathOffset": 23256,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605303582
+    "SourceOffset": 605316357
   },
   {
     "id": 1008540,
@@ -10407,7 +10477,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_049",
     "IconPathOffset": 23329,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605306211
+    "SourceOffset": 605318986
   },
   {
     "id": 1008640,
@@ -10428,11 +10498,12 @@
     },
     "NameDesign": "绝技！碎星陨落",
     "NameId": 642368750,
+    "DescriptionId": 25262316,
     "Icon": "skill_aoyi_skill_icon_008.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_008",
     "IconPathOffset": 20655,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605308123
+    "SourceOffset": 605320898
   },
   {
     "id": 1008641,
@@ -10453,11 +10524,12 @@
     },
     "NameDesign": "绝技！旋风打击",
     "NameId": 642368751,
+    "DescriptionId": 25262317,
     "Icon": "skill_aoyi_skill_icon_044.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_044",
     "IconPathOffset": 22970,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605308362
+    "SourceOffset": 605321137
   },
   {
     "id": 1010440,
@@ -10478,11 +10550,12 @@
     },
     "NameDesign": "绝技！强压之雷",
     "NameId": 643264997,
+    "DescriptionId": 26158563,
     "Icon": "skill_aoyi_skill_icon_040.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_040",
     "IconPathOffset": 22757,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605314576
+    "SourceOffset": 605327351
   },
   {
     "id": 1010540,
@@ -10503,11 +10576,12 @@
     },
     "NameDesign": "绝技！静默之水",
     "NameId": 643266086,
+    "DescriptionId": 26159652,
     "Icon": "skill_aoyi_skill_icon_039.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_039",
     "IconPathOffset": 22684,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605316966
+    "SourceOffset": 605329741
   },
   {
     "id": 1011010,
@@ -10528,11 +10602,12 @@
     },
     "NameDesign": "绝技！落雷惩戒",
     "NameId": 643296479,
+    "DescriptionId": 26190045,
     "Icon": "skill_aoyi_skill_icon_060.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_060",
     "IconPathOffset": 24360,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605325570
+    "SourceOffset": 605338345
   },
   {
     "id": 1011104,
@@ -10553,11 +10628,12 @@
     },
     "NameDesign": "绝技！剑刃风暴",
     "NameId": 643297539,
+    "DescriptionId": 26191105,
     "Icon": "skill_aoyi_skill_icon_059.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_059",
     "IconPathOffset": 24433,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605326765
+    "SourceOffset": 605339540
   },
   {
     "id": 1011214,
@@ -10582,7 +10658,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_065",
     "IconPathOffset": 24810,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605330111
+    "SourceOffset": 605342886
   },
   {
     "id": 1011312,
@@ -10607,7 +10683,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_064",
     "IconPathOffset": 24731,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605334652
+    "SourceOffset": 605347427
   },
   {
     "id": 1011806,
@@ -10632,7 +10708,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_066",
     "IconPathOffset": 24068,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605338715
+    "SourceOffset": 605351490
   },
   {
     "id": 1011906,
@@ -10657,7 +10733,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_058",
     "IconPathOffset": 23846,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605340627
+    "SourceOffset": 605353402
   },
   {
     "id": 1100504,
@@ -10682,7 +10758,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_056",
     "IconPathOffset": 24287,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605353055
+    "SourceOffset": 605365830
   },
   {
     "id": 1100740,
@@ -10707,7 +10783,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_057",
     "IconPathOffset": 24214,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605355923
+    "SourceOffset": 605368698
   },
   {
     "id": 1101204,
@@ -10732,7 +10808,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_061",
     "IconPathOffset": 24506,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605357118
+    "SourceOffset": 605369893
   },
   {
     "id": 1101304,
@@ -10757,7 +10833,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_062",
     "IconPathOffset": 24579,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605359508
+    "SourceOffset": 605372283
   },
   {
     "id": 1101440,
@@ -10782,7 +10858,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_063",
     "IconPathOffset": 23919,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605360942
+    "SourceOffset": 605373717
   },
   {
     "id": 1102205,
@@ -10807,7 +10883,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_069",
     "IconPathOffset": 24880,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605364766
+    "SourceOffset": 605377541
   },
   {
     "id": 1102306,
@@ -10832,7 +10908,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_070",
     "IconPathOffset": 24141,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605366200
+    "SourceOffset": 605378975
   },
   {
     "id": 1700440,
@@ -10853,11 +10929,12 @@
     },
     "NameDesign": "奥义！重锤狂袭",
     "NameId": 916026827,
+    "DescriptionId": 298920393,
     "Icon": "skill_aoyi_skill_icon_005.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_005",
     "IconPathOffset": 21735,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605396792
+    "SourceOffset": 605409567
   },
   {
     "id": 1700718,
@@ -10878,11 +10955,12 @@
     },
     "NameDesign": "绝技！灵动出击",
     "NameId": 916030003,
+    "DescriptionId": 298923569,
     "Icon": "skill_aoyi_skill_icon_067.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_067",
     "IconPathOffset": 24652,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605400855
+    "SourceOffset": 605413630
   },
   {
     "id": 1700829,
@@ -10907,7 +10985,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_068",
     "IconPathOffset": 23992,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605403723
+    "SourceOffset": 605416498
   },
   {
     "id": 2001740,
@@ -10928,11 +11006,12 @@
     },
     "NameDesign": "绝技！瞬步奇袭",
     "NameId": 1933586249,
+    "DescriptionId": 1316479815,
     "Icon": "skill_aoyi_skill_icon_037.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_037",
     "IconPathOffset": 22538,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605431686
+    "SourceOffset": 605444461
   },
   {
     "id": 2002440,
@@ -10953,11 +11032,12 @@
     },
     "NameDesign": "奥义！雷霆天引",
     "NameId": 1933618919,
+    "DescriptionId": 1316512485,
     "Icon": "skill_aoyi_skill_icon_014.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_014",
     "IconPathOffset": 20343,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605452718
+    "SourceOffset": 605465493
   },
   {
     "id": 2900240,
@@ -10978,11 +11058,12 @@
     },
     "NameDesign": "奥义！生命祈愿",
     "NameId": 138279756,
+    "DescriptionId": 1668656970,
     "Icon": "skill_aoyi_skill_icon_013.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_013",
     "IconPathOffset": 21519,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605479964
+    "SourceOffset": 605492739
   },
   {
     "id": 2900340,
@@ -11003,11 +11084,12 @@
     },
     "NameDesign": "奥义！时间法令",
     "NameId": 138280845,
+    "DescriptionId": 1668658059,
     "Icon": "skill_aoyi_skill_icon_016.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_016",
     "IconPathOffset": 21592,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605482115
+    "SourceOffset": 605494890
   },
   {
     "id": 2900540,
@@ -11028,11 +11110,12 @@
     },
     "NameDesign": "奥义！瞬即斩",
     "NameId": 138283023,
+    "DescriptionId": 1668660237,
     "Icon": "skill_aoyi_skill_icon_025.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_025",
     "IconPathOffset": 21662,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605484983
+    "SourceOffset": 605497758
   },
   {
     "id": 2900640,
@@ -11053,11 +11136,12 @@
     },
     "NameDesign": "奥义！烈焰之心",
     "NameId": 138284112,
+    "DescriptionId": 1668661326,
     "Icon": "skill_aoyi_skill_icon_042.png",
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_042",
     "IconPathOffset": 20947,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605486178
+    "SourceOffset": 605498953
   },
   {
     "id": 2900715,
@@ -11082,7 +11166,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
     "IconPathOffset": 23700,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605488568
+    "SourceOffset": 605501343
   },
   {
     "id": 2900740,
@@ -11107,7 +11191,7 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_055",
     "IconPathOffset": 23700,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605489285
+    "SourceOffset": 605502060
   },
   {
     "id": 2900940,
@@ -11132,6 +11216,6 @@
     "IconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_054",
     "IconPathOffset": 23773,
     "Source": "SkillTableAdjacentAoyiIcon",
-    "SourceOffset": 605491197
+    "SourceOffset": 605503972
   }
 ]

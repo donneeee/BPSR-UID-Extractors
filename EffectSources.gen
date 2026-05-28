@@ -1537,6 +1537,19 @@ function allEvidenceText(source) {
   ].filter(Boolean).join(" "));
 }
 
+function modifierEvidenceGradeDescriptions(source) {
+  const rows = Array.isArray(source.modifierEvidence?.gradeRows)
+    ? source.modifierEvidence.gradeRows
+    : [];
+  return uniqueStrings(rows.map((row) => cleanMarkup(
+    row.cleanResolvedDescription
+      || row.resolvedDescription
+      || preferredText(row.cleanResolvedDescriptions)
+      || preferredText(row.resolvedDescriptions)
+      || "",
+  )).filter(Boolean));
+}
+
 function sourceHasIcdLockoutDescription(source) {
   return hasIcdLockoutDescription(allEvidenceText(source));
 }
@@ -1574,6 +1587,7 @@ function inferredComponent(key, label, effectClass, order, extra = {}) {
 
 const CRITICAL_DAMAGE_TEXT = /\bcrit(?:ical)?\s*dmg\b|\bcritical damage\b/i;
 const CRITICAL_RATE_TEXT = /\bcrit(?:ical)?\s*(?:rate|chance)\b|\b(?:rate|chance)\s+to\s+crit(?:ical)?\b/i;
+const PRIMARY_STAT_CONVERSION_TEXT = /\b(?:(?:adaptive\s*)?(?:strength|str|intellect|int|agility|agi|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))\s*(?:\/\s*(?:strength|str|intellect|int|agility|agi))*\s*(?:\+|increase(?:s|d)?(?:\s+by)?|boost(?:s|ed)?(?:\s+by)?|bonus\s*:?)\s*[+-]?\d|(?:increase(?:s|d)?|boosts?|adds?)\s+(?:adaptive\s*)?(?:strength|str|intellect|int|agility|agi|main\s*(?:stat|stats|attribute|attributes)|primary\s*(?:stat|stats|attribute|attributes))(?:\/(?:strength|str|intellect|int|agility|agi))*\s*(?:by\s*)?[+-]?\d)\b/i;
 const FINAL_DAMAGE_TEXT = /\bfinal\s+(?:dmg|damage|damage bonus|damage increase)\b/i;
 const PHYSICAL_MAGIC_DAMAGE_TEXT = /\b(?:(?:physical|magic|magical)(?!\s+attack\b)\s*(?:\/\s*(?:physical|magic|magical))?\s*(?:(?:dmg|damage)\s*)?(?:enhancement|increase|boost|bonus|strength|value|percentage)|(?:enhancement|increase|boost|bonus|strength|value|percentage)\s*(?:to|for|of)?\s*(?:physical|magic|magical)(?:\s*(?:dmg|damage))?)\b/i;
 const SEASON_DAMAGE_TEXT = /\b(?:(?:season(?:al)?|dream(?:scape)?|breakthrough).{0,40}(?:dmg|damage|damage bonus|damage increase)|(?:dmg|damage|damage bonus|damage increase).{0,40}(?:season(?:al)?|dream(?:scape)?|breakthrough))\b/i;
@@ -1660,6 +1674,9 @@ function componentClauseMatches(componentKey, effectClass, clause) {
   }
   if (key === "haste-or-attack-speed") return /\bhaste\b|\battack\s*spd\b|\battack speed\b|\banimation speed\b/i.test(clause);
   if (key === "cooldown-or-resource") return /\bcd\b|\bcooldown\b|\bresource\b|\benergy\b/i.test(clause);
+  if (key === "adaptive-primary-stat" || effectClass === "stat-conversion") {
+    return PRIMARY_STAT_CONVERSION_TEXT.test(clause) && clauseEligibleForFormulaStat(clause);
+  }
   return false;
 }
 
@@ -1729,11 +1746,15 @@ function isSeasonalPhantomFactorSource(source) {
 
 function inferEffectComponentsFromSource(source) {
   const text = englishEvidenceText(source);
+  const gradeEvidenceText = modifierEvidenceGradeDescriptions(source).join("; ");
+  const statConversionText = cleanMarkup([text, gradeEvidenceText].filter(Boolean).join("; "));
   const normalized = normalizeActivationText(text);
   const components = [];
   let order = 1;
   const valueTexts = extractFormulaValueTexts(text);
   const effectClauses = splitFormulaEffectClauses(text);
+  const statConversionClauses = splitFormulaEffectClauses(statConversionText);
+  const statConversionValueTexts = extractFormulaValueTexts(statConversionText);
   const targetArmorMitigationText =
     /\b(?:armor|defen[cs]e)\s*(?:break|down|reduction|reduced|reduce|decrease|decreased|decreases|shatter|shattered|lower|lowers|lowered|-\s*\d)/i.test(text)
     || /\b(?:break|reduce|reduces|reduced|decrease|decreases|decreased|shatter|shattered|lower|lowers|lowered)\b.{0,50}\b(?:target'?s?\s*)?(?:armor|defen[cs]e)\b/i.test(text)
@@ -1855,6 +1876,23 @@ function inferEffectComponentsFromSource(source) {
       direction: "timing",
       predicateTags,
       activationPredicate,
+    });
+  }
+  const primaryStatClauses = statConversionClauses.filter((clause) =>
+    PRIMARY_STAT_CONVERSION_TEXT.test(clause) && clauseEligibleForFormulaStat(clause)
+  );
+  if (primaryStatClauses.length > 0 || PRIMARY_STAT_CONVERSION_TEXT.test(statConversionText)) {
+    const primaryStatValueTexts = uniqueValueTextsFromClauses(primaryStatClauses);
+    add("adaptive-primary-stat", "Adaptive Primary Stat", "stat-conversion", {
+      direction: "stat-conversion",
+      stat: "adaptivePrimary",
+      formulaTermIds: ["adaptivePrimaryStat"],
+      contributionGroups: ["statConversion"],
+      valueTexts: primaryStatValueTexts.length ? primaryStatValueTexts : statConversionValueTexts,
+      valueScope: valueScopeForClauses(primaryStatClauses, statConversionClauses),
+      predicateTags,
+      activationPredicate,
+      requiredRuntimeEvidence: ["attacker primary-stat/agility snapshot at hit time"],
     });
   }
   const matkClauses = effectClauses.filter((clause) => /\bmatk\b|\bmagic attack\b/i.test(clause));
@@ -2503,7 +2541,7 @@ function addPhantomFactors(builder, factorData) {
       sourceName: factor.familyName,
       sourceNames: factor.familyNames,
       iconPath: factor.iconPath,
-      runtimeDetection: "active-buff",
+      runtimeDetection: factor.runtimeDetection ?? "active-buff",
       sourceTable: "SeasonPhantomFactorProbe",
       classGateIds: factor.classGateIds,
       buffIds: [factor.buffId],

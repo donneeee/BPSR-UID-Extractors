@@ -9,7 +9,7 @@ CTB field+36 is decoded as top-level effect records. Opcode 6 records are report
 - weaponStyleGroups: 6
 - talentPassiveRows: 646
 - talentSpecRows: 18
-- observedBaseSkillRows: 112
+- observedBaseSkillRows: 111
 - sharedLocalizedNames: 517
 - strictRuntimeStatus: probe-only
 

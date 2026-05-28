@@ -258,6 +258,7 @@ export function readU32(buffer, offset) {
 export function normalizeText(value) {
   return String(value || "")
     .replace(/\u0000/g, "")
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }

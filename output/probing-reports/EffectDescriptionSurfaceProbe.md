@@ -4,22 +4,22 @@ This report scans localized and generated description-like text for effect seman
 
 ## Summary
 
-- Localization strings scanned: 1020671
+- Localization strings scanned: 1020519
 - CTB string-pool strings scanned: 93642
-- Generated JSON strings scanned: 1922012
-- Effect-like strings matched: 133839
+- Generated JSON strings scanned: 1921580
+- Effect-like strings matched: 133871
 - Records retained: 20000
 
 ### Tag Counts
 
 - activation.focus-state: 195
-- component.damage: 8580
-- component.stat-or-attribute: 7314
+- component.damage: 8581
+- component.stat-or-attribute: 7318
 - description.effect-labeled: 2005
 - direction.damage-dealt: 959
 - direction.damage-taken-or-defense: 370
 - effect.compound-components: 98
-- source.companion-or-summon: 1310
+- source.companion-or-summon: 1306
 - target.elite-or-stronger: 1511
 - window.stack-state: 1361
 - window.timed: 2559

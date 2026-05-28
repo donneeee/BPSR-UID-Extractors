@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const path = require("node:path");
+const { cleanDescriptionsByLocale } = require("./effect-semantics.cjs");
 
 const STRING_POOL = 6;
 const INT_POOL = 1;
@@ -58,6 +59,7 @@ Notes:
     readU32
   });
   const rowsById = new Map();
+  const descriptionSearchById = new Map();
 
   for (let index = 0; index < aoyiTable.rowCount; index += 1) {
     const rowOffset = aoyiTable.rowStart + index * aoyiTable.rowSize;
@@ -93,6 +95,7 @@ Notes:
       Names: names,
       ...(skillDisplay?.NameDesign || preferredName ? { NameDesign: skillDisplay?.NameDesign || preferredName } : {}),
       ...(skillDisplay?.NameId ? { NameId: skillDisplay.NameId } : {}),
+      ...(skillDisplay?.DescriptionId ? { DescriptionId: skillDisplay.DescriptionId } : {}),
       Icon: deriveIconFileName(iconTexture),
       IconTexture: iconTexture,
       IconTextureOffset: iconTextureOffset,
@@ -114,6 +117,9 @@ Notes:
       SourceOffset: aoyiTable.entry.offset + rowOffset,
       ...(skillDisplay ? { SkillTableSourceOffset: skillDisplay.SourceOffset } : {})
     });
+    if (skillDisplay?.DescriptionSearchText) {
+      descriptionSearchById.set(String(id), skillDisplay.DescriptionSearchText);
+    }
   }
 
   let skillTableFallbackCount = 0;
@@ -128,6 +134,7 @@ Notes:
       Names: skillDisplay.Names,
       NameDesign: skillDisplay.NameDesign,
       NameId: skillDisplay.NameId,
+      ...(skillDisplay.DescriptionId ? { DescriptionId: skillDisplay.DescriptionId } : {}),
       Icon: deriveIconFileName(skillDisplay.IconPath),
       IconPath: skillDisplay.IconPath,
       IconPathOffset: skillDisplay.IconPathOffset,
@@ -136,17 +143,34 @@ Notes:
       Source: "SkillTableAdjacentAoyiIcon",
       SourceOffset: skillDisplay.SourceOffset
     });
+    if (skillDisplay.DescriptionSearchText) {
+      descriptionSearchById.set(String(skillDisplay.Id), skillDisplay.DescriptionSearchText);
+    }
     skillTableFallbackCount += 1;
   }
 
   const rows = [...rowsById.values()];
   rows.sort((left, right) => Number(left.id) - Number(right.id));
+  const searchRows = rows
+    .map((row) => {
+      const descriptionSearchText = descriptionSearchById.get(String(row.id));
+      return descriptionSearchText
+        ? { id: row.id, DescriptionSearchText: descriptionSearchText }
+        : null;
+    })
+    .filter(Boolean);
 
   console.log(`SkillAoyiTable rows scanned: ${aoyiTable.rowCount}`);
   console.log(`SkillTable fallback Aoyi-icon rows added: ${skillTableFallbackCount}`);
   console.log(`Aoyi icon entries written: ${rows.length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, rows, Boolean(args.dryRun));
+  if (args.searchOut) {
+    const searchOut = path.resolve(args.searchOut);
+    console.log(`Search entries written: ${searchRows.length}`);
+    console.log(`Search output: ${displayPath(searchOut)}`);
+    maybeWriteJson(searchOut, searchRows, Boolean(args.dryRun));
+  }
 }
 
 function buildSkillDisplayLookup(skillTable, localizationTables, helpers) {
@@ -157,6 +181,7 @@ function buildSkillDisplayLookup(skillTable, localizationTables, helpers) {
     const rowOffset = skillTable.rowStart + index * skillTable.rowSize;
     const id = readU32(skillTable.data, rowOffset);
     const nameOffset = readU32(skillTable.data, rowOffset + 4);
+    const descriptionId = readU32(skillTable.data, rowOffset + 8);
     const nameId = readU32(skillTable.data, rowOffset + 12);
     const nameDesign = readCtbString(skillTable, STRING_POOL, nameOffset, { allowZero: false });
     if (!id || !nameDesign) {
@@ -167,13 +192,20 @@ function buildSkillDisplayLookup(skillTable, localizationTables, helpers) {
     const names = buildLocaleTextObject(collectLocalizedTextEntries(nameId, localizationTables), {
       designText: nameDesign
     });
+    const notes = cleanDescriptionsByLocale(
+      buildLocaleTextObject(collectLocalizedTextEntries(descriptionId, localizationTables), {
+        includeDesign: false
+      })
+    );
     out.set(String(id), {
       Id: id,
       NameDesign: nameDesign,
       NameId: nameId,
+      DescriptionId: descriptionId,
       Names: Object.keys(names).length
         ? names
         : buildLocaleTextObject([{ localeId: "design", text: nameDesign }], { includeDesign: false }),
+      DescriptionSearchText: buildDescriptionSearchText(notes),
       IconPath: /^ui\/textures\/skill_aoyi\/skill_aoyi_skill_icon_\d+$/i.test(iconPath) ? iconPath : "",
       IconPathOffset: iconPathOffset,
       SourceOffset: skillTable.entry.offset + rowOffset
@@ -181,6 +213,26 @@ function buildSkillDisplayLookup(skillTable, localizationTables, helpers) {
   }
 
   return out;
+}
+
+function buildDescriptionSearchText(notes) {
+  const preferred = [
+    notes?.en,
+    notes?.["zh-CN"],
+    notes?.["zh-TW"]
+  ];
+  const seen = new Set();
+  const parts = [];
+
+  for (const value of preferred) {
+    if (typeof value !== "string") continue;
+    const text = value.trim().replace(/\s+/g, " ");
+    if (!text || seen.has(text)) continue;
+    seen.add(text);
+    parts.push(text);
+  }
+
+  return parts.join(" ");
 }
 
 function buildSkillEffectLookup(containerDir, metaEntries, helpers) {

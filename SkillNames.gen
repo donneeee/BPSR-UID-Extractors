@@ -1503,15 +1503,17 @@ function putEntry(target, id, update) {
   };
 
   const priority = Number(update.priority ?? 0);
-  const names = update.names && typeof update.names === "object" && !Array.isArray(update.names)
-    ? update.names
-    : {};
-  const updateName = String(update.name ?? "").trim();
+  const names = sanitizeLocaleTextMap(
+    update.names && typeof update.names === "object" && !Array.isArray(update.names)
+      ? update.names
+      : {}
+  );
+  const updateName = cleanMarkup(update.name ?? "");
   const hasBetterNames = hasRealLocale(names) && !hasRealLocale(current.names);
   if (priority > current.priority || hasBetterNames) {
     current.name = updateName || chooseFirstText(names);
     current.names = Object.keys(names).length ? names : current.names;
-    current.nameDesign = String(update.nameDesign ?? current.nameDesign ?? "").trim();
+    current.nameDesign = cleanMarkup(update.nameDesign ?? current.nameDesign ?? "");
     current.priority = priority;
   }
 
@@ -1601,11 +1603,13 @@ function mergeSkillRelation(relations, relation) {
     relations.push(current);
   }
 
-  const relatedNames = relation.relatedSkillNames && typeof relation.relatedSkillNames === "object" && !Array.isArray(relation.relatedSkillNames)
-    ? relation.relatedSkillNames
-    : {};
+  const relatedNames = sanitizeLocaleTextMap(
+    relation.relatedSkillNames && typeof relation.relatedSkillNames === "object" && !Array.isArray(relation.relatedSkillNames)
+      ? relation.relatedSkillNames
+      : {}
+  );
   if (!current.relatedSkillName && relation.relatedSkillName) {
-    current.relatedSkillName = String(relation.relatedSkillName);
+    current.relatedSkillName = cleanMarkup(relation.relatedSkillName);
   }
   if (!hasRealLocale(current.relatedSkillNames) && Object.keys(relatedNames).length) {
     current.relatedSkillNames = relatedNames;

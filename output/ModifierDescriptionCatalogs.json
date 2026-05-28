@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-19T11:46:23.928Z",
+  "generatedAt": "2026-05-27T21:20:02.797Z",
   "status": "description-value-grounding",
   "boundaries": [
     "These catalogs are generated evidence for modifier work, not runtime contribution math.",
@@ -79,7 +79,7 @@
         "withParagraphBreaks": 1,
         "withDescriptionBlocks": 6374,
         "withBridgedPageContexts": 0,
-        "withValueRows": 9777,
+        "withValueRows": 9775,
         "withStructuredValueRows": 0,
         "withDecisionPlaceholders": 0,
         "withUnresolvedDecisionPlaceholders": 0,
@@ -154,14 +154,14 @@
       "category": "factors",
       "output": "FactorDescriptions.json",
       "stats": {
-        "scannedRows": 1707,
-        "entries": 147,
+        "scannedRows": 1716,
+        "entries": 156,
         "missingSources": 0,
         "withDescriptions": 147,
         "withParagraphBreaks": 28,
         "withDescriptionBlocks": 147,
         "withBridgedPageContexts": 0,
-        "withValueRows": 142,
+        "withValueRows": 151,
         "withStructuredValueRows": 0,
         "withDecisionPlaceholders": 147,
         "withUnresolvedDecisionPlaceholders": 0,
@@ -171,8 +171,8 @@
         "withTargetStackEvidence": 0,
         "withRuntimeStackEvidenceRequired": 5,
         "withScopeDescriptions": 0,
-        "withRelationships": 147,
-        "withProvenance": 147
+        "withRelationships": 156,
+        "withProvenance": 156
       },
       "note": "Season Phantom Factor text/value rows. Factor grade/runtime acquisition still needs runtime proof."
     },

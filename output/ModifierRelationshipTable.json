@@ -4672,6 +4672,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 27015,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 27012
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 27016,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 27012
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 27016,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 27015
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 27007,
@@ -6998,6 +7031,39 @@
           "uid": 27012,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 27015,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 27012
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 27016,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 27012
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 27016,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 27015
         },
         {
           "edgeKind": "source-entity",
@@ -13777,6 +13843,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2201691,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2201690
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 967,
@@ -14590,6 +14667,61 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2203611,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2203610
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 55413,
@@ -14959,6 +15091,61 @@
           "uid": 55414,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2203611,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2203610
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
         },
         {
           "edgeKind": "source-buff",
@@ -16072,6 +16259,50 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1157,
@@ -16805,6 +17036,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55311
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55314
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55315
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 55311,
@@ -16895,6 +17159,39 @@
           "uid": 55314,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55311
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55314
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55315
         },
         {
           "edgeKind": "source-buff",
@@ -17010,6 +17307,39 @@
           "uid": 55315,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55311
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55314
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55313,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55315
         },
         {
           "edgeKind": "source-buff",
@@ -20624,6 +20954,50 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 55412,
@@ -21184,6 +21558,50 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1226,
@@ -21284,6 +21702,50 @@
           "uid": 55417,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
         },
         {
           "edgeKind": "source-entity",
@@ -21473,6 +21935,50 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1255,
@@ -21609,6 +22115,50 @@
           "uid": 55417,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
         },
         {
           "edgeKind": "source-buff",
@@ -21913,6 +22463,50 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1119,
@@ -22109,6 +22703,50 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1159,
@@ -22215,6 +22853,61 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2203611,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2203610
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1161,
@@ -22315,6 +23008,50 @@
           "uid": 55414,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55412
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55413
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55414
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 55415,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 55417
         },
         {
           "edgeKind": "source-entity",
@@ -30144,6 +30881,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827234
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827238
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827239
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 827234,
@@ -30209,6 +30979,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827234
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827238
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827239
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 827238,
@@ -30272,6 +31075,39 @@
           "uid": 827239,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827234
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827238
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 827232,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 827239
         },
         {
           "edgeKind": "source-buff",
@@ -39596,6 +40432,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 881724,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 881721
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 881724,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 881722
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 881721,
@@ -39659,6 +40517,28 @@
           "uid": 881722,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 881724,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 881721
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 881724,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 881722
         },
         {
           "edgeKind": "source-buff",
@@ -39872,6 +40752,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 881815,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 881814
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 881814,
@@ -40056,6 +40947,17 @@
           "uid": 881847,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 881840,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 881847
         },
         {
           "edgeKind": "source-buff",
@@ -40715,6 +41617,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882155
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882156
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882158
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 882155,
@@ -40780,6 +41715,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882155
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882156
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882158
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 882156,
@@ -40843,6 +41811,39 @@
           "uid": 882158,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882155
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882156
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882158
         },
         {
           "edgeKind": "source-buff",
@@ -41365,6 +42366,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882330,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882337
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882330,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882338
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 882337,
@@ -41428,6 +42451,28 @@
           "uid": 882338,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882330,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882337
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 882330,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 882338
         },
         {
           "edgeKind": "source-buff",
@@ -42531,6 +43576,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 883116,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 883112
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 883116,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 883114
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 883112,
@@ -42594,6 +43661,28 @@
           "uid": 883114,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 883116,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 883112
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 883116,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 883114
         },
         {
           "edgeKind": "source-buff",
@@ -43220,6 +44309,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 952206,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 952202
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 952206,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 952203
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 952202,
@@ -43299,6 +44410,28 @@
           "uid": 952203,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 952206,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 952202
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 952206,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 952203
         },
         {
           "edgeKind": "source-buff",
@@ -43448,6 +44581,17 @@
           "uid": 960221,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 960223,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 960221
         },
         {
           "edgeKind": "source-buff",
@@ -46745,6 +47889,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 990503,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 990501
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 990501,
@@ -47884,6 +49039,17 @@
           "uid": 995159,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 995154,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 995159
         },
         {
           "edgeKind": "source-buff",
@@ -67963,6 +69129,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2100101,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2100104
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 2100104,
@@ -75052,6 +76229,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2200111,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2200110
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2200111,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2200112
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 109,
@@ -75214,6 +76413,17 @@
           "uid": 2200120,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2200122,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2200120
         },
         {
           "edgeKind": "source-entity",
@@ -75989,6 +77199,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2200182,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2200180
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 116,
@@ -76307,6 +77528,17 @@
           "uid": 2200220,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2200221,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2200220
         },
         {
           "edgeKind": "source-entity",
@@ -80463,7 +81695,7 @@
           {
             "kind": "unique-spec-anchor-term",
             "specId": 130,
-            "matched": "​Taillade iaido​",
+            "matched": "Taillade iaido",
             "weight": 34
           },
           {
@@ -85328,6 +86560,28 @@
           "source": "TalentEffectModelProbe.talentRows"
         },
         {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "activation.active-modifier-window",
+            "direction.stat-conversion"
+          ]
+        },
+        {
           "edgeKind": "linked-buff",
           "uidKind": "buff",
           "uid": 2201491,
@@ -88588,6 +89842,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202251,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202250
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202251,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202252
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 506,
@@ -91327,6 +92603,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202251,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202250
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202251,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202252
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 523,
@@ -93121,6 +94419,17 @@
           "uid": 2202400,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202402,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202400
         },
         {
           "edgeKind": "source-entity",
@@ -96952,6 +98261,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202707,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202700
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202707,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202705
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 566,
@@ -96983,6 +98314,28 @@
           "uid": 2202705,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202707,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202700
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2202707,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2202705
         },
         {
           "edgeKind": "source-buff",
@@ -111193,7 +112546,7 @@
         }
       ]
     },
-    "mrs:eaa10f98f72b": {
+    "mrs:0818356ca975": {
       "sourceId": "talent:271",
       "talentOwnership": {
         "classId": 2,
@@ -111223,6 +112576,28 @@
           "uid": 2204680,
           "role": "evidence",
           "source": "TalentEffectModelProbe.talentRows"
+        },
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "activation.active-modifier-window",
+            "direction.stat-conversion"
+          ]
         },
         {
           "edgeKind": "observed-buff",
@@ -113349,6 +114724,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205130
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205131
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205134
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 413,
@@ -113549,6 +114957,39 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205130
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205131
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205134
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 450,
@@ -113715,6 +115156,39 @@
           "uid": 2205380,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205130
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205131
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2205133,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2205134
         },
         {
           "edgeKind": "source-entity",
@@ -125043,7 +126517,7 @@
         }
       ]
     },
-    "mrs:638f18a0da6b": {
+    "mrs:a96956608dea": {
       "sourceId": "talent:1247",
       "talentOwnership": {
         "classId": 12,
@@ -125075,6 +126549,28 @@
           "uid": 2206480,
           "role": "evidence",
           "source": "TalentEffectModelProbe.talentRows"
+        },
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "activation.active-modifier-window",
+            "direction.stat-conversion"
+          ]
         },
         {
           "edgeKind": "linked-buff",
@@ -129293,6 +130789,28 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2207243,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2207240
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2207243,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2207241
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 1323,
@@ -129469,6 +130987,28 @@
           "uid": 2207560,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2207243,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2207240
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2207243,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2207241
         },
         {
           "edgeKind": "source-entity",
@@ -136851,6 +138391,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 2208484,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 2208480
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "talent",
           "uid": 347,
@@ -139050,6 +140601,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3001191,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3001192
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 3001192,
@@ -140562,6 +142124,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3002411,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3002410
+        },
+        {
           "edgeKind": "source-buff",
           "uidKind": "buff",
           "uid": 3002410,
@@ -140625,6 +142198,17 @@
           "uid": 3002410,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3002411,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3002410
         },
         {
           "edgeKind": "source-entity",
@@ -141911,6 +143495,39 @@
           "uid": 3002810,
           "role": "runtime",
           "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3002812,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3002810
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3002812,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3002811
+        },
+        {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3002812,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3002813
         },
         {
           "edgeKind": "source-entity",
@@ -143344,6 +144961,28 @@
     "mrs:35ec0711aeb4": {
       "sourceId": "season-talent-node:1610",
       "uidEdges": [
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "activation.active-modifier-window",
+            "direction.stat-conversion"
+          ]
+        },
         {
           "edgeKind": "formula-component",
           "uidKind": "formula-term",
@@ -144977,7 +146616,7 @@
         }
       ]
     },
-    "mrs:76a74c3110c4": {
+    "mrs:db9fe07d4c1f": {
       "sourceId": "phantom-factor:3050010",
       "uidEdges": [
         {
@@ -145083,7 +146722,7 @@
         }
       ]
     },
-    "mrs:074308d23138": {
+    "mrs:999481405983": {
       "sourceId": "phantom-factor:3050020",
       "uidEdges": [
         {
@@ -145177,7 +146816,7 @@
         }
       ]
     },
-    "mrs:bb4d3ece8ff3": {
+    "mrs:b87b8be9e03b": {
       "sourceId": "phantom-factor:3050030",
       "uidEdges": [
         {
@@ -145293,7 +146932,7 @@
         }
       ]
     },
-    "mrs:cd39e213cb60": {
+    "mrs:ee547194414d": {
       "sourceId": "phantom-factor:3050040",
       "uidEdges": [
         {
@@ -145371,7 +147010,7 @@
         }
       ]
     },
-    "mrs:3ae47dfe5376": {
+    "mrs:25169073fb33": {
       "sourceId": "phantom-factor:3050050",
       "uidEdges": [
         {
@@ -145419,7 +147058,7 @@
         }
       ]
     },
-    "mrs:416a601f39ed": {
+    "mrs:fd2530f06fee": {
       "sourceId": "phantom-factor:3050060",
       "uidEdges": [
         {
@@ -145702,7 +147341,7 @@
         }
       ]
     },
-    "mrs:eb67e4ac430c": {
+    "mrs:aff13e8b8d76": {
       "sourceId": "phantom-factor:3050070",
       "uidEdges": [
         {
@@ -145838,7 +147477,7 @@
         }
       ]
     },
-    "mrs:55c3db4bce48": {
+    "mrs:58b24ec42371": {
       "sourceId": "phantom-factor:3050080",
       "uidEdges": [
         {
@@ -145916,7 +147555,7 @@
         }
       ]
     },
-    "mrs:324f8c9c41d9": {
+    "mrs:d0b8d8c8dbf0": {
       "sourceId": "phantom-factor:3050090",
       "uidEdges": [
         {
@@ -146036,7 +147675,7 @@
         }
       ]
     },
-    "mrs:9dde7b523983": {
+    "mrs:6b06a9df6720": {
       "sourceId": "phantom-factor:3050100",
       "uidEdges": [
         {
@@ -146179,7 +147818,7 @@
         }
       ]
     },
-    "mrs:7b53703c9f7e": {
+    "mrs:97312edee09d": {
       "sourceId": "phantom-factor:3050110",
       "uidEdges": [
         {
@@ -146227,7 +147866,7 @@
         }
       ]
     },
-    "mrs:4a6898cd0283": {
+    "mrs:1c3a1e54df31": {
       "sourceId": "phantom-factor:3050120",
       "uidEdges": [
         {
@@ -146275,7 +147914,7 @@
         }
       ]
     },
-    "mrs:a41da6f06e66": {
+    "mrs:621efad68e24": {
       "sourceId": "phantom-factor:3050130",
       "uidEdges": [
         {
@@ -146353,7 +147992,7 @@
         }
       ]
     },
-    "mrs:45a03d53781c": {
+    "mrs:5da4cb6dbfcd": {
       "sourceId": "phantom-factor:3050140",
       "uidEdges": [
         {
@@ -146446,7 +148085,7 @@
         }
       ]
     },
-    "mrs:cfd2fc68100e": {
+    "mrs:1a1db6a0fd05": {
       "sourceId": "phantom-factor:3050150",
       "uidEdges": [
         {
@@ -147289,7 +148928,7 @@
         }
       ]
     },
-    "mrs:9fbe9ca5f53d": {
+    "mrs:66f54d268016": {
       "sourceId": "phantom-factor:3051010",
       "uidEdges": [
         {
@@ -147381,7 +149020,7 @@
         }
       ]
     },
-    "mrs:6d5fc808b50d": {
+    "mrs:9c417d1bfb08": {
       "sourceId": "phantom-factor:3051020",
       "uidEdges": [
         {
@@ -147489,7 +149128,7 @@
         }
       ]
     },
-    "mrs:88b80a95d560": {
+    "mrs:20f1e6029764": {
       "sourceId": "phantom-factor:3051030",
       "uidEdges": [
         {
@@ -147567,7 +149206,7 @@
         }
       ]
     },
-    "mrs:0d4509de331d": {
+    "mrs:8673fb9c676b": {
       "sourceId": "phantom-factor:3051040",
       "uidEdges": [
         {
@@ -147645,7 +149284,7 @@
         }
       ]
     },
-    "mrs:9ca6ca7d42d9": {
+    "mrs:919f6d99167d": {
       "sourceId": "phantom-factor:3051050",
       "uidEdges": [
         {
@@ -147737,7 +149376,7 @@
         }
       ]
     },
-    "mrs:5f212d2e9467": {
+    "mrs:0fd84841479c": {
       "sourceId": "phantom-factor:3051060",
       "uidEdges": [
         {
@@ -147763,7 +149402,7 @@
         }
       ]
     },
-    "mrs:64e9ef650dd7": {
+    "mrs:a71b531e6cd2": {
       "sourceId": "phantom-factor:3051070",
       "uidEdges": [
         {
@@ -147848,7 +149487,7 @@
         }
       ]
     },
-    "mrs:d5fd69fd5ff7": {
+    "mrs:918ffd6cceae": {
       "sourceId": "phantom-factor:3051080",
       "uidEdges": [
         {
@@ -147927,7 +149566,7 @@
         }
       ]
     },
-    "mrs:619e75b2fb23": {
+    "mrs:09c03f3773e3": {
       "sourceId": "phantom-factor:3051090",
       "uidEdges": [
         {
@@ -148005,7 +149644,7 @@
         }
       ]
     },
-    "mrs:6e7c7cfa30db": {
+    "mrs:0c507479421f": {
       "sourceId": "phantom-factor:3051100",
       "uidEdges": [
         {
@@ -148105,7 +149744,7 @@
         }
       ]
     },
-    "mrs:382030ee415f": {
+    "mrs:c7649e959883": {
       "sourceId": "phantom-factor:3051110",
       "uidEdges": [
         {
@@ -148190,7 +149829,7 @@
         }
       ]
     },
-    "mrs:bb0e2575ba00": {
+    "mrs:06d4b85b23a2": {
       "sourceId": "phantom-factor:3051120",
       "uidEdges": [
         {
@@ -148238,7 +149877,7 @@
         }
       ]
     },
-    "mrs:352410e0c96f": {
+    "mrs:ddee3fa851b1": {
       "sourceId": "phantom-factor:3051130",
       "uidEdges": [
         {
@@ -148316,7 +149955,7 @@
         }
       ]
     },
-    "mrs:ba9c97baf0e4": {
+    "mrs:aebceee128ba": {
       "sourceId": "phantom-factor:3051140",
       "uidEdges": [
         {
@@ -148394,7 +150033,7 @@
         }
       ]
     },
-    "mrs:ac5b68c3fc2d": {
+    "mrs:80d35d5facb8": {
       "sourceId": "phantom-factor:3051150",
       "uidEdges": [
         {
@@ -149067,6 +150706,17 @@
           "source": "EffectSources.buffIds"
         },
         {
+          "edgeKind": "runtime-state-child-alias",
+          "uidKind": "buff",
+          "uid": 3051301,
+          "role": "runtime-state",
+          "source": "ModifierRecountTable.state-sibling-alias",
+          "status": "state-only",
+          "relationshipKind": "same-buff-family-state-child",
+          "parentUidKind": "buff",
+          "parentUid": 3051300
+        },
+        {
           "edgeKind": "source-entity",
           "uidKind": "season-rogue-entry",
           "uid": 293,
@@ -149101,7 +150751,7 @@
         }
       ]
     },
-    "mrs:1550bddc4506": {
+    "mrs:a8f0e8dcf025": {
       "sourceId": "phantom-factor:3052010",
       "uidEdges": [
         {
@@ -149172,7 +150822,7 @@
         }
       ]
     },
-    "mrs:2ddbcdb165fa": {
+    "mrs:cb5efe5fe631": {
       "sourceId": "phantom-factor:3052020",
       "uidEdges": [
         {
@@ -149285,7 +150935,7 @@
         }
       ]
     },
-    "mrs:422fe3407db8": {
+    "mrs:d895ac27bc59": {
       "sourceId": "phantom-factor:3052030",
       "uidEdges": [
         {
@@ -149363,7 +151013,7 @@
         }
       ]
     },
-    "mrs:59b7fa99ffe1": {
+    "mrs:153d5eae7448": {
       "sourceId": "phantom-factor:3052040",
       "uidEdges": [
         {
@@ -149464,7 +151114,7 @@
         }
       ]
     },
-    "mrs:de2774818b6b": {
+    "mrs:46bb719f459c": {
       "sourceId": "phantom-factor:3052050",
       "uidEdges": [
         {
@@ -149542,7 +151192,7 @@
         }
       ]
     },
-    "mrs:23a459df03e5": {
+    "mrs:d2ffcf621731": {
       "sourceId": "phantom-factor:3052060",
       "uidEdges": [
         {
@@ -149613,7 +151263,7 @@
         }
       ]
     },
-    "mrs:f9f9c860ac13": {
+    "mrs:a98c0abcfe69": {
       "sourceId": "phantom-factor:3052070",
       "uidEdges": [
         {
@@ -149691,7 +151341,7 @@
         }
       ]
     },
-    "mrs:17cdbfa9b51b": {
+    "mrs:2d037af6d63a": {
       "sourceId": "phantom-factor:3052080",
       "uidEdges": [
         {
@@ -149717,7 +151367,7 @@
         }
       ]
     },
-    "mrs:6b2848effeaf": {
+    "mrs:a2d9e898ae40": {
       "sourceId": "phantom-factor:3052090",
       "uidEdges": [
         {
@@ -149795,7 +151445,7 @@
         }
       ]
     },
-    "mrs:bd595a8db205": {
+    "mrs:f13e8cc76a76": {
       "sourceId": "phantom-factor:3052100",
       "uidEdges": [
         {
@@ -149843,7 +151493,7 @@
         }
       ]
     },
-    "mrs:56dbb49f286a": {
+    "mrs:4c94502d3b4d": {
       "sourceId": "phantom-factor:3052110",
       "uidEdges": [
         {
@@ -149961,7 +151611,7 @@
         }
       ]
     },
-    "mrs:aae80ca429fa": {
+    "mrs:758ec961e7c2": {
       "sourceId": "phantom-factor:3052120",
       "uidEdges": [
         {
@@ -150098,7 +151748,7 @@
         }
       ]
     },
-    "mrs:d2d0f7c8a32d": {
+    "mrs:7af0d2cb9e9f": {
       "sourceId": "phantom-factor:3052130",
       "uidEdges": [
         {
@@ -150124,7 +151774,7 @@
         }
       ]
     },
-    "mrs:1ef571d2ff81": {
+    "mrs:61224bb2eca4": {
       "sourceId": "phantom-factor:3052140",
       "uidEdges": [
         {
@@ -150202,7 +151852,7 @@
         }
       ]
     },
-    "mrs:705abf91b626": {
+    "mrs:993457f1b4ad": {
       "sourceId": "phantom-factor:3052150",
       "uidEdges": [
         {
@@ -151212,7 +152862,7 @@
         }
       ]
     },
-    "mrs:32b0670cd093": {
+    "mrs:98c5b6fc745c": {
       "sourceId": "phantom-factor:3053010",
       "uidEdges": [
         {
@@ -151283,7 +152933,7 @@
         }
       ]
     },
-    "mrs:0d5f242cd19f": {
+    "mrs:3f0404334c85": {
       "sourceId": "phantom-factor:3053020",
       "uidEdges": [
         {
@@ -151354,7 +153004,7 @@
         }
       ]
     },
-    "mrs:65caa9c2f649": {
+    "mrs:6a8258614643": {
       "sourceId": "phantom-factor:3053030",
       "uidEdges": [
         {
@@ -151402,7 +153052,7 @@
         }
       ]
     },
-    "mrs:c4dda323a515": {
+    "mrs:fa9bc3962f9d": {
       "sourceId": "phantom-factor:3053040",
       "uidEdges": [
         {
@@ -151495,7 +153145,7 @@
         }
       ]
     },
-    "mrs:ec427bb475eb": {
+    "mrs:bb58bd04e1ae": {
       "sourceId": "phantom-factor:3053050",
       "uidEdges": [
         {
@@ -151610,7 +153260,7 @@
         }
       ]
     },
-    "mrs:d44262b95e61": {
+    "mrs:ab0e93155b75": {
       "sourceId": "phantom-factor:3053060",
       "uidEdges": [
         {
@@ -151682,7 +153332,7 @@
         }
       ]
     },
-    "mrs:1d3e1b4904b5": {
+    "mrs:a1257a86494c": {
       "sourceId": "phantom-factor:3053070",
       "uidEdges": [
         {
@@ -151753,7 +153403,7 @@
         }
       ]
     },
-    "mrs:b9b90ecbad9c": {
+    "mrs:3b5f2fdd8449": {
       "sourceId": "phantom-factor:3053080",
       "uidEdges": [
         {
@@ -151824,7 +153474,7 @@
         }
       ]
     },
-    "mrs:6f78a79cfb6a": {
+    "mrs:99157ae37d04": {
       "sourceId": "phantom-factor:3053090",
       "uidEdges": [
         {
@@ -151902,7 +153552,7 @@
         }
       ]
     },
-    "mrs:06a1180100f3": {
+    "mrs:c8b3a6d54fa0": {
       "sourceId": "phantom-factor:3053100",
       "uidEdges": [
         {
@@ -152027,7 +153677,7 @@
         }
       ]
     },
-    "mrs:9c89957215c8": {
+    "mrs:43e913ff5f0d": {
       "sourceId": "phantom-factor:3053110",
       "uidEdges": [
         {
@@ -152164,7 +153814,7 @@
         }
       ]
     },
-    "mrs:0a534165e802": {
+    "mrs:823eba6adfb7": {
       "sourceId": "phantom-factor:3053120",
       "uidEdges": [
         {
@@ -152236,7 +153886,7 @@
         }
       ]
     },
-    "mrs:6e677dbf8ee8": {
+    "mrs:43b347baf910": {
       "sourceId": "phantom-factor:3053130",
       "uidEdges": [
         {
@@ -152262,7 +153912,7 @@
         }
       ]
     },
-    "mrs:3bca58640a56": {
+    "mrs:a4e8564407c0": {
       "sourceId": "phantom-factor:3053140",
       "uidEdges": [
         {
@@ -152288,7 +153938,7 @@
         }
       ]
     },
-    "mrs:4b09ac128835": {
+    "mrs:f777bf290553": {
       "sourceId": "phantom-factor:3053150",
       "uidEdges": [
         {
@@ -153051,7 +154701,7 @@
         }
       ]
     },
-    "mrs:de66e6fc3d6b": {
+    "mrs:4bda788d452c": {
       "sourceId": "phantom-factor:3054010",
       "uidEdges": [
         {
@@ -153136,7 +154786,7 @@
         }
       ]
     },
-    "mrs:6e9ff6f12f04": {
+    "mrs:5263343b4652": {
       "sourceId": "phantom-factor:3054020",
       "uidEdges": [
         {
@@ -153265,7 +154915,7 @@
         }
       ]
     },
-    "mrs:91fc0e042aa2": {
+    "mrs:b7cb6544c542": {
       "sourceId": "phantom-factor:3054030",
       "uidEdges": [
         {
@@ -153387,7 +155037,7 @@
         }
       ]
     },
-    "mrs:33bcc02f125f": {
+    "mrs:e5fc4ed8bc26": {
       "sourceId": "phantom-factor:3054040",
       "uidEdges": [
         {
@@ -153413,7 +155063,7 @@
         }
       ]
     },
-    "mrs:ea16001136af": {
+    "mrs:744d60945ea1": {
       "sourceId": "phantom-factor:3054050",
       "uidEdges": [
         {
@@ -153484,7 +155134,7 @@
         }
       ]
     },
-    "mrs:0905eb73e776": {
+    "mrs:f7e44b840f77": {
       "sourceId": "phantom-factor:3054060",
       "uidEdges": [
         {
@@ -153532,7 +155182,7 @@
         }
       ]
     },
-    "mrs:5a41533fb6f0": {
+    "mrs:a2ff70799c13": {
       "sourceId": "phantom-factor:3054070",
       "uidEdges": [
         {
@@ -153654,7 +155304,7 @@
         }
       ]
     },
-    "mrs:5a7a85ef3cc7": {
+    "mrs:de9edc489127": {
       "sourceId": "phantom-factor:3054080",
       "uidEdges": [
         {
@@ -153725,7 +155375,7 @@
         }
       ]
     },
-    "mrs:71936252fb06": {
+    "mrs:7a4a507c1316": {
       "sourceId": "phantom-factor:3054090",
       "uidEdges": [
         {
@@ -153859,7 +155509,7 @@
         }
       ]
     },
-    "mrs:70a125b7c790": {
+    "mrs:dfff18ff5e3c": {
       "sourceId": "phantom-factor:3054100",
       "uidEdges": [
         {
@@ -153930,7 +155580,7 @@
         }
       ]
     },
-    "mrs:99c2f4cea586": {
+    "mrs:a760858b7068": {
       "sourceId": "phantom-factor:3054110",
       "uidEdges": [
         {
@@ -153978,7 +155628,7 @@
         }
       ]
     },
-    "mrs:6cee7ce75b6f": {
+    "mrs:214b1023d056": {
       "sourceId": "phantom-factor:3054120",
       "uidEdges": [
         {
@@ -154115,7 +155765,7 @@
         }
       ]
     },
-    "mrs:1903edf92d52": {
+    "mrs:144950247ffc": {
       "sourceId": "phantom-factor:3054130",
       "uidEdges": [
         {
@@ -154163,7 +155813,7 @@
         }
       ]
     },
-    "mrs:a518e53be4b0": {
+    "mrs:e8e5212b086d": {
       "sourceId": "phantom-factor:3054140",
       "uidEdges": [
         {
@@ -154234,7 +155884,7 @@
         }
       ]
     },
-    "mrs:26a4196b8872": {
+    "mrs:1f1994afebaf": {
       "sourceId": "phantom-factor:3054150",
       "uidEdges": [
         {
@@ -155223,7 +156873,7 @@
         }
       ]
     },
-    "mrs:20062f5d1f0f": {
+    "mrs:806e2d07990f": {
       "sourceId": "phantom-factor:3055010",
       "uidEdges": [
         {
@@ -155249,7 +156899,7 @@
         }
       ]
     },
-    "mrs:d947faf7abd2": {
+    "mrs:12d6072e7527": {
       "sourceId": "phantom-factor:3055020",
       "uidEdges": [
         {
@@ -155320,7 +156970,7 @@
         }
       ]
     },
-    "mrs:13b575d342e6": {
+    "mrs:8956cac52386": {
       "sourceId": "phantom-factor:3055030",
       "uidEdges": [
         {
@@ -155435,7 +157085,7 @@
         }
       ]
     },
-    "mrs:4d5a7c7373fd": {
+    "mrs:ac67023f4975": {
       "sourceId": "phantom-factor:3055040",
       "uidEdges": [
         {
@@ -155483,7 +157133,7 @@
         }
       ]
     },
-    "mrs:439f26f262b7": {
+    "mrs:62053750112f": {
       "sourceId": "phantom-factor:3055050",
       "uidEdges": [
         {
@@ -155531,7 +157181,7 @@
         }
       ]
     },
-    "mrs:141dae6a317b": {
+    "mrs:405326bef8c0": {
       "sourceId": "phantom-factor:3055060",
       "uidEdges": [
         {
@@ -155557,7 +157207,7 @@
         }
       ]
     },
-    "mrs:73e94e2ec603": {
+    "mrs:7feac936f9c0": {
       "sourceId": "phantom-factor:3055070",
       "uidEdges": [
         {
@@ -155658,7 +157308,7 @@
         }
       ]
     },
-    "mrs:06f1b6c210c1": {
+    "mrs:595e07ccb057": {
       "sourceId": "phantom-factor:3055080",
       "uidEdges": [
         {
@@ -155706,7 +157356,7 @@
         }
       ]
     },
-    "mrs:ca0222539991": {
+    "mrs:d9173bedfc9d": {
       "sourceId": "phantom-factor:3055090",
       "uidEdges": [
         {
@@ -155732,7 +157382,7 @@
         }
       ]
     },
-    "mrs:310d71e5ee87": {
+    "mrs:c95b8fccb6d0": {
       "sourceId": "phantom-factor:3055100",
       "uidEdges": [
         {
@@ -155838,7 +157488,7 @@
         }
       ]
     },
-    "mrs:d90efd35906e": {
+    "mrs:8992caeea9da": {
       "sourceId": "phantom-factor:3055110",
       "uidEdges": [
         {
@@ -155909,7 +157559,7 @@
         }
       ]
     },
-    "mrs:c36f480182b8": {
+    "mrs:8810e65dd0f2": {
       "sourceId": "phantom-factor:3055120",
       "uidEdges": [
         {
@@ -155994,7 +157644,7 @@
         }
       ]
     },
-    "mrs:d22f9500d44c": {
+    "mrs:f290b3f49d60": {
       "sourceId": "phantom-factor:3055130",
       "uidEdges": [
         {
@@ -156065,7 +157715,7 @@
         }
       ]
     },
-    "mrs:5d85027eb687": {
+    "mrs:8f1e550c56d0": {
       "sourceId": "phantom-factor:3055140",
       "uidEdges": [
         {
@@ -156136,7 +157786,7 @@
         }
       ]
     },
-    "mrs:f0656a11a553": {
+    "mrs:2e340e7fb79b": {
       "sourceId": "phantom-factor:3055150",
       "uidEdges": [
         {
@@ -156852,7 +158502,7 @@
         }
       ]
     },
-    "mrs:825481d4168d": {
+    "mrs:b70c83918ca0": {
       "sourceId": "phantom-factor:3056010",
       "uidEdges": [
         {
@@ -156981,7 +158631,7 @@
         }
       ]
     },
-    "mrs:5ed915c7b920": {
+    "mrs:f29773be9e42": {
       "sourceId": "phantom-factor:3056020",
       "uidEdges": [
         {
@@ -157073,7 +158723,7 @@
         }
       ]
     },
-    "mrs:db340a5c0d31": {
+    "mrs:0e0f78a797d6": {
       "sourceId": "phantom-factor:3056030",
       "uidEdges": [
         {
@@ -157256,7 +158906,7 @@
         }
       ]
     },
-    "mrs:6c35e9e03a5c": {
+    "mrs:2f41c32685e2": {
       "sourceId": "phantom-factor:3056040",
       "uidEdges": [
         {
@@ -157282,7 +158932,7 @@
         }
       ]
     },
-    "mrs:25cdc53f0894": {
+    "mrs:0a5c663d9324": {
       "sourceId": "phantom-factor:3056050",
       "uidEdges": [
         {
@@ -157367,7 +159017,7 @@
         }
       ]
     },
-    "mrs:8133f97b50de": {
+    "mrs:8145018d9c96": {
       "sourceId": "phantom-factor:3056060",
       "uidEdges": [
         {
@@ -157415,7 +159065,7 @@
         }
       ]
     },
-    "mrs:f59d56a6ad94": {
+    "mrs:a6db335d8946": {
       "sourceId": "phantom-factor:3056070",
       "uidEdges": [
         {
@@ -157463,7 +159113,7 @@
         }
       ]
     },
-    "mrs:73d55b7463ed": {
+    "mrs:59e0e30bc191": {
       "sourceId": "phantom-factor:3056080",
       "uidEdges": [
         {
@@ -157569,7 +159219,7 @@
         }
       ]
     },
-    "mrs:8139a266fd9d": {
+    "mrs:a726b168f425": {
       "sourceId": "phantom-factor:3056090",
       "uidEdges": [
         {
@@ -157640,7 +159290,7 @@
         }
       ]
     },
-    "mrs:edc2774eb76e": {
+    "mrs:bbbc870c769b": {
       "sourceId": "phantom-factor:3056100",
       "uidEdges": [
         {
@@ -157666,7 +159316,7 @@
         }
       ]
     },
-    "mrs:6f7d2da167e2": {
+    "mrs:98c1efa2e628": {
       "sourceId": "phantom-factor:3056110",
       "uidEdges": [
         {
@@ -157715,7 +159365,7 @@
         }
       ]
     },
-    "mrs:62f886052949": {
+    "mrs:a8800856ae3e": {
       "sourceId": "phantom-factor:3056120",
       "uidEdges": [
         {
@@ -157898,7 +159548,7 @@
         }
       ]
     },
-    "mrs:b17f71170dd1": {
+    "mrs:cf00786e9f02": {
       "sourceId": "phantom-factor:3056130",
       "uidEdges": [
         {
@@ -157976,7 +159626,7 @@
         }
       ]
     },
-    "mrs:45590742b5d2": {
+    "mrs:127c64bee41c": {
       "sourceId": "phantom-factor:3056140",
       "uidEdges": [
         {
@@ -158082,7 +159732,7 @@
         }
       ]
     },
-    "mrs:73b7649cd58c": {
+    "mrs:6cffcd72cd20": {
       "sourceId": "phantom-factor:3056150",
       "uidEdges": [
         {
@@ -159080,7 +160730,7 @@
         }
       ]
     },
-    "mrs:aec05bcc563f": {
+    "mrs:1d62ceb710b6": {
       "sourceId": "phantom-factor:3057010",
       "uidEdges": [
         {
@@ -159165,7 +160815,7 @@
         }
       ]
     },
-    "mrs:3df5b5cb4087": {
+    "mrs:4ccb9baa2949": {
       "sourceId": "phantom-factor:3057020",
       "uidEdges": [
         {
@@ -159306,7 +160956,7 @@
         }
       ]
     },
-    "mrs:a7b25b6a1510": {
+    "mrs:6bee17cf5fa3": {
       "sourceId": "phantom-factor:3057030",
       "uidEdges": [
         {
@@ -159405,7 +161055,7 @@
         }
       ]
     },
-    "mrs:50354eebd854": {
+    "mrs:1e9440e38da6": {
       "sourceId": "phantom-factor:3057040",
       "uidEdges": [
         {
@@ -159431,7 +161081,7 @@
         }
       ]
     },
-    "mrs:4c5c170bb6c7": {
+    "mrs:a498517327b8": {
       "sourceId": "phantom-factor:3057050",
       "uidEdges": [
         {
@@ -159546,7 +161196,7 @@
         }
       ]
     },
-    "mrs:82dc1b3b5fdf": {
+    "mrs:e8dd11299c9c": {
       "sourceId": "phantom-factor:3057060",
       "uidEdges": [
         {
@@ -159639,7 +161289,7 @@
         }
       ]
     },
-    "mrs:1c2fdc47ecde": {
+    "mrs:f965c065ede3": {
       "sourceId": "phantom-factor:3057070",
       "uidEdges": [
         {
@@ -159710,7 +161360,7 @@
         }
       ]
     },
-    "mrs:08c91ad54d59": {
+    "mrs:60f2f328cb8a": {
       "sourceId": "phantom-factor:3057080",
       "uidEdges": [
         {
@@ -159736,7 +161386,7 @@
         }
       ]
     },
-    "mrs:e9d62a5086ff": {
+    "mrs:cc81e1fb65fe": {
       "sourceId": "phantom-factor:3057090",
       "uidEdges": [
         {
@@ -159762,7 +161412,7 @@
         }
       ]
     },
-    "mrs:df324ea904a2": {
+    "mrs:bb4c7cca10f2": {
       "sourceId": "phantom-factor:3057100",
       "uidEdges": [
         {
@@ -159788,7 +161438,7 @@
         }
       ]
     },
-    "mrs:669b61cf8491": {
+    "mrs:3162f9e4ee10": {
       "sourceId": "phantom-factor:3057110",
       "uidEdges": [
         {
@@ -159870,7 +161520,7 @@
         }
       ]
     },
-    "mrs:877eeb13a3d3": {
+    "mrs:e428c3230919": {
       "sourceId": "phantom-factor:3057120",
       "uidEdges": [
         {
@@ -159896,7 +161546,7 @@
         }
       ]
     },
-    "mrs:b0a54db3f2ab": {
+    "mrs:cd6e9fb8f8d8": {
       "sourceId": "phantom-factor:3057130",
       "uidEdges": [
         {
@@ -159988,7 +161638,7 @@
         }
       ]
     },
-    "mrs:33585e1aaa96": {
+    "mrs:86b0f9266f47": {
       "sourceId": "phantom-factor:3057140",
       "uidEdges": [
         {
@@ -160059,7 +161709,7 @@
         }
       ]
     },
-    "mrs:4a377273c28f": {
+    "mrs:115b0bc04028": {
       "sourceId": "phantom-factor:3057150",
       "uidEdges": [
         {
@@ -160847,9 +162497,31 @@
         }
       ]
     },
-    "mrs:9846adfb7fc9": {
+    "mrs:71ce5dc01eac": {
       "sourceId": "season-rogue-entry:341",
       "uidEdges": [
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "activation.active-modifier-window",
+            "direction.stat-conversion"
+          ]
+        },
         {
           "edgeKind": "observed-buff",
           "uidKind": "buff",
@@ -160873,7 +162545,174 @@
         }
       ]
     },
-    "mrs:490a5155fe3f": {
+    "mrs:4c012bca61cb": {
+      "sourceId": "phantom-factor:3058010",
+      "uidEdges": [
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3058010,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3058010,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3058010,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:7798624136fb": {
+      "sourceId": "phantom-factor:3058020",
+      "uidEdges": [
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "direction.stat-conversion"
+          ]
+        },
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3058020,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3058020,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3058020,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:9be35c9fc068": {
+      "sourceId": "phantom-factor:3058030",
+      "uidEdges": [
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "direction.stat-conversion"
+          ]
+        },
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3058030,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3058030,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3058030,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:f1e90cc6d360": {
+      "sourceId": "phantom-factor:3058040",
+      "uidEdges": [
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "direction.stat-conversion"
+          ]
+        },
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3058040,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3058040,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3058040,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:8c84641a5eba": {
       "sourceId": "phantom-factor:3058050",
       "uidEdges": [
         {
@@ -160921,7 +162760,7 @@
         }
       ]
     },
-    "mrs:493820b11f63": {
+    "mrs:f9e98ead7134": {
       "sourceId": "phantom-factor:3058060",
       "uidEdges": [
         {
@@ -160947,7 +162786,7 @@
         }
       ]
     },
-    "mrs:6f75fbd51252": {
+    "mrs:c72d30f60fe1": {
       "sourceId": "phantom-factor:3058070",
       "uidEdges": [
         {
@@ -160973,7 +162812,7 @@
         }
       ]
     },
-    "mrs:b96d12b166b3": {
+    "mrs:1f9fd9aee2c0": {
       "sourceId": "phantom-factor:3058080",
       "uidEdges": [
         {
@@ -161021,7 +162860,7 @@
         }
       ]
     },
-    "mrs:3f8eef2006ae": {
+    "mrs:15f4db8b52cc": {
       "sourceId": "phantom-factor:3058090",
       "uidEdges": [
         {
@@ -161069,7 +162908,7 @@
         }
       ]
     },
-    "mrs:6b2fb3465a1d": {
+    "mrs:48eb612230b2": {
       "sourceId": "phantom-factor:3058100",
       "uidEdges": [
         {
@@ -161117,7 +162956,7 @@
         }
       ]
     },
-    "mrs:130714060500": {
+    "mrs:05c27e1a3b1f": {
       "sourceId": "phantom-factor:3058110",
       "uidEdges": [
         {
@@ -161165,7 +163004,111 @@
         }
       ]
     },
-    "mrs:352130049e61": {
+    "mrs:54b12472a21e": {
+      "sourceId": "phantom-factor:3059010",
+      "uidEdges": [
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3059010,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3059010,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3059010,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:86991716cf05": {
+      "sourceId": "phantom-factor:3059020",
+      "uidEdges": [
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3059020,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3059020,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3059020,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:4900fc2c74a3": {
+      "sourceId": "phantom-factor:3059030",
+      "uidEdges": [
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3059030,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3059030,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3059030,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:b8bfa684a7d2": {
+      "sourceId": "phantom-factor:3059040",
+      "uidEdges": [
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3059040,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3059040,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3059040,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:41ca8c9c34f7": {
       "sourceId": "phantom-factor:3059050",
       "uidEdges": [
         {
@@ -161191,7 +163134,7 @@
         }
       ]
     },
-    "mrs:71ea00abde1e": {
+    "mrs:9626cf0d52df": {
       "sourceId": "phantom-factor:3059060",
       "uidEdges": [
         {
@@ -161217,7 +163160,7 @@
         }
       ]
     },
-    "mrs:764033c9f8c4": {
+    "mrs:b2a4c4258899": {
       "sourceId": "phantom-factor:3059070",
       "uidEdges": [
         {
@@ -161265,7 +163208,7 @@
         }
       ]
     },
-    "mrs:7d494abb7a63": {
+    "mrs:84a866a76383": {
       "sourceId": "phantom-factor:3059080",
       "uidEdges": [
         {
@@ -161375,7 +163318,33 @@
         }
       ]
     },
-    "mrs:2011d2503ad4": {
+    "mrs:5340074abdc0": {
+      "sourceId": "phantom-factor:3059090",
+      "uidEdges": [
+        {
+          "edgeKind": "observed-buff",
+          "uidKind": "buff",
+          "uid": 3059090,
+          "role": "runtime",
+          "source": "ModifierSourceIndex.observedBuffId"
+        },
+        {
+          "edgeKind": "runtime-buff-alias",
+          "uidKind": "buff",
+          "uid": 3059090,
+          "role": "runtime",
+          "source": "EffectSources.buffIds"
+        },
+        {
+          "edgeKind": "source-entity",
+          "uidKind": "buff",
+          "uid": 3059090,
+          "role": "source",
+          "source": "EffectSources.sourceEntityId"
+        }
+      ]
+    },
+    "mrs:9b5b7604d2c6": {
       "sourceId": "phantom-factor:3059100",
       "uidEdges": [
         {
@@ -161493,7 +163462,7 @@
         }
       ]
     },
-    "mrs:509b5a1b3df5": {
+    "mrs:cb4907879ef0": {
       "sourceId": "phantom-factor:3059110",
       "uidEdges": [
         {
@@ -161519,7 +163488,7 @@
         }
       ]
     },
-    "mrs:111674dc51a2": {
+    "mrs:2ca447d81824": {
       "sourceId": "phantom-factor:3059120",
       "uidEdges": [
         {
@@ -161545,7 +163514,7 @@
         }
       ]
     },
-    "mrs:e06b8f2e96c5": {
+    "mrs:7a9cc832b65a": {
       "sourceId": "phantom-factor:3059130",
       "uidEdges": [
         {
@@ -161593,7 +163562,7 @@
         }
       ]
     },
-    "mrs:79e61a64f232": {
+    "mrs:27d021aeb4ea": {
       "sourceId": "phantom-factor:3059140",
       "uidEdges": [
         {
@@ -161641,7 +163610,7 @@
         }
       ]
     },
-    "mrs:daa198651251": {
+    "mrs:9a7e929fdca3": {
       "sourceId": "phantom-factor:3059150",
       "uidEdges": [
         {
@@ -161667,7 +163636,7 @@
         }
       ]
     },
-    "mrs:30cb96f28ac2": {
+    "mrs:be4ac463ac51": {
       "sourceId": "phantom-factor:3059160",
       "uidEdges": [
         {
@@ -161715,7 +163684,7 @@
         }
       ]
     },
-    "mrs:4ab6a04a4b2b": {
+    "mrs:88d5bb5b692f": {
       "sourceId": "phantom-factor:3059170",
       "uidEdges": [
         {
@@ -161741,7 +163710,7 @@
         }
       ]
     },
-    "mrs:244c0c57841b": {
+    "mrs:995c7368c2da": {
       "sourceId": "phantom-factor:3059180",
       "uidEdges": [
         {
@@ -161767,7 +163736,7 @@
         }
       ]
     },
-    "mrs:178062c0f6b4": {
+    "mrs:4f805353c989": {
       "sourceId": "phantom-factor:3059190",
       "uidEdges": [
         {
@@ -161793,7 +163762,7 @@
         }
       ]
     },
-    "mrs:56ba2880431f": {
+    "mrs:988255b8c5ad": {
       "sourceId": "phantom-factor:3059200",
       "uidEdges": [
         {
@@ -161819,7 +163788,7 @@
         }
       ]
     },
-    "mrs:01b633216b19": {
+    "mrs:01d132928941": {
       "sourceId": "phantom-factor:3059210",
       "uidEdges": [
         {
@@ -161929,7 +163898,7 @@
         }
       ]
     },
-    "mrs:34059ec9cbb7": {
+    "mrs:d667c3c9587f": {
       "sourceId": "phantom-factor:3059220",
       "uidEdges": [
         {
@@ -162036,7 +164005,7 @@
         }
       ]
     },
-    "mrs:fb7634d6b4f0": {
+    "mrs:a8ba5b6de0cf": {
       "sourceId": "phantom-factor:3059230",
       "uidEdges": [
         {
@@ -162084,7 +164053,7 @@
         }
       ]
     },
-    "mrs:4e07ac6c2c85": {
+    "mrs:94c208891edd": {
       "sourceId": "phantom-factor:3059240",
       "uidEdges": [
         {
@@ -162155,9 +164124,31 @@
         }
       ]
     },
-    "mrs:73040839aa11": {
+    "mrs:dec93120bd96": {
       "sourceId": "phantom-factor:3059250",
       "uidEdges": [
+        {
+          "edgeKind": "formula-component",
+          "uidKind": "formula-term",
+          "uid": "adaptivePrimaryStat",
+          "role": "formula",
+          "scope": "global",
+          "source": "EffectSources.formulaAttributionText",
+          "componentKey": "adaptive-primary-stat",
+          "componentClass": "stat-conversion",
+          "direction": "stat-conversion",
+          "contributionScope": "global",
+          "formulaTermIds": [
+            "adaptivePrimaryStat"
+          ],
+          "contributionGroups": [
+            "statConversion"
+          ],
+          "predicateTags": [
+            "activation.active-modifier-window",
+            "direction.stat-conversion"
+          ]
+        },
         {
           "edgeKind": "observed-buff",
           "uidKind": "buff",
@@ -165226,19 +167217,6 @@
         }
       ]
     },
-    "mrs:d8b097debf26": {
-      "sourceId": "observed-buff:27015",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 27015,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:66b117a818e7": {
       "sourceId": "observed-buff:27017",
       "uidEdges": [
@@ -167306,19 +169284,6 @@
         }
       ]
     },
-    "mrs:2effb51f9160": {
-      "sourceId": "observed-buff:55313",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 55313,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:f9b71936942c": {
       "sourceId": "observed-buff:55316",
       "uidEdges": [
@@ -167833,19 +169798,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 55410,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:3603012ee36e": {
-      "sourceId": "observed-buff:55415",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 55415,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -180014,19 +181966,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 827230,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:ffa46795653d": {
-      "sourceId": "observed-buff:827232",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 827232,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -198103,19 +200042,6 @@
         }
       ]
     },
-    "mrs:a356636f0729": {
-      "sourceId": "observed-buff:881724",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 881724,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:46b179cd2e97": {
       "sourceId": "observed-buff:881725",
       "uidEdges": [
@@ -198623,19 +200549,6 @@
         }
       ]
     },
-    "mrs:cbb44bbf6d69": {
-      "sourceId": "observed-buff:881815",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 881815,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:06f6cc4d4c43": {
       "sourceId": "observed-buff:881816",
       "uidEdges": [
@@ -198877,19 +200790,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 881839,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:c7ad1ce34119": {
-      "sourceId": "observed-buff:881840",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 881840,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -199598,19 +201498,6 @@
         }
       ]
     },
-    "mrs:1d12c5211429": {
-      "sourceId": "observed-buff:882108",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 882108,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:e46df0adb07f": {
       "sourceId": "observed-buff:882109",
       "uidEdges": [
@@ -200086,19 +201973,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 882153,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:3acd33eb49d4": {
-      "sourceId": "observed-buff:882154",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 882154,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -201295,19 +203169,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 882327,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:c102d7ae3a5a": {
-      "sourceId": "observed-buff:882330",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 882330,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -204525,19 +206386,6 @@
         }
       ]
     },
-    "mrs:02fc627a93f4": {
-      "sourceId": "observed-buff:883116",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 883116,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:313feb05cebf": {
       "sourceId": "observed-buff:883117",
       "uidEdges": [
@@ -205864,19 +207712,6 @@
         }
       ]
     },
-    "mrs:4b1e974d32d0": {
-      "sourceId": "observed-buff:952206",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 952206,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:578f28a9c4cb": {
       "sourceId": "observed-buff:952207",
       "uidEdges": [
@@ -206742,19 +208577,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 960222,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:5082a3e0715d": {
-      "sourceId": "observed-buff:960223",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 960223,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -212039,19 +213861,6 @@
         }
       ]
     },
-    "mrs:8de50d969ce0": {
-      "sourceId": "observed-buff:990503",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 990503,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:4821f98cdf1f": {
       "sourceId": "observed-buff:990504",
       "uidEdges": [
@@ -213034,19 +214843,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 995135,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:b0743e9f0bf6": {
-      "sourceId": "observed-buff:995154",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 995154,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -221373,19 +223169,6 @@
         }
       ]
     },
-    "mrs:f3375523ea72": {
-      "sourceId": "observed-buff:2100101",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2100101,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:0c65e4cb0588": {
       "sourceId": "observed-buff:2100102",
       "uidEdges": [
@@ -222270,19 +224053,6 @@
         }
       ]
     },
-    "mrs:a6db26201c19": {
-      "sourceId": "observed-buff:2200111",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2200111,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:4d2db354c8a0": {
       "sourceId": "observed-buff:2200121",
       "uidEdges": [
@@ -222290,19 +224060,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2200121,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:49cb1c52470d": {
-      "sourceId": "observed-buff:2200122",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2200122,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -222342,19 +224099,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2200181,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:c40d3634cb2f": {
-      "sourceId": "observed-buff:2200182",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2200182,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -222407,19 +224151,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2200211,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:a4a30c9d77de": {
-      "sourceId": "observed-buff:2200221",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2200221,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -223050,19 +224781,6 @@
         }
       ]
     },
-    "mrs:f14e629648a6": {
-      "sourceId": "observed-buff:2201691",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2201691,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:73e07c87065f": {
       "sourceId": "observed-buff:2201701",
       "uidEdges": [
@@ -223148,19 +224866,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2202111,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:0ce3f66b9923": {
-      "sourceId": "observed-buff:2202113",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2202113,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -223336,19 +225041,6 @@
         }
       ]
     },
-    "mrs:e0ac506976e4": {
-      "sourceId": "observed-buff:2202251",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2202251,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:04334edbfc99": {
       "sourceId": "observed-buff:2202301",
       "uidEdges": [
@@ -223421,19 +225113,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2202401,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:da3b85f078cb": {
-      "sourceId": "observed-buff:2202402",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2202402,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -223531,19 +225210,6 @@
         }
       ]
     },
-    "mrs:5b295ce72bd1": {
-      "sourceId": "observed-buff:2202707",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2202707,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:2449658f248a": {
       "sourceId": "observed-buff:2202708",
       "uidEdges": [
@@ -223590,19 +225256,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2203020,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:441eb722d267": {
-      "sourceId": "observed-buff:2203031",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2203031,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -223863,19 +225516,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2203572,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:29ec10a1a503": {
-      "sourceId": "observed-buff:2203611",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2203611,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -224292,19 +225932,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2205132,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:492cfa584a26": {
-      "sourceId": "observed-buff:2205133",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2205133,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -224844,19 +226471,6 @@
         }
       ]
     },
-    "mrs:7ee5a8c952fb": {
-      "sourceId": "observed-buff:2207243",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2207243,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:002ee9ab9f9c": {
       "sourceId": "observed-buff:2207261",
       "uidEdges": [
@@ -225358,19 +226972,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 2208483,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:e43fcd05aa21": {
-      "sourceId": "observed-buff:2208484",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 2208484,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -228250,19 +229851,6 @@
         }
       ]
     },
-    "mrs:3270674f5644": {
-      "sourceId": "observed-buff:3001191",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3001191,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:8995f50bf239": {
       "sourceId": "observed-buff:3001200",
       "uidEdges": [
@@ -228770,19 +230358,6 @@
         }
       ]
     },
-    "mrs:a5bbb137b2be": {
-      "sourceId": "observed-buff:3002411",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3002411,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:b5be3d09507a": {
       "sourceId": "observed-buff:3002412",
       "uidEdges": [
@@ -228822,32 +230397,6 @@
         }
       ]
     },
-    "mrs:02333857b4b9": {
-      "sourceId": "observed-buff:3002812",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3002812,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:cb28b926fe79": {
-      "sourceId": "observed-buff:3002841",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3002841,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:55fc5c15d1de": {
       "sourceId": "observed-buff:3002851",
       "uidEdges": [
@@ -228855,19 +230404,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 3002851,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:5cb97959ace3": {
-      "sourceId": "observed-buff:3002871",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3002871,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -229355,19 +230891,6 @@
         }
       ]
     },
-    "mrs:ac400f35a911": {
-      "sourceId": "observed-buff:3051301",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3051301,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:9006fbfa6dd9": {
       "sourceId": "observed-buff:3052071",
       "uidEdges": [
@@ -229719,19 +231242,6 @@
         }
       ]
     },
-    "mrs:f3e98e192b6f": {
-      "sourceId": "observed-buff:3056061",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3056061,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
     "mrs:3044fcd7d7c7": {
       "sourceId": "observed-buff:3056071",
       "uidEdges": [
@@ -229921,19 +231431,6 @@
           "edgeKind": "observed-buff",
           "uidKind": "buff",
           "uid": 3059071,
-          "role": "runtime",
-          "source": "ModifierRecountTable.observed-only-buffname",
-          "status": "debug-only"
-        }
-      ]
-    },
-    "mrs:bc4db80300b2": {
-      "sourceId": "observed-buff:3059090",
-      "uidEdges": [
-        {
-          "edgeKind": "observed-buff",
-          "uidKind": "buff",
-          "uid": 3059090,
           "role": "runtime",
           "source": "ModifierRecountTable.observed-only-buffname",
           "status": "debug-only"
@@ -236754,15 +238251,15 @@
     }
   },
   "stats": {
-    "sourceRules": 7704,
-    "uidEdges": 21233,
+    "sourceRules": 7675,
+    "uidEdges": 21373,
     "uidEdgeKindCounts": {
       "evidence-buff": 100,
       "linked-uid": 690,
-      "observed-buff": 7686,
-      "runtime-buff-alias": 2519,
+      "observed-buff": 7657,
+      "runtime-buff-alias": 2528,
       "source-buff": 1441,
-      "source-entity": 2068,
+      "source-entity": 2077,
       "source-recount": 134,
       "target-damage-row": 2513,
       "target-recount-row": 646,
@@ -236771,9 +238268,10 @@
       "source-talent": 167,
       "activation-skill": 116,
       "description-buff": 518,
-      "formula-component": 647,
+      "formula-component": 656,
       "linked-buff": 259,
       "owner-class": 594,
+      "runtime-state-child-alias": 142,
       "owner-spec": 562,
       "owner-source": 37,
       "candidate-item": 143,
@@ -236786,11 +238284,12 @@
     },
     "uidEdgeRoleCounts": {
       "evidence": 1940,
-      "runtime": 10355,
-      "source": 3926,
+      "runtime": 10335,
+      "source": 3935,
       "target": 3159,
-      "formula": 647,
-      "owner": 1206
+      "formula": 656,
+      "owner": 1206,
+      "runtime-state": 142
     }
   }
 }

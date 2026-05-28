@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-12T13:38:04.081Z",
+  "generatedAt": "2026-05-28T01:11:35.279Z",
   "sourcesByRuleId": {
     "mrs:10821ca3d6ef": {
       "description": "Courage A key resource for unleashing Special Attacks and select Expertise Skills. Regenerates 3 points per second, with a starting maximum of 100. Basic Attack: Windborne Grace Executes a sequence of up to four attacks, dealing Attack DMG Tips: Fill the gaps with Basic Attacks when Courage is too low for other offensive skills.",
@@ -770,7 +770,7 @@
         "id": "Menciptakan dinding batu di sekitar diri sendiri, secara otomatis melakukan serangan balik terhadap Dangerous Skill selama beberapa saat dan meningkatkan efek Block DR. Setiap 1 Sand Crystal yang dikonsumsi akan memperpanjang durasi 1 detik (perpanjangan maks. 5 detik). Strategi: Gunakan tepat waktu untuk meningkatkan Block DR dan pengurangan PDMG yang diterima secara signifikan."
       }
     },
-    "mrs:aaa80f11d229": {
+    "mrs:44bda2ca8b54": {
       "description": "During Brave Bastion, you can Block Magic DMG.",
       "descriptions": {
         "en": "During Brave Bastion, you can Block Magic DMG. Block: Grants a chance to block Attack DMG and to reduce it by 30%.",
@@ -994,38 +994,6 @@
         "id": "Selama durasi Mental Focus, Light Bombard akan summon 1 Celestial Eagle di posisi target. Celestial Eagle: Menciptakan badai dengan radius 5 meter, mengakibatkan PDMG yang mengabaikan Defense sebesar 80% ATK setiap 0,5 detik pada target di dalam badai yang memiliki tanda Steel Beak. Setelah 5 detik, Celestial Eagle menukik ke tanah, mengakibatkan PDMG yang mengabaikan Defense sebesar 500% ATK."
       }
     },
-    "mrs:0c83ddf87b30": {
-      "description": "Summons Elite: Goblin Warrior to shoot in a fan-shaped area in front, dealing Attack DMG. Upon the skill cast, your Luck and Lucky Strike Chance are increased for a period.",
-      "descriptions": {
-        "en": "Summons Elite: Goblin Warrior to shoot in a fan-shaped area in front, dealing Attack DMG. Upon the skill cast, your Luck and Lucky Strike Chance are increased for a period.",
-        "zh-CN": "召唤精英·哥布林弩手，朝前方扇形范围射击，造成物理伤害。 技能释放后，一段时间内你的幸运和幸运一击倍率获得提升。",
-        "zh-TW": "召喚精英·哥布林弩手，朝前方扇形範圍射擊，造成物理傷害。 技能釋放後，一段時間內你的幸運和幸運一擊倍率獲得提升。",
-        "ja": "精鋭・ゴブリン弓兵を召喚して前方扇形範囲を射撃し、物理ダメージを与える。 スキル発動後の一定時間、自身の幸運と幸運の一撃倍率がアップする。",
-        "ko-KR": "엘리트・고블린 석궁잡이를 소환합니다. 소환된 엘리트・고블린 석궁잡이는 전방 부채꼴 범위에 사격을 가해 물리 대미지를 입힙니다. 스킬 시전 후, 일정 시간 동안 시전자의 행운과 행운의 일격 배율이 증가합니다.",
-        "fr": "Invoque l'élite Guerrier gobelin qui tire dans une zone en éventail devant lui, infligeant des dégâts d'attaque. Lors du lancement de la compétence, votre Chance et votre taux de Frappe chanceuse sont augmentés pendant un certain temps.",
-        "de": "Beschwört Elite: Goblin-Krieger, um in einem fächerförmigen Bereich nach vorn zu schießen, was Angriff-SCH verursacht. Nach dem Wirken der Fähigkeit werden dein Glück und deine Glückstreffer-Chance für eine gewisse Zeit verstärkt.",
-        "es": "Invoca al goblin guerrero de élite para disparar en un abanico frontal e infligir DÑO de ataque. Al lanzar la habilidad, la suerte y probabilidad de golpe de suerte aumentan durante un tiempo.",
-        "pt-BR": "Invoca o Elite: Goblin Guerreiro para disparar em uma área em leque à frente, causando Dano de Ataque. Ao lançar a habilidade, sua Sorte e Chance de Golpe de Sorte aumentam por um período.",
-        "th": "อัญเชิญ Elite - Goblin Crossbowman ยิงไปด้านหน้าในระยะรูปพัด สร้าง P.DMG หลังจากปล่อยสกิล ภายในช่วงเวลาหนึ่ง Lucky และ อัตราเท่า Lucky Strike ของคุณจะได้รับเพิ่มขึ้น",
-        "id": "Summon Elite - Goblin Crossbowman, menembakkan serangan ke area berbentuk kipas di depan, mengakibatkan PDMG. Setelah melancarkan skill, stat Luck dan Lucky Hit Multiplier milikmu akan meningkat selama beberapa saat."
-      }
-    },
-    "mrs:64c91e17d4d4": {
-      "description": "Summons Elite: Goblin Warrior to shoot in a fan-shaped area in front, dealing Attack DMG. Upon the skill cast, your Luck and Lucky Strike Chance are increased for a period.",
-      "descriptions": {
-        "en": "Summons Elite: Goblin Warrior to shoot in a fan-shaped area in front, dealing Attack DMG. Upon the skill cast, your Luck and Lucky Strike Chance are increased for a period.",
-        "zh-CN": "召唤精英·哥布林弩手，朝前方扇形范围射击，造成物理伤害。 技能释放后，一段时间内你的幸运和幸运一击倍率获得提升。",
-        "zh-TW": "召喚精英·哥布林弩手，朝前方扇形範圍射擊，造成物理傷害。 技能釋放後，一段時間內你的幸運和幸運一擊倍率獲得提升。",
-        "ja": "精鋭・ゴブリン弓兵を召喚して前方扇形範囲を射撃し、物理ダメージを与える。 スキル発動後の一定時間、自身の幸運と幸運の一撃倍率がアップする。",
-        "ko-KR": "엘리트・고블린 석궁잡이를 소환합니다. 소환된 엘리트・고블린 석궁잡이는 전방 부채꼴 범위에 사격을 가해 물리 대미지를 입힙니다. 스킬 시전 후, 일정 시간 동안 시전자의 행운과 행운의 일격 배율이 증가합니다.",
-        "fr": "Invoque l'élite Guerrier gobelin qui tire dans une zone en éventail devant lui, infligeant des dégâts d'attaque. Lors du lancement de la compétence, votre Chance et votre taux de Frappe chanceuse sont augmentés pendant un certain temps.",
-        "de": "Beschwört Elite: Goblin-Krieger, um in einem fächerförmigen Bereich nach vorn zu schießen, was Angriff-SCH verursacht. Nach dem Wirken der Fähigkeit werden dein Glück und deine Glückstreffer-Chance für eine gewisse Zeit verstärkt.",
-        "es": "Invoca al goblin guerrero de élite para disparar en un abanico frontal e infligir DÑO de ataque. Al lanzar la habilidad, la suerte y probabilidad de golpe de suerte aumentan durante un tiempo.",
-        "pt-BR": "Invoca o Elite: Goblin Guerreiro para disparar em uma área em leque à frente, causando Dano de Ataque. Ao lançar a habilidade, sua Sorte e Chance de Golpe de Sorte aumentam por um período.",
-        "th": "อัญเชิญ Elite - Goblin Crossbowman ยิงไปด้านหน้าในระยะรูปพัด สร้าง P.DMG หลังจากปล่อยสกิล ภายในช่วงเวลาหนึ่ง Lucky และ อัตราเท่า Lucky Strike ของคุณจะได้รับเพิ่มขึ้น",
-        "id": "Summon Elite - Goblin Crossbowman, menembakkan serangan ke area berbentuk kipas di depan, mengakibatkan PDMG. Setelah melancarkan skill, stat Luck dan Lucky Hit Multiplier milikmu akan meningkat selama beberapa saat."
-      }
-    },
     "mrs:1cc3291c9095": {
       "description": "Fires an Explosive Arrow at the target that detonates on impact. The Explosive Arrow deals Attack DMG to all nearby enemies. Each time when a Class Skill deals Crit DMG, Explosive Arrow gains 1 charge. At 5 charges or after 6s, the Explosive Arrow explodes, each charge increases the DMG of Explosive Arrow by 100%. Tips: Better paired with Falconry Spec. Focus on Crit DMG to power up the explosion.",
       "descriptions": {
@@ -1234,7 +1202,7 @@
         "id": "Selama durasi Crowd Focus, setiap kali Encore Chords terpicu, terdapat 30% peluang tetap untuk mendapat Passion Outburst. Passion Outburst: Selama 10 detik, Special Attack tidak akan mengonsumsi Performance Passion. Efek ini akan hilang setelah Special Attack dilancarkan. Encore Chords: Setiap kali menggunakan Expertise Skill DMG atau Heal, memiliki 50% peluang tetap untuk memicu Encore Chords yang akan memberikan DMG kepada target saat ini atau memulihkan HP rekan dengan HP terendah (prioritas pada rekan tim)."
       }
     },
-    "mrs:f2495ff634ef": {
+    "mrs:82b78ace20af": {
       "description": "When Encore Strings triggers, it activates a second time on the same target. Lucky Strike Chance is reduced by 20%.",
       "descriptions": {
         "en": "When Encore Strings triggers, it activates a second time on the same target. Lucky Strike Chance is reduced by 20%. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
@@ -1250,7 +1218,7 @@
         "id": "Saat pengguna memicu Encore Chords, efek tersebut akan dipicu kembali pada target yang sama. Lucky Hit Multiplier -20%. Encore Chords: Setiap kali menggunakan Expertise Skill DMG atau Heal, memiliki 50% peluang tetap untuk memicu Encore Chords yang akan memberikan DMG kepada target saat ini atau memulihkan HP rekan dengan HP terendah (prioritas pada rekan tim)."
       }
     },
-    "mrs:8aeb60704e1c": {
+    "mrs:191070b501f4": {
       "description": "Permanently benefits from Encore effect. For every 5 triggers of Encore Strings, the next Amplified Beat and Harmonic Anthem deal 50% more DMG.",
       "descriptions": {
         "en": "Permanently benefits from Encore effect. For every 5 triggers of Encore Strings, the next Amplified Beat and Harmonic Anthem deal 50% more DMG. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
@@ -1266,7 +1234,7 @@
         "id": "Diri sendiri membawa efek Encore secara permanen. Setiap kali diri sendiri memicu 5 kali Encore Chords, DMG Amplify Beat dan Harmonic Movement berikutnya +50%. Encore Chords: Setiap kali menggunakan Expertise Skill DMG atau Heal, memiliki 50% peluang tetap untuk memicu Encore Chords yang akan memberikan DMG kepada target saat ini atau memulihkan HP rekan dengan HP terendah (prioritas pada rekan tim)."
       }
     },
-    "mrs:0e3da721ed63": {
+    "mrs:900db670ced5": {
       "description": "Every 1% Luck Chance grants 1% trigger chance for Encore Strings.",
       "descriptions": {
         "en": "Every 1% Luck Chance grants 1% trigger chance for Encore Strings. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
@@ -1298,7 +1266,7 @@
         "id": "Saat diri sendiri memicu Encore Chords dan memberikan DMG atau Heal, akan memperoleh 2 poin Performance Energy. Jika Encore Chords ini memicu Lucky Hit, akan memperoleh 3 poin Performance Energy tambahan. Encore Chords: Setiap kali menggunakan Expertise Skill DMG atau Heal, memiliki 50% peluang tetap untuk memicu Encore Chords yang akan memberikan DMG kepada target saat ini atau memulihkan HP rekan dengan HP terendah (prioritas pada rekan tim)."
       }
     },
-    "mrs:a8fab8e2ffdd": {
+    "mrs:7af12e8c7296": {
       "description": "Within 10s after you cast Encore, each use of Expertise Skill triggers Encore Strings for targets affected by Encore.",
       "descriptions": {
         "en": "Within 10s after you cast Encore, each use of Expertise Skill triggers Encore Strings for targets affected by Encore. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
@@ -1570,7 +1538,7 @@
         "id": "Mengonsumsi hingga 8 tumpuk Lightforged Barrier, memanggil energi cahaya yang berputar cepat di sekeliling dirimu sendiri. Setiap 1 detik, mengakibatkan PDMG kepada musuh di sekitar. Interval serangan dipengaruhi oleh Attack Speed, dan setiap serangan memberikan 1 tumpuk Lightforged Barrier. Setiap kali mengakibatkan DMG pada 1 target, memulihkan 1% Max HP milikmu (Maks. 5%). Saat digunakan, setiap 1 tumpuk Lightforged Barrier yang dikonsumsi memperpanjang durasi efek selama 2 detik. Maks. 16 detik. Lightforged Barrier: Setiap tumpuk +2% Max HP diri sendiri. Dapat memiliki hingga 10 tumpuk Lightforged Barrier, dan setiap kali menerima DMG akan mengonsumsi 1 tumpuk. Berlangsung selama 25 detik atau hingga semua tumpuk habis, setiap kali mendapatkan tumpukan baru, durasi akan direset. Strategi: Konsumsi Lightforged Barrier untuk mengakibatkan DMG dan melakukan heal. Gunakan Skill saat jumlah Barrier cukup untuk efek perlindungan dan serangan maksimum."
       }
     },
-    "mrs:e2288801345b": {
+    "mrs:64ae2e279e78": {
       "description": "When the Falcon strikes, grants you a fixed 30% chance to gain 1 stack of Weak Point Aim. Using Quadraflare leaves behind a Radiance Rift midair. Radiance Rift fires Photon Arrows equal to the current number of Weak Point Aim stacks.",
       "descriptions": {
         "en": "When the Falcon strikes, grants you a fixed 30% chance to gain 1 stack of Weak Point Aim. Using Quadraflare leaves behind a Radiance Rift midair. Radiance Rift fires Photon Arrows equal to the current number of Weak Point Aim stacks. Photon Arrow: Deals 80% ATK Attack DMG to enemy targets.",
@@ -1602,7 +1570,7 @@
         "id": "Saat Light lebih dari 50%, melancarkan Light Bombard akan dianggap sebagai status Light Reforge. Light Reforge: Saat Light penuh, melancarkan Special Attack akan memasuki status Light Reforge. Dalam status ini, Special Attack dan beberapa Expertise Skill akan diperkuat. Light terus berkurang dalam status ini. Status akan berakhir saat Light mencapai 0."
       }
     },
-    "mrs:dd731093e15f": {
+    "mrs:b712182f2cb2": {
       "description": "When an arrow fired from Radiance Rift deals DMG for 1 time, increases the DMG of the next Blast Shot by 20%, up to a maximum of 100%.",
       "descriptions": {
         "en": "When an arrow fired from Radiance Rift deals DMG for 1 time, increases the DMG of the next Blast Shot by 20%, up to a maximum of 100%.",
@@ -1714,7 +1682,7 @@
         "id": "Mengangkat senjata dan menghantam keras ke depan, mengakibatkan PDMG sebesar 300% ATK dan melontarkan target, meningkat seiring dengan upgrade/advance skill Normal Attack. Mendapatkan 25 poin Fury saat dilancarkan."
       }
     },
-    "mrs:98c8fd278229": {
+    "mrs:3a5d8c69be48": {
       "description": "Frost Lances that consume Frost Crystal deal 20% more DMG.",
       "descriptions": {
         "en": "Frost Lances that consume Frost Crystal deal 20% more DMG. Frost Crystal: Grants extra effects to certain skills.",
@@ -2322,7 +2290,7 @@
         "id": "Mengakibatkan DMG akan memicu 50 kali Lucky Hit terhadap target utama. Dalam 15 detik berikutnya, CD Boost semua kill +100% (hitungan tidak bertambah selama periode ini)."
       }
     },
-    "mrs:3efea56bfd28": {
+    "mrs:1516aedc6f31": {
       "description": "For the first 30s after entering combat, all damage dealt is guaranteed to trigger a Lucky Strike",
       "descriptions": {
         "en": "For the first 30s after entering combat, all damage dealt is guaranteed to trigger a Lucky Strike",
@@ -2338,7 +2306,7 @@
         "id": "Dalam 30 detik setelah memasuki pertarungan, mengakibatkan DMG pasti akan memicu Lucky Hit."
       }
     },
-    "mrs:a2cee57c9d39": {
+    "mrs:26ec4475c53f": {
       "description": "When dealing damage or healing triggers a Lucky Strike, the next Lucky Strike's ATK increases by +40%",
       "descriptions": {
         "en": "When dealing damage or healing triggers a Lucky Strike, the next Lucky Strike's ATK increases by +40%",
@@ -2610,7 +2578,7 @@
         "id": "DMG akhir yang diakibatkan diri sendiri -40%, DMG akhir yang diakibatkan Battle Fantasy +40%."
       }
     },
-    "mrs:068c81be8c25": {
+    "mrs:97d57a8a00dd": {
       "description": "Battle Imagine heals for 5% of damage dealt",
       "descriptions": {
         "en": "Battle Imagine heals for 5% of damage dealt",
@@ -2930,7 +2898,7 @@
         "id": "Saat memberi heal, akan memberi 10% DR untuk diri sendiri selama 3 detik."
       }
     },
-    "mrs:00a489856984": {
+    "mrs:06428adcb89b": {
       "description": "Reduces damage dealt by enemies within 10m by 10%",
       "descriptions": {
         "en": "Reduces damage dealt by enemies within 10m by 10%",
@@ -3058,7 +3026,7 @@
         "id": "Saat melancarkan Special Attack, akan mendapat Crit Aura yang bertahan selama 5 detik. Aura ini akan membuat Crit rekan tim berjarak 15 meter di sekitar +3%."
       }
     },
-    "mrs:fa046d0f4c57": {
+    "mrs:d363aab2831b": {
       "description": "Healing with Class Skills causes damage to be built up. When this stored damage reaches 10000% of ATK, the next damage-dealing attack will also trigger an AoE blast that inflicts damage equal to the stored amount. (triggers at most once every 1s)",
       "descriptions": {
         "en": "Healing with Class Skills causes damage to be built up. When this stored damage reaches 10000% of ATK, the next damage-dealing attack will also trigger an AoE blast that inflicts damage equal to the stored amount. (triggers at most once every 1s)",
@@ -3074,7 +3042,7 @@
         "id": "Class Skill akan mengumpulkan DMG saat memberi heal. Saat DMG yang terkumpul mencapai 10000% ATK, DMG berikutnya akan disertai satu kali Area Damage tambahan yang besarnya sama dengan DMG yang terkumpul (efek ini hanya bisa terpicu 1 kali setiap 1 detik)."
       }
     },
-    "mrs:e4d99700f135": {
+    "mrs:c56a71d41595": {
       "description": "Every second, damage is dealt to a random target nearby. The damage dealt is equal to the amount of Healing done by Class Skills during this period.",
       "descriptions": {
         "en": "Every second, damage is dealt to a random target nearby. The damage dealt is equal to the amount of Healing done by Class Skills during this period.",
@@ -3378,7 +3346,7 @@
         "id": "Saat sekarat, akan memicu [Invincible] dan [Speed Up] selama 3 detik. Waktu CD 20 detik."
       }
     },
-    "mrs:033f988f7a41": {
+    "mrs:af710af061e5": {
       "description": "When healing a target, deals Class Skill DMG to enemies around them equal to 100% of the healing potency every 1s (healing is accumulated during this time)",
       "descriptions": {
         "en": "When healing a target, deals Class Skill DMG to enemies around them equal to 100% of the healing potency every 1s (healing is accumulated during this time)",
@@ -3682,7 +3650,7 @@
         "id": "Serangan yang diterima akan dipantulkan menjadi Area Damage sebesar 400% PDEF."
       }
     },
-    "mrs:da20320a2163": {
+    "mrs:bcdaa46f04f6": {
       "description": "PHY Boost +40%",
       "descriptions": {
         "en": "PHY Boost +40%",
@@ -3698,7 +3666,7 @@
         "id": "Physical Boost +40%"
       }
     },
-    "mrs:4993b6af5c57": {
+    "mrs:f926f26ad7b9": {
       "description": "MAG Boost +40%",
       "descriptions": {
         "en": "MAG Boost +40%",
@@ -3714,7 +3682,7 @@
         "id": "Magical Boost +40%"
       }
     },
-    "mrs:2e02be3e0fad": {
+    "mrs:519e18527ece": {
       "description": "Each Expertise Skill cast increases its DMG and Healing by 0.2%. Stacks up to 200 times. When fully stacked, grants 20% Expertise Skill DMG and Healing boost",
       "descriptions": {
         "en": "Each Expertise Skill cast increases its DMG and Healing by 0.2%. Stacks up to 200 times. When fully stacked, grants 20% Expertise Skill DMG and Healing boost",
@@ -3730,7 +3698,7 @@
         "id": "Setiap kali melancarkan Expertise Skill akan meningkatkan 0,2% DMG dan Heal dari Expertise Skill maks. 200 tumpuk. Setelah mencapai tumpukan tertinggi, akan mendapat tambahan 20% DMG dan Heal dari Expertise Skill."
       }
     },
-    "mrs:1fa1a3e4ed10": {
+    "mrs:d472cc2ffaaf": {
       "description": "Each Special Attack increases its DMG and Healing by 0.2%. Stacks up to 200 times. When fully stacked, grants 20% Special Attack DMG and Healing boost",
       "descriptions": {
         "en": "Each Special Attack increases its DMG and Healing by 0.2%. Stacks up to 200 times. When fully stacked, grants 20% Special Attack DMG and Healing boost",
@@ -5250,22 +5218,6 @@
         "id": "Tambahan PDEF +1200, DMG yang diterima dari musuh Elite atau di atasnya -5%"
       }
     },
-    "mrs:42a9e20b16ef": {
-      "description": "Enters a defensive stance, gaining immunity to all DMG. If hit while in this stance, counterattacks with a slash and leaps backward. Recast to dash forward and slash, dealing Attack Damage. If the attack hits a target, gains max Thunder Sigils. Tips: Release under intense battles or when confident in timing to gain Thunder Sigil more efficiently.",
-      "descriptions": {
-        "en": "Enters a defensive stance, gaining immunity to all DMG. If hit while in this stance, counterattacks with a slash and leaps backward. Recast to dash forward and slash, dealing Attack Damage. If the attack hits a target, gains max Thunder Sigils. Tips: Release under intense battles or when confident in timing to gain Thunder Sigil more efficiently.",
-        "zh-CN": "施展防御架势，期间免疫所有伤害。若受到伤害则会快速斩击前方并向后跳跃。再次施放技能会向前方闪身挥砍，造成物理伤害。若攻击到目标，则获得雷之印至上限。 攻略：在高压环境下，或者自己比较熟悉的战斗中使用技能，可获得更高的雷之印获取效率。",
-        "zh-TW": "施展防禦架勢，期間免疫所有傷害。若受到傷害則會快速斬擊前方並向後跳躍。再次施放技能會向前方閃身揮砍，造成物理傷害。若攻擊到目標，則獲得雷之印至上限。 攻略：在高壓環境下，或者自己比較熟悉的戰鬥中使用技能，可獲得更高的雷之印獲取效率。",
-        "ja": "防御の構えを取り、その間はあらゆるダメージを無効化する。ダメージを受けると前方を素早く斬撃し、後ろへ飛び下がる。再発動すると前方へ瞬間移動して斬撃し、物理ダメージを与える。対象に命中すると雷印を上限まで獲得する。 戦略：プレッシャーの大きい状況や、慣れた戦闘で使用するスキル。雷印の取得効率をアップさせる。",
-        "ko-KR": "방어 태세를 취해 지속 시간 동안 모든 피해에 면역됩니다. 이 상태에서 피해를 받으면 전방을 빠르게 베어낸 뒤 뒤로 도약합니다. 스킬을 다시 시전하면 전방으로 순간 돌진하며 검을 휘둘러 물리 대미지를 입힙니다. 공격 적중 시 번개의 인장을 최대치까지 획득합니다. 팁: 위험한 상황 또는 익숙한 전투에서 이 스킬을 활용해 번개의 인장 획득 효율을 높이세요.",
-        "fr": "Entre en posture défensive, conférant une immunité à tous les dégâts. Si vous êtes touché pendant cette posture, vous contre-attaquez avec une taillade et faites un bond en arrière. Relancez pour foncer vers l'avant et taillader, infligeant des dégâts d'attaque. Si l'attaque touche une cible, confère le nombre max de Sceaux de foudre. Astuce : à lancer dans les combats intenses ou quand vous êtes sûr de votre timing pour obtenir les Sceaux de foudre plus efficacement.",
-        "de": "Nimmt eine Verteidigungshaltung ein und erhält Immunität gegen jeglichen SCH. Wird man in dieser Haltung getroffen, führt man einen Gegenangriff mit einem Hieb aus und springt nach hinten. Erneut ausführen, um vorwärts zu flitzen und einen Hieb auszuführen, wobei Angriffsschaden verursacht wird. Wenn der Angriff ein Ziel trifft, werden max. Donnersiegel gewährt. Tipps: Entfessle diese Fähigkeit in kritischen Kämpfen oder wenn du dir sicher bist, dass du das Donnersiegel effizienter erhalten kannst.",
-        "es": "Se adopta una postura defensiva y se obtiene inmunidad a todo el DÑO. Si se reciben golpes con esta postura, se contraataca con un corte y se salta hacia atrás. Se vuelve a usar para embestir hacia delante, realizar cortes e infligir daño de ataque. Si el ataque golpea a un objetivo, se obtiene el máximo de sellos del trueno. Consejo: Libérala en batallas intensas o en el momento más oportuno para ganar sellos del trueno con más eficiencia.",
-        "pt-BR": "Entra em uma postura defensiva, ganhando imunidade a todo dano. Se atingido nessa postura, contra-ataca com um corte e salta para trás. Reativar fará o conjurador avançar e cortar, causando Dano de Ataque. Se o ataque atingir um alvo, ganha o máximo de Símbolos do Trovão. Dicas: Use em batalhas intensas ou quando estiver confiante na execução para ganhar Símbolos do Trovão de forma mais eficiente.",
-        "th": "ตั้งท่าป้องกัน ในระหว่างนี้จะป้องกันDMG ทั้งหมด หากได้รับ DMG จะฟันไปข้างหน้าอย่างรวดเร็วและกระโดดถอยหลัง ใช้อีกครั้งจะพุ่งไปข้างหน้าแล้วฟัน สร้าง P.DMG หากโจมตีโดนเป้าหมาย จะได้รับ Mark of Thunder ถึงขีดจำกัดสูงสุด กลยุทธ์: ในสถานการณ์ที่มีแรงกดดันสูง หรือในการต่อสู้ที่คุ้นเคย การใช้สกิลจะช่วยให้ได้รับ Mark of Thunder อย่างมีประสิทธิภาพมากขึ้น",
-        "id": "Mengambil posisi bertahan, membuat pengguna kebal terhadap semua jenis DMG selama durasi berlangsung. Jika menerima serangan, pengguna akan segera menebas ke arah depan lalu melompat mundur dengan cepat. Menggunakan skill ini lagi akan membuat pengguna melesat ke depan sambil menebas, mengakibatkan PDMG. Jika serangan mengenai target, pengguna akan mendapat Thunder Seal hingga mencapai batas maksimum. Strategi: Gunakan di situasi genting atau saat sudah familiar dengan pola pertempuran untuk mendapat Thunder Seal lebih efisien."
-      }
-    },
     "mrs:fae92ada6657": {
       "description": "Summons Boss: Muku King to channel Forest Energy, healing up to 10 allies over time and dispelling debuffs. Upon the skill cast, your healing received is increased for a period.",
       "descriptions": {
@@ -6114,38 +6066,6 @@
         "id": "Crit dan Crit DMG meningkat selama efek berlangsung."
       }
     },
-    "mrs:45e8982669a7": {
-      "description": "Summons Rorola, resonating with the power of ancestors to gain a damage boost for some time. Also, every 10 hits on targets grant an additional damage boost, stacking up to 5 times. Once the cap is reached, subsequent hits extend the duration of the additional boost (the duration of the Base DMG boost does not extend). Each extension adds 3s, with a maximum of 5 extensions. At the same time, grants the Life Steal effect, restoring HP equal to a portion of damage dealt (the duration can extend). This skill holds 2 charges.",
-      "descriptions": {
-        "en": "Summons Rorola, resonating with the power of ancestors to gain a damage boost for some time. Also, every 10 hits on targets grant an additional damage boost, stacking up to 5 times. Once the cap is reached, subsequent hits extend the duration of the additional boost (the duration of the Base DMG boost does not extend). Each extension adds 3s, with a maximum of 5 extensions. At the same time, grants the Life Steal effect, restoring HP equal to a portion of damage dealt (the duration can extend). This skill holds 2 charges.",
-        "zh-CN": "召唤罗罗拉，共鸣先祖之力协同攻击，一段时间内使自身对命中目标造成的伤害提高，对目标每造成10次伤害会获得额外提升，最多可额外提升5次，到达上限后，转为延续额外伤害的持续时间（基础伤害提升的时间不会被延续），每次延续3秒，最多可额外延续5次。同时自身获得生命吸取：可回复一定比例对目标造成的伤害（时间会被延续）。 技能可充能2次。",
-        "zh-TW": "召喚羅羅拉，共鳴先祖之力協同攻擊，一段時間內使自身對命中目標造成的傷害提高，對目標每造成10次傷害會獲得額外提升，最多可額外提升5次，到達上限後，轉為延續額外傷害的持續時間（基礎傷害提升的時間不會被延續），每次延續3秒，最多可額外延續5次。同時自身獲得生命吸取：可回復一定比例對目標造成的傷害（時間會被延續）。 技能可充能2次。",
-        "ja": "ロローラを召喚し攻撃を行う。攻撃が命中した対象に与える自身のダメージが一定時間アップする。 対象に10回ダメージを与えるごとに、ダメージが追加でアップし最大5回まで。上限後は追加ダメージ効果の持続時間が延長される（基礎ダメージアップの持続時間は延長されない）。持続時間は1回につき3秒延長され、最大5回まで延長可能。 ライフドレインを獲得し対象に与えたダメージの一定割合を回復する（効果時間延長対象）。 スキルは2回までチャージ可能。",
-        "ko-KR": "로로라를 소환하고, 선조의 힘에 공명해 협동 공격합니다. 일정 시간 동안 자신이 적중한 대상에게 주는 대미지가 증가합니다. 대상에게 대미지를 10회 줄 때마다 대미지 증가량이 추가로 상승하며, 최대 5회까지 중첩됩니다. 추가 증가 중첩이 최대치에 도달하면 대신 추가 대미지 증가 효과의 지속 시간이 연장됩니다(기본 대미지 증가 효과의 지속 시간은 연장되지 않습니다). 지속 시간은 회당 3초씩 최대 5회까지 연장됩니다. 동시에 자신은 생명 흡수를 획득합니다. 생명 흡수: 대상에게 준 대미지의 일정 비율만큼 체력을 회복합니다(지속 시간 연장 가능). 이 스킬은 2회까지 충전됩니다.",
-        "fr": "Invoque Rorola et entre en résonance avec le pouvoir des ancêtres pour augmenter les dégâts infligés pendant un certain temps. De plus, toutes les 10 attaques réussies sur des cibles confèrent un boost de dégâts supplémentaire, cumulable jusqu'à 5 fois. Une fois la limite atteinte, les coups suivants prolongent la durée du boost supplémentaire (la durée du boost de dégâts de base n'est pas prolongée). Chaque prolongation ajoute 3 s, avec un maximum de 5 prolongations. Confère également l'effet Vol de vie, qui restaure des PV à hauteur d'une partie des dégâts infligés (la durée peut être prolongée). Cette compétence dispose de 2 charges.",
-        "de": "Beschwört Rorola und schwingt im Einklang mit der Macht der Ahnen, um für eine Weile einen Schadensschub zu erhalten. Außerdem gewährt jeder 10. Treffer auf Ziele einen zusätzlichen Schadensschub, der bis zu 5-mal stapelbar ist. Sobald das Maximum erreicht ist, verlängern nachfolgende Treffer die Dauer des zusätzlichen Schubs (die Dauer des Basis-SCH-Schubs wird nicht verlängert). Jede Verlängerung fügt 3 Sek. hinzu, mit einem Maximum von 5 Verlängerungen. Gleichzeitig wird der Effekt Lebensraub gewährt, der LP in Höhe eines Teils des verursachten Schadens wiederherstellt (die Dauer kann verlängert werden). Diese Fähigkeit hat 2 Aufladungen.",
-        "es": "Invoca a Rorola y resuena con el poder de los ancestros para obtener un aumento de daño durante un tiempo. Además, cada 10 golpes a los objetivos otorgan un aumento de daño adicional que se acumula hasta 5 veces. Una vez alcanzado el límite, los golpes posteriores extienden la duración del aumento adicional (la duración del aumento de DÑO base no se extiende). Cada extensión añade 3 s, con un máximo de 5 extensiones. Al mismo tiempo, otorga el efecto de robo de vida, que restaura una cantidad de PS equivalente a una parte del daño infligido (la duración se puede extender). Esta habilidad tiene 2 cargas.",
-        "pt-BR": "Invoca Rorula, ressoando com o poder dos ancestrais para ganhar um reforço de dano por um tempo. A cada 10 acertos em alvos, concede um reforço de dano adicional, acumulando até 5 vezes. Uma vez atingido o limite, os acertos subsequentes estendem a duração do reforço adicional (a duração do Reforço de Dano base não se estende). Cada extensão adiciona 3 s, com um máximo de 5 extensões. Ao mesmo tempo, concede o efeito de Roubo de Vida, restaurando PV igual a uma parte do dano causado (a duração pode ser estendida). Esta habilidade tem 2 cargas.",
-        "th": "อัญเชิญ Rorola ออกมา Resonance กับพลังบรรพบุรุษช่วยโจมตี ทำให้เป้าหมายโดน DMG แรงขึ้นชั่วขณะ ทุกครั้งที่ทำ DMG ครบ 10 ครั้ง จะเพิ่มผลลัพธ์นี้ขึ้นอีก ทับซ้อนได้สูงสุด 5 ครั้ง พอถึงขีดจำกัดแล้ว จะเปลี่ยนเป็นยืดเวลาแสดงผลแทน (เวลาพื้นฐานจะไม่ถูกยืด) ยืดเวลาครั้งละ 3 วินาที ได้สูงสุด 5 ครั้ง ขณะเดียวกันตนจะได้รับสถานะดูดเลือด: ฟื้นฟู HP ตามสัดส่วน DMG ที่ทำได้ (ระยะเวลาจะถูกยืดออกไปได้ด้วย) Skills นี้รวบรวมได้ 2 ครั้ง",
-        "id": "Memanggil Lorola dan beresonansi dengan kekuatan leluhur untuk melancarkan Sync Attack. DMG yang diakibatkan diri sendiri terhadap target yang terkena serangan akan meningkat selama beberapa saat dan mendapat tambahan peningkatan setiap mengakibatkan 10 kali DMG terhadap target, maks. 5 kali tambahan peningkatan. Setelah mencapai batas, akan dikonversi menjadi perpanjangan durasi berlangsungnya DMG tambahan (waktu peningkatan DMG dasar tidak akan diperpanjang). Setiap perpanjangan berdurasi 3 detik, maks. 5 kali perpanjangan. Selain itu, diri sendiri juga akan mendapat Life Drain: Dapat memulihkan HP sebesar rasio tertentu dari DMG yang diakibatkan terhadap target (waktunya akan diperpanjang). Skill ini dapat di Charge hingga 2 kali."
-      }
-    },
-    "mrs:de5b4e1908ad": {
-      "description": "Summons Rorola, resonating with the power of ancestors to gain a damage boost for some time. Also, every 10 hits on targets grant an additional damage boost, stacking up to 5 times. Once the cap is reached, subsequent hits extend the duration of the additional boost (the duration of the Base DMG boost does not extend). Each extension adds 3s, with a maximum of 5 extensions. At the same time, grants the Life Steal effect, restoring HP equal to a portion of damage dealt (the duration can extend). This skill holds 2 charges.",
-      "descriptions": {
-        "en": "Summons Rorola, resonating with the power of ancestors to gain a damage boost for some time. Also, every 10 hits on targets grant an additional damage boost, stacking up to 5 times. Once the cap is reached, subsequent hits extend the duration of the additional boost (the duration of the Base DMG boost does not extend). Each extension adds 3s, with a maximum of 5 extensions. At the same time, grants the Life Steal effect, restoring HP equal to a portion of damage dealt (the duration can extend). This skill holds 2 charges.",
-        "zh-CN": "召唤罗罗拉，共鸣先祖之力协同攻击，一段时间内使自身对命中目标造成的伤害提高，对目标每造成10次伤害会获得额外提升，最多可额外提升5次，到达上限后，转为延续额外伤害的持续时间（基础伤害提升的时间不会被延续），每次延续3秒，最多可额外延续5次。同时自身获得生命吸取：可回复一定比例对目标造成的伤害（时间会被延续）。 技能可充能2次。",
-        "zh-TW": "召喚羅羅拉，共鳴先祖之力協同攻擊，一段時間內使自身對命中目標造成的傷害提高，對目標每造成10次傷害會獲得額外提升，最多可額外提升5次，到達上限後，轉為延續額外傷害的持續時間（基礎傷害提升的時間不會被延續），每次延續3秒，最多可額外延續5次。同時自身獲得生命吸取：可回復一定比例對目標造成的傷害（時間會被延續）。 技能可充能2次。",
-        "ja": "ロローラを召喚し攻撃を行う。攻撃が命中した対象に与える自身のダメージが一定時間アップする。 対象に10回ダメージを与えるごとに、ダメージが追加でアップし最大5回まで。上限後は追加ダメージ効果の持続時間が延長される（基礎ダメージアップの持続時間は延長されない）。持続時間は1回につき3秒延長され、最大5回まで延長可能。 ライフドレインを獲得し対象に与えたダメージの一定割合を回復する（効果時間延長対象）。 スキルは2回までチャージ可能。",
-        "ko-KR": "로로라를 소환하고, 선조의 힘에 공명해 협동 공격합니다. 일정 시간 동안 자신이 적중한 대상에게 주는 대미지가 증가합니다. 대상에게 대미지를 10회 줄 때마다 대미지 증가량이 추가로 상승하며, 최대 5회까지 중첩됩니다. 추가 증가 중첩이 최대치에 도달하면 대신 추가 대미지 증가 효과의 지속 시간이 연장됩니다(기본 대미지 증가 효과의 지속 시간은 연장되지 않습니다). 지속 시간은 회당 3초씩 최대 5회까지 연장됩니다. 동시에 자신은 생명 흡수를 획득합니다. 생명 흡수: 대상에게 준 대미지의 일정 비율만큼 체력을 회복합니다(지속 시간 연장 가능). 이 스킬은 2회까지 충전됩니다.",
-        "fr": "Invoque Rorola et entre en résonance avec le pouvoir des ancêtres pour augmenter les dégâts infligés pendant un certain temps. De plus, toutes les 10 attaques réussies sur des cibles confèrent un boost de dégâts supplémentaire, cumulable jusqu'à 5 fois. Une fois la limite atteinte, les coups suivants prolongent la durée du boost supplémentaire (la durée du boost de dégâts de base n'est pas prolongée). Chaque prolongation ajoute 3 s, avec un maximum de 5 prolongations. Confère également l'effet Vol de vie, qui restaure des PV à hauteur d'une partie des dégâts infligés (la durée peut être prolongée). Cette compétence dispose de 2 charges.",
-        "de": "Beschwört Rorola und schwingt im Einklang mit der Macht der Ahnen, um für eine Weile einen Schadensschub zu erhalten. Außerdem gewährt jeder 10. Treffer auf Ziele einen zusätzlichen Schadensschub, der bis zu 5-mal stapelbar ist. Sobald das Maximum erreicht ist, verlängern nachfolgende Treffer die Dauer des zusätzlichen Schubs (die Dauer des Basis-SCH-Schubs wird nicht verlängert). Jede Verlängerung fügt 3 Sek. hinzu, mit einem Maximum von 5 Verlängerungen. Gleichzeitig wird der Effekt Lebensraub gewährt, der LP in Höhe eines Teils des verursachten Schadens wiederherstellt (die Dauer kann verlängert werden). Diese Fähigkeit hat 2 Aufladungen.",
-        "es": "Invoca a Rorola y resuena con el poder de los ancestros para obtener un aumento de daño durante un tiempo. Además, cada 10 golpes a los objetivos otorgan un aumento de daño adicional que se acumula hasta 5 veces. Una vez alcanzado el límite, los golpes posteriores extienden la duración del aumento adicional (la duración del aumento de DÑO base no se extiende). Cada extensión añade 3 s, con un máximo de 5 extensiones. Al mismo tiempo, otorga el efecto de robo de vida, que restaura una cantidad de PS equivalente a una parte del daño infligido (la duración se puede extender). Esta habilidad tiene 2 cargas.",
-        "pt-BR": "Invoca Rorula, ressoando com o poder dos ancestrais para ganhar um reforço de dano por um tempo. A cada 10 acertos em alvos, concede um reforço de dano adicional, acumulando até 5 vezes. Uma vez atingido o limite, os acertos subsequentes estendem a duração do reforço adicional (a duração do Reforço de Dano base não se estende). Cada extensão adiciona 3 s, com um máximo de 5 extensões. Ao mesmo tempo, concede o efeito de Roubo de Vida, restaurando PV igual a uma parte do dano causado (a duração pode ser estendida). Esta habilidade tem 2 cargas.",
-        "th": "อัญเชิญ Rorola ออกมา Resonance กับพลังบรรพบุรุษช่วยโจมตี ทำให้เป้าหมายโดน DMG แรงขึ้นชั่วขณะ ทุกครั้งที่ทำ DMG ครบ 10 ครั้ง จะเพิ่มผลลัพธ์นี้ขึ้นอีก ทับซ้อนได้สูงสุด 5 ครั้ง พอถึงขีดจำกัดแล้ว จะเปลี่ยนเป็นยืดเวลาแสดงผลแทน (เวลาพื้นฐานจะไม่ถูกยืด) ยืดเวลาครั้งละ 3 วินาที ได้สูงสุด 5 ครั้ง ขณะเดียวกันตนจะได้รับสถานะดูดเลือด: ฟื้นฟู HP ตามสัดส่วน DMG ที่ทำได้ (ระยะเวลาจะถูกยืดออกไปได้ด้วย) Skills นี้รวบรวมได้ 2 ครั้ง",
-        "id": "Memanggil Lorola dan beresonansi dengan kekuatan leluhur untuk melancarkan Sync Attack. DMG yang diakibatkan diri sendiri terhadap target yang terkena serangan akan meningkat selama beberapa saat dan mendapat tambahan peningkatan setiap mengakibatkan 10 kali DMG terhadap target, maks. 5 kali tambahan peningkatan. Setelah mencapai batas, akan dikonversi menjadi perpanjangan durasi berlangsungnya DMG tambahan (waktu peningkatan DMG dasar tidak akan diperpanjang). Setiap perpanjangan berdurasi 3 detik, maks. 5 kali perpanjangan. Selain itu, diri sendiri juga akan mendapat Life Drain: Dapat memulihkan HP sebesar rasio tertentu dari DMG yang diakibatkan terhadap target (waktunya akan diperpanjang). Skill ini dapat di Charge hingga 2 kali."
-      }
-    },
     "mrs:e8b81bde73cf": {
       "description": "3 points of Blade Intent are gained when an Expertise Skill is cast.",
       "descriptions": {
@@ -6418,7 +6338,7 @@
         "id": "Saat Moonblade memicu Lucky Hit, berpeluang tetap 30% memulihkan 1 Thunder Seal. Efek ini hanya dapat berlaku satu kali setiap 2 detik. Moonblade: Berputar selama 35 detik, mengakibatkan PDMG sebesar 50% ATK pada target setiap 2 detik. Skala serangan meningkat seiring level/upgrade Skill Scythe Cart. Thunder Seal: Saat melancarkan Skill yang mengonsumsi Thunder Seal, setiap tambahan 1 Thunder Seal yang digunakan akan meningkatkan DMG Skill tersebut sebesar 25%."
       }
     },
-    "mrs:0f8a7018b5aa": {
+    "mrs:eea33019e62c": {
       "description": "For 12 seconds after casting Chaos Breaker, whenever the Talents Raijin Dash Charge, Moonlight Charge, and Charge Catcher obtain a Charge Seed, 1 additional Charge Seed is granted.",
       "descriptions": {
         "en": "For 12 seconds after casting Chaos Breaker, whenever the Talents Raijin Dash Charge, Moonlight Charge, and Charge Catcher obtain a Charge Seed, 1 additional Charge Seed is granted. Charge Seed: Can accumulate up to 20 Charge Seeds. When casting Thundercut, consumes 15 Charge Seeds to trigger Storm Scythe, dealing Attack DMG to surrounding targets.",
@@ -6434,7 +6354,7 @@
         "id": "Dalam 12 detik setelah melancarkan Whirling Slash, Charge Seed yang didapat dari talent Thunderbolt Charge, Moonlight Charge, dan Charge Catcher akan bertambah 1 buah. Charge Seed: Dapat menampung hingga 20 Charge Seed. Saat melancarkan Thunderbolt Strike, akan mengonsumsi 15 Charge Seed untuk memicu Scythe of Thunder, yang mengakibatkan PDMG pada target di sekitarnya."
       }
     },
-    "mrs:64aca37108a5": {
+    "mrs:70397733fad1": {
       "description": "Increases Max Moonblades by 1.",
       "descriptions": {
         "en": "Increases Max Moonblades by 1. MoonBlades: Spins continuously for 35s, dealing Attack DMG equal to 50% ATK every 2s (which scales with the Level/Tier of Scythe Wheel).",
@@ -6514,7 +6434,7 @@
         "id": "Special Attack akan menambahkan efek Thunder Curse pada target saat mengakibatkan DMG. Thunder Curse: Setiap tumpuk Thunder Curse akan membuat target menerima +2% dari DMG diri sendiri selama 10 detik, maks. 4 tumpuk."
       }
     },
-    "mrs:ea3d0d3deb52": {
+    "mrs:c957ecc92d49": {
       "description": "Deals 20% more DMG to enemies with 80% HP or above.",
       "descriptions": {
         "en": "Deals 20% more DMG to enemies with 80% HP or above.",
@@ -6754,7 +6674,7 @@
         "id": "Saat Infinite Thunder Surge diaktifkan, Flash dan Flying Thunder God akan berubah menjadi Dracoflash dan Phantom Slash."
       }
     },
-    "mrs:b8bfc1f6504e": {
+    "mrs:112bdeeb0b3d": {
       "description": "Raijin Dash and its enhanced skill (Phantom Slash) ignore the target's Armor. Raijin Dash and its enhanced skill (Phantom Slash) deal 10% more damage per additional 1 enemy hit.",
       "descriptions": {
         "en": "Raijin Dash and its enhanced skill (Phantom Slash) ignore the target's Armor. Raijin Dash and its enhanced skill (Phantom Slash) deal 10% more damage per additional 1 enemy hit.",
@@ -7010,7 +6930,7 @@
         "id": "Menebaskan sabit dengan kekuatan penghancur ke arah depan, mengakibatkan PDMG sebesar 1500% ATK kepada musuh. Akan meningkat seiring peningkatan level/tier skill Normal Attack."
       }
     },
-    "mrs:bdc2a71cdfe7": {
+    "mrs:70abd4740acb": {
       "description": "If Luck chance exceeds 25%, Moonblades trigger a Lucky Strike to gain Charge Seed. Otherwise, when Moonblades deal DMG, it has a fixed 25% chance to gain Charge Seed.",
       "descriptions": {
         "en": "If Luck chance exceeds 25%, Moonblades trigger a Lucky Strike to gain Charge Seed. Otherwise, when Moonblades deal DMG, it has a fixed 25% chance to gain Charge Seed. MoonBlades: Spins continuously for 35s, dealing Attack DMG equal to 50% ATK every 2s (which scales with the Level/Tier of Scythe Wheel). Charge Seed: Can accumulate up to 20 Charge Seeds. When casting Thundercut, consumes 15 Charge Seeds to trigger Storm Scythe, dealing Attack DMG to surrounding targets.",
@@ -7090,7 +7010,7 @@
         "id": "Thunderstrike DMG +20%. Setiap 1% Luck memberikan 1% Thunderstrike DMG Boost. Thunderstrike: [Lucky]: Mengakibatkan PDMG sebesar 80% ATK pada musuh."
       }
     },
-    "mrs:2a399c39b00a": {
+    "mrs:549849285be9": {
       "description": "Each enemy defeated grants 1 Charge Seed (effective within a team).",
       "descriptions": {
         "en": "Each enemy defeated grants 1 Charge Seed (effective within a team). Charge Seed: Can accumulate up to 20 Charge Seeds. When casting Thundercut, consumes 15 Charge Seeds to trigger Storm Scythe, dealing Attack DMG to surrounding targets.",
@@ -7138,7 +7058,7 @@
         "id": "Batas maksimum Bladewill meningkat dua kali lipat. Bladewill: Mendapat 2 poin Bladewill setiap detik. Batas maksimum awal Bladewill 100 poin. Saat Bladewill mencapai 100 poin, Casting Speed Quick Draw Slash meningkat drastis. Setelah Quick Draw Slash digunakan, 100 poin Bladewill akan dikonsumsi. Bladewill juga dapat digunakan sebagai sumber daya untuk melancarkan Thunderbolt Strike."
       }
     },
-    "mrs:5ef8f7bb8098": {
+    "mrs:a8cb6acc33fd": {
       "description": "When Thundercut triggers a Lucky Strike, grants 1 Charge Seed.",
       "descriptions": {
         "en": "When Thundercut triggers a Lucky Strike, grants 1 Charge Seed. Charge Seed: Can accumulate up to 20 Charge Seeds. When casting Thundercut, consumes 15 Charge Seeds to trigger Storm Scythe, dealing Attack DMG to surrounding targets.",
@@ -7202,7 +7122,7 @@
         "id": "Dalam 8 detik setelah melancarkan Rock - Guard Smash, setiap Normal Attack dapat menarik target dalam jarak 8 hingga 20 meter ke lokasimu. Target yang sama tidak dapat ditarik lagi dalam 3 detik."
       }
     },
-    "mrs:563a5027b750": {
+    "mrs:2de40cf63a52": {
       "description": "You gain the Suppress Expertise effect.",
       "descriptions": {
         "en": "You gain the Suppress Expertise effect. Suppress: When taking DMG and your HP percentage is higher than the attacker's, reduces the DMG the attacker deals to you by 10%. When dealing DMG and your HP percentage is higher than the target's, increases the DMG you deal to them by 10%.",
@@ -7410,7 +7330,7 @@
         "id": "Dalam status Enrage, PDEF +30% dan akan berkurang 5% setiap detik. Enrage: DMG +20%, Move Speed +10%, dan mendapat Super Armor."
       }
     },
-    "mrs:b0db066fd3a7": {
+    "mrs:c8ec25c98374": {
       "description": "Each enemy within 3 meters enhances the effectiveness of Suppress by 3%, up to 15%. This effect is doubled against Elite or stronger enemies.",
       "descriptions": {
         "en": "Each enemy within 3 meters enhances the effectiveness of Suppress by 3%, up to 15%. This effect is doubled against Elite or stronger enemies. Suppress: When taking DMG and your HP percentage is higher than the attacker's, reduces the DMG the attacker deals to you by 10%. When dealing DMG and your HP percentage is higher than the target's, increases the DMG you deal to them by 10%.",
@@ -7458,7 +7378,7 @@
         "id": "Terus memperkuat kemampuan menggunakan Shield Bash. Setiap mengenai 1 target tambahan, DMG dari Shield Bash +30%, maks. +150%. Setelah terkena serangan, Element Reduction +0,6% selama 4 detik, maks. 10 tumpuk. Setiap 1% Mastery akan menambah kekuatan efek ini sebesar 2%. Pertahankan jangkauan shield sebisa mungkin. Selain mengurangi DMG yang diterima, beberapa efek tertentu juga akan ditambahkan saat shield bertahan."
       }
     },
-    "mrs:bca1a3f66256": {
+    "mrs:24ea1db8113b": {
       "description": "Cracking Echo generates a Sandfield that lasts for 5s.",
       "descriptions": {
         "en": "Cracking Echo generates a Sandfield that lasts for 5s. Sandfield: Within the zone, reduces your Magic DMG taken by 50%, and 50% of the DMG taken by Allies (up to 10) is redirected to you.",
@@ -7698,7 +7618,7 @@
         "id": "Saat berada dalam status Enrage, Shatter selalu memicu Weakness Strike. Weakness Strike: Mengakibatkan PDMG sebesar 50% ATK pada target musuh, sekaligus mendapatkan 1 Sand Crystal. Enrage: DMG +20%, Move Speed +10%, dan mendapat Super Armor."
       }
     },
-    "mrs:b0ab888122ab": {
+    "mrs:aaa131e05f2c": {
       "description": "Star Shatter and Starfall deals additionally 200% DMG to targets with current HP less than or equal to 35%.",
       "descriptions": {
         "en": "Star Shatter and Starfall deals additionally 200% DMG to targets with current HP less than or equal to 35%.",
@@ -7986,7 +7906,7 @@
         "id": "Batas Regen Sprout +4. Regen Sprout: Saat Expertise Skill jenis Healing atau Ultimate Skill memberikan Heal, mengonsumsi 2 Regen Sprout untuk melempar Nourishment Seed, maks. sekali setiap 1 detik. Saat DMG Expertise Skill atau Ultimate Skill mengakibatkan DMG, akan mengonsumsi 2 Regen Sprout dan menembakkan 1 Wild Seed. Efek ini dapat terpicu sekali setiap 1 detik."
       }
     },
-    "mrs:cf23db001a1c": {
+    "mrs:f4d29a049d8c": {
       "description": "When Feral Seed deals DMG, it increases the DMG dealt by Infusion, Wild Bloom, Stag Charge in the next 10s by 20%.",
       "descriptions": {
         "en": "When Feral Seed deals DMG, it increases the DMG dealt by Infusion, Wild Bloom, Stag Charge in the next 10s by 20%.",
@@ -8498,7 +8418,7 @@
         "id": "Jika Regen Pulse terpasang, maka setiap kali Nature's Shelter atau Ultimate selesai CD, Regen Pulse akan otomatis terpicu."
       }
     },
-    "mrs:e59fd2ad98bf": {
+    "mrs:7c65b9f0973d": {
       "description": "When active Symbiotic Marks reach 5 or more, Feral Seed and Wild Seed DMG increases by 100%.",
       "descriptions": {
         "en": "When active Symbiotic Marks reach 5 or more, Feral Seed and Wild Seed DMG increases by 100%. Wild Seed: Explodes upon contact with an enemy, dealing Magic DMG equal to 100% ATK.",
@@ -8530,7 +8450,7 @@
         "id": "Jumlah Charge untuk Nature's Shelter bertambah +1. Waktu Charge untuk Nature's Shelter berkurang -5 detik."
       }
     },
-    "mrs:061c3e937c97": {
+    "mrs:cf65dca9de7d": {
       "description": "Successful hit of Feral Seed on the targets with Thorn spreads Thorn to other units within 10 meters. Grant 4% Forest Bonus when attacking Elite targets and above.",
       "descriptions": {
         "en": "Successful hit of Feral Seed on the targets with Thorn spreads Thorn to other units within 10 meters. Grant 4% Forest Bonus when attacking Elite targets and above. Thorn: Deals Magic DMG equal to 20% ATK per second to the enemy for 10s.",
@@ -8546,7 +8466,7 @@
         "id": "Saat Rebellious Seed mengenai target yang terkena Thorns, efek Thorns akan menyebar ke musuh lain dalam radius 10 meter di sekitarnya. Saat menyerang target Elite atau lebih tinggi, mendapat 4% Forest Boost. Thorns: Mengakibatkan MDMG sebesar 20% ATK per detik terhadap musuh yang ditargetkan selama 10 detik."
       }
     },
-    "mrs:fae661f36d02": {
+    "mrs:8010c804c2de": {
       "description": "Infusion and Stag Charge deal double DMG to Thorned targets, but the healing conversion of Infusion and Stag Charge is halved.",
       "descriptions": {
         "en": "Infusion and Stag Charge deal double DMG to Thorned targets, but the healing conversion of Infusion and Stag Charge is halved. Thorn: Deals Magic DMG equal to 20% ATK per second to the enemy for 10s.",
@@ -8594,7 +8514,7 @@
         "id": "Setiap 1 kali Regen Pulse digunakan atau terpicu, waktu CD Nature's Shelter berkurang 2 detik."
       }
     },
-    "mrs:7edd5854dc7f": {
+    "mrs:cf5915b7059a": {
       "description": "Regen Pulse returns to your position after it reaches the max distance. Regen Pulse now deals DMG to enemies.",
       "descriptions": {
         "en": "Regen Pulse returns to your position after it reaches the max distance. Regen Pulse now deals DMG to enemies.",
@@ -8642,7 +8562,7 @@
         "id": "Jumlah Heal yang dikonversi oleh Symbiosis Mark +2%. Setiap 5% Mastery, efek tambahan +1%."
       }
     },
-    "mrs:ad8a380cd4ea": {
+    "mrs:c9fbeffb9909": {
       "description": "Each Wild Seed fired extends the duration of activated Symbiotic Mark by 1s.",
       "descriptions": {
         "en": "Each Wild Seed fired extends the duration of activated Symbiotic Mark by 1s. Wild Seed: Explodes upon contact with an enemy, dealing Magic DMG equal to 100% ATK.",
@@ -8754,7 +8674,7 @@
         "id": "Blossom Charge Menumbuhkan sulur yang mengakibatkan Stun dan MDMG kepada musuh di sekitar, serta memulihkan HP rekan di sekitar diri sendiri. Strategi: Skill yang bisa langsung instan dilancarkan. Saat dikombinasikan dengan talent Heal, akan menghasilkan DMG dan Heal yang baik di pertarungan dengan mobilitas tinggi."
       }
     },
-    "mrs:62d1ef078966": {
+    "mrs:1a22bbc84bff": {
       "description": "When Wild Bloom or Regen Pulse deal DMG, grants a chance (equal to the half percentage of Luck) to gain 1 Regen Bud. If the target is affected by Thorn, doubles the chance.",
       "descriptions": {
         "en": "When Wild Bloom or Regen Pulse deal DMG, grants a chance (equal to the half percentage of Luck) to gain 1 Regen Bud. If the target is affected by Thorn, doubles the chance. Regen Bud: When a Healing Expertise Skill or Ultimate restores HP, it consumes 2 Regen Buds and throws a Nourishing Seed, once every 1 second. When a DMG Expertise Skill or Ultimate deals DMG, it consumes 2 Regen Buds and fires a Wild Seed, once per second. Thorn: Deals Magic DMG equal to 20% ATK per second to the enemy for 10s.",
@@ -9170,7 +9090,7 @@
         "id": "Dalam status Light Reforge, Wildwolf akan mengabaikan PDEF target saat melancarkan Sync Attack. Light Reforge: Saat Light penuh, melancarkan Special Attack akan memasuki status Light Reforge. Dalam status ini, Special Attack dan beberapa Expertise Skill akan diperkuat. Light terus berkurang dalam status ini. Status akan berakhir saat Light mencapai 0."
       }
     },
-    "mrs:4d6f1da230a6": {
+    "mrs:6719cc701d7f": {
       "description": "Luminary Bolt additionally causes a Photon Explosion, dealing Attack DMG equal to 1,500% ATK (which scales with the Level/Tier of Ultimate), and also knocks targets airborne and increases the DMG you deal to them by 5% for 10s.",
       "descriptions": {
         "en": "Luminary Bolt additionally causes a Photon Explosion, dealing Attack DMG equal to 1,500% ATK (which scales with the Level/Tier of Ultimate), and also knocks targets airborne and increases the DMG you deal to them by 5% for 10s.",
@@ -9282,7 +9202,7 @@
         "id": "Setiap 1% Crit akan memberikan 0,3% Crit DMG. Double Arrow dan Lightwill - Quadraflare yang mengakibatkan Crit akan memulihkan 2 Light."
       }
     },
-    "mrs:0d19a5cf0e22": {
+    "mrs:24748645e407": {
       "description": "Companions deal 15% more DMG to Elites or stronger enemies.",
       "descriptions": {
         "en": "Companions deal 15% more DMG to Elites or stronger enemies.",
@@ -9378,7 +9298,7 @@
         "id": "Special Attack digantikan dengan Double Arrow, dan kemampuan penggunaan skill tersebut ditingkatkan. Memulihkan 2 poin Light setiap detik. Setiap 1% Haste memberikan tambahan 1% kecepatan CD Double Arrow. Dapat menjinakkan Hawk untuk membantu bertarung bersama pengguna. Hawk selalu berada di sisimu. Saat Class Skill mengakibatkan DMG, Hawk berpeluang tetap 23% segera menyerang target (pasti menyerang jika mengakibatkan Crit DMG) dan mengakibatkan PDMG sebesar 130% ATK diri sendiri (skala serangan meningkat seiring level/upgrade skill Normal Attack). Selain itu, saat jumlah serangan Hawk melebihi 5 kali, serangan Hawk berikutnya akan menggabungkan jumlah serangan dan DMG yang melebihi batas tersebut. Hawk akan merespons seranganmu, Haste dan Crit meningkatkan frekuensi responsnya. Setelah Hawk mempelajari Lightning Impact, DMG-nya meningkat secara signifikan."
       }
     },
-    "mrs:1c5ca8ae84e1": {
+    "mrs:fba5edf77db1": {
       "description": "After you use Arrow Rain, the Wild Wolf continuously performs Tail Sweep until the Arrow Rain ends. Wild Wolf's Tail Sweep is bound to deal Crit DMG and to inflict Bleed.",
       "descriptions": {
         "en": "After you use Arrow Rain, the Wild Wolf continuously performs Tail Sweep until the Arrow Rain ends. Wild Wolf's Tail Sweep is bound to deal Crit DMG and to inflict Bleed. Tail Sweep: Deals Attack DMG equal to 80% ATK to enemies within 5 meters. For each additional enemy hit, increases the DMG dealt by 30% (which scales with the Level/Tier of Basic Attack, up to +120%). Bleed: The effect lasts 5s, dealing Attack DMG equal to 10% ATK per second. If applied again from the same source before the previous Bleed ends, it deals all remaining DMG of the previous Bleed immediately.",
@@ -9506,7 +9426,7 @@
         "id": "Setiap 1 kali Wildwolf atau Phantom Demonwolf dipanggil, waktu CD Arrow Rain berkurang 0,5 detik."
       }
     },
-    "mrs:14ea3deb1890": {
+    "mrs:388665a72229": {
       "description": "For each additional Bleed effect on the target, Wolf deals +3% damage to it.",
       "descriptions": {
         "en": "For each additional Bleed effect on the target, Wolf deals +3% damage to it. Bleed: The effect lasts 5s, dealing Attack DMG equal to 10% ATK per second. If applied again from the same source before the previous Bleed ends, it deals all remaining DMG of the previous Bleed immediately.",
@@ -9682,7 +9602,7 @@
         "id": "Batas Light +20."
       }
     },
-    "mrs:830e96cd0170": {
+    "mrs:65b351f4037b": {
       "description": "Wild Wolf deals additionally 30% DMG to targets with current HP less than or equal to 35%.",
       "descriptions": {
         "en": "Wild Wolf deals additionally 30% DMG to targets with current HP less than or equal to 35%.",
@@ -10386,7 +10306,7 @@
         "id": "Frost Spear yang mengonsumsi Black Ice akan mengembalikan 50% Ice Energy yang digunakan setelah skill dilancarkan. Frost Spear yang tidak mengonsumsi Black Ice akan mengurangi tambahan 50% Ice Energy setelah dilancarkan. Black Ice: Dapat memberikan efek tambahan pada Skill."
       }
     },
-    "mrs:5a757fbc4205": {
+    "mrs:3f125e621759": {
       "description": "Frost Lance deals 70% more DMG. Frost Lance costs 100% more time to use.",
       "descriptions": {
         "en": "Frost Lance deals 70% more DMG. Frost Lance costs 100% more time to use.",
@@ -10434,7 +10354,7 @@
         "id": "Saat Frost Spear menghasilkan Crit, Crit DMG +1,5% selama 6 detik. Maks. 10 tumpuk."
       }
     },
-    "mrs:7f506e81d6fa": {
+    "mrs:41610153d928": {
       "description": "Frost Lance deals 20% more DMG to targets with HP less than 35%",
       "descriptions": {
         "en": "Frost Lance deals 20% more DMG to targets with HP less than 35%",
@@ -10674,7 +10594,7 @@
         "id": "Batas Ice Energy +40."
       }
     },
-    "mrs:eaa10f98f72b": {
+    "mrs:0818356ca975": {
       "description": "Increases Intellect by 5%.",
       "descriptions": {
         "en": "Increases Intellect by 5%.",
@@ -12114,7 +12034,7 @@
         "id": "Saat Lightforged Barrier berada pada 5 tumpuk atau kurang, maka tumpukan tersebut tidak akan berkurang saat menerima DMG. Saat Lightforged Barrier memiliki lebih dari 5 tumpuk, terdapat 50% peluang tetap untuk tidak kehilangan tumpukannya saat menerima DMG. Lightforged Barrier: Setiap tumpukan meningkatkan Max HP akhir diri sendiri 2%. Dapat memiliki hingga 10 tumpuk Lightforged Barrier, dan setiap kali menerima DMG akan mengonsumsi 1 tumpuk. Berlangsung selama 25 detik atau hingga semua tumpuk habis, setiap kali mendapatkan tumpukan baru, durasi akan direset."
       }
     },
-    "mrs:09c893f530fc": {
+    "mrs:878b91c8b5b6": {
       "description": "For each enemy inside Divine Circle, increases Divine Circle DMG by 25% and Divine Circle Healing by 5% (caps at 10 enemies).",
       "descriptions": {
         "en": "For each enemy inside Divine Circle, increases Divine Circle DMG by 25% and Divine Circle Healing by 5% (caps at 10 enemies).",
@@ -12162,7 +12082,7 @@
         "id": "Saat berada di dalam Holy Ring, efek Heal yang diterima +10%."
       }
     },
-    "mrs:8d86a6b84811": {
+    "mrs:846e84fcdd7f": {
       "description": "When your HP percentage is higher than your target's, DMG taken from that target -5%. When your HP percentage is lower than your target's, Judgment deals 50% more DMG.",
       "descriptions": {
         "en": "When your HP percentage is higher than your target's, DMG taken from that target -5%. When your HP percentage is lower than your target's, Judgment deals 50% more DMG.",
@@ -12386,7 +12306,7 @@
         "id": "Efek Judgement Heal +25%."
       }
     },
-    "mrs:638f18a0da6b": {
+    "mrs:a96956608dea": {
       "description": "When Divine Strike deals DMG, increases Strength by 2% for 10s, stacking up to 5 times.",
       "descriptions": {
         "en": "When Divine Strike deals DMG, increases Strength by 2% for 10s, stacking up to 5 times. Divine Strike: Deals Attack DMG equal to 50% ATK and reduces the target's movement speed by 25%.",
@@ -12514,7 +12434,7 @@
         "id": "Setiap mengonsumsi 15 Light Energy, waktu CD Cruel Conquest berkurang 1 detik."
       }
     },
-    "mrs:9f94a10f910a": {
+    "mrs:b04afc83795b": {
       "description": "When Judgment deals DMG, the target takes double DMG from Holy Mark for the next 5s.",
       "descriptions": {
         "en": "When Judgment deals DMG, the target takes double DMG from Holy Mark for the next 5s. Holy Mark: The target takes DMG equal to 20% ATK every second for the next 10s. During this time, each time the target deals DMG to you, there is a fixed 10% chance to restore HP equal to 0.5% of your Max HP.",
@@ -12706,7 +12626,7 @@
         "id": "Melody Skill memberikan +100% Healing Effect terhadap rekan dengan HP kurang dari 50%. Melody Skill: Melody - Valor Movement atau Melody - Healing Movement."
       }
     },
-    "mrs:12e23a33f9e4": {
+    "mrs:3d2607290f1e": {
       "description": "After using 3 Special Attacks, the next Basic Attack hit triggers Flame Pillar Blast.",
       "descriptions": {
         "en": "After using 3 Special Attacks, the next Basic Attack hit triggers Flame Pillar Blast. Flame Pillar Blash: Deals Magic DMG equal to 60% ATK to the enemies within range (which scales with the Level/Tier of Basic Attack).",
@@ -12722,7 +12642,7 @@
         "id": "Setiap kali Special Attack digunakan sebanyak 3 kali, Normal Attack berikutnya yang mengenai target akan memicu Flamepillar Impact. Flamepillar Impact: Mengakibatkan Magic Damage sebesar 60% ATK kepada musuh di area sekitar, mengikuti upgrade/advance skill dari Normal Attack."
       }
     },
-    "mrs:4725e5494035": {
+    "mrs:d6843886ca48": {
       "description": "Flame Pillar Blast becomes a two-hit combo.",
       "descriptions": {
         "en": "Flame Pillar Blast becomes a two-hit combo. Flame Pillar Blash: Deals Magic DMG equal to 60% ATK to the enemies within range (which scales with the Level/Tier of Basic Attack).",
@@ -12770,7 +12690,7 @@
         "id": "Flame Fantasy selalu muncul dalam bentuk terkuatnya. Saat berada dalam Flame Fantasy, Heal Power +20%."
       }
     },
-    "mrs:de612630ca35": {
+    "mrs:6adaf0d762ce": {
       "description": "Increases Resilience Break Efficiency of self and Allies within 30 meters by 10%. This effect cannot stack. After activating Heroic Melody, you and Allies within 30 meters have an resilience break efficiency +30% and deal 15% more DMG to Resilience Broken targets. This effect cannot stack.",
       "descriptions": {
         "en": "Increases Resilience Break Efficiency of self and Allies within 30 meters by 10%. This effect cannot stack. After activating Heroic Melody, you and Allies within 30 meters have an resilience break efficiency +30% and deal 15% more DMG to Resilience Broken targets. This effect cannot stack.",
@@ -12962,7 +12882,7 @@
         "id": "Setiap mengonsumsi 10 Performance Passion, selama 10 detik berikutnya Passion Flow akan diperkuat menjadi Exalt - Passion Flow."
       }
     },
-    "mrs:7e5d929d3276": {
+    "mrs:86249e1a50ea": {
       "description": "When Passion Burst and its enhanced version (Passion Fury) hit the speaker, it immediately releases a Flame Shock.",
       "descriptions": {
         "en": "When Passion Burst and its enhanced version (Passion Fury) hit the speaker, it immediately releases a Flame Shock. Flame Shock: Deals Magic DMG equal to 100% ATK to the enemies within range.",
@@ -13330,7 +13250,7 @@
         "id": "Saat Surge Quintet mengakibatkan Crit DMG atau Heal (hanya dapat terpicu satu kali saat mengenai banyak target), akan mendapat 2 poin Performance Energy. Saat Melody - Healing Movement mengakibatkan Crit, akan mendapat 1 poin Performance Energy (hanya dapat terpicu satu kali saat mengenai banyak target)."
       }
     },
-    "mrs:f221ac4ec53f": {
+    "mrs:00418429c77f": {
       "description": "The speaker releases a Flame Shock every 5s.",
       "descriptions": {
         "en": "The speaker releases a Flame Shock every 5s. Flame Shock: Deals Magic DMG equal to 100% ATK to the enemies within range.",
@@ -13346,7 +13266,7 @@
         "id": "Setiap berselang 5 detik, Speaker akan melancarkan satu serangan Flame Shock. Flame Shock: Memberikan Magic Damage sebesar 100% ATK kepada musuh di area sekitar."
       }
     },
-    "mrs:3d80e3c9dae1": {
+    "mrs:263e10c4549b": {
       "description": "Passion Burst and its enhanced version (Passion Fury) deal 5% more DMG per additional target hit, up to 25%.",
       "descriptions": {
         "en": "Passion Burst and its enhanced version (Passion Fury) deal 5% more DMG per additional target hit, up to 25%.",
@@ -13378,7 +13298,7 @@
         "id": "Saat Melody - Healing Movement aktif, Surge Quintet akan membawa efek DMG. Total DMG Multiplier sama dengan Heal Multiplier. Saat Melody - Healing Movement diaktifkan, DMG yang diterima diri sendiri -15%."
       }
     },
-    "mrs:455964c7632a": {
+    "mrs:74f71e222912": {
       "description": "Increases the DMG dealt and healing of skills triggered by the speaker by 30%.",
       "descriptions": {
         "en": "Increases the DMG dealt and healing of skills triggered by the speaker by 30%.",
@@ -13938,7 +13858,7 @@
         "id": "Mastery akan meningkatkan probabilitas pemicu tahap 1 hingga 3 Serangan Api Tanpa Bentuk secara proporsional (setiap 1% Mastery meningkatkan masing-masing sebesar 0,6%/0,3%/0,1%), tetapi Crit Rate Serangan Api Tanpa Bentuk berkurang setengahnya."
       }
     },
-    "mrs:c6c051033bf2": {
+    "mrs:11c4758a77e7": {
       "description": "Every 5 times Expertise Skills deal damage to the main target, gains a buff increasing Blazing Ascension damage by 5% for the next 5s. Stacks up to 5 times.",
       "descriptions": {
         "en": "Every 5 times Expertise Skills deal damage to the main target, gains a buff increasing Blazing Ascension damage by 5% for the next 5s. Stacks up to 5 times.",
@@ -16418,7 +16338,7 @@
         "id": "Peluang mendapat atribut Epic berlipat ganda."
       }
     },
-    "mrs:76a74c3110c4": {
+    "mrs:db9fe07d4c1f": {
       "description": "Iaido Slash Dream DMG +",
       "descriptions": {
         "en": "Iaido Slash Dream DMG +",
@@ -16434,7 +16354,7 @@
         "id": "Dream DMG dari Quick Draw Slash +."
       }
     },
-    "mrs:074308d23138": {
+    "mrs:999481405983": {
       "description": "Flash Strike, Raijin Dash Dream DMG +",
       "descriptions": {
         "en": "Flash Strike, Raijin Dash Dream DMG +",
@@ -16450,7 +16370,7 @@
         "id": "Dream DMG dari Flash dan Flying Thunder God +."
       }
     },
-    "mrs:bb4d3ece8ff3": {
+    "mrs:b87b8be9e03b": {
       "description": "Dracoflash, Phantom Slash Dream DMG +",
       "descriptions": {
         "en": "Dracoflash, Phantom Slash Dream DMG +",
@@ -16466,7 +16386,7 @@
         "id": "Dream DMG dari Dracoflash dan Phantom Slash +."
       }
     },
-    "mrs:cd39e213cb60": {
+    "mrs:ee547194414d": {
       "description": "Thunder Cut Dream DMG +; Increases the Casting SPD of Thunder Cut",
       "descriptions": {
         "en": "Thunder Cut Dream DMG +; Increases the Casting SPD of Thunder Cut",
@@ -16482,7 +16402,7 @@
         "id": "Dream DMG dari Thunder Cut +. Casting Speed pada Thunder Cut bertambah secara signifikan."
       }
     },
-    "mrs:3ae47dfe5376": {
+    "mrs:25169073fb33": {
       "description": "Volt Surge charge count +1, but duration –4s; Ultimate Dream DMG +",
       "descriptions": {
         "en": "Volt Surge charge count +1, but duration –4s; Ultimate Dream DMG +",
@@ -16498,7 +16418,7 @@
         "id": "Jumlah Charge pada Infinite Thunder Surge +1, namun durasinya -4 detik. Dream DMG dari skill ultimate +."
       }
     },
-    "mrs:416a601f39ed": {
+    "mrs:fd2530f06fee": {
       "description": "Thundercut, Thundercleave Dream DMG +",
       "descriptions": {
         "en": "Thundercut, Thundercleave Dream DMG +",
@@ -16514,7 +16434,7 @@
         "id": "Dream DMG dari Thunderbolt Strike dan Thunderbolt Cleave +."
       }
     },
-    "mrs:eb67e4ac430c": {
+    "mrs:aff13e8b8d76": {
       "description": "Storm Scythe, Divine Sickle Dream DMG +",
       "descriptions": {
         "en": "Storm Scythe, Divine Sickle Dream DMG +",
@@ -16530,7 +16450,7 @@
         "id": "Dream DMG dari Scythe of Thunder dan Scythe of Punishment +."
       }
     },
-    "mrs:55c3db4bce48": {
+    "mrs:58b24ec42371": {
       "description": "Moonblade Dream DMG +",
       "descriptions": {
         "en": "Moonblade Dream DMG +",
@@ -16546,7 +16466,7 @@
         "id": "Dream DMG dari Moonblade +."
       }
     },
-    "mrs:324f8c9c41d9": {
+    "mrs:d0b8d8c8dbf0": {
       "description": "Moonstrike attack count +; Moonstrike Dream DMG +",
       "descriptions": {
         "en": "Moonstrike attack count +; Moonstrike Dream DMG +",
@@ -16562,7 +16482,7 @@
         "id": "Jumlah serangan Moonshade +. Dream DMG dari Moonshade +."
       }
     },
-    "mrs:9dde7b523983": {
+    "mrs:6b06a9df6720": {
       "description": "Stormflash duration +; Moonstrike, Thunderstrike Dream DMG +",
       "descriptions": {
         "en": "Stormflash duration +; Moonstrike, Thunderstrike Dream DMG +",
@@ -16578,7 +16498,7 @@
         "id": "Durasi Thousand Thunder Flash +. Dream DMG dari Moonshade dan Thunderstrike +."
       }
     },
-    "mrs:7b53703c9f7e": {
+    "mrs:97312edee09d": {
       "description": "When Volt Surge is not active, gains 1 Thunder Sigil every , and when Iaido Slash deals damage to the current target, there is a fixed chance to trigger Piercing Slash.",
       "descriptions": {
         "en": "When Volt Surge is not active, gains 1 Thunder Sigil every , and when Iaido Slash deals damage to the current target, there is a fixed chance to trigger Piercing Slash.",
@@ -16594,7 +16514,7 @@
         "id": "Saat Infinite Thunder Surge belum aktif, mendapat 1 Thunder Seal setiap , Quick Draw Slash juga berpeluang tetap memicu Piercing Slash saat mengakibatkan DMG pada target saat ini."
       }
     },
-    "mrs:4a6898cd0283": {
+    "mrs:1c3a1e54df31": {
       "description": "Ultimate Slash no longer has a damage cap, and its retroactive window is increased to 60s. Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK.",
       "descriptions": {
         "en": "Ultimate Slash no longer has a damage cap, and its retroactive window is increased to 60s. Damage dealt per Thunder Sigil consumed by Ultimate Slash is increased from 150% of ATK to of ATK.",
@@ -16610,7 +16530,7 @@
         "id": "DMG dari Final Slash tidak lagi terbatas, waktu pelacakannya juga meningkat menjadi 60 detik. Setiap menggunakan 1 Thunder Seal, DMG yang diakibatkan Final Slash meningkat dari 150% ATK menjadi ATK."
       }
     },
-    "mrs:a41da6f06e66": {
+    "mrs:621efad68e24": {
       "description": "While Volt Surge is active, 1 stack of Thundrage is gained every . Thunder Cut Dream DMG +.",
       "descriptions": {
         "en": "While Volt Surge is active, 1 stack of Thundrage is gained every . Thunder Cut Dream DMG +.",
@@ -16626,7 +16546,7 @@
         "id": "Mendapat 1 tumpuk Lightning Pressure setiap berselang selama Infinite Thunder Surge berlangsung. Dream DMG dari Thunder Cut +."
       }
     },
-    "mrs:45a03d53781c": {
+    "mrs:5da4cb6dbfcd": {
       "description": "Moonblades cast Storm Scythe every 2s. The Moonblades summoned by Scythe Wheel is capped at 1 and no longer targets enemies. Recasting Moonstrike returns the Moonblade to the caster's position. Storm Scythe Dream DMG +.",
       "descriptions": {
         "en": "Moonblades cast Storm Scythe every 2s. The Moonblades summoned by Scythe Wheel is capped at 1 and no longer targets enemies. Recasting Moonstrike returns the Moonblade to the caster's position. Storm Scythe Dream DMG +.",
@@ -16642,7 +16562,7 @@
         "id": "Moonblade melancarkan Scythe of Thunder setiap berselang 2 detik, namun Moonblade yang dipanggil Scythe Cart dibatasi menjadi 1 buah dan tidak lagi mencari musuh yang ditargetkan. Saat kembali melancarkan Moonshade, Moonblade akan kembali ke lokasi diri sendiri. Dream DMG dari Scythe of Thunder +."
       }
     },
-    "mrs:cfd2fc68100e": {
+    "mrs:1a1db6a0fd05": {
       "description": "While Stormflash is active, each cast of Thundercut also casts Thunderstrike on up to 6 enemies within a 5m radius and grants 3 Charge Seeds. Thunderstrike Dream DMG +.",
       "descriptions": {
         "en": "While Stormflash is active, each cast of Thundercut also casts Thunderstrike on up to 6 enemies within a 5m radius and grants 3 Charge Seeds. Thunderstrike Dream DMG +.",
@@ -16914,7 +16834,7 @@
         "id": "Lucky Hit multiplier +100%, Luck enhancement doubled Hanya muncul pada tingkat kesulitan [Nightmare]"
       }
     },
-    "mrs:9fbe9ca5f53d": {
+    "mrs:66f54d268016": {
       "description": "Valor Cyclone Dream DMG +",
       "descriptions": {
         "en": "Valor Cyclone Dream DMG +",
@@ -16930,7 +16850,7 @@
         "id": "Dream DMG dari Courage Wind Ring +."
       }
     },
-    "mrs:6d5fc808b50d": {
+    "mrs:9c417d1bfb08": {
       "description": "Spiral Thrust, Breach Pursuit Dream DMG +",
       "descriptions": {
         "en": "Spiral Thrust, Breach Pursuit Dream DMG +",
@@ -16946,7 +16866,7 @@
         "id": "Dream DMG dari Spiral Thrust dan Chase Break +."
       }
     },
-    "mrs:88b80a95d560": {
+    "mrs:20f1e6029764": {
       "description": "Triggers Vortex Strike upon combat entering;Vortex Strike Dream DMG +",
       "descriptions": {
         "en": "Triggers Vortex Strike upon combat entering;Vortex Strike Dream DMG +",
@@ -16962,7 +16882,7 @@
         "id": "Memasuki pertarungan akan menghasilkan skill turunan Divine Spiral. Dream DMG dari Divine Spiral +."
       }
     },
-    "mrs:0d4509de331d": {
+    "mrs:8673fb9c676b": {
       "description": "Drake Cannon Dream DMG +",
       "descriptions": {
         "en": "Drake Cannon Dream DMG +",
@@ -16978,7 +16898,7 @@
         "id": "Dream DMG dari Dragon Blast +."
       }
     },
-    "mrs:9ca6ca7d42d9": {
+    "mrs:919f6d99167d": {
       "description": "Valor Cyclone can trigger Lucky Strike; Valor Cyclone Dream DMG +",
       "descriptions": {
         "en": "Valor Cyclone can trigger Lucky Strike; Valor Cyclone Dream DMG +",
@@ -16994,7 +16914,7 @@
         "id": "Courage Wind Ring dapat memicu Lucky Hit. Dream DMG dari Courage Wind Ring +."
       }
     },
-    "mrs:5f212d2e9467": {
+    "mrs:0fd84841479c": {
       "description": "Galeform duration +",
       "descriptions": {
         "en": "Galeform duration +",
@@ -17010,7 +16930,7 @@
         "id": "Durasi Graceful +."
       }
     },
-    "mrs:64e9ef650dd7": {
+    "mrs:a71b531e6cd2": {
       "description": "Instant Edge Dream DMG + (does not affect Instant Edge Combo)",
       "descriptions": {
         "en": "Instant Edge Dream DMG + (does not affect Instant Edge Combo)",
@@ -17026,7 +16946,7 @@
         "id": "Dream DMG dari Instant + (tidak memengaruhi Instant Combo)."
       }
     },
-    "mrs:d5fd69fd5ff7": {
+    "mrs:918ffd6cceae": {
       "description": "Falcon Toss, Instant Edge Combo Dream DMG +",
       "descriptions": {
         "en": "Falcon Toss, Instant Edge Combo Dream DMG +",
@@ -17042,7 +16962,7 @@
         "id": "Dream DMG dari Falcon Toss dan Instant Combo +."
       }
     },
-    "mrs:619e75b2fb23": {
+    "mrs:09c03f3773e3": {
       "description": "Tornado can trigger Lucky Strike; Tornado Dream DMG +",
       "descriptions": {
         "en": "Tornado can trigger Lucky Strike; Tornado Dream DMG +",
@@ -17058,7 +16978,7 @@
         "id": "Tornado dapat memicu Lucky Hit. Dream DMG dari Tornado +."
       }
     },
-    "mrs:6e7c7cfa30db": {
+    "mrs:0c507479421f": {
       "description": "Azure Sever always triggers Crit; Dream DMG of Azure Sever +",
       "descriptions": {
         "en": "Azure Sever always triggers Crit; Dream DMG of Azure Sever +",
@@ -17074,7 +16994,7 @@
         "id": "Ultimate - Gale Slash pasti mengakibatkan Crit. Dream DMG dari Ultimate - Gale Slash +."
       }
     },
-    "mrs:382030ee415f": {
+    "mrs:c7649e959883": {
       "description": "Sharp Impact gains 5% charge every (affected by CD Boost); Dream DMG of Sharp Impact and Typhoon: Sharp Impact +",
       "descriptions": {
         "en": "Sharp Impact gains 5% charge every (affected by CD Boost); Dream DMG of Sharp Impact and Typhoon: Sharp Impact +",
@@ -17090,7 +17010,7 @@
         "id": "Sharp Impact mendapat 5% Charge setiap (waktu ini dipengaruhi CD Boost). Dream DMG dari Sharp Impact dan Wind God - Sharp Impact +."
       }
     },
-    "mrs:bb0e2575ba00": {
+    "mrs:06d4b85b23a2": {
       "description": "Every 10 hits by Valor Cyclone (hitting multiple targets at the same time counts as 1) triggers Wind Loop, dealing 1500% ATK DMG to enemies within 5 meters around you. Wind Loop Dream DMG +.",
       "descriptions": {
         "en": "Every 10 hits by Valor Cyclone (hitting multiple targets at the same time counts as 1) triggers Wind Loop, dealing 1500% ATK DMG to enemies within 5 meters around you. Wind Loop Dream DMG +.",
@@ -17106,7 +17026,7 @@
         "id": "Setiap mengenai target 10 kali (hanya dihitung 1 kali saat mengenai banyak target), Courage Wind Ring akan memicu Great Wind Loop yang mengakibatkan PDMG sebesar 1500% ATK terhadap musuh yang berjarak 5 meter di sekitar diri sendiri. Dream DMG dari Great Wind Loop +."
       }
     },
-    "mrs:352410e0c96f": {
+    "mrs:ddee3fa851b1": {
       "description": "Vortex Strike now launches 2 additional projectiles forward. Vortex Strike Dream DMG +.",
       "descriptions": {
         "en": "Vortex Strike now launches 2 additional projectiles forward. Vortex Strike Dream DMG +.",
@@ -17122,7 +17042,7 @@
         "id": "Divine Spiral sekarang ditembakkan 2 buah lagi ke arah depan. Dream DMG dari Divine Spiral +."
       }
     },
-    "mrs:ba9c97baf0e4": {
+    "mrs:aebceee128ba": {
       "description": "When the second attack of Instant Edge triggers both a Lucky Strike and a Crit, it fires an Azure Sever. Azure Sever Dream DMG +.",
       "descriptions": {
         "en": "When the second attack of Instant Edge triggers both a Lucky Strike and a Crit, it fires an Azure Sever. Azure Sever Dream DMG +.",
@@ -17138,7 +17058,7 @@
         "id": "Saat serangan tahap dua Instant memicu Luck dan Crit dalam waktu yang bersamaan, akan melancarkan satu Ultimate - Gale Slash. Dream DMG dari Ultimate - Gale Slash +."
       }
     },
-    "mrs:ac5b68c3fc2d": {
+    "mrs:80d35d5facb8": {
       "description": "Grants Wind Fury every 10s. Wind Fury DMG bonus is increased from 15% to .",
       "descriptions": {
         "en": "Grants Wind Fury every 10s. Wind Fury DMG bonus is increased from 15% to .",
@@ -17410,7 +17330,7 @@
         "id": "Wind Fury dapat ditumpuk hingga 3 lapisan, memberikan buff yang meningkat secara proporsional Hanya muncul pada kesulitan [Nightmare]"
       }
     },
-    "mrs:1550bddc4506": {
+    "mrs:a8f0e8dcf025": {
       "description": "Frost Lance Dream DMG +",
       "descriptions": {
         "en": "Frost Lance Dream DMG +",
@@ -17426,7 +17346,7 @@
         "id": "Dream DMG dari Frost Spear +."
       }
     },
-    "mrs:2ddbcdb165fa": {
+    "mrs:cb5efe5fe631": {
       "description": "Meteor Storm Dream DMG +",
       "descriptions": {
         "en": "Meteor Storm Dream DMG +",
@@ -17442,7 +17362,7 @@
         "id": "Dream DMG dari Meteor Storm +."
       }
     },
-    "mrs:422fe3407db8": {
+    "mrs:d895ac27bc59": {
       "description": "Ice Arrow Dream DMG + (does not affect Frost Explosion)",
       "descriptions": {
         "en": "Ice Arrow Dream DMG + (does not affect Frost Explosion)",
@@ -17458,7 +17378,7 @@
         "id": "Dream DMG dari Ice Arrow (tidak memengaruhi talent Frost Burst) +."
       }
     },
-    "mrs:59b7fa99ffe1": {
+    "mrs:153d5eae7448": {
       "description": "Piercing Ice Lance, Frost Comet Dream DMG +.",
       "descriptions": {
         "en": "Piercing Ice Lance, Frost Comet Dream DMG +.",
@@ -17474,7 +17394,7 @@
         "id": "Dream DMG dari Piercing Ice Spear dan Frost Comet +."
       }
     },
-    "mrs:de2774818b6b": {
+    "mrs:46bb719f459c": {
       "description": "Blizzard Dream DMG +; If only one target is hit, Dream DMG additionally +",
       "descriptions": {
         "en": "Blizzard Dream DMG +; If only one target is hit, Dream DMG additionally +",
@@ -17490,7 +17410,7 @@
         "id": "Dream DMG dari Ice Storm +. Dream DMG mendapat tambahan + saat hanya mengenai satu target."
       }
     },
-    "mrs:23a459df03e5": {
+    "mrs:d2ffcf621731": {
       "description": "Frostbeam Dream DMG +",
       "descriptions": {
         "en": "Frostbeam Dream DMG +",
@@ -17506,7 +17426,7 @@
         "id": "Dream DMG dari Ice Ray +."
       }
     },
-    "mrs:f9f9c860ac13": {
+    "mrs:a98c0abcfe69": {
       "description": "While channeling Frostbeam, repeatedly tap the skill to generate Tidepool at the current target spot; Tidepool Dream DMG +",
       "descriptions": {
         "en": "While channeling Frostbeam, repeatedly tap the skill to generate Tidepool at the current target spot; Tidepool Dream DMG +",
@@ -17522,7 +17442,7 @@
         "id": "Saat menyalurkan Ice Ray, Tide Merge dapat terbentuk di lokasi target saat ini dengan menekan tombol skill berulang kali. Dream DMG dari Tide Merge +."
       }
     },
-    "mrs:17cdbfa9b51b": {
+    "mrs:2d037af6d63a": {
       "description": "Against targets inside Blizzard, the Icicle's chance to trigger Ice Arrow +",
       "descriptions": {
         "en": "Against targets inside Blizzard, the Icicle's chance to trigger Ice Arrow +",
@@ -17538,7 +17458,7 @@
         "id": "Peluang talent Ice Spear memicu Ice Arrow terhadap target yang berada dalam Ice Storm +."
       }
     },
-    "mrs:6b2848effeaf": {
+    "mrs:a2d9e898ae40": {
       "description": "Frozen Gale Dream DMG +; For every 50 Ice Energy consumed in the past 15s, additionally +",
       "descriptions": {
         "en": "Frozen Gale Dream DMG +; For every 50 Ice Energy consumed in the past 15s, additionally +",
@@ -17554,7 +17474,7 @@
         "id": "Dream DMG dari Freezing Wind +. Setiap menggunakan 50 Ice Energy dalam 15 detik lalu, mendapat tambahan +."
       }
     },
-    "mrs:bd595a8db205": {
+    "mrs:f13e8cc76a76": {
       "description": "In the Permafrost status, Lucky Strike Dream DMG +",
       "descriptions": {
         "en": "In the Permafrost status, Lucky Strike Dream DMG +",
@@ -17570,7 +17490,7 @@
         "id": "Selama Ice Infuse berlangsung, Dream DMG dari Lucky Hit +."
       }
     },
-    "mrs:56dbb49f286a": {
+    "mrs:4c94502d3b4d": {
       "description": "Frost Lance deals an additional area hit against targets inside Blizzard. This hit deals Blizzard DMG",
       "descriptions": {
         "en": "Frost Lance deals an additional area hit against targets inside Blizzard. This hit deals Blizzard DMG",
@@ -17586,7 +17506,7 @@
         "id": "Frost Spear mengakibatkan satu kali Area Damage terhadap target dalam Ice Storm, DMG ini = DMG dari Ice Storm."
       }
     },
-    "mrs:aae80ca429fa": {
+    "mrs:758ec961e7c2": {
       "description": "While channeling Frostbeam, a Cold Pulse is fired in a random forward direction every . Cold Pulse Dream DMG +",
       "descriptions": {
         "en": "While channeling Frostbeam, a Cold Pulse is fired in a random forward direction every . Cold Pulse Dream DMG +",
@@ -17602,7 +17522,7 @@
         "id": "Saat menyalurkan Ice Ray, menembakkan Chill Pulse ke arah depan secara acak setiap berselang . Dream DMG dari Chill Pulse +."
       }
     },
-    "mrs:d2d0f7c8a32d": {
+    "mrs:7af0d2cb9e9f": {
       "description": "Permanently grants Ultra Cold; Freeze DMG +.",
       "descriptions": {
         "en": "Permanently grants Ultra Cold; Freeze DMG +.",
@@ -17618,7 +17538,7 @@
         "id": "Mendapat status Glacier secara permanen, DMG dari es +."
       }
     },
-    "mrs:1ef571d2ff81": {
+    "mrs:61224bb2eca4": {
       "description": "Piercing Ice Lance now counts as Frost Lance and triggers related effects. Piercing Ice Lance's projectile speed is reduced by 80%, but its travel distance is unchanged. Piercing Ice Lance Dream DMG +.",
       "descriptions": {
         "en": "Piercing Ice Lance now counts as Frost Lance and triggers related effects. Piercing Ice Lance's projectile speed is reduced by 80%, but its travel distance is unchanged. Piercing Ice Lance Dream DMG +.",
@@ -17634,7 +17554,7 @@
         "id": "Piercing Ice Spear dianggap sebagai Frost Spear dan memicu efek yang terkait. Kecepatan terbang Piercing Ice Spear -80%, jarak terbangnya tidak berubah. Dream DMG dari Piercing Ice Spear +."
       }
     },
-    "mrs:705abf91b626": {
+    "mrs:993457f1b4ad": {
       "description": "When casting Meteor Storm, a Meteor Storm is simultaneously summoned at the location of Blizzard (including Endless Cold). Meteor Storm Dream DMG +.",
       "descriptions": {
         "en": "When casting Meteor Storm, a Meteor Storm is simultaneously summoned at the location of Blizzard (including Endless Cold). Meteor Storm Dream DMG +.",
@@ -17906,7 +17826,7 @@
         "id": "Chill Pulse memberikan DMG (hanya dihitung sekali jika mengenai beberapa target), meningkatkan DMG Ice Arrow sebesar 5% selama 5 detik, dapat bertumpuk hingga 50 lapisan tertinggi Hanya muncul di kesulitan [Nightmare]"
       }
     },
-    "mrs:32b0670cd093": {
+    "mrs:98c5b6fc745c": {
       "description": "Storm Arrow Dream DMG +",
       "descriptions": {
         "en": "Storm Arrow Dream DMG +",
@@ -17922,7 +17842,7 @@
         "id": "Dream DMG dari Storm Arrow +."
       }
     },
-    "mrs:0d5f242cd19f": {
+    "mrs:3f0404334c85": {
       "description": "Wild Wolf - Tail Sweep Dream DMG +",
       "descriptions": {
         "en": "Wild Wolf - Tail Sweep Dream DMG +",
@@ -17938,7 +17858,7 @@
         "id": "Dream DMG Wildwolf Sweep +."
       }
     },
-    "mrs:65caa9c2f649": {
+    "mrs:6a8258614643": {
       "description": "Wild Wolf - Bite Dream DMG +",
       "descriptions": {
         "en": "Wild Wolf - Bite Dream DMG +",
@@ -17954,7 +17874,7 @@
         "id": "Dream DMG dari Wildwolf +."
       }
     },
-    "mrs:c4dda323a515": {
+    "mrs:fa9bc3962f9d": {
       "description": "Lightseeker Arrow Dream DMG +; The Crit DMG of Lightseeker Arrow reaches",
       "descriptions": {
         "en": "Lightseeker Arrow Dream DMG +; The Crit DMG of Lightseeker Arrow reaches",
@@ -17970,7 +17890,7 @@
         "id": "Dream DMG dari Lightseeker Arrow +. Crit DMG dari Lightseeker Arrow selalu dihitung dengan persentase ."
       }
     },
-    "mrs:ec427bb475eb": {
+    "mrs:bb58bd04e1ae": {
       "description": "Dream DMG of Double Arrow and Quadraflare +",
       "descriptions": {
         "en": "Dream DMG of Double Arrow and Quadraflare +",
@@ -17986,7 +17906,7 @@
         "id": "Dream DMG dari Double Arrow dan Lightwill - Quadraflare +."
       }
     },
-    "mrs:d44262b95e61": {
+    "mrs:ab0e93155b75": {
       "description": "Falcon Strike Dream DMG +",
       "descriptions": {
         "en": "Falcon Strike Dream DMG +",
@@ -18002,7 +17922,7 @@
         "id": "Dream DMG dari Hawk Strike +."
       }
     },
-    "mrs:1d3e1b4904b5": {
+    "mrs:a1257a86494c": {
       "description": "Lightning Break Dream DMG +",
       "descriptions": {
         "en": "Lightning Break Dream DMG +",
@@ -18018,7 +17938,7 @@
         "id": "Dream DMG dari Lightning Impact +."
       }
     },
-    "mrs:b9b90ecbad9c": {
+    "mrs:3b5f2fdd8449": {
       "description": "During Torrent Volley, Focus duration is paused; Torrent Volley Dream DMG +",
       "descriptions": {
         "en": "During Torrent Volley, Focus duration is paused; Torrent Volley Dream DMG +",
@@ -18034,7 +17954,7 @@
         "id": "Durasi Mental Focus akan terhenti selama Raging Shot dilancarkan. Dream DMG dari Raging Shot +."
       }
     },
-    "mrs:6f78a79cfb6a": {
+    "mrs:99157ae37d04": {
       "description": "Each Haste increases Radiance Barrage hit count by 1; Radiance Barrage Dream DMG increases by",
       "descriptions": {
         "en": "Each Haste increases Radiance Barrage hit count by 1; Radiance Barrage Dream DMG increases by",
@@ -18050,7 +17970,7 @@
         "id": "Setiap Haste akan membuat jumlah serangan Light Bombard +1. Dream DMG dari Light Bombard +."
       }
     },
-    "mrs:06a1180100f3": {
+    "mrs:c8b3a6d54fa0": {
       "description": "For the next 10s after Blast Shot is cast, Falcon (Strike, Lightning Break, Phantom Falcon) Dream DMG +",
       "descriptions": {
         "en": "For the next 10s after Blast Shot is cast, Falcon (Strike, Lightning Break, Phantom Falcon) Dream DMG +",
@@ -18066,7 +17986,7 @@
         "id": "Melancarkan Explosive Shot akan membuat Dream DMG dari Hawk (Strike, Lightning Impact, dan Phantom Hawk) dalam 10 detik berikutnya +."
       }
     },
-    "mrs:9c89957215c8": {
+    "mrs:43e913ff5f0d": {
       "description": "Powerdraw hit count + (Total DMG unchanged); Powerdraw Dream DMG +",
       "descriptions": {
         "en": "Powerdraw hit count + (Total DMG unchanged); Powerdraw Dream DMG +",
@@ -18082,7 +18002,7 @@
         "id": "Jumlah DMG dari Charged Shot + (total DMG tidak berubah). Dream DMG dari Charged Shot +."
       }
     },
-    "mrs:0a534165e802": {
+    "mrs:823eba6adfb7": {
       "description": "For 15 seconds after casting Wildcall, the Companion's Attack SPD +. Wild Wolf - Tail Sweep Dream DMG +.",
       "descriptions": {
         "en": "For 15 seconds after casting Wildcall, the Companion's Attack SPD +. Wild Wolf - Tail Sweep Dream DMG +.",
@@ -18098,7 +18018,7 @@
         "id": "Dalam 15 detik setelah melancarkan Wild Call, Attack Speed pet +. Dream DMG Wildwolf Sweep +."
       }
     },
-    "mrs:6989b666d2ad": {
+    "mrs:43b347baf910": {
       "description": "While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × .",
       "descriptions": {
         "en": "While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × .",
@@ -18114,7 +18034,7 @@
         "id": "DMG dari Class Skill mendapat peningkatan selama Mental Focus berlangsung. Nilai peningkatannya sama dengan persentase DMG pet x jumlah beast di arena x ."
       }
     },
-    "mrs:3bca58640a56": {
+    "mrs:a4e8564407c0": {
       "description": "The falcon summoned by Wildcall follows you for the next .",
       "descriptions": {
         "en": "The falcon summoned by Wildcall follows you for the next .",
@@ -18130,7 +18050,7 @@
         "id": "Hawk yang dipanggil Wild Call akan mengikuti diri sendiri dalam berikutnya."
       }
     },
-    "mrs:4b09ac128835": {
+    "mrs:f777bf290553": {
       "description": "Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +.",
       "descriptions": {
         "en": "Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +.",
@@ -18402,7 +18322,7 @@
         "id": "Setiap kali Crit, waktu CD Light Bombard berkurang 0,2 detik, Crit DMG Light Bombard +100% Hanya muncul di [Hard] dan [Nightmare] Kesulitan"
       }
     },
-    "mrs:de66e6fc3d6b": {
+    "mrs:4bda788d452c": {
       "description": "Valor Bash Dream DMG +",
       "descriptions": {
         "en": "Valor Bash Dream DMG +",
@@ -18418,7 +18338,7 @@
         "id": "Dream DMG dari Valor Shield Bash +."
       }
     },
-    "mrs:6e9ff6f12f04": {
+    "mrs:5263343b4652": {
       "description": "Reckoning and Inferno Reckon Dream DMG +",
       "descriptions": {
         "en": "Reckoning and Inferno Reckon Dream DMG +",
@@ -18434,7 +18354,7 @@
         "id": "Dream DMG dari Reckoning dan Blazing Reckon +."
       }
     },
-    "mrs:91fc0e042aa2": {
+    "mrs:b7cb6544c542": {
       "description": "Judgment, Scorching Judgment Dream DMG +",
       "descriptions": {
         "en": "Judgment, Scorching Judgment Dream DMG +",
@@ -18450,7 +18370,7 @@
         "id": "Dream DMG dari Judgement dan Scorching Judgement +."
       }
     },
-    "mrs:33bcc02f125f": {
+    "mrs:e5fc4ed8bc26": {
       "description": "When in the Divine Circle, All-Element DMG +",
       "descriptions": {
         "en": "When in the Divine Circle, All-Element DMG +",
@@ -18466,7 +18386,7 @@
         "id": "Saat berada dalam Holy Ring, Element DMG +."
       }
     },
-    "mrs:ea16001136af": {
+    "mrs:744d60945ea1": {
       "description": "Aegis Ward duration +; Basic Attack, Condemn Dream DMG +",
       "descriptions": {
         "en": "Aegis Ward duration +; Basic Attack, Condemn Dream DMG +",
@@ -18482,7 +18402,7 @@
         "id": "Durasi Holylight Guard +. Dream DMG dari Normal Attack dan Condemn +."
       }
     },
-    "mrs:0905eb73e776": {
+    "mrs:f7e44b840f77": {
       "description": "Each 1% Mastery grants ATK",
       "descriptions": {
         "en": "Each 1% Mastery grants ATK",
@@ -18498,7 +18418,7 @@
         "id": "Setiap 1% Mastery memberikan ATK."
       }
     },
-    "mrs:5a41533fb6f0": {
+    "mrs:a2ff70799c13": {
       "description": "Vanguard Strike, Vanguard Hunt Dream DMG +",
       "descriptions": {
         "en": "Vanguard Strike, Vanguard Hunt Dream DMG +",
@@ -18514,7 +18434,7 @@
         "id": "Dream DMG dari Vanguard Strike dan Vanguard Pursuit +."
       }
     },
-    "mrs:5a7a85ef3cc7": {
+    "mrs:de9edc489127": {
       "description": "Sacred Blade Dream DMG +",
       "descriptions": {
         "en": "Sacred Blade Dream DMG +",
@@ -18530,7 +18450,7 @@
         "id": "Dream DMG dari Holysword +."
       }
     },
-    "mrs:71936252fb06": {
+    "mrs:7a4a507c1316": {
       "description": "Zeal Crusade Dream DMG + (does not affect Zeal Rupture)",
       "descriptions": {
         "en": "Zeal Crusade Dream DMG + (does not affect Zeal Rupture)",
@@ -18546,7 +18466,7 @@
         "id": "Dream DMG dari Cruel Conquest + (tidak memengaruhi Cruel Burst)."
       }
     },
-    "mrs:70a125b7c790": {
+    "mrs:dfff18ff5e3c": {
       "description": "Radiance charge count + 1 ; Radiance Dream DMG +",
       "descriptions": {
         "en": "Radiance charge count + 1 ; Radiance Dream DMG +",
@@ -18562,7 +18482,7 @@
         "id": "Jumlah Charge pada Light Resolve +1. Dream DMG dari Light Resolve +."
       }
     },
-    "mrs:99c2f4cea586": {
+    "mrs:a760858b7068": {
       "description": "In the Divine Circle, ATK +",
       "descriptions": {
         "en": "In the Divine Circle, ATK +",
@@ -18578,7 +18498,7 @@
         "id": "Saat berada dalam Holy Ring, ATK +."
       }
     },
-    "mrs:6cee7ce75b6f": {
+    "mrs:214b1023d056": {
       "description": "When Valor Bash deals Crit DMG to its primary target, it also triggers Shield Toss. Shield Toss Dream DMG +.",
       "descriptions": {
         "en": "When Valor Bash deals Crit DMG to its primary target, it also triggers Shield Toss. Shield Toss Dream DMG +.",
@@ -18594,7 +18514,7 @@
         "id": "Saat Valor Shield Bash mengakibatkan Crit DMG terhadap target utama, akan memicu Shield Throw. Dream DMG dari Shield Throw +."
       }
     },
-    "mrs:1903edf92d52": {
+    "mrs:144950247ffc": {
       "description": "When attacked, there is a 30% fixed chance to trigger Inferno Reckon, which can occur at most once every 0.5s. Inferno Reckon Crit DMG +.",
       "descriptions": {
         "en": "When attacked, there is a 30% fixed chance to trigger Inferno Reckon, which can occur at most once every 0.5s. Inferno Reckon Crit DMG +.",
@@ -18610,7 +18530,7 @@
         "id": "Menerima serangan berpeluang tetap 30% memicu Blazing Reckon. Efek ini hanya dapat berlaku satu kali setiap 0,5 detik. Crit DMG dari Blazing Reckon +."
       }
     },
-    "mrs:a518e53be4b0": {
+    "mrs:e8e5212b086d": {
       "description": "Shields thrown by Radiance trigger Sacred Blade upon hitting a target. Sacred Blade Dream DMG +.",
       "descriptions": {
         "en": "Shields thrown by Radiance trigger Sacred Blade upon hitting a target. Sacred Blade Dream DMG +.",
@@ -18626,7 +18546,7 @@
         "id": "Light Resolve akan memicu Holysword saat perisai yang dilemparkan mengenai target. Dream DMG dari Holysword +."
       }
     },
-    "mrs:26a4196b8872": {
+    "mrs:1f1994afebaf": {
       "description": "Vanguard Hunt now generates 2 additional Sword Energy. Every 5 casts of Vanguard Hunt triggers Divine Arc Slash, dealing Attack DMG equal to 800% of ATK to the target. Divine Arc Slash Dream DMG +.",
       "descriptions": {
         "en": "Vanguard Hunt now generates 2 additional Sword Energy. Every 5 casts of Vanguard Hunt triggers Divine Arc Slash, dealing Attack DMG equal to 800% of ATK to the target. Divine Arc Slash Dream DMG +.",
@@ -18882,7 +18802,7 @@
         "id": "Judgement sekarang menggunakan semua Light Energy, mendapat Holy Decree saat Vanguard Pursuit Crit; DMG Judgement di Nightmare +50% Hanya muncul pada kesulitan [Hard] dan [Nightmare]"
       }
     },
-    "mrs:20062f5d1f0f": {
+    "mrs:806e2d07990f": {
       "description": "In the Shield Bash status, All-Element DMG +",
       "descriptions": {
         "en": "In the Shield Bash status, All-Element DMG +",
@@ -18898,7 +18818,7 @@
         "id": "Dalam status Shield Bash, Element DMG +."
       }
     },
-    "mrs:d947faf7abd2": {
+    "mrs:12d6072e7527": {
       "description": "Shield Bash Dream DMG +",
       "descriptions": {
         "en": "Shield Bash Dream DMG +",
@@ -18914,7 +18834,7 @@
         "id": "Dream DMG dari Shield Bash +."
       }
     },
-    "mrs:13b575d342e6": {
+    "mrs:8956cac52386": {
       "description": "Rage Burst, Terra Sunder Dream DMG +",
       "descriptions": {
         "en": "Rage Burst, Terra Sunder Dream DMG +",
@@ -18930,7 +18850,7 @@
         "id": "Dream DMG dari Rage Burst dan Terra Sunder +."
       }
     },
-    "mrs:4d5a7c7373fd": {
+    "mrs:ac67023f4975": {
       "description": "Sandgrip charge count +1; Basic Attack Dream DMG +",
       "descriptions": {
         "en": "Sandgrip charge count +1; Basic Attack Dream DMG +",
@@ -18946,7 +18866,7 @@
         "id": "Jumlah Charge pada Sandstone Grip +1. Dream DMG dari Normal Attack +."
       }
     },
-    "mrs:439f26f262b7": {
+    "mrs:62053750112f": {
       "description": "Each 1% Mastery grants ATK",
       "descriptions": {
         "en": "Each 1% Mastery grants ATK",
@@ -18962,7 +18882,7 @@
         "id": "Setiap 1% Mastery memberikan ATK."
       }
     },
-    "mrs:141dae6a317b": {
+    "mrs:405326bef8c0": {
       "description": "While Countercrush is active, All-Element DMG +",
       "descriptions": {
         "en": "While Countercrush is active, All-Element DMG +",
@@ -18978,7 +18898,7 @@
         "id": "Dalam status Block Impact, Element DMG +."
       }
     },
-    "mrs:73e94e2ec603": {
+    "mrs:7feac936f9c0": {
       "description": "Granite Fury, Stone Fist Dream DMG +",
       "descriptions": {
         "en": "Granite Fury, Stone Fist Dream DMG +",
@@ -18994,7 +18914,7 @@
         "id": "Dream DMG dari Rock Fury Strike dan Giant Rock Bombard +."
       }
     },
-    "mrs:06f1b6c210c1": {
+    "mrs:595e07ccb057": {
       "description": "After each successful Block, ATK + for 15s, stacking up to 4 times",
       "descriptions": {
         "en": "After each successful Block, ATK + for 15s, stacking up to 4 times",
@@ -19010,7 +18930,7 @@
         "id": "Dalam 15 detik setelah tiap Block yang berhasil, ATK diri sendiri +, maks. 4 tumpuk."
       }
     },
-    "mrs:ca0222539991": {
+    "mrs:d9173bedfc9d": {
       "description": "After each successful Block, Max HP + for 10s, stacking up to 4 times",
       "descriptions": {
         "en": "After each successful Block, Max HP + for 10s, stacking up to 4 times",
@@ -19026,7 +18946,7 @@
         "id": "Dalam 10 detik setelah tiap Block yang berhasil, Max HP diri sendiri +, maks. 4 tumpuk."
       }
     },
-    "mrs:310d71e5ee87": {
+    "mrs:c95b8fccb6d0": {
       "description": "Countercrush can trigger Lucky Strike; Countercrush Dream DMG +",
       "descriptions": {
         "en": "Countercrush can trigger Lucky Strike; Countercrush Dream DMG +",
@@ -19042,7 +18962,7 @@
         "id": "Block Counter dapat memicu Lucky Hit. Dream DMG dari Block Counter +."
       }
     },
-    "mrs:d90efd35906e": {
+    "mrs:8992caeea9da": {
       "description": "When Stone Fist hits only one target, its damage and healing are doubled; Stone Fist Dream DMG +",
       "descriptions": {
         "en": "When Stone Fist hits only one target, its damage and healing are doubled; Stone Fist Dream DMG +",
@@ -19058,7 +18978,7 @@
         "id": "Saat Giant Rock Bombard hanya mengenai satu target, efek DMG dan HP Regen darinya akan berlipat ganda. Dream DMG dari Giant Rock Bombard +."
       }
     },
-    "mrs:c36f480182b8": {
+    "mrs:8810e65dd0f2": {
       "description": "Gaining or losing a shield triggers Terra Sunder, but this Terra Sunder cannot grant a shield. This effect can trigger at most once every 0.2 seconds. Terra Sunder Dream DMG +.",
       "descriptions": {
         "en": "Gaining or losing a shield triggers Terra Sunder, but this Terra Sunder cannot grant a shield. This effect can trigger at most once every 0.2 seconds. Terra Sunder Dream DMG +.",
@@ -19074,7 +18994,7 @@
         "id": "Setiap kali mendapat dan kehilangan shield, akan memicu Terra Sunder, namun Terra Sunder ini tidak bisa mendapat shield. Efek ini hanya dapat berlaku satu kali setiap 0,2 detik. Dream DMG dari Terra Sunder +."
       }
     },
-    "mrs:d22f9500d44c": {
+    "mrs:f290b3f49d60": {
       "description": "While Sandshroud is active, gaining a shield triggers Sand Crystal Shock, up to once every 0.2s. Sand Crystal Shock Dream DMG +.",
       "descriptions": {
         "en": "While Sandshroud is active, gaining a shield triggers Sand Crystal Shock, up to once every 0.2s. Sand Crystal Shock Dream DMG +.",
@@ -19090,7 +19010,7 @@
         "id": "Selama Sandgravel Cloak berlangsung, setiap mendapat shield akan memicu Sand Crystal Shock. Efek ini hanya dapat berlaku satu kali setiap 0,2 detik. Dream DMG dari Sand Crystal Shock +."
       }
     },
-    "mrs:5d85027eb687": {
+    "mrs:8f1e550c56d0": {
       "description": "For 10s after casting Brave Bastion, Stone Fist randomly triggers within a 5m radius around the caster. Stone Fist Dream DMG +.",
       "descriptions": {
         "en": "For 10s after casting Brave Bastion, Stone Fist randomly triggers within a 5m radius around the caster. Stone Fist Dream DMG +.",
@@ -19106,7 +19026,7 @@
         "id": "Dalam 10 detik setelah melancarkan Heroic Bulwark, akan memicu Giant Rock Bombard dalam area 5 meter di sekitar diri sendiri secara acak. Dream DMG dari Giant Rock Bombard +."
       }
     },
-    "mrs:f0656a11a553": {
+    "mrs:2e340e7fb79b": {
       "description": "Casting Granite Fury triggers Countercrush. Countercrush Crit DMG +.",
       "descriptions": {
         "en": "Casting Granite Fury triggers Countercrush. Countercrush Crit DMG +.",
@@ -19378,7 +19298,7 @@
         "id": "Setiap kali memicu Block Counter, meningkatkan Rock ATK Diri Sendiri sebesar 2 poin secara Permanen. Hanya muncul di tingkat [Nightmare]."
       }
     },
-    "mrs:825481d4168d": {
+    "mrs:b70c83918ca0": {
       "description": "Wild Bloom, Stag Charge Dream DMG +",
       "descriptions": {
         "en": "Wild Bloom, Stag Charge Dream DMG +",
@@ -19394,7 +19314,7 @@
         "id": "Dream DMG Wild Bloom dan Deer Charge +."
       }
     },
-    "mrs:5ed915c7b920": {
+    "mrs:f29773be9e42": {
       "description": "Gains Super Armor when casting Infusion; Infusion Dream DMG +",
       "descriptions": {
         "en": "Gains Super Armor when casting Infusion; Infusion Dream DMG +",
@@ -19410,7 +19330,7 @@
         "id": "Melancarkan Infuse akan mendapat efek Super Armor. Dream DMG dari Infuse +."
       }
     },
-    "mrs:db340a5c0d31": {
+    "mrs:0e0f78a797d6": {
       "description": "Regen Pulse becomes instant cast; Regen Pulse Dream DMG +",
       "descriptions": {
         "en": "Regen Pulse becomes instant cast; Regen Pulse Dream DMG +",
@@ -19426,7 +19346,7 @@
         "id": "Regen Pulse dapat dilancarkan secara instan. Dream DMG dari Regen Pulse +."
       }
     },
-    "mrs:6c35e9e03a5c": {
+    "mrs:2f41c32685e2": {
       "description": "When affected by Symbiotic Mark, MAG Boost +",
       "descriptions": {
         "en": "When affected by Symbiotic Mark, MAG Boost +",
@@ -19442,7 +19362,7 @@
         "id": "Saat diri sendiri terpengaruh Symbiosis Mark, Magical Boost +."
       }
     },
-    "mrs:25cdc53f0894": {
+    "mrs:0a5c663d9324": {
       "description": "Feral Seed drops one additional seed; Feral Seed Dream DMG +",
       "descriptions": {
         "en": "Feral Seed drops one additional seed; Feral Seed Dream DMG +",
@@ -19458,7 +19378,7 @@
         "id": "Rebellious Seed menjatuhkan satu benih tambahan. Dream DMG dari Rebellious Seed +."
       }
     },
-    "mrs:8133f97b50de": {
+    "mrs:8145018d9c96": {
       "description": "Nature Ward Shield Amount +, and for every 1% Luck or Crit, it gains an additional +1%;Nature Ward grants an additional All Element Resistance for 8s",
       "descriptions": {
         "en": "Nature Ward Shield Amount +, and for every 1% Luck or Crit, it gains an additional +1%;Nature Ward grants an additional All Element Resistance for 8s",
@@ -19474,7 +19394,7 @@
         "id": "Jumlah shield dari Nature's Shelter +, setiap 1% Luck atau Crit akan memberi tambahan +1%. Nature's Shelter mendapat tambahan Element Reduction selama 8 detik."
       }
     },
-    "mrs:f59d56a6ad94": {
+    "mrs:a6db335d8946": {
       "description": "Within 10s after casting Fast Growth or Nature Ward, MATK +",
       "descriptions": {
         "en": "Within 10s after casting Fast Growth or Nature Ward, MATK +",
@@ -19490,7 +19410,7 @@
         "id": "Dalam 10 detik setelah melancarkan Accelerated Growth atau Nature's Shelter, MATK diri sendiri +."
       }
     },
-    "mrs:73d55b7463ed": {
+    "mrs:59e0e30bc191": {
       "description": "Casting Blossom Charge grants Super Armor for ;Blossom Charge Dream DMG +, Control duration +1.5s",
       "descriptions": {
         "en": "Casting Blossom Charge grants Super Armor for ;Blossom Charge Dream DMG +, Control duration +1.5s",
@@ -19506,7 +19426,7 @@
         "id": "Melancarkan Blossom Charge akan mendapat efek Super Armor yang berlangsung selama . Dream DMG dari Blossom Charge +, durasi Control +1,5 detik."
       }
     },
-    "mrs:8139a266fd9d": {
+    "mrs:a726b168f425": {
       "description": "Wild Seed Dream DMG +; Nourishing Seed Healing +",
       "descriptions": {
         "en": "Wild Seed Dream DMG +; Nourishing Seed Healing +",
@@ -19522,7 +19442,7 @@
         "id": "Dream DMG dari Wild Seed +. Heal Power dari Nourishment Seed +."
       }
     },
-    "mrs:3a186a9e1488": {
+    "mrs:bbbc870c769b": {
       "description": "Grove Wish deals Magic DMG equal to ATK",
       "descriptions": {
         "en": "Grove Wish deals Magic DMG equal to ATK",
@@ -19538,7 +19458,7 @@
         "id": "Forest Blessing dapat mengakibatkan MDMG dengan total sebesar ATK."
       }
     },
-    "mrs:6f7d2da167e2": {
+    "mrs:98c1efa2e628": {
       "description": "Lucky Strike Dream DMG +, but Symbiotic Mark converted healing is reduced by",
       "descriptions": {
         "en": "Lucky Strike Dream DMG +, but Symbiotic Mark converted healing is reduced by",
@@ -19554,7 +19474,7 @@
         "id": "Dream DMG dari Lucky Hit +, namun Healing yang dikonversi dari Symbiosis Mark berkurang ."
       }
     },
-    "mrs:62f886052949": {
+    "mrs:a8800856ae3e": {
       "description": "While Regen Pulse is equipped, a Regen Pulse is triggered whenever a non-basic attack Class Skill enters CD (up to a Regen Pulse can be triggered at a time). Regen Pulse Dream DMG +.",
       "descriptions": {
         "en": "While Regen Pulse is equipped, a Regen Pulse is triggered whenever a non-basic attack Class Skill enters CD (up to a Regen Pulse can be triggered at a time). Regen Pulse Dream DMG +.",
@@ -19570,7 +19490,7 @@
         "id": "Saat membawa Regen Pulse, Class Skill selain jenis Normal Attack yang memasuki waktu CD akan memicu Regen Pulse. (Hanya dapat terpicu satu kali) Dream DMG dari Regen Pulse +."
       }
     },
-    "mrs:b17f71170dd1": {
+    "mrs:cf00786e9f02": {
       "description": "Every 20 hits from Infusion triggers Stag Charge. Stag Charge Dream DMG +.",
       "descriptions": {
         "en": "Every 20 hits from Infusion triggers Stag Charge. Stag Charge Dream DMG +.",
@@ -19586,7 +19506,7 @@
         "id": "Setiap Infuse mengenai target sebanyak 20 kali, akan memicu Deer Charge. Dream DMG dari Deer Charge +."
       }
     },
-    "mrs:45590742b5d2": {
+    "mrs:127c64bee41c": {
       "description": "After a Nourishing Seed is thrown, Blossom Charge randomly triggers within 5m of the caster. A Nourishing Seed is thrown upon gaining Regen Bud. Blossom Charge Dream DMG +.",
       "descriptions": {
         "en": "After a Nourishing Seed is thrown, Blossom Charge randomly triggers within 5m of the caster. A Nourishing Seed is thrown upon gaining Regen Bud. Blossom Charge Dream DMG +.",
@@ -19602,7 +19522,7 @@
         "id": "Setelah Nourishment Seed dilemparkan, akan memicu Blossom Charge dalam jarak 5 meter dari diri sendiri secara acak. Melemparkan Nourishment Seed saat mendapat Regen Sprout. Dream DMG dari Blossom Charge +."
       }
     },
-    "mrs:73b7649cd58c": {
+    "mrs:6cffcd72cd20": {
       "description": "Casting Nourish also applies a Damage over Time effect to the enemies. Nourish Dream DMG +.",
       "descriptions": {
         "en": "Casting Nourish also applies a Damage over Time effect to the enemies. Nourish Dream DMG +.",
@@ -19874,7 +19794,7 @@
         "id": "Nourishment akan menumpuk hingga 3 lapis DMG berkelanjutan, memberikan efek tambahan kepada target 【Life Drain】: selama 5 detik, setiap detik menghasilkan DMG sebesar 20 kali MATK * persentase Mastery, dan setiap kali memberikan DMG akan mengurangi Waktu CD Semua Expertise Skill sebesar 1 detik. Muncul hanya pada kesulitan [Nightmare]"
       }
     },
-    "mrs:aec05bcc563f": {
+    "mrs:1d62ceb710b6": {
       "description": "Amplified Beat Dream DMG +",
       "descriptions": {
         "en": "Amplified Beat Dream DMG +",
@@ -19890,7 +19810,7 @@
         "id": "Dream DMG dari Amplify Beat +."
       }
     },
-    "mrs:3df5b5cb4087": {
+    "mrs:4ccb9baa2949": {
       "description": "Harmonic Anthem Dream DMG +",
       "descriptions": {
         "en": "Harmonic Anthem Dream DMG +",
@@ -19906,7 +19826,7 @@
         "id": "Dream DMG dari Harmonic Movement +."
       }
     },
-    "mrs:a7b25b6a1510": {
+    "mrs:6bee17cf5fa3": {
       "description": "Rhapsody of Flame Dream DMG +",
       "descriptions": {
         "en": "Rhapsody of Flame Dream DMG +",
@@ -19922,7 +19842,7 @@
         "id": "Dream DMG dari Flame Fantasy +."
       }
     },
-    "mrs:50354eebd854": {
+    "mrs:1e9440e38da6": {
       "description": "MAG Boost +; but Peaceful Tune converted healing is reduced by",
       "descriptions": {
         "en": "MAG Boost +; but Peaceful Tune converted healing is reduced by",
@@ -19938,7 +19858,7 @@
         "id": "Magical Boost +, namun Healing yang dikonversi dari Peaceful Tune berkurang ."
       }
     },
-    "mrs:4c5c170bb6c7": {
+    "mrs:a498517327b8": {
       "description": "Dream DMG of Passion Burst and Passion Fury +",
       "descriptions": {
         "en": "Dream DMG of Passion Burst and Passion Fury +",
@@ -19954,7 +19874,7 @@
         "id": "Dream DMG dari Passion Flow dan Exalt - Passion Flow +."
       }
     },
-    "mrs:82dc1b3b5fdf": {
+    "mrs:e8dd11299c9c": {
       "description": "Encore Dream DMG triggered by yourself or teammates +",
       "descriptions": {
         "en": "Encore Dream DMG triggered by yourself or teammates +",
@@ -19970,7 +19890,7 @@
         "id": "Dream DMG dari Encore yang dipicu diri sendiri dan rekan tim +."
       }
     },
-    "mrs:1c2fdc47ecde": {
+    "mrs:f965c065ede3": {
       "description": "Flame Note Dream DMG +",
       "descriptions": {
         "en": "Flame Note Dream DMG +",
@@ -19986,7 +19906,7 @@
         "id": "Dream DMG dari Flame Note +."
       }
     },
-    "mrs:08c91ad54d59": {
+    "mrs:60f2f328cb8a": {
       "description": "In Healing Melody and Rhapsody of Flame of status, All-Element Bonus +",
       "descriptions": {
         "en": "In Healing Melody and Rhapsody of Flame of status, All-Element Bonus +",
@@ -20002,7 +19922,7 @@
         "id": "Saat diri sendiri berada dalam status Healing Movement dan Flame Fantasy, Element Boost +."
       }
     },
-    "mrs:e9d62a5086ff": {
+    "mrs:cc81e1fb65fe": {
       "description": "Healing Melody Healing +, but its performance energy cost +",
       "descriptions": {
         "en": "Healing Melody Healing +, but its performance energy cost +",
@@ -20018,7 +19938,7 @@
         "id": "Heal Power dari Healing Movement +, namun konsumsi Performance Energy +."
       }
     },
-    "mrs:df324ea904a2": {
+    "mrs:bb4c7cca10f2": {
       "description": "When current HP is above 80%, Intellect +; loses effect when HP is below 80%",
       "descriptions": {
         "en": "When current HP is above 80%, Intellect +; loses effect when HP is below 80%",
@@ -20034,7 +19954,7 @@
         "id": "Saat HP saat ini lebih dari 80%, INT +, efek ini tidak berlaku saat HP saat ini kurang dari 80%."
       }
     },
-    "mrs:669b61cf8491": {
+    "mrs:3162f9e4ee10": {
       "description": "When you cast Fivefold Crescendo, of the overhealing will continuously recover over 10s",
       "descriptions": {
         "en": "When you cast Fivefold Crescendo, of the overhealing will continuously recover over 10s",
@@ -20050,7 +19970,7 @@
         "id": "dari Healing yang berlebih saat diri sendiri melancarkan Surge Quintet, akan terus-menerus menjadi pemulihan HP dalam 10 detik."
       }
     },
-    "mrs:877eeb13a3d3": {
+    "mrs:e428c3230919": {
       "description": "Flame Note can now trigger Lucky Strike. Lucky Strike DMG +.",
       "descriptions": {
         "en": "Flame Note can now trigger Lucky Strike. Lucky Strike DMG +.",
@@ -20066,7 +19986,7 @@
         "id": "Flame Note sekarang dapat memicu Lucky Hit. Lucky Hit DMG +."
       }
     },
-    "mrs:b0a54db3f2ab": {
+    "mrs:cd6e9fb8f8d8": {
       "description": "While Heroic Melody is active, Encore randomly triggers on nearby targets every 2s. Encore Dream DMG +.",
       "descriptions": {
         "en": "While Heroic Melody is active, Encore randomly triggers on nearby targets every 2s. Encore Dream DMG +.",
@@ -20082,7 +20002,7 @@
         "id": "Selama Valor Movement aktif, akan memicu Encore ke arah target di sekitar secara acak setiap berselang 2 detik. Dream DMG dari Encore +."
       }
     },
-    "mrs:33585e1aaa96": {
+    "mrs:86b0f9266f47": {
       "description": "The speaker triggers a Flame Shock every 3s. Flame Shock Range +300%. Flame Shock Dream DMG +. (Requires activating the talent Tower Flame Blast.)",
       "descriptions": {
         "en": "The speaker triggers a Flame Shock every 3s. Flame Shock Range +300%. Flame Shock Dream DMG +. (Requires activating the talent Tower Flame Blast.)",
@@ -20098,7 +20018,7 @@
         "id": "Setiap berselang 3 detik, Speaker akan memicu Flame Shock. Area dari Flame Shock +300%. Dream DMG dari Flame Shock +. (Perlu mengaktifkan talent Soundtower Fire Impact)"
       }
     },
-    "mrs:4a377273c28f": {
+    "mrs:115b0bc04028": {
       "description": "When Healing Melody heals, it deals Magic DMG equal to 100% of ATK to enemies within 10m. Healing Melody Dream DMG +.",
       "descriptions": {
         "en": "When Healing Melody heals, it deals Magic DMG equal to 100% of ATK to enemies within 10m. Healing Melody Dream DMG +.",
@@ -20370,7 +20290,7 @@
         "id": "Healing Movement menyebabkan DMG, Permanen meningkatkan INT Diri Sendiri sebesar 1 poin Hanya muncul pada kesulitan [Nightmare]"
       }
     },
-    "mrs:490a5155fe3f": {
+    "mrs:8c84641a5eba": {
       "description": "Crit gained in any way +, but Mastery gained in any way –",
       "descriptions": {
         "en": "Crit gained in any way +, but Mastery gained in any way –",
@@ -20386,7 +20306,7 @@
         "id": "Crit yang diperoleh dengan cara apa pun +, namun Mastery yang diperoleh dengan cara apa pun -."
       }
     },
-    "mrs:493820b11f63": {
+    "mrs:f9e98ead7134": {
       "description": "Luck gained in any way +, but Haste gained in any way –",
       "descriptions": {
         "en": "Luck gained in any way +, but Haste gained in any way –",
@@ -20402,7 +20322,7 @@
         "id": "Luck yang diperoleh dengan cara apa pun +, namun Haste yang diperoleh dengan cara apa pun -."
       }
     },
-    "mrs:6f75fbd51252": {
+    "mrs:c72d30f60fe1": {
       "description": "Mastery gained in any way +, but Luck gained in any way –",
       "descriptions": {
         "en": "Mastery gained in any way +, but Luck gained in any way –",
@@ -20418,7 +20338,7 @@
         "id": "Mastery yang diperoleh dengan cara apa pun +, namun Luck yang diperoleh dengan cara apa pun -."
       }
     },
-    "mrs:b96d12b166b3": {
+    "mrs:1f9fd9aee2c0": {
       "description": "Haste gained in any way +, but Crit gained in any way –",
       "descriptions": {
         "en": "Haste gained in any way +, but Crit gained in any way –",
@@ -20434,7 +20354,7 @@
         "id": "Haste yang diperoleh dengan cara apa pun +, namun Crit yang diperoleh dengan cara apa pun -."
       }
     },
-    "mrs:3f8eef2006ae": {
+    "mrs:15f4db8b52cc": {
       "description": "Special Attack Dream DMG +",
       "descriptions": {
         "en": "Special Attack Dream DMG +",
@@ -20450,7 +20370,7 @@
         "id": "Dream DMG dari Special Attack +."
       }
     },
-    "mrs:6b2fb3465a1d": {
+    "mrs:48eb612230b2": {
       "description": "Expertise Skill Dream DMG +",
       "descriptions": {
         "en": "Expertise Skill Dream DMG +",
@@ -20466,7 +20386,7 @@
         "id": "Dream DMG dari Expertise Skill +."
       }
     },
-    "mrs:130714060500": {
+    "mrs:05c27e1a3b1f": {
       "description": "For 6s after casting an Expertise Skill, Versatility +, stacking up to 5 times",
       "descriptions": {
         "en": "For 6s after casting an Expertise Skill, Versatility +, stacking up to 5 times",
@@ -20482,7 +20402,7 @@
         "id": "Dalam 6 detik setelah melancarkan Expertise Skill, Versatility +, maks. 5 tumpuk."
       }
     },
-    "mrs:352130049e61": {
+    "mrs:41ca8c9c34f7": {
       "description": "Max HP +; When incoming damage exceeds current HP, that damage is reduced by (up to once every 30s)",
       "descriptions": {
         "en": "Max HP +; When incoming damage exceeds current HP, that damage is reduced by (up to once every 30s)",
@@ -20498,7 +20418,7 @@
         "id": "Max HP +. Saat DMG yang diterima lebih besar dari HP saat ini, DMG tersebut akan berkurang . Efek ini hanya dapat berlaku satu kali setiap 30 detik."
       }
     },
-    "mrs:71ea00abde1e": {
+    "mrs:9626cf0d52df": {
       "description": "If no damage is taken for 8s, Max HP + for the next 10s, stacking up to 3 times",
       "descriptions": {
         "en": "If no damage is taken for 8s, Max HP + for the next 10s, stacking up to 3 times",
@@ -20514,7 +20434,7 @@
         "id": "Jika tidak menerima DMG dalam 8 detik, Max HP + dalam 10 detik berikutnya, maks. 3 tumpuk."
       }
     },
-    "mrs:764033c9f8c4": {
+    "mrs:b2a4c4258899": {
       "description": "Within 10s after casting the Ultimate Skill, Dream DMG Reduction +",
       "descriptions": {
         "en": "Within 10s after casting the Ultimate Skill, Dream DMG Reduction +",
@@ -20530,7 +20450,7 @@
         "id": "Dalam 10 detik setelah melancarkan Ultimate, Dream DR +."
       }
     },
-    "mrs:7d494abb7a63": {
+    "mrs:84a866a76383": {
       "description": "When taking any damage, restores Max HP (up to once every 10s)",
       "descriptions": {
         "en": "When taking any damage, restores Max HP (up to once every 10s)",
@@ -20546,7 +20466,7 @@
         "id": "Menerima DMG apa pun akan memulihkan dari Max HP. Efek ini hanya dapat berlaku satu kali setiap 10 detik."
       }
     },
-    "mrs:2011d2503ad4": {
+    "mrs:9b5b7604d2c6": {
       "description": "During Volt Surge and Stormflash, restores Max HP per second",
       "descriptions": {
         "en": "During Volt Surge and Stormflash, restores Max HP per second",
@@ -20562,7 +20482,7 @@
         "id": "Selama Infinite Thunder Surge dan Thousand Thunder Flash berlangsung, akan memulihkan dari Max HP setiap 1 detik."
       }
     },
-    "mrs:509b5a1b3df5": {
+    "mrs:cb4907879ef0": {
       "description": "True Sight charge count +1; CD −",
       "descriptions": {
         "en": "True Sight charge count +1; CD −",
@@ -20578,7 +20498,7 @@
         "id": "Jumlah Charge pada Heart Sight +1, waktu CD -."
       }
     },
-    "mrs:111674dc51a2": {
+    "mrs:2ca447d81824": {
       "description": "Aegis Gale charge count +1; CD −",
       "descriptions": {
         "en": "Aegis Gale charge count +1; CD −",
@@ -20594,7 +20514,7 @@
         "id": "Jumlah Charge pada Protective Wind +1, waktu CD -."
       }
     },
-    "mrs:e06b8f2e96c5": {
+    "mrs:7a9cc832b65a": {
       "description": "During Galeform, Dream DMG Reduction +",
       "descriptions": {
         "en": "During Galeform, Dream DMG Reduction +",
@@ -20610,7 +20530,7 @@
         "id": "Selama Graceful berlangsung, Dream DR +."
       }
     },
-    "mrs:79e61a64f232": {
+    "mrs:27d021aeb4ea": {
       "description": "All Element DMG Reduction +; During Permafrost, Dream DMG Reduction +",
       "descriptions": {
         "en": "All Element DMG Reduction +; During Permafrost, Dream DMG Reduction +",
@@ -20626,7 +20546,7 @@
         "id": "Element DR +. Selama Ice Infuse berlangsung, Dream DR +."
       }
     },
-    "mrs:daa198651251": {
+    "mrs:9a7e929fdca3": {
       "description": "Frost Shelter charge count +1; CD −",
       "descriptions": {
         "en": "Frost Shelter charge count +1; CD −",
@@ -20642,7 +20562,7 @@
         "id": "Jumlah Charge pada Ice Shelter +1, waktu CD -."
       }
     },
-    "mrs:30cb96f28ac2": {
+    "mrs:be4ac463ac51": {
       "description": "During Focus, Dream DMG Resistance +",
       "descriptions": {
         "en": "During Focus, Dream DMG Resistance +",
@@ -20658,7 +20578,7 @@
         "id": "Selama Mental Focus berlangsung, Dream DR +."
       }
     },
-    "mrs:4ab6a04a4b2b": {
+    "mrs:88d5bb5b692f": {
       "description": "During Deter Shot, Magic DMG Resistance +; Deter Shot CD −",
       "descriptions": {
         "en": "During Deter Shot, Magic DMG Resistance +; Deter Shot CD −",
@@ -20674,7 +20594,7 @@
         "id": "Selama efek Intimidate Shot berlaku, pengurangan MDMG yang diterima +. Waktu CD Intimidate Shot -."
       }
     },
-    "mrs:244c0c57841b": {
+    "mrs:995c7368c2da": {
       "description": "Aegis Ward and Radiance CD −; After casting Aegis Ward or Radiance, the next Judgment costs no Holy Energy",
       "descriptions": {
         "en": "Aegis Ward and Radiance CD −; After casting Aegis Ward or Radiance, the next Judgment costs no Holy Energy",
@@ -20690,7 +20610,7 @@
         "id": "Waktu CD Holylight Guard dan Light Resolve -. Setelah melancarkan Holylight Guard dan Light Resolve, Judgement berikutnya tidak akan menggunakan Holy Energy."
       }
     },
-    "mrs:178062c0f6b4": {
+    "mrs:4f805353c989": {
       "description": "After casting the Ultimate Skill, for the next 5 hits, each restores Max HP",
       "descriptions": {
         "en": "After casting the Ultimate Skill, for the next 5 hits, each restores Max HP",
@@ -20706,7 +20626,7 @@
         "id": "Setelah melancarkan Ultimate, 5 kali DMG yang diakibatkan berikutnya setiap kali akan memulihkan dari Max HP."
       }
     },
-    "mrs:0f0f08ef0ebc": {
+    "mrs:988255b8c5ad": {
       "description": "When taking Magic DMG, there is a fixed 10% chance to gain Magic DMG Resistance",
       "descriptions": {
         "en": "When taking Magic DMG, there is a fixed 10% chance to gain Magic DMG Resistance",
@@ -20722,7 +20642,7 @@
         "id": "Menerima serangan Magic berpeluang tetap 10% membuat pengurangan MDMG +."
       }
     },
-    "mrs:01b633216b19": {
+    "mrs:01d132928941": {
       "description": "Max HP +; For every 50 Rage consumed, restores Max HP",
       "descriptions": {
         "en": "Max HP +; For every 50 Rage consumed, restores Max HP",
@@ -20738,7 +20658,7 @@
         "id": "Max HP +. Setiap menggunakan 50 Fury akan memulihkan dari Max HP."
       }
     },
-    "mrs:34059ec9cbb7": {
+    "mrs:d667c3c9587f": {
       "description": "Excess healing received is converted into a Shield lasting 10s, up to Max HP",
       "descriptions": {
         "en": "Excess healing received is converted into a Shield lasting 10s, up to Max HP",
@@ -20754,7 +20674,7 @@
         "id": "Jika berlebih, heal yang diterima diri sendiri akan dikonversi menjadi shield yang bertahan selama 10 detik. Shield ini tidak akan melebihi dari Max HP."
       }
     },
-    "mrs:fb7634d6b4f0": {
+    "mrs:a8ba5b6de0cf": {
       "description": "When casting Grove Wish or Infusion, Dream DMG Reduction + for 5s",
       "descriptions": {
         "en": "When casting Grove Wish or Infusion, Dream DMG Reduction + for 5s",
@@ -20770,7 +20690,7 @@
         "id": "Dalam 5 detik setelah melancarkan Forest Blessing dan Infuse, Dream DR +."
       }
     },
-    "mrs:4e07ac6c2c85": {
+    "mrs:94c208891edd": {
       "description": "During Heroic Melody and Healing Melody, Dream DMG Reduction +",
       "descriptions": {
         "en": "During Heroic Melody and Healing Melody, Dream DMG Reduction +",
@@ -20786,7 +20706,7 @@
         "id": "Selama melancarkan Melody - Valor Movement dan Melody - Healing Movement, Dream DR +."
       }
     },
-    "mrs:73040839aa11": {
+    "mrs:dec93120bd96": {
       "description": "When healing yourself, Healing Strength +",
       "descriptions": {
         "en": "When healing yourself, Healing Strength +",
@@ -21029,7 +20949,7 @@
       "mrs:9ecedd6a403e"
     ],
     "talent:913": [
-      "mrs:aaa80f11d229"
+      "mrs:44bda2ca8b54"
     ],
     "talent:933": [
       "mrs:7f42a8b2002e"
@@ -21069,12 +20989,6 @@
     ],
     "talent:1160": [
       "mrs:37886c2b02c4"
-    ],
-    "buff-source:55229": [
-      "mrs:0c83ddf87b30"
-    ],
-    "buff-source:55230": [
-      "mrs:64c91e17d4d4"
     ],
     "buff-source:55231": [
       "mrs:1cc3291c9095"
@@ -21116,19 +21030,19 @@
       "mrs:0921845145a5"
     ],
     "talent:1331": [
-      "mrs:f2495ff634ef"
+      "mrs:82b78ace20af"
     ],
     "talent:1345": [
-      "mrs:8aeb60704e1c"
+      "mrs:191070b501f4"
     ],
     "talent:1346": [
-      "mrs:0e3da721ed63"
+      "mrs:900db670ced5"
     ],
     "talent:1347": [
       "mrs:742cc85dd8d5"
     ],
     "talent:1362": [
-      "mrs:a8fab8e2ffdd"
+      "mrs:7af12e8c7296"
     ],
     "buff-source:55339": [
       "mrs:8cde8e9d1316"
@@ -21179,13 +21093,13 @@
       "mrs:fda9379c9776"
     ],
     "talent:1119": [
-      "mrs:e2288801345b"
+      "mrs:64ae2e279e78"
     ],
     "talent:1159": [
       "mrs:e70f3bf728d3"
     ],
     "talent:1161": [
-      "mrs:dd731093e15f"
+      "mrs:b712182f2cb2"
     ],
     "talent:1225": [
       "mrs:61dee985a16a"
@@ -21206,7 +21120,7 @@
       "mrs:b04fac1d7a5b"
     ],
     "talent:244": [
-      "mrs:98c8fd278229"
+      "mrs:3a5d8c69be48"
     ],
     "talent:1116": [
       "mrs:648a75b2d633"
@@ -21320,10 +21234,10 @@
       "mrs:2b3fce25a40d"
     ],
     "season-rogue-entry:164": [
-      "mrs:3efea56bfd28"
+      "mrs:1516aedc6f31"
     ],
     "season-rogue-entry:165": [
-      "mrs:a2cee57c9d39"
+      "mrs:26ec4475c53f"
     ],
     "season-rogue-entry:166": [
       "mrs:4d274ef2858c"
@@ -21374,7 +21288,7 @@
       "mrs:6864537c38c0"
     ],
     "season-rogue-entry:182": [
-      "mrs:068c81be8c25"
+      "mrs:97d57a8a00dd"
     ],
     "season-rogue-entry:183": [
       "mrs:eba2fa01b62e"
@@ -21434,7 +21348,7 @@
       "mrs:202009948c35"
     ],
     "season-rogue-entry:202": [
-      "mrs:00a489856984"
+      "mrs:06428adcb89b"
     ],
     "season-rogue-entry:203": [
       "mrs:89d372114812"
@@ -21458,10 +21372,10 @@
       "mrs:e516aaa016f4"
     ],
     "season-rogue-entry:210": [
-      "mrs:fa046d0f4c57"
+      "mrs:d363aab2831b"
     ],
     "season-rogue-entry:211": [
-      "mrs:e4d99700f135"
+      "mrs:c56a71d41595"
     ],
     "season-rogue-entry:212": [
       "mrs:761d5c0b3960"
@@ -21518,7 +21432,7 @@
       "mrs:1a233365e90b"
     ],
     "season-rogue-entry:129": [
-      "mrs:033f988f7a41"
+      "mrs:af710af061e5"
     ],
     "season-rogue-entry:131": [
       "mrs:097336140be9"
@@ -21575,16 +21489,16 @@
       "mrs:80477810f2fa"
     ],
     "season-rogue-entry:100": [
-      "mrs:da20320a2163"
+      "mrs:bcdaa46f04f6"
     ],
     "season-rogue-entry:101": [
-      "mrs:4993b6af5c57"
+      "mrs:f926f26ad7b9"
     ],
     "season-rogue-entry:104": [
-      "mrs:2e02be3e0fad"
+      "mrs:519e18527ece"
     ],
     "season-rogue-entry:105": [
-      "mrs:1fa1a3e4ed10"
+      "mrs:d472cc2ffaaf"
     ],
     "buff-source:2032011": [
       "mrs:f7b5df30a006"
@@ -21868,9 +21782,6 @@
     "buff-source:2032186": [
       "mrs:038873445070"
     ],
-    "buff-source:2100151": [
-      "mrs:42a9e20b16ef"
-    ],
     "buff-source:2110012": [
       "mrs:fae92ada6657"
     ],
@@ -22030,12 +21941,6 @@
     "buff-source:2110132": [
       "mrs:a4fe96cb54b1"
     ],
-    "buff-source:2110135": [
-      "mrs:45e8982669a7"
-    ],
-    "buff-source:2110136": [
-      "mrs:de5b4e1908ad"
-    ],
     "talent:100": [
       "mrs:e8b81bde73cf"
     ],
@@ -22088,10 +21993,10 @@
       "mrs:c992b0951dc1"
     ],
     "talent:116": [
-      "mrs:0f8a7018b5aa"
+      "mrs:eea33019e62c"
     ],
     "talent:118": [
-      "mrs:64aca37108a5"
+      "mrs:70397733fad1"
     ],
     "talent:119": [
       "mrs:35f04c4584b6"
@@ -22106,7 +22011,7 @@
       "mrs:d951c3b0786d"
     ],
     "talent:124": [
-      "mrs:ea3d0d3deb52"
+      "mrs:c957ecc92d49"
     ],
     "talent:126": [
       "mrs:8cd7453c84f8"
@@ -22151,7 +22056,7 @@
       "mrs:5f9c0a2499f0"
     ],
     "talent:142": [
-      "mrs:b8bfc1f6504e"
+      "mrs:112bdeeb0b3d"
     ],
     "talent:143": [
       "mrs:cae9407644b6"
@@ -22199,7 +22104,7 @@
       "mrs:1085f188cc89"
     ],
     "talent:159": [
-      "mrs:bdc2a71cdfe7"
+      "mrs:70abd4740acb"
     ],
     "talent:160": [
       "mrs:3096dc39077a"
@@ -22214,7 +22119,7 @@
       "mrs:f5320a50c2c8"
     ],
     "talent:164": [
-      "mrs:2a399c39b00a"
+      "mrs:549849285be9"
     ],
     "talent:165": [
       "mrs:17c2a44c7915"
@@ -22223,7 +22128,7 @@
       "mrs:8a00c4119ebe"
     ],
     "talent:169": [
-      "mrs:5ef8f7bb8098"
+      "mrs:a8cb6acc33fd"
     ],
     "talent:170": [
       "mrs:05e8637e12dd"
@@ -22235,7 +22140,7 @@
       "mrs:e9a77c12157d"
     ],
     "talent:902": [
-      "mrs:563a5027b750"
+      "mrs:2de40cf63a52"
     ],
     "talent:903": [
       "mrs:87e00059c9d6"
@@ -22274,7 +22179,7 @@
       "mrs:f043d1debab7"
     ],
     "talent:928": [
-      "mrs:b0db066fd3a7"
+      "mrs:c8ec25c98374"
     ],
     "talent:929": [
       "mrs:d547411f8eb8"
@@ -22283,7 +22188,7 @@
       "mrs:24eb6060520e"
     ],
     "talent:932": [
-      "mrs:bca1a3f66256"
+      "mrs:24ea1db8113b"
     ],
     "talent:935": [
       "mrs:efe1fdfd6c0f"
@@ -22328,7 +22233,7 @@
       "mrs:8f50b1a0c486"
     ],
     "talent:952": [
-      "mrs:b0ab888122ab"
+      "mrs:aaa131e05f2c"
     ],
     "talent:953": [
       "mrs:451518e3c661"
@@ -22382,7 +22287,7 @@
       "mrs:9b81a7e4f1fd"
     ],
     "talent:506": [
-      "mrs:cf23db001a1c"
+      "mrs:f4d29a049d8c"
     ],
     "talent:507": [
       "mrs:595c2f77dfab"
@@ -22478,16 +22383,16 @@
       "mrs:ee6eb57b0dcb"
     ],
     "talent:542": [
-      "mrs:e59fd2ad98bf"
+      "mrs:7c65b9f0973d"
     ],
     "talent:543": [
       "mrs:009065ad0b63"
     ],
     "talent:544": [
-      "mrs:061c3e937c97"
+      "mrs:cf65dca9de7d"
     ],
     "talent:545": [
-      "mrs:fae661f36d02"
+      "mrs:8010c804c2de"
     ],
     "talent:546": [
       "mrs:02f58394d010"
@@ -22496,7 +22401,7 @@
       "mrs:68330fac83ee"
     ],
     "talent:548": [
-      "mrs:7edd5854dc7f"
+      "mrs:cf5915b7059a"
     ],
     "talent:549": [
       "mrs:7e44fa5fb1a4"
@@ -22505,7 +22410,7 @@
       "mrs:ff9d395ec458"
     ],
     "talent:551": [
-      "mrs:ad8a380cd4ea"
+      "mrs:c9fbeffb9909"
     ],
     "talent:552": [
       "mrs:1ac147be94d4"
@@ -22526,7 +22431,7 @@
       "mrs:53a9e67b5841"
     ],
     "talent:555": [
-      "mrs:62d1ef078966"
+      "mrs:1a22bbc84bff"
     ],
     "talent:556": [
       "mrs:4203b11bc2b7"
@@ -22604,7 +22509,7 @@
       "mrs:cf78f91dc5a5"
     ],
     "talent:1112": [
-      "mrs:4d6f1da230a6"
+      "mrs:6719cc701d7f"
     ],
     "talent:1114": [
       "mrs:47ddcb429203"
@@ -22625,7 +22530,7 @@
       "mrs:0ca233bd8570"
     ],
     "talent:1124": [
-      "mrs:0d19a5cf0e22"
+      "mrs:24748645e407"
     ],
     "talent:1125": [
       "mrs:250e3533d517"
@@ -22643,7 +22548,7 @@
       "mrs:103bea10ba4d"
     ],
     "talent:1130": [
-      "mrs:1c5ca8ae84e1"
+      "mrs:fba5edf77db1"
     ],
     "talent:1131": [
       "mrs:a959ee3d84c4"
@@ -22667,7 +22572,7 @@
       "mrs:68b39e07b823"
     ],
     "talent:1139": [
-      "mrs:14ea3deb1890"
+      "mrs:388665a72229"
     ],
     "talent:1140": [
       "mrs:16c1ba0632e5"
@@ -22700,7 +22605,7 @@
       "mrs:a1d3db43fd4b"
     ],
     "talent:1150": [
-      "mrs:830e96cd0170"
+      "mrs:65b351f4037b"
     ],
     "talent:1151": [
       "mrs:66998c806359"
@@ -22832,7 +22737,7 @@
       "mrs:b5c21567f4a9"
     ],
     "talent:245": [
-      "mrs:5a757fbc4205"
+      "mrs:3f125e621759"
     ],
     "talent:246": [
       "mrs:37f72c0ca409"
@@ -22841,7 +22746,7 @@
       "mrs:731f02fdc074"
     ],
     "talent:249": [
-      "mrs:7f506e81d6fa"
+      "mrs:41610153d928"
     ],
     "talent:251": [
       "mrs:b3bbb7061322"
@@ -22886,7 +22791,7 @@
       "mrs:43a1684ab88d"
     ],
     "talent:271": [
-      "mrs:eaa10f98f72b"
+      "mrs:0818356ca975"
     ],
     "talent:400": [
       "mrs:2aca417f2313"
@@ -23156,7 +23061,7 @@
       "mrs:a4e6076346d4"
     ],
     "talent:1227": [
-      "mrs:09c893f530fc"
+      "mrs:878b91c8b5b6"
     ],
     "talent:1228": [
       "mrs:14ebef1ba449"
@@ -23165,7 +23070,7 @@
       "mrs:f531e5f44c41"
     ],
     "talent:1230": [
-      "mrs:8d86a6b84811"
+      "mrs:846e84fcdd7f"
     ],
     "talent:1231": [
       "mrs:b71410c2ecd2"
@@ -23207,7 +23112,7 @@
       "mrs:49534d51b8d2"
     ],
     "talent:1247": [
-      "mrs:638f18a0da6b"
+      "mrs:a96956608dea"
     ],
     "talent:1248": [
       "mrs:73d766ad20d5"
@@ -23231,7 +23136,7 @@
       "mrs:e0091f1e75f9"
     ],
     "talent:1258": [
-      "mrs:9f94a10f910a"
+      "mrs:b04afc83795b"
     ],
     "talent:1259": [
       "mrs:3fd7856f72b0"
@@ -23267,10 +23172,10 @@
       "mrs:dc836a3be30e"
     ],
     "talent:1306": [
-      "mrs:12e23a33f9e4"
+      "mrs:3d2607290f1e"
     ],
     "talent:1307": [
-      "mrs:4725e5494035"
+      "mrs:d6843886ca48"
     ],
     "talent:1309": [
       "mrs:a6e772333373"
@@ -23279,7 +23184,7 @@
       "mrs:73b8121ac13a"
     ],
     "talent:1311": [
-      "mrs:de612630ca35"
+      "mrs:6adaf0d762ce"
     ],
     "talent:1312": [
       "mrs:e941219a7c91"
@@ -23315,7 +23220,7 @@
       "mrs:246d22310256"
     ],
     "talent:1355": [
-      "mrs:7e5d929d3276"
+      "mrs:86249e1a50ea"
     ],
     "talent:1324": [
       "mrs:b269828c48e4"
@@ -23384,16 +23289,16 @@
       "mrs:301a51a0135d"
     ],
     "talent:1353": [
-      "mrs:f221ac4ec53f"
+      "mrs:00418429c77f"
     ],
     "talent:1354": [
-      "mrs:3d80e3c9dae1"
+      "mrs:263e10c4549b"
     ],
     "talent:1356": [
       "mrs:16084164d69b"
     ],
     "talent:1357": [
-      "mrs:455964c7632a"
+      "mrs:74f71e222912"
     ],
     "talent:1358": [
       "mrs:6185f15d5722"
@@ -23498,7 +23403,7 @@
       "mrs:c49f5ad91ded"
     ],
     "talent:329": [
-      "mrs:c6c051033bf2"
+      "mrs:11c4758a77e7"
     ],
     "talent:330": [
       "mrs:f517ef3b8866"
@@ -23963,49 +23868,49 @@
       "mrs:c3ef8cc40872"
     ],
     "phantom-factor:3050010": [
-      "mrs:76a74c3110c4"
+      "mrs:db9fe07d4c1f"
     ],
     "phantom-factor:3050020": [
-      "mrs:074308d23138"
+      "mrs:999481405983"
     ],
     "phantom-factor:3050030": [
-      "mrs:bb4d3ece8ff3"
+      "mrs:b87b8be9e03b"
     ],
     "phantom-factor:3050040": [
-      "mrs:cd39e213cb60"
+      "mrs:ee547194414d"
     ],
     "phantom-factor:3050050": [
-      "mrs:3ae47dfe5376"
+      "mrs:25169073fb33"
     ],
     "phantom-factor:3050060": [
-      "mrs:416a601f39ed"
+      "mrs:fd2530f06fee"
     ],
     "phantom-factor:3050070": [
-      "mrs:eb67e4ac430c"
+      "mrs:aff13e8b8d76"
     ],
     "phantom-factor:3050080": [
-      "mrs:55c3db4bce48"
+      "mrs:58b24ec42371"
     ],
     "phantom-factor:3050090": [
-      "mrs:324f8c9c41d9"
+      "mrs:d0b8d8c8dbf0"
     ],
     "phantom-factor:3050100": [
-      "mrs:9dde7b523983"
+      "mrs:6b06a9df6720"
     ],
     "phantom-factor:3050110": [
-      "mrs:7b53703c9f7e"
+      "mrs:97312edee09d"
     ],
     "phantom-factor:3050120": [
-      "mrs:4a6898cd0283"
+      "mrs:1c3a1e54df31"
     ],
     "phantom-factor:3050130": [
-      "mrs:a41da6f06e66"
+      "mrs:621efad68e24"
     ],
     "phantom-factor:3050140": [
-      "mrs:45a03d53781c"
+      "mrs:5da4cb6dbfcd"
     ],
     "phantom-factor:3050150": [
-      "mrs:cfd2fc68100e"
+      "mrs:1a1db6a0fd05"
     ],
     "season-rogue-entry:215": [
       "mrs:7a4d12843d4a"
@@ -24056,49 +23961,49 @@
       "mrs:910ff95d4a16"
     ],
     "phantom-factor:3051010": [
-      "mrs:9fbe9ca5f53d"
+      "mrs:66f54d268016"
     ],
     "phantom-factor:3051020": [
-      "mrs:6d5fc808b50d"
+      "mrs:9c417d1bfb08"
     ],
     "phantom-factor:3051030": [
-      "mrs:88b80a95d560"
+      "mrs:20f1e6029764"
     ],
     "phantom-factor:3051040": [
-      "mrs:0d4509de331d"
+      "mrs:8673fb9c676b"
     ],
     "phantom-factor:3051050": [
-      "mrs:9ca6ca7d42d9"
+      "mrs:919f6d99167d"
     ],
     "phantom-factor:3051060": [
-      "mrs:5f212d2e9467"
+      "mrs:0fd84841479c"
     ],
     "phantom-factor:3051070": [
-      "mrs:64e9ef650dd7"
+      "mrs:a71b531e6cd2"
     ],
     "phantom-factor:3051080": [
-      "mrs:d5fd69fd5ff7"
+      "mrs:918ffd6cceae"
     ],
     "phantom-factor:3051090": [
-      "mrs:619e75b2fb23"
+      "mrs:09c03f3773e3"
     ],
     "phantom-factor:3051100": [
-      "mrs:6e7c7cfa30db"
+      "mrs:0c507479421f"
     ],
     "phantom-factor:3051110": [
-      "mrs:382030ee415f"
+      "mrs:c7649e959883"
     ],
     "phantom-factor:3051120": [
-      "mrs:bb0e2575ba00"
+      "mrs:06d4b85b23a2"
     ],
     "phantom-factor:3051130": [
-      "mrs:352410e0c96f"
+      "mrs:ddee3fa851b1"
     ],
     "phantom-factor:3051140": [
-      "mrs:ba9c97baf0e4"
+      "mrs:aebceee128ba"
     ],
     "phantom-factor:3051150": [
-      "mrs:ac5b68c3fc2d"
+      "mrs:80d35d5facb8"
     ],
     "season-rogue-entry:279": [
       "mrs:127ff34ce2f9"
@@ -24149,49 +24054,49 @@
       "mrs:2948ce3dee3c"
     ],
     "phantom-factor:3052010": [
-      "mrs:1550bddc4506"
+      "mrs:a8f0e8dcf025"
     ],
     "phantom-factor:3052020": [
-      "mrs:2ddbcdb165fa"
+      "mrs:cb5efe5fe631"
     ],
     "phantom-factor:3052030": [
-      "mrs:422fe3407db8"
+      "mrs:d895ac27bc59"
     ],
     "phantom-factor:3052040": [
-      "mrs:59b7fa99ffe1"
+      "mrs:153d5eae7448"
     ],
     "phantom-factor:3052050": [
-      "mrs:de2774818b6b"
+      "mrs:46bb719f459c"
     ],
     "phantom-factor:3052060": [
-      "mrs:23a459df03e5"
+      "mrs:d2ffcf621731"
     ],
     "phantom-factor:3052070": [
-      "mrs:f9f9c860ac13"
+      "mrs:a98c0abcfe69"
     ],
     "phantom-factor:3052080": [
-      "mrs:17cdbfa9b51b"
+      "mrs:2d037af6d63a"
     ],
     "phantom-factor:3052090": [
-      "mrs:6b2848effeaf"
+      "mrs:a2d9e898ae40"
     ],
     "phantom-factor:3052100": [
-      "mrs:bd595a8db205"
+      "mrs:f13e8cc76a76"
     ],
     "phantom-factor:3052110": [
-      "mrs:56dbb49f286a"
+      "mrs:4c94502d3b4d"
     ],
     "phantom-factor:3052120": [
-      "mrs:aae80ca429fa"
+      "mrs:758ec961e7c2"
     ],
     "phantom-factor:3052130": [
-      "mrs:d2d0f7c8a32d"
+      "mrs:7af0d2cb9e9f"
     ],
     "phantom-factor:3052140": [
-      "mrs:1ef571d2ff81"
+      "mrs:61224bb2eca4"
     ],
     "phantom-factor:3052150": [
-      "mrs:705abf91b626"
+      "mrs:993457f1b4ad"
     ],
     "season-rogue-entry:243": [
       "mrs:5466951718b2"
@@ -24242,49 +24147,49 @@
       "mrs:a615550ff10c"
     ],
     "phantom-factor:3053010": [
-      "mrs:32b0670cd093"
+      "mrs:98c5b6fc745c"
     ],
     "phantom-factor:3053020": [
-      "mrs:0d5f242cd19f"
+      "mrs:3f0404334c85"
     ],
     "phantom-factor:3053030": [
-      "mrs:65caa9c2f649"
+      "mrs:6a8258614643"
     ],
     "phantom-factor:3053040": [
-      "mrs:c4dda323a515"
+      "mrs:fa9bc3962f9d"
     ],
     "phantom-factor:3053050": [
-      "mrs:ec427bb475eb"
+      "mrs:bb58bd04e1ae"
     ],
     "phantom-factor:3053060": [
-      "mrs:d44262b95e61"
+      "mrs:ab0e93155b75"
     ],
     "phantom-factor:3053070": [
-      "mrs:1d3e1b4904b5"
+      "mrs:a1257a86494c"
     ],
     "phantom-factor:3053080": [
-      "mrs:b9b90ecbad9c"
+      "mrs:3b5f2fdd8449"
     ],
     "phantom-factor:3053090": [
-      "mrs:6f78a79cfb6a"
+      "mrs:99157ae37d04"
     ],
     "phantom-factor:3053100": [
-      "mrs:06a1180100f3"
+      "mrs:c8b3a6d54fa0"
     ],
     "phantom-factor:3053110": [
-      "mrs:9c89957215c8"
+      "mrs:43e913ff5f0d"
     ],
     "phantom-factor:3053120": [
-      "mrs:0a534165e802"
+      "mrs:823eba6adfb7"
     ],
     "phantom-factor:3053130": [
-      "mrs:6989b666d2ad"
+      "mrs:43b347baf910"
     ],
     "phantom-factor:3053140": [
-      "mrs:3bca58640a56"
+      "mrs:a4e8564407c0"
     ],
     "phantom-factor:3053150": [
-      "mrs:4b09ac128835"
+      "mrs:f777bf290553"
     ],
     "season-rogue-entry:247": [
       "mrs:5b65a266a5ab"
@@ -24335,49 +24240,49 @@
       "mrs:6bca60c2aa04"
     ],
     "phantom-factor:3054010": [
-      "mrs:de66e6fc3d6b"
+      "mrs:4bda788d452c"
     ],
     "phantom-factor:3054020": [
-      "mrs:6e9ff6f12f04"
+      "mrs:5263343b4652"
     ],
     "phantom-factor:3054030": [
-      "mrs:91fc0e042aa2"
+      "mrs:b7cb6544c542"
     ],
     "phantom-factor:3054040": [
-      "mrs:33bcc02f125f"
+      "mrs:e5fc4ed8bc26"
     ],
     "phantom-factor:3054050": [
-      "mrs:ea16001136af"
+      "mrs:744d60945ea1"
     ],
     "phantom-factor:3054060": [
-      "mrs:0905eb73e776"
+      "mrs:f7e44b840f77"
     ],
     "phantom-factor:3054070": [
-      "mrs:5a41533fb6f0"
+      "mrs:a2ff70799c13"
     ],
     "phantom-factor:3054080": [
-      "mrs:5a7a85ef3cc7"
+      "mrs:de9edc489127"
     ],
     "phantom-factor:3054090": [
-      "mrs:71936252fb06"
+      "mrs:7a4a507c1316"
     ],
     "phantom-factor:3054100": [
-      "mrs:70a125b7c790"
+      "mrs:dfff18ff5e3c"
     ],
     "phantom-factor:3054110": [
-      "mrs:99c2f4cea586"
+      "mrs:a760858b7068"
     ],
     "phantom-factor:3054120": [
-      "mrs:6cee7ce75b6f"
+      "mrs:214b1023d056"
     ],
     "phantom-factor:3054130": [
-      "mrs:1903edf92d52"
+      "mrs:144950247ffc"
     ],
     "phantom-factor:3054140": [
-      "mrs:a518e53be4b0"
+      "mrs:e8e5212b086d"
     ],
     "phantom-factor:3054150": [
-      "mrs:26a4196b8872"
+      "mrs:1f1994afebaf"
     ],
     "season-rogue-entry:295": [
       "mrs:8ac61ff964d0"
@@ -24425,49 +24330,49 @@
       "mrs:9b44647e2ec5"
     ],
     "phantom-factor:3055010": [
-      "mrs:20062f5d1f0f"
+      "mrs:806e2d07990f"
     ],
     "phantom-factor:3055020": [
-      "mrs:d947faf7abd2"
+      "mrs:12d6072e7527"
     ],
     "phantom-factor:3055030": [
-      "mrs:13b575d342e6"
+      "mrs:8956cac52386"
     ],
     "phantom-factor:3055040": [
-      "mrs:4d5a7c7373fd"
+      "mrs:ac67023f4975"
     ],
     "phantom-factor:3055050": [
-      "mrs:439f26f262b7"
+      "mrs:62053750112f"
     ],
     "phantom-factor:3055060": [
-      "mrs:141dae6a317b"
+      "mrs:405326bef8c0"
     ],
     "phantom-factor:3055070": [
-      "mrs:73e94e2ec603"
+      "mrs:7feac936f9c0"
     ],
     "phantom-factor:3055080": [
-      "mrs:06f1b6c210c1"
+      "mrs:595e07ccb057"
     ],
     "phantom-factor:3055090": [
-      "mrs:ca0222539991"
+      "mrs:d9173bedfc9d"
     ],
     "phantom-factor:3055100": [
-      "mrs:310d71e5ee87"
+      "mrs:c95b8fccb6d0"
     ],
     "phantom-factor:3055110": [
-      "mrs:d90efd35906e"
+      "mrs:8992caeea9da"
     ],
     "phantom-factor:3055120": [
-      "mrs:c36f480182b8"
+      "mrs:8810e65dd0f2"
     ],
     "phantom-factor:3055130": [
-      "mrs:d22f9500d44c"
+      "mrs:f290b3f49d60"
     ],
     "phantom-factor:3055140": [
-      "mrs:5d85027eb687"
+      "mrs:8f1e550c56d0"
     ],
     "phantom-factor:3055150": [
-      "mrs:f0656a11a553"
+      "mrs:2e340e7fb79b"
     ],
     "season-rogue-entry:310": [
       "mrs:ef0d8c6d2d95"
@@ -24518,49 +24423,49 @@
       "mrs:ecd284f80a0a"
     ],
     "phantom-factor:3056010": [
-      "mrs:825481d4168d"
+      "mrs:b70c83918ca0"
     ],
     "phantom-factor:3056020": [
-      "mrs:5ed915c7b920"
+      "mrs:f29773be9e42"
     ],
     "phantom-factor:3056030": [
-      "mrs:db340a5c0d31"
+      "mrs:0e0f78a797d6"
     ],
     "phantom-factor:3056040": [
-      "mrs:6c35e9e03a5c"
+      "mrs:2f41c32685e2"
     ],
     "phantom-factor:3056050": [
-      "mrs:25cdc53f0894"
+      "mrs:0a5c663d9324"
     ],
     "phantom-factor:3056060": [
-      "mrs:8133f97b50de"
+      "mrs:8145018d9c96"
     ],
     "phantom-factor:3056070": [
-      "mrs:f59d56a6ad94"
+      "mrs:a6db335d8946"
     ],
     "phantom-factor:3056080": [
-      "mrs:73d55b7463ed"
+      "mrs:59e0e30bc191"
     ],
     "phantom-factor:3056090": [
-      "mrs:8139a266fd9d"
+      "mrs:a726b168f425"
     ],
     "phantom-factor:3056100": [
-      "mrs:3a186a9e1488"
+      "mrs:bbbc870c769b"
     ],
     "phantom-factor:3056110": [
-      "mrs:6f7d2da167e2"
+      "mrs:98c1efa2e628"
     ],
     "phantom-factor:3056120": [
-      "mrs:62f886052949"
+      "mrs:a8800856ae3e"
     ],
     "phantom-factor:3056130": [
-      "mrs:b17f71170dd1"
+      "mrs:cf00786e9f02"
     ],
     "phantom-factor:3056140": [
-      "mrs:45590742b5d2"
+      "mrs:127c64bee41c"
     ],
     "phantom-factor:3056150": [
-      "mrs:73b7649cd58c"
+      "mrs:6cffcd72cd20"
     ],
     "season-rogue-entry:263": [
       "mrs:3c6a885a2907"
@@ -24611,49 +24516,49 @@
       "mrs:3c59c36cc9ba"
     ],
     "phantom-factor:3057010": [
-      "mrs:aec05bcc563f"
+      "mrs:1d62ceb710b6"
     ],
     "phantom-factor:3057020": [
-      "mrs:3df5b5cb4087"
+      "mrs:4ccb9baa2949"
     ],
     "phantom-factor:3057030": [
-      "mrs:a7b25b6a1510"
+      "mrs:6bee17cf5fa3"
     ],
     "phantom-factor:3057040": [
-      "mrs:50354eebd854"
+      "mrs:1e9440e38da6"
     ],
     "phantom-factor:3057050": [
-      "mrs:4c5c170bb6c7"
+      "mrs:a498517327b8"
     ],
     "phantom-factor:3057060": [
-      "mrs:82dc1b3b5fdf"
+      "mrs:e8dd11299c9c"
     ],
     "phantom-factor:3057070": [
-      "mrs:1c2fdc47ecde"
+      "mrs:f965c065ede3"
     ],
     "phantom-factor:3057080": [
-      "mrs:08c91ad54d59"
+      "mrs:60f2f328cb8a"
     ],
     "phantom-factor:3057090": [
-      "mrs:e9d62a5086ff"
+      "mrs:cc81e1fb65fe"
     ],
     "phantom-factor:3057100": [
-      "mrs:df324ea904a2"
+      "mrs:bb4c7cca10f2"
     ],
     "phantom-factor:3057110": [
-      "mrs:669b61cf8491"
+      "mrs:3162f9e4ee10"
     ],
     "phantom-factor:3057120": [
-      "mrs:877eeb13a3d3"
+      "mrs:e428c3230919"
     ],
     "phantom-factor:3057130": [
-      "mrs:b0a54db3f2ab"
+      "mrs:cd6e9fb8f8d8"
     ],
     "phantom-factor:3057140": [
-      "mrs:33585e1aaa96"
+      "mrs:86b0f9266f47"
     ],
     "phantom-factor:3057150": [
-      "mrs:4a377273c28f"
+      "mrs:115b0bc04028"
     ],
     "season-rogue-entry:326": [
       "mrs:dee862ca35b4"
@@ -24704,85 +24609,85 @@
       "mrs:71ce5dc01eac"
     ],
     "phantom-factor:3058050": [
-      "mrs:490a5155fe3f"
+      "mrs:8c84641a5eba"
     ],
     "phantom-factor:3058060": [
-      "mrs:493820b11f63"
+      "mrs:f9e98ead7134"
     ],
     "phantom-factor:3058070": [
-      "mrs:6f75fbd51252"
+      "mrs:c72d30f60fe1"
     ],
     "phantom-factor:3058080": [
-      "mrs:b96d12b166b3"
+      "mrs:1f9fd9aee2c0"
     ],
     "phantom-factor:3058090": [
-      "mrs:3f8eef2006ae"
+      "mrs:15f4db8b52cc"
     ],
     "phantom-factor:3058100": [
-      "mrs:6b2fb3465a1d"
+      "mrs:48eb612230b2"
     ],
     "phantom-factor:3058110": [
-      "mrs:130714060500"
+      "mrs:05c27e1a3b1f"
     ],
     "phantom-factor:3059050": [
-      "mrs:352130049e61"
+      "mrs:41ca8c9c34f7"
     ],
     "phantom-factor:3059060": [
-      "mrs:71ea00abde1e"
+      "mrs:9626cf0d52df"
     ],
     "phantom-factor:3059070": [
-      "mrs:764033c9f8c4"
+      "mrs:b2a4c4258899"
     ],
     "phantom-factor:3059080": [
-      "mrs:7d494abb7a63"
+      "mrs:84a866a76383"
     ],
     "phantom-factor:3059100": [
-      "mrs:2011d2503ad4"
+      "mrs:9b5b7604d2c6"
     ],
     "phantom-factor:3059110": [
-      "mrs:509b5a1b3df5"
+      "mrs:cb4907879ef0"
     ],
     "phantom-factor:3059120": [
-      "mrs:111674dc51a2"
+      "mrs:2ca447d81824"
     ],
     "phantom-factor:3059130": [
-      "mrs:e06b8f2e96c5"
+      "mrs:7a9cc832b65a"
     ],
     "phantom-factor:3059140": [
-      "mrs:79e61a64f232"
+      "mrs:27d021aeb4ea"
     ],
     "phantom-factor:3059150": [
-      "mrs:daa198651251"
+      "mrs:9a7e929fdca3"
     ],
     "phantom-factor:3059160": [
-      "mrs:30cb96f28ac2"
+      "mrs:be4ac463ac51"
     ],
     "phantom-factor:3059170": [
-      "mrs:4ab6a04a4b2b"
+      "mrs:88d5bb5b692f"
     ],
     "phantom-factor:3059180": [
-      "mrs:244c0c57841b"
+      "mrs:995c7368c2da"
     ],
     "phantom-factor:3059190": [
-      "mrs:178062c0f6b4"
+      "mrs:4f805353c989"
     ],
     "phantom-factor:3059200": [
-      "mrs:0f0f08ef0ebc"
+      "mrs:988255b8c5ad"
     ],
     "phantom-factor:3059210": [
-      "mrs:01b633216b19"
+      "mrs:01d132928941"
     ],
     "phantom-factor:3059220": [
-      "mrs:34059ec9cbb7"
+      "mrs:d667c3c9587f"
     ],
     "phantom-factor:3059230": [
-      "mrs:fb7634d6b4f0"
+      "mrs:a8ba5b6de0cf"
     ],
     "phantom-factor:3059240": [
-      "mrs:4e07ac6c2c85"
+      "mrs:94c208891edd"
     ],
     "phantom-factor:3059250": [
-      "mrs:73040839aa11"
+      "mrs:dec93120bd96"
     ],
     "buff-source:3200013": [
       "mrs:15bad18988b9"
@@ -24801,12 +24706,12 @@
     ]
   },
   "stats": {
-    "scannedEntries": 2519,
-    "sourcesWithDescriptions": 1305,
-    "sourceIdsWithDescriptions": 1305,
+    "scannedEntries": 2528,
+    "sourcesWithDescriptions": 1300,
+    "sourceIdsWithDescriptions": 1300,
     "sourcesWithDirectDescriptions": 1243,
     "sourcesWithRecountDescriptions": 39,
-    "sourcesWithEffectOwnerDescriptions": 4,
-    "sourcesWithEffectEvidenceDescriptions": 19
+    "sourcesWithEffectOwnerDescriptions": 0,
+    "sourcesWithEffectEvidenceDescriptions": 18
   }
 }

@@ -4,17 +4,17 @@ This report flags generated effect sources that likely need extra runtime predic
 
 ## Summary
 
-- Records flagged: 2120
-- Interesting records: 321
+- Records flagged: 2124
+- Interesting records: 320
 
 ### Tag Counts
 
-- activation.active-modifier-window: 972
+- activation.active-modifier-window: 964
 - activation.focus-state: 14
 - attacker.elite-or-stronger: 16
-- direction.damage-dealt: 403
+- direction.damage-dealt: 412
 - direction.damage-taken-or-defense: 225
-- effect.compound-components: 499
+- effect.compound-components: 477
 - needs.description-extraction: 70
 - needs.effect-component-classification: 3
 - needs.module-description-extraction: 16
@@ -22,8 +22,8 @@ This report flags generated effect sources that likely need extra runtime predic
 - scope.global: 188
 - scope.skill-or-recount-targeted: 925
 - source.armor-or-defense-scaling: 15
-- source.battle-imagine: 9
-- source.companion-or-summon: 130
+- source.battle-imagine: 11
+- source.companion-or-summon: 128
 - target.armor-or-defense: 9
 - target.boss-or-elite-suspect: 12
 - target.elite-or-stronger: 116
@@ -36,7 +36,7 @@ This report flags generated effect sources that likely need extra runtime predic
 ### Family Counts
 
 - ConsumableBuffBridge: 94
-- EffectSources: 1778
+- EffectSources: 1782
 - ModuleBuffCatalog: 16
 - SeasonPhantomFactors: 134
 - TalentEffectModelProbe: 98
@@ -385,18 +385,10 @@ This report flags generated effect sources that likely need extra runtime predic
 - Kind: talent-passive / talent
 - Tags: activation.active-modifier-window, effect.compound-components, source.companion-or-summon
 - Buff ids: 705001, 2204110, 2204111
-- Components: Cooldown / Resource [cooldown-or-resource; source.companion-or-summon, activation.active-modifier-window] / Physical/Magic Enhancement [physical-magic-enhancement; source.companion-or-summon, activation.active-modifier-window] / Elemental DMG [elemental-damage; source.companion-or-summon, activation.active-modifier-window] / Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
+- Components: Cooldown / Resource [cooldown-or-resource; source.companion-or-summon, activation.active-modifier-window] / Elemental DMG [elemental-damage; source.companion-or-summon, activation.active-modifier-window] / Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
 - Icon: ui/atlas/talent_passive_2/talent_passive_icon_general_dps_iceenergyget
 - Notes: This source has split effect components; parser attribution should apply predicates per component, not to the whole source row.
 - Text: Cold Wind Convergence | 寒风凝聚 | 寒風凝聚 | 寒風の集約 | 냉기 응집 | Convergence des vents froids | Kaltwindkonvergenz | Convergencia de Viento Gélido | Convergência do Vento Gélido | Chilling Wind | ui/atlas/talent_passive_2/talent_passive_icon_general_dps_iceenergyget | Exact localized name groups are used as runtime buff aliases only; they do not imply a damage formula. | Activation aliases map a talent/passive source row to the
-### Crimson Foxen - Phantom Rally (buff-source:2110121)
-- Family: EffectSources
-- Kind: imagine / imagine-buff
-- Tags: activation.active-modifier-window, source.companion-or-summon
-- Buff ids: 2110121
-- Components: ATK [offense-stat; source.companion-or-summon, activation.active-modifier-window]
-- Icon: ui/atlas/buff/buff_icon144
-- Text: Crimson Foxen - Phantom Rally | 赤玉地狐 - 魅影鼓舞 | 猛る獣 - 幻影の鼓舞 | 루비 땅여우 - 팬텀 고무 | Renard pourpre - Ralliement fantomatique | Karmesin-Fux - Phantom-Aufgebot | Vulpe carmesí - Arenga fantasmal | Raposa Carmesim - Convocação Fantasma | Crimson Foxen - inspire ภูตพราย | Ruby Earthfox - Phantom Inspire | 赤玉地狐 - 主动 | ui/atlas/buff/buff_icon144
 ### Crit (talent:5)
 - Family: EffectSources
 - Kind: talent-passive / talent
@@ -711,7 +703,7 @@ This report flags generated effect sources that likely need extra runtime predic
 - Kind: season-talent-node / deep-slumber-mind-projection-node
 - Tags: activation.active-modifier-window, scope.skill-or-recount-targeted, source.companion-or-summon
 - Buff ids: 3002450
-- Components: Generic DMG [damage-modifier; source.companion-or-summon, activation.active-modifier-window]
+- Components: Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
 - Icon: ui/atlas/season_talent_icon/s2talent01_04
 - Target count: 1
 - Text: Eightfold Skyflow | 天流八重 | 천류 팔중 | Flux céleste octuple | Achtfacher Himmelsfluss | Flujo Celestial Óctuple | Fluxo Celestial Óctuplo | แปดกระแสสวรรค์ | Celestial Flow | ui/atlas/season_talent_icon/s2talent01_04
@@ -806,12 +798,11 @@ This report flags generated effect sources that likely need extra runtime predic
 ### Frost Comet (talent:215)
 - Family: EffectSources
 - Kind: talent-passive / talent
-- Tags: activation.active-modifier-window, effect.compound-components, scope.skill-or-recount-targeted, source.companion-or-summon
+- Tags: activation.active-modifier-window, scope.skill-or-recount-targeted, source.companion-or-summon
 - Buff ids: 2204140
-- Components: Physical/Magic Enhancement [physical-magic-enhancement; source.companion-or-summon, activation.active-modifier-window] / Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
+- Components: Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
 - Icon: ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet
 - Target count: 2
-- Notes: This source has split effect components; parser attribution should apply predicates per component, not to the whole source row.
 - Text: Frost Comet | 冰霜彗星 | 氷慧 | 프로스트 코멧 | Comète de givre | Frostkomet | Cometa Gélido | ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet
 ### Frost Mage - Final Meteor (season-rogue-entry:245)
 - Family: EffectSources
@@ -846,7 +837,7 @@ This report flags generated effect sources that likely need extra runtime predic
 - Kind: talent-passive / talent
 - Tags: activation.active-modifier-window, effect.compound-components, target.elite-or-stronger
 - Buff ids: 2204210
-- Components: Elemental DMG [elemental-damage; target.elite-or-stronger, activation.active-modifier-window] / Generic DMG [damage-modifier; target.elite-or-stronger, activation.active-modifier-window]
+- Components: Elemental DMG [elemental-damage; target.elite-or-stronger, activation.active-modifier-window] / Produced Damage [proc-damage; target.elite-or-stronger, activation.active-modifier-window]
 - Icon: ui/atlas/talent_passive_2/talent_passive_icon_general_tank_suppressex
 - Notes: This source has split effect components; parser attribution should apply predicates per component, not to the whole source row.
 - Text: Glazed Vastness | 琉璃浩瀚 | 無辺なる氷 | 유리 광야 | Immensité Verglacée | Gläserne Weite | Inmensidad Cristalina | Vastidão Vítrea | Glassy Expanse | ui/atlas/talent_passive_2/talent_passive_icon_general_tank_suppressex
@@ -896,7 +887,7 @@ This report flags generated effect sources that likely need extra runtime predic
 - Kind: talent-passive / talent
 - Tags: activation.active-modifier-window, target.elite-or-stronger
 - Buff ids: 2201300
-- Components: Generic DMG [damage-modifier; target.elite-or-stronger, activation.active-modifier-window]
+- Components: Produced Damage [proc-damage; target.elite-or-stronger, activation.active-modifier-window]
 - Icon: ui/atlas/talent_passive_9/talent_passive_icon_tank_bk04
 - Text: Group Suppress | 群敌压制 | 群敵壓制 | 衆敵抑圧 | 적군 제압 | Suppression de groupe | Gruppenunterdrückung | Supresión Grupal | Supressão em Grupo | Suppression of Enemies | Enemy Suppression | ui/atlas/talent_passive_9/talent_passive_icon_tank_bk04
 ### Guardian Synergy—Swarm (season-rogue-entry:214)
@@ -972,7 +963,7 @@ This report flags generated effect sources that likely need extra runtime predic
 - Kind: talent-passive / talent
 - Tags: activation.active-modifier-window, effect.compound-components, source.companion-or-summon
 - Buff ids: 2204040
-- Components: Physical/Magic Enhancement [physical-magic-enhancement; source.companion-or-summon, activation.active-modifier-window] / Elemental DMG [elemental-damage; source.companion-or-summon, activation.active-modifier-window] / Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
+- Components: Elemental DMG [elemental-damage; source.companion-or-summon, activation.active-modifier-window] / Produced Damage [proc-damage; source.companion-or-summon, activation.active-modifier-window]
 - Icon: ui/atlas/talent_passive_2/talent_passive_icon_general_dps_doubleicearrow
 - Notes: This source has split effect components; parser attribution should apply predicates per component, not to the whole source row.
 - Text: Ice Revelation | 寒冰启示 | 寒冰啟示 | 氷の啓示 | 얼음의 계시 | Révélation de glace | Eis-Offenbarung | Revelación Gélida | Revelação de Gelo | การเปิดเผยแห่งน้ำแข็ง | ui/atlas/talent_passive_2/talent_passive_icon_general_dps_doubleicearrow
@@ -1071,3 +1062,12 @@ This report flags generated effect sources that likely need extra runtime predic
 - Icon: ui/atlas/weaponhero/new/common_attrluck
 - Notes: Talent row currently lacks captured UI description text; name/icon/buff evidence is not enough for exact semantics.
 - Text: Luck Damage | 幸运伤害 | 幸運傷害 | 幸運ダメージ | 행운 대미지 | Dégâts de chance | Glücksschaden | Daño de suerte | Dano de Sorte | DMG Lucky | Lucky DMG | ui/atlas/weaponhero/new/common_attrluck | Exact localized name groups are used as runtime buff aliases only; they do not imply a damage formula.
+### Lucky Crit (buff-source:2110132)
+- Family: EffectSources
+- Kind: imagine / imagine-buff
+- Tags: activation.active-modifier-window, effect.compound-components, target.elite-or-stronger
+- Buff ids: 2110132
+- Components: Crit DMG [critical-damage-stat; activation.active-modifier-window] / Crit [critical-stat; activation.active-modifier-window]
+- Icon: ui/atlas/hud/buff/buff_blue_atk
+- Notes: This source has split effect components; parser attribution should apply predicates per component, not to the whole source row.
+- Text: Lucky Crit | 幸运会心 | 幸運會心 | 幸運会心 | 행운 회심 | Critique porte-bonheur | Glücklicher Krit | Crítico de suerte | Crítico de Sorte | รวมจิตโชคดี | Luck Crit | 卷心菜精英1-主动 | ui/atlas/hud/buff/buff_blue_atk

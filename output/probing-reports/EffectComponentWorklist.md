@@ -5,16 +5,16 @@ This report classifies broad effect-description matches into component, behavior
 ## Summary
 
 - Surface records classified: 20000
-- Predicate-audit records classified: 321
-- Total work items: 20321
+- Predicate-audit records classified: 320
+- Total work items: 20320
 
 ### Confidence Counts
 
 - ctb-string-discovery: 2550
-- generated-bridge-surface: 4113
-- generated-component-audit: 205
-- generated-component-surface: 1068
-- generated-source-audit: 116
+- generated-bridge-surface: 4111
+- generated-component-audit: 203
+- generated-component-surface: 1070
+- generated-source-audit: 117
 - localization-discovery: 10547
 - localization-effect-text: 1722
 
@@ -23,24 +23,24 @@ This report classifies broad effect-description matches into component, behavior
 - candidate-for-structured-component-promotion: 6
 - discovery-only-needs-bridge: 14819
 - keep-out-of-offensive-damage-until-report-split: 256
-- needs-component-parser: 4605
-- needs-runtime-predicate-before-attribution: 254
+- needs-component-parser: 4602
+- needs-runtime-predicate-before-attribution: 252
 - needs-runtime-window-before-attribution: 30
-- needs-stat-state-before-attribution: 351
+- needs-stat-state-before-attribution: 355
 
 ### Required Evidence Counts
 
-- damage-id-or-recount-produced-row: 444
+- damage-id-or-recount-produced-row: 447
 - focus-or-activation-window: 198
 - incoming-attacker-monster-type: 16
 - modifier-window-open-close: 2566
-- raw-attacker-vs-top-summoner: 1440
-- selected-loadout-or-static-state: 4872
+- raw-attacker-vs-top-summoner: 1434
+- selected-loadout-or-static-state: 4876
 - separate-tanked-or-healing-report: 1133
 - source-player-or-party-host: 106
 - stack-count-window: 1363
 - stat-conversion-chain: 96
-- stat-snapshot-or-temp-attr: 7564
+- stat-snapshot-or-temp-attr: 7567
 - structured-source-row-bridge: 14819
 - target-debuff-host-window: 158
 - target-monster-type-per-hit: 1638
@@ -67,17 +67,17 @@ This report classifies broad effect-description matches into component, behavior
 - EffectSources.json [needs-component-parser]: 物攻+精英增伤Lv1
 ### component.unknown-effect
 
-- Count: 4722
-- Top evidence: damage-id-or-recount-produced-row=102, focus-or-activation-window=103, modifier-window-open-close=855, raw-attacker-vs-top-summoner=939, selected-loadout-or-static-state=51, separate-tanked-or-healing-report=34
+- Count: 4719
+- Top evidence: damage-id-or-recount-produced-row=97, focus-or-activation-window=103, modifier-window-open-close=855, raw-attacker-vs-top-summoner=935, selected-loadout-or-static-state=51, separate-tanked-or-healing-report=34
 
-- EffectSources.json [needs-component-parser]: source.companion-or-summon
 - Marksman - Legendary Companion [needs-component-parser]: Marksman - Legendary Companion | 神射手·传奇同临 | 神射手·傳奇同臨 | ディバインアーチャー・伝説同臨 | 디바인 아처・전설 동행 | Tireur d'élite - Compagnon légendaire | Scharfschütze – Legendärer Begleiter | Tirador: Acompañante Legendario | Atirador de Elite — Companheiro Lendário | Markman - Legendary Resonance | Divine Archer·Legendary Bersatu | ui/texture
 - Marksman - Demon Wolf Beast [needs-component-parser]: Marksman - Demon Wolf Beast | 神射手·魔狼归兽 | 神射手·魔狼歸獸 | ディバインアーチャー・魔狼獣化 | 디바인 아처・늑대 마수 귀환 | Tireur d'élite - Bête loup démon | Scharfschütze – Dämonenwolf-Bestie | Tirador: Bestia Lobo Demonio | Atirador de Elite — Besta Lobo Demoníaco | Markman - Direwolf Regression | Divine Archer·Serigala Magis Kembali | ui/textures/rou
 - Marksman - Twin Talon Strike [needs-component-parser]: Marksman - Twin Talon Strike | 神射手·双鹰齐唤 | 神射手·雙鷹齊喚 | ディバインアーチャー・双鷹同召 | 디바인 아처・더블 팔콘 소환 | Tireur d'élite - Frappe de serres jumelles | Scharfschütze – Zwillingsklauenschlag | Tirador: Golpe de Garra Gemela | Atirador de Elite — Golpe de Garra Gêmea | Markman - Dual Falcon Summon | Divine Archer·Panggilan Dua Elang | ui/
+- Marksman X2 [needs-component-parser]: Marksman X2 | 神射X2 | ディバインアーチャーX2 | 디바인 아처X2 | Tireur d'élite X2 | Scharfschütze X2 | Tirador X2 | Atirador de Elite X2 | Divine X2 | Wild Wolf - Tail Sweep Dream DMG + | 野狼扫尾梦境伤害+ | 野狼掃尾夢境傷害+ | 臣狼の掃撃の夢界ダメージ+ | 늑대 꼬리 휩쓸기 꿈 대미지가 증가합니다. | Loup sauvage - Balayage de queue : dégâts oniriques + | Traum-SCH von Wilder Wolf –
 ### component.offense-stat
 
-- Count: 1619
-- Top evidence: damage-id-or-recount-produced-row=119, focus-or-activation-window=14, modifier-window-open-close=205, raw-attacker-vs-top-summoner=68, selected-loadout-or-static-state=281, separate-tanked-or-healing-report=131
+- Count: 1618
+- Top evidence: damage-id-or-recount-produced-row=119, focus-or-activation-window=14, modifier-window-open-close=205, raw-attacker-vs-top-summoner=67, selected-loadout-or-static-state=281, separate-tanked-or-healing-report=131
 
 - Cuisine - ATK + DMG to Elites Lv.1 [needs-runtime-predicate-before-attribution]: Cuisine - ATK + DMG to Elites Lv.1 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 物攻+精英增伤Lv1 | ATK + DMG to Elites Lv.1 | Painfly Lv.2 | Fresh Soup Lv.1 | Fiery Pan-Seared Fish Lv.1
 - Cuisine - ATK + DMG to Elites Lv.2 [needs-runtime-predicate-before-attribution]: Cuisine - ATK + DMG to Elites Lv.2 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 物攻+精英增伤Lv2 | ATK + DMG to Elites Lv.2 | Painfly Lv.3 | Fresh Soup Lv.2 | Fiery Pan-Seared Fish Lv.2
@@ -85,8 +85,8 @@ This report classifies broad effect-description matches into component, behavior
 - Cuisine - MATK + DMG to Elites Lv.2 [needs-runtime-predicate-before-attribution]: Cuisine - MATK + DMG to Elites Lv.2 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 魔攻+精英增伤Lv2 | MATK + DMG to Elites Lv.2 | Seabreeze Special Lv.3 | Spiced Lamb Rib Delight Lv.2 | Pepper Rib Strips Lv.2
 ### component.damage-modifier
 
-- Count: 944
-- Top evidence: damage-id-or-recount-produced-row=11, focus-or-activation-window=6, modifier-window-open-close=370, raw-attacker-vs-top-summoner=148, selected-loadout-or-static-state=4, separate-tanked-or-healing-report=97
+- Count: 935
+- Top evidence: damage-id-or-recount-produced-row=11, focus-or-activation-window=6, modifier-window-open-close=370, raw-attacker-vs-top-summoner=141, selected-loadout-or-static-state=4, separate-tanked-or-healing-report=96
 
 - Cuisine - ATK + DMG to Elites Lv.1 [needs-runtime-predicate-before-attribution]: Cuisine - ATK + DMG to Elites Lv.1 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 物攻+精英增伤Lv1 | ATK + DMG to Elites Lv.1 | Painfly Lv.2 | Fresh Soup Lv.1 | Fiery Pan-Seared Fish Lv.1
 - Cuisine - ATK + DMG to Elites Lv.2 [needs-runtime-predicate-before-attribution]: Cuisine - ATK + DMG to Elites Lv.2 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 物攻+精英增伤Lv2 | ATK + DMG to Elites Lv.2 | Painfly Lv.3 | Fresh Soup Lv.2 | Fiery Pan-Seared Fish Lv.2
@@ -94,8 +94,8 @@ This report classifies broad effect-description matches into component, behavior
 - Cuisine - MATK + DMG to Elites Lv.2 [needs-runtime-predicate-before-attribution]: Cuisine - MATK + DMG to Elites Lv.2 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 魔攻+精英增伤Lv2 | MATK + DMG to Elites Lv.2 | Seabreeze Special Lv.3 | Spiced Lamb Rib Delight Lv.2 | Pepper Rib Strips Lv.2
 ### component.combat-rating-stat
 
-- Count: 661
-- Top evidence: damage-id-or-recount-produced-row=64, focus-or-activation-window=31, modifier-window-open-close=101, raw-attacker-vs-top-summoner=23, selected-loadout-or-static-state=76, separate-tanked-or-healing-report=66
+- Count: 665
+- Top evidence: damage-id-or-recount-produced-row=64, focus-or-activation-window=31, modifier-window-open-close=101, raw-attacker-vs-top-summoner=23, selected-loadout-or-static-state=80, separate-tanked-or-healing-report=66
 
 - Lucky Crit [needs-runtime-predicate-before-attribution]: Lucky Crit | 幸运会心 | 幸運會心 | 幸運会心 | 행운 회심 | Critique porte-bonheur | Glücklicher Krit | Crítico de suerte | Crítico de Sorte | รวมจิตโชคดี | Luck Crit | 卷心菜精英1-主动 | ui/atlas/hud/buff/buff_blue_atk
 - Marksman - Tidal Fury [needs-runtime-predicate-before-attribution]: Marksman - Tidal Fury | 神射手·怒涛必暴 | 神射手·怒濤必暴 | ディバインアーチャー・怒涛会心 | 디바인 아처・치명적 격류 | Tireur d'élite - Fureur des marées | Scharfschütze – Gezeitenwut | Tirador: Furia de Marea | Atirador de Elite — Fúria da Maré | Markman - Surge: Guaranteed Crit | Divine Archer·Badai Kemarahan | ui/textures/rouge_icon/rogue_icon_entry052
@@ -113,7 +113,7 @@ This report classifies broad effect-description matches into component, behavior
 ### component.elemental-stat
 
 - Count: 392
-- Top evidence: damage-id-or-recount-produced-row=75, focus-or-activation-window=11, modifier-window-open-close=136, raw-attacker-vs-top-summoner=85, selected-loadout-or-static-state=22, separate-tanked-or-healing-report=113
+- Top evidence: damage-id-or-recount-produced-row=76, focus-or-activation-window=11, modifier-window-open-close=136, raw-attacker-vs-top-summoner=85, selected-loadout-or-static-state=22, separate-tanked-or-healing-report=113
 
 - Wind King's Pact [needs-runtime-predicate-before-attribution]: Wind King's Pact | 风王契约 | 風王契約 | 風の王の契約 | 바람 왕의 계약 | Pacte du Roi du Vent | Pakt des Windkönigs | Pacto del Rey del Viento | Pacto do Rei do Vento | พันธสัญญาจ้าววายุ | Wind King Covenant | ui/textures/rouge_icon/rogue_icon_entry087
 - Wind Knight - Sever Wind Summoning [needs-runtime-predicate-before-attribution]: Wind Knight - Sever Wind Summoning | 青岚骑士·岚切召风 | 青嵐騎士·嵐切召風 | ゲイルランサー・嵐斬招風 | 윈드 나이트・난절 바람 소환 | Chevalier du vent - Invocation de vent tranchant | Windritter – Windtrennungsbeschwörung | Caballero del viento: Invocación de Viento Cortante | Cavaleiro do Vento — Invocação de Vento de Corte | Wind Knight - Tempest Slash Ga
@@ -125,18 +125,18 @@ This report classifies broad effect-description matches into component, behavior
 - Top evidence: damage-id-or-recount-produced-row=95, focus-or-activation-window=30, modifier-window-open-close=82, raw-attacker-vs-top-summoner=91, separate-tanked-or-healing-report=87, source-player-or-party-host=24
 
 - Marksman - Falcon's Gift [needs-runtime-predicate-before-attribution]: Marksman - Falcon's Gift | 神射手·猎鹰回能 | 神射手·獵鷹回能 | ディバインアーチャー・臣鷹回復 | 디바인 아처・팔콘 에너지 회복 | Tireur d'élite - Don du faucon | Scharfschütze – Geschenk des Falken | Tirador: Talento de Halcón | Atirador de Elite — Presente do Falcão | Markman - Falcon Energy Regen | Divine Archer·Hawk Energy Restore | ui/textures/rouge_icon/ro
-- Marksman Stasis X2 [keep-out-of-offensive-damage-until-report-split]: Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador​ de Elite X2 | Marksman Steady X2 | Divine Steady X2 | yinzi_s2_common_028 | Direct game-file ID links map child damage rows. Structured Dream DMG target
+- Marksman Stasis X2 [keep-out-of-offensive-damage-until-report-split]: Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador de Elite X2 | Marksman Steady X2 | Divine Steady X2 | yinzi_s2_common_028 | Direct game-file ID links map child damage rows. Structured Dream DMG target 
 - Marksman - Crit CD Reduction [keep-out-of-offensive-damage-until-report-split]: Marksman - Crit CD Reduction | 神射手·暴击缩冷 | 神射手·暴擊縮冷 | ディバインアーチャー・会心リキャスト短縮 | 디바인 아처・치명적 냉기 | Tireur d'élite - Réduction de TdR critique | Scharfschütze – Krit-AZ-Verringerung | Tirador: Reducción de TdR de Crítico | Atirador de Elite — Redução de TR de Crítico | Markman - Crit Cooldown Reduction | Divine Archer·Crit Red
 - Marksman - Devastating Bombardment [needs-runtime-predicate-before-attribution]: Marksman - Devastating Bombardment | 神射手·轰炸暴伤 | 神射手·轟炸暴傷 | ディバインアーチャー・爆撃増傷 | 디바인 아처・폭격 강타 | Tireur d'élite - Bombardement dévastateur | Scharfschütze – Verheerendes Bombardement | Tirador: Bombardeo Devastador | Atirador de Elite — Bombardeio Devastador | Markman - Bombardment: Crit DMG | Divine Archer·Ledakan Crit DMG
 ### component.proc-damage
 
-- Count: 269
-- Top evidence: damage-id-or-recount-produced-row=269, focus-or-activation-window=4, modifier-window-open-close=90, raw-attacker-vs-top-summoner=91, separate-tanked-or-healing-report=74, source-player-or-party-host=20
+- Count: 277
+- Top evidence: damage-id-or-recount-produced-row=277, focus-or-activation-window=4, modifier-window-open-close=90, raw-attacker-vs-top-summoner=97, separate-tanked-or-healing-report=75, source-player-or-party-host=21
 
 - Marksman - Falcon's Gift [needs-runtime-predicate-before-attribution]: Marksman - Falcon's Gift | 神射手·猎鹰回能 | 神射手·獵鷹回能 | ディバインアーチャー・臣鷹回復 | 디바인 아처・팔콘 에너지 회복 | Tireur d'élite - Don du faucon | Scharfschütze – Geschenk des Falken | Tirador: Talento de Halcón | Atirador de Elite — Presente do Falcão | Markman - Falcon Energy Regen | Divine Archer·Hawk Energy Restore | ui/textures/rouge_icon/ro
 - Marksman - Eagle-Eyed Focus [needs-runtime-predicate-before-attribution]: Marksman - Eagle-Eyed Focus | 神射手·鹰击延凝 | 神射手·鷹擊延凝 | ディバインアーチャー・鷹撃延長 | 디바인 아처・팔콘 공격 응결 | Tireur d'élite - Concentration d'aigle | Scharfschütze – Adleraugen-Fokus | Tirador: Enfoque de Ojo de Águila | Atirador de Elite — Concentração Olhos de Águia | Markman - Falcon Strike: Linger | Divine Archer·Serangan Elang yang Te
 - Marksman - Charged Execution [needs-runtime-predicate-before-attribution]: Marksman - Charged Execution | 神射手·聚能斩血 | 神射手·聚能斬血 | ディバインアーチャー・チャージ削命 | 디바인 아처・집중 참혈 | Tireur d'élite - Exécution chargée | Scharfschütze – Aufgeladene Hinrichtung | Tirador: Ejecución Cargada | Atirador de Elite — Execução Carregada | Markman - Charged Bloodslash | Divine Archer·Focus Pemotong Darah | ui/textures/rou
-- Wide-area Thorns [needs-runtime-predicate-before-attribution]: Wide-area Thorns | 广域荆棘 | 廣域荊棘 | 広域の茨 | 광역 가시 | Épines de zone | Flächendornen | Espinas Expansivas | Espinhos em Área | Thorns ขอบเขตกว้าง | Wide Thorn | ui/atlas/talent_passive_5/fahuan544
+- Glazed Vastness [needs-runtime-predicate-before-attribution]: Glazed Vastness | 琉璃浩瀚 | 無辺なる氷 | 유리 광야 | Immensité Verglacée | Gläserne Weite | Inmensidad Cristalina | Vastidão Vítrea | Glassy Expanse | ui/atlas/talent_passive_2/talent_passive_icon_general_tank_suppressex
 ### component.healing-or-lifesteal
 
 - Count: 175
@@ -149,7 +149,7 @@ This report classifies broad effect-description matches into component, behavior
 ### component.damage-reduction
 
 - Count: 170
-- Top evidence: damage-id-or-recount-produced-row=22, incoming-attacker-monster-type=16, modifier-window-open-close=12, raw-attacker-vs-top-summoner=11, selected-loadout-or-static-state=43, separate-tanked-or-healing-report=170
+- Top evidence: damage-id-or-recount-produced-row=23, incoming-attacker-monster-type=16, modifier-window-open-close=12, raw-attacker-vs-top-summoner=11, selected-loadout-or-static-state=43, separate-tanked-or-healing-report=170
 
 - Cuisine - Armor + Elite DMG Reduction Lv.1 [keep-out-of-offensive-damage-until-report-split]: Cuisine - Armor + Elite DMG Reduction Lv.1 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 护甲+精英减伤Lv1 | Armor + Elite DMG Reduction Lv.1 | Shroomfish Stew Lv.2 | Buttermelt Roast Lv.2 | Honey Fish Delight Lv.1 | Salt-Baked Lamb Ribs Lv.1 | Windy Seafood Chowder Lv.1 | Scorching Spicy Ribs Lv.1
 - Cuisine - Armor + Elite DMG Reduction Lv.2 [keep-out-of-offensive-damage-until-report-split]: Cuisine - Armor + Elite DMG Reduction Lv.2 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | 护甲+精英减伤Lv2 | Armor + Elite DMG Reduction Lv.2 | Shroomfish Stew Lv.3 | Buttermelt Roast Lv.3 | Honey Fish Delight Lv.2 | Salt-Baked Lamb Ribs Lv.2 | Windy Seafood Chowder Lv.2 | Scorching Spicy Ribs Lv.2
@@ -178,8 +178,8 @@ This report classifies broad effect-description matches into component, behavior
 
 ### behavior.static-or-selected-state-suspect
 
-- Count: 13479
-- Top evidence: selected-loadout-or-static-state=4872, separate-tanked-or-healing-report=478, stat-snapshot-or-temp-attr=5679, structured-source-row-bridge=8607
+- Count: 13483
+- Top evidence: selected-loadout-or-static-state=4876, separate-tanked-or-healing-report=478, stat-snapshot-or-temp-attr=5683, structured-source-row-bridge=8607
 
 - Shield DMG Reduction [keep-out-of-offensive-damage-until-report-split]: Shield DMG Reduction | 护盾减伤 | 護盾減傷 | バリアダメージ軽減 | 실드 대미지 감소 | Réduction de dégâts de bouclier | Schild-SCH-Reduktion | Reducción de DÑO de escudo | Redução de Dano de Escudo | ลด DMG โล่ | Shield DR | ui/atlas/weaponhero/new/common_icon04
 - Crit Chance [needs-stat-state-before-attribution]: Crit Chance | 暴击几率 | 暴擊機率 | 会心率 | 치명타 확률 | Chances de coups critiques | Krit-Chance | Probabilidad de crítico | Chance de Crítico | โอกาส CRIT | Critical Chance | ui/atlas/weaponhero/new/common_icon12
@@ -192,23 +192,23 @@ This report classifies broad effect-description matches into component, behavior
 
 - english [discovery-only-needs-bridge]: Effect: ATK + , DMG to Elites or stronger enemies + for 30m . Reusing stacks duration, up to 720m [Up to 30% of current Basic ATK].
 - english [discovery-only-needs-bridge]: Effect: MATK + , DMG to Elites or stronger enemies + for 30m Reusing stacks duration, up to 720m [Up to 30% of current Basic MATK]
-- Marksman Rhapsody X1 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador​ de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | For 15 seconds after casting Wildcall, the Companion's Attack SPD +. Wild Wolf - T
-- Marksman Rhapsody X2 [needs-component-parser]: Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador​ de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Comp
+- Marksman Rhapsody X1 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | For 15 seconds after casting Wildcall, the Companion's Attack SPD +. Wild Wolf - Ta
+- Marksman Rhapsody X2 [needs-component-parser]: Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Compa
 ### behavior.target-rank-conditional
 
 - Count: 1638
-- Top evidence: damage-id-or-recount-produced-row=23, focus-or-activation-window=3, incoming-attacker-monster-type=16, modifier-window-open-close=118, raw-attacker-vs-top-summoner=108, separate-tanked-or-healing-report=118
+- Top evidence: damage-id-or-recount-produced-row=26, focus-or-activation-window=3, incoming-attacker-monster-type=16, modifier-window-open-close=118, raw-attacker-vs-top-summoner=107, separate-tanked-or-healing-report=118
 
-- Marksman Rhapsody X1 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador​ de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Struc
+- Marksman Rhapsody X1 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Struct
 - Marksman - Storm Tamer [needs-runtime-predicate-before-attribution]: Marksman - Storm Tamer | 神射手·暴风驯兽 | 神射手·暴風馴獸 | ディバインアーチャー・暴風制獣 | 디바인 아처・폭풍 조련 | Tireur d'élite - Dompteur de tempête | Scharfschütze – Sturmbändiger | Tirador: Domador de Tormentas | Atirador de Elite — Domador de Tempestades | Markman - Tempest Taming | Divine Archer·Penjinak Storm | ui/textures/rouge_icon/rogue_icon_
 - Marksman - Falcon's Gift [needs-runtime-predicate-before-attribution]: Marksman - Falcon's Gift | 神射手·猎鹰回能 | 神射手·獵鷹回能 | ディバインアーチャー・臣鷹回復 | 디바인 아처・팔콘 에너지 회복 | Tireur d'élite - Don du faucon | Scharfschütze – Geschenk des Falken | Tirador: Talento de Halcón | Atirador de Elite — Presente do Falcão | Markman - Falcon Energy Regen | Divine Archer·Hawk Energy Restore | ui/textures/rouge_icon/ro
 - Marksman - Eagle-Eyed Focus [needs-runtime-predicate-before-attribution]: Marksman - Eagle-Eyed Focus | 神射手·鹰击延凝 | 神射手·鷹擊延凝 | ディバインアーチャー・鷹撃延長 | 디바인 아처・팔콘 공격 응결 | Tireur d'élite - Concentration d'aigle | Scharfschütze – Adleraugen-Fokus | Tirador: Enfoque de Ojo de Águila | Atirador de Elite — Concentração Olhos de Águia | Markman - Falcon Strike: Linger | Divine Archer·Serangan Elang yang Te
 ### behavior.companion-or-summon
 
-- Count: 1440
-- Top evidence: damage-id-or-recount-produced-row=251, focus-or-activation-window=8, modifier-window-open-close=174, raw-attacker-vs-top-summoner=1440, separate-tanked-or-healing-report=72, source-player-or-party-host=23
+- Count: 1434
+- Top evidence: damage-id-or-recount-produced-row=252, focus-or-activation-window=8, modifier-window-open-close=174, raw-attacker-vs-top-summoner=1434, separate-tanked-or-healing-report=72, source-player-or-party-host=23
 
-- Marksman Rhapsody X1 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador​ de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Struc
+- Marksman Rhapsody X1 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Struct
 - Marksman - Storm Tamer [needs-runtime-predicate-before-attribution]: Marksman - Storm Tamer | 神射手·暴风驯兽 | 神射手·暴風馴獸 | ディバインアーチャー・暴風制獣 | 디바인 아처・폭풍 조련 | Tireur d'élite - Dompteur de tempête | Scharfschütze – Sturmbändiger | Tirador: Domador de Tormentas | Atirador de Elite — Domador de Tempestades | Markman - Tempest Taming | Divine Archer·Penjinak Storm | ui/textures/rouge_icon/rogue_icon_
 - Marksman - Falcon's Gift [needs-runtime-predicate-before-attribution]: Marksman - Falcon's Gift | 神射手·猎鹰回能 | 神射手·獵鷹回能 | ディバインアーチャー・臣鷹回復 | 디바인 아처・팔콘 에너지 회복 | Tireur d'élite - Don du faucon | Scharfschütze – Geschenk des Falken | Tirador: Talento de Halcón | Atirador de Elite — Presente do Falcão | Markman - Falcon Energy Regen | Divine Archer·Hawk Energy Restore | ui/textures/rouge_icon/ro
 - Marksman - Eagle-Eyed Focus [needs-runtime-predicate-before-attribution]: Marksman - Eagle-Eyed Focus | 神射手·鹰击延凝 | 神射手·鷹擊延凝 | ディバインアーチャー・鷹撃延長 | 디바인 아처・팔콘 공격 응결 | Tireur d'élite - Concentration d'aigle | Scharfschütze – Adleraugen-Fokus | Tirador: Enfoque de Ojo de Águila | Atirador de Elite — Concentração Olhos de Águia | Markman - Falcon Strike: Linger | Divine Archer·Serangan Elang yang Te
@@ -226,7 +226,7 @@ This report classifies broad effect-description matches into component, behavior
 - Count: 516
 - Top evidence: damage-id-or-recount-produced-row=125, focus-or-activation-window=18, modifier-window-open-close=160, raw-attacker-vs-top-summoner=92, separate-tanked-or-healing-report=166, source-player-or-party-host=36
 
-- Marksman Rhapsody X2 [needs-component-parser]: Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador​ de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Comp
+- Marksman Rhapsody X2 [needs-component-parser]: Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Compa
 - Frost Mage Rhapsody X4 [needs-runtime-predicate-before-attribution]: Frost Mage Rhapsody X4 | 冰魔狂想X4.G1 | フロストメイジ・狂想X4.G1 | 프로스트 메이지 광상X4 | Rhapsodie de Mage de givre X4 | Frostmagier-Rhapsodie X4 | Rapsodia: Mago gélido X4 | Rapsódia do Mago do Gelo X4 | Frost Rhapsody X4 | Frost Rhapsody X4.G1 | When casting Meteor Storm, a Meteor Storm is simultaneously summoned at the location of Bl
 - english [discovery-only-needs-bridge]: When a Lucky Strike is launched, the Lucky Effect may be activated: Launches a meteor strike, dealing Magic DMG equal to ATK (CD: 0.3s ). Tier 5: Each time a meteor is summoned, immediately reduces the CD of this skill by 0.5s . Triggers at most once per second .
 - english [discovery-only-needs-bridge]: Adventurers can enhance their combat strength by equipping gear. Gear Slot: There are 11 equipment slots in total: Weapon, Helmet, Armor, Gauntlets, Boots, Necklace, Earrings, Ring, Charm, Bracelet (L), and Bracelet (R). Gear Effect: Gear effects are categorized into Basic Attributes, Advanced Attributes (which include
@@ -238,11 +238,11 @@ This report classifies broad effect-description matches into component, behavior
 - Summon on Crit [needs-runtime-predicate-before-attribution]: Summon on Crit | 暴击召唤 | 暴擊召喚 | 会心召喚 | 치명타 소환 | Invocation sur Critique | Beschwörung bei Krit | Invocación por Crítico | Invocação por Crítico | อัญเชิญ CRIT | Critical Summon | ui/textures/rouge_icon/rogue_icon_entry072
 - Stunt! Cabbage Blitz [needs-runtime-predicate-before-attribution]: Stunt! Cabbage Blitz | 卷心菜精英2-被动触发 | 绝技！卷心菜霹雳闪 | 絕技！捲心菜霹靂閃 | 絶技！甘藍稲妻落とし | 비기! 양배추 벽력 섬광 | Acrobatie ! Foudre du chou | Stunt! Kohlblitz | ¡Proeza! Bombardeo de Col | Proeza! Bombardeio Repolho | Ultimate! สายฟ้าฟาดกะหล่ำปลี | Ultimate! Cabbage Thunderbolt Flash | Name marks a passive-triggered row.
 - Heavy Guardian - Twentyfold Rockfall [needs-runtime-predicate-before-attribution]: Heavy Guardian - Twentyfold Rockfall | 巨刃守护者·二十岩陨 | 巨刃守護者·二十岩隕 | ヘヴィガーディアン・20ロックフォール | 헤비 가디언・이십중 암석 낙하 | Gardien imposant - Éboulement vingtuplé | Schwerer Wächter – Zwanzigfacher Steinschlag | Guardián pesado: Caída de Rocas x20 | Guardião Pesado — Queda de Rochas Víntupla | Heavy Guardian - 20-Fold Rockfall | Heavy 
-- Marksman Rhapsody X4 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X4 | 神射狂想X4.G1 | ディバインアーチャー・狂想X4.G1 | 디바인 아처 광상X4 | Rhapsodie de Tireur d'élite X4 | Scharfschützen-Rhapsodie X4 | Rapsodia: Tirador X4 | Rapsódia do Atirador​ de Elite X4 | Markman Rhapsody X4 | Divine Rhapsody X4.G1 | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Pow
+- Marksman Rhapsody X4 [needs-runtime-predicate-before-attribution]: Marksman Rhapsody X4 | 神射狂想X4.G1 | ディバインアーチャー・狂想X4.G1 | 디바인 아처 광상X4 | Rhapsodie de Tireur d'élite X4 | Scharfschützen-Rhapsodie X4 | Rapsodia: Tirador X4 | Rapsódia do Atirador de Elite X4 | Markman Rhapsody X4 | Divine Rhapsody X4.G1 | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powe
 ### behavior.proc-damage
 
-- Count: 374
-- Top evidence: damage-id-or-recount-produced-row=374, focus-or-activation-window=7, modifier-window-open-close=117, raw-attacker-vs-top-summoner=199, separate-tanked-or-healing-report=81, source-player-or-party-host=27
+- Count: 369
+- Top evidence: damage-id-or-recount-produced-row=369, focus-or-activation-window=7, modifier-window-open-close=117, raw-attacker-vs-top-summoner=194, separate-tanked-or-healing-report=81, source-player-or-party-host=27
 
 - Summon on Crit [needs-runtime-predicate-before-attribution]: Summon on Crit | 暴击召唤 | 暴擊召喚 | 会心召喚 | 치명타 소환 | Invocation sur Critique | Beschwörung bei Krit | Invocación por Crítico | Invocação por Crítico | อัญเชิญ CRIT | Critical Summon | ui/textures/rouge_icon/rogue_icon_entry072
 - Synergy Summon—Petrified Behemoth [keep-out-of-offensive-damage-until-report-split]: Synergy Summon—Petrified Behemoth | 协同召唤：石化巨兽 | 協同召喚：石化巨獸 | 連携召喚：石化巨獣 | 협동 소환: 석화 거대 몬스터 | Invocation Synergique - Béhémoth pétrifié | Synergie-Beschwörung – Versteinerter Behemoth | Invocación Sinérgica: Monstruo Petrificado | Invocação Sinérgica – Colosso Petrificado | อัญเชิญประสาน: อสูรยักษ์ศิลา | Sync Summon: Petr
@@ -262,9 +262,9 @@ This report classifies broad effect-description matches into component, behavior
 - Count: 198
 - Top evidence: damage-id-or-recount-produced-row=7, focus-or-activation-window=198, modifier-window-open-close=8, raw-attacker-vs-top-summoner=8, separate-tanked-or-healing-report=9, source-player-or-party-host=1
 
-- Marksman Rhapsody X2 [needs-component-parser]: Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador​ de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Comp
+- Marksman Rhapsody X2 [needs-component-parser]: Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Compa
 - Marksman X8 [needs-component-parser]: Marksman X8 | 神射X8 | ディバインアーチャーX8 | 디바인 아처X8 | Tireur d'élite X8 | Scharfschütze X8 | Tirador X8 | Atirador de Elite X8 | Divine X8 | During Torrent Volley, Focus duration is paused; Torrent Volley Dream DMG + | 怒涛射击施放期间精神凝聚持续时间停滞；怒涛射击梦境伤害+ | 怒濤射擊施放期間精神凝聚持續時間停滯；怒濤射擊夢境傷害+ | レイジショット発動中、メンタルフォーカスの持続時間は停止する。レイジショットの夢界ダメージ+
-- Marksman Stasis X1 [keep-out-of-offensive-damage-until-report-split]: Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador​ de Elite X1 | Marksman Steady X1 | Divine Steady X1 | During Focus, Dream DMG Resistance + | 精神凝聚持续期间，梦境伤害减免+ | 精神凝聚持續期間，夢境傷害減免+ | メンタルフォーカスの有効中、夢界ダメージ軽
+- Marksman Stasis X1 [keep-out-of-offensive-damage-until-report-split]: Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador de Elite X1 | Marksman Steady X1 | Divine Steady X1 | During Focus, Dream DMG Resistance + | 精神凝聚持续期间，梦境伤害减免+ | 精神凝聚持續期間，夢境傷害減免+ | メンタルフォーカスの有効中、夢界ダメージ軽減
 - chinese [discovery-only-needs-bridge]: 次元崩坏：裂隙崩裂后，卡特格里夫对场景中所有玩家造成持续高额伤害，在正确的次元裂隙位置会形成保护罩提供大量伤害减免效果。 技巧攻略：想象次元和现实次元的玩家，需要集合后再进行次元逃离，否则会受到高额伤害。治疗注意对队友进行集中治疗。
 ### behavior.target-debuff
 
@@ -278,7 +278,7 @@ This report classifies broad effect-description matches into component, behavior
 ### behavior.party-or-external
 
 - Count: 106
-- Top evidence: damage-id-or-recount-produced-row=27, focus-or-activation-window=1, modifier-window-open-close=39, raw-attacker-vs-top-summoner=23, separate-tanked-or-healing-report=43, source-player-or-party-host=106
+- Top evidence: damage-id-or-recount-produced-row=28, focus-or-activation-window=1, modifier-window-open-close=39, raw-attacker-vs-top-summoner=23, separate-tanked-or-healing-report=43, source-player-or-party-host=106
 
 - Group Suppress [needs-runtime-predicate-before-attribution]: Group Suppress | 群敌压制 | 群敵壓制 | 衆敵抑圧 | 적군 제압 | Suppression de groupe | Gruppenunterdrückung | Supresión Grupal | Supressão em Grupo | Suppression of Enemies | Enemy Suppression | ui/atlas/talent_passive_9/talent_passive_icon_tank_bk04
 - Nature's Ally [needs-runtime-predicate-before-attribution]: Nature's Ally | 自然盟友 | 自然の友 | 자연 맹우 | Allié de la Nature | Verbündeter der Natur | Aliado de la Naturaleza | Aliado da Natureza | ฝ่ายเราธรรมชาติ | Natural Ally | ui/textures/rouge_icon/rogue_icon_entry099
@@ -305,7 +305,7 @@ This report classifies broad effect-description matches into component, behavior
 - Required evidence: raw-attacker-vs-top-summoner, target-monster-type-per-hit
 - State: needs-runtime-predicate-before-attribution
 - Action: Add the listed runtime predicate evidence first, then apply this only to matching hits.
-- Text: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador​ de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.
+- Text: Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.
 ### Marksman - Storm Tamer
 - Id: audit:EffectSources:season-rogue-entry:254
 - Confidence: generated-component-audit
@@ -855,17 +855,17 @@ This report classifies broad effect-description matches into component, behavior
 - Required evidence: separate-tanked-or-healing-report, target-monster-type-per-hit
 - State: keep-out-of-offensive-damage-until-report-split
 - Action: Keep this out of the offensive modifier view unless building incoming damage, shield, or healing attribution.
-- Text: Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador​ de Elite X1 | Marksman Steady X1 | Divine Steady X1 | yinzi_s2_common_027 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.
+- Text: Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador de Elite X1 | Marksman Steady X1 | Divine Steady X1 | yinzi_s2_common_027 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.
 ### Marksman Stasis X2
 - Id: audit:EffectSources:phantom-factor:3059170
 - Confidence: generated-component-audit
-- Components: component.cooldown-or-resource, component.damage-reduction, component.physical-magic-enhancement
+- Components: component.cooldown-or-resource, component.damage-reduction
 - Behaviors: behavior.target-rank-conditional
 - Predicates: predicate.outgoing-damage, predicate.target-monster-rank
 - Required evidence: separate-tanked-or-healing-report, target-monster-type-per-hit
 - State: keep-out-of-offensive-damage-until-report-split
 - Action: Keep this out of the offensive modifier view unless building incoming damage, shield, or healing attribution.
-- Text: Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador​ de Elite X2 | Marksman Steady X2 | Divine Steady X2 | yinzi_s2_common_028 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.
+- Text: Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador de Elite X2 | Marksman Steady X2 | Divine Steady X2 | yinzi_s2_common_028 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.
 ### Marksman - Tidal Fury
 - Id: audit:EffectSources:season-rogue-entry:252
 - Confidence: generated-component-audit
@@ -909,23 +909,13 @@ This report classifies broad effect-description matches into component, behavior
 ### Glazed Vastness
 - Id: audit:EffectSources:talent:223
 - Confidence: generated-component-audit
-- Components: component.damage-modifier, component.elemental-damage
-- Behaviors: behavior.target-rank-conditional
-- Predicates: predicate.target-monster-rank
-- Required evidence: target-monster-type-per-hit
-- State: needs-runtime-predicate-before-attribution
-- Action: Add the listed runtime predicate evidence first, then apply this only to matching hits.
-- Text: Glazed Vastness | 琉璃浩瀚 | 無辺なる氷 | 유리 광야 | Immensité Verglacée | Gläserne Weite | Inmensidad Cristalina | Vastidão Vítrea | Glassy Expanse | ui/atlas/talent_passive_2/talent_passive_icon_general_tank_suppressex
-### Wide-area Thorns
-- Id: audit:EffectSources:talent:544
-- Confidence: generated-component-audit
-- Components: component.physical-magic-enhancement, component.proc-damage
+- Components: component.elemental-damage, component.proc-damage
 - Behaviors: behavior.target-rank-conditional
 - Predicates: predicate.target-monster-rank
 - Required evidence: damage-id-or-recount-produced-row, target-monster-type-per-hit
 - State: needs-runtime-predicate-before-attribution
 - Action: Add the listed runtime predicate evidence first, then apply this only to matching hits.
-- Text: Wide-area Thorns | 广域荆棘 | 廣域荊棘 | 広域の茨 | 광역 가시 | Épines de zone | Flächendornen | Espinas Expansivas | Espinhos em Área | Thorns ขอบเขตกว้าง | Wide Thorn | ui/atlas/talent_passive_5/fahuan544
+- Text: Glazed Vastness | 琉璃浩瀚 | 無辺なる氷 | 유리 광야 | Immensité Verglacée | Gläserne Weite | Inmensidad Cristalina | Vastidão Vítrea | Glassy Expanse | ui/atlas/talent_passive_2/talent_passive_icon_general_tank_suppressex
 ### Shadow Veil
 - Id: audit:EffectSources:talent:926
 - Confidence: generated-component-audit
@@ -1096,3 +1086,13 @@ This report classifies broad effect-description matches into component, behavior
 - State: needs-runtime-predicate-before-attribution
 - Action: Add the listed runtime predicate evidence first, then apply this only to matching hits.
 - Text: Nirvana Leap | 灭渡三跳 | 滅渡三跳 | 寂滅三躍 | 멸도 3점프 | Saut du Nirvana | Nirwana-Sprung | Salto del Nirvana | Salto do Nirvana | สามกระโดดข้ามภพ | Triple Extinction Leap | ui/atlas/season_talent_icon/s2talent01_04
+### Cinder of Reverie
+- Id: audit:EffectSources:season-talent-node:1107
+- Confidence: generated-component-audit
+- Components: component.proc-damage, component.season-damage
+- Behaviors: behavior.companion-or-summon
+- Predicates: predicate.source-companion-or-summon
+- Required evidence: damage-id-or-recount-produced-row, raw-attacker-vs-top-summoner
+- State: needs-runtime-predicate-before-attribution
+- Action: Add the listed runtime predicate evidence first, then apply this only to matching hits.
+- Text: Cinder of Reverie | 残梦余烬 | 殘夢餘燼 | 残夢の余燼 | 남은 꿈의 잔여 | Cendre de rêverie | Glut der Träumerei | Ceniza del Ensueño | Cinzas do Devaneio | เถ้าถ่าน Forgotten Dream | Embers of Fading Dream | ui/atlas/season_talent_icon/s2talent01_04

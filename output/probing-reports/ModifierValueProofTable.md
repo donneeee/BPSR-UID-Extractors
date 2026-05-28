@@ -8,11 +8,11 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Metric | Value |
 | --- | --- |
-| Source entries | 29248 |
-| Included entries | 29245 |
-| Runtime entries | 8234 |
-| Selected values | 6295 |
-| Ready selected values | 1902 |
+| Source entries | 33617 |
+| Included entries | 33614 |
+| Runtime entries | 8485 |
+| Selected values | 6300 |
+| Ready selected values | 1900 |
 | Formula zones | 15 |
 | Selector kinds | 15 |
 
@@ -21,16 +21,16 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Status | Count |
 | --- | --- |
-| missing-value-data | 21011 |
-| non-damage-or-support | 2098 |
+| missing-value-data | 25129 |
+| non-damage-or-support | 2347 |
 | packet-exact-value-not-required | 1704 |
-| needs-timing-model | 1663 |
-| value-ready | 1167 |
+| needs-timing-model | 1662 |
+| value-ready | 1165 |
 | needs-seasonal-factor-selector | 489 |
 | needs-expected-model | 252 |
 | needs-hit-count-model | 185 |
 | needs-target-window-proof | 151 |
-| needs-stat-conversion-model | 135 |
+| needs-stat-conversion-model | 140 |
 | needs-value-selection | 111 |
 | needs-description-parameter-source | 109 |
 | needs-skill-stage-selector | 62 |
@@ -48,7 +48,7 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Blocker | Count |
 | --- | --- |
-| missing-component-value-hint | 21014 |
+| missing-component-value-hint | 25132 |
 | component:cooldown-or-resource:timing-model-required | 2004 |
 | component:seasonal-factor-damage:value-ladder-selection-required:encounter-selected-factor-grade-required | 539 |
 | component:haste-or-attack-speed:timing-model-required | 383 |
@@ -57,7 +57,7 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 | component:target-resistance-mitigation:target-window-proof-required | 178 |
 | component:hit-count-model:ambiguous-scoped-value:all | 108 |
 | component:target-vulnerability:target-window-proof-required | 100 |
-| component:adaptive-primary-stat:stat-conversion-model-required | 82 |
+| component:adaptive-primary-stat:stat-conversion-model-required | 87 |
 | component:mastery-stat:stat-conversion-model-required | 70 |
 | component:generic-damage:skill-stage-selector-required | 62 |
 | component:versatility:stat-conversion-model-required | 61 |
@@ -88,7 +88,7 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 | runtime-stack | 1101 |
 | seasonal-factor-loadout-selector | 688 |
 | critical-expected-value | 299 |
-| stat-conversion-model | 283 |
+| stat-conversion-model | 288 |
 | target-window-state | 278 |
 | hit-count-model | 252 |
 | runtime-scope | 193 |
@@ -189,6 +189,9 @@ These contracts are still proof gates. They define the required inputs and valid
 | --- | --- | --- | --- | --- | --- | --- |
 | battle-imagines:2110053 | Muku King - Mastery Increase | needs-stat-conversion-model |  |  | component:mastery-stat:stat-conversion-model-required; component:mastery-stat:tier-or-level-selection-required | runtime-tier-or-level; stat-conversion-model |
 | buffs:2010074 | Foodie's Grace | needs-stat-conversion-model |  | mastery-stat:all=2percent | component:mastery-stat:stat-conversion-model-required | stat-conversion-model |
+| buffs:2010077 | Foodie's Grace | needs-stat-conversion-model |  | adaptive-primary-stat:all=5percent | component:adaptive-primary-stat:stat-conversion-model-required | stat-conversion-model |
+| buffs:2010078 | Foodie's Grace | needs-stat-conversion-model |  | adaptive-primary-stat:all=5percent | component:adaptive-primary-stat:stat-conversion-model-required | stat-conversion-model |
+| buffs:2010079 | Foodie's Grace | needs-stat-conversion-model |  | adaptive-primary-stat:all=5percent | component:adaptive-primary-stat:stat-conversion-model-required | stat-conversion-model |
 | buffs:2010084 | Foodie's Grace | needs-stat-conversion-model | timingCadence | adaptive-primary-stat:all=2percent; haste-or-attack-speed:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required; component:haste-or-attack-speed:timing-model-required | stat-conversion-model; timing-cadence-model |
 | buffs:2010085 | Foodie's Grace | needs-stat-conversion-model |  | adaptive-primary-stat:all=2percent; mastery-stat:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required; component:mastery-stat:stat-conversion-model-required | stat-conversion-model; stat-conversion-model |
 | buffs:2010086 | Foodie's Grace | needs-stat-conversion-model | allRoundDamage | adaptive-primary-stat:all=2percent; versatility:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required | stat-conversion-model |
@@ -214,9 +217,6 @@ These contracts are still proof gates. They define the required inputs and valid
 | buffs:2201360 | 幸缘维护 | needs-stat-conversion-model | baseAttackTerm, generalDamage, physicalMagicEnhancement, timingCadence | atk:target=10percent; atk:all=-30percent | component:cooldown-or-resource:timing-model-required; component:mastery-stat:ambiguous-scoped-value:all; component:mastery-stat:stat-conversion-model-required | runtime-stack; timing-cadence-model; stat-conversion-model |
 | buffs:2201490 | Recovery | needs-stat-conversion-model | baseAttackTerm, generalDamage | atk:all=1percent; generic-damage:all=20percent; adaptive-primary-stat:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required | runtime-stack; stat-conversion-model |
 | buffs:2201650 | Rampart Fortitude | needs-stat-conversion-model | baseAttackTerm, generalDamage, physicalMagicEnhancement, timingCadence | atk:all=-30percent; cooldown-or-resource:all=3flat | component:cooldown-or-resource:timing-model-required; component:mastery-stat:ambiguous-scoped-value:all; component:mastery-stat:stat-conversion-model-required | timing-cadence-model; stat-conversion-model |
-| buffs:2201651 | Rampart Fortitude | needs-stat-conversion-model | baseAttackTerm, generalDamage, physicalMagicEnhancement, timingCadence | atk:all=-30percent; cooldown-or-resource:all=3flat; generic-damage:all=10percent | component:cooldown-or-resource:timing-model-required; component:mastery-stat:ambiguous-scoped-value:all; component:mastery-stat:stat-conversion-model-required | runtime-stack; timing-cadence-model; stat-conversion-model |
-| buffs:2201720 | Rock Mastery | needs-stat-conversion-model | baseAttackTerm, generalDamage, physicalMagicEnhancement, timingCadence | cooldown-or-resource:all=3flat | component:cooldown-or-resource:timing-model-required; component:mastery-stat:ambiguous-scoped-value:all; component:mastery-stat:stat-conversion-model-required | timing-cadence-model; stat-conversion-model |
-| buffs:2202030 | 智力转换（废弃） | needs-stat-conversion-model | baseAttackTerm, physicalMagicEnhancement | atk:all=1flat | component:atk:stat-conversion-model-required | stat-conversion-model |
 
 
 ## Needs Hit Count Model

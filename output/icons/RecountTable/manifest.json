@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-05-12T13:28:26.114Z",
+  "GeneratedAt": "2026-05-27T06:11:05.852Z",
   "SourceGroup": "RecountTable",
   "OutputDir": "output/icons/RecountTable",
   "AssetCount": 218,
@@ -5577,7 +5577,7 @@
         },
         {
           "Id": 78,
-          "Name": "​Quadraflare​"
+          "Name": "Quadraflare"
         },
         {
           "Id": 79,
@@ -8135,7 +8135,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "RecountTable.json",
       "SourceGroup": "RecountTable",
-      "Field": "61.LinkedBaseSkillIconPath",
+      "Field": "61.IconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05",
       "AddressHash": 212367585,
@@ -8144,28 +8144,14 @@
       "MatchKind": "exact-address",
       "PngFile": "RecountTable/weapon_tdl-01_kx05.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 1,
       "Rows": [
-        {
-          "Id": 61,
-          "Name": "True Sight"
-        },
         {
           "Id": 61,
           "Name": "True Sight"
         }
       ],
       "TextureName": "weapon_tdl-01_kx05",
-      "Fields": [
-        "61.LinkedBaseSkillIconPath",
-        "61.IconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx05"
-      ],
-      "SourceFiles": [
-        "RecountTable.json"
-      ],
       "PngExported": true,
       "PngWidth": 128,
       "PngHeight": 128,
@@ -9481,7 +9467,7 @@
       "SelectedObjectType": "Sprite"
     }
   ],
-  "PngExportedAt": "2026-05-12T13:30:01.847Z",
+  "PngExportedAt": "2026-05-27T06:13:21.510Z",
   "PngAssetCount": 218,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0

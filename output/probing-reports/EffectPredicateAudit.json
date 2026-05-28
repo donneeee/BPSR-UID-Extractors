@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-05-12T13:28:15.939Z",
+    "generatedAt": "2026-05-27T06:10:49.894Z",
     "sourceFiles": [
       "output/EffectSources.json",
       "output/SeasonPhantomFactors.json",
@@ -8,15 +8,15 @@
       "output/BuffName.json",
       "output/probing-reports/TalentEffectModelProbe.json"
     ],
-    "recordCount": 2120,
-    "interestingRecordCount": 321,
+    "recordCount": 2124,
+    "interestingRecordCount": 320,
     "tagCounts": {
-      "activation.active-modifier-window": 972,
+      "activation.active-modifier-window": 964,
       "activation.focus-state": 14,
       "attacker.elite-or-stronger": 16,
-      "direction.damage-dealt": 403,
+      "direction.damage-dealt": 412,
       "direction.damage-taken-or-defense": 225,
-      "effect.compound-components": 499,
+      "effect.compound-components": 477,
       "needs.description-extraction": 70,
       "needs.effect-component-classification": 3,
       "needs.module-description-extraction": 16,
@@ -24,8 +24,8 @@
       "scope.global": 188,
       "scope.skill-or-recount-targeted": 925,
       "source.armor-or-defense-scaling": 15,
-      "source.battle-imagine": 9,
-      "source.companion-or-summon": 130,
+      "source.battle-imagine": 11,
+      "source.companion-or-summon": 128,
       "target.armor-or-defense": 9,
       "target.boss-or-elite-suspect": 12,
       "target.elite-or-stronger": 116,
@@ -37,7 +37,7 @@
     },
     "familyCounts": {
       "ConsumableBuffBridge": 94,
-      "EffectSources": 1778,
+      "EffectSources": 1782,
       "ModuleBuffCatalog": 16,
       "SeasonPhantomFactors": 134,
       "TalentEffectModelProbe": 98
@@ -2461,7 +2461,7 @@
               }
             ],
             "sourceTable": "SkillFightLevelTable.ctb",
-            "sourceOffset": 526408526,
+            "sourceOffset": 526418579,
             "skillLevelId": 390301,
             "skillEffectId": 390301,
             "level": 1,
@@ -2494,7 +2494,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 595409564,
+              "sourceOffset": 595422339,
               "rowId": 56
             },
             {
@@ -2523,7 +2523,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 595409620,
+              "sourceOffset": 595422395,
               "rowId": 57
             },
             {
@@ -2552,7 +2552,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 595409676,
+              "sourceOffset": 595422451,
               "rowId": 58
             },
             {
@@ -2581,7 +2581,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 595409732,
+              "sourceOffset": 595422507,
               "rowId": 59
             },
             {
@@ -2610,7 +2610,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 595409788,
+              "sourceOffset": 595422563,
               "rowId": 60
             }
           ],
@@ -2974,7 +2974,6 @@
           "valueTexts": [
             "50%",
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -3063,27 +3062,8 @@
           "inferenceSource": "EffectSources.formulaAttributionText"
         },
         {
-          "componentKey": "physical-magic-enhancement",
-          "componentOrder": 2,
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "contributionScope": "global",
-          "direction": "damage-dealt",
-          "valueTexts": [
-            "100%"
-          ],
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ],
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        },
-        {
           "componentKey": "elemental-damage",
-          "componentOrder": 3,
+          "componentOrder": 2,
           "label": "Elemental DMG",
           "effectClass": "elemental-damage",
           "contributionScope": "global",
@@ -3106,7 +3086,7 @@
         },
         {
           "componentKey": "produced-damage",
-          "componentOrder": 4,
+          "componentOrder": 3,
           "label": "Produced Damage",
           "effectClass": "proc-damage",
           "contributionScope": "produced-damage-row",
@@ -3152,16 +3132,6 @@
           ]
         },
         {
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "direction": "damage-dealt",
-          "contributionScope": "global",
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ]
-        },
-        {
           "label": "Elemental DMG",
           "effectClass": "elemental-damage",
           "direction": "damage-dealt",
@@ -3185,58 +3155,6 @@
       "notes": [
         "This source has split effect components; parser attribution should apply predicates per component, not to the whole source row."
       ]
-    },
-    {
-      "family": "EffectSources",
-      "sourcePath": "output/EffectSources.json",
-      "id": "buff-source:2110121",
-      "name": "Crimson Foxen - Phantom Rally",
-      "sourceKind": "imagine",
-      "sourceType": "imagine-buff",
-      "iconPath": "ui/atlas/buff/buff_icon144",
-      "buffIds": [
-        2110121
-      ],
-      "effectComponents": [
-        {
-          "componentKey": "atk",
-          "componentOrder": 1,
-          "label": "ATK",
-          "effectClass": "offense-stat",
-          "contributionScope": "global",
-          "direction": "stat",
-          "stat": "ATK",
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ],
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        }
-      ],
-      "targetCount": 0,
-      "targets": [],
-      "descriptionTextCaptured": true,
-      "text": "Crimson Foxen - Phantom Rally | 赤玉地狐 - 魅影鼓舞 | 猛る獣 - 幻影の鼓舞 | 루비 땅여우 - 팬텀 고무 | Renard pourpre - Ralliement fantomatique | Karmesin-Fux - Phantom-Aufgebot | Vulpe carmesí - Arenga fantasmal | Raposa Carmesim - Convocação Fantasma | Crimson Foxen - inspire ภูตพราย | Ruby Earthfox - Phantom Inspire | 赤玉地狐 - 主动 | ui/atlas/buff/buff_icon144",
-      "predicateTags": [
-        "activation.active-modifier-window",
-        "source.companion-or-summon"
-      ],
-      "componentSummary": [
-        {
-          "label": "ATK",
-          "effectClass": "offense-stat",
-          "direction": "stat",
-          "contributionScope": "global",
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ]
-        }
-      ],
-      "notes": []
     },
     {
       "family": "EffectSources",
@@ -5636,7 +5554,6 @@
           "valueTexts": [
             "50%",
             "165%",
-            "3",
             "+18",
             "+50"
           ],
@@ -5728,7 +5645,6 @@
           "valueTexts": [
             "50%",
             "1,250%",
-            "3",
             "650%",
             "500%"
           ],
@@ -5935,8 +5851,7 @@
           "direction": "timing",
           "valueTexts": [
             "30%",
-            "165%",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -5956,8 +5871,7 @@
           "direction": "damage-taken",
           "valueTexts": [
             "30%",
-            "165%",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -5977,8 +5891,7 @@
           "direction": "damage-dealt",
           "valueTexts": [
             "30%",
-            "165%",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -6051,16 +5964,15 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "global",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
-            "165%",
             "2",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -6093,10 +6005,10 @@
       ],
       "componentSummary": [
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "global",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "source.companion-or-summon",
             "activation.active-modifier-window"
@@ -6227,7 +6139,6 @@
             "8",
             "5",
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -6788,27 +6699,8 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "physical-magic-enhancement",
-          "componentOrder": 1,
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "contributionScope": "global",
-          "direction": "damage-dealt",
-          "valueTexts": [
-            "200%"
-          ],
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ],
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        },
-        {
           "componentKey": "produced-damage",
-          "componentOrder": 2,
+          "componentOrder": 1,
           "label": "Produced Damage",
           "effectClass": "proc-damage",
           "contributionScope": "produced-damage-row",
@@ -6848,21 +6740,10 @@
       "text": "Frost Comet | 冰霜彗星 | 氷慧 | 프로스트 코멧 | Comète de givre | Frostkomet | Cometa Gélido | ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icecomet",
       "predicateTags": [
         "activation.active-modifier-window",
-        "effect.compound-components",
         "scope.skill-or-recount-targeted",
         "source.companion-or-summon"
       ],
       "componentSummary": [
-        {
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "direction": "damage-dealt",
-          "contributionScope": "global",
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ]
-        },
         {
           "label": "Produced Damage",
           "effectClass": "proc-damage",
@@ -6874,9 +6755,7 @@
           ]
         }
       ],
-      "notes": [
-        "This source has split effect components; parser attribution should apply predicates per component, not to the whole source row."
-      ]
+      "notes": []
     },
     {
       "family": "EffectSources",
@@ -7205,11 +7084,11 @@
           "inferenceSource": "EffectSources.formulaAttributionText"
         },
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 2,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "targeted",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
             "8%"
@@ -7248,10 +7127,10 @@
           ]
         },
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "targeted",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "target.elite-or-stronger",
             "activation.active-modifier-window"
@@ -7584,14 +7463,15 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "targeted",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
-          "valueScope": "owner",
           "valueTexts": [
+            "3%",
+            "15%",
             "10%"
           ],
           "predicateTags": [
@@ -7617,10 +7497,10 @@
       ],
       "componentSummary": [
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "targeted",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "target.elite-or-stronger",
             "activation.active-modifier-window"
@@ -8149,29 +8029,8 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "physical-magic-enhancement",
-          "componentOrder": 1,
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "contributionScope": "global",
-          "direction": "damage-dealt",
-          "valueTexts": [
-            "1",
-            "2",
-            "28%"
-          ],
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ],
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        },
-        {
           "componentKey": "elemental-damage",
-          "componentOrder": 2,
+          "componentOrder": 1,
           "label": "Elemental DMG",
           "effectClass": "elemental-damage",
           "contributionScope": "global",
@@ -8193,7 +8052,7 @@
         },
         {
           "componentKey": "produced-damage",
-          "componentOrder": 3,
+          "componentOrder": 2,
           "label": "Produced Damage",
           "effectClass": "proc-damage",
           "contributionScope": "produced-damage-row",
@@ -8227,16 +8086,6 @@
         "source.companion-or-summon"
       ],
       "componentSummary": [
-        {
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "direction": "damage-dealt",
-          "contributionScope": "global",
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ]
-        },
         {
           "label": "Elemental DMG",
           "effectClass": "elemental-damage",
@@ -8355,7 +8204,6 @@
           "direction": "timing",
           "valueTexts": [
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -8376,7 +8224,6 @@
           "direction": "damage-dealt",
           "valueTexts": [
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -10285,7 +10132,7 @@
         }
       ],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador​ de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
+      "text": "Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | kuangxiangyinzi_s2_11_001 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
       "predicateTags": [
         "activation.active-modifier-window",
         "direction.damage-dealt",
@@ -10331,62 +10178,16 @@
       "buffIds": [
         3053130
       ],
-      "effectComponents": [
-        {
-          "componentKey": "generic-damage",
-          "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "global",
-          "direction": "damage-dealt",
-          "valueTexts": [
-            "225%",
-            "250%",
-            "275%",
-            "300%",
-            "325%",
-            "350%",
-            "375%",
-            "400%",
-            "425%",
-            "450%"
-          ],
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ],
-          "sourcePredicate": {
-            "actorKind": "companion-or-summon"
-          },
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "valueTextSource": "modifierEvidence.gradeRows",
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        }
-      ],
+      "effectComponents": [],
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador​ de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | kuangxiangyinzi_s2_11_002 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
+      "text": "Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | kuangxiangyinzi_s2_11_002 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
       "predicateTags": [
-        "activation.active-modifier-window",
         "direction.damage-dealt",
-        "source.companion-or-summon",
         "target.elite-or-stronger"
       ],
-      "componentSummary": [
-        {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "direction": "damage-dealt",
-          "contributionScope": "global",
-          "predicateTags": [
-            "source.companion-or-summon",
-            "activation.active-modifier-window"
-          ]
-        }
-      ],
+      "componentSummary": [],
       "notes": []
     },
     {
@@ -10404,7 +10205,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X3 | 神射狂想X3.G1 | ディバインアーチャー・狂想X3.G1 | 디바인 아처 광상X3 | Rhapsodie de Tireur d'élite X3 | Scharfschützen-Rhapsodie X3 | Rapsodia: Tirador X3 | Rapsódia do Atirador​ de Elite X3 | Markman Rhapsody X3 | Divine Rhapsody X3.G1 | kuangxiangyinzi_s2_11_003 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
+      "text": "Marksman Rhapsody X3 | 神射狂想X3.G1 | ディバインアーチャー・狂想X3.G1 | 디바인 아처 광상X3 | Rhapsodie de Tireur d'élite X3 | Scharfschützen-Rhapsodie X3 | Rapsodia: Tirador X3 | Rapsódia do Atirador de Elite X3 | Markman Rhapsody X3 | Divine Rhapsody X3.G1 | kuangxiangyinzi_s2_11_003 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
       "predicateTags": [
         "direction.damage-dealt",
         "target.elite-or-stronger"
@@ -10469,7 +10270,7 @@
         }
       ],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X4 | 神射狂想X4.G1 | ディバインアーチャー・狂想X4.G1 | 디바인 아처 광상X4 | Rhapsodie de Tireur d'élite X4 | Scharfschützen-Rhapsodie X4 | Rapsodia: Tirador X4 | Rapsódia do Atirador​ de Elite X4 | Markman Rhapsody X4 | Divine Rhapsody X4.G1 | kuangxiangyinzi_s2_11_004 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
+      "text": "Marksman Rhapsody X4 | 神射狂想X4.G1 | ディバインアーチャー・狂想X4.G1 | 디바인 아처 광상X4 | Rhapsodie de Tireur d'élite X4 | Scharfschützen-Rhapsodie X4 | Rapsodia: Tirador X4 | Rapsódia do Atirador de Elite X4 | Markman Rhapsody X4 | Divine Rhapsody X4.G1 | kuangxiangyinzi_s2_11_004 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
       "predicateTags": [
         "activation.active-modifier-window",
         "direction.damage-dealt",
@@ -10551,7 +10352,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador​ de Elite X1 | Marksman Steady X1 | Divine Steady X1 | yinzi_s2_common_027 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
+      "text": "Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador de Elite X1 | Marksman Steady X1 | Divine Steady X1 | yinzi_s2_common_027 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
       "predicateTags": [
         "activation.active-modifier-window",
         "direction.damage-dealt",
@@ -10623,36 +10424,8 @@
           "inferenceSource": "EffectSources.formulaAttributionText"
         },
         {
-          "componentKey": "physical-magic-enhancement",
-          "componentOrder": 2,
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "contributionScope": "global",
-          "direction": "damage-dealt",
-          "valueTexts": [
-            "+11.77%",
-            "+13.66%",
-            "+15.55%",
-            "+17.44%",
-            "+19.33%",
-            "+21.22%",
-            "+23.11%",
-            "+25%",
-            "+8%",
-            "+9.88%"
-          ],
-          "predicateTags": [
-            "activation.active-modifier-window"
-          ],
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "valueTextSource": "modifierEvidence.gradeRows",
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        },
-        {
           "componentKey": "damage-reduction-or-defense",
-          "componentOrder": 3,
+          "componentOrder": 2,
           "label": "Damage Reduction / Defense",
           "effectClass": "damage-reduction",
           "contributionScope": "global",
@@ -10672,7 +10445,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador​ de Elite X2 | Marksman Steady X2 | Divine Steady X2 | yinzi_s2_common_028 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
+      "text": "Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador de Elite X2 | Marksman Steady X2 | Divine Steady X2 | yinzi_s2_common_028 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map parent Recount rows as description-target evidence, not formula evidence.",
       "predicateTags": [
         "activation.active-modifier-window",
         "direction.damage-dealt",
@@ -10684,15 +10457,6 @@
           "label": "Cooldown / Resource",
           "effectClass": "cooldown-or-resource",
           "direction": "timing",
-          "contributionScope": "global",
-          "predicateTags": [
-            "activation.active-modifier-window"
-          ]
-        },
-        {
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "direction": "damage-dealt",
           "contributionScope": "global",
           "predicateTags": [
             "activation.active-modifier-window"
@@ -11249,7 +11013,7 @@
         {
           "kind": "recount",
           "relationshipKind": "affected-dream-damage-target",
-          "name": "​Quadraflare​",
+          "name": "Quadraflare",
           "recountId": 78
         }
       ],
@@ -11642,13 +11406,15 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "global",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
+            "30%",
+            "1 s",
             "80%"
           ],
           "predicateTags": [
@@ -11674,10 +11440,10 @@
       ],
       "componentSummary": [
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "global",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "source.companion-or-summon",
             "activation.active-modifier-window"
@@ -11731,7 +11497,6 @@
           "valueTexts": [
             "6%",
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -11844,7 +11609,6 @@
           "valueTexts": [
             "+30%",
             "165%",
-            "3",
             "+18",
             "+50"
           ],
@@ -12102,7 +11866,6 @@
             "2",
             "35%",
             "650%",
-            "3",
             "500%",
             "165%"
           ],
@@ -12181,8 +11944,7 @@
             "60s",
             "1%",
             "0.5%",
-            "165%",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -12265,13 +12027,16 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "global",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
+            "12 s",
+            "1",
+            "20",
             "15"
           ],
           "predicateTags": [
@@ -12297,10 +12062,10 @@
       ],
       "componentSummary": [
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "global",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "source.companion-or-summon",
             "activation.active-modifier-window"
@@ -12332,7 +12097,6 @@
             "15s",
             "10",
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -12466,8 +12230,7 @@
           "contributionScope": "global",
           "direction": "damage-taken",
           "valueTexts": [
-            "165%",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -12486,8 +12249,7 @@
           "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
-            "165%",
-            "3"
+            "165%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -12550,17 +12312,17 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "global",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
             "1",
-            "2s",
             "35s",
-            "50%"
+            "50%",
+            "2s"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -12585,10 +12347,10 @@
       ],
       "componentSummary": [
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "global",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "source.companion-or-summon",
             "activation.active-modifier-window"
@@ -12677,7 +12439,6 @@
             "30%",
             "25%",
             "80%",
-            "5",
             "+120%",
             "100%",
             "5s",
@@ -12700,9 +12461,7 @@
           "contributionScope": "global",
           "direction": "damage-dealt",
           "valueTexts": [
-            "+120%",
-            "25%",
-            "30%"
+            "25%"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -12972,7 +12731,6 @@
             "15%",
             "60%",
             "1,250%",
-            "3",
             "650%",
             "500%"
           ],
@@ -13232,7 +12990,6 @@
           "contributionScope": "global",
           "direction": "damage-taken",
           "valueTexts": [
-            "3",
             "3%",
             "15%"
           ],
@@ -13291,7 +13048,6 @@
           "contributionScope": "global",
           "direction": "damage-taken",
           "valueTexts": [
-            "3",
             "3%",
             "15%",
             "1%",
@@ -13319,7 +13075,6 @@
           "direction": "damage-dealt",
           "valueTexts": [
             "1%",
-            "3",
             "5%"
           ],
           "predicateTags": [
@@ -14560,7 +14315,6 @@
             "+1",
             "0.5s",
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -14583,7 +14337,6 @@
             "+1",
             "0.5s",
             "650%",
-            "3",
             "500%"
           ],
           "predicateTags": [
@@ -16176,15 +15929,15 @@
           "inferenceSource": "EffectSources.formulaAttributionText"
         },
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 2,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "global",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
-            "1",
-            "10%"
+            "10%",
+            "1"
           ],
           "predicateTags": [
             "source.companion-or-summon",
@@ -16220,10 +15973,10 @@
           ]
         },
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "global",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "source.companion-or-summon",
             "activation.active-modifier-window"
@@ -16247,11 +16000,11 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "generic-damage",
+          "componentKey": "produced-damage",
           "componentOrder": 1,
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
-          "contributionScope": "targeted",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
+          "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
             "15%"
@@ -16285,10 +16038,10 @@
       ],
       "componentSummary": [
         {
-          "label": "Generic DMG",
-          "effectClass": "damage-modifier",
+          "label": "Produced Damage",
+          "effectClass": "proc-damage",
           "direction": "damage-dealt",
-          "contributionScope": "targeted",
+          "contributionScope": "produced-damage-row",
           "predicateTags": [
             "target.elite-or-stronger",
             "source.companion-or-summon",
@@ -16470,37 +16223,13 @@
       ],
       "effectComponents": [
         {
-          "componentKey": "physical-magic-enhancement",
-          "componentOrder": 1,
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "contributionScope": "global",
-          "direction": "damage-dealt",
-          "valueTexts": [
-            "10s",
-            "20%"
-          ],
-          "predicateTags": [
-            "target.elite-or-stronger",
-            "activation.active-modifier-window"
-          ],
-          "targetPredicate": {
-            "monsterRankAtLeast": "elite"
-          },
-          "activationPredicate": {
-            "kind": "active-modifier-window"
-          },
-          "inferenceSource": "EffectSources.formulaAttributionText"
-        },
-        {
           "componentKey": "produced-damage",
-          "componentOrder": 2,
+          "componentOrder": 1,
           "label": "Produced Damage",
           "effectClass": "proc-damage",
           "contributionScope": "produced-damage-row",
           "direction": "damage-dealt",
           "valueTexts": [
-            "10",
             "4%",
             "20%",
             "10s"
@@ -16524,20 +16253,9 @@
       "text": "Wide-area Thorns | 广域荆棘 | 廣域荊棘 | 広域の茨 | 광역 가시 | Épines de zone | Flächendornen | Espinas Expansivas | Espinhos em Área | Thorns ขอบเขตกว้าง | Wide Thorn | ui/atlas/talent_passive_5/fahuan544",
       "predicateTags": [
         "activation.active-modifier-window",
-        "effect.compound-components",
         "target.elite-or-stronger"
       ],
       "componentSummary": [
-        {
-          "label": "Physical/Magic Enhancement",
-          "effectClass": "physical-magic-enhancement",
-          "direction": "damage-dealt",
-          "contributionScope": "global",
-          "predicateTags": [
-            "target.elite-or-stronger",
-            "activation.active-modifier-window"
-          ]
-        },
         {
           "label": "Produced Damage",
           "effectClass": "proc-damage",
@@ -16549,9 +16267,7 @@
           ]
         }
       ],
-      "notes": [
-        "This source has split effect components; parser attribution should apply predicates per component, not to the whole source row."
-      ]
+      "notes": []
     },
     {
       "family": "EffectSources",
@@ -17583,7 +17299,7 @@
         }
       ],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador​ de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | For 15 seconds after casting Wildcall, the Companion's Attack SPD +. Wild Wolf - Tail Sweep Dream DMG +. | 施放狂野呼唤后的15秒内，宠物攻击速度+。 野狼扫尾梦境伤害+。 | 施放狂野呼喚後的15秒內，寵物攻擊速度+。 野狼掃尾夢境傷害+。 | ワイルドコール発動後の15秒間、ペットの攻撃速度+。 臣狼の掃撃の夢界ダメージ+。 | 야생의 부름 시전 후 15초 동안, 야수 공격 속도가 증가합니다. 늑대 꼬리 휩쓸기 꿈 대미지가 증가합니다. | Pendant les 15 secondes qui suivent le lancement d'Appel de la nature, VIT ATQ du compagnon +. Loup sauvage - Balayage de queue : dégâts oniriques +. | Erhöht 15 Sekunden lang nach dem Wirken von Wildruf die Angriff-GES des Begleiters um . Traum-SCH von Wilder Wolf – Schwanzfeger +. | Durante 15 segundos después de lanzar Llamada Salvaje, VEL de ATQ del acompañante +. DÑO onírico del Coletazo del Lobo Salvaje +. | Por 15 segundos após conjurar Chamado Selvagem, a VEL de Ataque do companheiro +. Dano Onírico de Lobo Selvagem — Golpe de Cauda +. | หลังจากปล่อย Wildcall เป็นเวลา 15 วินาที ความเร็วในการโจมตีของสัตว์เลี้ยง+ DMG ของฝันร้ายการตวัดหางของหมาป่า+ | Dalam 15 detik setelah melancarkan Wild Call, Attack Speed pet +. Dream DMG Wildwolf Sweep +. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +10%. Wild Wolf - Tail Sweep Dream DMG +10%. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +20%. Wild Wolf - Tail Sweep Dream DMG +20%. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +90%. Wild Wolf - Tail Sweep Dream DMG +90%. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +100%. Wild Wolf - Tail Sweep Dream DMG +100%.",
+      "text": "Marksman Rhapsody X1 | 神射狂想X1.G1 | ディバインアーチャー・狂想X1.G1 | 디바인 아처 광상X1 | Rhapsodie de Tireur d'élite X1 | Scharfschützen-Rhapsodie X1 | Rapsodia: Tirador X1 | Rapsódia do Atirador de Elite X1 | Markman Rhapsody X1 | Divine Rhapsody X1.G1 | For 15 seconds after casting Wildcall, the Companion's Attack SPD +. Wild Wolf - Tail Sweep Dream DMG +. | 施放狂野呼唤后的15秒内，宠物攻击速度+。 野狼扫尾梦境伤害+。 | 施放狂野呼喚後的15秒內，寵物攻擊速度+。 野狼掃尾夢境傷害+。 | ワイルドコール発動後の15秒間、ペットの攻撃速度+。 臣狼の掃撃の夢界ダメージ+。 | 야생의 부름 시전 후 15초 동안, 야수 공격 속도가 증가합니다. 늑대 꼬리 휩쓸기 꿈 대미지가 증가합니다. | Pendant les 15 secondes qui suivent le lancement d'Appel de la nature, VIT ATQ du compagnon +. Loup sauvage - Balayage de queue : dégâts oniriques +. | Erhöht 15 Sekunden lang nach dem Wirken von Wildruf die Angriff-GES des Begleiters um . Traum-SCH von Wilder Wolf – Schwanzfeger +. | Durante 15 segundos después de lanzar Llamada Salvaje, VEL de ATQ del acompañante +. DÑO onírico del Coletazo del Lobo Salvaje +. | Por 15 segundos após conjurar Chamado Selvagem, a VEL de Ataque do companheiro +. Dano Onírico de Lobo Selvagem — Golpe de Cauda +. | หลังจากปล่อย Wildcall เป็นเวลา 15 วินาที ความเร็วในการโจมตีของสัตว์เลี้ยง+ DMG ของฝันร้ายการตวัดหางของหมาป่า+ | Dalam 15 detik setelah melancarkan Wild Call, Attack Speed pet +. Dream DMG Wildwolf Sweep +. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +10%. Wild Wolf - Tail Sweep Dream DMG +10%. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +20%. Wild Wolf - Tail Sweep Dream DMG +20%. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +90%. Wild Wolf - Tail Sweep Dream DMG +90%. | For 15 seconds after casting Wildcall, the Companion's Attack SPD +100%. Wild Wolf - Tail Sweep Dream DMG +100%.",
       "predicateTags": [
         "direction.damage-dealt",
         "scope.skill-or-recount-targeted",
@@ -17609,7 +17325,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador​ de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × . | 精神凝聚持续期间，职业技能伤害得到提升，提升值等于宠物伤害%*场上野兽数量*。 | 精神凝聚持續期間，職業技能傷害得到提升，提升值等於寵物傷害%*場上野獸數量*。 | メンタルフォーカスの有効中、クラススキルのダメージがアップする。値はペットのダメージ%×フィールドの野獣数×。 | 정신 집중 지속 시간 동안, 클래스 스킬 대미지가 증가하며, 증가량은 야수 대미지%*필드 위 야수 수량*입니다. | Tant que Concentration est actif, les dégâts des compétences de classe sont augmentés d'un montant égal à : % des dégâts du compagnon × nombre de Bêtes sur le terrain × . | Solange Fokus aktiv ist, wird der Schaden der Klassenfähigkeit um folgenden Betrag erhöht: SCH-% des Begleiters × Anzahl der Bestien auf dem Feld × . | Mientras Enfoque esté activo, el daño de la habilidad de clase aumenta en una cantidad igual al porcentaje de DÑO del acompañante × número de bestias en el campo × . | Enquanto Concentração estiver ativa, o dano da Habilidade de Classe aumenta em uma quantidade igual a: % de dano do companheiro × número de Feras em campo × . | ระหว่างที่ Focus ทำงาน Class Skills DMG จะเพิ่มขึ้น ค่าที่เพิ่มขึ้น = % DMG สัตว์เลี้ยง * จำนวนสัตว์ป่าในสนาม * | DMG dari Class Skill mendapat peningkatan selama Mental Focus berlangsung. Nilai peningkatannya sama dengan persentase DMG pet x jumlah beast di arena x . | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 225%. | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 250%. | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 425%. | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 450%.",
+      "text": "Marksman Rhapsody X2 | 神射狂想X2.G1 | ディバインアーチャー・狂想X2.G1 | 디바인 아처 광상X2 | Rhapsodie de Tireur d'élite X2 | Scharfschützen-Rhapsodie X2 | Rapsodia: Tirador X2 | Rapsódia do Atirador de Elite X2 | Markman Rhapsody X2 | Divine Rhapsody X2.G1 | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × . | 精神凝聚持续期间，职业技能伤害得到提升，提升值等于宠物伤害%*场上野兽数量*。 | 精神凝聚持續期間，職業技能傷害得到提升，提升值等於寵物傷害%*場上野獸數量*。 | メンタルフォーカスの有効中、クラススキルのダメージがアップする。値はペットのダメージ%×フィールドの野獣数×。 | 정신 집중 지속 시간 동안, 클래스 스킬 대미지가 증가하며, 증가량은 야수 대미지%*필드 위 야수 수량*입니다. | Tant que Concentration est actif, les dégâts des compétences de classe sont augmentés d'un montant égal à : % des dégâts du compagnon × nombre de Bêtes sur le terrain × . | Solange Fokus aktiv ist, wird der Schaden der Klassenfähigkeit um folgenden Betrag erhöht: SCH-% des Begleiters × Anzahl der Bestien auf dem Feld × . | Mientras Enfoque esté activo, el daño de la habilidad de clase aumenta en una cantidad igual al porcentaje de DÑO del acompañante × número de bestias en el campo × . | Enquanto Concentração estiver ativa, o dano da Habilidade de Classe aumenta em uma quantidade igual a: % de dano do companheiro × número de Feras em campo × . | ระหว่างที่ Focus ทำงาน Class Skills DMG จะเพิ่มขึ้น ค่าที่เพิ่มขึ้น = % DMG สัตว์เลี้ยง * จำนวนสัตว์ป่าในสนาม * | DMG dari Class Skill mendapat peningkatan selama Mental Focus berlangsung. Nilai peningkatannya sama dengan persentase DMG pet x jumlah beast di arena x . | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 225%. | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 250%. | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 425%. | While Focus is active, Class Skill damage is increased by an amount equal to: Companion's DMG% × number of Beasts on the field × 450%.",
       "predicateTags": [
         "activation.focus-state",
         "direction.damage-dealt",
@@ -17635,7 +17351,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X3 | 神射狂想X3.G1 | ディバインアーチャー・狂想X3.G1 | 디바인 아처 광상X3 | Rhapsodie de Tireur d'élite X3 | Scharfschützen-Rhapsodie X3 | Rapsodia: Tirador X3 | Rapsódia do Atirador​ de Elite X3 | Markman Rhapsody X3 | Divine Rhapsody X3.G1 | The falcon summoned by Wildcall follows you for the next . | 狂野呼唤召唤的猎鹰在接下来内跟随自身。 | 狂野呼喚召喚的獵鷹在接下來內跟隨自身。 | ワイルドコールが召喚した臣鷹が以後の間、自身に追従する。 | 야생의 부름이 소환한 팔콘은 이후 동안 자신을 따라다닙니다. | Le faucon invoqué par Appel de la nature vous suit pendant . | Der durch Wildruf beschworene Falke folgt dem Wirker für die nächsten . | El halcón invocado por Llamada Salvaje sigue al aventurero durante los próximos . | O falcão invocado por Chamado Selvagem segue você pelos próximos . | เหยี่ยวที่ถูกเรียกด้วย Wildcall จะติดตามตัวตัวเองในอีก ต่อไป | Hawk yang dipanggil Wild Call akan mengikuti diri sendiri dalam berikutnya. | The falcon summoned by Wildcall follows you for the next 5s. | The falcon summoned by Wildcall follows you for the next 7s. | The falcon summoned by Wildcall follows you for the next 21s. | The falcon summoned by Wildcall follows you for the next 23s.",
+      "text": "Marksman Rhapsody X3 | 神射狂想X3.G1 | ディバインアーチャー・狂想X3.G1 | 디바인 아처 광상X3 | Rhapsodie de Tireur d'élite X3 | Scharfschützen-Rhapsodie X3 | Rapsodia: Tirador X3 | Rapsódia do Atirador de Elite X3 | Markman Rhapsody X3 | Divine Rhapsody X3.G1 | The falcon summoned by Wildcall follows you for the next . | 狂野呼唤召唤的猎鹰在接下来内跟随自身。 | 狂野呼喚召喚的獵鷹在接下來內跟隨自身。 | ワイルドコールが召喚した臣鷹が以後の間、自身に追従する。 | 야생의 부름이 소환한 팔콘은 이후 동안 자신을 따라다닙니다. | Le faucon invoqué par Appel de la nature vous suit pendant . | Der durch Wildruf beschworene Falke folgt dem Wirker für die nächsten . | El halcón invocado por Llamada Salvaje sigue al aventurero durante los próximos . | O falcão invocado por Chamado Selvagem segue você pelos próximos . | เหยี่ยวที่ถูกเรียกด้วย Wildcall จะติดตามตัวตัวเองในอีก ต่อไป | Hawk yang dipanggil Wild Call akan mengikuti diri sendiri dalam berikutnya. | The falcon summoned by Wildcall follows you for the next 5s. | The falcon summoned by Wildcall follows you for the next 7s. | The falcon summoned by Wildcall follows you for the next 21s. | The falcon summoned by Wildcall follows you for the next 23s.",
       "predicateTags": [
         "source.companion-or-summon",
         "target.elite-or-stronger"
@@ -17669,7 +17385,7 @@
         }
       ],
       "descriptionTextCaptured": true,
-      "text": "Marksman Rhapsody X4 | 神射狂想X4.G1 | ディバインアーチャー・狂想X4.G1 | 디바인 아처 광상X4 | Rhapsodie de Tireur d'élite X4 | Scharfschützen-Rhapsodie X4 | Rapsodia: Tirador X4 | Rapsódia do Atirador​ de Elite X4 | Markman Rhapsody X4 | Divine Rhapsody X4.G1 | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +. | 施放聚能射击时，触发光能轰炸。 施放光能轰炸时，触发聚能射击。 聚能射击、光能轰炸梦境伤害+。 | 施放聚能射擊時，觸發光能轟炸。 施放光能轟炸時，觸發聚能射擊。 聚能射擊、光能轟炸夢境傷害+。 | チャージショットを使用すると、エナジーショットを発動する。 エナジーショットを使用すると、チャージショットを発動する。 チャージショット、エナジーショットの夢界ダメージ+。 | 차지 샷 시전 시, 라이트 봄버를 발동합니다. 라이트 봄버 시전 시, 차지 샷을 발동합니다. 차지 샷, 라이트 봄버 꿈 대미지가 증가합니다. | Lancer Tension maximale déclenche Déluge de radiance. Lancer Déluge de radiance déclenche Tension maximale. Dégâts oniriques de Tension maximale et de Déluge de radiance +. | Das Wirken von Kraftzug löst Strahlungskanonade aus. Das Wirken von Strahlungskanonade löst Kraftzug aus. Traum-SCH von Kraftzug und Strahlungskanonade +. | Lanzar Tiro Potente activa Aluvión de Resplandor. Lanzar Aluvión de Resplandor activa Tiro Potente. DÑO onírico de Tiro Potente y Aluvión de Resplandor +. | Conjurar Disparo Potente aciona Rajada de Radiância. Conjurar Rajada de Radiância aciona Disparo Potente. Dano Onírico de Disparo Potente e Rajada de Radiância +. | เมื่อใช้ Powerdraw จะเกิดผล Radiance Barrage เมื่อใช้ Radiance Barrage จะเกิดผล Powerdraw Dreamscape DMG ของ Powerdraw และ Radiance Barrage + | Melancarkan Charged Shot akan memicu Light Bombard. Melancarkan Light Bombard akan memicu Charged Shot. Dream DMG dari Charged Shot dan Light Bombard +. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +10%. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +15%. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +50%. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +55%.",
+      "text": "Marksman Rhapsody X4 | 神射狂想X4.G1 | ディバインアーチャー・狂想X4.G1 | 디바인 아처 광상X4 | Rhapsodie de Tireur d'élite X4 | Scharfschützen-Rhapsodie X4 | Rapsodia: Tirador X4 | Rapsódia do Atirador de Elite X4 | Markman Rhapsody X4 | Divine Rhapsody X4.G1 | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +. | 施放聚能射击时，触发光能轰炸。 施放光能轰炸时，触发聚能射击。 聚能射击、光能轰炸梦境伤害+。 | 施放聚能射擊時，觸發光能轟炸。 施放光能轟炸時，觸發聚能射擊。 聚能射擊、光能轟炸夢境傷害+。 | チャージショットを使用すると、エナジーショットを発動する。 エナジーショットを使用すると、チャージショットを発動する。 チャージショット、エナジーショットの夢界ダメージ+。 | 차지 샷 시전 시, 라이트 봄버를 발동합니다. 라이트 봄버 시전 시, 차지 샷을 발동합니다. 차지 샷, 라이트 봄버 꿈 대미지가 증가합니다. | Lancer Tension maximale déclenche Déluge de radiance. Lancer Déluge de radiance déclenche Tension maximale. Dégâts oniriques de Tension maximale et de Déluge de radiance +. | Das Wirken von Kraftzug löst Strahlungskanonade aus. Das Wirken von Strahlungskanonade löst Kraftzug aus. Traum-SCH von Kraftzug und Strahlungskanonade +. | Lanzar Tiro Potente activa Aluvión de Resplandor. Lanzar Aluvión de Resplandor activa Tiro Potente. DÑO onírico de Tiro Potente y Aluvión de Resplandor +. | Conjurar Disparo Potente aciona Rajada de Radiância. Conjurar Rajada de Radiância aciona Disparo Potente. Dano Onírico de Disparo Potente e Rajada de Radiância +. | เมื่อใช้ Powerdraw จะเกิดผล Radiance Barrage เมื่อใช้ Radiance Barrage จะเกิดผล Powerdraw Dreamscape DMG ของ Powerdraw และ Radiance Barrage + | Melancarkan Charged Shot akan memicu Light Bombard. Melancarkan Light Bombard akan memicu Charged Shot. Dream DMG dari Charged Shot dan Light Bombard +. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +10%. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +15%. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +50%. | Casting Powerdraw triggers Radiance Barrage. Casting Radiance Barrage triggers Powerdraw. Powerdraw and Radiance Barrage Dream DMG +55%.",
       "predicateTags": [
         "direction.damage-dealt",
         "scope.skill-or-recount-targeted",
@@ -17693,7 +17409,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador​ de Elite X1 | Marksman Steady X1 | Divine Steady X1 | During Focus, Dream DMG Resistance + | 精神凝聚持续期间，梦境伤害减免+ | 精神凝聚持續期間，夢境傷害減免+ | メンタルフォーカスの有効中、夢界ダメージ軽減+ | 정신 집중 지속 시간 동안, 꿈 대미지 감면이 증가합니다. | Pendant Concentration, Résistance onirique + | Traumwiderstand während Konzentration + | Durante Enfoque, resistencia onírica +. | Durante a Concentração, Resistência a Dano Onírico + | ระหว่างที่ Focus ทำงาน การลด Dreamscape DMG + | Selama Mental Focus berlangsung, Dream DR +. | During Focus, Dream DMG Resistance +5% | During Focus, Dream DMG Resistance +6.11% | During Focus, Dream DMG Resistance +13.88% | During Focus, Dream DMG Resistance +15%",
+      "text": "Marksman Stasis X1 | 神射稳态X1 | 神射穩態X1 | ディバインアーチャー・恒常性X1 | 디바인 아처 안정X1 | Stase de Tireur d'élite X1 | Scharfschütze-Stase X1 | Estasis: Tirador X1 | Estase do Atirador de Elite X1 | Marksman Steady X1 | Divine Steady X1 | During Focus, Dream DMG Resistance + | 精神凝聚持续期间，梦境伤害减免+ | 精神凝聚持續期間，夢境傷害減免+ | メンタルフォーカスの有効中、夢界ダメージ軽減+ | 정신 집중 지속 시간 동안, 꿈 대미지 감면이 증가합니다. | Pendant Concentration, Résistance onirique + | Traumwiderstand während Konzentration + | Durante Enfoque, resistencia onírica +. | Durante a Concentração, Resistência a Dano Onírico + | ระหว่างที่ Focus ทำงาน การลด Dreamscape DMG + | Selama Mental Focus berlangsung, Dream DR +. | During Focus, Dream DMG Resistance +5% | During Focus, Dream DMG Resistance +6.11% | During Focus, Dream DMG Resistance +13.88% | During Focus, Dream DMG Resistance +15%",
       "predicateTags": [
         "activation.focus-state",
         "direction.damage-dealt",
@@ -17718,7 +17434,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador​ de Elite X2 | Marksman Steady X2 | Divine Steady X2 | During Deter Shot, Magic DMG Resistance +; Deter Shot CD − | 威慑射击效果持续期间，受到魔法伤害减免+；威慑射击冷却时间- | 威懾射擊效果持續期間，受到魔法傷害減免+；威懾射擊冷卻時間- | ディスラプトショットの有効中、魔法ダメージ軽減+。ディスラプトショットのリキャスト- | 위협 사격 효과 지속 시간 동안, 받는 마법 대미지 감면이 증가합니다. 위협 사격 쿨타임이 감소합니다. | Pendant l'effet de Tir dissuasif, résistance aux dégâts magiques + ; TdR de Tir dissuasif −. | Magie-SCH-Widerstand während Abschreckungsschuss +; AZ von Abschreckungsschuss − | Durante Tiro Disuasorio, resistencia al DÑO mágico +; TdR de Tiro Disuasorio -. | Durante o Tiro de Afastamento, Resistência a Dano Mágico +; TR do Tiro de Afastamento − | ระหว่างที่ Deter Shot ทำงาน การลด M.DMG +; เวลา CD Deter Shot - | Selama efek Intimidate Shot berlaku, pengurangan MDMG yang diterima +. Waktu CD Intimidate Shot -. | During Deter Shot, Magic DMG Resistance +8%; Deter Shot CD −1s | During Deter Shot, Magic DMG Resistance +9.88%; Deter Shot CD −1.2s | During Deter Shot, Magic DMG Resistance +23.11%; Deter Shot CD −2.6s | During Deter Shot, Magic DMG Resistance +25%; Deter Shot CD −2.8s",
+      "text": "Marksman Stasis X2 | 神射稳态X2 | 神射穩態X2 | ディバインアーチャー・恒常性X2 | 디바인 아처 안정X2 | Stase de Tireur d'élite X2 | Scharfschütze-Stase X2 | Estasis: Tirador X2 | Estase do Atirador de Elite X2 | Marksman Steady X2 | Divine Steady X2 | During Deter Shot, Magic DMG Resistance +; Deter Shot CD − | 威慑射击效果持续期间，受到魔法伤害减免+；威慑射击冷却时间- | 威懾射擊效果持續期間，受到魔法傷害減免+；威懾射擊冷卻時間- | ディスラプトショットの有効中、魔法ダメージ軽減+。ディスラプトショットのリキャスト- | 위협 사격 효과 지속 시간 동안, 받는 마법 대미지 감면이 증가합니다. 위협 사격 쿨타임이 감소합니다. | Pendant l'effet de Tir dissuasif, résistance aux dégâts magiques + ; TdR de Tir dissuasif −. | Magie-SCH-Widerstand während Abschreckungsschuss +; AZ von Abschreckungsschuss − | Durante Tiro Disuasorio, resistencia al DÑO mágico +; TdR de Tiro Disuasorio -. | Durante o Tiro de Afastamento, Resistência a Dano Mágico +; TR do Tiro de Afastamento − | ระหว่างที่ Deter Shot ทำงาน การลด M.DMG +; เวลา CD Deter Shot - | Selama efek Intimidate Shot berlaku, pengurangan MDMG yang diterima +. Waktu CD Intimidate Shot -. | During Deter Shot, Magic DMG Resistance +8%; Deter Shot CD −1s | During Deter Shot, Magic DMG Resistance +9.88%; Deter Shot CD −1.2s | During Deter Shot, Magic DMG Resistance +23.11%; Deter Shot CD −2.6s | During Deter Shot, Magic DMG Resistance +25%; Deter Shot CD −2.8s",
       "predicateTags": [
         "direction.damage-dealt",
         "target.elite-or-stronger",
@@ -17938,7 +17654,7 @@
         {
           "kind": "recount",
           "relationshipKind": "affected-dream-damage-target",
-          "name": "​Quadraflare​"
+          "name": "Quadraflare"
         }
       ],
       "descriptionTextCaptured": true,

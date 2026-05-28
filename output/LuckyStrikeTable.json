@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedBy": "LuckyStrikeRuntime.gen",
-  "generatedAt": "2026-05-12T13:26:05.546Z",
+  "generatedAt": "2026-05-27T06:07:00.713Z",
   "generatedFrom": {
     "effectSources": "output/EffectSources.json",
     "modifierSourceIndex": "output/ModifierSourceIndex.json",
@@ -2233,12 +2233,12 @@
         "id": "Courage Wind Ring dapat memicu Lucky Hit. Dream DMG dari Courage Wind Ring +."
       },
       "iconPath": "yinzi_s2_04_005",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3051050
       ],
       "sourceRuleIds": [
-        "mrs:9ca6ca7d42d9"
+        "mrs:919f6d99167d"
       ],
       "targetRecountIds": [
         12
@@ -2335,12 +2335,12 @@
         "id": "Tornado dapat memicu Lucky Hit. Dream DMG dari Tornado +."
       },
       "iconPath": "yinzi_s2_04_009",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3051090
       ],
       "sourceRuleIds": [
-        "mrs:619e75b2fb23"
+        "mrs:09c03f3773e3"
       ],
       "targetRecountIds": [
         20
@@ -2437,12 +2437,12 @@
         "id": "Saat serangan tahap dua Instant memicu Luck dan Crit dalam waktu yang bersamaan, akan melancarkan satu Ultimate - Gale Slash. Dream DMG dari Ultimate - Gale Slash +."
       },
       "iconPath": "kuangxiangyinzi_s2_04_003",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3051140
       ],
       "sourceRuleIds": [
-        "mrs:ba9c97baf0e4"
+        "mrs:aebceee128ba"
       ],
       "targetRecountIds": [
         17
@@ -2547,12 +2547,12 @@
         "id": "Selama Ice Infuse berlangsung, Dream DMG dari Lucky Hit +."
       },
       "iconPath": "yinzi_s2_02_010",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3052100
       ],
       "sourceRuleIds": [
-        "mrs:bd595a8db205"
+        "mrs:f13e8cc76a76"
       ],
       "reportPolicies": [
         "include"
@@ -2643,12 +2643,12 @@
         "id": "Block Counter dapat memicu Lucky Hit. Dream DMG dari Block Counter +."
       },
       "iconPath": "yinzi_s2_09_010",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3055100
       ],
       "sourceRuleIds": [
-        "mrs:310d71e5ee87"
+        "mrs:c95b8fccb6d0"
       ],
       "targetRecountIds": [
         129
@@ -2745,12 +2745,12 @@
         "id": "Jumlah shield dari Nature's Shelter +, setiap 1% Luck atau Crit akan memberi tambahan +1%. Nature's Shelter mendapat tambahan Element Reduction selama 8 detik."
       },
       "iconPath": "yinzi_s2_05_010",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3056060
       ],
       "sourceRuleIds": [
-        "mrs:8133f97b50de"
+        "mrs:8145018d9c96"
       ],
       "reportPolicies": [
         "ignore"
@@ -2868,12 +2868,12 @@
         "id": "Dream DMG dari Lucky Hit +, namun Healing yang dikonversi dari Symbiosis Mark berkurang ."
       },
       "iconPath": "yinzi_s2_05_011",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3056110
       ],
       "sourceRuleIds": [
-        "mrs:6f7d2da167e2"
+        "mrs:98c1efa2e628"
       ],
       "reportPolicies": [
         "include"
@@ -2968,12 +2968,12 @@
         "id": "Flame Note sekarang dapat memicu Lucky Hit. Lucky Hit DMG +."
       },
       "iconPath": "kuangxiangyinzi_s2_13_001",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3057120
       ],
       "sourceRuleIds": [
-        "mrs:877eeb13a3d3"
+        "mrs:e428c3230919"
       ],
       "reportPolicies": [
         "debug-only"
@@ -3050,12 +3050,12 @@
         "id": "Luck yang diperoleh dengan cara apa pun +, namun Haste yang diperoleh dengan cara apa pun -."
       },
       "iconPath": "yinzi_s2_common_006",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3058060
       ],
       "sourceRuleIds": [
-        "mrs:493820b11f63"
+        "mrs:f9e98ead7134"
       ],
       "reportPolicies": [
         "include"
@@ -3139,12 +3139,12 @@
         "id": "Mastery yang diperoleh dengan cara apa pun +, namun Luck yang diperoleh dengan cara apa pun -."
       },
       "iconPath": "yinzi_s2_common_007",
-      "runtimeDetection": "active-buff",
+      "runtimeDetection": "active-buff-or-selected-factor-grade-item",
       "buffIds": [
         3058070
       ],
       "sourceRuleIds": [
-        "mrs:6f75fbd51252"
+        "mrs:c72d30f60fe1"
       ],
       "reportPolicies": [
         "debug-only"
@@ -4613,32 +4613,22 @@
         997449
       ],
       "sourceRuleIds": [
-        "mrs:3efea56bfd28"
+        "mrs:1516aedc6f31"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "uptime"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "uptime-only"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
-      ],
-      "contributionGroups": [
-        "genericDamage"
-      ],
-      "componentClasses": [
-        "damage-modifier"
-      ],
-      "predicateTags": [
-        "activation.active-modifier-window",
-        "direction.damage-dealt"
+        "overlap-only"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -4663,18 +4653,12 @@
         "attacker uid",
         "crit flag",
         "damage id",
-        "hit timestamp",
         "lucky flag or exact lucky packet",
         "lucky multiplier or final-damage amount",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "skill id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "inputSources": [
         "EffectSources",
@@ -4725,29 +4709,29 @@
         997451
       ],
       "sourceRuleIds": [
-        "mrs:a2cee57c9d39"
+        "mrs:26ec4475c53f"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "unknown"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "needs-component-classification"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "overlap-only"
       ],
       "contributionGroups": [
-        "genericDamage"
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier",
-        "healing-or-lifesteal"
+        "healing-or-lifesteal",
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -4793,18 +4777,14 @@
         "crit flag",
         "damage id",
         "healing/lifesteal event lane",
-        "hit timestamp",
         "lucky flag or exact lucky packet",
         "lucky multiplier or final-damage amount",
-        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "skill id",
+        "produced damage row id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "inputSources": [
         "EffectSources",
@@ -4981,12 +4961,12 @@
       ],
       "contributionGroups": [
         "elemental",
-        "genericDamage"
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier",
         "elemental-damage",
-        "healing-or-lifesteal"
+        "healing-or-lifesteal",
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -5056,11 +5036,11 @@
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
+        "produced damage row id",
         "skill id",
         "source-specific trigger predicate",
         "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "inputSources": [
         "EffectSources",
@@ -5120,22 +5100,22 @@
         "timing"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "timing-only"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "timing-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "timing"
       ],
       "contributionGroups": [
-        "genericDamage",
-        "hitTiming"
+        "hitTiming",
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier",
         "healing-or-lifesteal",
-        "hit-timing"
+        "hit-timing",
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -5224,23 +5204,18 @@
       "requiredRuntimeEvidence": [
         "active source window at hit time",
         "attacker uid",
-        "cast timeline or cooldown state",
         "cast timeline or per-hit window buckets",
         "crit flag",
         "damage id",
         "healing/lifesteal event lane",
-        "hit timestamp",
         "lucky flag or exact lucky packet",
         "lucky multiplier or final-damage amount",
-        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "skill id",
+        "produced damage row id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "inputSources": [
         "EffectSources",
@@ -8603,7 +8578,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -8756,7 +8731,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -8868,7 +8843,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -9349,29 +9324,29 @@
         2207320
       ],
       "sourceRuleIds": [
-        "mrs:f2495ff634ef"
+        "mrs:82b78ace20af"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "unknown"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "needs-component-classification"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "overlap-only"
       ],
       "contributionGroups": [
-        "genericDamage"
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier",
-        "healing-or-lifesteal"
+        "healing-or-lifesteal",
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -9402,17 +9377,13 @@
         "crit flag",
         "damage id",
         "healing/lifesteal event lane",
-        "hit timestamp",
         "lucky chance source amount",
         "lucky flag or exact lucky packet",
-        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "skill id",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "produced damage row id",
+        "target uid"
       ],
       "ownership": {
         "talentId": 1331,
@@ -9637,29 +9608,29 @@
         2207470
       ],
       "sourceRuleIds": [
-        "mrs:0e3da721ed63"
+        "mrs:900db670ced5"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "unknown"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "needs-component-classification"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "overlap-only"
       ],
       "contributionGroups": [
-        "genericDamage"
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier",
-        "healing-or-lifesteal"
+        "healing-or-lifesteal",
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -9726,17 +9697,13 @@
         "crit flag",
         "damage id",
         "healing/lifesteal event lane",
-        "hit timestamp",
         "Luck chance source amount",
         "lucky flag or exact lucky packet",
-        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "skill id",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "produced damage row id",
+        "target uid"
       ],
       "ownership": {
         "talentId": 1346,
@@ -9818,22 +9785,22 @@
         "timing"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "timing-only"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "timing-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "timing"
       ],
       "contributionGroups": [
-        "genericDamage",
-        "hitTiming"
+        "hitTiming",
+        "procDamage"
       ],
       "componentClasses": [
         "cooldown-or-resource",
-        "damage-modifier",
-        "healing-or-lifesteal"
+        "healing-or-lifesteal",
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -9855,18 +9822,13 @@
         }
       ],
       "requiredRuntimeEvidence": [
+        "attacker uid",
         "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
-        "damage id",
         "healing/lifesteal event lane",
-        "hit timestamp",
-        "modifier value or component amount",
         "modifier windows",
-        "observed final hit value",
-        "skill id",
+        "produced damage row id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "ownership": {
         "talentId": 1347,
@@ -10014,7 +9976,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -10157,7 +10119,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -10290,7 +10252,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -10420,7 +10382,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -10645,7 +10607,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -10703,28 +10665,28 @@
         2200610
       ],
       "sourceRuleIds": [
-        "mrs:bdc2a71cdfe7"
+        "mrs:70abd4740acb"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "proc"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "proc-damage"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "overlap-only"
       ],
       "contributionGroups": [
-        "genericDamage"
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier"
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -10768,18 +10730,14 @@
         "attacker uid",
         "crit flag",
         "damage id",
-        "hit timestamp",
         "lucky chance source amount",
         "lucky flag or exact lucky packet",
-        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "skill id",
+        "produced damage row id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "ownership": {
         "talentId": 159,
@@ -10793,7 +10751,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -10935,7 +10893,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -11118,7 +11076,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -11255,7 +11213,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -11313,28 +11271,28 @@
         2200710
       ],
       "sourceRuleIds": [
-        "mrs:5ef8f7bb8098"
+        "mrs:a8cb6acc33fd"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "proc"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "proc-damage"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "overlap-only"
       ],
       "contributionGroups": [
-        "genericDamage"
+        "procDamage"
       ],
       "componentClasses": [
-        "damage-modifier"
+        "proc-damage"
       ],
       "predicateTags": [
         "activation.active-modifier-window",
@@ -11349,15 +11307,11 @@
         }
       ],
       "requiredRuntimeEvidence": [
-        "damage id",
-        "hit timestamp",
-        "modifier value or component amount",
+        "attacker uid",
         "modifier windows",
-        "observed final hit value",
-        "skill id",
+        "produced damage row id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit",
-        "target/source predicate evaluation"
+        "target uid"
       ],
       "ownership": {
         "talentId": 169,
@@ -11371,7 +11325,7 @@
           "fr": "Lame-tempête",
           "de": "Sturmklinge",
           "es": "Filo tormentoso",
-          "pt-BR": "​ ​​Lâmina Tempestuosa",
+          "pt-BR": "Lâmina Tempestuosa",
           "th": "Stormblade",
           "id": "Stormblade",
           "ko-KR": "스톰 블레이드"
@@ -11450,7 +11404,7 @@
         "static-target"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "proc-damage"
       ],
       "contributionModes": [
         "exact-produced-damage"
@@ -11459,11 +11413,9 @@
         "exact"
       ],
       "contributionGroups": [
-        "physicalMagicEnhancement",
         "procDamage"
       ],
       "componentClasses": [
-        "physical-magic-enhancement",
         "proc-damage"
       ],
       "predicateTags": [
@@ -11496,11 +11448,9 @@
       "requiredRuntimeEvidence": [
         "active source window at hit time",
         "attacker Luck snapshot at hit time",
-        "attacker physical/magic enhancement snapshot at hit time",
         "attacker uid",
         "crit flag",
         "damage id",
-        "damage physical/magic lane",
         "Luck-scaled damage source amount",
         "lucky flag or exact lucky packet",
         "modifier windows",
@@ -12007,7 +11957,7 @@
         "static-target"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "proc-damage"
       ],
       "contributionModes": [
         "exact-produced-damage"
@@ -12016,11 +11966,9 @@
         "exact"
       ],
       "contributionGroups": [
-        "physicalMagicEnhancement",
         "procDamage"
       ],
       "componentClasses": [
-        "physical-magic-enhancement",
         "proc-damage"
       ],
       "predicateTags": [
@@ -12066,11 +12014,9 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
-        "attacker physical/magic enhancement snapshot at hit time",
         "attacker uid",
         "crit flag",
         "damage id",
-        "damage physical/magic lane",
         "lucky chance source amount",
         "lucky flag or exact lucky packet",
         "modifier windows",
@@ -15277,13 +15223,11 @@
       ],
       "contributionGroups": [
         "baseAttack",
-        "physicalMagicEnhancement",
         "procDamage"
       ],
       "componentClasses": [
         "healing-or-lifesteal",
         "offense-stat",
-        "physical-magic-enhancement",
         "proc-damage"
       ],
       "predicateTags": [
@@ -15301,11 +15245,9 @@
         }
       ],
       "requiredRuntimeEvidence": [
-        "attacker physical/magic enhancement snapshot at hit time",
         "attacker stat snapshot at hit time",
         "attacker uid",
         "damage id",
-        "damage physical/magic lane",
         "damage row ATK/MATK lane",
         "healing/lifesteal event lane",
         "hit timestamp",
@@ -15556,30 +15498,28 @@
         2202590
       ],
       "sourceRuleIds": [
-        "mrs:62d1ef078966"
+        "mrs:1a22bbc84bff"
       ],
       "reportPolicies": [
-        "include"
+        "debug-only"
       ],
       "rowPolicies": [
-        "formula"
+        "unknown"
       ],
       "contributionStatuses": [
-        "formula-ready-candidate"
+        "needs-component-classification"
       ],
       "contributionModes": [
-        "formula-replay-candidate"
+        "overlap-only"
       ],
       "contributionTiers": [
-        "replay-required"
+        "overlap-only"
       ],
       "contributionGroups": [
-        "physicalMagicEnhancement",
         "procDamage"
       ],
       "componentClasses": [
         "healing-or-lifesteal",
-        "physical-magic-enhancement",
         "proc-damage"
       ],
       "predicateTags": [
@@ -15598,22 +15538,16 @@
       "requiredRuntimeEvidence": [
         "active source window at hit time",
         "attacker Luck snapshot at hit time",
-        "attacker physical/magic enhancement snapshot at hit time",
         "attacker uid",
         "crit flag",
         "damage id",
-        "damage physical/magic lane",
         "healing/lifesteal event lane",
-        "hit timestamp",
         "Luck-scaled damage source amount",
         "lucky flag or exact lucky packet",
-        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
         "produced damage row id",
-        "skill id",
-        "sourceRuleId active on hit",
         "target uid"
       ],
       "ownership": {
