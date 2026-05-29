@@ -111,37 +111,45 @@ Notes:
         ? skillTableDesignLookup.get(normalizeDesignLookupText(directName)) ?? null
         : null;
     const iconLinks = collectIconLinks([
-      { path: linkedBuff?.IconPath, source: "BuffName" },
-      { path: linkedSkillTable?.iconPath, source: "SkillTable", offset: linkedSkillTable?.iconPathOffset },
-      { path: linkedSkillTable?.parentSkillIconPath, source: "SkillTable.ParentSkillTable", offset: linkedSkillTable?.parentSkillIconPathOffset },
+      { path: linkedBuff?.IconPath, source: linkedBuff?.IconPathSource || "BuffName" },
+      {
+        path: linkedSkillTable?.iconPath,
+        source: linkedSkillTable?.iconPathSource || "SkillTable",
+        offset: linkedSkillTable?.iconPathOffset
+      },
+      {
+        path: linkedSkillTable?.parentSkillIconPath,
+        source: linkedSkillTable?.parentSkillIconPathSource || "SkillTable.ParentSkillTable",
+        offset: linkedSkillTable?.parentSkillIconPathOffset
+      },
       {
         path: linkedSkillTableFromEffect?.iconPath,
-        source: "SkillEffectTableSkillIdToSkillTable",
+        source: linkedSkillTableFromEffect?.iconPathSource || "SkillEffectTableSkillIdToSkillTable",
         offset: linkedSkillTableFromEffect?.iconPathOffset
       },
       {
         path: linkedSkillTableFromEffect?.parentSkillIconPath,
-        source: "SkillEffectTableSkillIdToSkillTable.ParentSkillTable",
+        source: linkedSkillTableFromEffect?.parentSkillIconPathSource || "SkillEffectTableSkillIdToSkillTable.ParentSkillTable",
         offset: linkedSkillTableFromEffect?.parentSkillIconPathOffset
       },
       {
         path: linkedSkillTableFromFight?.iconPath,
-        source: "SkillFightLevelTableSkillIdToSkillTable",
+        source: linkedSkillTableFromFight?.iconPathSource || "SkillFightLevelTableSkillIdToSkillTable",
         offset: linkedSkillTableFromFight?.iconPathOffset
       },
       {
         path: linkedSkillTableFromFight?.parentSkillIconPath,
-        source: "SkillFightLevelTableSkillIdToSkillTable.ParentSkillTable",
+        source: linkedSkillTableFromFight?.parentSkillIconPathSource || "SkillFightLevelTableSkillIdToSkillTable.ParentSkillTable",
         offset: linkedSkillTableFromFight?.parentSkillIconPathOffset
       },
       {
         path: linkedSkillTableFromDesign?.iconPath,
-        source: "DamageAttrNameExactSkillTable",
+        source: linkedSkillTableFromDesign?.iconPathSource || "DamageAttrNameExactSkillTable",
         offset: linkedSkillTableFromDesign?.iconPathOffset
       },
       {
         path: linkedSkillTableFromDesign?.parentSkillIconPath,
-        source: "DamageAttrNameExactSkillTable.ParentSkillTable",
+        source: linkedSkillTableFromDesign?.parentSkillIconPathSource || "DamageAttrNameExactSkillTable.ParentSkillTable",
         offset: linkedSkillTableFromDesign?.parentSkillIconPathOffset
       }
     ]);
@@ -229,7 +237,18 @@ Notes:
             LinkedBuffId: linkedId,
             LinkedBuffName: linkedBuff.Name,
             LinkedBuffNames: linkedBuff.Names,
-            ...(linkedBuff.IconPath ? { LinkedBuffIconPath: linkedBuff.IconPath } : {})
+            ...(linkedBuff.IconPath
+              ? {
+                  LinkedBuffIconPath: linkedBuff.IconPath,
+                  LinkedBuffIconSource: linkedBuff.IconPathSource,
+                  ...(linkedBuff.IconPathFamilySourceId
+                    ? {
+                        LinkedBuffIconFamilySourceId: linkedBuff.IconPathFamilySourceId,
+                        LinkedBuffIconFamilySourceName: linkedBuff.IconPathFamilySourceName
+                      }
+                    : {})
+                }
+              : {})
           }
         : {}),
       ...(linkedSkill
@@ -438,6 +457,7 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
       nameOffset,
       ...(parentSkillId && parentSkillId !== skillId ? { parentSkillId } : {}),
       iconPath: looksLikeIconPath(iconPath) ? iconPath : "",
+      iconPathSource: looksLikeIconPath(iconPath) ? "SkillTable" : "",
       iconPathOffset,
       sourceOffset: table.entry.offset + rowOffset,
       nameSources: ["SkillTable"]
@@ -449,6 +469,7 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
     readCtbTableByHash,
     readU32
   });
+  applySkillTableDesignVariantIconFallbacks(bySkillId);
 
   for (const entry of bySkillId.values()) {
     if (!entry.parentSkillId) {
@@ -462,11 +483,76 @@ function buildSkillTableLookup(containerDir, metaEntries, localizationTables, he
     entry.parentSkillNameId = parent.nameId;
     entry.parentSkillNames = parent.names;
     entry.parentSkillIconPath = parent.iconPath;
+    entry.parentSkillIconPathSource = parent.iconPathSource;
     entry.parentSkillIconPathOffset = parent.iconPathOffset;
     entry.parentSkillSourceOffset = parent.sourceOffset;
   }
 
   return bySkillId;
+}
+
+function applySkillTableDesignVariantIconFallbacks(skillRows) {
+  const iconByDesign = new Map();
+  for (const entry of skillRows.values()) {
+    if (!entry?.iconPath) {
+      continue;
+    }
+    addUniqueBridgeCandidate(iconByDesign, normalizeDesignLookupText(entry.name), entry);
+  }
+
+  for (const entry of skillRows.values()) {
+    if (!entry || entry.iconPath) {
+      continue;
+    }
+    for (const key of skillDesignVariantIconKeys(entry.name)) {
+      const source = uniqueBridgeCandidate(iconByDesign, key);
+      if (!source?.iconPath) {
+        continue;
+      }
+      entry.iconPath = source.iconPath;
+      entry.iconPathOffset = source.iconPathOffset;
+      entry.iconPathSource = "SkillTable.DesignVariantIconFallback";
+      entry.iconPathFallbackSkillId = source.skillId;
+      entry.iconPathFallbackSourceOffset = source.sourceOffset;
+      break;
+    }
+  }
+}
+
+function skillDesignVariantIconKeys(value) {
+  const raw = String(value || "").trim();
+  if (!raw) {
+    return [];
+  }
+  const keys = [];
+  const add = (candidate) => {
+    const key = normalizeDesignLookupText(candidate);
+    if (key && key !== normalizeDesignLookupText(raw)) {
+      keys.push(key);
+    }
+  };
+  add(raw.replace(/((?:ATK|SKILL|ULT|TG|TF|KX)[_-]?\d+)[a-z]+$/i, "$1"));
+  add(raw.replace(/([_-]\d+)[a-z]+$/i, "$1"));
+  return uniqueStrings(keys);
+}
+
+function addUniqueBridgeCandidate(map, key, candidate) {
+  if (!key || !candidate) {
+    return;
+  }
+  const existing = map.get(key);
+  if (existing === undefined) {
+    map.set(key, candidate);
+    return;
+  }
+  if (existing && String(existing.skillId) === String(candidate.skillId)) {
+    return;
+  }
+  map.set(key, null);
+}
+
+function uniqueBridgeCandidate(map, key) {
+  return key ? map.get(key) || null : null;
 }
 
 function buildUniqueSkillTableDesignLookup(skillTableLookup) {
@@ -554,6 +640,9 @@ function applyVirtualSkillNameBridges(skillRows, containerDir, metaEntries, help
     if (!target.iconPath && source.iconPath) {
       target.iconPath = source.iconPath;
       target.iconPathOffset = source.iconPathOffset;
+      target.iconPathSource = "CTB:3518555200.VirtualSkillIconBridge";
+      target.iconPathFallbackSkillId = source.skillId;
+      target.iconPathFallbackSourceOffset = source.sourceOffset;
     }
   }
 }
@@ -675,18 +764,54 @@ function loadGeneratedBuffLookup(outputDir) {
   const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
   const rows = Array.isArray(data) ? data : Object.values(data || {});
   const out = new Map();
+  const familyIcons = new Map();
   for (const row of rows) {
     const id = row?.Id ?? row?.id;
     if (id === undefined || id === null) {
       continue;
     }
-    out.set(String(id), {
+    const iconPath = String(row.IconPath || "").trim();
+    const entry = {
       Name: String(row.Name ?? row.NameDesign ?? row.DesignName ?? "").trim(),
       Names: row.Names && typeof row.Names === "object" && !Array.isArray(row.Names) ? row.Names : {},
-      IconPath: String(row.IconPath || "").trim()
-    });
+      IconPath: iconPath,
+      IconPathSource: iconPath ? String(row.IconPathSource || "BuffName").trim() : ""
+    };
+    out.set(String(id), entry);
+    if (iconPath) {
+      const familyKey = buffFamilyKey(id);
+      if (familyKey && !familyIcons.has(familyKey)) {
+        familyIcons.set(familyKey, {
+          id: Number(id),
+          name: entry.Name,
+          iconPath,
+          iconPathSource: entry.IconPathSource || "BuffName"
+        });
+      }
+    }
+  }
+  for (const [id, entry] of out.entries()) {
+    if (entry.IconPath) {
+      continue;
+    }
+    const familyIcon = familyIcons.get(buffFamilyKey(id));
+    if (!familyIcon) {
+      continue;
+    }
+    entry.IconPath = familyIcon.iconPath;
+    entry.IconPathSource = "BuffName.FamilyIconFallback";
+    entry.IconPathFamilySourceId = familyIcon.id;
+    entry.IconPathFamilySourceName = familyIcon.name;
   }
   return out;
+}
+
+function buffFamilyKey(buffId) {
+  const id = Number(buffId);
+  if (!Number.isFinite(id) || id <= 0) {
+    return "";
+  }
+  return String(Math.floor(id / 10));
 }
 
 function collectIconLinks(values) {

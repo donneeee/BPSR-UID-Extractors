@@ -3,12 +3,11 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const RECOUNT_ROW_SIZE = 12;
-const RECOUNT_ROW_COUNT = 294;
-const RECOUNT_DAMAGE_PAYLOAD_HEADER_BYTES = 16;
 const TALENT_PASSIVE_TABLE_HASH = 3345237628;
 const TALENT_NAME_MATCH_MIN_LOCALES = 10;
 const TALENT_FORMULA_MATCH_MIN_LOCALES = 5;
 const BASE_SKILL_NAME_MATCH_MIN_LOCALES = 8;
+const AOYI_ICON_NAME_MATCH_MIN_LOCALES = 7;
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -20,11 +19,9 @@ async function main() {
     buildLocaleTextObject,
     choosePreferredLocaleText,
     displayPath,
-    findFirstPattern,
     loadLocalizationTables,
     loadMetaEntries,
     looksLikeIconPath,
-    makeU32Pattern,
     maybeWriteJson,
     nextCtbStringOffset,
     parseArgs,
@@ -32,7 +29,6 @@ async function main() {
     readCtbString,
     readCtbTable,
     readCtbTableByHash,
-    readPackage,
     readU16,
     readU32,
     resolvePaths,
@@ -42,24 +38,24 @@ async function main() {
 
   if (args.help) {
     printHelp(
-      "RecountTable.gen - generate RecountTable.json directly from the game's Recount row block.",
+      "RecountTable.gen - generate RecountTable.json directly from the game's RecountTable.ctb rows.",
       `
 Notes:
-  This script reads the game row block whose rows are:
+  This script reads the game RecountTable.ctb rows:
     u32 recount id, u32 mlstring name key, u32 damage-list offset
-  Damage ids are read as u64 ids from the packed payload after the row block.
+  Damage ids are read as u64 ids from RecountTable's packed damage-list pool.
 `
     );
     process.exit(0);
   }
 
   const paths = resolvePaths(args, "RecountTable.json");
-  const pkg = readPackage(paths.m0Path);
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
   const damageLookup = loadDamageLookup(paths.outputDir);
   const generatedBuffIds = loadGeneratedBuffIds(paths.outputDir);
+  const aoyiIconRows = loadAoyiIconRows(paths.outputDir);
   const baseSkillRows = collectBaseSkillRows(containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
     choosePreferredLocaleText,
@@ -77,31 +73,36 @@ Notes:
     readCtbTableByHash,
     readU32
   });
-  const rowStart = findRecountRowStart(pkg, localizationTables, {
-    findFirstPattern,
-    makeU32Pattern,
-    readU32
-  });
-  const payloadBase = rowStart + RECOUNT_ROW_COUNT * RECOUNT_ROW_SIZE;
+  const recountTable = readCtbTable(containerDir, metaEntries, "RecountTable.ctb");
+  const rowStart = recountTable.rowStart;
+  const rowSize = recountTable.rowSize || RECOUNT_ROW_SIZE;
+  const damagePool = recountTable.pools.get(2);
   const out = {};
 
-  for (let index = 0; index < RECOUNT_ROW_COUNT; index += 1) {
-    const offset = rowStart + index * RECOUNT_ROW_SIZE;
-    const id = readU32(pkg, offset);
-    const nameId = readU32(pkg, offset + 4);
-    const damageOffset = readU32(pkg, offset + 8);
+  for (let index = 0; index < recountTable.rowCount; index += 1) {
+    const offset = rowStart + index * rowSize;
+    const id = readU32(recountTable.data, offset);
+    const nameId = readU32(recountTable.data, offset + 4);
+    const damageOffset = readU32(recountTable.data, offset + 8);
     const localeEntries = collectLocalizedRecountNameEntries(nameId, localizationTables);
     const names = buildLocaleTextObject(localeEntries, { includeDesign: false });
     const preferredName = choosePreferredLocaleText(names);
     if (!id || !preferredName) {
       continue;
     }
-    const damageIds = readDamageIdList(pkg, payloadBase, damageOffset, { readU16, readU32 });
+    const damageIds = readDamageIdList(damagePool, damageOffset, { readU16, readU32 });
     const linkedTalent = findTalentBridge(names, talentRows, damageIds);
     const linkedBaseSkill = findBaseSkillNameBridge(names, baseSkillRows);
+    const linkedAoyiIcon = findAoyiIconNameBridge(names, aoyiIconRows);
     const damageIconPaths = collectDamageIconPaths(damageIds, damageLookup);
-    const iconPaths = uniqueStrings([linkedTalent?.iconPath, linkedBaseSkill?.iconPath, ...damageIconPaths]);
-    const preferredIconPath = linkedTalent?.iconPath || linkedBaseSkill?.iconPath || damageIconPaths[0] || "";
+    const iconPaths = uniqueStrings([
+      linkedTalent?.iconPath,
+      linkedBaseSkill?.iconPath,
+      linkedAoyiIcon?.iconPath,
+      ...damageIconPaths
+    ]);
+    const preferredIconPath =
+      linkedTalent?.iconPath || linkedBaseSkill?.iconPath || linkedAoyiIcon?.iconPath || damageIconPaths[0] || "";
     out[String(id)] = {
       Id: id,
       Name: preferredName,
@@ -142,9 +143,24 @@ Notes:
             LinkedBaseSkillNameId: linkedBaseSkill.nameId,
             LinkedBaseSkillNames: linkedBaseSkill.names,
             LinkedBaseSkillIconPath: linkedBaseSkill.iconPath,
+            ...(linkedBaseSkill.iconPathSource ? { LinkedBaseSkillIconSource: linkedBaseSkill.iconPathSource } : {}),
+            ...(linkedBaseSkill.iconPathFallbackSkillId
+              ? { LinkedBaseSkillIconFallbackSkillId: linkedBaseSkill.iconPathFallbackSkillId }
+              : {}),
             LinkedBaseSkillSourceOffset: linkedBaseSkill.sourceOffset,
             BaseSkillNameBridge: "SkillTable.LocalizedNameMatch",
             BaseSkillNameBridgeLocaleMatches: linkedBaseSkill.matchCount
+          }
+        : {}),
+      ...(linkedAoyiIcon
+        ? {
+            LinkedAoyiIconId: linkedAoyiIcon.id,
+            LinkedAoyiIconName: linkedAoyiIcon.name,
+            LinkedAoyiIconNames: linkedAoyiIcon.names,
+            LinkedAoyiIconPath: linkedAoyiIcon.iconPath,
+            LinkedAoyiIconSourceOffset: linkedAoyiIcon.sourceOffset,
+            AoyiIconNameBridge: "SkillAoyiIcons.LocalizedNameMatch",
+            AoyiIconNameBridgeLocaleMatches: linkedAoyiIcon.matchCount
           }
         : {}),
       ...(iconPaths.length
@@ -154,13 +170,15 @@ Notes:
             IconSource: linkedTalent?.iconPath
               ? linkedTalent.bridge || "CTB:3345237628.LocalizedNameMatch"
               : linkedBaseSkill?.iconPath
-                ? "SkillTable.LocalizedNameMatch"
-              : "DamageAttrIdName.DamageId"
+                ? linkedBaseSkill.iconPathSource || "SkillTable.LocalizedNameMatch"
+                : linkedAoyiIcon?.iconPath
+                  ? "SkillAoyiIcons.LocalizedNameMatch"
+                  : "DamageAttrIdName.DamageId"
           }
         : {}),
       DamageListOffset: damageOffset,
       Source: "RecountTable",
-      SourceOffset: offset
+      SourceOffset: recountTable.entry.offset + offset
     };
   }
 
@@ -168,8 +186,10 @@ Notes:
     Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
   );
 
+  console.log(`Recount source: RecountTable.ctb`);
   console.log(`Recount row start: ${rowStart}`);
-  console.log(`Recount rows scanned: ${RECOUNT_ROW_COUNT}`);
+  console.log(`Recount row size: ${rowSize}`);
+  console.log(`Recount rows scanned: ${recountTable.rowCount}`);
   console.log(`Recount entries: ${Object.keys(sorted).length}`);
   console.log(`Recount talent name bridges: ${Object.values(sorted).filter((row) => row.LinkedTalentId).length}`);
   console.log(`Recount talent formula bridges: ${Object.values(sorted).filter((row) => row.TalentFormulaBridge).length}`);
@@ -228,6 +248,38 @@ function loadGeneratedBuffIds(outputDir) {
   );
 }
 
+function loadAoyiIconRows(outputDir) {
+  const filePath = path.join(outputDir, "skill_aoyi_icons.json");
+  if (!fs.existsSync(filePath)) {
+    return [];
+  }
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  return Object.values(rows || {})
+    .map((row) => {
+      const iconPath = normalizeAoyiIconPath(row?.IconPath || row?.iconPath, row?.Icon || row?.icon);
+      if (!row?.Names || !iconPath) {
+        return null;
+      }
+      return {
+        id: Number(row.Id ?? row.id),
+        name: row.Name || row.name,
+        names: row.Names || row.names,
+        iconPath,
+        sourceOffset: row.SkillTableSourceOffset || row.SourceOffset || row.sourceOffset || 0
+      };
+    })
+    .filter((row) => row && Number.isFinite(row.id) && row.name);
+}
+
+function normalizeAoyiIconPath(iconPath, iconFile) {
+  const direct = String(iconPath || "").trim();
+  if (direct) {
+    return direct;
+  }
+  const icon = String(iconFile || "").trim().replace(/\.png$/i, "");
+  return icon ? `ui/textures/skill_aoyi/${icon}` : "";
+}
+
 function collectDamageIconPaths(damageIds, lookup) {
   const paths = [];
   for (const id of damageIds || []) {
@@ -272,11 +324,77 @@ function collectBaseSkillRows(containerDir, metaEntries, localizationTables, hel
       names,
       designName,
       iconPath,
+      iconPathSource: iconPath ? "SkillTable" : "",
       iconPathOffset: iconOffset,
       sourceOffset: table.entry.offset + rowOffset
     });
   }
+  applyBaseSkillVariantIconFallbacks(rows);
   return rows;
+}
+
+function applyBaseSkillVariantIconFallbacks(rows) {
+  const iconByDesign = new Map();
+  for (const row of rows || []) {
+    if (!row?.iconPath) {
+      continue;
+    }
+    addUniqueBridgeCandidate(iconByDesign, normalizeDesignLookupText(row.designName || row.name), row);
+  }
+
+  for (const row of rows || []) {
+    if (!row || row.iconPath) {
+      continue;
+    }
+    for (const key of skillDesignVariantIconKeys(row.designName || row.name)) {
+      const source = uniqueBridgeCandidate(iconByDesign, key);
+      if (!source?.iconPath) {
+        continue;
+      }
+      row.iconPath = source.iconPath;
+      row.iconPathSource = "SkillTable.DesignVariantIconFallback";
+      row.iconPathOffset = source.iconPathOffset;
+      row.iconPathFallbackSkillId = source.id;
+      row.iconPathFallbackSourceOffset = source.sourceOffset;
+      break;
+    }
+  }
+}
+
+function skillDesignVariantIconKeys(value) {
+  const raw = String(value || "").trim();
+  if (!raw) {
+    return [];
+  }
+  const keys = [];
+  const add = (candidate) => {
+    const key = normalizeDesignLookupText(candidate);
+    if (key && key !== normalizeDesignLookupText(raw)) {
+      keys.push(key);
+    }
+  };
+  add(raw.replace(/((?:ATK|SKILL|ULT|TG|TF|KX)[_-]?\d+)[a-z]+$/i, "$1"));
+  add(raw.replace(/([_-]\d+)[a-z]+$/i, "$1"));
+  return uniqueStrings(keys);
+}
+
+function addUniqueBridgeCandidate(map, key, candidate) {
+  if (!key || !candidate) {
+    return;
+  }
+  const existing = map.get(key);
+  if (existing === undefined) {
+    map.set(key, candidate);
+    return;
+  }
+  if (existing && String(existing.id) === String(candidate.id)) {
+    return;
+  }
+  map.set(key, null);
+}
+
+function uniqueBridgeCandidate(map, key) {
+  return key ? map.get(key) || null : null;
 }
 
 function collectTalentPassiveRows(containerDir, metaEntries, localizationTables, helpers) {
@@ -360,6 +478,10 @@ function readIntArrayFromPool(pool, index) {
 
 function findBaseSkillNameBridge(recountNames, skillRows) {
   return findLocalizedNameBridge(recountNames, skillRows, BASE_SKILL_NAME_MATCH_MIN_LOCALES);
+}
+
+function findAoyiIconNameBridge(recountNames, aoyiIconRows) {
+  return findLocalizedNameBridge(recountNames, aoyiIconRows, AOYI_ICON_NAME_MATCH_MIN_LOCALES);
 }
 
 function findTalentBridge(recountNames, talentRows, damageIds) {
@@ -507,10 +629,13 @@ function validateRecountRows(buffer, offset, localizationTables, readU32) {
   return true;
 }
 
-function readDamageIdList(buffer, payloadBase, damageOffset, helpers) {
+function readDamageIdList(pool, damageOffset, helpers) {
   const { readU16, readU32 } = helpers;
-  const start = payloadBase + RECOUNT_DAMAGE_PAYLOAD_HEADER_BYTES + Number(damageOffset || 0);
-  const count = readU16(buffer, start);
+  if (!pool) {
+    return [];
+  }
+  const start = Number(damageOffset || 0);
+  const count = readU16(pool, start);
   if (!Number.isFinite(count) || count <= 0 || count > 512) {
     return [];
   }
@@ -518,7 +643,10 @@ function readDamageIdList(buffer, payloadBase, damageOffset, helpers) {
   const ids = [];
   for (let index = 0; index < count; index += 1) {
     const offset = start + 2 + index * 8;
-    const id = readU64Id(buffer, offset, readU32);
+    if (offset + 8 > pool.length) {
+      break;
+    }
+    const id = readU64Id(pool, offset, readU32);
     if (id) {
       ids.push(numberOrString(id));
     }
@@ -561,6 +689,14 @@ function matchingLocaleCount(left, right) {
 
 function normalizeLocaleText(value) {
   return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function normalizeDesignLookupText(value) {
+  return String(value || "")
+    .replace(/[\u200b-\u200f\ufeff]/g, "")
+    .replace(/\s+/g, "")
+    .trim()
+    .toLowerCase();
 }
 
 function looksLikeDescription(text) {

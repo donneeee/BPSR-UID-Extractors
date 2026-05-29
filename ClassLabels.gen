@@ -27,7 +27,7 @@ const CLASS_DEFS = [
     classId: 3,
     itemIds: [],
     fallbackNames: {
-      en: "Flame Berserker",
+      en: "Twin Axe",
       "zh-CN": "赤炎狂战士",
       "zh-TW": "赤炎狂戰士"
     }
@@ -35,6 +35,42 @@ const CLASS_DEFS = [
   { key: "Verdant Oracle", classId: 5, itemIds: [1020154, 1020007] },
   { key: "Beat Performer", classId: 13, itemIds: [1020158] }
 ];
+
+const CLASS_BY_SPEC_KEY = {
+  Iaido: "Stormblade",
+  Moonstrike: "Stormblade",
+  Icicle: "Frost Mage",
+  Frostbeam: "Frost Mage",
+  Voidflame: "Flame Berserker",
+  Blazecrimson: "Flame Berserker",
+  Vanguard: "Wind Knight",
+  Skyward: "Wind Knight",
+  Smite: "Verdant Oracle",
+  Lifebind: "Verdant Oracle",
+  Earthfort: "Heavy Guardian",
+  Block: "Heavy Guardian",
+  Wildpack: "Marksman",
+  Falconry: "Marksman",
+  Recovery: "Shield Knight",
+  Shield: "Shield Knight",
+  Dissonance: "Beat Performer",
+  Concerto: "Beat Performer"
+};
+
+const WEAPON_STYLE_BUFF_BY_SPEC_KEY = {
+  Iaido: 960132,
+  Moonstrike: 960133,
+  Frostbeam: 960134,
+  Icicle: 960135,
+  Smite: 960136,
+  Lifebind: 960137,
+  Wildpack: 960138,
+  Falconry: 960139,
+  Block: 960140,
+  Earthfort: 960141,
+  Vanguard: 960142,
+  Skyward: 960143
+};
 
 const SPEC_DEFS = [
   { key: "Earthfort", talentId: 931 },
@@ -91,14 +127,19 @@ async function main() {
 Notes:
   Class labels are resolved from generated itemnames.json class evidence.
   Spec labels are resolved from ClassSpecSkillModelProbe talent spec rows.
-  The output is a combined table keyed by class.* and spec.* for app runtime use.
+  class-labels.json is a combined translation table keyed by class.* and spec.*.
+  class-spec-icons.json is a sibling metadata table for class/spec icon lookup.
+  spec-icons.json is a spec-only icon extraction helper for output/icons/spec-icons.
 `
     );
     process.exit(0);
   }
 
   const paths = resolvePaths(args, "class-labels.json");
+  const iconOutPath = path.join(path.dirname(paths.out), "class-spec-icons.json");
+  const specIconOutPath = path.join(path.dirname(paths.out), "spec-icons.json");
   const itemNamesPath = path.join(paths.outputDir, "itemnames.json");
+  const buffNamesPath = path.join(paths.outputDir, "BuffName.json");
   const classSpecProbePath = path.join(
     paths.outputDir,
     "probing-reports",
@@ -106,6 +147,7 @@ Notes:
   );
 
   const itemNames = readJson(itemNamesPath, []);
+  const buffNames = readJson(buffNamesPath, []);
   const classSpecProbe = readJson(classSpecProbePath, { talentSpecRows: [] });
 
   const itemById = new Map(
@@ -114,6 +156,10 @@ Notes:
   const talentSpecById = new Map(
     (Array.isArray(classSpecProbe.talentSpecRows) ? classSpecProbe.talentSpecRows : [])
       .map((entry) => [Number(entry.id), entry])
+  );
+  const buffById = new Map(
+    (Array.isArray(buffNames) ? buffNames : [])
+      .map((entry) => [Number(entry.Id ?? entry.id), entry])
   );
 
   const out = {};
@@ -128,10 +174,22 @@ Notes:
     out[`spec.${def.key}`] = label;
   }
 
+  const iconMetadata = buildIconMetadata({
+    buffById,
+    classDefs: CLASS_DEFS,
+    specDefs: SPEC_DEFS,
+    talentSpecById
+  });
+  const specIconAssets = buildSpecIconAssets(iconMetadata);
+
   console.log(`Class labels: ${CLASS_DEFS.length}`);
   console.log(`Spec labels: ${SPEC_DEFS.length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
+  console.log(`Icon metadata: ${displayPath(iconOutPath)}`);
+  console.log(`Spec icon assets: ${displayPath(specIconOutPath)}`);
   maybeWriteJson(paths.out, out, Boolean(args.dryRun));
+  maybeWriteJson(iconOutPath, iconMetadata, Boolean(args.dryRun));
+  maybeWriteJson(specIconOutPath, specIconAssets, Boolean(args.dryRun));
 }
 
 function buildClassLabel(def, itemById) {
@@ -177,6 +235,91 @@ function buildSpecLabel(def, talentSpecById) {
   }
 
   return out;
+}
+
+function buildIconMetadata({ buffById, classDefs, specDefs, talentSpecById }) {
+  const classes = {};
+  const specs = {};
+
+  for (const def of classDefs) {
+    classes[def.key] = {
+      key: def.key,
+      labelKey: `class.${def.key}`,
+      classId: def.classId,
+      staticIconPath: `/images/classes/${def.key}.png`,
+      specKeys: specDefs
+        .filter((specDef) => CLASS_BY_SPEC_KEY[specDef.key] === def.key)
+        .map((specDef) => specDef.key)
+    };
+  }
+
+  for (const def of specDefs) {
+    const row = talentSpecById.get(Number(def.talentId));
+    const classKey = CLASS_BY_SPEC_KEY[def.key] || "";
+    const classId = classDefs.find((classDef) => classDef.key === classKey)?.classId ?? 0;
+    const weaponStyleBuffId = WEAPON_STYLE_BUFF_BY_SPEC_KEY[def.key] ?? null;
+    const weaponStyleBuff = weaponStyleBuffId ? buffById.get(Number(weaponStyleBuffId)) : null;
+    const weaponStyleIconPath = normalizeText(weaponStyleBuff?.IconPath);
+
+    if (classKey && weaponStyleIconPath && !classes[classKey]?.professionIconPath) {
+      classes[classKey].professionIconPath = weaponStyleIconPath;
+      classes[classKey].professionIconSource = "BuffTable.weapon-style";
+    }
+
+    specs[def.key] = stripEmpty({
+      key: def.key,
+      labelKey: `spec.${def.key}`,
+      classKey,
+      classId,
+      talentId: def.talentId,
+      iconPath: normalizeText(row?.iconPath),
+      iconSource: row?.sourceTable || "",
+      sourceOffset: row?.sourceOffset,
+      weaponStyleBuffId,
+      weaponStyleIconPath,
+      weaponStyleIconSource: weaponStyleIconPath ? "BuffTable.weapon-style" : ""
+    });
+  }
+
+  return {
+    generatedBy: "ClassLabels.gen",
+    notes: [
+      "Spec icon paths are direct CTB:3345237628 talent/passive/spec row evidence.",
+      "Weapon-style icons are BuffTable weapon-style rows and are class/profession-level fallback evidence only.",
+      "App static class icon paths remain fallback paths for classes without a generated profession icon."
+    ],
+    classes,
+    specs
+  };
+}
+
+function buildSpecIconAssets(iconMetadata) {
+  const specs = {};
+  for (const [key, spec] of Object.entries(iconMetadata.specs || {})) {
+    const iconPath = normalizeText(spec.iconPath);
+    if (!iconPath) {
+      continue;
+    }
+    specs[key] = stripEmpty({
+      Id: spec.talentId,
+      Name: key,
+      Class: spec.classKey,
+      Icon: `${key}.png`,
+      IconPath: iconPath,
+      IconSource: spec.iconSource,
+      SourceOffset: spec.sourceOffset
+    });
+  }
+
+  return {
+    generatedBy: "ClassLabels.gen",
+    notes: [
+      "Spec-only icon extraction helper.",
+      "ExtractIcons.gen groups this file into output/icons/spec-icons and ExportIconPngs.gen writes the PNGs.",
+      "Rows use direct ClassSpecSkillModelProbe CTB talent/passive/spec icon evidence."
+    ],
+    specs
+  };
 }
 
 function normalizeClassEvidence(value, locale, fallback) {
@@ -231,6 +374,17 @@ function normalizeSpecEvidence(value, locale, fallback) {
   }
 
   return text || fallback;
+}
+
+function stripEmpty(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value;
+  const out = {};
+  for (const [key, nested] of Object.entries(value)) {
+    if (nested === "" || nested === null || nested === undefined) continue;
+    if (Array.isArray(nested) && nested.length === 0) continue;
+    out[key] = nested;
+  }
+  return out;
 }
 
 function normalizeText(value) {

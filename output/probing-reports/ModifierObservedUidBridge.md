@@ -1,6 +1,6 @@
 # Modifier Observed UID Bridge
 
-Generated: 2026-05-27T06:06:56.198Z
+Generated: 2026-05-28T21:24:29.637Z
 
 ## Summary
 
@@ -152,9 +152,9 @@ Generated: 2026-05-27T06:06:56.198Z
 
 - 2010003: Sea Breeze Feast (has-buff-name-row, hits=4143)
 - 3003700: 5板-羁绊 (has-buff-name-row, hits=868)
-- 882262: 祝祷之泉buff-冰龙-噩梦 (has-buff-name-row, hits=606)
-- 882265: 祝祷之泉buff-虚蚀龙-噩梦 (has-buff-name-row, hits=606)
-- 882268: 祝祷之泉buff-光龙-噩梦 (has-buff-name-row, hits=606)
+- 882262: Rin·Izcorgiky Weakness Research - Nightmare (has-buff-name-row, hits=606)
+- 882265: Bone·Xiolotl Weakness Research - Nightmare (has-buff-name-row, hits=606)
+- 882268: Light·Tonatiuh Weakness Research - Nightmare (has-buff-name-row, hits=606)
 - 882105: 人数监听buff (has-buff-name-row, hits=390)
 - 882161: 低人数标记 (has-buff-name-row, hits=195)
 - 101404: buff:101404 (missing-buff-name-row, hits=67)

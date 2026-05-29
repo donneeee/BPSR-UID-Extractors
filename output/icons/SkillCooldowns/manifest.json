@@ -1,8 +1,8 @@
 {
-  "GeneratedAt": "2026-05-27T06:11:05.859Z",
+  "GeneratedAt": "2026-05-29T04:11:29.657Z",
   "SourceGroup": "SkillCooldowns",
   "OutputDir": "output/icons/SkillCooldowns",
-  "AssetCount": 356,
+  "AssetCount": 396,
   "Assets": [
     {
       "AssetId": "SkillCooldowns|Sprite|1337047534|buff_abnormal_red_icon_03|SkillCooldowns/buff_abnormal_red_icon_03.png",
@@ -53,6 +53,64 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "SkillCooldowns|Sprite|1447258277|buff_talent_skill_310401|SkillCooldowns/buff_talent_skill_310401.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.700101.iconPath",
+      "Value": "ui/atlas/buff/buff_talent_skill_310401",
+      "Address": "ui/atlas/buff/buff_talent_skill_310401",
+      "AddressHash": 2047329081,
+      "BundleHash": 1447258277,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "SkillCooldowns/buff_talent_skill_310401.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "700101",
+          "Name": ""
+        },
+        {
+          "Id": "70010101",
+          "Name": ""
+        },
+        {
+          "Id": "7001",
+          "Name": ""
+        },
+        {
+          "Id": "700101",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/buff",
+      "AtlasHash": 2047329081,
+      "SpriteName": "buff_talent_skill_310401",
+      "SpriteAddress": 1831251992,
+      "Fields": [
+        "skillCooldownsByLevelId.700101.iconPath",
+        "skillCooldownsByLevelId.70010101.iconPath",
+        "skillCooldownsBySkillId.7001.iconPath",
+        "skillCooldownsBySkillId.700101.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/buff/buff_talent_skill_310401"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 49,
+      "PngHeight": 59,
+      "PngMode": "RGBA",
+      "PixelSha256": "4a0eac62b3d0811f373dac2f5d27494cdf836a9cc0adde97ebdcc721b96c1d6a",
+      "ObjectPathId": "-6588178912796629751",
+      "SelectedObjectName": "buff_talent_skill_310401",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "SkillCooldowns|Sprite|1251108144|com_affix_anmie|SkillCooldowns/com_affix_anmie.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
@@ -98,6 +156,54 @@
       "PixelSha256": "839aba022937093a3a7d42e0d87287a70b79388e08528447e04ca7fdcc5205b7",
       "ObjectPathId": "-5078625379647796472",
       "SelectedObjectName": "com_affix_anmie",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "SkillCooldowns|Sprite|1251108144|com_affix_jiaoshazhiteng|SkillCooldowns/com_affix_jiaoshazhiteng.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.86643201.iconPath",
+      "Value": "ui/atlas/affix/com_affix_jiaoshazhiteng",
+      "Address": "ui/atlas/affix/com_affix_jiaoshazhiteng",
+      "AddressHash": 3135625476,
+      "BundleHash": 1251108144,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "SkillCooldowns/com_affix_jiaoshazhiteng.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "86643201",
+          "Name": ""
+        },
+        {
+          "Id": "866432",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/affix",
+      "AtlasHash": 3135625476,
+      "SpriteName": "com_affix_jiaoshazhiteng",
+      "SpriteAddress": 2991390614,
+      "Fields": [
+        "skillCooldownsByLevelId.86643201.iconPath",
+        "skillCooldownsBySkillId.866432.iconPath"
+      ],
+      "Values": [
+        "ui/atlas/affix/com_affix_jiaoshazhiteng"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 56,
+      "PngHeight": 56,
+      "PngMode": "RGBA",
+      "PixelSha256": "c3c712b5714ceca5a79d24e4ee9b342fd0f022527c9ae584e579cd975729bcc9",
+      "ObjectPathId": "-2351613264832481201",
+      "SelectedObjectName": "com_affix_jiaoshazhiteng",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -331,7 +437,7 @@
       "PngWidth": 104,
       "PngHeight": 108,
       "PngMode": "RGBA",
-      "PixelSha256": "b48a0e38986b52ff60b8eb5207f7d1076001735d12a206cbaac2c03d53d0cabf",
+      "PixelSha256": "066916fb994677104beec631fd7adb8a8e370a0b889586e6f8f006ff4d48de69",
       "ObjectPathId": "-4803839843331150046",
       "SelectedObjectName": "emo_icon_action_bodybuilding01",
       "SelectedObjectType": "Sprite"
@@ -480,6 +586,366 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SkillCooldowns|Texture2D|934541617|ip004x01_skill_01|SkillCooldowns/ip004x01_skill_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.260401.iconPath",
+      "Value": "ui/textures/skill_ip004x01/ip004x01_skill_01",
+      "Address": "ui/textures/skill_ip004x01/ip004x01_skill_01",
+      "AddressHash": 1665504220,
+      "BundleHash": 934541617,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x01_skill_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "260401",
+          "Name": ""
+        },
+        {
+          "Id": "2604",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x01_skill_01",
+      "Fields": [
+        "skillCooldownsByLevelId.260401.iconPath",
+        "skillCooldownsBySkillId.2604.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x01/ip004x01_skill_01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "4f58015ea6a441400bf23cd224e7066c3f124b5daf0c177d4a799b9519133079",
+      "ObjectPathId": "-5707009514845012346",
+      "SelectedObjectName": "ip004x01_skill_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|935727538|ip004x01_skill_02|SkillCooldowns/ip004x01_skill_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.260501.iconPath",
+      "Value": "ui/textures/skill_ip004x01/ip004x01_skill_02",
+      "Address": "ui/textures/skill_ip004x01/ip004x01_skill_02",
+      "AddressHash": 1665504221,
+      "BundleHash": 935727538,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x01_skill_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "260501",
+          "Name": ""
+        },
+        {
+          "Id": "2605",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x01_skill_02",
+      "Fields": [
+        "skillCooldownsByLevelId.260501.iconPath",
+        "skillCooldownsBySkillId.2605.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x01/ip004x01_skill_02"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "9ca974dc676a3abbdc03b7914d67f916cf6a4230aa30446fcd1970a37ee15a44",
+      "ObjectPathId": "7932389409381991736",
+      "SelectedObjectName": "ip004x01_skill_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|936913459|ip004x01_skill_03|SkillCooldowns/ip004x01_skill_03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.260601.iconPath",
+      "Value": "ui/textures/skill_ip004x01/ip004x01_skill_03",
+      "Address": "ui/textures/skill_ip004x01/ip004x01_skill_03",
+      "AddressHash": 1665504222,
+      "BundleHash": 936913459,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x01_skill_03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "260601",
+          "Name": ""
+        },
+        {
+          "Id": "2606",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x01_skill_03",
+      "Fields": [
+        "skillCooldownsByLevelId.260601.iconPath",
+        "skillCooldownsBySkillId.2606.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x01/ip004x01_skill_03"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "e7d9ac19fe2523c3071047fafc211619841829ee2f39f9549b8d6de5f2c66d0a",
+      "ObjectPathId": "-4898564274560486131",
+      "SelectedObjectName": "ip004x01_skill_03",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2324566512|ip004x01_skill_atk|SkillCooldowns/ip004x01_skill_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.260101.iconPath",
+      "Value": "ui/textures/skill_ip004x01/ip004x01_skill_atk",
+      "Address": "ui/textures/skill_ip004x01/ip004x01_skill_atk",
+      "AddressHash": 3422087387,
+      "BundleHash": 2324566512,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x01_skill_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "260101",
+          "Name": ""
+        },
+        {
+          "Id": "2601",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x01_skill_atk",
+      "Fields": [
+        "skillCooldownsByLevelId.260101.iconPath",
+        "skillCooldownsBySkillId.2601.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x01/ip004x01_skill_atk"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "55c4aafd2bf4a577065367e559504cc70235ec008a5481762e76c94aa64da423",
+      "ObjectPathId": "-8695191590066551817",
+      "SelectedObjectName": "ip004x01_skill_atk",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|992596371|ip004x02_skill_01|SkillCooldowns/ip004x02_skill_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.250401.iconPath",
+      "Value": "ui/textures/skill_ip004x02/ip004x02_skill_01",
+      "Address": "ui/textures/skill_ip004x02/ip004x02_skill_01",
+      "AddressHash": 405441342,
+      "BundleHash": 992596371,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x02_skill_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "250401",
+          "Name": ""
+        },
+        {
+          "Id": "2504",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x02_skill_01",
+      "Fields": [
+        "skillCooldownsByLevelId.250401.iconPath",
+        "skillCooldownsBySkillId.2504.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x02/ip004x02_skill_01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "64006537d144d50856833a0eb3280890bea7edc3599adb9775b892d6fb9f621f",
+      "ObjectPathId": "5969157823896461127",
+      "SelectedObjectName": "ip004x02_skill_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|993782292|ip004x02_skill_02|SkillCooldowns/ip004x02_skill_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.250501.iconPath",
+      "Value": "ui/textures/skill_ip004x02/ip004x02_skill_02",
+      "Address": "ui/textures/skill_ip004x02/ip004x02_skill_02",
+      "AddressHash": 405441343,
+      "BundleHash": 993782292,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x02_skill_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "250501",
+          "Name": ""
+        },
+        {
+          "Id": "2505",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x02_skill_02",
+      "Fields": [
+        "skillCooldownsByLevelId.250501.iconPath",
+        "skillCooldownsBySkillId.2505.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x02/ip004x02_skill_02"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "3748591e6b74193e25bcae05fdb867113ed9ae9b74abdb38d4441fb1c9736c6a",
+      "ObjectPathId": "-2754267121637329783",
+      "SelectedObjectName": "ip004x02_skill_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|994968213|ip004x02_skill_03|SkillCooldowns/ip004x02_skill_03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.250601.iconPath",
+      "Value": "ui/textures/skill_ip004x02/ip004x02_skill_03",
+      "Address": "ui/textures/skill_ip004x02/ip004x02_skill_03",
+      "AddressHash": 405441344,
+      "BundleHash": 994968213,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x02_skill_03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "250601",
+          "Name": ""
+        },
+        {
+          "Id": "2506",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x02_skill_03",
+      "Fields": [
+        "skillCooldownsByLevelId.250601.iconPath",
+        "skillCooldownsBySkillId.2506.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x02/ip004x02_skill_03"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "6d26b05d59dd3a45aecd40c96a845749101fa4245d3d7bb4e8b2744a0b8f5292",
+      "ObjectPathId": "-3707296759451138372",
+      "SelectedObjectName": "ip004x02_skill_03",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|4240373394|ip004x02_skill_atk|SkillCooldowns/ip004x02_skill_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.250101.iconPath",
+      "Value": "ui/textures/skill_ip004x02/ip004x02_skill_atk",
+      "Address": "ui/textures/skill_ip004x02/ip004x02_skill_atk",
+      "AddressHash": 494718077,
+      "BundleHash": 4240373394,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/ip004x02_skill_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "250101",
+          "Name": ""
+        },
+        {
+          "Id": "2501",
+          "Name": ""
+        }
+      ],
+      "TextureName": "ip004x02_skill_atk",
+      "Fields": [
+        "skillCooldownsByLevelId.250101.iconPath",
+        "skillCooldownsBySkillId.2501.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_ip004x02/ip004x02_skill_atk"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "a401e8f94254da372895a28b962dc90e6a7275b48dbd2d378f8effe838789c31",
+      "ObjectPathId": "-8146100361834421681",
+      "SelectedObjectName": "ip004x02_skill_atk",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SkillCooldowns|Sprite|281051977|life_profession_process|SkillCooldowns/life_profession_process.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
@@ -580,7 +1046,7 @@
       "PngWidth": 120,
       "PngHeight": 107,
       "PngMode": "RGBA",
-      "PixelSha256": "83f143339da322fc4adddce108c50936cddf3f48b540efe88a9e1883dfbc998e",
+      "PixelSha256": "87fd3ad99719dfe9bd34c052396bd7fa931d05d830c7874d8d6655947edd4f98",
       "ObjectPathId": "8551914303617084205",
       "SelectedObjectName": "magicblock",
       "SelectedObjectType": "Sprite"
@@ -628,7 +1094,7 @@
       "PngWidth": 52,
       "PngHeight": 52,
       "PngMode": "RGBA",
-      "PixelSha256": "2e35a37390537cefeeae1cb7ad3bbc731be0a3ef1e3d0ba4898d34bab82b630d",
+      "PixelSha256": "5c326e957de9964d1984b84f1605ebdb23f9b98df21a101c33a969bf187686eb",
       "ObjectPathId": "5263467364097386484",
       "SelectedObjectName": "main_btn_stuck",
       "SelectedObjectType": "Sprite"
@@ -1046,6 +1512,61 @@
       "PixelSha256": "7d83c6c329e26cf9c4d3f2118e816022e6e0aa85b3c7baabaf539b26be544cad",
       "ObjectPathId": "8915279002808151934",
       "SelectedObjectName": "skill_aoyi_icon_hide_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1259479150|skill_aoyi_icon_hide_005|SkillCooldowns/skill_aoyi_icon_hide_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.430101.iconPath",
+      "Value": "ui/textures/skill_hideseek/skill_aoyi_icon_hide_005",
+      "Address": "ui/textures/skill_hideseek/skill_aoyi_icon_hide_005",
+      "AddressHash": 2286868185,
+      "BundleHash": 1259479150,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_icon_hide_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "430101",
+          "Name": ""
+        },
+        {
+          "Id": "43010101",
+          "Name": ""
+        },
+        {
+          "Id": "4301",
+          "Name": ""
+        },
+        {
+          "Id": "430101",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_icon_hide_005",
+      "Fields": [
+        "skillCooldownsByLevelId.430101.iconPath",
+        "skillCooldownsByLevelId.43010101.iconPath",
+        "skillCooldownsBySkillId.4301.iconPath",
+        "skillCooldownsBySkillId.430101.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_hideseek/skill_aoyi_icon_hide_005"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "a32ef04916dd1bc991574e066176b04427cb32f167914f53d628a15e5bd48212",
+      "ObjectPathId": "-2802202302368688908",
+      "SelectedObjectName": "skill_aoyi_icon_hide_005",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -4839,6 +5360,861 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SkillCooldowns|Texture2D|2125887942|skill_aoyi_skill_icon_071|SkillCooldowns/skill_aoyi_skill_icon_071.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.170112.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_071",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_071",
+      "AddressHash": 3660536049,
+      "BundleHash": 2125887942,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_071.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 5,
+      "Rows": [
+        {
+          "Id": "170112",
+          "Name": ""
+        },
+        {
+          "Id": "396801",
+          "Name": ""
+        },
+        {
+          "Id": "17011201",
+          "Name": ""
+        },
+        {
+          "Id": "3968",
+          "Name": ""
+        },
+        {
+          "Id": "170112",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_071",
+      "Fields": [
+        "skillCooldownsByLevelId.170112.iconPath",
+        "skillCooldownsByLevelId.396801.iconPath",
+        "skillCooldownsByLevelId.17011201.iconPath",
+        "skillCooldownsBySkillId.3968.iconPath",
+        "skillCooldownsBySkillId.170112.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_071"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "ec26e9db36fac865afe1ffe9c1763ec2f22cf2c4c1fc21df1694adb0704ccbac",
+      "ObjectPathId": "6428334085328352480",
+      "SelectedObjectName": "skill_aoyi_skill_icon_071",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2127073863|skill_aoyi_skill_icon_072|SkillCooldowns/skill_aoyi_skill_icon_072.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.396901.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_072",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_072",
+      "AddressHash": 3660536050,
+      "BundleHash": 2127073863,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_072.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "396901",
+          "Name": ""
+        },
+        {
+          "Id": "3969",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_072",
+      "Fields": [
+        "skillCooldownsByLevelId.396901.iconPath",
+        "skillCooldownsBySkillId.3969.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_072"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "4c135dfb592b6c39f9b2e0028520fa2289bf924f9f179a2e35b0db2f292f606c",
+      "ObjectPathId": "1047699470641463793",
+      "SelectedObjectName": "skill_aoyi_skill_icon_072",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2128259784|skill_aoyi_skill_icon_073|SkillCooldowns/skill_aoyi_skill_icon_073.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397001.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_073",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_073",
+      "AddressHash": 3660536051,
+      "BundleHash": 2128259784,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_073.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "397001",
+          "Name": ""
+        },
+        {
+          "Id": "3970",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_073",
+      "Fields": [
+        "skillCooldownsByLevelId.397001.iconPath",
+        "skillCooldownsBySkillId.3970.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_073"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "6ef45ced591d60316d233994fd9e71d04c8bba1c16e4c6ebbe30c38ef8959d2d",
+      "ObjectPathId": "-6380328282027831375",
+      "SelectedObjectName": "skill_aoyi_skill_icon_073",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2129445705|skill_aoyi_skill_icon_074|SkillCooldowns/skill_aoyi_skill_icon_074.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397101.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_074",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_074",
+      "AddressHash": 3660536052,
+      "BundleHash": 2129445705,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_074.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397101",
+          "Name": ""
+        },
+        {
+          "Id": "11106901",
+          "Name": ""
+        },
+        {
+          "Id": "3971",
+          "Name": ""
+        },
+        {
+          "Id": "111069",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_074",
+      "Fields": [
+        "skillCooldownsByLevelId.397101.iconPath",
+        "skillCooldownsByLevelId.11106901.iconPath",
+        "skillCooldownsBySkillId.3971.iconPath",
+        "skillCooldownsBySkillId.111069.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_074"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "ad192f3251eebb3f7f53f01219966eee4b9969b44c7ea220e970794a90b3424a",
+      "ObjectPathId": "375731039708642561",
+      "SelectedObjectName": "skill_aoyi_skill_icon_074",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2130631626|skill_aoyi_skill_icon_075|SkillCooldowns/skill_aoyi_skill_icon_075.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397201.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_075",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_075",
+      "AddressHash": 3660536053,
+      "BundleHash": 2130631626,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_075.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397201",
+          "Name": ""
+        },
+        {
+          "Id": "112031001",
+          "Name": ""
+        },
+        {
+          "Id": "3972",
+          "Name": ""
+        },
+        {
+          "Id": "1120310",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_075",
+      "Fields": [
+        "skillCooldownsByLevelId.397201.iconPath",
+        "skillCooldownsByLevelId.112031001.iconPath",
+        "skillCooldownsBySkillId.3972.iconPath",
+        "skillCooldownsBySkillId.1120310.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_075"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "046425376e0dd34f2dd270a2f9e32929c26d349cce696665fbd623e4608178c0",
+      "ObjectPathId": "3956418496611851773",
+      "SelectedObjectName": "skill_aoyi_skill_icon_075",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2131817547|skill_aoyi_skill_icon_076|SkillCooldowns/skill_aoyi_skill_icon_076.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397301.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_076",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_076",
+      "AddressHash": 3660536054,
+      "BundleHash": 2131817547,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_076.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397301",
+          "Name": ""
+        },
+        {
+          "Id": "170104001",
+          "Name": ""
+        },
+        {
+          "Id": "3973",
+          "Name": ""
+        },
+        {
+          "Id": "1701040",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_076",
+      "Fields": [
+        "skillCooldownsByLevelId.397301.iconPath",
+        "skillCooldownsByLevelId.170104001.iconPath",
+        "skillCooldownsBySkillId.3973.iconPath",
+        "skillCooldownsBySkillId.1701040.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_076"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "efd84a1b7a95e42c875f3b1f3b347eeada3aa8f233c501a44d11bcf74b58ca0a",
+      "ObjectPathId": "8877754480853900906",
+      "SelectedObjectName": "skill_aoyi_skill_icon_076",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2133003468|skill_aoyi_skill_icon_077|SkillCooldowns/skill_aoyi_skill_icon_077.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397401.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_077",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_077",
+      "AddressHash": 3660536055,
+      "BundleHash": 2133003468,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_077.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397401",
+          "Name": ""
+        },
+        {
+          "Id": "100970201",
+          "Name": ""
+        },
+        {
+          "Id": "3974",
+          "Name": ""
+        },
+        {
+          "Id": "1009702",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_077",
+      "Fields": [
+        "skillCooldownsByLevelId.397401.iconPath",
+        "skillCooldownsByLevelId.100970201.iconPath",
+        "skillCooldownsBySkillId.3974.iconPath",
+        "skillCooldownsBySkillId.1009702.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_077"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "f7ac8280a04229e8248aec3d90dd1b34e3381bf0a2868451257d494082eb1806",
+      "ObjectPathId": "-4696215019643553911",
+      "SelectedObjectName": "skill_aoyi_skill_icon_077",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2134189389|skill_aoyi_skill_icon_078|SkillCooldowns/skill_aoyi_skill_icon_078.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397501.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_078",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_078",
+      "AddressHash": 3660536056,
+      "BundleHash": 2134189389,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_078.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397501",
+          "Name": ""
+        },
+        {
+          "Id": "112110501",
+          "Name": ""
+        },
+        {
+          "Id": "3975",
+          "Name": ""
+        },
+        {
+          "Id": "1121105",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_078",
+      "Fields": [
+        "skillCooldownsByLevelId.397501.iconPath",
+        "skillCooldownsByLevelId.112110501.iconPath",
+        "skillCooldownsBySkillId.3975.iconPath",
+        "skillCooldownsBySkillId.1121105.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_078"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "60275ba6a4a996d060e71f85233ce308fb0ebe87daa55415463974e32e5a13eb",
+      "ObjectPathId": "4334880543678930883",
+      "SelectedObjectName": "skill_aoyi_skill_icon_078",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2135375310|skill_aoyi_skill_icon_079|SkillCooldowns/skill_aoyi_skill_icon_079.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397601.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_079",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_079",
+      "AddressHash": 3660536057,
+      "BundleHash": 2135375310,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_079.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397601",
+          "Name": ""
+        },
+        {
+          "Id": "112150801",
+          "Name": ""
+        },
+        {
+          "Id": "3976",
+          "Name": ""
+        },
+        {
+          "Id": "1121508",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_079",
+      "Fields": [
+        "skillCooldownsByLevelId.397601.iconPath",
+        "skillCooldownsByLevelId.112150801.iconPath",
+        "skillCooldownsBySkillId.3976.iconPath",
+        "skillCooldownsBySkillId.1121508.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_079"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "8823403642961a34e225f56378a8634007b3fa2121e83dffe4bfaf5f6f4be9b7",
+      "ObjectPathId": "-7739816868330168919",
+      "SelectedObjectName": "skill_aoyi_skill_icon_079",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2163837414|skill_aoyi_skill_icon_080|SkillCooldowns/skill_aoyi_skill_icon_080.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397701.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_080",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_080",
+      "AddressHash": 3660536081,
+      "BundleHash": 2163837414,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_080.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397701",
+          "Name": ""
+        },
+        {
+          "Id": "112022001",
+          "Name": ""
+        },
+        {
+          "Id": "3977",
+          "Name": ""
+        },
+        {
+          "Id": "1120220",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_080",
+      "Fields": [
+        "skillCooldownsByLevelId.397701.iconPath",
+        "skillCooldownsByLevelId.112022001.iconPath",
+        "skillCooldownsBySkillId.3977.iconPath",
+        "skillCooldownsBySkillId.1120220.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_080"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "b8927bd071ed1554d8aa2c35a3b76549b1495d2f9c8782c13462dd0a98c04500",
+      "ObjectPathId": "-6234841150969450437",
+      "SelectedObjectName": "skill_aoyi_skill_icon_080",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2165023335|skill_aoyi_skill_icon_081|SkillCooldowns/skill_aoyi_skill_icon_081.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397801.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_081",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_081",
+      "AddressHash": 3660536082,
+      "BundleHash": 2165023335,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_081.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397801",
+          "Name": ""
+        },
+        {
+          "Id": "10266401",
+          "Name": ""
+        },
+        {
+          "Id": "3978",
+          "Name": ""
+        },
+        {
+          "Id": "102664",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_081",
+      "Fields": [
+        "skillCooldownsByLevelId.397801.iconPath",
+        "skillCooldownsByLevelId.10266401.iconPath",
+        "skillCooldownsBySkillId.3978.iconPath",
+        "skillCooldownsBySkillId.102664.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_081"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "116736fe859e57040d9a580d0eb0d920f5f40a2c3849f9450d4185d023fadc71",
+      "ObjectPathId": "-3251133178513127315",
+      "SelectedObjectName": "skill_aoyi_skill_icon_081",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2166209256|skill_aoyi_skill_icon_082|SkillCooldowns/skill_aoyi_skill_icon_082.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.397901.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_082",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_082",
+      "AddressHash": 3660536083,
+      "BundleHash": 2166209256,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_082.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "397901",
+          "Name": ""
+        },
+        {
+          "Id": "112140601",
+          "Name": ""
+        },
+        {
+          "Id": "3979",
+          "Name": ""
+        },
+        {
+          "Id": "1121406",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_082",
+      "Fields": [
+        "skillCooldownsByLevelId.397901.iconPath",
+        "skillCooldownsByLevelId.112140601.iconPath",
+        "skillCooldownsBySkillId.3979.iconPath",
+        "skillCooldownsBySkillId.1121406.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_082"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "5565a8eeca807977f6e1194f565c5af5c4adcc610c476dc5cd35467f9e004374",
+      "ObjectPathId": "7937935541702202274",
+      "SelectedObjectName": "skill_aoyi_skill_icon_082",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2167395177|skill_aoyi_skill_icon_083|SkillCooldowns/skill_aoyi_skill_icon_083.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.398001.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_083",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_083",
+      "AddressHash": 3660536084,
+      "BundleHash": 2167395177,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_083.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "398001",
+          "Name": ""
+        },
+        {
+          "Id": "3980",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_083",
+      "Fields": [
+        "skillCooldownsByLevelId.398001.iconPath",
+        "skillCooldownsBySkillId.3980.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_083"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "6eff54fceb45f909caa947ce53455408eea341bc3657c60bcd4d5d760bfd25db",
+      "ObjectPathId": "-380855012067032616",
+      "SelectedObjectName": "skill_aoyi_skill_icon_083",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2168581098|skill_aoyi_skill_icon_084|SkillCooldowns/skill_aoyi_skill_icon_084.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.398101.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_084",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_084",
+      "AddressHash": 3660536085,
+      "BundleHash": 2168581098,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_084.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "398101",
+          "Name": ""
+        },
+        {
+          "Id": "112181001",
+          "Name": ""
+        },
+        {
+          "Id": "3981",
+          "Name": ""
+        },
+        {
+          "Id": "1121810",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_084",
+      "Fields": [
+        "skillCooldownsByLevelId.398101.iconPath",
+        "skillCooldownsByLevelId.112181001.iconPath",
+        "skillCooldownsBySkillId.3981.iconPath",
+        "skillCooldownsBySkillId.1121810.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_084"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "0f252d4be985ca64b87c790a37ad93c51d9377f32740c9b2b9f00fb1c65f37de",
+      "ObjectPathId": "-8137456368450779926",
+      "SelectedObjectName": "skill_aoyi_skill_icon_084",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2169767019|skill_aoyi_skill_icon_085|SkillCooldowns/skill_aoyi_skill_icon_085.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.398301.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_085",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_085",
+      "AddressHash": 3660536086,
+      "BundleHash": 2169767019,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_085.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "398301",
+          "Name": ""
+        },
+        {
+          "Id": "398701",
+          "Name": ""
+        },
+        {
+          "Id": "3983",
+          "Name": ""
+        },
+        {
+          "Id": "3987",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_085",
+      "Fields": [
+        "skillCooldownsByLevelId.398301.iconPath",
+        "skillCooldownsByLevelId.398701.iconPath",
+        "skillCooldownsBySkillId.3983.iconPath",
+        "skillCooldownsBySkillId.3987.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_085"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "483d25ebd3430224d0d1e48b4eda8530b8cc660270d9651ee29e10ccb8cddbfd",
+      "ObjectPathId": "4610289399519592180",
+      "SelectedObjectName": "skill_aoyi_skill_icon_085",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2170952940|skill_aoyi_skill_icon_086|SkillCooldowns/skill_aoyi_skill_icon_086.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.398201.iconPath",
+      "Value": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_086",
+      "Address": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_086",
+      "AddressHash": 3660536087,
+      "BundleHash": 2170952940,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_aoyi_skill_icon_086.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "398201",
+          "Name": ""
+        },
+        {
+          "Id": "398601",
+          "Name": ""
+        },
+        {
+          "Id": "3982",
+          "Name": ""
+        },
+        {
+          "Id": "3986",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_aoyi_skill_icon_086",
+      "Fields": [
+        "skillCooldownsByLevelId.398201.iconPath",
+        "skillCooldownsByLevelId.398601.iconPath",
+        "skillCooldownsBySkillId.3982.iconPath",
+        "skillCooldownsBySkillId.3986.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_aoyi/skill_aoyi_skill_icon_086"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 124,
+      "PngHeight": 124,
+      "PngMode": "RGBA",
+      "PixelSha256": "25f8f121d53633e11528c630b8961ed39d31cae10e732feb63b35d840b715591",
+      "ObjectPathId": "-142803741755157590",
+      "SelectedObjectName": "skill_aoyi_skill_icon_086",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SkillCooldowns|Texture2D|4205321836|skill_fz_01|SkillCooldowns/skill_fz_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
@@ -7013,7 +8389,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.511301.iconPath",
+      "Field": "skillCooldownsByLevelId.430501.iconPath",
       "Value": "ui/textures/skill_toys/skill_icons_toy_trans",
       "Address": "ui/textures/skill_toys/skill_icons_toy_trans",
       "AddressHash": 3659670941,
@@ -7025,18 +8401,18 @@
       "RefCount": 2,
       "Rows": [
         {
-          "Id": "511301",
+          "Id": "430501",
           "Name": ""
         },
         {
-          "Id": "5113",
+          "Id": "4305",
           "Name": ""
         }
       ],
       "TextureName": "skill_icons_toy_trans",
       "Fields": [
-        "skillCooldownsByLevelId.511301.iconPath",
-        "skillCooldownsBySkillId.5113.iconPath"
+        "skillCooldownsByLevelId.430501.iconPath",
+        "skillCooldownsBySkillId.4305.iconPath"
       ],
       "Values": [
         "ui/textures/skill_toys/skill_icons_toy_trans"
@@ -7324,6 +8700,116 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SkillCooldowns|Texture2D|3608321090|skill_vehicle_bandbox_01|SkillCooldowns/skill_vehicle_bandbox_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.471101.iconPath",
+      "Value": "ui/textures/skill_vehicle/skill_vehicle_bandbox_01",
+      "Address": "ui/textures/skill_vehicle/skill_vehicle_bandbox_01",
+      "AddressHash": 3182931693,
+      "BundleHash": 3608321090,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_vehicle_bandbox_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "471101",
+          "Name": ""
+        },
+        {
+          "Id": "471301",
+          "Name": ""
+        },
+        {
+          "Id": "4711",
+          "Name": ""
+        },
+        {
+          "Id": "4713",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_vehicle_bandbox_01",
+      "Fields": [
+        "skillCooldownsByLevelId.471101.iconPath",
+        "skillCooldownsByLevelId.471301.iconPath",
+        "skillCooldownsBySkillId.4711.iconPath",
+        "skillCooldownsBySkillId.4713.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_vehicle/skill_vehicle_bandbox_01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "fbe6bc8e128c5baccfcd30008ccac1d6a1d61b02e2ff5246917a23ca0c7d9ac3",
+      "ObjectPathId": "3186499800383191427",
+      "SelectedObjectName": "skill_vehicle_bandbox_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|3609507011|skill_vehicle_bandbox_02|SkillCooldowns/skill_vehicle_bandbox_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.471201.iconPath",
+      "Value": "ui/textures/skill_vehicle/skill_vehicle_bandbox_02",
+      "Address": "ui/textures/skill_vehicle/skill_vehicle_bandbox_02",
+      "AddressHash": 3182931694,
+      "BundleHash": 3609507011,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_vehicle_bandbox_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 4,
+      "Rows": [
+        {
+          "Id": "471201",
+          "Name": ""
+        },
+        {
+          "Id": "471401",
+          "Name": ""
+        },
+        {
+          "Id": "4712",
+          "Name": ""
+        },
+        {
+          "Id": "4714",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_vehicle_bandbox_02",
+      "Fields": [
+        "skillCooldownsByLevelId.471201.iconPath",
+        "skillCooldownsByLevelId.471401.iconPath",
+        "skillCooldownsBySkillId.4712.iconPath",
+        "skillCooldownsBySkillId.4714.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_vehicle/skill_vehicle_bandbox_02"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "77a6095d1a254c3c28116e83afdec32314e48e5b5a106ee8ebe505ac0cb16c49",
+      "ObjectPathId": "-2577892626557397021",
+      "SelectedObjectName": "skill_vehicle_bandbox_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SkillCooldowns|Texture2D|97004362|skill_vehicle_boat_01|SkillCooldowns/skill_vehicle_boat_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
@@ -7463,7 +8949,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.452501.iconPath",
+      "Field": "skillCooldownsByLevelId.430701.iconPath",
       "Value": "ui/textures/skill_vehicle/skill_vehicle_bubble_01",
       "Address": "ui/textures/skill_vehicle/skill_vehicle_bubble_01",
       "AddressHash": 1464682331,
@@ -7475,18 +8961,18 @@
       "RefCount": 2,
       "Rows": [
         {
-          "Id": "452501",
+          "Id": "430701",
           "Name": ""
         },
         {
-          "Id": "4525",
+          "Id": "4307",
           "Name": ""
         }
       ],
       "TextureName": "skill_vehicle_bubble_01",
       "Fields": [
-        "skillCooldownsByLevelId.452501.iconPath",
-        "skillCooldownsBySkillId.4525.iconPath"
+        "skillCooldownsByLevelId.430701.iconPath",
+        "skillCooldownsBySkillId.4307.iconPath"
       ],
       "Values": [
         "ui/textures/skill_vehicle/skill_vehicle_bubble_01"
@@ -8674,6 +10160,96 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SkillCooldowns|Texture2D|228341666|skill_vehicle_nappo_01|SkillCooldowns/skill_vehicle_nappo_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.468101.iconPath",
+      "Value": "ui/textures/skill_vehicle/skill_vehicle_nappo_01",
+      "Address": "ui/textures/skill_vehicle/skill_vehicle_nappo_01",
+      "AddressHash": 3472644813,
+      "BundleHash": 228341666,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_vehicle_nappo_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "468101",
+          "Name": ""
+        },
+        {
+          "Id": "4681",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_vehicle_nappo_01",
+      "Fields": [
+        "skillCooldownsByLevelId.468101.iconPath",
+        "skillCooldownsBySkillId.4681.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_vehicle/skill_vehicle_nappo_01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "befde7b3bdad0b129843829b0bb38600f6193f62efc2b4f2c6c947f6770f9876",
+      "ObjectPathId": "189380174714743933",
+      "SelectedObjectName": "skill_vehicle_nappo_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|229527587|skill_vehicle_nappo_02|SkillCooldowns/skill_vehicle_nappo_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.468201.iconPath",
+      "Value": "ui/textures/skill_vehicle/skill_vehicle_nappo_02",
+      "Address": "ui/textures/skill_vehicle/skill_vehicle_nappo_02",
+      "AddressHash": 3472644814,
+      "BundleHash": 229527587,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_vehicle_nappo_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "468201",
+          "Name": ""
+        },
+        {
+          "Id": "4682",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_vehicle_nappo_02",
+      "Fields": [
+        "skillCooldownsByLevelId.468201.iconPath",
+        "skillCooldownsBySkillId.4682.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_vehicle/skill_vehicle_nappo_02"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "5b523237c9719a87d9c5eba9979aa19636c962c25199c8528c3ec4eb5dcd5942",
+      "ObjectPathId": "-6777421971298362106",
+      "SelectedObjectName": "skill_vehicle_nappo_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SkillCooldowns|Texture2D|182158096|skill_vehicle_pathfinding|SkillCooldowns/skill_vehicle_pathfinding.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
@@ -9244,6 +10820,96 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "SkillCooldowns|Texture2D|2019081400|skill_vehicle_vampire_01|SkillCooldowns/skill_vehicle_vampire_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.472101.iconPath",
+      "Value": "ui/textures/skill_vehicle/skill_vehicle_vampire_01",
+      "Address": "ui/textures/skill_vehicle/skill_vehicle_vampire_01",
+      "AddressHash": 3464758371,
+      "BundleHash": 2019081400,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_vehicle_vampire_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "472101",
+          "Name": ""
+        },
+        {
+          "Id": "4721",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_vehicle_vampire_01",
+      "Fields": [
+        "skillCooldownsByLevelId.472101.iconPath",
+        "skillCooldownsBySkillId.4721.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_vehicle/skill_vehicle_vampire_01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "2a24d55752bb6b0507a16965b78188ab59361f00d0bbcc2ab7d897fee4179f6f",
+      "ObjectPathId": "9017458947568861262",
+      "SelectedObjectName": "skill_vehicle_vampire_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|2020267321|skill_vehicle_vampire_02|SkillCooldowns/skill_vehicle_vampire_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.472201.iconPath",
+      "Value": "ui/textures/skill_vehicle/skill_vehicle_vampire_02",
+      "Address": "ui/textures/skill_vehicle/skill_vehicle_vampire_02",
+      "AddressHash": 3464758372,
+      "BundleHash": 2020267321,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/skill_vehicle_vampire_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "472201",
+          "Name": ""
+        },
+        {
+          "Id": "4722",
+          "Name": ""
+        }
+      ],
+      "TextureName": "skill_vehicle_vampire_02",
+      "Fields": [
+        "skillCooldownsByLevelId.472201.iconPath",
+        "skillCooldownsBySkillId.4722.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_vehicle/skill_vehicle_vampire_02"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "a07cba310d7f2e2df22eea69f62339675a8bff11dee77394a9cc7e8dc399a1e2",
+      "ObjectPathId": "8193631745706338599",
+      "SelectedObjectName": "skill_vehicle_vampire_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "SkillCooldowns|Texture2D|3974986877|skill_vehicle_yacht_01|SkillCooldowns/skill_vehicle_yacht_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
@@ -9531,7 +11197,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.330101.iconPath",
+      "Field": "skillCooldownsByLevelId.3301.iconPath",
       "Value": "ui/textures/talent_passive/talent_skill_330101",
       "Address": "ui/atlas/talent_passive_5/talent_skill_330101",
       "AddressHash": 359924876,
@@ -9540,8 +11206,12 @@
       "MatchKind": "sprite-name",
       "PngFile": "SkillCooldowns/talent_skill_330101.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 11,
+      "RefCount": 13,
       "Rows": [
+        {
+          "Id": "3301",
+          "Name": ""
+        },
         {
           "Id": "330101",
           "Name": ""
@@ -9583,6 +11253,10 @@
           "Name": ""
         },
         {
+          "Id": "33",
+          "Name": ""
+        },
+        {
           "Id": "3301",
           "Name": ""
         }
@@ -9592,6 +11266,7 @@
       "SpriteName": "talent_skill_330101",
       "SpriteAddress": 3979101768,
       "Fields": [
+        "skillCooldownsByLevelId.3301.iconPath",
         "skillCooldownsByLevelId.330101.iconPath",
         "skillCooldownsByLevelId.330102.iconPath",
         "skillCooldownsByLevelId.330103.iconPath",
@@ -9602,6 +11277,7 @@
         "skillCooldownsByLevelId.330108.iconPath",
         "skillCooldownsByLevelId.330109.iconPath",
         "skillCooldownsByLevelId.330110.iconPath",
+        "skillCooldownsBySkillId.33.iconPath",
         "skillCooldownsBySkillId.3301.iconPath"
       ],
       "Values": [
@@ -9707,7 +11383,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "e3b3f1b24a382feff48c3b8c7e20aaee407493f346f603540cce7bff1dc16a85",
+      "PixelSha256": "5a96f58e13ab524b52636580ab0fa1b776dc7f91f4da3976db8a6a29047c71aa",
       "ObjectPathId": "1771423124925851572",
       "SelectedObjectName": "talent_skill_340401",
       "SelectedObjectType": "Sprite"
@@ -26641,7 +28317,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.230601.iconPath",
+      "Field": "skillCooldownsByLevelId.201.iconPath",
       "Value": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
       "Address": "ui/textures/skill_weapon_jt/weapon_jt-01_tg01",
       "AddressHash": 2876169385,
@@ -26650,8 +28326,12 @@
       "MatchKind": "exact-address",
       "PngFile": "SkillCooldowns/weapon_jt-01_tg01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 31,
+      "RefCount": 33,
       "Rows": [
+        {
+          "Id": "201",
+          "Name": ""
+        },
         {
           "Id": "230601",
           "Name": ""
@@ -26773,12 +28453,17 @@
           "Name": ""
         },
         {
+          "Id": "2",
+          "Name": ""
+        },
+        {
           "Id": "2306",
           "Name": ""
         }
       ],
       "TextureName": "weapon_jt-01_tg01",
       "Fields": [
+        "skillCooldownsByLevelId.201.iconPath",
         "skillCooldownsByLevelId.230601.iconPath",
         "skillCooldownsByLevelId.230602.iconPath",
         "skillCooldownsByLevelId.230603.iconPath",
@@ -26809,6 +28494,7 @@
         "skillCooldownsByLevelId.230628.iconPath",
         "skillCooldownsByLevelId.230629.iconPath",
         "skillCooldownsByLevelId.230630.iconPath",
+        "skillCooldownsBySkillId.2.iconPath",
         "skillCooldownsBySkillId.2306.iconPath"
       ],
       "Values": [
@@ -28360,7 +30046,7 @@
       "MatchKind": "exact-address",
       "PngFile": "SkillCooldowns/weapon_mz-01_kx05.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 31,
+      "RefCount": 33,
       "Rows": [
         {
           "Id": "121101",
@@ -28483,7 +30169,15 @@
           "Name": ""
         },
         {
+          "Id": "112160101",
+          "Name": ""
+        },
+        {
           "Id": "1211",
+          "Name": ""
+        },
+        {
+          "Id": "1121601",
           "Name": ""
         }
       ],
@@ -28519,7 +30213,9 @@
         "skillCooldownsByLevelId.121128.iconPath",
         "skillCooldownsByLevelId.121129.iconPath",
         "skillCooldownsByLevelId.121130.iconPath",
-        "skillCooldownsBySkillId.1211.iconPath"
+        "skillCooldownsByLevelId.112160101.iconPath",
+        "skillCooldownsBySkillId.1211.iconPath",
+        "skillCooldownsBySkillId.1121601.iconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_kx05"
@@ -29350,7 +31046,7 @@
       "MatchKind": "exact-address",
       "PngFile": "SkillCooldowns/weapon_mz-01_skill_atk.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 37,
+      "RefCount": 39,
       "Rows": [
         {
           "Id": "120101",
@@ -29485,6 +31181,10 @@
           "Name": ""
         },
         {
+          "Id": "112030101",
+          "Name": ""
+        },
+        {
           "Id": "1201",
           "Name": ""
         },
@@ -29498,6 +31198,10 @@
         },
         {
           "Id": "120103",
+          "Name": ""
+        },
+        {
+          "Id": "1120301",
           "Name": ""
         }
       ],
@@ -29536,10 +31240,12 @@
         "skillCooldownsByLevelId.12010101.iconPath",
         "skillCooldownsByLevelId.12010201.iconPath",
         "skillCooldownsByLevelId.12010301.iconPath",
+        "skillCooldownsByLevelId.112030101.iconPath",
         "skillCooldownsBySkillId.1201.iconPath",
         "skillCooldownsBySkillId.120101.iconPath",
         "skillCooldownsBySkillId.120102.iconPath",
-        "skillCooldownsBySkillId.120103.iconPath"
+        "skillCooldownsBySkillId.120103.iconPath",
+        "skillCooldownsBySkillId.1120301.iconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_mz/weapon_mz-01_skill_atk"
@@ -30502,18 +32208,998 @@
       "SelectedObjectType": "Texture2D"
     },
     {
-      "AssetId": "SkillCooldowns|Texture2D|4264680921|weapon_sf-01_skill_03|SkillCooldowns/weapon_sf-01_skill_03.png",
+      "AssetId": "SkillCooldowns|Texture2D|3681478808|weapon_sf-01_atk|SkillCooldowns/weapon_sf-01_atk.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.160101.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_atk",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_atk",
+      "AddressHash": 3246845379,
+      "BundleHash": 3681478808,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_atk.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 37,
+      "Rows": [
+        {
+          "Id": "160101",
+          "Name": ""
+        },
+        {
+          "Id": "160102",
+          "Name": ""
+        },
+        {
+          "Id": "160103",
+          "Name": ""
+        },
+        {
+          "Id": "160104",
+          "Name": ""
+        },
+        {
+          "Id": "160105",
+          "Name": ""
+        },
+        {
+          "Id": "160106",
+          "Name": ""
+        },
+        {
+          "Id": "160107",
+          "Name": ""
+        },
+        {
+          "Id": "160108",
+          "Name": ""
+        },
+        {
+          "Id": "160109",
+          "Name": ""
+        },
+        {
+          "Id": "160110",
+          "Name": ""
+        },
+        {
+          "Id": "160111",
+          "Name": ""
+        },
+        {
+          "Id": "160112",
+          "Name": ""
+        },
+        {
+          "Id": "160113",
+          "Name": ""
+        },
+        {
+          "Id": "160114",
+          "Name": ""
+        },
+        {
+          "Id": "160115",
+          "Name": ""
+        },
+        {
+          "Id": "160116",
+          "Name": ""
+        },
+        {
+          "Id": "160117",
+          "Name": ""
+        },
+        {
+          "Id": "160118",
+          "Name": ""
+        },
+        {
+          "Id": "160119",
+          "Name": ""
+        },
+        {
+          "Id": "160120",
+          "Name": ""
+        },
+        {
+          "Id": "160121",
+          "Name": ""
+        },
+        {
+          "Id": "160122",
+          "Name": ""
+        },
+        {
+          "Id": "160123",
+          "Name": ""
+        },
+        {
+          "Id": "160124",
+          "Name": ""
+        },
+        {
+          "Id": "160125",
+          "Name": ""
+        },
+        {
+          "Id": "160126",
+          "Name": ""
+        },
+        {
+          "Id": "160127",
+          "Name": ""
+        },
+        {
+          "Id": "160128",
+          "Name": ""
+        },
+        {
+          "Id": "160129",
+          "Name": ""
+        },
+        {
+          "Id": "160130",
+          "Name": ""
+        },
+        {
+          "Id": "16010101",
+          "Name": ""
+        },
+        {
+          "Id": "16010201",
+          "Name": ""
+        },
+        {
+          "Id": "16010301",
+          "Name": ""
+        },
+        {
+          "Id": "1601",
+          "Name": ""
+        },
+        {
+          "Id": "160101",
+          "Name": ""
+        },
+        {
+          "Id": "160102",
+          "Name": ""
+        },
+        {
+          "Id": "160103",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_atk",
+      "Fields": [
+        "skillCooldownsByLevelId.160101.iconPath",
+        "skillCooldownsByLevelId.160102.iconPath",
+        "skillCooldownsByLevelId.160103.iconPath",
+        "skillCooldownsByLevelId.160104.iconPath",
+        "skillCooldownsByLevelId.160105.iconPath",
+        "skillCooldownsByLevelId.160106.iconPath",
+        "skillCooldownsByLevelId.160107.iconPath",
+        "skillCooldownsByLevelId.160108.iconPath",
+        "skillCooldownsByLevelId.160109.iconPath",
+        "skillCooldownsByLevelId.160110.iconPath",
+        "skillCooldownsByLevelId.160111.iconPath",
+        "skillCooldownsByLevelId.160112.iconPath",
+        "skillCooldownsByLevelId.160113.iconPath",
+        "skillCooldownsByLevelId.160114.iconPath",
+        "skillCooldownsByLevelId.160115.iconPath",
+        "skillCooldownsByLevelId.160116.iconPath",
+        "skillCooldownsByLevelId.160117.iconPath",
+        "skillCooldownsByLevelId.160118.iconPath",
+        "skillCooldownsByLevelId.160119.iconPath",
+        "skillCooldownsByLevelId.160120.iconPath",
+        "skillCooldownsByLevelId.160121.iconPath",
+        "skillCooldownsByLevelId.160122.iconPath",
+        "skillCooldownsByLevelId.160123.iconPath",
+        "skillCooldownsByLevelId.160124.iconPath",
+        "skillCooldownsByLevelId.160125.iconPath",
+        "skillCooldownsByLevelId.160126.iconPath",
+        "skillCooldownsByLevelId.160127.iconPath",
+        "skillCooldownsByLevelId.160128.iconPath",
+        "skillCooldownsByLevelId.160129.iconPath",
+        "skillCooldownsByLevelId.160130.iconPath",
+        "skillCooldownsByLevelId.16010101.iconPath",
+        "skillCooldownsByLevelId.16010201.iconPath",
+        "skillCooldownsByLevelId.16010301.iconPath",
+        "skillCooldownsBySkillId.1601.iconPath",
+        "skillCooldownsBySkillId.160101.iconPath",
+        "skillCooldownsBySkillId.160102.iconPath",
+        "skillCooldownsBySkillId.160103.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_atk"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "cba6902fb2bd4786129b50770938f0c722ed34f6296c2b7845240dda8d487cf4",
+      "ObjectPathId": "-3953303364299448965",
+      "SelectedObjectName": "weapon_sf-01_atk",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|775488668|weapon_sf-01_kx01|SkillCooldowns/weapon_sf-01_kx01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.160701.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx01",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx01",
+      "AddressHash": 4067044231,
+      "BundleHash": 775488668,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "160701",
+          "Name": ""
+        },
+        {
+          "Id": "160702",
+          "Name": ""
+        },
+        {
+          "Id": "160703",
+          "Name": ""
+        },
+        {
+          "Id": "160704",
+          "Name": ""
+        },
+        {
+          "Id": "160705",
+          "Name": ""
+        },
+        {
+          "Id": "160706",
+          "Name": ""
+        },
+        {
+          "Id": "160707",
+          "Name": ""
+        },
+        {
+          "Id": "160708",
+          "Name": ""
+        },
+        {
+          "Id": "160709",
+          "Name": ""
+        },
+        {
+          "Id": "160710",
+          "Name": ""
+        },
+        {
+          "Id": "160711",
+          "Name": ""
+        },
+        {
+          "Id": "160712",
+          "Name": ""
+        },
+        {
+          "Id": "160713",
+          "Name": ""
+        },
+        {
+          "Id": "160714",
+          "Name": ""
+        },
+        {
+          "Id": "160715",
+          "Name": ""
+        },
+        {
+          "Id": "160716",
+          "Name": ""
+        },
+        {
+          "Id": "160717",
+          "Name": ""
+        },
+        {
+          "Id": "160718",
+          "Name": ""
+        },
+        {
+          "Id": "160719",
+          "Name": ""
+        },
+        {
+          "Id": "160720",
+          "Name": ""
+        },
+        {
+          "Id": "160721",
+          "Name": ""
+        },
+        {
+          "Id": "160722",
+          "Name": ""
+        },
+        {
+          "Id": "160723",
+          "Name": ""
+        },
+        {
+          "Id": "160724",
+          "Name": ""
+        },
+        {
+          "Id": "160725",
+          "Name": ""
+        },
+        {
+          "Id": "160726",
+          "Name": ""
+        },
+        {
+          "Id": "160727",
+          "Name": ""
+        },
+        {
+          "Id": "160728",
+          "Name": ""
+        },
+        {
+          "Id": "160729",
+          "Name": ""
+        },
+        {
+          "Id": "160730",
+          "Name": ""
+        },
+        {
+          "Id": "1607",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx01",
+      "Fields": [
+        "skillCooldownsByLevelId.160701.iconPath",
+        "skillCooldownsByLevelId.160702.iconPath",
+        "skillCooldownsByLevelId.160703.iconPath",
+        "skillCooldownsByLevelId.160704.iconPath",
+        "skillCooldownsByLevelId.160705.iconPath",
+        "skillCooldownsByLevelId.160706.iconPath",
+        "skillCooldownsByLevelId.160707.iconPath",
+        "skillCooldownsByLevelId.160708.iconPath",
+        "skillCooldownsByLevelId.160709.iconPath",
+        "skillCooldownsByLevelId.160710.iconPath",
+        "skillCooldownsByLevelId.160711.iconPath",
+        "skillCooldownsByLevelId.160712.iconPath",
+        "skillCooldownsByLevelId.160713.iconPath",
+        "skillCooldownsByLevelId.160714.iconPath",
+        "skillCooldownsByLevelId.160715.iconPath",
+        "skillCooldownsByLevelId.160716.iconPath",
+        "skillCooldownsByLevelId.160717.iconPath",
+        "skillCooldownsByLevelId.160718.iconPath",
+        "skillCooldownsByLevelId.160719.iconPath",
+        "skillCooldownsByLevelId.160720.iconPath",
+        "skillCooldownsByLevelId.160721.iconPath",
+        "skillCooldownsByLevelId.160722.iconPath",
+        "skillCooldownsByLevelId.160723.iconPath",
+        "skillCooldownsByLevelId.160724.iconPath",
+        "skillCooldownsByLevelId.160725.iconPath",
+        "skillCooldownsByLevelId.160726.iconPath",
+        "skillCooldownsByLevelId.160727.iconPath",
+        "skillCooldownsByLevelId.160728.iconPath",
+        "skillCooldownsByLevelId.160729.iconPath",
+        "skillCooldownsByLevelId.160730.iconPath",
+        "skillCooldownsBySkillId.1607.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "4c4d644f1d2e0556eddd8557ea6470a0de6b832e6050ad09170de1e792039d2d",
+      "ObjectPathId": "-5722167478806366495",
+      "SelectedObjectName": "weapon_sf-01_kx01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1530704909|weapon_sf-01_kx02_1|SkillCooldowns/weapon_sf-01_kx02_1.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.160801.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_1",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_1",
+      "AddressHash": 899889656,
+      "BundleHash": 1530704909,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx02_1.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "160801",
+          "Name": ""
+        },
+        {
+          "Id": "160802",
+          "Name": ""
+        },
+        {
+          "Id": "160803",
+          "Name": ""
+        },
+        {
+          "Id": "160804",
+          "Name": ""
+        },
+        {
+          "Id": "160805",
+          "Name": ""
+        },
+        {
+          "Id": "160806",
+          "Name": ""
+        },
+        {
+          "Id": "160807",
+          "Name": ""
+        },
+        {
+          "Id": "160808",
+          "Name": ""
+        },
+        {
+          "Id": "160809",
+          "Name": ""
+        },
+        {
+          "Id": "160810",
+          "Name": ""
+        },
+        {
+          "Id": "160811",
+          "Name": ""
+        },
+        {
+          "Id": "160812",
+          "Name": ""
+        },
+        {
+          "Id": "160813",
+          "Name": ""
+        },
+        {
+          "Id": "160814",
+          "Name": ""
+        },
+        {
+          "Id": "160815",
+          "Name": ""
+        },
+        {
+          "Id": "160816",
+          "Name": ""
+        },
+        {
+          "Id": "160817",
+          "Name": ""
+        },
+        {
+          "Id": "160818",
+          "Name": ""
+        },
+        {
+          "Id": "160819",
+          "Name": ""
+        },
+        {
+          "Id": "160820",
+          "Name": ""
+        },
+        {
+          "Id": "160821",
+          "Name": ""
+        },
+        {
+          "Id": "160822",
+          "Name": ""
+        },
+        {
+          "Id": "160823",
+          "Name": ""
+        },
+        {
+          "Id": "160824",
+          "Name": ""
+        },
+        {
+          "Id": "160825",
+          "Name": ""
+        },
+        {
+          "Id": "160826",
+          "Name": ""
+        },
+        {
+          "Id": "160827",
+          "Name": ""
+        },
+        {
+          "Id": "160828",
+          "Name": ""
+        },
+        {
+          "Id": "160829",
+          "Name": ""
+        },
+        {
+          "Id": "160830",
+          "Name": ""
+        },
+        {
+          "Id": "1608",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx02_1",
+      "Fields": [
+        "skillCooldownsByLevelId.160801.iconPath",
+        "skillCooldownsByLevelId.160802.iconPath",
+        "skillCooldownsByLevelId.160803.iconPath",
+        "skillCooldownsByLevelId.160804.iconPath",
+        "skillCooldownsByLevelId.160805.iconPath",
+        "skillCooldownsByLevelId.160806.iconPath",
+        "skillCooldownsByLevelId.160807.iconPath",
+        "skillCooldownsByLevelId.160808.iconPath",
+        "skillCooldownsByLevelId.160809.iconPath",
+        "skillCooldownsByLevelId.160810.iconPath",
+        "skillCooldownsByLevelId.160811.iconPath",
+        "skillCooldownsByLevelId.160812.iconPath",
+        "skillCooldownsByLevelId.160813.iconPath",
+        "skillCooldownsByLevelId.160814.iconPath",
+        "skillCooldownsByLevelId.160815.iconPath",
+        "skillCooldownsByLevelId.160816.iconPath",
+        "skillCooldownsByLevelId.160817.iconPath",
+        "skillCooldownsByLevelId.160818.iconPath",
+        "skillCooldownsByLevelId.160819.iconPath",
+        "skillCooldownsByLevelId.160820.iconPath",
+        "skillCooldownsByLevelId.160821.iconPath",
+        "skillCooldownsByLevelId.160822.iconPath",
+        "skillCooldownsByLevelId.160823.iconPath",
+        "skillCooldownsByLevelId.160824.iconPath",
+        "skillCooldownsByLevelId.160825.iconPath",
+        "skillCooldownsByLevelId.160826.iconPath",
+        "skillCooldownsByLevelId.160827.iconPath",
+        "skillCooldownsByLevelId.160828.iconPath",
+        "skillCooldownsByLevelId.160829.iconPath",
+        "skillCooldownsByLevelId.160830.iconPath",
+        "skillCooldownsBySkillId.1608.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_1"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "8472cbc20a1fbc1966f9ae39fe5cab62a9d2299586346967e1f1f6015ae0a325",
+      "ObjectPathId": "-3890295457603089624",
+      "SelectedObjectName": "weapon_sf-01_kx02_1",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1531890830|weapon_sf-01_kx02_2|SkillCooldowns/weapon_sf-01_kx02_2.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.160901.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_2",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_2",
+      "AddressHash": 899889657,
+      "BundleHash": 1531890830,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx02_2.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "160901",
+          "Name": ""
+        },
+        {
+          "Id": "160902",
+          "Name": ""
+        },
+        {
+          "Id": "160903",
+          "Name": ""
+        },
+        {
+          "Id": "160904",
+          "Name": ""
+        },
+        {
+          "Id": "160905",
+          "Name": ""
+        },
+        {
+          "Id": "160906",
+          "Name": ""
+        },
+        {
+          "Id": "160907",
+          "Name": ""
+        },
+        {
+          "Id": "160908",
+          "Name": ""
+        },
+        {
+          "Id": "160909",
+          "Name": ""
+        },
+        {
+          "Id": "160910",
+          "Name": ""
+        },
+        {
+          "Id": "160911",
+          "Name": ""
+        },
+        {
+          "Id": "160912",
+          "Name": ""
+        },
+        {
+          "Id": "160913",
+          "Name": ""
+        },
+        {
+          "Id": "160914",
+          "Name": ""
+        },
+        {
+          "Id": "160915",
+          "Name": ""
+        },
+        {
+          "Id": "160916",
+          "Name": ""
+        },
+        {
+          "Id": "160917",
+          "Name": ""
+        },
+        {
+          "Id": "160918",
+          "Name": ""
+        },
+        {
+          "Id": "160919",
+          "Name": ""
+        },
+        {
+          "Id": "160920",
+          "Name": ""
+        },
+        {
+          "Id": "160921",
+          "Name": ""
+        },
+        {
+          "Id": "160922",
+          "Name": ""
+        },
+        {
+          "Id": "160923",
+          "Name": ""
+        },
+        {
+          "Id": "160924",
+          "Name": ""
+        },
+        {
+          "Id": "160925",
+          "Name": ""
+        },
+        {
+          "Id": "160926",
+          "Name": ""
+        },
+        {
+          "Id": "160927",
+          "Name": ""
+        },
+        {
+          "Id": "160928",
+          "Name": ""
+        },
+        {
+          "Id": "160929",
+          "Name": ""
+        },
+        {
+          "Id": "160930",
+          "Name": ""
+        },
+        {
+          "Id": "1609",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx02_2",
+      "Fields": [
+        "skillCooldownsByLevelId.160901.iconPath",
+        "skillCooldownsByLevelId.160902.iconPath",
+        "skillCooldownsByLevelId.160903.iconPath",
+        "skillCooldownsByLevelId.160904.iconPath",
+        "skillCooldownsByLevelId.160905.iconPath",
+        "skillCooldownsByLevelId.160906.iconPath",
+        "skillCooldownsByLevelId.160907.iconPath",
+        "skillCooldownsByLevelId.160908.iconPath",
+        "skillCooldownsByLevelId.160909.iconPath",
+        "skillCooldownsByLevelId.160910.iconPath",
+        "skillCooldownsByLevelId.160911.iconPath",
+        "skillCooldownsByLevelId.160912.iconPath",
+        "skillCooldownsByLevelId.160913.iconPath",
+        "skillCooldownsByLevelId.160914.iconPath",
+        "skillCooldownsByLevelId.160915.iconPath",
+        "skillCooldownsByLevelId.160916.iconPath",
+        "skillCooldownsByLevelId.160917.iconPath",
+        "skillCooldownsByLevelId.160918.iconPath",
+        "skillCooldownsByLevelId.160919.iconPath",
+        "skillCooldownsByLevelId.160920.iconPath",
+        "skillCooldownsByLevelId.160921.iconPath",
+        "skillCooldownsByLevelId.160922.iconPath",
+        "skillCooldownsByLevelId.160923.iconPath",
+        "skillCooldownsByLevelId.160924.iconPath",
+        "skillCooldownsByLevelId.160925.iconPath",
+        "skillCooldownsByLevelId.160926.iconPath",
+        "skillCooldownsByLevelId.160927.iconPath",
+        "skillCooldownsByLevelId.160928.iconPath",
+        "skillCooldownsByLevelId.160929.iconPath",
+        "skillCooldownsByLevelId.160930.iconPath",
+        "skillCooldownsBySkillId.1609.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_2"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "34635c9be8157b3abdc6480fe11bff60b4be53f92280a6266df08f127e464aca",
+      "ObjectPathId": "-8044147070557554571",
+      "SelectedObjectName": "weapon_sf-01_kx02_2",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1533076751|weapon_sf-01_kx02_3|SkillCooldowns/weapon_sf-01_kx02_3.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161001.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_3",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_3",
+      "AddressHash": 899889658,
+      "BundleHash": 1533076751,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx02_3.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161001",
+          "Name": ""
+        },
+        {
+          "Id": "161002",
+          "Name": ""
+        },
+        {
+          "Id": "161003",
+          "Name": ""
+        },
+        {
+          "Id": "161004",
+          "Name": ""
+        },
+        {
+          "Id": "161005",
+          "Name": ""
+        },
+        {
+          "Id": "161006",
+          "Name": ""
+        },
+        {
+          "Id": "161007",
+          "Name": ""
+        },
+        {
+          "Id": "161008",
+          "Name": ""
+        },
+        {
+          "Id": "161009",
+          "Name": ""
+        },
+        {
+          "Id": "161010",
+          "Name": ""
+        },
+        {
+          "Id": "161011",
+          "Name": ""
+        },
+        {
+          "Id": "161012",
+          "Name": ""
+        },
+        {
+          "Id": "161013",
+          "Name": ""
+        },
+        {
+          "Id": "161014",
+          "Name": ""
+        },
+        {
+          "Id": "161015",
+          "Name": ""
+        },
+        {
+          "Id": "161016",
+          "Name": ""
+        },
+        {
+          "Id": "161017",
+          "Name": ""
+        },
+        {
+          "Id": "161018",
+          "Name": ""
+        },
+        {
+          "Id": "161019",
+          "Name": ""
+        },
+        {
+          "Id": "161020",
+          "Name": ""
+        },
+        {
+          "Id": "161021",
+          "Name": ""
+        },
+        {
+          "Id": "161022",
+          "Name": ""
+        },
+        {
+          "Id": "161023",
+          "Name": ""
+        },
+        {
+          "Id": "161024",
+          "Name": ""
+        },
+        {
+          "Id": "161025",
+          "Name": ""
+        },
+        {
+          "Id": "161026",
+          "Name": ""
+        },
+        {
+          "Id": "161027",
+          "Name": ""
+        },
+        {
+          "Id": "161028",
+          "Name": ""
+        },
+        {
+          "Id": "161029",
+          "Name": ""
+        },
+        {
+          "Id": "161030",
+          "Name": ""
+        },
+        {
+          "Id": "1610",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx02_3",
+      "Fields": [
+        "skillCooldownsByLevelId.161001.iconPath",
+        "skillCooldownsByLevelId.161002.iconPath",
+        "skillCooldownsByLevelId.161003.iconPath",
+        "skillCooldownsByLevelId.161004.iconPath",
+        "skillCooldownsByLevelId.161005.iconPath",
+        "skillCooldownsByLevelId.161006.iconPath",
+        "skillCooldownsByLevelId.161007.iconPath",
+        "skillCooldownsByLevelId.161008.iconPath",
+        "skillCooldownsByLevelId.161009.iconPath",
+        "skillCooldownsByLevelId.161010.iconPath",
+        "skillCooldownsByLevelId.161011.iconPath",
+        "skillCooldownsByLevelId.161012.iconPath",
+        "skillCooldownsByLevelId.161013.iconPath",
+        "skillCooldownsByLevelId.161014.iconPath",
+        "skillCooldownsByLevelId.161015.iconPath",
+        "skillCooldownsByLevelId.161016.iconPath",
+        "skillCooldownsByLevelId.161017.iconPath",
+        "skillCooldownsByLevelId.161018.iconPath",
+        "skillCooldownsByLevelId.161019.iconPath",
+        "skillCooldownsByLevelId.161020.iconPath",
+        "skillCooldownsByLevelId.161021.iconPath",
+        "skillCooldownsByLevelId.161022.iconPath",
+        "skillCooldownsByLevelId.161023.iconPath",
+        "skillCooldownsByLevelId.161024.iconPath",
+        "skillCooldownsByLevelId.161025.iconPath",
+        "skillCooldownsByLevelId.161026.iconPath",
+        "skillCooldownsByLevelId.161027.iconPath",
+        "skillCooldownsByLevelId.161028.iconPath",
+        "skillCooldownsByLevelId.161029.iconPath",
+        "skillCooldownsByLevelId.161030.iconPath",
+        "skillCooldownsBySkillId.1610.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_3"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "49a77d9919668d455082391ad34689937a5e9d584ec315c989b8b01d046103af",
+      "ObjectPathId": "3017722809640367090",
+      "SelectedObjectName": "weapon_sf-01_kx02_3",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1534262672|weapon_sf-01_kx02_4|SkillCooldowns/weapon_sf-01_kx02_4.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
       "Field": "skillCooldownsByLevelId.161101.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_03",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_03",
-      "AddressHash": 768257348,
-      "BundleHash": 4264680921,
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_4",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_4",
+      "AddressHash": 899889659,
+      "BundleHash": 1534262672,
       "ResourceType": "Texture2D",
       "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_03.png",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx02_4.png",
       "RequiresProbePixelMatch": false,
       "RefCount": 62,
       "Rows": [
@@ -30766,7 +33452,7 @@
           "Name": ""
         }
       ],
-      "TextureName": "weapon_sf-01_skill_03",
+      "TextureName": "weapon_sf-01_kx02_4",
       "Fields": [
         "skillCooldownsByLevelId.161101.iconPath",
         "skillCooldownsByLevelId.161102.iconPath",
@@ -30832,7 +33518,7 @@
         "skillCooldownsBySkillId.161101.iconPath"
       ],
       "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_03"
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx02_4"
       ],
       "SourceFiles": [
         "SkillCooldowns.json"
@@ -30841,1229 +33527,24 @@
       "PngWidth": 128,
       "PngHeight": 128,
       "PngMode": "RGBA",
-      "PixelSha256": "03da9693a98221316bbcaf0fb1dfa9f01a7071452c77444c1f312b643444574c",
-      "ObjectPathId": "-6441250080422691557",
-      "SelectedObjectName": "weapon_sf-01_skill_03",
+      "PixelSha256": "0d96bccd0fa302e7abaf4e5b1c474497e421e84f823f0ba83bcbed39b1ff73ce",
+      "ObjectPathId": "-4874625801610588466",
+      "SelectedObjectName": "weapon_sf-01_kx02_4",
       "SelectedObjectType": "Texture2D"
     },
     {
-      "AssetId": "SkillCooldowns|Texture2D|175799848|weapon_sf-01_skill_101|SkillCooldowns/weapon_sf-01_skill_101.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.161001.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_101",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_101",
-      "AddressHash": 3877657043,
-      "BundleHash": 175799848,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_101.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 31,
-      "Rows": [
-        {
-          "Id": "161001",
-          "Name": ""
-        },
-        {
-          "Id": "161002",
-          "Name": ""
-        },
-        {
-          "Id": "161003",
-          "Name": ""
-        },
-        {
-          "Id": "161004",
-          "Name": ""
-        },
-        {
-          "Id": "161005",
-          "Name": ""
-        },
-        {
-          "Id": "161006",
-          "Name": ""
-        },
-        {
-          "Id": "161007",
-          "Name": ""
-        },
-        {
-          "Id": "161008",
-          "Name": ""
-        },
-        {
-          "Id": "161009",
-          "Name": ""
-        },
-        {
-          "Id": "161010",
-          "Name": ""
-        },
-        {
-          "Id": "161011",
-          "Name": ""
-        },
-        {
-          "Id": "161012",
-          "Name": ""
-        },
-        {
-          "Id": "161013",
-          "Name": ""
-        },
-        {
-          "Id": "161014",
-          "Name": ""
-        },
-        {
-          "Id": "161015",
-          "Name": ""
-        },
-        {
-          "Id": "161016",
-          "Name": ""
-        },
-        {
-          "Id": "161017",
-          "Name": ""
-        },
-        {
-          "Id": "161018",
-          "Name": ""
-        },
-        {
-          "Id": "161019",
-          "Name": ""
-        },
-        {
-          "Id": "161020",
-          "Name": ""
-        },
-        {
-          "Id": "161021",
-          "Name": ""
-        },
-        {
-          "Id": "161022",
-          "Name": ""
-        },
-        {
-          "Id": "161023",
-          "Name": ""
-        },
-        {
-          "Id": "161024",
-          "Name": ""
-        },
-        {
-          "Id": "161025",
-          "Name": ""
-        },
-        {
-          "Id": "161026",
-          "Name": ""
-        },
-        {
-          "Id": "161027",
-          "Name": ""
-        },
-        {
-          "Id": "161028",
-          "Name": ""
-        },
-        {
-          "Id": "161029",
-          "Name": ""
-        },
-        {
-          "Id": "161030",
-          "Name": ""
-        },
-        {
-          "Id": "1610",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_101",
-      "Fields": [
-        "skillCooldownsByLevelId.161001.iconPath",
-        "skillCooldownsByLevelId.161002.iconPath",
-        "skillCooldownsByLevelId.161003.iconPath",
-        "skillCooldownsByLevelId.161004.iconPath",
-        "skillCooldownsByLevelId.161005.iconPath",
-        "skillCooldownsByLevelId.161006.iconPath",
-        "skillCooldownsByLevelId.161007.iconPath",
-        "skillCooldownsByLevelId.161008.iconPath",
-        "skillCooldownsByLevelId.161009.iconPath",
-        "skillCooldownsByLevelId.161010.iconPath",
-        "skillCooldownsByLevelId.161011.iconPath",
-        "skillCooldownsByLevelId.161012.iconPath",
-        "skillCooldownsByLevelId.161013.iconPath",
-        "skillCooldownsByLevelId.161014.iconPath",
-        "skillCooldownsByLevelId.161015.iconPath",
-        "skillCooldownsByLevelId.161016.iconPath",
-        "skillCooldownsByLevelId.161017.iconPath",
-        "skillCooldownsByLevelId.161018.iconPath",
-        "skillCooldownsByLevelId.161019.iconPath",
-        "skillCooldownsByLevelId.161020.iconPath",
-        "skillCooldownsByLevelId.161021.iconPath",
-        "skillCooldownsByLevelId.161022.iconPath",
-        "skillCooldownsByLevelId.161023.iconPath",
-        "skillCooldownsByLevelId.161024.iconPath",
-        "skillCooldownsByLevelId.161025.iconPath",
-        "skillCooldownsByLevelId.161026.iconPath",
-        "skillCooldownsByLevelId.161027.iconPath",
-        "skillCooldownsByLevelId.161028.iconPath",
-        "skillCooldownsByLevelId.161029.iconPath",
-        "skillCooldownsByLevelId.161030.iconPath",
-        "skillCooldownsBySkillId.1610.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_101"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "63367ebe2add15bc4e04f9e4e3f8f3f9eb27a7e1791f50e98964c5eadb5c397f",
-      "ObjectPathId": "-1384590990037741956",
-      "SelectedObjectName": "weapon_sf-01_skill_101",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|176985769|weapon_sf-01_skill_102|SkillCooldowns/weapon_sf-01_skill_102.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.160901.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_102",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_102",
-      "AddressHash": 3877657044,
-      "BundleHash": 176985769,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_102.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 31,
-      "Rows": [
-        {
-          "Id": "160901",
-          "Name": ""
-        },
-        {
-          "Id": "160902",
-          "Name": ""
-        },
-        {
-          "Id": "160903",
-          "Name": ""
-        },
-        {
-          "Id": "160904",
-          "Name": ""
-        },
-        {
-          "Id": "160905",
-          "Name": ""
-        },
-        {
-          "Id": "160906",
-          "Name": ""
-        },
-        {
-          "Id": "160907",
-          "Name": ""
-        },
-        {
-          "Id": "160908",
-          "Name": ""
-        },
-        {
-          "Id": "160909",
-          "Name": ""
-        },
-        {
-          "Id": "160910",
-          "Name": ""
-        },
-        {
-          "Id": "160911",
-          "Name": ""
-        },
-        {
-          "Id": "160912",
-          "Name": ""
-        },
-        {
-          "Id": "160913",
-          "Name": ""
-        },
-        {
-          "Id": "160914",
-          "Name": ""
-        },
-        {
-          "Id": "160915",
-          "Name": ""
-        },
-        {
-          "Id": "160916",
-          "Name": ""
-        },
-        {
-          "Id": "160917",
-          "Name": ""
-        },
-        {
-          "Id": "160918",
-          "Name": ""
-        },
-        {
-          "Id": "160919",
-          "Name": ""
-        },
-        {
-          "Id": "160920",
-          "Name": ""
-        },
-        {
-          "Id": "160921",
-          "Name": ""
-        },
-        {
-          "Id": "160922",
-          "Name": ""
-        },
-        {
-          "Id": "160923",
-          "Name": ""
-        },
-        {
-          "Id": "160924",
-          "Name": ""
-        },
-        {
-          "Id": "160925",
-          "Name": ""
-        },
-        {
-          "Id": "160926",
-          "Name": ""
-        },
-        {
-          "Id": "160927",
-          "Name": ""
-        },
-        {
-          "Id": "160928",
-          "Name": ""
-        },
-        {
-          "Id": "160929",
-          "Name": ""
-        },
-        {
-          "Id": "160930",
-          "Name": ""
-        },
-        {
-          "Id": "1609",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_102",
-      "Fields": [
-        "skillCooldownsByLevelId.160901.iconPath",
-        "skillCooldownsByLevelId.160902.iconPath",
-        "skillCooldownsByLevelId.160903.iconPath",
-        "skillCooldownsByLevelId.160904.iconPath",
-        "skillCooldownsByLevelId.160905.iconPath",
-        "skillCooldownsByLevelId.160906.iconPath",
-        "skillCooldownsByLevelId.160907.iconPath",
-        "skillCooldownsByLevelId.160908.iconPath",
-        "skillCooldownsByLevelId.160909.iconPath",
-        "skillCooldownsByLevelId.160910.iconPath",
-        "skillCooldownsByLevelId.160911.iconPath",
-        "skillCooldownsByLevelId.160912.iconPath",
-        "skillCooldownsByLevelId.160913.iconPath",
-        "skillCooldownsByLevelId.160914.iconPath",
-        "skillCooldownsByLevelId.160915.iconPath",
-        "skillCooldownsByLevelId.160916.iconPath",
-        "skillCooldownsByLevelId.160917.iconPath",
-        "skillCooldownsByLevelId.160918.iconPath",
-        "skillCooldownsByLevelId.160919.iconPath",
-        "skillCooldownsByLevelId.160920.iconPath",
-        "skillCooldownsByLevelId.160921.iconPath",
-        "skillCooldownsByLevelId.160922.iconPath",
-        "skillCooldownsByLevelId.160923.iconPath",
-        "skillCooldownsByLevelId.160924.iconPath",
-        "skillCooldownsByLevelId.160925.iconPath",
-        "skillCooldownsByLevelId.160926.iconPath",
-        "skillCooldownsByLevelId.160927.iconPath",
-        "skillCooldownsByLevelId.160928.iconPath",
-        "skillCooldownsByLevelId.160929.iconPath",
-        "skillCooldownsByLevelId.160930.iconPath",
-        "skillCooldownsBySkillId.1609.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_102"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "35a937fe30dd1f90e7d7e08872419a9d2ac66e9e9947867c903b8e4e0185111b",
-      "ObjectPathId": "3383408344943888267",
-      "SelectedObjectName": "weapon_sf-01_skill_102",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|178171690|weapon_sf-01_skill_103|SkillCooldowns/weapon_sf-01_skill_103.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.161301.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_103",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_103",
-      "AddressHash": 3877657045,
-      "BundleHash": 178171690,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_103.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 31,
-      "Rows": [
-        {
-          "Id": "161301",
-          "Name": ""
-        },
-        {
-          "Id": "161302",
-          "Name": ""
-        },
-        {
-          "Id": "161303",
-          "Name": ""
-        },
-        {
-          "Id": "161304",
-          "Name": ""
-        },
-        {
-          "Id": "161305",
-          "Name": ""
-        },
-        {
-          "Id": "161306",
-          "Name": ""
-        },
-        {
-          "Id": "161307",
-          "Name": ""
-        },
-        {
-          "Id": "161308",
-          "Name": ""
-        },
-        {
-          "Id": "161309",
-          "Name": ""
-        },
-        {
-          "Id": "161310",
-          "Name": ""
-        },
-        {
-          "Id": "161311",
-          "Name": ""
-        },
-        {
-          "Id": "161312",
-          "Name": ""
-        },
-        {
-          "Id": "161313",
-          "Name": ""
-        },
-        {
-          "Id": "161314",
-          "Name": ""
-        },
-        {
-          "Id": "161315",
-          "Name": ""
-        },
-        {
-          "Id": "161316",
-          "Name": ""
-        },
-        {
-          "Id": "161317",
-          "Name": ""
-        },
-        {
-          "Id": "161318",
-          "Name": ""
-        },
-        {
-          "Id": "161319",
-          "Name": ""
-        },
-        {
-          "Id": "161320",
-          "Name": ""
-        },
-        {
-          "Id": "161321",
-          "Name": ""
-        },
-        {
-          "Id": "161322",
-          "Name": ""
-        },
-        {
-          "Id": "161323",
-          "Name": ""
-        },
-        {
-          "Id": "161324",
-          "Name": ""
-        },
-        {
-          "Id": "161325",
-          "Name": ""
-        },
-        {
-          "Id": "161326",
-          "Name": ""
-        },
-        {
-          "Id": "161327",
-          "Name": ""
-        },
-        {
-          "Id": "161328",
-          "Name": ""
-        },
-        {
-          "Id": "161329",
-          "Name": ""
-        },
-        {
-          "Id": "161330",
-          "Name": ""
-        },
-        {
-          "Id": "1613",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_103",
-      "Fields": [
-        "skillCooldownsByLevelId.161301.iconPath",
-        "skillCooldownsByLevelId.161302.iconPath",
-        "skillCooldownsByLevelId.161303.iconPath",
-        "skillCooldownsByLevelId.161304.iconPath",
-        "skillCooldownsByLevelId.161305.iconPath",
-        "skillCooldownsByLevelId.161306.iconPath",
-        "skillCooldownsByLevelId.161307.iconPath",
-        "skillCooldownsByLevelId.161308.iconPath",
-        "skillCooldownsByLevelId.161309.iconPath",
-        "skillCooldownsByLevelId.161310.iconPath",
-        "skillCooldownsByLevelId.161311.iconPath",
-        "skillCooldownsByLevelId.161312.iconPath",
-        "skillCooldownsByLevelId.161313.iconPath",
-        "skillCooldownsByLevelId.161314.iconPath",
-        "skillCooldownsByLevelId.161315.iconPath",
-        "skillCooldownsByLevelId.161316.iconPath",
-        "skillCooldownsByLevelId.161317.iconPath",
-        "skillCooldownsByLevelId.161318.iconPath",
-        "skillCooldownsByLevelId.161319.iconPath",
-        "skillCooldownsByLevelId.161320.iconPath",
-        "skillCooldownsByLevelId.161321.iconPath",
-        "skillCooldownsByLevelId.161322.iconPath",
-        "skillCooldownsByLevelId.161323.iconPath",
-        "skillCooldownsByLevelId.161324.iconPath",
-        "skillCooldownsByLevelId.161325.iconPath",
-        "skillCooldownsByLevelId.161326.iconPath",
-        "skillCooldownsByLevelId.161327.iconPath",
-        "skillCooldownsByLevelId.161328.iconPath",
-        "skillCooldownsByLevelId.161329.iconPath",
-        "skillCooldownsByLevelId.161330.iconPath",
-        "skillCooldownsBySkillId.1613.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_103"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "7de16356b420ba6419cd700385e4021760d2be238c75ed42cc1afe824997c5eb",
-      "ObjectPathId": "-3748708528550228533",
-      "SelectedObjectName": "weapon_sf-01_skill_103",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|179357611|weapon_sf-01_skill_104|SkillCooldowns/weapon_sf-01_skill_104.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.161401.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_104",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_104",
-      "AddressHash": 3877657046,
-      "BundleHash": 179357611,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_104.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 31,
-      "Rows": [
-        {
-          "Id": "161401",
-          "Name": ""
-        },
-        {
-          "Id": "161402",
-          "Name": ""
-        },
-        {
-          "Id": "161403",
-          "Name": ""
-        },
-        {
-          "Id": "161404",
-          "Name": ""
-        },
-        {
-          "Id": "161405",
-          "Name": ""
-        },
-        {
-          "Id": "161406",
-          "Name": ""
-        },
-        {
-          "Id": "161407",
-          "Name": ""
-        },
-        {
-          "Id": "161408",
-          "Name": ""
-        },
-        {
-          "Id": "161409",
-          "Name": ""
-        },
-        {
-          "Id": "161410",
-          "Name": ""
-        },
-        {
-          "Id": "161411",
-          "Name": ""
-        },
-        {
-          "Id": "161412",
-          "Name": ""
-        },
-        {
-          "Id": "161413",
-          "Name": ""
-        },
-        {
-          "Id": "161414",
-          "Name": ""
-        },
-        {
-          "Id": "161415",
-          "Name": ""
-        },
-        {
-          "Id": "161416",
-          "Name": ""
-        },
-        {
-          "Id": "161417",
-          "Name": ""
-        },
-        {
-          "Id": "161418",
-          "Name": ""
-        },
-        {
-          "Id": "161419",
-          "Name": ""
-        },
-        {
-          "Id": "161420",
-          "Name": ""
-        },
-        {
-          "Id": "161421",
-          "Name": ""
-        },
-        {
-          "Id": "161422",
-          "Name": ""
-        },
-        {
-          "Id": "161423",
-          "Name": ""
-        },
-        {
-          "Id": "161424",
-          "Name": ""
-        },
-        {
-          "Id": "161425",
-          "Name": ""
-        },
-        {
-          "Id": "161426",
-          "Name": ""
-        },
-        {
-          "Id": "161427",
-          "Name": ""
-        },
-        {
-          "Id": "161428",
-          "Name": ""
-        },
-        {
-          "Id": "161429",
-          "Name": ""
-        },
-        {
-          "Id": "161430",
-          "Name": ""
-        },
-        {
-          "Id": "1614",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_104",
-      "Fields": [
-        "skillCooldownsByLevelId.161401.iconPath",
-        "skillCooldownsByLevelId.161402.iconPath",
-        "skillCooldownsByLevelId.161403.iconPath",
-        "skillCooldownsByLevelId.161404.iconPath",
-        "skillCooldownsByLevelId.161405.iconPath",
-        "skillCooldownsByLevelId.161406.iconPath",
-        "skillCooldownsByLevelId.161407.iconPath",
-        "skillCooldownsByLevelId.161408.iconPath",
-        "skillCooldownsByLevelId.161409.iconPath",
-        "skillCooldownsByLevelId.161410.iconPath",
-        "skillCooldownsByLevelId.161411.iconPath",
-        "skillCooldownsByLevelId.161412.iconPath",
-        "skillCooldownsByLevelId.161413.iconPath",
-        "skillCooldownsByLevelId.161414.iconPath",
-        "skillCooldownsByLevelId.161415.iconPath",
-        "skillCooldownsByLevelId.161416.iconPath",
-        "skillCooldownsByLevelId.161417.iconPath",
-        "skillCooldownsByLevelId.161418.iconPath",
-        "skillCooldownsByLevelId.161419.iconPath",
-        "skillCooldownsByLevelId.161420.iconPath",
-        "skillCooldownsByLevelId.161421.iconPath",
-        "skillCooldownsByLevelId.161422.iconPath",
-        "skillCooldownsByLevelId.161423.iconPath",
-        "skillCooldownsByLevelId.161424.iconPath",
-        "skillCooldownsByLevelId.161425.iconPath",
-        "skillCooldownsByLevelId.161426.iconPath",
-        "skillCooldownsByLevelId.161427.iconPath",
-        "skillCooldownsByLevelId.161428.iconPath",
-        "skillCooldownsByLevelId.161429.iconPath",
-        "skillCooldownsByLevelId.161430.iconPath",
-        "skillCooldownsBySkillId.1614.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_104"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "31de56ba4b66d865731d102bc0f9e9e7f50449da455b395207099caa66d510fa",
-      "ObjectPathId": "2489202573823613832",
-      "SelectedObjectName": "weapon_sf-01_skill_104",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|2628357623|weapon_sf-01_skill_atk01|SkillCooldowns/weapon_sf-01_skill_atk01.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.160101.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk01",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk01",
-      "AddressHash": 875100578,
-      "BundleHash": 2628357623,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_atk01.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 35,
-      "Rows": [
-        {
-          "Id": "160101",
-          "Name": ""
-        },
-        {
-          "Id": "160102",
-          "Name": ""
-        },
-        {
-          "Id": "160103",
-          "Name": ""
-        },
-        {
-          "Id": "160104",
-          "Name": ""
-        },
-        {
-          "Id": "160105",
-          "Name": ""
-        },
-        {
-          "Id": "160106",
-          "Name": ""
-        },
-        {
-          "Id": "160107",
-          "Name": ""
-        },
-        {
-          "Id": "160108",
-          "Name": ""
-        },
-        {
-          "Id": "160109",
-          "Name": ""
-        },
-        {
-          "Id": "160110",
-          "Name": ""
-        },
-        {
-          "Id": "160111",
-          "Name": ""
-        },
-        {
-          "Id": "160112",
-          "Name": ""
-        },
-        {
-          "Id": "160113",
-          "Name": ""
-        },
-        {
-          "Id": "160114",
-          "Name": ""
-        },
-        {
-          "Id": "160115",
-          "Name": ""
-        },
-        {
-          "Id": "160116",
-          "Name": ""
-        },
-        {
-          "Id": "160117",
-          "Name": ""
-        },
-        {
-          "Id": "160118",
-          "Name": ""
-        },
-        {
-          "Id": "160119",
-          "Name": ""
-        },
-        {
-          "Id": "160120",
-          "Name": ""
-        },
-        {
-          "Id": "160121",
-          "Name": ""
-        },
-        {
-          "Id": "160122",
-          "Name": ""
-        },
-        {
-          "Id": "160123",
-          "Name": ""
-        },
-        {
-          "Id": "160124",
-          "Name": ""
-        },
-        {
-          "Id": "160125",
-          "Name": ""
-        },
-        {
-          "Id": "160126",
-          "Name": ""
-        },
-        {
-          "Id": "160127",
-          "Name": ""
-        },
-        {
-          "Id": "160128",
-          "Name": ""
-        },
-        {
-          "Id": "160129",
-          "Name": ""
-        },
-        {
-          "Id": "160130",
-          "Name": ""
-        },
-        {
-          "Id": "16010101",
-          "Name": ""
-        },
-        {
-          "Id": "16010201",
-          "Name": ""
-        },
-        {
-          "Id": "1601",
-          "Name": ""
-        },
-        {
-          "Id": "160101",
-          "Name": ""
-        },
-        {
-          "Id": "160102",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_atk01",
-      "Fields": [
-        "skillCooldownsByLevelId.160101.iconPath",
-        "skillCooldownsByLevelId.160102.iconPath",
-        "skillCooldownsByLevelId.160103.iconPath",
-        "skillCooldownsByLevelId.160104.iconPath",
-        "skillCooldownsByLevelId.160105.iconPath",
-        "skillCooldownsByLevelId.160106.iconPath",
-        "skillCooldownsByLevelId.160107.iconPath",
-        "skillCooldownsByLevelId.160108.iconPath",
-        "skillCooldownsByLevelId.160109.iconPath",
-        "skillCooldownsByLevelId.160110.iconPath",
-        "skillCooldownsByLevelId.160111.iconPath",
-        "skillCooldownsByLevelId.160112.iconPath",
-        "skillCooldownsByLevelId.160113.iconPath",
-        "skillCooldownsByLevelId.160114.iconPath",
-        "skillCooldownsByLevelId.160115.iconPath",
-        "skillCooldownsByLevelId.160116.iconPath",
-        "skillCooldownsByLevelId.160117.iconPath",
-        "skillCooldownsByLevelId.160118.iconPath",
-        "skillCooldownsByLevelId.160119.iconPath",
-        "skillCooldownsByLevelId.160120.iconPath",
-        "skillCooldownsByLevelId.160121.iconPath",
-        "skillCooldownsByLevelId.160122.iconPath",
-        "skillCooldownsByLevelId.160123.iconPath",
-        "skillCooldownsByLevelId.160124.iconPath",
-        "skillCooldownsByLevelId.160125.iconPath",
-        "skillCooldownsByLevelId.160126.iconPath",
-        "skillCooldownsByLevelId.160127.iconPath",
-        "skillCooldownsByLevelId.160128.iconPath",
-        "skillCooldownsByLevelId.160129.iconPath",
-        "skillCooldownsByLevelId.160130.iconPath",
-        "skillCooldownsByLevelId.16010101.iconPath",
-        "skillCooldownsByLevelId.16010201.iconPath",
-        "skillCooldownsBySkillId.1601.iconPath",
-        "skillCooldownsBySkillId.160101.iconPath",
-        "skillCooldownsBySkillId.160102.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk01"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "b65f99fdc249147f1a48c9e9e7317f94d442b5533143331c91c025ead4388526",
-      "ObjectPathId": "3331288184095321799",
-      "SelectedObjectName": "weapon_sf-01_skill_atk01",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|2089976648|weapon_sf-01_skill_atk101|SkillCooldowns/weapon_sf-01_skill_atk101.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.160501.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk101",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk101",
-      "AddressHash": 3108516403,
-      "BundleHash": 2089976648,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_atk101.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 31,
-      "Rows": [
-        {
-          "Id": "160501",
-          "Name": ""
-        },
-        {
-          "Id": "160502",
-          "Name": ""
-        },
-        {
-          "Id": "160503",
-          "Name": ""
-        },
-        {
-          "Id": "160504",
-          "Name": ""
-        },
-        {
-          "Id": "160505",
-          "Name": ""
-        },
-        {
-          "Id": "160506",
-          "Name": ""
-        },
-        {
-          "Id": "160507",
-          "Name": ""
-        },
-        {
-          "Id": "160508",
-          "Name": ""
-        },
-        {
-          "Id": "160509",
-          "Name": ""
-        },
-        {
-          "Id": "160510",
-          "Name": ""
-        },
-        {
-          "Id": "160511",
-          "Name": ""
-        },
-        {
-          "Id": "160512",
-          "Name": ""
-        },
-        {
-          "Id": "160513",
-          "Name": ""
-        },
-        {
-          "Id": "160514",
-          "Name": ""
-        },
-        {
-          "Id": "160515",
-          "Name": ""
-        },
-        {
-          "Id": "160516",
-          "Name": ""
-        },
-        {
-          "Id": "160517",
-          "Name": ""
-        },
-        {
-          "Id": "160518",
-          "Name": ""
-        },
-        {
-          "Id": "160519",
-          "Name": ""
-        },
-        {
-          "Id": "160520",
-          "Name": ""
-        },
-        {
-          "Id": "160521",
-          "Name": ""
-        },
-        {
-          "Id": "160522",
-          "Name": ""
-        },
-        {
-          "Id": "160523",
-          "Name": ""
-        },
-        {
-          "Id": "160524",
-          "Name": ""
-        },
-        {
-          "Id": "160525",
-          "Name": ""
-        },
-        {
-          "Id": "160526",
-          "Name": ""
-        },
-        {
-          "Id": "160527",
-          "Name": ""
-        },
-        {
-          "Id": "160528",
-          "Name": ""
-        },
-        {
-          "Id": "160529",
-          "Name": ""
-        },
-        {
-          "Id": "160530",
-          "Name": ""
-        },
-        {
-          "Id": "1605",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_atk101",
-      "Fields": [
-        "skillCooldownsByLevelId.160501.iconPath",
-        "skillCooldownsByLevelId.160502.iconPath",
-        "skillCooldownsByLevelId.160503.iconPath",
-        "skillCooldownsByLevelId.160504.iconPath",
-        "skillCooldownsByLevelId.160505.iconPath",
-        "skillCooldownsByLevelId.160506.iconPath",
-        "skillCooldownsByLevelId.160507.iconPath",
-        "skillCooldownsByLevelId.160508.iconPath",
-        "skillCooldownsByLevelId.160509.iconPath",
-        "skillCooldownsByLevelId.160510.iconPath",
-        "skillCooldownsByLevelId.160511.iconPath",
-        "skillCooldownsByLevelId.160512.iconPath",
-        "skillCooldownsByLevelId.160513.iconPath",
-        "skillCooldownsByLevelId.160514.iconPath",
-        "skillCooldownsByLevelId.160515.iconPath",
-        "skillCooldownsByLevelId.160516.iconPath",
-        "skillCooldownsByLevelId.160517.iconPath",
-        "skillCooldownsByLevelId.160518.iconPath",
-        "skillCooldownsByLevelId.160519.iconPath",
-        "skillCooldownsByLevelId.160520.iconPath",
-        "skillCooldownsByLevelId.160521.iconPath",
-        "skillCooldownsByLevelId.160522.iconPath",
-        "skillCooldownsByLevelId.160523.iconPath",
-        "skillCooldownsByLevelId.160524.iconPath",
-        "skillCooldownsByLevelId.160525.iconPath",
-        "skillCooldownsByLevelId.160526.iconPath",
-        "skillCooldownsByLevelId.160527.iconPath",
-        "skillCooldownsByLevelId.160528.iconPath",
-        "skillCooldownsByLevelId.160529.iconPath",
-        "skillCooldownsByLevelId.160530.iconPath",
-        "skillCooldownsBySkillId.1605.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_atk101"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "2c76dd48635ab2ad56f25072369f5c9dd534ca8f282721e916cc30a7fd7d083d",
-      "ObjectPathId": "1084527693342789867",
-      "SelectedObjectName": "weapon_sf-01_skill_atk101",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|3889153681|weapon_sf-01_skill_passive|SkillCooldowns/weapon_sf-01_skill_passive.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SkillCooldowns.json",
-      "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.169101.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_passive",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill_passive",
-      "AddressHash": 962327740,
-      "BundleHash": 3889153681,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill_passive.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 2,
-      "Rows": [
-        {
-          "Id": "169101",
-          "Name": ""
-        },
-        {
-          "Id": "1691",
-          "Name": ""
-        }
-      ],
-      "TextureName": "weapon_sf-01_skill_passive",
-      "Fields": [
-        "skillCooldownsByLevelId.169101.iconPath",
-        "skillCooldownsBySkillId.1691.iconPath"
-      ],
-      "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill_passive"
-      ],
-      "SourceFiles": [
-        "SkillCooldowns.json"
-      ],
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 128,
-      "PngMode": "RGBA",
-      "PixelSha256": "d8c5fb567a8c2ba3c0c415b9b1e2f4610e7019b139c567701c1d30fdb1a7207f",
-      "ObjectPathId": "2163400126123663892",
-      "SelectedObjectName": "weapon_sf-01_skill_passive",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SkillCooldowns|Texture2D|48331257|weapon_sf-01_skill02_01|SkillCooldowns/weapon_sf-01_skill02_01.png",
+      "AssetId": "SkillCooldowns|Texture2D|777860510|weapon_sf-01_kx03|SkillCooldowns/weapon_sf-01_kx03.png",
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
       "Field": "skillCooldownsByLevelId.161201.iconPath",
-      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_skill02_01",
-      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_skill02_01",
-      "AddressHash": 3352979684,
-      "BundleHash": 48331257,
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx03",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx03",
+      "AddressHash": 4067044233,
+      "BundleHash": 777860510,
       "ResourceType": "Texture2D",
       "MatchKind": "exact-address",
-      "PngFile": "SkillCooldowns/weapon_sf-01_skill02_01.png",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx03.png",
       "RequiresProbePixelMatch": false,
       "RefCount": 31,
       "Rows": [
@@ -32192,7 +33673,7 @@
           "Name": ""
         }
       ],
-      "TextureName": "weapon_sf-01_skill02_01",
+      "TextureName": "weapon_sf-01_kx03",
       "Fields": [
         "skillCooldownsByLevelId.161201.iconPath",
         "skillCooldownsByLevelId.161202.iconPath",
@@ -32227,7 +33708,7 @@
         "skillCooldownsBySkillId.1612.iconPath"
       ],
       "Values": [
-        "ui/textures/skill_weapon_sf/weapon_sf-01_skill02_01"
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx03"
       ],
       "SourceFiles": [
         "SkillCooldowns.json"
@@ -32236,9 +33717,1574 @@
       "PngWidth": 128,
       "PngHeight": 128,
       "PngMode": "RGBA",
-      "PixelSha256": "a8b9586c05eb9dd64ca87dfdc157945f5151bea7dbd4b324a49a2d847c002f54",
-      "ObjectPathId": "-9158431364698956222",
-      "SelectedObjectName": "weapon_sf-01_skill02_01",
+      "PixelSha256": "e54f9a95432e2f6e684ebbca5fe0c6b81f039c6c9421d785100f5f2e8a9b753d",
+      "ObjectPathId": "626814739468807457",
+      "SelectedObjectName": "weapon_sf-01_kx03",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|779046431|weapon_sf-01_kx04|SkillCooldowns/weapon_sf-01_kx04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161301.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx04",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx04",
+      "AddressHash": 4067044234,
+      "BundleHash": 779046431,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161301",
+          "Name": ""
+        },
+        {
+          "Id": "161302",
+          "Name": ""
+        },
+        {
+          "Id": "161303",
+          "Name": ""
+        },
+        {
+          "Id": "161304",
+          "Name": ""
+        },
+        {
+          "Id": "161305",
+          "Name": ""
+        },
+        {
+          "Id": "161306",
+          "Name": ""
+        },
+        {
+          "Id": "161307",
+          "Name": ""
+        },
+        {
+          "Id": "161308",
+          "Name": ""
+        },
+        {
+          "Id": "161309",
+          "Name": ""
+        },
+        {
+          "Id": "161310",
+          "Name": ""
+        },
+        {
+          "Id": "161311",
+          "Name": ""
+        },
+        {
+          "Id": "161312",
+          "Name": ""
+        },
+        {
+          "Id": "161313",
+          "Name": ""
+        },
+        {
+          "Id": "161314",
+          "Name": ""
+        },
+        {
+          "Id": "161315",
+          "Name": ""
+        },
+        {
+          "Id": "161316",
+          "Name": ""
+        },
+        {
+          "Id": "161317",
+          "Name": ""
+        },
+        {
+          "Id": "161318",
+          "Name": ""
+        },
+        {
+          "Id": "161319",
+          "Name": ""
+        },
+        {
+          "Id": "161320",
+          "Name": ""
+        },
+        {
+          "Id": "161321",
+          "Name": ""
+        },
+        {
+          "Id": "161322",
+          "Name": ""
+        },
+        {
+          "Id": "161323",
+          "Name": ""
+        },
+        {
+          "Id": "161324",
+          "Name": ""
+        },
+        {
+          "Id": "161325",
+          "Name": ""
+        },
+        {
+          "Id": "161326",
+          "Name": ""
+        },
+        {
+          "Id": "161327",
+          "Name": ""
+        },
+        {
+          "Id": "161328",
+          "Name": ""
+        },
+        {
+          "Id": "161329",
+          "Name": ""
+        },
+        {
+          "Id": "161330",
+          "Name": ""
+        },
+        {
+          "Id": "1613",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx04",
+      "Fields": [
+        "skillCooldownsByLevelId.161301.iconPath",
+        "skillCooldownsByLevelId.161302.iconPath",
+        "skillCooldownsByLevelId.161303.iconPath",
+        "skillCooldownsByLevelId.161304.iconPath",
+        "skillCooldownsByLevelId.161305.iconPath",
+        "skillCooldownsByLevelId.161306.iconPath",
+        "skillCooldownsByLevelId.161307.iconPath",
+        "skillCooldownsByLevelId.161308.iconPath",
+        "skillCooldownsByLevelId.161309.iconPath",
+        "skillCooldownsByLevelId.161310.iconPath",
+        "skillCooldownsByLevelId.161311.iconPath",
+        "skillCooldownsByLevelId.161312.iconPath",
+        "skillCooldownsByLevelId.161313.iconPath",
+        "skillCooldownsByLevelId.161314.iconPath",
+        "skillCooldownsByLevelId.161315.iconPath",
+        "skillCooldownsByLevelId.161316.iconPath",
+        "skillCooldownsByLevelId.161317.iconPath",
+        "skillCooldownsByLevelId.161318.iconPath",
+        "skillCooldownsByLevelId.161319.iconPath",
+        "skillCooldownsByLevelId.161320.iconPath",
+        "skillCooldownsByLevelId.161321.iconPath",
+        "skillCooldownsByLevelId.161322.iconPath",
+        "skillCooldownsByLevelId.161323.iconPath",
+        "skillCooldownsByLevelId.161324.iconPath",
+        "skillCooldownsByLevelId.161325.iconPath",
+        "skillCooldownsByLevelId.161326.iconPath",
+        "skillCooldownsByLevelId.161327.iconPath",
+        "skillCooldownsByLevelId.161328.iconPath",
+        "skillCooldownsByLevelId.161329.iconPath",
+        "skillCooldownsByLevelId.161330.iconPath",
+        "skillCooldownsBySkillId.1613.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx04"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "4953c4ea1cf94eeec594168ee79de3e6946a3e23716838a7727fe48b0ab3b958",
+      "ObjectPathId": "-4590527530365728483",
+      "SelectedObjectName": "weapon_sf-01_kx04",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|780232352|weapon_sf-01_kx05|SkillCooldowns/weapon_sf-01_kx05.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161401.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx05",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx05",
+      "AddressHash": 4067044235,
+      "BundleHash": 780232352,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx05.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161401",
+          "Name": ""
+        },
+        {
+          "Id": "161402",
+          "Name": ""
+        },
+        {
+          "Id": "161403",
+          "Name": ""
+        },
+        {
+          "Id": "161404",
+          "Name": ""
+        },
+        {
+          "Id": "161405",
+          "Name": ""
+        },
+        {
+          "Id": "161406",
+          "Name": ""
+        },
+        {
+          "Id": "161407",
+          "Name": ""
+        },
+        {
+          "Id": "161408",
+          "Name": ""
+        },
+        {
+          "Id": "161409",
+          "Name": ""
+        },
+        {
+          "Id": "161410",
+          "Name": ""
+        },
+        {
+          "Id": "161411",
+          "Name": ""
+        },
+        {
+          "Id": "161412",
+          "Name": ""
+        },
+        {
+          "Id": "161413",
+          "Name": ""
+        },
+        {
+          "Id": "161414",
+          "Name": ""
+        },
+        {
+          "Id": "161415",
+          "Name": ""
+        },
+        {
+          "Id": "161416",
+          "Name": ""
+        },
+        {
+          "Id": "161417",
+          "Name": ""
+        },
+        {
+          "Id": "161418",
+          "Name": ""
+        },
+        {
+          "Id": "161419",
+          "Name": ""
+        },
+        {
+          "Id": "161420",
+          "Name": ""
+        },
+        {
+          "Id": "161421",
+          "Name": ""
+        },
+        {
+          "Id": "161422",
+          "Name": ""
+        },
+        {
+          "Id": "161423",
+          "Name": ""
+        },
+        {
+          "Id": "161424",
+          "Name": ""
+        },
+        {
+          "Id": "161425",
+          "Name": ""
+        },
+        {
+          "Id": "161426",
+          "Name": ""
+        },
+        {
+          "Id": "161427",
+          "Name": ""
+        },
+        {
+          "Id": "161428",
+          "Name": ""
+        },
+        {
+          "Id": "161429",
+          "Name": ""
+        },
+        {
+          "Id": "161430",
+          "Name": ""
+        },
+        {
+          "Id": "1614",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx05",
+      "Fields": [
+        "skillCooldownsByLevelId.161401.iconPath",
+        "skillCooldownsByLevelId.161402.iconPath",
+        "skillCooldownsByLevelId.161403.iconPath",
+        "skillCooldownsByLevelId.161404.iconPath",
+        "skillCooldownsByLevelId.161405.iconPath",
+        "skillCooldownsByLevelId.161406.iconPath",
+        "skillCooldownsByLevelId.161407.iconPath",
+        "skillCooldownsByLevelId.161408.iconPath",
+        "skillCooldownsByLevelId.161409.iconPath",
+        "skillCooldownsByLevelId.161410.iconPath",
+        "skillCooldownsByLevelId.161411.iconPath",
+        "skillCooldownsByLevelId.161412.iconPath",
+        "skillCooldownsByLevelId.161413.iconPath",
+        "skillCooldownsByLevelId.161414.iconPath",
+        "skillCooldownsByLevelId.161415.iconPath",
+        "skillCooldownsByLevelId.161416.iconPath",
+        "skillCooldownsByLevelId.161417.iconPath",
+        "skillCooldownsByLevelId.161418.iconPath",
+        "skillCooldownsByLevelId.161419.iconPath",
+        "skillCooldownsByLevelId.161420.iconPath",
+        "skillCooldownsByLevelId.161421.iconPath",
+        "skillCooldownsByLevelId.161422.iconPath",
+        "skillCooldownsByLevelId.161423.iconPath",
+        "skillCooldownsByLevelId.161424.iconPath",
+        "skillCooldownsByLevelId.161425.iconPath",
+        "skillCooldownsByLevelId.161426.iconPath",
+        "skillCooldownsByLevelId.161427.iconPath",
+        "skillCooldownsByLevelId.161428.iconPath",
+        "skillCooldownsByLevelId.161429.iconPath",
+        "skillCooldownsByLevelId.161430.iconPath",
+        "skillCooldownsBySkillId.1614.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx05"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "acc9277ab7fcfccf0dd3bebe79f60551c94d64f63aa055e66e1ed041837e48e6",
+      "ObjectPathId": "3897330697091325074",
+      "SelectedObjectName": "weapon_sf-01_kx05",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|781418273|weapon_sf-01_kx06|SkillCooldowns/weapon_sf-01_kx06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161501.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx06",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx06",
+      "AddressHash": 4067044236,
+      "BundleHash": 781418273,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161501",
+          "Name": ""
+        },
+        {
+          "Id": "161502",
+          "Name": ""
+        },
+        {
+          "Id": "161503",
+          "Name": ""
+        },
+        {
+          "Id": "161504",
+          "Name": ""
+        },
+        {
+          "Id": "161505",
+          "Name": ""
+        },
+        {
+          "Id": "161506",
+          "Name": ""
+        },
+        {
+          "Id": "161507",
+          "Name": ""
+        },
+        {
+          "Id": "161508",
+          "Name": ""
+        },
+        {
+          "Id": "161509",
+          "Name": ""
+        },
+        {
+          "Id": "161510",
+          "Name": ""
+        },
+        {
+          "Id": "161511",
+          "Name": ""
+        },
+        {
+          "Id": "161512",
+          "Name": ""
+        },
+        {
+          "Id": "161513",
+          "Name": ""
+        },
+        {
+          "Id": "161514",
+          "Name": ""
+        },
+        {
+          "Id": "161515",
+          "Name": ""
+        },
+        {
+          "Id": "161516",
+          "Name": ""
+        },
+        {
+          "Id": "161517",
+          "Name": ""
+        },
+        {
+          "Id": "161518",
+          "Name": ""
+        },
+        {
+          "Id": "161519",
+          "Name": ""
+        },
+        {
+          "Id": "161520",
+          "Name": ""
+        },
+        {
+          "Id": "161521",
+          "Name": ""
+        },
+        {
+          "Id": "161522",
+          "Name": ""
+        },
+        {
+          "Id": "161523",
+          "Name": ""
+        },
+        {
+          "Id": "161524",
+          "Name": ""
+        },
+        {
+          "Id": "161525",
+          "Name": ""
+        },
+        {
+          "Id": "161526",
+          "Name": ""
+        },
+        {
+          "Id": "161527",
+          "Name": ""
+        },
+        {
+          "Id": "161528",
+          "Name": ""
+        },
+        {
+          "Id": "161529",
+          "Name": ""
+        },
+        {
+          "Id": "161530",
+          "Name": ""
+        },
+        {
+          "Id": "1615",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx06",
+      "Fields": [
+        "skillCooldownsByLevelId.161501.iconPath",
+        "skillCooldownsByLevelId.161502.iconPath",
+        "skillCooldownsByLevelId.161503.iconPath",
+        "skillCooldownsByLevelId.161504.iconPath",
+        "skillCooldownsByLevelId.161505.iconPath",
+        "skillCooldownsByLevelId.161506.iconPath",
+        "skillCooldownsByLevelId.161507.iconPath",
+        "skillCooldownsByLevelId.161508.iconPath",
+        "skillCooldownsByLevelId.161509.iconPath",
+        "skillCooldownsByLevelId.161510.iconPath",
+        "skillCooldownsByLevelId.161511.iconPath",
+        "skillCooldownsByLevelId.161512.iconPath",
+        "skillCooldownsByLevelId.161513.iconPath",
+        "skillCooldownsByLevelId.161514.iconPath",
+        "skillCooldownsByLevelId.161515.iconPath",
+        "skillCooldownsByLevelId.161516.iconPath",
+        "skillCooldownsByLevelId.161517.iconPath",
+        "skillCooldownsByLevelId.161518.iconPath",
+        "skillCooldownsByLevelId.161519.iconPath",
+        "skillCooldownsByLevelId.161520.iconPath",
+        "skillCooldownsByLevelId.161521.iconPath",
+        "skillCooldownsByLevelId.161522.iconPath",
+        "skillCooldownsByLevelId.161523.iconPath",
+        "skillCooldownsByLevelId.161524.iconPath",
+        "skillCooldownsByLevelId.161525.iconPath",
+        "skillCooldownsByLevelId.161526.iconPath",
+        "skillCooldownsByLevelId.161527.iconPath",
+        "skillCooldownsByLevelId.161528.iconPath",
+        "skillCooldownsByLevelId.161529.iconPath",
+        "skillCooldownsByLevelId.161530.iconPath",
+        "skillCooldownsBySkillId.1615.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx06"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "3ad147e5164ef46ecfc30c3e16079a959d9fb7deb4815bd8b4c16c57aad544cb",
+      "ObjectPathId": "-6851505047940918660",
+      "SelectedObjectName": "weapon_sf-01_kx06",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|782604194|weapon_sf-01_kx07|SkillCooldowns/weapon_sf-01_kx07.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161601.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx07",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx07",
+      "AddressHash": 4067044237,
+      "BundleHash": 782604194,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx07.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161601",
+          "Name": ""
+        },
+        {
+          "Id": "161602",
+          "Name": ""
+        },
+        {
+          "Id": "161603",
+          "Name": ""
+        },
+        {
+          "Id": "161604",
+          "Name": ""
+        },
+        {
+          "Id": "161605",
+          "Name": ""
+        },
+        {
+          "Id": "161606",
+          "Name": ""
+        },
+        {
+          "Id": "161607",
+          "Name": ""
+        },
+        {
+          "Id": "161608",
+          "Name": ""
+        },
+        {
+          "Id": "161609",
+          "Name": ""
+        },
+        {
+          "Id": "161610",
+          "Name": ""
+        },
+        {
+          "Id": "161611",
+          "Name": ""
+        },
+        {
+          "Id": "161612",
+          "Name": ""
+        },
+        {
+          "Id": "161613",
+          "Name": ""
+        },
+        {
+          "Id": "161614",
+          "Name": ""
+        },
+        {
+          "Id": "161615",
+          "Name": ""
+        },
+        {
+          "Id": "161616",
+          "Name": ""
+        },
+        {
+          "Id": "161617",
+          "Name": ""
+        },
+        {
+          "Id": "161618",
+          "Name": ""
+        },
+        {
+          "Id": "161619",
+          "Name": ""
+        },
+        {
+          "Id": "161620",
+          "Name": ""
+        },
+        {
+          "Id": "161621",
+          "Name": ""
+        },
+        {
+          "Id": "161622",
+          "Name": ""
+        },
+        {
+          "Id": "161623",
+          "Name": ""
+        },
+        {
+          "Id": "161624",
+          "Name": ""
+        },
+        {
+          "Id": "161625",
+          "Name": ""
+        },
+        {
+          "Id": "161626",
+          "Name": ""
+        },
+        {
+          "Id": "161627",
+          "Name": ""
+        },
+        {
+          "Id": "161628",
+          "Name": ""
+        },
+        {
+          "Id": "161629",
+          "Name": ""
+        },
+        {
+          "Id": "161630",
+          "Name": ""
+        },
+        {
+          "Id": "1616",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx07",
+      "Fields": [
+        "skillCooldownsByLevelId.161601.iconPath",
+        "skillCooldownsByLevelId.161602.iconPath",
+        "skillCooldownsByLevelId.161603.iconPath",
+        "skillCooldownsByLevelId.161604.iconPath",
+        "skillCooldownsByLevelId.161605.iconPath",
+        "skillCooldownsByLevelId.161606.iconPath",
+        "skillCooldownsByLevelId.161607.iconPath",
+        "skillCooldownsByLevelId.161608.iconPath",
+        "skillCooldownsByLevelId.161609.iconPath",
+        "skillCooldownsByLevelId.161610.iconPath",
+        "skillCooldownsByLevelId.161611.iconPath",
+        "skillCooldownsByLevelId.161612.iconPath",
+        "skillCooldownsByLevelId.161613.iconPath",
+        "skillCooldownsByLevelId.161614.iconPath",
+        "skillCooldownsByLevelId.161615.iconPath",
+        "skillCooldownsByLevelId.161616.iconPath",
+        "skillCooldownsByLevelId.161617.iconPath",
+        "skillCooldownsByLevelId.161618.iconPath",
+        "skillCooldownsByLevelId.161619.iconPath",
+        "skillCooldownsByLevelId.161620.iconPath",
+        "skillCooldownsByLevelId.161621.iconPath",
+        "skillCooldownsByLevelId.161622.iconPath",
+        "skillCooldownsByLevelId.161623.iconPath",
+        "skillCooldownsByLevelId.161624.iconPath",
+        "skillCooldownsByLevelId.161625.iconPath",
+        "skillCooldownsByLevelId.161626.iconPath",
+        "skillCooldownsByLevelId.161627.iconPath",
+        "skillCooldownsByLevelId.161628.iconPath",
+        "skillCooldownsByLevelId.161629.iconPath",
+        "skillCooldownsByLevelId.161630.iconPath",
+        "skillCooldownsBySkillId.1616.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx07"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "68b7d8ea7fe81476d569863cdd1c443e4bd5fcdeb3fbb08f47a3f4638a7eea08",
+      "ObjectPathId": "-8558265625996602261",
+      "SelectedObjectName": "weapon_sf-01_kx07",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|783790115|weapon_sf-01_kx08|SkillCooldowns/weapon_sf-01_kx08.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161701.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_kx08",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_kx08",
+      "AddressHash": 4067044238,
+      "BundleHash": 783790115,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_kx08.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161701",
+          "Name": ""
+        },
+        {
+          "Id": "161702",
+          "Name": ""
+        },
+        {
+          "Id": "161703",
+          "Name": ""
+        },
+        {
+          "Id": "161704",
+          "Name": ""
+        },
+        {
+          "Id": "161705",
+          "Name": ""
+        },
+        {
+          "Id": "161706",
+          "Name": ""
+        },
+        {
+          "Id": "161707",
+          "Name": ""
+        },
+        {
+          "Id": "161708",
+          "Name": ""
+        },
+        {
+          "Id": "161709",
+          "Name": ""
+        },
+        {
+          "Id": "161710",
+          "Name": ""
+        },
+        {
+          "Id": "161711",
+          "Name": ""
+        },
+        {
+          "Id": "161712",
+          "Name": ""
+        },
+        {
+          "Id": "161713",
+          "Name": ""
+        },
+        {
+          "Id": "161714",
+          "Name": ""
+        },
+        {
+          "Id": "161715",
+          "Name": ""
+        },
+        {
+          "Id": "161716",
+          "Name": ""
+        },
+        {
+          "Id": "161717",
+          "Name": ""
+        },
+        {
+          "Id": "161718",
+          "Name": ""
+        },
+        {
+          "Id": "161719",
+          "Name": ""
+        },
+        {
+          "Id": "161720",
+          "Name": ""
+        },
+        {
+          "Id": "161721",
+          "Name": ""
+        },
+        {
+          "Id": "161722",
+          "Name": ""
+        },
+        {
+          "Id": "161723",
+          "Name": ""
+        },
+        {
+          "Id": "161724",
+          "Name": ""
+        },
+        {
+          "Id": "161725",
+          "Name": ""
+        },
+        {
+          "Id": "161726",
+          "Name": ""
+        },
+        {
+          "Id": "161727",
+          "Name": ""
+        },
+        {
+          "Id": "161728",
+          "Name": ""
+        },
+        {
+          "Id": "161729",
+          "Name": ""
+        },
+        {
+          "Id": "161730",
+          "Name": ""
+        },
+        {
+          "Id": "1617",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_kx08",
+      "Fields": [
+        "skillCooldownsByLevelId.161701.iconPath",
+        "skillCooldownsByLevelId.161702.iconPath",
+        "skillCooldownsByLevelId.161703.iconPath",
+        "skillCooldownsByLevelId.161704.iconPath",
+        "skillCooldownsByLevelId.161705.iconPath",
+        "skillCooldownsByLevelId.161706.iconPath",
+        "skillCooldownsByLevelId.161707.iconPath",
+        "skillCooldownsByLevelId.161708.iconPath",
+        "skillCooldownsByLevelId.161709.iconPath",
+        "skillCooldownsByLevelId.161710.iconPath",
+        "skillCooldownsByLevelId.161711.iconPath",
+        "skillCooldownsByLevelId.161712.iconPath",
+        "skillCooldownsByLevelId.161713.iconPath",
+        "skillCooldownsByLevelId.161714.iconPath",
+        "skillCooldownsByLevelId.161715.iconPath",
+        "skillCooldownsByLevelId.161716.iconPath",
+        "skillCooldownsByLevelId.161717.iconPath",
+        "skillCooldownsByLevelId.161718.iconPath",
+        "skillCooldownsByLevelId.161719.iconPath",
+        "skillCooldownsByLevelId.161720.iconPath",
+        "skillCooldownsByLevelId.161721.iconPath",
+        "skillCooldownsByLevelId.161722.iconPath",
+        "skillCooldownsByLevelId.161723.iconPath",
+        "skillCooldownsByLevelId.161724.iconPath",
+        "skillCooldownsByLevelId.161725.iconPath",
+        "skillCooldownsByLevelId.161726.iconPath",
+        "skillCooldownsByLevelId.161727.iconPath",
+        "skillCooldownsByLevelId.161728.iconPath",
+        "skillCooldownsByLevelId.161729.iconPath",
+        "skillCooldownsByLevelId.161730.iconPath",
+        "skillCooldownsBySkillId.1617.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_kx08"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "083edb6ed09c236aae5104ea284842ad17c4402aea19381fd18a9d40f38ed6e9",
+      "ObjectPathId": "4901078219088801216",
+      "SelectedObjectName": "weapon_sf-01_kx08",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1985876068|weapon_sf-01_tg01_1|SkillCooldowns/weapon_sf-01_tg01_1.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.160501.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_tg01_1",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_tg01_1",
+      "AddressHash": 1231946447,
+      "BundleHash": 1985876068,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_tg01_1.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "160501",
+          "Name": ""
+        },
+        {
+          "Id": "160502",
+          "Name": ""
+        },
+        {
+          "Id": "160503",
+          "Name": ""
+        },
+        {
+          "Id": "160504",
+          "Name": ""
+        },
+        {
+          "Id": "160505",
+          "Name": ""
+        },
+        {
+          "Id": "160506",
+          "Name": ""
+        },
+        {
+          "Id": "160507",
+          "Name": ""
+        },
+        {
+          "Id": "160508",
+          "Name": ""
+        },
+        {
+          "Id": "160509",
+          "Name": ""
+        },
+        {
+          "Id": "160510",
+          "Name": ""
+        },
+        {
+          "Id": "160511",
+          "Name": ""
+        },
+        {
+          "Id": "160512",
+          "Name": ""
+        },
+        {
+          "Id": "160513",
+          "Name": ""
+        },
+        {
+          "Id": "160514",
+          "Name": ""
+        },
+        {
+          "Id": "160515",
+          "Name": ""
+        },
+        {
+          "Id": "160516",
+          "Name": ""
+        },
+        {
+          "Id": "160517",
+          "Name": ""
+        },
+        {
+          "Id": "160518",
+          "Name": ""
+        },
+        {
+          "Id": "160519",
+          "Name": ""
+        },
+        {
+          "Id": "160520",
+          "Name": ""
+        },
+        {
+          "Id": "160521",
+          "Name": ""
+        },
+        {
+          "Id": "160522",
+          "Name": ""
+        },
+        {
+          "Id": "160523",
+          "Name": ""
+        },
+        {
+          "Id": "160524",
+          "Name": ""
+        },
+        {
+          "Id": "160525",
+          "Name": ""
+        },
+        {
+          "Id": "160526",
+          "Name": ""
+        },
+        {
+          "Id": "160527",
+          "Name": ""
+        },
+        {
+          "Id": "160528",
+          "Name": ""
+        },
+        {
+          "Id": "160529",
+          "Name": ""
+        },
+        {
+          "Id": "160530",
+          "Name": ""
+        },
+        {
+          "Id": "1605",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_tg01_1",
+      "Fields": [
+        "skillCooldownsByLevelId.160501.iconPath",
+        "skillCooldownsByLevelId.160502.iconPath",
+        "skillCooldownsByLevelId.160503.iconPath",
+        "skillCooldownsByLevelId.160504.iconPath",
+        "skillCooldownsByLevelId.160505.iconPath",
+        "skillCooldownsByLevelId.160506.iconPath",
+        "skillCooldownsByLevelId.160507.iconPath",
+        "skillCooldownsByLevelId.160508.iconPath",
+        "skillCooldownsByLevelId.160509.iconPath",
+        "skillCooldownsByLevelId.160510.iconPath",
+        "skillCooldownsByLevelId.160511.iconPath",
+        "skillCooldownsByLevelId.160512.iconPath",
+        "skillCooldownsByLevelId.160513.iconPath",
+        "skillCooldownsByLevelId.160514.iconPath",
+        "skillCooldownsByLevelId.160515.iconPath",
+        "skillCooldownsByLevelId.160516.iconPath",
+        "skillCooldownsByLevelId.160517.iconPath",
+        "skillCooldownsByLevelId.160518.iconPath",
+        "skillCooldownsByLevelId.160519.iconPath",
+        "skillCooldownsByLevelId.160520.iconPath",
+        "skillCooldownsByLevelId.160521.iconPath",
+        "skillCooldownsByLevelId.160522.iconPath",
+        "skillCooldownsByLevelId.160523.iconPath",
+        "skillCooldownsByLevelId.160524.iconPath",
+        "skillCooldownsByLevelId.160525.iconPath",
+        "skillCooldownsByLevelId.160526.iconPath",
+        "skillCooldownsByLevelId.160527.iconPath",
+        "skillCooldownsByLevelId.160528.iconPath",
+        "skillCooldownsByLevelId.160529.iconPath",
+        "skillCooldownsByLevelId.160530.iconPath",
+        "skillCooldownsBySkillId.1605.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_tg01_1"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "4780062cf8458c5588ac766dc01f9b5af06860a6d90520ee707170dfc2761262",
+      "ObjectPathId": "-6965311698745712118",
+      "SelectedObjectName": "weapon_sf-01_tg01_1",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1987061989|weapon_sf-01_tg01_2|SkillCooldowns/weapon_sf-01_tg01_2.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.162001.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_tg01_2",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_tg01_2",
+      "AddressHash": 1231946448,
+      "BundleHash": 1987061989,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_tg01_2.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "162001",
+          "Name": ""
+        },
+        {
+          "Id": "1620",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_tg01_2",
+      "Fields": [
+        "skillCooldownsByLevelId.162001.iconPath",
+        "skillCooldownsBySkillId.1620.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_tg01_2"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "be636a720fe8ecb791812aa5668da2c6cfb09c1bd76eb219495f94bb0a921d00",
+      "ObjectPathId": "-3398514150949179619",
+      "SelectedObjectName": "weapon_sf-01_tg01_2",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|1610453045|weapon_sf-01_tg02|SkillCooldowns/weapon_sf-01_tg02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.160601.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_tg02",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_tg02",
+      "AddressHash": 4067349152,
+      "BundleHash": 1610453045,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_tg02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "160601",
+          "Name": ""
+        },
+        {
+          "Id": "160602",
+          "Name": ""
+        },
+        {
+          "Id": "160603",
+          "Name": ""
+        },
+        {
+          "Id": "160604",
+          "Name": ""
+        },
+        {
+          "Id": "160605",
+          "Name": ""
+        },
+        {
+          "Id": "160606",
+          "Name": ""
+        },
+        {
+          "Id": "160607",
+          "Name": ""
+        },
+        {
+          "Id": "160608",
+          "Name": ""
+        },
+        {
+          "Id": "160609",
+          "Name": ""
+        },
+        {
+          "Id": "160610",
+          "Name": ""
+        },
+        {
+          "Id": "160611",
+          "Name": ""
+        },
+        {
+          "Id": "160612",
+          "Name": ""
+        },
+        {
+          "Id": "160613",
+          "Name": ""
+        },
+        {
+          "Id": "160614",
+          "Name": ""
+        },
+        {
+          "Id": "160615",
+          "Name": ""
+        },
+        {
+          "Id": "160616",
+          "Name": ""
+        },
+        {
+          "Id": "160617",
+          "Name": ""
+        },
+        {
+          "Id": "160618",
+          "Name": ""
+        },
+        {
+          "Id": "160619",
+          "Name": ""
+        },
+        {
+          "Id": "160620",
+          "Name": ""
+        },
+        {
+          "Id": "160621",
+          "Name": ""
+        },
+        {
+          "Id": "160622",
+          "Name": ""
+        },
+        {
+          "Id": "160623",
+          "Name": ""
+        },
+        {
+          "Id": "160624",
+          "Name": ""
+        },
+        {
+          "Id": "160625",
+          "Name": ""
+        },
+        {
+          "Id": "160626",
+          "Name": ""
+        },
+        {
+          "Id": "160627",
+          "Name": ""
+        },
+        {
+          "Id": "160628",
+          "Name": ""
+        },
+        {
+          "Id": "160629",
+          "Name": ""
+        },
+        {
+          "Id": "160630",
+          "Name": ""
+        },
+        {
+          "Id": "1606",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_tg02",
+      "Fields": [
+        "skillCooldownsByLevelId.160601.iconPath",
+        "skillCooldownsByLevelId.160602.iconPath",
+        "skillCooldownsByLevelId.160603.iconPath",
+        "skillCooldownsByLevelId.160604.iconPath",
+        "skillCooldownsByLevelId.160605.iconPath",
+        "skillCooldownsByLevelId.160606.iconPath",
+        "skillCooldownsByLevelId.160607.iconPath",
+        "skillCooldownsByLevelId.160608.iconPath",
+        "skillCooldownsByLevelId.160609.iconPath",
+        "skillCooldownsByLevelId.160610.iconPath",
+        "skillCooldownsByLevelId.160611.iconPath",
+        "skillCooldownsByLevelId.160612.iconPath",
+        "skillCooldownsByLevelId.160613.iconPath",
+        "skillCooldownsByLevelId.160614.iconPath",
+        "skillCooldownsByLevelId.160615.iconPath",
+        "skillCooldownsByLevelId.160616.iconPath",
+        "skillCooldownsByLevelId.160617.iconPath",
+        "skillCooldownsByLevelId.160618.iconPath",
+        "skillCooldownsByLevelId.160619.iconPath",
+        "skillCooldownsByLevelId.160620.iconPath",
+        "skillCooldownsByLevelId.160621.iconPath",
+        "skillCooldownsByLevelId.160622.iconPath",
+        "skillCooldownsByLevelId.160623.iconPath",
+        "skillCooldownsByLevelId.160624.iconPath",
+        "skillCooldownsByLevelId.160625.iconPath",
+        "skillCooldownsByLevelId.160626.iconPath",
+        "skillCooldownsByLevelId.160627.iconPath",
+        "skillCooldownsByLevelId.160628.iconPath",
+        "skillCooldownsByLevelId.160629.iconPath",
+        "skillCooldownsByLevelId.160630.iconPath",
+        "skillCooldownsBySkillId.1606.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_tg02"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "bd339fc0af5cf95fab1b8343b9ea89e2001f646f51474c93c736adb877829d72",
+      "ObjectPathId": "-2667056140575340327",
+      "SelectedObjectName": "weapon_sf-01_tg02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SkillCooldowns|Texture2D|3920090989|weapon_sf-01_ult_01|SkillCooldowns/weapon_sf-01_ult_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SkillCooldowns.json",
+      "SourceGroup": "SkillCooldowns",
+      "Field": "skillCooldownsByLevelId.161801.iconPath",
+      "Value": "ui/textures/skill_weapon_sf/weapon_sf-01_ult_01",
+      "Address": "ui/textures/skill_weapon_sf/weapon_sf-01_ult_01",
+      "AddressHash": 1279503704,
+      "BundleHash": 3920090989,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SkillCooldowns/weapon_sf-01_ult_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 31,
+      "Rows": [
+        {
+          "Id": "161801",
+          "Name": ""
+        },
+        {
+          "Id": "161802",
+          "Name": ""
+        },
+        {
+          "Id": "161803",
+          "Name": ""
+        },
+        {
+          "Id": "161804",
+          "Name": ""
+        },
+        {
+          "Id": "161805",
+          "Name": ""
+        },
+        {
+          "Id": "161806",
+          "Name": ""
+        },
+        {
+          "Id": "161807",
+          "Name": ""
+        },
+        {
+          "Id": "161808",
+          "Name": ""
+        },
+        {
+          "Id": "161809",
+          "Name": ""
+        },
+        {
+          "Id": "161810",
+          "Name": ""
+        },
+        {
+          "Id": "161811",
+          "Name": ""
+        },
+        {
+          "Id": "161812",
+          "Name": ""
+        },
+        {
+          "Id": "161813",
+          "Name": ""
+        },
+        {
+          "Id": "161814",
+          "Name": ""
+        },
+        {
+          "Id": "161815",
+          "Name": ""
+        },
+        {
+          "Id": "161816",
+          "Name": ""
+        },
+        {
+          "Id": "161817",
+          "Name": ""
+        },
+        {
+          "Id": "161818",
+          "Name": ""
+        },
+        {
+          "Id": "161819",
+          "Name": ""
+        },
+        {
+          "Id": "161820",
+          "Name": ""
+        },
+        {
+          "Id": "161821",
+          "Name": ""
+        },
+        {
+          "Id": "161822",
+          "Name": ""
+        },
+        {
+          "Id": "161823",
+          "Name": ""
+        },
+        {
+          "Id": "161824",
+          "Name": ""
+        },
+        {
+          "Id": "161825",
+          "Name": ""
+        },
+        {
+          "Id": "161826",
+          "Name": ""
+        },
+        {
+          "Id": "161827",
+          "Name": ""
+        },
+        {
+          "Id": "161828",
+          "Name": ""
+        },
+        {
+          "Id": "161829",
+          "Name": ""
+        },
+        {
+          "Id": "161830",
+          "Name": ""
+        },
+        {
+          "Id": "1618",
+          "Name": ""
+        }
+      ],
+      "TextureName": "weapon_sf-01_ult_01",
+      "Fields": [
+        "skillCooldownsByLevelId.161801.iconPath",
+        "skillCooldownsByLevelId.161802.iconPath",
+        "skillCooldownsByLevelId.161803.iconPath",
+        "skillCooldownsByLevelId.161804.iconPath",
+        "skillCooldownsByLevelId.161805.iconPath",
+        "skillCooldownsByLevelId.161806.iconPath",
+        "skillCooldownsByLevelId.161807.iconPath",
+        "skillCooldownsByLevelId.161808.iconPath",
+        "skillCooldownsByLevelId.161809.iconPath",
+        "skillCooldownsByLevelId.161810.iconPath",
+        "skillCooldownsByLevelId.161811.iconPath",
+        "skillCooldownsByLevelId.161812.iconPath",
+        "skillCooldownsByLevelId.161813.iconPath",
+        "skillCooldownsByLevelId.161814.iconPath",
+        "skillCooldownsByLevelId.161815.iconPath",
+        "skillCooldownsByLevelId.161816.iconPath",
+        "skillCooldownsByLevelId.161817.iconPath",
+        "skillCooldownsByLevelId.161818.iconPath",
+        "skillCooldownsByLevelId.161819.iconPath",
+        "skillCooldownsByLevelId.161820.iconPath",
+        "skillCooldownsByLevelId.161821.iconPath",
+        "skillCooldownsByLevelId.161822.iconPath",
+        "skillCooldownsByLevelId.161823.iconPath",
+        "skillCooldownsByLevelId.161824.iconPath",
+        "skillCooldownsByLevelId.161825.iconPath",
+        "skillCooldownsByLevelId.161826.iconPath",
+        "skillCooldownsByLevelId.161827.iconPath",
+        "skillCooldownsByLevelId.161828.iconPath",
+        "skillCooldownsByLevelId.161829.iconPath",
+        "skillCooldownsByLevelId.161830.iconPath",
+        "skillCooldownsBySkillId.1618.iconPath"
+      ],
+      "Values": [
+        "ui/textures/skill_weapon_sf/weapon_sf-01_ult_01"
+      ],
+      "SourceFiles": [
+        "SkillCooldowns.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 128,
+      "PngHeight": 128,
+      "PngMode": "RGBA",
+      "PixelSha256": "746fe65c755a7e374e7c56c4927ed8a0bbe64165ab9df3cf6561fd58180860b3",
+      "ObjectPathId": "1290832801838472210",
+      "SelectedObjectName": "weapon_sf-01_ult_01",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -32246,7 +35292,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.169601.iconPath",
+      "Field": "skillCooldownsByLevelId.170501.iconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx01_01",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx01_01",
       "AddressHash": 3991945789,
@@ -32255,21 +35301,166 @@
       "MatchKind": "exact-address",
       "PngFile": "SkillCooldowns/weapon_tdl-01_kx01_01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 31,
       "Rows": [
         {
-          "Id": "169601",
+          "Id": "170501",
           "Name": ""
         },
         {
-          "Id": "1696",
+          "Id": "170502",
+          "Name": ""
+        },
+        {
+          "Id": "170503",
+          "Name": ""
+        },
+        {
+          "Id": "170504",
+          "Name": ""
+        },
+        {
+          "Id": "170505",
+          "Name": ""
+        },
+        {
+          "Id": "170506",
+          "Name": ""
+        },
+        {
+          "Id": "170507",
+          "Name": ""
+        },
+        {
+          "Id": "170508",
+          "Name": ""
+        },
+        {
+          "Id": "170509",
+          "Name": ""
+        },
+        {
+          "Id": "170510",
+          "Name": ""
+        },
+        {
+          "Id": "170511",
+          "Name": ""
+        },
+        {
+          "Id": "170512",
+          "Name": ""
+        },
+        {
+          "Id": "170513",
+          "Name": ""
+        },
+        {
+          "Id": "170514",
+          "Name": ""
+        },
+        {
+          "Id": "170515",
+          "Name": ""
+        },
+        {
+          "Id": "170516",
+          "Name": ""
+        },
+        {
+          "Id": "170517",
+          "Name": ""
+        },
+        {
+          "Id": "170518",
+          "Name": ""
+        },
+        {
+          "Id": "170519",
+          "Name": ""
+        },
+        {
+          "Id": "170520",
+          "Name": ""
+        },
+        {
+          "Id": "170521",
+          "Name": ""
+        },
+        {
+          "Id": "170522",
+          "Name": ""
+        },
+        {
+          "Id": "170523",
+          "Name": ""
+        },
+        {
+          "Id": "170524",
+          "Name": ""
+        },
+        {
+          "Id": "170525",
+          "Name": ""
+        },
+        {
+          "Id": "170526",
+          "Name": ""
+        },
+        {
+          "Id": "170527",
+          "Name": ""
+        },
+        {
+          "Id": "170528",
+          "Name": ""
+        },
+        {
+          "Id": "170529",
+          "Name": ""
+        },
+        {
+          "Id": "170530",
+          "Name": ""
+        },
+        {
+          "Id": "1705",
           "Name": ""
         }
       ],
       "TextureName": "weapon_tdl-01_kx01_01",
       "Fields": [
-        "skillCooldownsByLevelId.169601.iconPath",
-        "skillCooldownsBySkillId.1696.iconPath"
+        "skillCooldownsByLevelId.170501.iconPath",
+        "skillCooldownsByLevelId.170502.iconPath",
+        "skillCooldownsByLevelId.170503.iconPath",
+        "skillCooldownsByLevelId.170504.iconPath",
+        "skillCooldownsByLevelId.170505.iconPath",
+        "skillCooldownsByLevelId.170506.iconPath",
+        "skillCooldownsByLevelId.170507.iconPath",
+        "skillCooldownsByLevelId.170508.iconPath",
+        "skillCooldownsByLevelId.170509.iconPath",
+        "skillCooldownsByLevelId.170510.iconPath",
+        "skillCooldownsByLevelId.170511.iconPath",
+        "skillCooldownsByLevelId.170512.iconPath",
+        "skillCooldownsByLevelId.170513.iconPath",
+        "skillCooldownsByLevelId.170514.iconPath",
+        "skillCooldownsByLevelId.170515.iconPath",
+        "skillCooldownsByLevelId.170516.iconPath",
+        "skillCooldownsByLevelId.170517.iconPath",
+        "skillCooldownsByLevelId.170518.iconPath",
+        "skillCooldownsByLevelId.170519.iconPath",
+        "skillCooldownsByLevelId.170520.iconPath",
+        "skillCooldownsByLevelId.170521.iconPath",
+        "skillCooldownsByLevelId.170522.iconPath",
+        "skillCooldownsByLevelId.170523.iconPath",
+        "skillCooldownsByLevelId.170524.iconPath",
+        "skillCooldownsByLevelId.170525.iconPath",
+        "skillCooldownsByLevelId.170526.iconPath",
+        "skillCooldownsByLevelId.170527.iconPath",
+        "skillCooldownsByLevelId.170528.iconPath",
+        "skillCooldownsByLevelId.170529.iconPath",
+        "skillCooldownsByLevelId.170530.iconPath",
+        "skillCooldownsBySkillId.1705.iconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_kx01_01"
@@ -33621,7 +36812,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.169701.iconPath",
+      "Field": "skillCooldownsByLevelId.170601.iconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_01",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_01",
       "AddressHash": 2927343000,
@@ -33630,21 +36821,176 @@
       "MatchKind": "exact-address",
       "PngFile": "SkillCooldowns/weapon_tdl-01_skill_01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 2,
+      "RefCount": 33,
       "Rows": [
         {
-          "Id": "169701",
+          "Id": "170601",
           "Name": ""
         },
         {
-          "Id": "1697",
+          "Id": "170602",
+          "Name": ""
+        },
+        {
+          "Id": "170603",
+          "Name": ""
+        },
+        {
+          "Id": "170604",
+          "Name": ""
+        },
+        {
+          "Id": "170605",
+          "Name": ""
+        },
+        {
+          "Id": "170606",
+          "Name": ""
+        },
+        {
+          "Id": "170607",
+          "Name": ""
+        },
+        {
+          "Id": "170608",
+          "Name": ""
+        },
+        {
+          "Id": "170609",
+          "Name": ""
+        },
+        {
+          "Id": "170610",
+          "Name": ""
+        },
+        {
+          "Id": "170611",
+          "Name": ""
+        },
+        {
+          "Id": "170612",
+          "Name": ""
+        },
+        {
+          "Id": "170613",
+          "Name": ""
+        },
+        {
+          "Id": "170614",
+          "Name": ""
+        },
+        {
+          "Id": "170615",
+          "Name": ""
+        },
+        {
+          "Id": "170616",
+          "Name": ""
+        },
+        {
+          "Id": "170617",
+          "Name": ""
+        },
+        {
+          "Id": "170618",
+          "Name": ""
+        },
+        {
+          "Id": "170619",
+          "Name": ""
+        },
+        {
+          "Id": "170620",
+          "Name": ""
+        },
+        {
+          "Id": "170621",
+          "Name": ""
+        },
+        {
+          "Id": "170622",
+          "Name": ""
+        },
+        {
+          "Id": "170623",
+          "Name": ""
+        },
+        {
+          "Id": "170624",
+          "Name": ""
+        },
+        {
+          "Id": "170625",
+          "Name": ""
+        },
+        {
+          "Id": "170626",
+          "Name": ""
+        },
+        {
+          "Id": "170627",
+          "Name": ""
+        },
+        {
+          "Id": "170628",
+          "Name": ""
+        },
+        {
+          "Id": "170629",
+          "Name": ""
+        },
+        {
+          "Id": "170630",
+          "Name": ""
+        },
+        {
+          "Id": "17060101",
+          "Name": ""
+        },
+        {
+          "Id": "1706",
+          "Name": ""
+        },
+        {
+          "Id": "170601",
           "Name": ""
         }
       ],
       "TextureName": "weapon_tdl-01_skill_01",
       "Fields": [
-        "skillCooldownsByLevelId.169701.iconPath",
-        "skillCooldownsBySkillId.1697.iconPath"
+        "skillCooldownsByLevelId.170601.iconPath",
+        "skillCooldownsByLevelId.170602.iconPath",
+        "skillCooldownsByLevelId.170603.iconPath",
+        "skillCooldownsByLevelId.170604.iconPath",
+        "skillCooldownsByLevelId.170605.iconPath",
+        "skillCooldownsByLevelId.170606.iconPath",
+        "skillCooldownsByLevelId.170607.iconPath",
+        "skillCooldownsByLevelId.170608.iconPath",
+        "skillCooldownsByLevelId.170609.iconPath",
+        "skillCooldownsByLevelId.170610.iconPath",
+        "skillCooldownsByLevelId.170611.iconPath",
+        "skillCooldownsByLevelId.170612.iconPath",
+        "skillCooldownsByLevelId.170613.iconPath",
+        "skillCooldownsByLevelId.170614.iconPath",
+        "skillCooldownsByLevelId.170615.iconPath",
+        "skillCooldownsByLevelId.170616.iconPath",
+        "skillCooldownsByLevelId.170617.iconPath",
+        "skillCooldownsByLevelId.170618.iconPath",
+        "skillCooldownsByLevelId.170619.iconPath",
+        "skillCooldownsByLevelId.170620.iconPath",
+        "skillCooldownsByLevelId.170621.iconPath",
+        "skillCooldownsByLevelId.170622.iconPath",
+        "skillCooldownsByLevelId.170623.iconPath",
+        "skillCooldownsByLevelId.170624.iconPath",
+        "skillCooldownsByLevelId.170625.iconPath",
+        "skillCooldownsByLevelId.170626.iconPath",
+        "skillCooldownsByLevelId.170627.iconPath",
+        "skillCooldownsByLevelId.170628.iconPath",
+        "skillCooldownsByLevelId.170629.iconPath",
+        "skillCooldownsByLevelId.170630.iconPath",
+        "skillCooldownsByLevelId.17060101.iconPath",
+        "skillCooldownsBySkillId.1706.iconPath",
+        "skillCooldownsBySkillId.170601.iconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_01"
@@ -34236,7 +37582,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SkillCooldowns.json",
       "SourceGroup": "SkillCooldowns",
-      "Field": "skillCooldownsByLevelId.161501.iconPath",
+      "Field": "skillCooldownsByLevelId.169701.iconPath",
       "Value": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_atk01",
       "Address": "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_atk01",
       "AddressHash": 3352046136,
@@ -34245,166 +37591,21 @@
       "MatchKind": "exact-address",
       "PngFile": "SkillCooldowns/weapon_tdl-01_skill_atk01.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 31,
+      "RefCount": 2,
       "Rows": [
         {
-          "Id": "161501",
+          "Id": "169701",
           "Name": ""
         },
         {
-          "Id": "161502",
-          "Name": ""
-        },
-        {
-          "Id": "161503",
-          "Name": ""
-        },
-        {
-          "Id": "161504",
-          "Name": ""
-        },
-        {
-          "Id": "161505",
-          "Name": ""
-        },
-        {
-          "Id": "161506",
-          "Name": ""
-        },
-        {
-          "Id": "161507",
-          "Name": ""
-        },
-        {
-          "Id": "161508",
-          "Name": ""
-        },
-        {
-          "Id": "161509",
-          "Name": ""
-        },
-        {
-          "Id": "161510",
-          "Name": ""
-        },
-        {
-          "Id": "161511",
-          "Name": ""
-        },
-        {
-          "Id": "161512",
-          "Name": ""
-        },
-        {
-          "Id": "161513",
-          "Name": ""
-        },
-        {
-          "Id": "161514",
-          "Name": ""
-        },
-        {
-          "Id": "161515",
-          "Name": ""
-        },
-        {
-          "Id": "161516",
-          "Name": ""
-        },
-        {
-          "Id": "161517",
-          "Name": ""
-        },
-        {
-          "Id": "161518",
-          "Name": ""
-        },
-        {
-          "Id": "161519",
-          "Name": ""
-        },
-        {
-          "Id": "161520",
-          "Name": ""
-        },
-        {
-          "Id": "161521",
-          "Name": ""
-        },
-        {
-          "Id": "161522",
-          "Name": ""
-        },
-        {
-          "Id": "161523",
-          "Name": ""
-        },
-        {
-          "Id": "161524",
-          "Name": ""
-        },
-        {
-          "Id": "161525",
-          "Name": ""
-        },
-        {
-          "Id": "161526",
-          "Name": ""
-        },
-        {
-          "Id": "161527",
-          "Name": ""
-        },
-        {
-          "Id": "161528",
-          "Name": ""
-        },
-        {
-          "Id": "161529",
-          "Name": ""
-        },
-        {
-          "Id": "161530",
-          "Name": ""
-        },
-        {
-          "Id": "1615",
+          "Id": "1697",
           "Name": ""
         }
       ],
       "TextureName": "weapon_tdl-01_skill_atk01",
       "Fields": [
-        "skillCooldownsByLevelId.161501.iconPath",
-        "skillCooldownsByLevelId.161502.iconPath",
-        "skillCooldownsByLevelId.161503.iconPath",
-        "skillCooldownsByLevelId.161504.iconPath",
-        "skillCooldownsByLevelId.161505.iconPath",
-        "skillCooldownsByLevelId.161506.iconPath",
-        "skillCooldownsByLevelId.161507.iconPath",
-        "skillCooldownsByLevelId.161508.iconPath",
-        "skillCooldownsByLevelId.161509.iconPath",
-        "skillCooldownsByLevelId.161510.iconPath",
-        "skillCooldownsByLevelId.161511.iconPath",
-        "skillCooldownsByLevelId.161512.iconPath",
-        "skillCooldownsByLevelId.161513.iconPath",
-        "skillCooldownsByLevelId.161514.iconPath",
-        "skillCooldownsByLevelId.161515.iconPath",
-        "skillCooldownsByLevelId.161516.iconPath",
-        "skillCooldownsByLevelId.161517.iconPath",
-        "skillCooldownsByLevelId.161518.iconPath",
-        "skillCooldownsByLevelId.161519.iconPath",
-        "skillCooldownsByLevelId.161520.iconPath",
-        "skillCooldownsByLevelId.161521.iconPath",
-        "skillCooldownsByLevelId.161522.iconPath",
-        "skillCooldownsByLevelId.161523.iconPath",
-        "skillCooldownsByLevelId.161524.iconPath",
-        "skillCooldownsByLevelId.161525.iconPath",
-        "skillCooldownsByLevelId.161526.iconPath",
-        "skillCooldownsByLevelId.161527.iconPath",
-        "skillCooldownsByLevelId.161528.iconPath",
-        "skillCooldownsByLevelId.161529.iconPath",
-        "skillCooldownsByLevelId.161530.iconPath",
-        "skillCooldownsBySkillId.1615.iconPath"
+        "skillCooldownsByLevelId.169701.iconPath",
+        "skillCooldownsBySkillId.1697.iconPath"
       ],
       "Values": [
         "ui/textures/skill_weapon_tdl/weapon_tdl-01_skill_atk01"
@@ -39883,8 +43084,8 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-27T06:13:21.519Z",
-  "PngAssetCount": 356,
+  "PngExportedAt": "2026-05-29T04:14:03.968Z",
+  "PngAssetCount": 396,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

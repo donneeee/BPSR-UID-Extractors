@@ -260,6 +260,74 @@
     "DescriptionSearchText": "Summons Elite: Emerald Caprahorn to fire two consecutive projectiles, dealing Attack DMG to targets in the area. After casting, your Haste is increased for a period of time. 召唤精英·翡翠角羊，连续两次释放弹道攻击，对范围内目标造成物理伤害。 技能释放后，一段时间内你的急速获得提升。 召喚精英·翡翠角羊，連續兩次釋放彈道攻擊，對範圍內目標造成物理傷害。 技能釋放後，一段時間內你的急速獲得提升。"
   },
   {
+    "id": 3968,
+    "DescriptionSearchText": "Summons Denvel to attract nearby monsters and deal Attack DMG. After casting, grants a temporary enhancement: the user takes damage equal to 0.1% of Max HP every 0.2s and gains a DMG boost, with an additional boost for every 100,000 Max HP (Total base and extra DMG boost is capped, and the Max HP requirement is adjusted each season). This skill holds 2 charges. 召唤丹佛，吸引周围的怪物，造成物理伤害。 技能释放后，一段时间内获得强化：自身每0.2秒受到0.1%生命值上限的伤害，且获得伤害提升，每100000点生命值上限获得额外提升（基础和额外伤害提升有总和上限，且生命值上限要求会跟随每赛季变化）。 技能可充能2次。 召喚丹佛，吸引周圍的怪物，造成物理傷害。 技能釋放後，一段時間內獲得強化：自身每0.2秒受到0.1%生命值上限的傷害，且獲得傷害提升，每100000點生命值上限獲得額外提升（基礎和額外傷害提升有總和上限，且生命值上限要求會跟隨每賽季變化）。 技能可充能2次。"
+  },
+  {
+    "id": 3969,
+    "DescriptionSearchText": "Summons Igoreus to deal Attack DMG. Holds 2 charges. After casting, your Crit is temporarily increased. Any base Crit Rate exceeding 60% is converted into a Crit DMG boost at a set ratio. 召唤伊戈雷乌斯，造成物理伤害，可充能2次。 技能释放后，一段时间内你的暴击获得提升，且基础暴击率高于60%的超出部分会以一定比例转化为暴击伤害提升。 召喚伊戈雷烏斯，造成物理傷害，可充能2次。 技能釋放後，一段時間內你的暴擊獲得提升，且基礎暴擊率高於60%的超出部分會以一定比例轉化為暴擊傷害提升。"
+  },
+  {
+    "id": 3970,
+    "DescriptionSearchText": "Summons Plague Nappo. The Nappo's attack method and skill effects change based on the type of skill cast previously. If cast directly or after a Special Attack, summons Stormblade Nappo to deal AoE Attack DMG once, and reduces the current Resonance Skill's CD by 81.25%. If cast after an Expertise Skill, summons Marksman Nappo to deal Attack DMG to a single target, and reduces the current Resonance Skill's CD by 68.75%. If cast after an Ultimate, summons Wind Knight Nappo to deal Attack DMG once, reduces the current Resonance Skill's CD by 25%, and temporarily increases your DMG. If cast after another Resonance Skill, summons Beat Performer Nappo to reduce the CD of the previously cast Resonance Skill (excluding this one). 召唤幻祸娜宝，根据前一次施放的技能类型会改变娜宝的攻击方式和技能效果。 直接施放或施放特殊攻击后，本次将召唤雷影剑士娜宝，造成一次范围物理伤害，且减少当前共鸣技能81.25%冷却时间。 施放专精技能后，本次将召唤神射手娜宝，对单体目标造成物理伤害，且减少当前共鸣技能68.75%冷却时间。 施放终极技能后，本次将召唤青岚骑士娜宝，造成一次物理伤害，且减少当前共鸣技能25%冷却时间，并在一段时间内，使你的伤害提升。 施放本技能以外的共鸣技能后，本次将召唤灵魂乐手娜宝，减少上一个施放的非本技能的共鸣技能冷却时间。 召喚幻禍娜寶，根據前一次施放的技能類型會改變娜寶的攻擊方式和技能效果。 直接施放或施放特殊攻擊後，本次將召喚雷影劍士娜寶，造成一次範圍物理傷害，且減少當前共鳴技能81.25%冷卻時間。 施放專精技能後，本次將召喚神射手娜寶，對單體目標造成物理傷害，且減少當前共鳴技能68.75%冷卻時間。 施放終極技能後，本次將召喚青嵐騎士娜寶，造成一次物理傷害，且減少當前共鳴技能25%冷卻時間，並在一段時間內，使你的傷害提升。 施放本技能以外的共鳴技能後，本次將召喚靈魂樂手娜寶，減少上一個施放的非本技能的共鳴技能冷卻時間。"
+  },
+  {
+    "id": 3971,
+    "DescriptionSearchText": "Summons Kartgriff to deal Magic DMG. After casting, temporarily grants a Main Stats and Healing Received boost to you and up to 10 nearby allies (prioritizing teammates). (Cannot be affected by the same type of effect within 60s.) 召唤卡特格里夫，造成魔法伤害。 技能释放后，一段时间内使自己和周围至多10名友方目标（优先队友）获得主属性、受治疗强度提升。 【60秒内无法受到同类型效果影响】 召喚卡特格里夫，造成魔法傷害。 技能釋放後，一段時間內使自己和周圍至多10名友方目標（優先隊友）獲得主屬性、受治療強度提升。 【60秒內無法受到同類型效果影響】"
+  },
+  {
+    "id": 3972,
+    "DescriptionSearchText": "Summons Boss: Predator Spider to deal Attack DMG. After casting, your passive ATK bonus is temporarily enhanced according to your Mastery Percentage. Every 5% Mastery grants extra ATK for each passive stack (up to a max limit). 召唤首领·掠食蜘蛛，造成物理伤害。 技能释放后，一段时间内你的被动效果攻击力加成根据你所拥有的精通百分比获得强化，每5%精通使得被动每层额外提供攻击力（有上限）。 召喚首領·掠食蜘蛛，造成物理傷害。 技能釋放後，一段時間內你的被動效果攻擊力加成根據你所擁有的精通百分比獲得強化，每5%精通使得被動每層額外提供攻擊力（有上限）。"
+  },
+  {
+    "id": 3973,
+    "DescriptionSearchText": "Summons Boss: Rebel King to deal Attack DMG. After casting, temporarily grants full passive stacks, with the effect multiplied by 2. 召唤首领·狂悖之王，造成物理伤害。 技能释放后，一段时间内获得满层被动效果，且效果变为2倍。 召喚首領·狂悖之王，造成物理傷害。 技能釋放後，一段時間內獲得滿層被動效果，且效果變為2倍。"
+  },
+  {
+    "id": 3974,
+    "DescriptionSearchText": "Summons Boss: Void Watcher, dealing Magic DMG and occupying an area for a period of time. You and your teammates within the area gain increased ATK, Attack SPD, and Casting SPD. The effect on yourself is multiplied by 2.5. (Does not stack; only one of the same effect may be active.) 召唤首领·空洞监察者，造成魔法伤害，一段时间内占据一个区域。 处于区域内的自身和队友获得攻击力，攻击速度，施法速度提升，且对自身生效2.5倍。 【不可叠加，同效果仅生效一个】 召喚首領·空洞監察者，造成魔法傷害，一段時間內佔據一個區域。 處於區域內的自身和隊友獲得攻擊力，攻擊速度，施法速度提升，且對自身生效2.5倍。 【不可疊加，同效果僅生效一個】"
+  },
+  {
+    "id": 3975,
+    "DescriptionSearchText": "Summons Boss: Ridge Fang to deal Attack DMG. After casting, instantly resets Survival Instinct CD. You remain Invigorated temporarily, and your Armor and Max HP are increased. 召唤首领·山脊之牙，造成物理伤害。 技能释放后，立即刷新绝境逢生冷却时间，一段时间内保持精神抖擞且你的物理防御力、最大生命值获得提升。 召喚首領·山脊之牙，造成物理傷害。 技能釋放後，立即刷新絕境逢生冷卻時間，一段時間內保持精神抖擻且你的物理防禦力、最大生命值獲得提升。"
+  },
+  {
+    "id": 3976,
+    "DescriptionSearchText": "Summons Boss: Bloodthirsty Furball to deal Attack DMG. For a period of time after casting, every time your Class Skills and Luck effect deal damage, they add extra damage on top of the skill's base value, equal to a certain percentage of your ATK. 召唤首领·嗜血毛球，造成物理伤害。 技能释放后，一段时间内，你的职业技能和幸运效果每次造成伤害时，会额外在技能固定值上附加一定比例攻击力的伤害。 召喚首領·嗜血毛球，造成物理傷害。 技能釋放後，一段時間內，你的職業技能和幸運效果每次造成傷害時，會額外在技能固定值上附加一定比例攻擊力的傷害。"
+  },
+  {
+    "id": 3977,
+    "DescriptionSearchText": "Summons Elite: Killer Arachnocrab to deal Attack DMG. After casting, you gain full passive stacks for a period of time, during which they do not decrease. 召唤精英·杀手蟹蛛，造成物理伤害。 技能释放后，一段时间内获得满层被动效果，且持续期间内不会掉层。 召喚精英·殺手蟹蛛，造成物理傷害。 技能釋放後，一段時間內獲得滿層被動效果，且持續期間內不會掉層。"
+  },
+  {
+    "id": 3978,
+    "DescriptionSearchText": "Summons Elite: Verdant Fang to deal Attack DMG. For a period of time after casting, each Class Skill used reduces your remaining Ultimate CD (triggers up to once every 1s). 召唤精英·深绿之牙，造成物理伤害。 技能释放后，一段时间内，每施放一次职业技能减少终极技能剩余冷却时间（每1秒至多触发1次）。 召喚精英·深綠之牙，造成物理傷害。 技能釋放後，一段時間內，每施放一次職業技能減少終極技能剩餘冷卻時間（每1秒至多觸發1次）。"
+  },
+  {
+    "id": 3979,
+    "DescriptionSearchText": "Summons Elite: Man-Eating Furball to deal Attack DMG. After casting, your Fire Bonus is temporarily increased. 召唤精英·食人毛球，造成物理伤害。 技能释放后，一段时间内你的火元素加成获得提升。 召喚精英·食人毛球，造成物理傷害。 技能釋放後，一段時間內你的火元素加成獲得提升。"
+  },
+  {
+    "id": 3980,
+    "DescriptionSearchText": "Summons Elite: Dogorman, dealing Attack DMG equal to a percentage of your HP. After casting, your HP is also temporarily increased. 召唤精英·多格尔曼，对目标造成自身生命值百分比固定物理伤害 技能释放后，一段时间内你的生命值获得提升。 召喚精英·多格爾曼，對目標造成自身生命值百分比固定物理傷害 技能釋放後，一段時間內你的生命值獲得提升。"
+  },
+  {
+    "id": 3981,
+    "DescriptionSearchText": "Summons Elite: Sanctuary Eye to deal Attack DMG. After casting, grants a Shield to yourself and up to 10 nearby allies for a period of time (prioritizes teammates). 召唤精英·圣堂之眼，造成物理伤害。 技能释放后，一段时间内使自己和周围至多10名友方目标（优先队友）获得护盾。 召喚精英·聖堂之眼，造成物理傷害。 技能釋放後，一段時間內使自己和周圍至多10名友方目標（優先隊友）獲得護盾。"
+  },
+  {
+    "id": 3982,
+    "DescriptionSearchText": "Transform into Celestial Spirit Mage - Lucy, replacing your skill set while gaining Ability Conversion. Passive: Dealing damage converts 50% of the damage dealt into healing for up to 10 nearby allies (prioritizing teammates). 1. Fleuve d'Étoiles: Manifests the Fleuve d'Étoiles and swings it continuously, dealing Light Magic DMG to targets. 2. Celestial Guardian: Harnesses the power of Celestial Spirits to grant a shield lasting 20s to up to 10 allies within range (prioritizing teammates). Simultaneously inflicts debuffs on up to 5 enemies within range, reducing ATK, applying Vulnerability, and reducing Element Resistance for 10s. 3. Aqua Metria: Draws upon the power of Aquarius to unleash waves forward, dealing Water Magic DMG to targets in their path, with an additional 50% of the damage dealt converted into healing. 变身为星灵魔导士·露西，替换全新的技能模组的同时，获得能力转化。 被动：造成伤害时将50%伤害转化成治疗量对周围至多10名友方目标（优先队友）产生治疗。 ①星之大河：挥动星之大河，连续挥舞对目标造成光属性魔法伤害。 ②星灵守护：借助星灵的力量，对范围内至多10名友方目标（优先队友）添加持续20秒的护盾，同时对范围内至多5个敌方目标施加减益效果：降低攻击力，获得易伤，降低元素减免，持续10秒。（仅同时生效一个） ③水文史话：借助阿葵亚的力量，向前方释放水波浪，对途径的目标造成水元素魔法伤害，且该技能造成的伤害额外转化50%成治疗量。 變身為星靈魔導士・露西，替換全新的技能模組的同時，獲得能力轉化。 被動：造成傷害時將50%傷害轉化成治療量對周圍至多10名友方目標（優先隊友）產生治療。 ①星之大河：幻化出星之大河，連續揮舞對目標造成光屬性魔法傷害。 ②星靈守護：借助星靈的力量，對範圍內至多10名友方目標（優先隊友）添加持續20秒的護盾，同時對範圍內至多5個敵方目標施加減益效果：降低攻擊力，獲得易傷，降低元素減免，持續10秒。 ③水之星辰：借助阿葵亞的力量，向前方釋放水波浪，對途徑的目標造成水元素魔法傷害，且該技能造成的傷害額外轉化50%成治療量。"
+  },
+  {
+    "id": 3983,
+    "DescriptionSearchText": "Transform into Fire Dragon Slayer - Natsu, replacing your skill set while gaining Ability Conversion. Passive: Casting skills other than an Ultimate Skill grants stacks of Dragon Flame based on the skill type. Every 10 stacks of Dragon Flame automatically converts into 1 stack of Dragon Force. Dragon Force can stack up to 5 times. Each stack of Dragon Force grants a Fire Bonus. 1. Fire Dragon's Iron Fist: Charges briefly before unleashing a blazing punch forward, dealing Fire Attack DMG and accumulating 5 stacks of Dragon Flame. 2. Fire Dragon's Wing Attack: Leaps fiercely and dashes forward, dealing Fire Attack DMG and accumulating 5 stacks of Dragon Flame. 3. Fire Dragon's Roar: Gathers the power of flames to spew a massive blast of fire forward, dealing Fire Attack DMG. If at max Dragon Force stacks, consumes all stacks of Dragon Force to gain CD reduction for Natsu's skills and a Fire Bonus. This effect persists for the duration of the current transformation and can stack up to 3 times. 变身为火之灭龙魔导士·纳兹，替换全新的技能模组的同时，获得能力转化。 被动：释放除终极技能以外技能时，根据技能类型获得对应层数龙焰，每获得10层龙焰将自动转化成1层龙之力，龙之力至多可以叠加5层。每层龙之力使你获得火元素加成。 ①火龙的铁拳：短暂蓄力朝前方打出炙热一拳，造成火元素物理伤害，积攒5层龙焰。 ②火龙的翼击：猛然跃起交向前方突进，造成火元素物理伤害，积攒5层龙焰。 ③火龙的咆哮：聚集火焰的力量，向面朝方向喷出巨大火焰，造成火元素物理伤害。若此时拥有满层龙之力，则消耗龙之力所有层数获得纳兹技能冷却缩减和火元素加成，该效果本次变身内不会消除且最多可以叠加3次。 變身為火之滅龍魔導士・納茲，替換全新的技能模組的同時，獲得能力轉化。 被動：釋放除終極技能以外技能時，根據技能類型獲得對應層數龍焰，每獲得10層龍焰將自動轉化成1層龍之力，龍之力至多可以疊加5層。每層龍之力使你獲得火元素加成。 ①火龍的鐵拳：短暫蓄力朝前方打出炙熱一拳，造成火元素物理傷害，累積5層龍焰。 ②火龍的翼擊：猛然躍起交向前方突進，造成火元素物理傷害，累積5層龍焰。 ③火龍的咆哮：聚集火焰的力量，向面朝方向噴出巨大火焰，造成火元素物理傷害。若此時擁有滿層龍之力，則消耗龍之力所有層數獲得納茲技能冷卻縮減和火元素加成，該效果本次變身內不會消除且最多可以疊加3次。"
+  },
+  {
+    "id": 170112,
+    "DescriptionSearchText": "Arcane! Void Corruption Blade 奥义！虚蚀劫刄 奧義！虛蝕劫刄"
+  },
+  {
     "id": 420140,
     "DescriptionSearchText": "Resonates with the power from Elite Void Ogre and roars on the spot, launching 6 wildly dancing Void Corruption energy substances at the target, dealing Attack DMG. Applies Void Corruption Decay to the target for 10s, dealing Magic DMG per second, stacks up to 5 times. 100%of the DoT dealt restores your HP. 共鸣精英·虚蚀食人魔的力量，原地怒吼，向目标发射6颗狂风乱舞般的虚蚀能量体，造成物理伤害。同时为目标附加持续10秒的虚蚀侵害，每秒造成魔法伤害，至多可叠加5层，造成的持续伤害100%为自身回复生命值。 共鳴精英·虛蝕食人魔的力量，原地怒吼，向目標發射6顆狂風亂舞般的虛蝕能量體，造成物理傷害。同時為目標附加持續10秒的虛蝕侵害，每秒造成魔法傷害，至多可疊加5層，造成的持續傷害100%為自身回復生命值。"
   },

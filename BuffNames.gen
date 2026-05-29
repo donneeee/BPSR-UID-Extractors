@@ -5,9 +5,7 @@ const { cleanDescriptionsByLocale } = require("./effect-semantics.cjs");
 let buildLocaleTextObject;
 let localeIdFromGameLanguage;
 
-const BUFF_ID_PATTERN = [201, 301, 401, 501, 601];
 const DEFAULT_ROW_SIZE = 95;
-const FIRST_BUFF_NAME_HEX = "e6b094e58883e7aa81e588bae8aea1e695b0";
 const LOCALIZATION_LANGUAGES = [
   "english",
   "chinese",
@@ -106,13 +104,11 @@ async function main() {
   } = common);
   const {
     displayPath,
-    findFirstPattern,
-    makeU32Pattern,
     maybeWriteJson,
     parseArgs,
     printHelp,
-    readPackage,
-    readU16,
+    readCtbString,
+    readCtbTable,
     readU32,
     resolvePaths
   } = common;
@@ -143,43 +139,30 @@ Notes:
   }
 
   const paths = resolvePaths(args, "BuffName.json");
-  const pkg = readPackage(paths.m0Path);
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, metaEntries);
 
-  const idRunOffset = findFirstPattern(pkg, makeU32Pattern(BUFF_ID_PATTERN, 8));
-  if (idRunOffset < 0) {
-    throw new Error("Could not locate the BuffTable id run in m0.pkg.");
-  }
-
-  const rowCount = readU32(pkg, idRunOffset - 12);
-  const rowDataBytes = readU32(pkg, idRunOffset - 4);
-  const rowSize = Number(args.rowSize || DEFAULT_ROW_SIZE);
+  const buffTable = readCtbTable(containerDir, metaEntries, "BuffTable.ctb");
+  const rowCount = buffTable.rowCount;
+  const rowSize = buffTable.rowSize;
   if (!rowCount || rowCount > 100000) {
-    throw new Error(`Suspicious BuffTable row count near id run: ${rowCount}`);
-  }
-  if (rowDataBytes && rowDataBytes !== rowCount * rowSize) {
-    throw new Error(
-      `BuffTable row byte count mismatch: count=${rowCount} rowSize=${rowSize} bytes=${rowDataBytes}`
-    );
+    throw new Error(`Suspicious BuffTable row count: ${rowCount}`);
   }
 
-  const rowStart = idRunOffset + rowCount * 8;
-  const stringBase = findBuffStringBase(pkg, rowStart + rowCount * rowSize, findFirstPattern);
   const rawRows = [];
   const buffIds = new Set();
   const wantedNameIds = new Set();
   const wantedDescriptionIds = new Set();
 
   for (let index = 0; index < rowCount; index += 1) {
-    const sourceOffset = rowStart + index * rowSize;
-    const id = readU32(pkg, sourceOffset);
-    const level = readU32(pkg, sourceOffset + 4);
-    const nameOffset = readU32(pkg, sourceOffset + 8);
-    const nameMlStringId = readU32(pkg, sourceOffset + 16);
-    const descriptionId = readU32(pkg, sourceOffset + 24);
-    const designName = readStringAtOffset(pkg, stringBase, nameOffset, readU16);
+    const sourceOffset = buffTable.rowStart + index * rowSize;
+    const id = readU32(buffTable.data, sourceOffset);
+    const level = readU32(buffTable.data, sourceOffset + 4);
+    const nameOffset = readU32(buffTable.data, sourceOffset + 8);
+    const nameMlStringId = readU32(buffTable.data, sourceOffset + 16);
+    const descriptionId = readU32(buffTable.data, sourceOffset + 24);
+    const designName = readCtbString(buffTable, 6, nameOffset);
 
     if (nameMlStringId) {
       wantedNameIds.add(nameMlStringId);
@@ -295,7 +278,7 @@ Notes:
           }
         : {}),
       SourceOffset: row.sourceOffset,
-      NameSourceOffset: stringBase + row.nameOffset,
+      NameSourceOffset: (buffTable.pools.get(6)?.offset ?? 0) + row.nameOffset,
       ...(linkedName
         ? {
             ...(linkedName.effectIds?.length ? { LinkedEffectIds: linkedName.effectIds } : {}),
@@ -318,10 +301,11 @@ Notes:
 
   entries.sort((a, b) => Number(a.Id) - Number(b.Id) || Number(a.Level) - Number(b.Level));
 
-  console.log(`BuffTable id run offset: ${idRunOffset}`);
+  console.log(`BuffTable source: BuffTable.ctb`);
   console.log(`BuffTable rows: ${rowCount}`);
-  console.log(`BuffTable row data offset: ${rowStart}`);
-  console.log(`BuffTable string base: ${stringBase}`);
+  console.log(`BuffTable row size: ${rowSize}`);
+  console.log(`BuffTable row data offset: ${buffTable.rowStart}`);
+  console.log(`BuffTable string pool offset: ${buffTable.pools.get(6)?.offset ?? 0}`);
   console.log(`BuffTable mlstring ids: ${wantedNameIds.size}`);
   console.log(`BuffTable description ids: ${wantedDescriptionIds.size}`);
   console.log(`Loaded localization files: ${localizationTables.length}`);

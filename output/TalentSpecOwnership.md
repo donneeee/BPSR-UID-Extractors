@@ -6,26 +6,26 @@ Conservative class/spec ownership metadata for talent/passive rows.
 
 - source: TalentSpecOwnership.gen
 - generatedFrom: {"talentProbe":"output/probing-reports/TalentEffectModelProbe.json","classSpecProbe":"output/probing-reports/ClassSpecSkillModelProbe.json","classLabels":"output/class-labels.json"}
-- talentRows: 646
+- talentRows: 648
 - specRows: 18
 - classBuckets: 9
-- dpsRelevantRows: 553
-- ownershipCounts: {"class-wide-candidate":394,"spec-exclusive":152,"spec-interaction":20,"spec-selector":18,"spec-leaning":7,"ambiguous":55}
-- hardFilterEligibleRows: 152
-- dpsRowsNeedingReview: 51
+- dpsRelevantRows: 556
+- ownershipCounts: {"class-wide-candidate":360,"spec-exclusive":169,"spec-interaction":19,"spec-selector":18,"spec-leaning":8,"ambiguous":74}
+- hardFilterEligibleRows: 169
+- dpsRowsNeedingReview: 69
 - generationPolicy: Ownership is conservative metadata. Runtime selected-talent/passive evidence should remain authoritative; hard filtering is only safe for high-confidence spec-exclusive rows.
 
 ## Class Buckets
 
-- 1 Stormblade: 69 talents; specs 130 Iaido, 157 Moonstrike; ownership {"spec-exclusive":28,"class-wide-candidate":33,"spec-interaction":4,"spec-selector":2,"spec-leaning":2}
+- 1 Stormblade: 70 talents; specs 130 Iaido, 157 Moonstrike; ownership {"spec-exclusive":28,"class-wide-candidate":34,"spec-interaction":4,"spec-selector":2,"spec-leaning":2}
 - 2 Frost Mage: 68 talents; specs 212 Frostbeam, 233 Icicle; ownership {"ambiguous":13,"class-wide-candidate":19,"spec-interaction":6,"spec-exclusive":25,"spec-leaning":3,"spec-selector":2}
-- 3 Flame Berserker: 67 talents; specs 312 Formless Expertise Spec, 342 Crimson Expertise Spec; ownership {"class-wide-candidate":64,"spec-exclusive":1,"spec-selector":2}
-- 4 Wind Knight: 68 talents; specs 432 Skyward, 433 Vanguard; ownership {"class-wide-candidate":38,"ambiguous":9,"spec-exclusive":18,"spec-selector":2,"spec-interaction":1}
+- 3 Flame Berserker: 67 talents; specs 312 Formless Expertise Spec, 342 Crimson Expertise Spec; ownership {"class-wide-candidate":31,"ambiguous":17,"spec-exclusive":16,"spec-selector":2,"spec-leaning":1}
+- 4 Wind Knight: 68 talents; specs 432 Skyward, 433 Vanguard; ownership {"class-wide-candidate":37,"ambiguous":11,"spec-exclusive":18,"spec-selector":2}
 - 5 Verdant Oracle: 70 talents; specs 510 Smite, 531 Lifebind; ownership {"class-wide-candidate":32,"spec-exclusive":27,"spec-selector":2,"spec-interaction":5,"ambiguous":4}
-- 9 Heavy Guardian: 67 talents; specs 930 Block, 931 Earthfort; ownership {"class-wide-candidate":45,"spec-exclusive":12,"ambiguous":7,"spec-interaction":1,"spec-selector":2}
+- 9 Heavy Guardian: 67 talents; specs 930 Block, 931 Earthfort; ownership {"class-wide-candidate":44,"spec-exclusive":13,"ambiguous":7,"spec-interaction":1,"spec-selector":2}
 - 11 Marksman: 67 talents; specs 1126 Wildpack, 1129 Falconry; ownership {"spec-interaction":2,"class-wide-candidate":37,"spec-exclusive":13,"ambiguous":11,"spec-leaning":2,"spec-selector":2}
-- 12 Shield Knight: 67 talents; specs 1208 Recovery, 1218 Shield; ownership {"class-wide-candidate":46,"ambiguous":11,"spec-selector":2,"spec-exclusive":8}
-- 13 Beat Performer: 68 talents; specs 1308 Dissonance, 1317 Concerto; ownership {"class-wide-candidate":45,"spec-selector":2,"spec-exclusive":20,"spec-interaction":1}
+- 12 Shield Knight: 68 talents; specs 1208 Recovery, 1218 Shield; ownership {"class-wide-candidate":47,"ambiguous":11,"spec-selector":2,"spec-exclusive":8}
+- 13 Beat Performer: 68 talents; specs 1308 Dissonance, 1317 Concerto; ownership {"class-wide-candidate":44,"spec-selector":2,"spec-exclusive":21,"spec-interaction":1}
 
 ## DPS Rows Needing Review
 
@@ -46,8 +46,26 @@ Conservative class/spec ownership metadata for talent/passive rows.
 - 266 Intellect Ice Crystal: ambiguous; scores Frostbeam:34
 - 268 Sharp Ice Arrow: ambiguous; scores Icicle:34
 - 270 Ice Crystal Expansion: ambiguous; scores Frostbeam:34
+- 302 Infernal Combo: ambiguous; scores Formless Expertise Spec:34
+- 307 Flame Soul Seal: ambiguous; scores Crimson Expertise Spec:34
+- 314 Soaring Flame: ambiguous; scores Formless Expertise Spec:34
+- 320 Time Wheel Lucky Soul: ambiguous; scores Formless Expertise Spec:34
+- 321 Time Wheel Agile Soul: ambiguous; scores Formless Expertise Spec:34
+- 334 Lucky Blade Combo: ambiguous; scores Formless Expertise Spec:34
+- 335 Formless Flame Slash Combo: ambiguous; scores Formless Expertise Spec:34
+- 337 Instant Wasteland: ambiguous; scores Formless Expertise Spec:34
+- 340 Flame Soul Attack Spirit: ambiguous; scores Crimson Expertise Spec:34
+- 343 Soul Flame: ambiguous; scores Crimson Expertise Spec:34
+- 344 Raging Flame Sharpness I: ambiguous; scores Crimson Expertise Spec:34
+- 346 Crimson Earth - Swift: ambiguous; scores Crimson Expertise Spec:34
+- 352 Hellfire Manifestation: spec-leaning; scores Crimson Expertise Spec:68
+- 357 Crimson Crit: ambiguous; scores Crimson Expertise Spec:34
+- 359 Unbound Meteor Combo: ambiguous; scores Crimson Expertise Spec:34
+- 360 Crimson Epiphany: ambiguous; scores Crimson Expertise Spec:34
+- 366 Arcane Raging Flame: ambiguous; scores Crimson Expertise Spec:34
 - 403 Sharp: ambiguous; scores Skyward:48, Vanguard:48
 - 411 Zephyr Waltz Agility: ambiguous; scores Skyward:48, Vanguard:48
+- 434 Battle Cry: ambiguous; scores Skyward:50, Vanguard:50
 - 525 Natural Bloom: ambiguous; scores Smite:34
 - 550 Breath of Symbiosis: ambiguous; scores Smite:34
 - 913 Fortune Bastion: ambiguous; scores Block:34
@@ -137,6 +155,21 @@ Conservative class/spec ownership metadata for talent/passive rows.
 - 267 Quick Chant: Frostbeam (99)
 - 269 Ray's Swan Song: Frostbeam (99)
 - 303 Crimson Lotus: Formless Expertise Spec (90)
+- 313 Blazing Pact: Formless Expertise Spec (99)
+- 315 Time Wheel Rewind: Formless Expertise Spec (99)
+- 319 Wasteland Raid: Formless Expertise Spec (99)
+- 322 Returning Soul: Formless Expertise Spec (99)
+- 323 Double Inferno: Formless Expertise Spec (99)
+- 324 Hellfire Meteor: Formless Expertise Spec (99)
+- 327 Expertise Formless Flame Slash: Formless Expertise Spec (99)
+- 345 Crimson Earth - Flame Soul: Crimson Expertise Spec (99)
+- 354 Flowing Splendor Rotation: Crimson Expertise Spec (99)
+- 355 Instant Flowing Splendor: Crimson Expertise Spec (99)
+- 361 Wildfire Dance Final Slash: Crimson Expertise Spec (99)
+- 362 Wildfire Formless Flame Slash: Crimson Expertise Spec (99)
+- 363 Wild Slash Combo: Crimson Expertise Spec (99)
+- 364 Arcane Wildfire Bloodline: Crimson Expertise Spec (99)
+- 365 Arcane Wildfire Haste: Crimson Expertise Spec (99)
 - 406 Wind Tear: Vanguard (99)
 - 407 Quickshot Meteor: Vanguard (99)
 - 410 Swift Blade: Vanguard (99)
@@ -188,18 +221,3 @@ Conservative class/spec ownership metadata for talent/passive rows.
 - 917 Smash Support: Earthfort (99)
 - 922 Shield Echo: Earthfort (99)
 - 934 Sandstone Shock: Block (99)
-- 956 Rampart Fury: Block (99)
-- 957 Block Shelter: Block (99)
-- 958 Sand Block: Block (99)
-- 963 Rampart Fortitude: Block (99)
-- 968 Counter Storm: Block (99)
-- 969 Rock Luck: Block (99)
-- 1103 Wolf Pact: Wildpack (99)
-- 1110 Demon Wolf Twin: Wildpack (99)
-- 1111 Photon Reforge Lore: Wildpack (99)
-- 1114 Tracer Arrows: Wildpack (99)
-- 1120 Piercing Shot: Falconry (99)
-- 1122 Lightfall: Falconry (99)
-- 1136 Wolf Sharp Strike: Wildpack (99)
-- 1140 Wolf Fang Pact: Wildpack (99)
-- 1144 Lumi Torrent: Wildpack (99)

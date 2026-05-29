@@ -7,10 +7,10 @@ CTB field+36 is decoded as top-level effect records. Opcode 6 records are report
 
 - weaponStyleBuffRows: 12
 - weaponStyleGroups: 6
-- talentPassiveRows: 646
+- talentPassiveRows: 648
 - talentSpecRows: 18
-- observedBaseSkillRows: 111
-- sharedLocalizedNames: 517
+- observedBaseSkillRows: 51
+- sharedLocalizedNames: 539
 - strictRuntimeStatus: probe-only
 
 ## Weapon Style Groups
@@ -52,9 +52,10 @@ CTB field+36 is decoded as top-level effect records. Opcode 6 records are report
 - Adversity Enhancement: buff 2206520, talent-passive 1251
 - Aegis Gale: base-skill 1423, base-skill 1437, buff 31301
 - Aegis Ward: base-skill 2415, buff 55405
+- Aegis Ward's Anthem: buff 2206140, talent-passive 1213
 - Aegis Ward's Retribution: buff 2206160, talent-passive 1215
 - Air Dance Strike: buff 2205180, talent-passive 419
-- Amplified Earthfort: buff 2201461, talent-passive 944
+- Amplified Earthfort: buff 2201460, buff 2201461, talent-passive 944
 - Arcane: buff 2200540, talent-passive 152
 - Arcane Ascension: buff 2207050, talent-passive 1304
 - Arcane of Green: buff 2202081, talent-passive 506
@@ -62,7 +63,10 @@ CTB field+36 is decoded as top-level effect records. Opcode 6 records are report
 - Arcane Wildfire Bloodline: buff 2208650, talent-passive 364
 - Arcane Wildfire Haste: buff 2208660, talent-passive 365
 - Arrow Barrage: buff 2203270, talent-passive 1127
+- Arrow of Light: buff 2203480, talent-passive 1148
 - Arrow Rain Acceleration: buff 2203380, talent-passive 1138
+- Ascension of the Lightforged Barrier: buff 2206210, talent-passive 1220
+- Bash Pursuit: buff 2201540, talent-passive 952
 - Battle Cry: buff 2205310, talent-passive 434
 - Battle Howl: buff 2203060, talent-passive 1105
 - Beast Power: buff 2203330, talent-passive 1133
@@ -72,18 +76,14 @@ CTB field+36 is decoded as top-level effect records. Opcode 6 records are report
 - Blade Intent: buff 2200020, buff 3210151, talent-passive 100
 - Blade Intent - Rare: buff 2200620, talent-passive 160
 - Blade Intent Recovery: buff 2200580, talent-passive 156
-- Blade Storm: base-skill 1011101, buff 998150
+- Blade Storm: base-skill 1011101, base-skill 1011112, buff 998150
 - Bladewind Domain: buff 2200150, buff 2200151, talent-passive 113
+- Blazing Heal: buff 2207150, talent-passive 1314
 - Blazing Pact: buff 2208140, talent-passive 313
 - Blessing of Holy Sigil: buff 2206030, buff 2206031, talent-passive 1202
 - Block Recovery: buff 2201080, talent-passive 906
 - Block Shelter: buff 2201590, buff 2201591, talent-passive 957
 - Bloomheal: base-skill 1527, talent-passive 535
-- Blooming Reincarnation: buff 2202650, buff 2202651, talent-passive 561
+- Blooming Reincarnation: buff 2202651, talent-passive 561
 - Blurring Skill: base-skill 5526, buff 960076
 - Bold Fearless: buff 2206540, buff 2206542, talent-passive 1253
-- Boulder Shield: buff 2201470, talent-passive 945
-- Boundless Frost: buff 2204230, talent-passive 225
-- Brave Bastion: base-skill 1938, buff 50058
-- Bravery in Battle: buff 2201560, talent-passive 954
-- Break Pursuit Advancement: buff 2205370, buff 2205371, talent-passive 439

@@ -1,36 +1,107 @@
 {
-  "GeneratedAt": "2026-05-27T06:14:00.380Z",
+  "GeneratedAt": "2026-05-28T21:38:18.950Z",
   "OutputDir": "output/parser-assets",
   "StaticImagesDir": "output/parser-assets/static/images",
   "SourceIconManifest": "output/icons/IconManifest.json",
-  "AddressCatalogEntries": 194510,
-  "SpriteCatalogEntries": 8416,
-  "ManifestCandidateCount": 14703,
-  "CatalogCandidateCount": 1744,
-  "ClassifiedCandidateCount": 2702,
-  "UnclassifiedCandidateCount": 4426,
-  "AssetCount": 2702,
+  "AddressCatalogEntries": 210750,
+  "SpriteCatalogEntries": 8925,
+  "ManifestCandidateCount": 17314,
+  "CatalogCandidateCount": 1750,
+  "ClassifiedCandidateCount": 2925,
+  "UnclassifiedCandidateCount": 5283,
+  "AssetCount": 2925,
   "FailureCount": 0,
   "BucketCounts": {
     "beat_performer/skill": 19,
-    "buff": 1207,
+    "buff": 1401,
     "frost_mage/res": 5,
     "frost_mage/skill": 14,
-    "heavy_guardian/res": 26,
+    "heavy_guardian/res": 28,
     "heavy_guardian/skill": 23,
     "marksman/res": 6,
     "marksman/skill": 17,
-    "resonance_skill": 127,
-    "season_phantom_factor": 156,
+    "resonance_skill": 159,
+    "season_phantom_factor": 164,
     "shield_knight/skill": 18,
     "stormblade/res": 4,
     "stormblade/skill": 29,
-    "talent": 987,
+    "talent": 974,
     "verdant_oracle/skill": 20,
     "wind_knight/res": 22,
     "wind_knight/skill": 22
   },
-  "Compare": null,
+  "Compare": {
+    "CompareRoot": "../resonance-logs-global/static/images",
+    "StagedCount": 2925,
+    "CompareRootCount": 3394,
+    "ExactMatches": 2925,
+    "DifferentFiles": 0,
+    "MissingInCompareRoot": 0,
+    "ExtraInCompareRoot": 469,
+    "SameBaseDifferentPath": 0,
+    "PixelMatchesDifferentPath": 0,
+    "RowLinkedAssets": 2234,
+    "ParserPairings": {
+      "RowCount": 2719,
+      "StatusCounts": {
+        "generated-only": 2719
+      }
+    },
+    "DifferentSamples": [],
+    "MissingSamples": [],
+    "ExtraSamples": [
+      "wind_knight/skill/weapon_cq-01_kx01_-8358011576239105760.png",
+      "wind_knight/skill/weapon_cq-01_kx02_-1800090862594513853.png",
+      "wind_knight/skill/weapon_cq-01_kx03_4124089693214742787.png",
+      "wind_knight/skill/weapon_cq-01_kx04_-7456099577516937621.png",
+      "wind_knight/skill/weapon_cq-01_kx05_-4769613798753072914.png",
+      "wind_knight/skill/weapon_cq-01_kx06_5321139327865010731.png",
+      "wind_knight/skill/weapon_cq-01_kx07_-8968489817801649529.png",
+      "wind_knight/skill/weapon_cq-01_kx08_-5400252487671298175.png",
+      "wind_knight/skill/weapon_cq-01_tf01_-1316877155940038893.png",
+      "wind_knight/skill/weapon_cq-01_tf02_7523168108073174119.png",
+      "wind_knight/skill/weapon_cq-01_tf03_6517484585993130536.png",
+      "wind_knight/skill/weapon_cq-01_tg01_-2586550948717895893.png",
+      "wind_knight/skill/weapon_cq-01_tg02_-133786615417471994.png",
+      "wind_knight/skill/weapon_cq-01_ult_01_9050689552264825112.png",
+      "wind_knight/skill/weapon_cq-01_ult_02_-7515185664632347258.png",
+      "wind_knight/skill/weapon_cq_skill_01_-5110953942375198779.png",
+      "wind_knight/skill/weapon_cq_skill_02ex_-5338755465175740072.png",
+      "wind_knight/skill/weapon_cq_skill_02_5447369842862813871.png",
+      "wind_knight/skill/weapon_cq_skill_atk_-7208739400043910585.png",
+      "wind_knight/skill/weapon_cq_skill_passive_-4587170372366891142.png",
+      "verdant_oracle/skill/weapon_fh-01_kx01_-777893832486412878.png",
+      "verdant_oracle/skill/weapon_fh-01_kx02_-8523413017795422697.png",
+      "verdant_oracle/skill/weapon_fh-01_kx03_8863116099667607434.png",
+      "verdant_oracle/skill/weapon_fh-01_kx04_-3957964899996844983.png",
+      "verdant_oracle/skill/weapon_fh-01_kx05_-6309963487019551284.png",
+      "verdant_oracle/skill/weapon_fh-01_kx06_-5972192814303085887.png",
+      "verdant_oracle/skill/weapon_fh-01_kx07_-6626360985139412137.png",
+      "verdant_oracle/skill/weapon_fh-01_kx08_-5368673168487156305.png",
+      "verdant_oracle/skill/weapon_fh-01_kx09_-3065777601516650668.png",
+      "verdant_oracle/skill/weapon_fh-01_tg01_01_1821960491715709623.png",
+      "verdant_oracle/skill/weapon_fh-01_tg01_2955740106852191547.png",
+      "verdant_oracle/skill/weapon_fh-01_tg02_-6034095740534119129.png",
+      "verdant_oracle/skill/weapon_fh-01_ult02_-7338637867810334646.png",
+      "verdant_oracle/skill/weapon_fh-01_ult03_-922524136805580252.png",
+      "verdant_oracle/skill/weapon_fh-01_ult_01_-1160782108471453102.png",
+      "verdant_oracle/skill/weapon_fh-01_ult_5377337143300028519.png",
+      "verdant_oracle/skill/weapon_fh_skill_atk_7207613408057060099.png",
+      "verdant_oracle/skill/weapon_fh_skill_passive_-7134525519801678312.png",
+      "talent/s2talent01_01sel_-5553913250721753660.png",
+      "talent/s2talent01_01_588295811379289700.png",
+      "talent/s2talent02_01sel_4611917001230536886.png",
+      "talent/s2talent02_01_4534420213741913392.png",
+      "talent/s2talent03_01sel_-8677048884046643975.png",
+      "talent/s2talent03_01_-3274652595188649379.png",
+      "talent/s2talent04_01sel_2811841798199448525.png",
+      "talent/s2talent04_01_-844442717228089148.png",
+      "talent/s2talent051_01sel_3676330697351588747.png",
+      "talent/s2talent051_01_-2999193668189146899.png",
+      "talent/s2talent052_01sel_-6524666148166564104.png",
+      "talent/s2talent052_01_2358543389253101148.png"
+    ]
+  },
   "Failures": [],
   "UnclassifiedSamples": [
     {
@@ -103,6 +174,58 @@
       "ResourceType": "Texture2D",
       "BundleHash": 3370943431,
       "Address": "back_icon_c_bag03",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_balloon01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1483198306,
+      "Address": "back_icon_c_balloon01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_balloon02",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1484384227,
+      "Address": "back_icon_c_balloon02",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_band01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 4163948144,
+      "Address": "back_icon_c_band01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_band02",
+      "ResourceType": "Texture2D",
+      "BundleHash": 4165134065,
+      "Address": "back_icon_c_band02",
       "SourceKinds": [
         "generated-json"
       ],
@@ -216,6 +339,32 @@
       ]
     },
     {
+      "Name": "back_icon_c_flower01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1693205418,
+      "Address": "back_icon_c_flower01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_flower02",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1694391339,
+      "Address": "back_icon_c_flower02",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
       "Name": "back_icon_c_goblinbag01",
       "ResourceType": "Texture2D",
       "BundleHash": 1093989792,
@@ -294,6 +443,45 @@
       ]
     },
     {
+      "Name": "back_icon_c_ip002x01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 2094802462,
+      "Address": "back_icon_c_ip002x01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_ip004x01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1432342496,
+      "Address": "back_icon_c_ip004x01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_ip004x02",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1433528417,
+      "Address": "back_icon_c_ip004x02",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
       "Name": "back_icon_c_irunabag01",
       "ResourceType": "Texture2D",
       "BundleHash": 1912417892,
@@ -337,6 +525,19 @@
       "ResourceType": "Texture2D",
       "BundleHash": 2209954235,
       "Address": "back_icon_c_leimobag01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_luminous01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 522918103,
+      "Address": "back_icon_c_luminous01",
       "SourceKinds": [
         "generated-json"
       ],
@@ -411,6 +612,19 @@
       ]
     },
     {
+      "Name": "back_icon_c_pulse01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1990066532,
+      "Address": "back_icon_c_pulse01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
       "Name": "back_icon_c_rabbitbag01",
       "ResourceType": "Texture2D",
       "BundleHash": 914442009,
@@ -454,6 +668,32 @@
       "ResourceType": "Texture2D",
       "BundleHash": 4061801100,
       "Address": "back_icon_c_swimring02",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_vampire01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1986673935,
+      "Address": "back_icon_c_vampire01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources",
+        "itemnames"
+      ]
+    },
+    {
+      "Name": "back_icon_c_vampire02",
+      "ResourceType": "Texture2D",
+      "BundleHash": 1987859856,
+      "Address": "back_icon_c_vampire02",
       "SourceKinds": [
         "generated-json"
       ],
@@ -907,6 +1147,18 @@
       ]
     },
     {
+      "Name": "ch_wp_boyce_08_01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 4036355145,
+      "Address": "ch_wp_boyce_08_01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources"
+      ]
+    },
+    {
       "Name": "ch_wp_boyce_09_01",
       "ResourceType": "Texture2D",
       "BundleHash": 3705125162,
@@ -935,6 +1187,18 @@
       "ResourceType": "Texture2D",
       "BundleHash": 4014310179,
       "Address": "ch_wp_boyce_11_01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources"
+      ]
+    },
+    {
+      "Name": "ch_wp_boyce_12_01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 3683080196,
+      "Address": "ch_wp_boyce_12_01",
       "SourceKinds": [
         "generated-json"
       ],
@@ -1027,6 +1291,18 @@
       ]
     },
     {
+      "Name": "ch_wp_comeau_08_01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 3575701681,
+      "Address": "ch_wp_comeau_08_01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources"
+      ]
+    },
+    {
       "Name": "ch_wp_comeau_09_01",
       "ResourceType": "Texture2D",
       "BundleHash": 3244471698,
@@ -1063,214 +1339,22 @@
       ]
     },
     {
+      "Name": "ch_wp_comeau_12_01",
+      "ResourceType": "Texture2D",
+      "BundleHash": 3222426732,
+      "Address": "ch_wp_comeau_12_01",
+      "SourceKinds": [
+        "generated-json"
+      ],
+      "SourceGroups": [
+        "ItemDescriptionSources"
+      ]
+    },
+    {
       "Name": "ch_wp_farfara_01_01",
       "ResourceType": "Texture2D",
       "BundleHash": 810432771,
       "Address": "ch_wp_farfara_01_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_02_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 479202788,
-      "Address": "ch_wp_farfara_02_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_03_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 147972805,
-      "Address": "ch_wp_farfara_03_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_04_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 4111710118,
-      "Address": "ch_wp_farfara_04_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_05_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 3780480135,
-      "Address": "ch_wp_farfara_05_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_06_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 3449250152,
-      "Address": "ch_wp_farfara_06_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_09_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 2455560203,
-      "Address": "ch_wp_farfara_09_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_10_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 3095975203,
-      "Address": "ch_wp_farfara_10_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara_11_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 2764745220,
-      "Address": "ch_wp_farfara_11_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_farfara02_07_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 749749035,
-      "Address": "ch_wp_farfara02_07_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_01_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 2370814172,
-      "Address": "ch_wp_guitar_01_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_02_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 2039584189,
-      "Address": "ch_wp_guitar_02_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_03_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 1708354206,
-      "Address": "ch_wp_guitar_03_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_04_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 1377124223,
-      "Address": "ch_wp_guitar_04_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_05_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 1045894240,
-      "Address": "ch_wp_guitar_05_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_06_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 714664257,
-      "Address": "ch_wp_guitar_06_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_07_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 383434274,
-      "Address": "ch_wp_guitar_07_01",
-      "SourceKinds": [
-        "generated-json"
-      ],
-      "SourceGroups": [
-        "ItemDescriptionSources"
-      ]
-    },
-    {
-      "Name": "ch_wp_guitar_09_01",
-      "ResourceType": "Texture2D",
-      "BundleHash": 4015941604,
-      "Address": "ch_wp_guitar_09_01",
       "SourceKinds": [
         "generated-json"
       ],

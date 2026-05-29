@@ -18,7 +18,7 @@ async function main() {
     maybeWriteJson,
     parseArgs,
     printHelp,
-    readPackage,
+    readCtbTable,
     readU32,
     resolvePaths,
   } = await import("./generator-common.mjs");
@@ -39,14 +39,13 @@ Notes:
   }
 
   const paths = resolvePaths(args, "scenenames.json");
-  const pkg = readPackage(paths.m0Path);
   const containerDir = path.dirname(paths.m0Path);
   const metaEntries = loadMetaEntries(containerDir);
   const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
-  const rowSize = Number(args.rowSize || DEFAULT_SCENE_ROW_SIZE);
+  const sceneTable = readCtbTable(containerDir, metaEntries, "SceneTable.ctb");
+  const rowSize = sceneTable.rowSize || Number(args.rowSize || DEFAULT_SCENE_ROW_SIZE);
 
-  const rowStart = findSceneTableRowStart(pkg, localizationTables, rowSize, readU32);
-  const rawRows = collectSceneRows(pkg, rowStart, rowSize, readU32);
+  const rawRows = collectSceneRows(sceneTable, rowSize, readU32);
   const out = {};
 
   for (const row of rawRows) {
@@ -71,57 +70,28 @@ Notes:
     Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
   );
 
-  console.log(`SceneTable row start: ${rowStart}`);
+  console.log(`SceneTable source: SceneTable.ctb`);
+  console.log(`SceneTable row start: ${sceneTable.rowStart}`);
+  console.log(`SceneTable row size: ${rowSize}`);
   console.log(`SceneTable rows scanned: ${rawRows.length}`);
   console.log(`Scene name entries: ${Object.keys(sorted).length}`);
   console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
 
-function findSceneTableRowStart(buffer, localizationTables, rowSize, readU32) {
-  const anchorIds = [7, 8, 9, 10, 11, 71, 72, 73];
-  for (let offset = 0; offset + rowSize * anchorIds.length < buffer.length; offset += 1) {
-    let score = 0;
-    for (let index = 0; index < anchorIds.length; index += 1) {
-      const rowOffset = offset + index * rowSize;
-      const id = readU32(buffer, rowOffset);
-      const nameId = readU32(buffer, rowOffset + 4);
-      const type = readU32(buffer, rowOffset + 8);
-      if (id !== anchorIds[index] || !nameId || type > 32) {
-        break;
-      }
-      if (!collectLocalizedSceneNameEntries(nameId, localizationTables).length) {
-        break;
-      }
-      score += 1;
-    }
-
-    if (score === anchorIds.length) {
-      return offset - rowSize >= 0 && readU32(buffer, offset - rowSize) === 1 ? offset - rowSize : offset;
-    }
-  }
-
-  throw new Error("Could not locate the SceneTable row block in m0.pkg.");
-}
-
-function collectSceneRows(buffer, rowStart, rowSize, readU32) {
+function collectSceneRows(table, rowSize, readU32) {
   const rows = [];
-  let previousId = 0;
-  for (let index = 0; index < 20000; index += 1) {
-    const offset = rowStart + index * rowSize;
-    if (offset + rowSize > buffer.length) {
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const offset = table.rowStart + index * rowSize;
+    if (offset + rowSize > table.data.length) {
       break;
     }
-    const id = readU32(buffer, offset);
-    const nameId = readU32(buffer, offset + 4);
-    const type = readU32(buffer, offset + 8);
+    const id = readU32(table.data, offset);
+    const nameId = readU32(table.data, offset + 4);
+    const type = readU32(table.data, offset + 8);
     if (!id || id >= 10000000 || type > 32) {
-      break;
+      continue;
     }
-    if (index > 0 && id <= previousId) {
-      break;
-    }
-    previousId = id;
     rows.push({ index, id, nameId, type, offset });
   }
   return rows;

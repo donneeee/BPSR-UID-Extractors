@@ -103,7 +103,8 @@ Notes:
     readCtbTable,
     readCtbTableByHash,
     readU16,
-    readU32
+    readU32,
+    outputDir: paths.outputDir
   }, stats);
   collectDamageAttrEntries(out, paths.outputDir, stats);
   collectSkillTableEntries(out, skillTableLookup, stats);
@@ -486,9 +487,19 @@ function collectSkillTableEntries(target, skillTableLookup, stats) {
 }
 
 function collectRecountEntries(target, containerDir, metaEntries, localizationTables, helpers, stats) {
-  const { buildLocaleTextObject, choosePreferredLocaleText, readCtbString, readCtbTable, readCtbTableByHash, readU16, readU32 } = helpers;
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    outputDir,
+    readCtbString,
+    readCtbTable,
+    readCtbTableByHash,
+    readU16,
+    readU32
+  } = helpers;
   const table = readCtbTable(containerDir, metaEntries, "RecountTable.ctb");
   const damagePool = table.pools.get(2);
+  const generatedRecountRows = loadGeneratedRecountLookup(outputDir);
   const talentRows = collectTalentPassiveRows(containerDir, metaEntries, localizationTables, {
     buildLocaleTextObject,
     choosePreferredLocaleText,
@@ -510,14 +521,20 @@ function collectRecountEntries(target, containerDir, metaEntries, localizationTa
       continue;
     }
     const linkedTalent = findTalentNameBridge(names, talentRows);
+    const generatedRecount = generatedRecountRows.get(String(id));
+    const generatedIcon = generatedRecountIconFields(generatedRecount);
     putEntry(target, id, {
       name,
       names,
       source: "RecountTable",
-      sources: linkedTalent ? ["TalentPassiveTableNameBridge"] : [],
+      sources: [
+        ...(linkedTalent ? ["TalentPassiveTableNameBridge"] : []),
+        ...(generatedIcon.iconSource ? [generatedIcon.iconSource] : [])
+      ],
       priority: 100,
       sourceOffset: table.entry.offset + rowOffset,
       recountId: id,
+      ...generatedIcon,
       ...(linkedTalent
         ? {
             iconPath: linkedTalent.iconPath,
@@ -541,11 +558,15 @@ function collectRecountEntries(target, containerDir, metaEntries, localizationTa
         name,
         names,
         source: "RecountTableDamageId",
-        sources: linkedTalent ? ["TalentPassiveTableNameBridge"] : [],
+        sources: [
+          ...(linkedTalent ? ["TalentPassiveTableNameBridge"] : []),
+          ...(generatedIcon.iconSource ? [generatedIcon.iconSource] : [])
+        ],
         priority: 95,
         sourceOffset: table.entry.offset + rowOffset,
         recountId: id,
         linkedId: id,
+        ...generatedIcon,
         ...(linkedTalent
           ? {
               iconPath: linkedTalent.iconPath,
@@ -564,6 +585,41 @@ function collectRecountEntries(target, containerDir, metaEntries, localizationTa
       stats.recountDamage += 1;
     }
   }
+}
+
+function loadGeneratedRecountLookup(outputDir) {
+  const filePath = path.join(outputDir || "", "RecountTable.json");
+  if (!fs.existsSync(filePath)) {
+    return new Map();
+  }
+  const rows = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  const out = new Map();
+  for (const [id, row] of Object.entries(rows || {})) {
+    out.set(String(id), row);
+  }
+  return out;
+}
+
+function generatedRecountIconFields(row) {
+  if (!row) {
+    return {};
+  }
+  const iconPath = String(row.IconPath || "").trim();
+  const iconPaths = uniqueSortedStrings([
+    ...(Array.isArray(row.IconPaths) ? row.IconPaths : []),
+    row.LinkedTalentIconPath,
+    row.LinkedBaseSkillIconPath,
+    row.LinkedAoyiIconPath
+  ]);
+  if (!iconPath && !iconPaths.length) {
+    return {};
+  }
+  return {
+    ...(iconPath ? { iconPath } : {}),
+    ...(iconPaths.length ? { iconPaths } : {}),
+    ...(row.IconPathOffset ? { iconPathOffset: row.IconPathOffset } : {}),
+    iconSource: row.IconSource || "GeneratedRecountTable"
+  };
 }
 
 function collectTalentPassiveRows(containerDir, metaEntries, localizationTables, helpers) {

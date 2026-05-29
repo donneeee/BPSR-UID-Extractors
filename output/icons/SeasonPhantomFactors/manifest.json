@@ -1,8 +1,8 @@
 {
-  "GeneratedAt": "2026-05-27T06:11:05.854Z",
+  "GeneratedAt": "2026-05-29T04:11:29.651Z",
   "SourceGroup": "SeasonPhantomFactors",
   "OutputDir": "output/icons/SeasonPhantomFactors",
-  "AssetCount": 156,
+  "AssetCount": 218,
   "Assets": [
     {
       "AssetId": "SeasonPhantomFactors|Texture2D|3366991421|kuangxiangyinzi_s2_01_001|SeasonPhantomFactors/kuangxiangyinzi_s2_01_001.png",
@@ -250,6 +250,130 @@
       "PixelSha256": "39a2734cac10ae3e2d0caf5e170b074af6cf8d70993d95fdaee940e960148a49",
       "ObjectPathId": "2243520886315283059",
       "SelectedObjectName": "kuangxiangyinzi_s2_02_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2980649023|kuangxiangyinzi_s2_03_001|SeasonPhantomFactors/kuangxiangyinzi_s2_03_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060120.iconPath",
+      "Value": "kuangxiangyinzi_s2_03_001",
+      "Address": "kuangxiangyinzi_s2_03_001",
+      "AddressHash": 275303675,
+      "BundleHash": 2980649023,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/kuangxiangyinzi_s2_03_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060120,
+          "Name": "Flame Vanguard Rhapsody X1"
+        }
+      ],
+      "TextureName": "kuangxiangyinzi_s2_03_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "e61410a54e44594f7d85005be1e0d6268bd0ba7e7008b1122a47691728f06389",
+      "ObjectPathId": "8823432440683810364",
+      "SelectedObjectName": "kuangxiangyinzi_s2_03_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2981834944|kuangxiangyinzi_s2_03_002|SeasonPhantomFactors/kuangxiangyinzi_s2_03_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060130.iconPath",
+      "Value": "kuangxiangyinzi_s2_03_002",
+      "Address": "kuangxiangyinzi_s2_03_002",
+      "AddressHash": 275303676,
+      "BundleHash": 2981834944,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/kuangxiangyinzi_s2_03_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060130,
+          "Name": "Flame Vanguard Rhapsody X2"
+        }
+      ],
+      "TextureName": "kuangxiangyinzi_s2_03_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "fcb73da163824d8c626f9b4229f36d700e7613d668072de917371683ebe08def",
+      "ObjectPathId": "-5659366103422013951",
+      "SelectedObjectName": "kuangxiangyinzi_s2_03_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2983020865|kuangxiangyinzi_s2_03_003|SeasonPhantomFactors/kuangxiangyinzi_s2_03_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060140.iconPath",
+      "Value": "kuangxiangyinzi_s2_03_003",
+      "Address": "kuangxiangyinzi_s2_03_003",
+      "AddressHash": 275303677,
+      "BundleHash": 2983020865,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/kuangxiangyinzi_s2_03_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060140,
+          "Name": "Flame Vanguard Rhapsody X3"
+        }
+      ],
+      "TextureName": "kuangxiangyinzi_s2_03_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "55646f0635e77067c50d5e8840d81de56ffdec9829558b782d726a51f0f8ed3e",
+      "ObjectPathId": "-6492975214370974442",
+      "SelectedObjectName": "kuangxiangyinzi_s2_03_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2984206786|kuangxiangyinzi_s2_03_004|SeasonPhantomFactors/kuangxiangyinzi_s2_03_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060150.iconPath",
+      "Value": "kuangxiangyinzi_s2_03_004",
+      "Address": "kuangxiangyinzi_s2_03_004",
+      "AddressHash": 275303678,
+      "BundleHash": 2984206786,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/kuangxiangyinzi_s2_03_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060150,
+          "Name": "Flame Vanguard Rhapsody X4"
+        }
+      ],
+      "TextureName": "kuangxiangyinzi_s2_03_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b3b560c518bcd5023b15359f29041696c3aaef61fc8e852721d0c914f321c26f",
+      "ObjectPathId": "-5173184720845899592",
+      "SelectedObjectName": "kuangxiangyinzi_s2_03_004",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -970,7 +1094,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "SeasonPhantomFactors.json",
       "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3057150.iconPath",
+      "Field": "factorsByBuffId.3050011.iconPath",
       "Value": "kuangxiangyinzi_s2_13_004",
       "Address": "kuangxiangyinzi_s2_13_004",
       "AddressHash": 314439071,
@@ -979,14 +1103,28 @@
       "MatchKind": "exact-address",
       "PngFile": "SeasonPhantomFactors/kuangxiangyinzi_s2_13_004.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
+        {
+          "Id": 3050011,
+          "Name": "Beat Performer Rhapsody X4"
+        },
         {
           "Id": 3057150,
           "Name": "Beat Performer Rhapsody X4"
         }
       ],
       "TextureName": "kuangxiangyinzi_s2_13_004",
+      "Fields": [
+        "factorsByBuffId.3050011.iconPath",
+        "factorsByBuffId.3057150.iconPath"
+      ],
+      "Values": [
+        "kuangxiangyinzi_s2_13_004"
+      ],
+      "SourceFiles": [
+        "SeasonPhantomFactors.json"
+      ],
       "PngExported": true,
       "PngWidth": 256,
       "PngHeight": 256,
@@ -994,6 +1132,1680 @@
       "PixelSha256": "54422f02499056a584a7c4067dfb81ee7249e7951eff5430f50630d2a893f0a8",
       "ObjectPathId": "-1281215311342932707",
       "SelectedObjectName": "kuangxiangyinzi_s2_13_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1698507820|xuwangyinzi_s2_03_001|SeasonPhantomFactors/xuwangyinzi_s2_03_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060400.iconPath",
+      "Value": "xuwangyinzi_s2_03_001",
+      "Address": "xuwangyinzi_s2_03_001",
+      "AddressHash": 3014111976,
+      "BundleHash": 1698507820,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_03_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060400,
+          "Name": "Flame Vanguard Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_03_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "39667dc39fb20b3df89bebae95bdcc1b75c57870d1024bc43b8a0149745a6155",
+      "ObjectPathId": "-8421635904262359857",
+      "SelectedObjectName": "xuwangyinzi_s2_03_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1699693741|xuwangyinzi_s2_03_002|SeasonPhantomFactors/xuwangyinzi_s2_03_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060410.iconPath",
+      "Value": "xuwangyinzi_s2_03_002",
+      "Address": "xuwangyinzi_s2_03_002",
+      "AddressHash": 3014111977,
+      "BundleHash": 1699693741,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_03_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060410,
+          "Name": "Flame Vanguard Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_03_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b94f1f9d2c9f96a2913464f3f1c1d7c8a51e5c06c49d73f6732b8f7695dba3a6",
+      "ObjectPathId": "8746624816611828338",
+      "SelectedObjectName": "xuwangyinzi_s2_03_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1700879662|xuwangyinzi_s2_03_003|SeasonPhantomFactors/xuwangyinzi_s2_03_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060420.iconPath",
+      "Value": "xuwangyinzi_s2_03_003",
+      "Address": "xuwangyinzi_s2_03_003",
+      "AddressHash": 3014111978,
+      "BundleHash": 1700879662,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_03_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060420,
+          "Name": "Flame Vanguard Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_03_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "e132d520fc91a1ba6e0418c477599a648ef21aad187d00164d117055cac88a77",
+      "ObjectPathId": "-7106009320127281809",
+      "SelectedObjectName": "xuwangyinzi_s2_03_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1702065583|xuwangyinzi_s2_03_004|SeasonPhantomFactors/xuwangyinzi_s2_03_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060430.iconPath",
+      "Value": "xuwangyinzi_s2_03_004",
+      "Address": "xuwangyinzi_s2_03_004",
+      "AddressHash": 3014111979,
+      "BundleHash": 1702065583,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_03_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060430,
+          "Name": "Flame Vanguard Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_03_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b80a2a16ba4fa8a9c9f3f7452ebf58a86ac99c9909a6e996eb27fb986bda1d17",
+      "ObjectPathId": "-8476750807168646733",
+      "SelectedObjectName": "xuwangyinzi_s2_03_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1703251504|xuwangyinzi_s2_03_005|SeasonPhantomFactors/xuwangyinzi_s2_03_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060440.iconPath",
+      "Value": "xuwangyinzi_s2_03_005",
+      "Address": "xuwangyinzi_s2_03_005",
+      "AddressHash": 3014111980,
+      "BundleHash": 1703251504,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_03_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060440,
+          "Name": "Flame Vanguard Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_03_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "6d2fe09abf89b2ed01d1f3807a3c678d82211eafbea1d0bb89640a1349f3b62e",
+      "ObjectPathId": "3742981628938939779",
+      "SelectedObjectName": "xuwangyinzi_s2_03_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1704437425|xuwangyinzi_s2_03_006|SeasonPhantomFactors/xuwangyinzi_s2_03_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060450.iconPath",
+      "Value": "xuwangyinzi_s2_03_006",
+      "Address": "xuwangyinzi_s2_03_006",
+      "AddressHash": 3014111981,
+      "BundleHash": 1704437425,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_03_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060450,
+          "Name": "Flame Vanguard Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_03_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b20edaaf5d5eafa498d8d41c4213a2034b1ba9c78e8510c2ea01c3768c997b2c",
+      "ObjectPathId": "5078053991691698926",
+      "SelectedObjectName": "xuwangyinzi_s2_03_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1312165422|xuwangyinzi_s2_05_001|SeasonPhantomFactors/xuwangyinzi_s2_05_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3056380.iconPath",
+      "Value": "xuwangyinzi_s2_05_001",
+      "Address": "xuwangyinzi_s2_05_001",
+      "AddressHash": 3016483818,
+      "BundleHash": 1312165422,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_05_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3056380,
+          "Name": "Verdant Oracle Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "e2921da1509c7458689bfcaf4b4a5cc5f30f666ac0aabef07aa996b9d1bb24ae",
+      "ObjectPathId": "-4731976257419002533",
+      "SelectedObjectName": "xuwangyinzi_s2_05_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1313351343|xuwangyinzi_s2_05_002|SeasonPhantomFactors/xuwangyinzi_s2_05_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3056390.iconPath",
+      "Value": "xuwangyinzi_s2_05_002",
+      "Address": "xuwangyinzi_s2_05_002",
+      "AddressHash": 3016483819,
+      "BundleHash": 1313351343,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_05_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3056390,
+          "Name": "Verdant Oracle Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "548f3e63e94ed65b5da0d21f54fbd8f3488409ff0046787e76a485fb4b4aa0d8",
+      "ObjectPathId": "5132688943866605605",
+      "SelectedObjectName": "xuwangyinzi_s2_05_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1314537264|xuwangyinzi_s2_05_003|SeasonPhantomFactors/xuwangyinzi_s2_05_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3056400.iconPath",
+      "Value": "xuwangyinzi_s2_05_003",
+      "Address": "xuwangyinzi_s2_05_003",
+      "AddressHash": 3016483820,
+      "BundleHash": 1314537264,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_05_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3056400,
+          "Name": "Verdant Oracle Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "26233e53a8ac59cfb427f43a7a532c644ded30ae7716996d99effccd7bdf0de3",
+      "ObjectPathId": "2502582671655237305",
+      "SelectedObjectName": "xuwangyinzi_s2_05_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1315723185|xuwangyinzi_s2_05_004|SeasonPhantomFactors/xuwangyinzi_s2_05_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3056410.iconPath",
+      "Value": "xuwangyinzi_s2_05_004",
+      "Address": "xuwangyinzi_s2_05_004",
+      "AddressHash": 3016483821,
+      "BundleHash": 1315723185,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_05_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3056410,
+          "Name": "Verdant Oracle Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "2c193db77da17973eefa572abc79e0464d123dfbe82f9d9c4922825bb627a059",
+      "ObjectPathId": "-1490401893679908644",
+      "SelectedObjectName": "xuwangyinzi_s2_05_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1316909106|xuwangyinzi_s2_05_005|SeasonPhantomFactors/xuwangyinzi_s2_05_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3056420.iconPath",
+      "Value": "xuwangyinzi_s2_05_005",
+      "Address": "xuwangyinzi_s2_05_005",
+      "AddressHash": 3016483822,
+      "BundleHash": 1316909106,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_05_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3056420,
+          "Name": "Verdant Oracle Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d29da6c0b2f18f17b8d6a2715eb502bf1693e2fe1e912d0faf410d71b7d8e0ec",
+      "ObjectPathId": "-5883968426596361072",
+      "SelectedObjectName": "xuwangyinzi_s2_05_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1318095027|xuwangyinzi_s2_05_006|SeasonPhantomFactors/xuwangyinzi_s2_05_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3056430.iconPath",
+      "Value": "xuwangyinzi_s2_05_006",
+      "Address": "xuwangyinzi_s2_05_006",
+      "AddressHash": 3016483823,
+      "BundleHash": 1318095027,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_05_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3056430,
+          "Name": "Verdant Oracle Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "466458a7509adb9585bd3d4e4611a0ba3552fda39a74290face952126fd524a1",
+      "ObjectPathId": "-149406822737102523",
+      "SelectedObjectName": "xuwangyinzi_s2_05_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|539480626|xuwangyinzi_s2_09_001|SeasonPhantomFactors/xuwangyinzi_s2_09_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3055360.iconPath",
+      "Value": "xuwangyinzi_s2_09_001",
+      "Address": "xuwangyinzi_s2_09_001",
+      "AddressHash": 3021227502,
+      "BundleHash": 539480626,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_09_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3055360,
+          "Name": "Heavy Guardian Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_09_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f88aa0edd9d10387d6b78c2c7dc4ed6cf37ac9986a1fe68e5038080bb210f340",
+      "ObjectPathId": "8888409715153967077",
+      "SelectedObjectName": "xuwangyinzi_s2_09_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|540666547|xuwangyinzi_s2_09_002|SeasonPhantomFactors/xuwangyinzi_s2_09_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3055370.iconPath",
+      "Value": "xuwangyinzi_s2_09_002",
+      "Address": "xuwangyinzi_s2_09_002",
+      "AddressHash": 3021227503,
+      "BundleHash": 540666547,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_09_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3055370,
+          "Name": "Heavy Guardian Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_09_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "6f80db28c018caa289917dfe52233eba3f0b411960b0b16f9f0bdf0be38beb37",
+      "ObjectPathId": "1010971359014763339",
+      "SelectedObjectName": "xuwangyinzi_s2_09_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|541852468|xuwangyinzi_s2_09_003|SeasonPhantomFactors/xuwangyinzi_s2_09_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3055380.iconPath",
+      "Value": "xuwangyinzi_s2_09_003",
+      "Address": "xuwangyinzi_s2_09_003",
+      "AddressHash": 3021227504,
+      "BundleHash": 541852468,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_09_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3055380,
+          "Name": "Heavy Guardian Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_09_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "06dc8af7a7b13e1abb2664d573f68ca379655f50ddb73dfa3a848f68646968c3",
+      "ObjectPathId": "-8352746561798190035",
+      "SelectedObjectName": "xuwangyinzi_s2_09_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|543038389|xuwangyinzi_s2_09_004|SeasonPhantomFactors/xuwangyinzi_s2_09_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3055390.iconPath",
+      "Value": "xuwangyinzi_s2_09_004",
+      "Address": "xuwangyinzi_s2_09_004",
+      "AddressHash": 3021227505,
+      "BundleHash": 543038389,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_09_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3055390,
+          "Name": "Heavy Guardian Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_09_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "31bf4f0cdba7ffeef8e9e370bae50c34ff58e6eaec295400ddb2066e3734208a",
+      "ObjectPathId": "-8902925433657708137",
+      "SelectedObjectName": "xuwangyinzi_s2_09_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|544224310|xuwangyinzi_s2_09_005|SeasonPhantomFactors/xuwangyinzi_s2_09_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3055400.iconPath",
+      "Value": "xuwangyinzi_s2_09_005",
+      "Address": "xuwangyinzi_s2_09_005",
+      "AddressHash": 3021227506,
+      "BundleHash": 544224310,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_09_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3055400,
+          "Name": "Heavy Guardian Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_09_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "292e261e33d3f0af48072e2e6aeed8e75bcb41d97dd15542b9fbff4c1f6d0a42",
+      "ObjectPathId": "-6344959158225451760",
+      "SelectedObjectName": "xuwangyinzi_s2_09_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|545410231|xuwangyinzi_s2_09_006|SeasonPhantomFactors/xuwangyinzi_s2_09_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3055410.iconPath",
+      "Value": "xuwangyinzi_s2_09_006",
+      "Address": "xuwangyinzi_s2_09_006",
+      "AddressHash": 3021227507,
+      "BundleHash": 545410231,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_09_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3055410,
+          "Name": "Heavy Guardian Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_09_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "4660d43a33dddf6537ddd45fa811ce924f475dcde8bd6eb93234adf2fdfee9fc",
+      "ObjectPathId": "3674224921106071912",
+      "SelectedObjectName": "xuwangyinzi_s2_09_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2152651595|xuwangyinzi_s2_11_001|SeasonPhantomFactors/xuwangyinzi_s2_11_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3053400.iconPath",
+      "Value": "xuwangyinzi_s2_11_001",
+      "Address": "xuwangyinzi_s2_11_001",
+      "AddressHash": 3050875527,
+      "BundleHash": 2152651595,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_11_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3053400,
+          "Name": "Marksman Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_11_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "c67fe3faa995c3efb0478c353ef325bfb6f05d80d4ce44f764c9a7c42b1ac3d5",
+      "ObjectPathId": "1804309579241363845",
+      "SelectedObjectName": "xuwangyinzi_s2_11_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2153837516|xuwangyinzi_s2_11_002|SeasonPhantomFactors/xuwangyinzi_s2_11_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3053410.iconPath",
+      "Value": "xuwangyinzi_s2_11_002",
+      "Address": "xuwangyinzi_s2_11_002",
+      "AddressHash": 3050875528,
+      "BundleHash": 2153837516,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_11_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3053410,
+          "Name": "Marksman Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_11_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "239831544fb010488feb9d516934883144ee14ce1fa00d10ee85f07f57aaff1c",
+      "ObjectPathId": "7556883550937550501",
+      "SelectedObjectName": "xuwangyinzi_s2_11_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2155023437|xuwangyinzi_s2_11_003|SeasonPhantomFactors/xuwangyinzi_s2_11_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3053420.iconPath",
+      "Value": "xuwangyinzi_s2_11_003",
+      "Address": "xuwangyinzi_s2_11_003",
+      "AddressHash": 3050875529,
+      "BundleHash": 2155023437,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_11_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3053420,
+          "Name": "Marksman Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_11_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "6ddf1b9009e3b4efec0a95001bd44986e301958fcb91cc8454c976bfa47865ff",
+      "ObjectPathId": "-8619911288901930269",
+      "SelectedObjectName": "xuwangyinzi_s2_11_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2156209358|xuwangyinzi_s2_11_004|SeasonPhantomFactors/xuwangyinzi_s2_11_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3053430.iconPath",
+      "Value": "xuwangyinzi_s2_11_004",
+      "Address": "xuwangyinzi_s2_11_004",
+      "AddressHash": 3050875530,
+      "BundleHash": 2156209358,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_11_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3053430,
+          "Name": "Marksman Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_11_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "888683e77eac86763546e4b2aeae4dc0f75d24cc3acac4b42f70f757b291dce8",
+      "ObjectPathId": "-858715833774122513",
+      "SelectedObjectName": "xuwangyinzi_s2_11_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2157395279|xuwangyinzi_s2_11_005|SeasonPhantomFactors/xuwangyinzi_s2_11_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3053440.iconPath",
+      "Value": "xuwangyinzi_s2_11_005",
+      "Address": "xuwangyinzi_s2_11_005",
+      "AddressHash": 3050875531,
+      "BundleHash": 2157395279,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_11_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3053440,
+          "Name": "Marksman Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_11_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f6b7fee50c1f11bdf0a3b5fe51dbfb5f76924e83b6027948c67438f1e028f454",
+      "ObjectPathId": "-2080702997214662470",
+      "SelectedObjectName": "xuwangyinzi_s2_11_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2158581200|xuwangyinzi_s2_11_006|SeasonPhantomFactors/xuwangyinzi_s2_11_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3053450.iconPath",
+      "Value": "xuwangyinzi_s2_11_006",
+      "Address": "xuwangyinzi_s2_11_006",
+      "AddressHash": 3050875532,
+      "BundleHash": 2158581200,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_11_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3053450,
+          "Name": "Marksman Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_11_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "dba26c9cfaa416776230482f1258886bfcef0866da66168cfe48fa20f9343360",
+      "ObjectPathId": "1903436788283655375",
+      "SelectedObjectName": "xuwangyinzi_s2_11_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|4106964044|xuwangyinzi_s2_12_001|SeasonPhantomFactors/xuwangyinzi_s2_12_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3054400.iconPath",
+      "Value": "xuwangyinzi_s2_12_001",
+      "Address": "xuwangyinzi_s2_12_001",
+      "AddressHash": 3052061448,
+      "BundleHash": 4106964044,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_12_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3054400,
+          "Name": "Shield Knight Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_12_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "c3cff8f7d672c7a026255e14590fb2406dd6702d252ccc084ce6bea3e67c9127",
+      "ObjectPathId": "-2696662782151301956",
+      "SelectedObjectName": "xuwangyinzi_s2_12_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|4108149965|xuwangyinzi_s2_12_002|SeasonPhantomFactors/xuwangyinzi_s2_12_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3054410.iconPath",
+      "Value": "xuwangyinzi_s2_12_002",
+      "Address": "xuwangyinzi_s2_12_002",
+      "AddressHash": 3052061449,
+      "BundleHash": 4108149965,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_12_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3054410,
+          "Name": "Shield Knight Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_12_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "acbaf8d492cc8eefd34591780a851a90fdb75ce2c24b4238ce86875911cff49e",
+      "ObjectPathId": "4981341413392510080",
+      "SelectedObjectName": "xuwangyinzi_s2_12_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|4109335886|xuwangyinzi_s2_12_003|SeasonPhantomFactors/xuwangyinzi_s2_12_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3054420.iconPath",
+      "Value": "xuwangyinzi_s2_12_003",
+      "Address": "xuwangyinzi_s2_12_003",
+      "AddressHash": 3052061450,
+      "BundleHash": 4109335886,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_12_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3054420,
+          "Name": "Shield Knight Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_12_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "8756d741720855037d5ed3c71b57a12ec18d2be6a959093272ef292d0047e56b",
+      "ObjectPathId": "-8746246446435645302",
+      "SelectedObjectName": "xuwangyinzi_s2_12_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|4110521807|xuwangyinzi_s2_12_004|SeasonPhantomFactors/xuwangyinzi_s2_12_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3054430.iconPath",
+      "Value": "xuwangyinzi_s2_12_004",
+      "Address": "xuwangyinzi_s2_12_004",
+      "AddressHash": 3052061451,
+      "BundleHash": 4110521807,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_12_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3054430,
+          "Name": "Shield Knight Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_12_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "424e461af8cc6cc5161e00788a85a68525b56a7513fffe75c2b39b362a603367",
+      "ObjectPathId": "5768015639670277107",
+      "SelectedObjectName": "xuwangyinzi_s2_12_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|4111707728|xuwangyinzi_s2_12_005|SeasonPhantomFactors/xuwangyinzi_s2_12_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3054440.iconPath",
+      "Value": "xuwangyinzi_s2_12_005",
+      "Address": "xuwangyinzi_s2_12_005",
+      "AddressHash": 3052061452,
+      "BundleHash": 4111707728,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_12_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3054440,
+          "Name": "Shield Knight Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_12_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "a3eb22bf04926f10460ed10a2446710d6b668cc8ff5d9c7af52d1dcdce87993d",
+      "ObjectPathId": "-3808924219431108680",
+      "SelectedObjectName": "xuwangyinzi_s2_12_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|4112893649|xuwangyinzi_s2_12_006|SeasonPhantomFactors/xuwangyinzi_s2_12_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3054450.iconPath",
+      "Value": "xuwangyinzi_s2_12_006",
+      "Address": "xuwangyinzi_s2_12_006",
+      "AddressHash": 3052061453,
+      "BundleHash": 4112893649,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_12_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3054450,
+          "Name": "Shield Knight Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_12_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "dcf53a665857e1235ca982e9ede0cc130bc001bc1c80ab28002c081d8bcce478",
+      "ObjectPathId": "8178378784089649975",
+      "SelectedObjectName": "xuwangyinzi_s2_12_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1766309197|xuwangyinzi_s2_13_001|SeasonPhantomFactors/xuwangyinzi_s2_13_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3057400.iconPath",
+      "Value": "xuwangyinzi_s2_13_001",
+      "Address": "xuwangyinzi_s2_13_001",
+      "AddressHash": 3053247369,
+      "BundleHash": 1766309197,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_13_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3057400,
+          "Name": "Beat Performer Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_13_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ad553d300b20050e518410262307baab1a07ef164b9418f3ce662cb67a45600c",
+      "ObjectPathId": "4437340139133468695",
+      "SelectedObjectName": "xuwangyinzi_s2_13_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1767495118|xuwangyinzi_s2_13_002|SeasonPhantomFactors/xuwangyinzi_s2_13_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3057410.iconPath",
+      "Value": "xuwangyinzi_s2_13_002",
+      "Address": "xuwangyinzi_s2_13_002",
+      "AddressHash": 3053247370,
+      "BundleHash": 1767495118,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_13_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3057410,
+          "Name": "Beat Performer Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_13_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f5af55c273dc204bf49a07f3da6285006aae1cb0496859dccdde0b52afceaca6",
+      "ObjectPathId": "1556873259211009629",
+      "SelectedObjectName": "xuwangyinzi_s2_13_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1768681039|xuwangyinzi_s2_13_003|SeasonPhantomFactors/xuwangyinzi_s2_13_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3057420.iconPath",
+      "Value": "xuwangyinzi_s2_13_003",
+      "Address": "xuwangyinzi_s2_13_003",
+      "AddressHash": 3053247371,
+      "BundleHash": 1768681039,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_13_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3057420,
+          "Name": "Beat Performer Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_13_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "e405b60118f83ec2efcd63fd64ec225f7139f90ca5a6c8e2a4c007e421c796e9",
+      "ObjectPathId": "-323585281142363919",
+      "SelectedObjectName": "xuwangyinzi_s2_13_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1769866960|xuwangyinzi_s2_13_004|SeasonPhantomFactors/xuwangyinzi_s2_13_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3057430.iconPath",
+      "Value": "xuwangyinzi_s2_13_004",
+      "Address": "xuwangyinzi_s2_13_004",
+      "AddressHash": 3053247372,
+      "BundleHash": 1769866960,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_13_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3057430,
+          "Name": "Beat Performer Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_13_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "1776a4e5b9ca2ce008f2f30ae984c890285045186fd4fb0c9ea76e061e5c24d2",
+      "ObjectPathId": "4471307969746558282",
+      "SelectedObjectName": "xuwangyinzi_s2_13_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1771052881|xuwangyinzi_s2_13_005|SeasonPhantomFactors/xuwangyinzi_s2_13_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3057440.iconPath",
+      "Value": "xuwangyinzi_s2_13_005",
+      "Address": "xuwangyinzi_s2_13_005",
+      "AddressHash": 3053247373,
+      "BundleHash": 1771052881,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_13_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3057440,
+          "Name": "Beat Performer Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_13_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f6dcba37a958adbad75bf0ba27af9d749076bea276aebc268aeb0268e3faaa9a",
+      "ObjectPathId": "-2038126872301421653",
+      "SelectedObjectName": "xuwangyinzi_s2_13_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1772238802|xuwangyinzi_s2_13_006|SeasonPhantomFactors/xuwangyinzi_s2_13_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3057450.iconPath",
+      "Value": "xuwangyinzi_s2_13_006",
+      "Address": "xuwangyinzi_s2_13_006",
+      "AddressHash": 3053247374,
+      "BundleHash": 1772238802,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s2_13_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3057450,
+          "Name": "Beat Performer Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_13_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "377bbb7ed2d766de0eef88f8a3a9e38ddc3c1a8ab345e324575d7a847a21b231",
+      "ObjectPathId": "-2387856805406757036",
+      "SelectedObjectName": "xuwangyinzi_s2_13_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2906105739|xuwangyinzi_s3_01_001|SeasonPhantomFactors/xuwangyinzi_s3_01_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3050400.iconPath",
+      "Value": "xuwangyinzi_s3_01_001",
+      "Address": "xuwangyinzi_s3_01_001",
+      "AddressHash": 2680510151,
+      "BundleHash": 2906105739,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_01_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3050400,
+          "Name": "Stormblade Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "18614d0b08f2ddd19b02fe91bf55a02675ff7472ab6c6a342b6392e353b24997",
+      "ObjectPathId": "2580600320886663307",
+      "SelectedObjectName": "xuwangyinzi_s3_01_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2907291660|xuwangyinzi_s3_01_002|SeasonPhantomFactors/xuwangyinzi_s3_01_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3050410.iconPath",
+      "Value": "xuwangyinzi_s3_01_002",
+      "Address": "xuwangyinzi_s3_01_002",
+      "AddressHash": 2680510152,
+      "BundleHash": 2907291660,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_01_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3050410,
+          "Name": "Stormblade Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b476662b726c436f36c6f46ed4eda23a72869c45889fde75fd01cc0dc641675f",
+      "ObjectPathId": "5665085875746475582",
+      "SelectedObjectName": "xuwangyinzi_s3_01_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2908477581|xuwangyinzi_s3_01_003|SeasonPhantomFactors/xuwangyinzi_s3_01_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3050420.iconPath",
+      "Value": "xuwangyinzi_s3_01_003",
+      "Address": "xuwangyinzi_s3_01_003",
+      "AddressHash": 2680510153,
+      "BundleHash": 2908477581,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_01_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3050420,
+          "Name": "Stormblade Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "a878d3f12dc9a00401b06ba47c403f2c1553aca4bc2dabfce47914280a1d2cd9",
+      "ObjectPathId": "6587038232726585918",
+      "SelectedObjectName": "xuwangyinzi_s3_01_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2909663502|xuwangyinzi_s3_01_004|SeasonPhantomFactors/xuwangyinzi_s3_01_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3050430.iconPath",
+      "Value": "xuwangyinzi_s3_01_004",
+      "Address": "xuwangyinzi_s3_01_004",
+      "AddressHash": 2680510154,
+      "BundleHash": 2909663502,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_01_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3050430,
+          "Name": "Stormblade Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "27c359ce5ead547aa79b1d491e140803b0b169722e5f16bd2545600b1f800eec",
+      "ObjectPathId": "-7168351470795644414",
+      "SelectedObjectName": "xuwangyinzi_s3_01_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2910849423|xuwangyinzi_s3_01_005|SeasonPhantomFactors/xuwangyinzi_s3_01_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3050440.iconPath",
+      "Value": "xuwangyinzi_s3_01_005",
+      "Address": "xuwangyinzi_s3_01_005",
+      "AddressHash": 2680510155,
+      "BundleHash": 2910849423,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_01_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3050440,
+          "Name": "Stormblade Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "2029b8b6fc069520e1af03a5be8ac9200aa0c97d131cbe52bd516e9d133786a9",
+      "ObjectPathId": "1530950834844327804",
+      "SelectedObjectName": "xuwangyinzi_s3_01_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|2912035344|xuwangyinzi_s3_01_006|SeasonPhantomFactors/xuwangyinzi_s3_01_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3050450.iconPath",
+      "Value": "xuwangyinzi_s3_01_006",
+      "Address": "xuwangyinzi_s3_01_006",
+      "AddressHash": 2680510156,
+      "BundleHash": 2912035344,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_01_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3050450,
+          "Name": "Stormblade Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "8f775d4d9b8309832b66313efd40c3c1fd6ef6a091923affde3eaca5b91aa389",
+      "ObjectPathId": "4371056058488856162",
+      "SelectedObjectName": "xuwangyinzi_s3_01_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|565450892|xuwangyinzi_s3_02_001|SeasonPhantomFactors/xuwangyinzi_s3_02_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3052400.iconPath",
+      "Value": "xuwangyinzi_s3_02_001",
+      "Address": "xuwangyinzi_s3_02_001",
+      "AddressHash": 2681696072,
+      "BundleHash": 565450892,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_02_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3052400,
+          "Name": "Frost Mage Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "5145957ffbf685f9dd6bd67008348e52df75cbcfc5454523f00f5b457573aa3a",
+      "ObjectPathId": "-8224640026511393486",
+      "SelectedObjectName": "xuwangyinzi_s3_02_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|566636813|xuwangyinzi_s3_02_002|SeasonPhantomFactors/xuwangyinzi_s3_02_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3052410.iconPath",
+      "Value": "xuwangyinzi_s3_02_002",
+      "Address": "xuwangyinzi_s3_02_002",
+      "AddressHash": 2681696073,
+      "BundleHash": 566636813,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_02_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3052410,
+          "Name": "Frost Mage Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0b2160fe553f9695e651b75881b39056e07b6030099c9d80d23930fb96fa6692",
+      "ObjectPathId": "-2519249635929094840",
+      "SelectedObjectName": "xuwangyinzi_s3_02_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|567822734|xuwangyinzi_s3_02_003|SeasonPhantomFactors/xuwangyinzi_s3_02_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3052420.iconPath",
+      "Value": "xuwangyinzi_s3_02_003",
+      "Address": "xuwangyinzi_s3_02_003",
+      "AddressHash": 2681696074,
+      "BundleHash": 567822734,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_02_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3052420,
+          "Name": "Frost Mage Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b39de31b796cf2386388f4052a883d8b82353410deaf3b4f85b6ee831d26b9f3",
+      "ObjectPathId": "6803200392032203195",
+      "SelectedObjectName": "xuwangyinzi_s3_02_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|569008655|xuwangyinzi_s3_02_004|SeasonPhantomFactors/xuwangyinzi_s3_02_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3052430.iconPath",
+      "Value": "xuwangyinzi_s3_02_004",
+      "Address": "xuwangyinzi_s3_02_004",
+      "AddressHash": 2681696075,
+      "BundleHash": 569008655,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_02_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3052430,
+          "Name": "Frost Mage Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "c9544d6a0e63dccfe414c726bfba8f14ce042080e372440897be901f94a23d1e",
+      "ObjectPathId": "9094008529845314313",
+      "SelectedObjectName": "xuwangyinzi_s3_02_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|570194576|xuwangyinzi_s3_02_005|SeasonPhantomFactors/xuwangyinzi_s3_02_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3052440.iconPath",
+      "Value": "xuwangyinzi_s3_02_005",
+      "Address": "xuwangyinzi_s3_02_005",
+      "AddressHash": 2681696076,
+      "BundleHash": 570194576,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_02_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3052440,
+          "Name": "Frost Mage Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "2ce428f92dabc1d9f254568d882a27863f1012114bb89677ad505ad83914aae9",
+      "ObjectPathId": "-7102203445395633029",
+      "SelectedObjectName": "xuwangyinzi_s3_02_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|571380497|xuwangyinzi_s3_02_006|SeasonPhantomFactors/xuwangyinzi_s3_02_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3052450.iconPath",
+      "Value": "xuwangyinzi_s3_02_006",
+      "Address": "xuwangyinzi_s3_02_006",
+      "AddressHash": 2681696077,
+      "BundleHash": 571380497,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_02_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3052450,
+          "Name": "Frost Mage Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0a040fcb90f2960e2c850f4fde0166373b333ecc4645f33dc19d4eadcf23dd28",
+      "ObjectPathId": "-7264243937689689809",
+      "SelectedObjectName": "xuwangyinzi_s3_02_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|179108494|xuwangyinzi_s3_04_001|SeasonPhantomFactors/xuwangyinzi_s3_04_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3051400.iconPath",
+      "Value": "xuwangyinzi_s3_04_001",
+      "Address": "xuwangyinzi_s3_04_001",
+      "AddressHash": 2684067914,
+      "BundleHash": 179108494,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_04_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3051400,
+          "Name": "Wind Knight Reality Factor X1"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "4a33638d5c6ec86889abd23be9dcd6b6115951e9ed3afd6a8afd0d11a256f287",
+      "ObjectPathId": "5074398120703461091",
+      "SelectedObjectName": "xuwangyinzi_s3_04_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|180294415|xuwangyinzi_s3_04_002|SeasonPhantomFactors/xuwangyinzi_s3_04_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3051410.iconPath",
+      "Value": "xuwangyinzi_s3_04_002",
+      "Address": "xuwangyinzi_s3_04_002",
+      "AddressHash": 2684067915,
+      "BundleHash": 180294415,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_04_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3051410,
+          "Name": "Wind Knight Reality Factor X2"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b25f9cbe1b98abebe8360e01c1a802bdd8bf62ae51e4d030b207c82b1eeb3ef7",
+      "ObjectPathId": "-8721346313467328066",
+      "SelectedObjectName": "xuwangyinzi_s3_04_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|181480336|xuwangyinzi_s3_04_003|SeasonPhantomFactors/xuwangyinzi_s3_04_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3051420.iconPath",
+      "Value": "xuwangyinzi_s3_04_003",
+      "Address": "xuwangyinzi_s3_04_003",
+      "AddressHash": 2684067916,
+      "BundleHash": 181480336,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_04_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3051420,
+          "Name": "Wind Knight Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "93f23380550180d0e1390125262cf0947e68827ac181df178caa589c9ea0a052",
+      "ObjectPathId": "-1214684674711234970",
+      "SelectedObjectName": "xuwangyinzi_s3_04_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|182666257|xuwangyinzi_s3_04_004|SeasonPhantomFactors/xuwangyinzi_s3_04_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3051430.iconPath",
+      "Value": "xuwangyinzi_s3_04_004",
+      "Address": "xuwangyinzi_s3_04_004",
+      "AddressHash": 2684067917,
+      "BundleHash": 182666257,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_04_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3051430,
+          "Name": "Wind Knight Reality Factor X4"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "c6894852ba634e237b3e60b3eb84e47616f2f352b0c64bc632a6dbd10b7de1f8",
+      "ObjectPathId": "-528890710527411782",
+      "SelectedObjectName": "xuwangyinzi_s3_04_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|183852178|xuwangyinzi_s3_04_005|SeasonPhantomFactors/xuwangyinzi_s3_04_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3051440.iconPath",
+      "Value": "xuwangyinzi_s3_04_005",
+      "Address": "xuwangyinzi_s3_04_005",
+      "AddressHash": 2684067918,
+      "BundleHash": 183852178,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_04_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3051440,
+          "Name": "Wind Knight Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "6333d293ab54af0307c13457edaaa2f7b65049cb315342e0db68c2631fb94360",
+      "ObjectPathId": "-1120916642556136587",
+      "SelectedObjectName": "xuwangyinzi_s3_04_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|185038099|xuwangyinzi_s3_04_006|SeasonPhantomFactors/xuwangyinzi_s3_04_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3051450.iconPath",
+      "Value": "xuwangyinzi_s3_04_006",
+      "Address": "xuwangyinzi_s3_04_006",
+      "AddressHash": 2684067919,
+      "BundleHash": 185038099,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/xuwangyinzi_s3_04_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3051450,
+          "Name": "Wind Knight Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "506899c0381a216ce937336aa9b5eff848a2dd38517778949c4ce29f1a6252fc",
+      "ObjectPathId": "6614632630395289761",
+      "SelectedObjectName": "xuwangyinzi_s3_04_006",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -1676,6 +3488,347 @@
       "PixelSha256": "58ddd8f0714ae85247005be62f50520b0ef2e37831cbb9b0fd619b96b4535c35",
       "ObjectPathId": "8245684977722573328",
       "SelectedObjectName": "yinzi_s2_02_011",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|976826162|yinzi_s2_03_001|SeasonPhantomFactors/yinzi_s2_03_001.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060010.iconPath",
+      "Value": "yinzi_s2_03_001",
+      "Address": "yinzi_s2_03_001",
+      "AddressHash": 845728686,
+      "BundleHash": 976826162,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_001.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060010,
+          "Name": "Flame Vanguard X1"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_001",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "71b86caec0e547a04a5b4984de4a4fdd742a7b30112662a36d669a1ccfd927fc",
+      "ObjectPathId": "-6412630906557635871",
+      "SelectedObjectName": "yinzi_s2_03_001",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|978012083|yinzi_s2_03_002|SeasonPhantomFactors/yinzi_s2_03_002.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060020.iconPath",
+      "Value": "yinzi_s2_03_002",
+      "Address": "yinzi_s2_03_002",
+      "AddressHash": 845728687,
+      "BundleHash": 978012083,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_002.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060020,
+          "Name": "Flame Vanguard X2"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_002",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "1aaa573382e97de62bf52b4f27066dffbb9ebbde81234ea589cb2d9d40efb8e7",
+      "ObjectPathId": "-546469726990876499",
+      "SelectedObjectName": "yinzi_s2_03_002",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|979198004|yinzi_s2_03_003|SeasonPhantomFactors/yinzi_s2_03_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060030.iconPath",
+      "Value": "yinzi_s2_03_003",
+      "Address": "yinzi_s2_03_003",
+      "AddressHash": 845728688,
+      "BundleHash": 979198004,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060030,
+          "Name": "Flame Vanguard X3"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "1df9cc3668e09cebb8c5d45aafdf0a1633df46b2c48d70a2c8b8eba7101debef",
+      "ObjectPathId": "-2658192964517643573",
+      "SelectedObjectName": "yinzi_s2_03_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|980383925|yinzi_s2_03_004|SeasonPhantomFactors/yinzi_s2_03_004.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060040.iconPath",
+      "Value": "yinzi_s2_03_004",
+      "Address": "yinzi_s2_03_004",
+      "AddressHash": 845728689,
+      "BundleHash": 980383925,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_004.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060040,
+          "Name": "Flame Vanguard X4"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_004",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "c1a0d48d95d79eacdd05de2a282da1b4727ee70066800bd1b0fa1edd342a8772",
+      "ObjectPathId": "3711313556138536401",
+      "SelectedObjectName": "yinzi_s2_03_004",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|981569846|yinzi_s2_03_005|SeasonPhantomFactors/yinzi_s2_03_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060050.iconPath",
+      "Value": "yinzi_s2_03_005",
+      "Address": "yinzi_s2_03_005",
+      "AddressHash": 845728690,
+      "BundleHash": 981569846,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060050,
+          "Name": "Flame Vanguard X5"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "4cc53b06d9ae9368fd50bd50a6160af4c07865e8bc6b3d609cfaf7021ac1a20e",
+      "ObjectPathId": "8476563207510875146",
+      "SelectedObjectName": "yinzi_s2_03_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|982755767|yinzi_s2_03_006|SeasonPhantomFactors/yinzi_s2_03_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060060.iconPath",
+      "Value": "yinzi_s2_03_006",
+      "Address": "yinzi_s2_03_006",
+      "AddressHash": 845728691,
+      "BundleHash": 982755767,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060060,
+          "Name": "Flame Vanguard X6"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "7f666f4ff770c096f7c20b8797ba92541d6b7279f42c8cab567609e40b1fd759",
+      "ObjectPathId": "4852277912360223569",
+      "SelectedObjectName": "yinzi_s2_03_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|983941688|yinzi_s2_03_007|SeasonPhantomFactors/yinzi_s2_03_007.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060070.iconPath",
+      "Value": "yinzi_s2_03_007",
+      "Address": "yinzi_s2_03_007",
+      "AddressHash": 845728692,
+      "BundleHash": 983941688,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_007.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060070,
+          "Name": "Flame Vanguard X7"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_007",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f4ef7d27348e8276c7b552678478eb001e6c190c3b906569195c462ae53933ab",
+      "ObjectPathId": "2800156941510461775",
+      "SelectedObjectName": "yinzi_s2_03_007",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|985127609|yinzi_s2_03_008|SeasonPhantomFactors/yinzi_s2_03_008.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060080.iconPath",
+      "Value": "yinzi_s2_03_008",
+      "Address": "yinzi_s2_03_008",
+      "AddressHash": 845728693,
+      "BundleHash": 985127609,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_008.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060080,
+          "Name": "Flame Vanguard X8"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_008",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d8efc4b640c5c7d315123a8a2c25872a0ba5628d20a0dd378ea3a5d91cc94c71",
+      "ObjectPathId": "-4532797352410305273",
+      "SelectedObjectName": "yinzi_s2_03_008",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|986313530|yinzi_s2_03_009|SeasonPhantomFactors/yinzi_s2_03_009.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060090.iconPath",
+      "Value": "yinzi_s2_03_009",
+      "Address": "yinzi_s2_03_009",
+      "AddressHash": 845728694,
+      "BundleHash": 986313530,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_009.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060090,
+          "Name": "Flame Vanguard X9"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_009",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ed91369486e83186371eaa2fa2e82dfe407bd23c9c89f802b21de37adff80fe8",
+      "ObjectPathId": "6976453829244519884",
+      "SelectedObjectName": "yinzi_s2_03_009",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1014775634|yinzi_s2_03_010|SeasonPhantomFactors/yinzi_s2_03_010.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060100.iconPath",
+      "Value": "yinzi_s2_03_010",
+      "Address": "yinzi_s2_03_010",
+      "AddressHash": 845728718,
+      "BundleHash": 1014775634,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_010.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060100,
+          "Name": "Flame Vanguard X10"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_010",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "464db14ace6d330205486c4f8d0af01b55d0ed2256d9c1a0898207728484bc68",
+      "ObjectPathId": "3154535355730186705",
+      "SelectedObjectName": "yinzi_s2_03_010",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|1015961555|yinzi_s2_03_011|SeasonPhantomFactors/yinzi_s2_03_011.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3060110.iconPath",
+      "Value": "yinzi_s2_03_011",
+      "Address": "yinzi_s2_03_011",
+      "AddressHash": 845728719,
+      "BundleHash": 1015961555,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_03_011.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3060110,
+          "Name": "Flame Vanguard X11"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_011",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "01eb6a17e062ed66263ea5e4a20592811837dc40db71f2f840a9db09b36b8e02",
+      "ObjectPathId": "-4295278903000079347",
+      "SelectedObjectName": "yinzi_s2_03_011",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -3725,130 +5878,6 @@
       "SelectedObjectType": "Texture2D"
     },
     {
-      "AssetId": "SeasonPhantomFactors|Texture2D|120508088|yinzi_s2_common_001|SeasonPhantomFactors/yinzi_s2_common_001.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3058010.iconPath",
-      "Value": "yinzi_s2_common_001",
-      "Address": "yinzi_s2_common_001",
-      "AddressHash": 2182887348,
-      "BundleHash": 120508088,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_001.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3058010,
-          "Name": "Polarity X1"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_001",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "44ea6903e16f2f6ef667b25026b9421b72d378c7aec3f16c722b098cc3ed1c22",
-      "ObjectPathId": "9192291900018514976",
-      "SelectedObjectName": "yinzi_s2_common_001",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|121694009|yinzi_s2_common_002|SeasonPhantomFactors/yinzi_s2_common_002.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3058020.iconPath",
-      "Value": "yinzi_s2_common_002",
-      "Address": "yinzi_s2_common_002",
-      "AddressHash": 2182887349,
-      "BundleHash": 121694009,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_002.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3058020,
-          "Name": "Polarity X2"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_002",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "d41fbf6092e66184aad20f70f863945475103c7ec72ff7096dc85526fd8474d5",
-      "ObjectPathId": "8013794252090991765",
-      "SelectedObjectName": "yinzi_s2_common_002",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|122879930|yinzi_s2_common_003|SeasonPhantomFactors/yinzi_s2_common_003.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3058030.iconPath",
-      "Value": "yinzi_s2_common_003",
-      "Address": "yinzi_s2_common_003",
-      "AddressHash": 2182887350,
-      "BundleHash": 122879930,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_003.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3058030,
-          "Name": "Polarity X3"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_003",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "3828f8085514a6153d09599bc8401e0e899658349f7fbdd1339813957f443ca3",
-      "ObjectPathId": "-5942200323353216918",
-      "SelectedObjectName": "yinzi_s2_common_003",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|124065851|yinzi_s2_common_004|SeasonPhantomFactors/yinzi_s2_common_004.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3058040.iconPath",
-      "Value": "yinzi_s2_common_004",
-      "Address": "yinzi_s2_common_004",
-      "AddressHash": 2182887351,
-      "BundleHash": 124065851,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_004.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3058040,
-          "Name": "Polarity X4"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_004",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "082b2173e56aa31bb34a26a02a9beecd3d7c5e9afc54cb995757f2f6c72493cc",
-      "ObjectPathId": "-6601425470328545714",
-      "SelectedObjectName": "yinzi_s2_common_004",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
       "AssetId": "SeasonPhantomFactors|Texture2D|125251772|yinzi_s2_common_005|SeasonPhantomFactors/yinzi_s2_common_005.png",
       "SourceKind": "generated-json",
       "SourceFile": "SeasonPhantomFactors.json",
@@ -4066,130 +6095,6 @@
       "SelectedObjectType": "Texture2D"
     },
     {
-      "AssetId": "SeasonPhantomFactors|Texture2D|160829402|yinzi_s2_common_012|SeasonPhantomFactors/yinzi_s2_common_012.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3059010.iconPath",
-      "Value": "yinzi_s2_common_012",
-      "Address": "yinzi_s2_common_012",
-      "AddressHash": 2182887382,
-      "BundleHash": 160829402,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_012.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3059010,
-          "Name": "Stasis X1"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_012",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "f419c5e0ae955b35a3654c721e3331ec0324f49dc63dc1dd2c51842f9369b92c",
-      "ObjectPathId": "-1844623003452237526",
-      "SelectedObjectName": "yinzi_s2_common_012",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|162015323|yinzi_s2_common_013|SeasonPhantomFactors/yinzi_s2_common_013.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3059020.iconPath",
-      "Value": "yinzi_s2_common_013",
-      "Address": "yinzi_s2_common_013",
-      "AddressHash": 2182887383,
-      "BundleHash": 162015323,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_013.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3059020,
-          "Name": "Stasis X2"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_013",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "d05a13c59b0b8f84074a0582c53787aac7bf5a03230a47960629926d04522a0f",
-      "ObjectPathId": "-5423308449143554050",
-      "SelectedObjectName": "yinzi_s2_common_013",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|163201244|yinzi_s2_common_014|SeasonPhantomFactors/yinzi_s2_common_014.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3059030.iconPath",
-      "Value": "yinzi_s2_common_014",
-      "Address": "yinzi_s2_common_014",
-      "AddressHash": 2182887384,
-      "BundleHash": 163201244,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_014.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3059030,
-          "Name": "Stasis X3"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_014",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "accdcfc4708fc21d17c957a1cffd47b0547e84a382c5bbd5b23999644fc2ce46",
-      "ObjectPathId": "3163314508263344653",
-      "SelectedObjectName": "yinzi_s2_common_014",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|164387165|yinzi_s2_common_015|SeasonPhantomFactors/yinzi_s2_common_015.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3059040.iconPath",
-      "Value": "yinzi_s2_common_015",
-      "Address": "yinzi_s2_common_015",
-      "AddressHash": 2182887385,
-      "BundleHash": 164387165,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_015.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3059040,
-          "Name": "Stasis X4"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_015",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "d794dc549f0ffc6cd209e57e189c54bf266804808d356d05587be6560eb684bc",
-      "ObjectPathId": "-3122606724695260834",
-      "SelectedObjectName": "yinzi_s2_common_015",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
       "AssetId": "SeasonPhantomFactors|Texture2D|165573086|yinzi_s2_common_016|SeasonPhantomFactors/yinzi_s2_common_016.png",
       "SourceKind": "generated-json",
       "SourceFile": "SeasonPhantomFactors.json",
@@ -4311,37 +6216,6 @@
       "PixelSha256": "bece94f9abf9964de3d71c133fe0625521e402a0154a9583e9451b858926e47d",
       "ObjectPathId": "-1131081507067207396",
       "SelectedObjectName": "yinzi_s2_common_019",
-      "SelectedObjectType": "Texture2D"
-    },
-    {
-      "AssetId": "SeasonPhantomFactors|Texture2D|197592953|yinzi_s2_common_020|SeasonPhantomFactors/yinzi_s2_common_020.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "SeasonPhantomFactors.json",
-      "SourceGroup": "SeasonPhantomFactors",
-      "Field": "factorsByBuffId.3059090.iconPath",
-      "Value": "yinzi_s2_common_020",
-      "Address": "yinzi_s2_common_020",
-      "AddressHash": 2182887413,
-      "BundleHash": 197592953,
-      "ResourceType": "Texture2D",
-      "MatchKind": "exact-address",
-      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_020.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": 3059090,
-          "Name": "Stasis X9"
-        }
-      ],
-      "TextureName": "yinzi_s2_common_020",
-      "PngExported": true,
-      "PngWidth": 256,
-      "PngHeight": 256,
-      "PngMode": "RGBA",
-      "PixelSha256": "97020e6e31018ec055e64187fde1c5fa687d691630f3bc779640d616c6d032bd",
-      "ObjectPathId": "4298585637812697345",
-      "SelectedObjectName": "yinzi_s2_common_020",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -4839,10 +6713,72 @@
       "ObjectPathId": "8383781824276508355",
       "SelectedObjectName": "yinzi_s2_common_036",
       "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|245029793|yinzi_s2_common_037|SeasonPhantomFactors/yinzi_s2_common_037.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059260.iconPath",
+      "Value": "yinzi_s2_common_037",
+      "Address": "yinzi_s2_common_037",
+      "AddressHash": 2182887453,
+      "BundleHash": 245029793,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_037.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059260,
+          "Name": "Flame Vanguard Stasis X1"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_037",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d1a5d8686d6effc17557035cd0ae82238b88372ba7c9b334a4b219e83e5f1bca",
+      "ObjectPathId": "-8008537787461411257",
+      "SelectedObjectName": "yinzi_s2_common_037",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "SeasonPhantomFactors|Texture2D|246215714|yinzi_s2_common_038|SeasonPhantomFactors/yinzi_s2_common_038.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "SeasonPhantomFactors.json",
+      "SourceGroup": "SeasonPhantomFactors",
+      "Field": "factorsByBuffId.3059270.iconPath",
+      "Value": "yinzi_s2_common_038",
+      "Address": "yinzi_s2_common_038",
+      "AddressHash": 2182887454,
+      "BundleHash": 246215714,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "SeasonPhantomFactors/yinzi_s2_common_038.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": 3059270,
+          "Name": "Flame Vanguard Stasis X2"
+        }
+      ],
+      "TextureName": "yinzi_s2_common_038",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "8943b7ea0f37f6e349cc9084cecf309d544b340144630e56abde062dd6fe050d",
+      "ObjectPathId": "-839292573525627775",
+      "SelectedObjectName": "yinzi_s2_common_038",
+      "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-27T06:13:21.512Z",
-  "PngAssetCount": 156,
+  "PngExportedAt": "2026-05-29T04:14:03.962Z",
+  "PngAssetCount": 218,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

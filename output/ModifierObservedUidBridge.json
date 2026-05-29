@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "generatedBy": "ModifierObservedUidBridge.gen",
-  "generatedAt": "2026-05-27T06:06:56.198Z",
+  "generatedAt": "2026-05-28T21:24:29.637Z",
   "inputs": {
     "auditPath": "C:\\Users\\dbcas\\Desktop\\resonancelogs-cn-gh\\BETA\\resonance-logs-global\\DEV_exports\\unresolved-modifier-uids-audit.json",
     "auditMissing": false,
-    "buffNameRows": 8588
+    "buffNameRows": 9727
   },
   "aliasesByBuffId": {
     "999": [
@@ -2906,37 +2906,43 @@
     },
     {
       "buffId": 882262,
-      "displayName": "祝祷之泉buff-冰龙-噩梦",
+      "displayName": "Rin·Izcorgiky Weakness Research - Nightmare",
       "observedHits": 606,
       "observedDamage": null,
       "candidateState": "has-buff-name-row",
       "evidence": [
         "BuffName:882262",
-        "BuffName:display-name"
+        "BuffName:NameIdSource=BuffTable",
+        "BuffName:display-name",
+        "BuffName:icon"
       ],
       "nextStep": "needs direct source/effect bridge before runtime promotion"
     },
     {
       "buffId": 882265,
-      "displayName": "祝祷之泉buff-虚蚀龙-噩梦",
+      "displayName": "Bone·Xiolotl Weakness Research - Nightmare",
       "observedHits": 606,
       "observedDamage": null,
       "candidateState": "has-buff-name-row",
       "evidence": [
         "BuffName:882265",
-        "BuffName:display-name"
+        "BuffName:NameIdSource=BuffTable",
+        "BuffName:display-name",
+        "BuffName:icon"
       ],
       "nextStep": "needs direct source/effect bridge before runtime promotion"
     },
     {
       "buffId": 882268,
-      "displayName": "祝祷之泉buff-光龙-噩梦",
+      "displayName": "Light·Tonatiuh Weakness Research - Nightmare",
       "observedHits": 606,
       "observedDamage": null,
       "candidateState": "has-buff-name-row",
       "evidence": [
         "BuffName:882268",
-        "BuffName:display-name"
+        "BuffName:NameIdSource=BuffTable",
+        "BuffName:display-name",
+        "BuffName:icon"
       ],
       "nextStep": "needs direct source/effect bridge before runtime promotion"
     },

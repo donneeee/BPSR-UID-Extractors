@@ -1,0 +1,942 @@
+{
+  "GeneratedAt": "2026-05-29T04:11:29.565Z",
+  "SourceGroup": "class-spec-icons",
+  "OutputDir": "output/icons/class-spec-icons",
+  "AssetCount": 24,
+  "Assets": [
+    {
+      "AssetId": "class-spec-icons|Sprite|623527783|gita1308|class-spec-icons/gita1308.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Dissonance.iconPath",
+      "Value": "ui/atlas/talent_passive_13/gita1308",
+      "Address": "ui/atlas/talent_passive_13/gita1308",
+      "AddressHash": 3287586235,
+      "BundleHash": 623527783,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/gita1308.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Dissonance",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_13",
+      "AtlasHash": 3287586235,
+      "SpriteName": "gita1308",
+      "SpriteAddress": 2854877371,
+      "PngExported": true,
+      "PngWidth": 144,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "aaf258d7d7eb2bafe829412f2668b674dc10d84c42ca4aef830c66660fb5c540",
+      "ObjectPathId": "-1586858441948561383",
+      "SelectedObjectName": "gita1308",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|623527783|gita1317|class-spec-icons/gita1317.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Concerto.iconPath",
+      "Value": "ui/atlas/talent_passive_13/gita1317",
+      "Address": "ui/atlas/talent_passive_13/gita1317",
+      "AddressHash": 3287586235,
+      "BundleHash": 623527783,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/gita1317.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Concerto",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_13",
+      "AtlasHash": 3287586235,
+      "SpriteName": "gita1317",
+      "SpriteAddress": 2854877403,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 140,
+      "PngMode": "RGBA",
+      "PixelSha256": "0ebbcb7fcd862fcf574ec7a35c4d120a900ca81812d9551e9468aaf5ce76c987",
+      "ObjectPathId": "-8451936109518878182",
+      "SelectedObjectName": "gita1317",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|3586866662|jiandun1208|class-spec-icons/jiandun1208.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Recovery.iconPath",
+      "Value": "ui/atlas/talent_passive_12/jiandun1208",
+      "Address": "ui/atlas/talent_passive_12/jiandun1208",
+      "AddressHash": 3287586234,
+      "BundleHash": 3586866662,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/jiandun1208.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Recovery",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_12",
+      "AtlasHash": 3287586234,
+      "SpriteName": "jiandun1208",
+      "SpriteAddress": 4243426589,
+      "PngExported": true,
+      "PngWidth": 136,
+      "PngHeight": 136,
+      "PngMode": "RGBA",
+      "PixelSha256": "6d39f64d2ab962d30e62ab82953070a533a69856e419b2268eb6c71af7e7fbf4",
+      "ObjectPathId": "449476087059871284",
+      "SelectedObjectName": "jiandun1208",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|3586866662|jiandun1218|class-spec-icons/jiandun1218.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Shield.iconPath",
+      "Value": "ui/atlas/talent_passive_12/jiandun1218",
+      "Address": "ui/atlas/talent_passive_12/jiandun1218",
+      "AddressHash": 3287586234,
+      "BundleHash": 3586866662,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/jiandun1218.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Shield",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_12",
+      "AtlasHash": 3287586234,
+      "SpriteName": "jiandun1218",
+      "SpriteAddress": 4243426622,
+      "PngExported": true,
+      "PngWidth": 141,
+      "PngHeight": 145,
+      "PngMode": "RGBA",
+      "PixelSha256": "c7118c0dd42bf1d8b73b41c2a1b344ed17fa54515c74b9ec116afd735a0d4e24",
+      "ObjectPathId": "9210525446440273373",
+      "SelectedObjectName": "jiandun1218",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2990205475|profession_horizontal_hud02|class-spec-icons/profession_horizontal_hud02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "classes.Wind Knight.professionIconPath",
+      "Value": "ui/atlas/hud/profession/profession_horizontal_hud02",
+      "Address": "ui/atlas/hud/profession_horizontal_hud02",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "class-spec-icons/profession_horizontal_hud02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "Wind Knight",
+          "Name": ""
+        },
+        {
+          "Id": "Vanguard",
+          "Name": ""
+        },
+        {
+          "Id": "Skyward",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "profession_horizontal_hud02",
+      "SpriteAddress": 2914363376,
+      "Fields": [
+        "classes.Wind Knight.professionIconPath",
+        "specs.Vanguard.weaponStyleIconPath",
+        "specs.Skyward.weaponStyleIconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/profession/profession_horizontal_hud02"
+      ],
+      "SourceFiles": [
+        "class-spec-icons.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 67,
+      "PngHeight": 95,
+      "PngMode": "RGBA",
+      "PixelSha256": "8c1a3902e939bcc37a138abb09b1516bc7406b7cece3f5d7f94f06037a9d13b8",
+      "ObjectPathId": "-7488199274979216758",
+      "SelectedObjectName": "profession_horizontal_hud02",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2990205475|profession_horizontal_hud03|class-spec-icons/profession_horizontal_hud03.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "classes.Stormblade.professionIconPath",
+      "Value": "ui/atlas/hud/profession/profession_horizontal_hud03",
+      "Address": "ui/atlas/hud/profession_horizontal_hud03",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "class-spec-icons/profession_horizontal_hud03.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "Stormblade",
+          "Name": ""
+        },
+        {
+          "Id": "Iaido",
+          "Name": ""
+        },
+        {
+          "Id": "Moonstrike",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "profession_horizontal_hud03",
+      "SpriteAddress": 2914363377,
+      "Fields": [
+        "classes.Stormblade.professionIconPath",
+        "specs.Iaido.weaponStyleIconPath",
+        "specs.Moonstrike.weaponStyleIconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/profession/profession_horizontal_hud03"
+      ],
+      "SourceFiles": [
+        "class-spec-icons.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 76,
+      "PngHeight": 84,
+      "PngMode": "RGBA",
+      "PixelSha256": "15a100d67cca4d136f44058a555b48eef4a030798202b6d946d197bed5720939",
+      "ObjectPathId": "2711760495351482684",
+      "SelectedObjectName": "profession_horizontal_hud03",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2990205475|profession_horizontal_hud04|class-spec-icons/profession_horizontal_hud04.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "classes.Verdant Oracle.professionIconPath",
+      "Value": "ui/atlas/hud/profession/profession_horizontal_hud04",
+      "Address": "ui/atlas/hud/profession_horizontal_hud04",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "class-spec-icons/profession_horizontal_hud04.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "Verdant Oracle",
+          "Name": ""
+        },
+        {
+          "Id": "Smite",
+          "Name": ""
+        },
+        {
+          "Id": "Lifebind",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "profession_horizontal_hud04",
+      "SpriteAddress": 2914363378,
+      "Fields": [
+        "classes.Verdant Oracle.professionIconPath",
+        "specs.Smite.weaponStyleIconPath",
+        "specs.Lifebind.weaponStyleIconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/profession/profession_horizontal_hud04"
+      ],
+      "SourceFiles": [
+        "class-spec-icons.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 84,
+      "PngHeight": 76,
+      "PngMode": "RGBA",
+      "PixelSha256": "a126a25669f0a3438f4ea9123a22b147667d5dcd581e4ca83f25ca005c567b13",
+      "ObjectPathId": "765548713976784317",
+      "SelectedObjectName": "profession_horizontal_hud04",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2990205475|profession_horizontal_hud05|class-spec-icons/profession_horizontal_hud05.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "classes.Frost Mage.professionIconPath",
+      "Value": "ui/atlas/hud/profession/profession_horizontal_hud05",
+      "Address": "ui/atlas/hud/profession_horizontal_hud05",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "class-spec-icons/profession_horizontal_hud05.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "Frost Mage",
+          "Name": ""
+        },
+        {
+          "Id": "Icicle",
+          "Name": ""
+        },
+        {
+          "Id": "Frostbeam",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "profession_horizontal_hud05",
+      "SpriteAddress": 2914363379,
+      "Fields": [
+        "classes.Frost Mage.professionIconPath",
+        "specs.Icicle.weaponStyleIconPath",
+        "specs.Frostbeam.weaponStyleIconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/profession/profession_horizontal_hud05"
+      ],
+      "SourceFiles": [
+        "class-spec-icons.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 74,
+      "PngHeight": 93,
+      "PngMode": "RGBA",
+      "PixelSha256": "38569ad884dd7770344c1769e1af3e6de8f9aee91c7e8c7f8918486e5a103296",
+      "ObjectPathId": "1693847439924168964",
+      "SelectedObjectName": "profession_horizontal_hud05",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2990205475|profession_horizontal_hud06|class-spec-icons/profession_horizontal_hud06.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "classes.Heavy Guardian.professionIconPath",
+      "Value": "ui/atlas/hud/profession/profession_horizontal_hud06",
+      "Address": "ui/atlas/hud/profession_horizontal_hud06",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "class-spec-icons/profession_horizontal_hud06.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "Heavy Guardian",
+          "Name": ""
+        },
+        {
+          "Id": "Earthfort",
+          "Name": ""
+        },
+        {
+          "Id": "Block",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "profession_horizontal_hud06",
+      "SpriteAddress": 2914363380,
+      "Fields": [
+        "classes.Heavy Guardian.professionIconPath",
+        "specs.Earthfort.weaponStyleIconPath",
+        "specs.Block.weaponStyleIconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/profession/profession_horizontal_hud06"
+      ],
+      "SourceFiles": [
+        "class-spec-icons.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 84,
+      "PngHeight": 72,
+      "PngMode": "RGBA",
+      "PixelSha256": "55a7fa51a3590e8f407bcf9eff2fa9e5110f61b4669ca1b671bddf1c75280798",
+      "ObjectPathId": "2214782724786306611",
+      "SelectedObjectName": "profession_horizontal_hud06",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2990205475|profession_horizontal_hud07|class-spec-icons/profession_horizontal_hud07.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "classes.Marksman.professionIconPath",
+      "Value": "ui/atlas/hud/profession/profession_horizontal_hud07",
+      "Address": "ui/atlas/hud/profession_horizontal_hud07",
+      "AddressHash": 3185659383,
+      "BundleHash": 2990205475,
+      "ResourceType": "Sprite",
+      "MatchKind": "sprite-name",
+      "PngFile": "class-spec-icons/profession_horizontal_hud07.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 3,
+      "Rows": [
+        {
+          "Id": "Marksman",
+          "Name": ""
+        },
+        {
+          "Id": "Wildpack",
+          "Name": ""
+        },
+        {
+          "Id": "Falconry",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/hud",
+      "AtlasHash": 3185659383,
+      "SpriteName": "profession_horizontal_hud07",
+      "SpriteAddress": 2914363381,
+      "Fields": [
+        "classes.Marksman.professionIconPath",
+        "specs.Wildpack.weaponStyleIconPath",
+        "specs.Falconry.weaponStyleIconPath"
+      ],
+      "Values": [
+        "ui/atlas/hud/profession/profession_horizontal_hud07"
+      ],
+      "SourceFiles": [
+        "class-spec-icons.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 98,
+      "PngHeight": 84,
+      "PngMode": "RGBA",
+      "PixelSha256": "490a4a3ee4716bbdbf5b69ccadcdf18c14b6c98f92dc024a77d7feedf654af3a",
+      "ObjectPathId": "6862208634617058022",
+      "SelectedObjectName": "profession_horizontal_hud07",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|3804964470|shuangfu312|class-spec-icons/shuangfu312.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Voidflame.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu312",
+      "Address": "ui/atlas/talent_passive_3/shuangfu312",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/shuangfu312.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Voidflame",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu312",
+      "SpriteAddress": 2139436944,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 142,
+      "PngMode": "RGBA",
+      "PixelSha256": "e1cfd8462e64570f77db8d6294ddbc39d97c4a0037ed56743faab9089b1fbf64",
+      "ObjectPathId": "-7390683048772311116",
+      "SelectedObjectName": "shuangfu312",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|3804964470|shuangfu342|class-spec-icons/shuangfu342.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Blazecrimson.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu342",
+      "Address": "ui/atlas/talent_passive_3/shuangfu342",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/shuangfu342.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Blazecrimson",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu342",
+      "SpriteAddress": 2139437043,
+      "PngExported": true,
+      "PngWidth": 145,
+      "PngHeight": 145,
+      "PngMode": "RGBA",
+      "PixelSha256": "a4b385e99fc5d6df76c344aad09113a726d51f057948579397b14962f3685157",
+      "ObjectPathId": "8755052147204917988",
+      "SelectedObjectName": "shuangfu342",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|841625591|talent_passive_icon_general_dps_backhitget|class-spec-icons/talent_passive_icon_general_dps_backhitget.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Vanguard.iconPath",
+      "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_backhitget",
+      "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_backhitget",
+      "AddressHash": 359924875,
+      "BundleHash": 841625591,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_backhitget.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Vanguard",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_4",
+      "AtlasHash": 359924875,
+      "SpriteName": "talent_passive_icon_general_dps_backhitget",
+      "SpriteAddress": 4269180860,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 144,
+      "PngMode": "RGBA",
+      "PixelSha256": "2822beca2f1635ac6a9656bc9e66ec3aa5a7a4c2971ac89e77390e50d79c18ca",
+      "ObjectPathId": "4964421102441627641",
+      "SelectedObjectName": "talent_passive_icon_general_dps_backhitget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|841625591|talent_passive_icon_general_dps_flyhitget|class-spec-icons/talent_passive_icon_general_dps_flyhitget.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Skyward.iconPath",
+      "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_flyhitget",
+      "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_flyhitget",
+      "AddressHash": 359924875,
+      "BundleHash": 841625591,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_flyhitget.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Skyward",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_4",
+      "AtlasHash": 359924875,
+      "SpriteName": "talent_passive_icon_general_dps_flyhitget",
+      "SpriteAddress": 972967894,
+      "PngExported": true,
+      "PngWidth": 136,
+      "PngHeight": 145,
+      "PngMode": "RGBA",
+      "PixelSha256": "bbf6134128e0b55483a42c5a864674b94e609efecd52ea2fcd484f1e9c841f3c",
+      "ObjectPathId": "1483048762046676683",
+      "SelectedObjectName": "talent_passive_icon_general_dps_flyhitget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2473336053|talent_passive_icon_general_dps_icespearget|class-spec-icons/talent_passive_icon_general_dps_icespearget.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Frostbeam.iconPath",
+      "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icespearget",
+      "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icespearget",
+      "AddressHash": 359924873,
+      "BundleHash": 2473336053,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_icespearget.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Frostbeam",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_2",
+      "AtlasHash": 359924873,
+      "SpriteName": "talent_passive_icon_general_dps_icespearget",
+      "SpriteAddress": 3328116080,
+      "PngExported": true,
+      "PngWidth": 143,
+      "PngHeight": 147,
+      "PngMode": "RGBA",
+      "PixelSha256": "00ff6d460a3f01fa8a1afff9b1f1a8986d0f928bbc222bdcf1798d23b0d8a4f3",
+      "ObjectPathId": "-7449856905542822401",
+      "SelectedObjectName": "talent_passive_icon_general_dps_icespearget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|1141707636|talent_passive_icon_general_dps_joy|class-spec-icons/talent_passive_icon_general_dps_joy.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Iaido.iconPath",
+      "Value": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_joy",
+      "Address": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_joy",
+      "AddressHash": 359924872,
+      "BundleHash": 1141707636,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_joy.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Iaido",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_1",
+      "AtlasHash": 359924872,
+      "SpriteName": "talent_passive_icon_general_dps_joy",
+      "SpriteAddress": 2188541205,
+      "PngExported": true,
+      "PngWidth": 126,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "f97732fd9448ac93b3e5ff01ee8e964abf573fd2d6136867984a8ca15087a62a",
+      "ObjectPathId": "-6716875204547555466",
+      "SelectedObjectName": "talent_passive_icon_general_dps_joy",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2255238245|talent_passive_icon_general_dps_petbig|class-spec-icons/talent_passive_icon_general_dps_petbig.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Wildpack.iconPath",
+      "Value": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_petbig",
+      "Address": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_petbig",
+      "AddressHash": 3287586233,
+      "BundleHash": 2255238245,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_petbig.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Wildpack",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_11",
+      "AtlasHash": 3287586233,
+      "SpriteName": "talent_passive_icon_general_dps_petbig",
+      "SpriteAddress": 87229615,
+      "PngExported": true,
+      "PngWidth": 137,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "e27e4d4e2b7eac932f7ff25278632a9f1e080134c6acff4c2f7113f892ad35e7",
+      "ObjectPathId": "-1588689765727112482",
+      "SelectedObjectName": "talent_passive_icon_general_dps_petbig",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|1141707636|talent_passive_icon_general_dps_sickleget|class-spec-icons/talent_passive_icon_general_dps_sickleget.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Moonstrike.iconPath",
+      "Value": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_sickleget",
+      "Address": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_sickleget",
+      "AddressHash": 359924872,
+      "BundleHash": 1141707636,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_sickleget.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Moonstrike",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_1",
+      "AtlasHash": 359924872,
+      "SpriteName": "talent_passive_icon_general_dps_sickleget",
+      "SpriteAddress": 2196403102,
+      "PngExported": true,
+      "PngWidth": 133,
+      "PngHeight": 138,
+      "PngMode": "RGBA",
+      "PixelSha256": "da4c5ab7a92ceec8d7edb03bec029f694d9cfe32217b993094ed63a50a8d7e40",
+      "ObjectPathId": "7277470796038356571",
+      "SelectedObjectName": "talent_passive_icon_general_dps_sickleget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2473336053|talent_passive_icon_general_dps_skilltriggericearrow|class-spec-icons/talent_passive_icon_general_dps_skilltriggericearrow.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Icicle.iconPath",
+      "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_skilltriggericearrow",
+      "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_skilltriggericearrow",
+      "AddressHash": 359924873,
+      "BundleHash": 2473336053,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_skilltriggericearrow.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Icicle",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_2",
+      "AtlasHash": 359924873,
+      "SpriteName": "talent_passive_icon_general_dps_skilltriggericearrow",
+      "SpriteAddress": 1622779635,
+      "PngExported": true,
+      "PngWidth": 134,
+      "PngHeight": 146,
+      "PngMode": "RGBA",
+      "PixelSha256": "1df208e66a0d5cf2caabe8fcb22f90ac83b9b2ee9b52a47aebd6e14de835cf7f",
+      "ObjectPathId": "2374185675085443689",
+      "SelectedObjectName": "talent_passive_icon_general_dps_skilltriggericearrow",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2255238245|talent_passive_icon_general_dps_skyhitget|class-spec-icons/talent_passive_icon_general_dps_skyhitget.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Falconry.iconPath",
+      "Value": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_skyhitget",
+      "Address": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_skyhitget",
+      "AddressHash": 3287586233,
+      "BundleHash": 2255238245,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_dps_skyhitget.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Falconry",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_11",
+      "AtlasHash": 3287586233,
+      "SpriteName": "talent_passive_icon_general_dps_skyhitget",
+      "SpriteAddress": 1422906032,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 143,
+      "PngMode": "RGBA",
+      "PixelSha256": "5a223c4096234b35d847f86b827244cb972b0da202afa1f481900faa2c02c3a5",
+      "ObjectPathId": "-60442297385266657",
+      "SelectedObjectName": "talent_passive_icon_general_dps_skyhitget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2173254008|talent_passive_icon_general_sup_aoyitrigger|class-spec-icons/talent_passive_icon_general_sup_aoyitrigger.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Smite.iconPath",
+      "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyitrigger",
+      "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_aoyitrigger",
+      "AddressHash": 359924876,
+      "BundleHash": 2173254008,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_sup_aoyitrigger.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Smite",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_5",
+      "AtlasHash": 359924876,
+      "SpriteName": "talent_passive_icon_general_sup_aoyitrigger",
+      "SpriteAddress": 3561964990,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 146,
+      "PngMode": "RGBA",
+      "PixelSha256": "b6e672f2a27403597ef2dd64b2c3e876be8a2cfc7beda050910fbd99c071e24e",
+      "ObjectPathId": "-3453879932511817198",
+      "SelectedObjectName": "talent_passive_icon_general_sup_aoyitrigger",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|2173254008|talent_passive_icon_general_sup_healringget|class-spec-icons/talent_passive_icon_general_sup_healringget.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Lifebind.iconPath",
+      "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healringget",
+      "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_healringget",
+      "AddressHash": 359924876,
+      "BundleHash": 2173254008,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_sup_healringget.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Lifebind",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_5",
+      "AtlasHash": 359924876,
+      "SpriteName": "talent_passive_icon_general_sup_healringget",
+      "SpriteAddress": 2079394082,
+      "PngExported": true,
+      "PngWidth": 142,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "362dfd614e30767a84de5182f5f1f72678df26d6d78c79d94e285d3fc0837cee",
+      "ObjectPathId": "-1429063272623993457",
+      "SelectedObjectName": "talent_passive_icon_general_sup_healringget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|3204800380|talent_passive_icon_general_sup_inspireex|class-spec-icons/talent_passive_icon_general_sup_inspireex.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Block.iconPath",
+      "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_inspireex",
+      "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_sup_inspireex",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_sup_inspireex.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Block",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "talent_passive_icon_general_sup_inspireex",
+      "SpriteAddress": 2323489747,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 132,
+      "PngMode": "RGBA",
+      "PixelSha256": "398a547327b454753416579fc128e1a5867cd949086279c7a6d91c216103eaa6",
+      "ObjectPathId": "-5332009446003868568",
+      "SelectedObjectName": "talent_passive_icon_general_sup_inspireex",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "class-spec-icons|Sprite|3204800380|talent_passive_icon_general_tank_shieldcounter|class-spec-icons/talent_passive_icon_general_tank_shieldcounter.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "class-spec-icons.json",
+      "SourceGroup": "class-spec-icons",
+      "Field": "specs.Earthfort.iconPath",
+      "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_shieldcounter",
+      "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_shieldcounter",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "class-spec-icons/talent_passive_icon_general_tank_shieldcounter.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "Earthfort",
+          "Name": ""
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "talent_passive_icon_general_tank_shieldcounter",
+      "SpriteAddress": 3896517451,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 145,
+      "PngMode": "RGBA",
+      "PixelSha256": "01f1a9ace2d62b612f87a0e64fb5600b209bfce6a5324632cbdeed7951c1ecb6",
+      "ObjectPathId": "-2474888131609774595",
+      "SelectedObjectName": "talent_passive_icon_general_tank_shieldcounter",
+      "SelectedObjectType": "Sprite"
+    }
+  ],
+  "PngExportedAt": "2026-05-29T04:14:03.846Z",
+  "PngAssetCount": 24,
+  "PngFailedCount": 0,
+  "PngVerifiedCount": 0
+}

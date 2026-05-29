@@ -1,8 +1,8 @@
 {
-  "GeneratedAt": "2026-05-27T06:11:05.819Z",
+  "GeneratedAt": "2026-05-29T04:11:29.621Z",
   "SourceGroup": "LuckyStrikeRuntime",
   "OutputDir": "output/icons/LuckyStrikeRuntime",
-  "AssetCount": 117,
+  "AssetCount": 142,
   "Assets": [
     {
       "AssetId": "LuckyStrikeRuntime|Sprite|2990205475|buff_blue_lucky|LuckyStrikeRuntime/buff_blue_lucky.png",
@@ -33,7 +33,7 @@
       "PngWidth": 51,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "649ce8ed96eba86b8f90c040f1055053f6784c8288f1cd2ebe5d8bd749e624c4",
+      "PixelSha256": "65177d57c4a0af818f2b84ccac0504dc4bd927ba5a8c1f320e2b46c2e030f7a7",
       "ObjectPathId": "-8445327950560153236",
       "SelectedObjectName": "buff_blue_lucky",
       "SelectedObjectType": "Sprite"
@@ -67,7 +67,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "97bde01f0efd942bf2933b1c35724f1d38f6a19d5f9cf5e787b7287e1924df48",
+      "PixelSha256": "30e4051854d1d3ce13b1495caba1d9366c4fd850f1228de02dd68363fc66ab6c",
       "ObjectPathId": "-7909625903203653417",
       "SelectedObjectName": "buff_icon18",
       "SelectedObjectType": "Sprite"
@@ -101,7 +101,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "4ffdf76017a2bec477ccf20401534e776360c2e5fc09f81f524f5f7b58b34a6f",
+      "PixelSha256": "d61f816028a8684c69647392c039f8a915b42e372b9911b35dc5813aa1ed1127",
       "ObjectPathId": "-5408780426537146377",
       "SelectedObjectName": "buff_icon47",
       "SelectedObjectType": "Sprite"
@@ -135,7 +135,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "00f0b53b91dd7588a2c68b00a73cf783e7b00e6e024baf6c2c5cf8e6c273e213",
+      "PixelSha256": "d55497cb918e7737199d757ae3b71a615e2e9df152dcc6d70ec20797e1850a80",
       "ObjectPathId": "4890210747944786896",
       "SelectedObjectName": "buff_passive_icon_sup_heal02",
       "SelectedObjectType": "Sprite"
@@ -169,7 +169,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "14c57f1420c633fcff7031d688c8e59e08917d42482afd3257781218a15dfbb6",
+      "PixelSha256": "0f1af7ef288e8dd26fcde3384210fc7ffe83679ee9e02ef59392f43c96cc5a1b",
       "ObjectPathId": "-6747175436347910965",
       "SelectedObjectName": "buff_talent_passive_icon_dps_luckyconversion",
       "SelectedObjectType": "Sprite"
@@ -206,40 +206,6 @@
       "PixelSha256": "6404bbbd909f378ef64bab49872054c6f91810f70f7f194f0502b058e83be4d7",
       "ObjectPathId": "-1055245693951117675",
       "SelectedObjectName": "changqiang457",
-      "SelectedObjectType": "Sprite"
-    },
-    {
-      "AssetId": "LuckyStrikeRuntime|Sprite|841625591|changqiang459|LuckyStrikeRuntime/changqiang459.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.talent:318.iconPath",
-      "Value": "ui/atlas/talent_passive_4/changqiang459",
-      "Address": "ui/atlas/talent_passive_4/changqiang459",
-      "AddressHash": 359924875,
-      "BundleHash": 841625591,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/changqiang459.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "talent:318",
-          "Name": "Lucky Explosion"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_4",
-      "AtlasHash": 359924875,
-      "SpriteName": "changqiang459",
-      "SpriteAddress": 3020913677,
-      "PngExported": true,
-      "PngWidth": 143,
-      "PngHeight": 143,
-      "PngMode": "RGBA",
-      "PixelSha256": "9314c40f54f6e7edc3b046ea919ed017c093829b68c041ffd3df305de41a8b5e",
-      "ObjectPathId": "-2906842949815592558",
-      "SelectedObjectName": "changqiang459",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -738,6 +704,40 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "LuckyStrikeRuntime|Sprite|623527783|gita1342|LuckyStrikeRuntime/gita1342.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:1342.iconPath",
+      "Value": "ui/atlas/talent_passive_13/gita1342",
+      "Address": "ui/atlas/talent_passive_13/gita1342",
+      "AddressHash": 3287586235,
+      "BundleHash": 623527783,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/gita1342.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:1342",
+          "Name": "Flame's Rampage"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_13",
+      "AtlasHash": 3287586235,
+      "SpriteName": "gita1342",
+      "SpriteAddress": 2854877497,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 134,
+      "PngMode": "RGBA",
+      "PixelSha256": "2897560e0767fd8aeb21a7a8b0b586c75c111eddce0a86294778dac8ffea8023",
+      "ObjectPathId": "-2424788192891654952",
+      "SelectedObjectName": "gita1342",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "LuckyStrikeRuntime|Sprite|623527783|gita1346|LuckyStrikeRuntime/gita1346.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -803,6 +803,40 @@
       "PixelSha256": "8fae6d3efbc336542bc271683d964a66d4c9b0fecce1b412922e51f17f398fe7",
       "ObjectPathId": "4234725828576437237",
       "SelectedObjectName": "gita1347",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3586866662|jiandun1223|LuckyStrikeRuntime/jiandun1223.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.buff-source:2206240.iconPath",
+      "Value": "ui/atlas/talent_passive_12/jiandun1223",
+      "Address": "ui/atlas/talent_passive_12/jiandun1223",
+      "AddressHash": 3287586234,
+      "BundleHash": 3586866662,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/jiandun1223.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:2206240",
+          "Name": "Holy Radiance"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_12",
+      "AtlasHash": 3287586234,
+      "SpriteName": "jiandun1223",
+      "SpriteAddress": 4243426650,
+      "PngExported": true,
+      "PngWidth": 138,
+      "PngHeight": 143,
+      "PngMode": "RGBA",
+      "PixelSha256": "7488dec8ab4ca1ac39f31f1dc59ae05f66f7e95b8ecf9989969fcbe7a6cd63e2",
+      "ObjectPathId": "1117255614674905977",
+      "SelectedObjectName": "jiandun1223",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -933,40 +967,6 @@
       "PixelSha256": "f63e6ef2562d59e979a89db2651e274637b30e0d550d6648cc833b74ac105bed",
       "ObjectPathId": "-1044921415998567028",
       "SelectedObjectName": "mozhang255",
-      "SelectedObjectType": "Sprite"
-    },
-    {
-      "AssetId": "LuckyStrikeRuntime|Sprite|2473336053|mozhang261|LuckyStrikeRuntime/mozhang261.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.talent:261.iconPath",
-      "Value": "ui/atlas/talent_passive_2/mozhang261",
-      "Address": "ui/atlas/talent_passive_2/mozhang261",
-      "AddressHash": 359924873,
-      "BundleHash": 2473336053,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/mozhang261.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "talent:261",
-          "Name": "Rapid Ice Arrow"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_2",
-      "AtlasHash": 359924873,
-      "SpriteName": "mozhang261",
-      "SpriteAddress": 3261920069,
-      "PngExported": true,
-      "PngWidth": 145,
-      "PngHeight": 148,
-      "PngMode": "RGBA",
-      "PixelSha256": "efd3bf18c9454201d2782194d0ecf713d89816a9dfe088b35d5ee7b15c00c497",
-      "ObjectPathId": "68457310628373794",
-      "SelectedObjectName": "mozhang261",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -1370,7 +1370,7 @@
       "PngWidth": 28,
       "PngHeight": 32,
       "PngMode": "RGBA",
-      "PixelSha256": "3658aa5c006d0b37f2e198e8d78abc65e585f2563f45a6026927f79085910f3b",
+      "PixelSha256": "09b699510ad995f1bd49e3d3d2e5b6893cc55f49a2f1eb8919d02b399db8281f",
       "ObjectPathId": "8069082061883668559",
       "SelectedObjectName": "rogue_icon_entry065",
       "SelectedObjectType": "Sprite"
@@ -1978,14 +1978,28 @@
       "MatchKind": "exact-address",
       "PngFile": "LuckyStrikeRuntime/rogue_icon_entry111.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 1,
+      "RefCount": 2,
       "Rows": [
         {
           "Id": "season-rogue-entry:197",
           "Name": "Attribute Transfer"
+        },
+        {
+          "Id": "season-rogue-entry:414",
+          "Name": "Twin Striker - Lucky Flame Slash"
         }
       ],
       "TextureName": "rogue_icon_entry111",
+      "Fields": [
+        "sourcesById.season-rogue-entry:197.iconPath",
+        "sourcesById.season-rogue-entry:414.iconPath"
+      ],
+      "Values": [
+        "ui/textures/rouge_icon/rogue_icon_entry111"
+      ],
+      "SourceFiles": [
+        "LuckyStrikeRuntime.json"
+      ],
       "PngExported": true,
       "PngWidth": 148,
       "PngHeight": 148,
@@ -1993,6 +2007,68 @@
       "PixelSha256": "e7200c627609a377871e63d2b3522e36a83d63ce8aff908a2a453d5a0cacd6a9",
       "ObjectPathId": "-3855148445247413849",
       "SelectedObjectName": "rogue_icon_entry111",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2533408903|rogue_icon_entry117|LuckyStrikeRuntime/rogue_icon_entry117.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:420.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry117",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry117",
+      "AddressHash": 2108188850,
+      "BundleHash": 2533408903,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry117.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:420",
+          "Name": "Twin Striker - Formless Buff"
+        }
+      ],
+      "TextureName": "rogue_icon_entry117",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "7d4e7a69660a0d335fd59fedd237dcafb37293d5314dcfb1eea3599457230a9d",
+      "ObjectPathId": "-7035709322926049416",
+      "SelectedObjectName": "rogue_icon_entry117",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2534594824|rogue_icon_entry118|LuckyStrikeRuntime/rogue_icon_entry118.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:421.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry118",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry118",
+      "AddressHash": 2108188851,
+      "BundleHash": 2534594824,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry118.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:421",
+          "Name": "Twin Striker - Fortunate Flame Slash"
+        }
+      ],
+      "TextureName": "rogue_icon_entry118",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "cf810aa443b4d447deb1f647b0a5eb1e41b052778d81be0b8bb7957732f838bd",
+      "ObjectPathId": "5338880593878842618",
+      "SelectedObjectName": "rogue_icon_entry118",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -2027,6 +2103,285 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2610493768|rogue_icon_entry136|LuckyStrikeRuntime/rogue_icon_entry136.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:349.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry136",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry136",
+      "AddressHash": 2108188915,
+      "BundleHash": 2610493768,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry136.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:349",
+          "Name": "Tactical Blessing"
+        }
+      ],
+      "TextureName": "rogue_icon_entry136",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "a3439f7a1feee35d3aac99225b31748342e32941c2747a85d3d090ff8ca491e7",
+      "ObjectPathId": "-3056461325586969389",
+      "SelectedObjectName": "rogue_icon_entry136",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2611679689|rogue_icon_entry137|LuckyStrikeRuntime/rogue_icon_entry137.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:350.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry137",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry137",
+      "AddressHash": 2108188916,
+      "BundleHash": 2611679689,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry137.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:350",
+          "Name": "Luck Trigger"
+        }
+      ],
+      "TextureName": "rogue_icon_entry137",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "b98dfb01e973796ca6ea9b25a6de685ce867e3aa93d8d9aa36c7ff49305d6539",
+      "ObjectPathId": "5966443040650289428",
+      "SelectedObjectName": "rogue_icon_entry137",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2689950475|rogue_icon_entry157|LuckyStrikeRuntime/rogue_icon_entry157.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:370.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry157",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry157",
+      "AddressHash": 2108188982,
+      "BundleHash": 2689950475,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry157.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:370",
+          "Name": "Crit DMG Multiplier"
+        }
+      ],
+      "TextureName": "rogue_icon_entry157",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "835e77717539bafe59290d189058bf001c3d41e1aed6351fb280ef4b4af0eff8",
+      "ObjectPathId": "1523104406083235695",
+      "SelectedObjectName": "rogue_icon_entry157",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2724342184|rogue_icon_entry163|LuckyStrikeRuntime/rogue_icon_entry163.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:376.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry163",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry163",
+      "AddressHash": 2108189011,
+      "BundleHash": 2724342184,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry163.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:376",
+          "Name": "Luck Multiplier"
+        }
+      ],
+      "TextureName": "rogue_icon_entry163",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "d63f9c2c47743b10b43709db0719f95f8b5e4e5a338c02dbdca3d29a2403a40a",
+      "ObjectPathId": "6061950000593583939",
+      "SelectedObjectName": "rogue_icon_entry163",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2767035340|rogue_icon_entry176|LuckyStrikeRuntime/rogue_icon_entry176.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:389.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry176",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry176",
+      "AddressHash": 2108189047,
+      "BundleHash": 2767035340,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry176.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:389",
+          "Name": "Physique Fortune"
+        }
+      ],
+      "TextureName": "rogue_icon_entry176",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "ccfe34d67de0ceacb7c95e7f820b312471bca734cf055c8fc5da39b2b1f1523c",
+      "ObjectPathId": "3823981970931211743",
+      "SelectedObjectName": "rogue_icon_entry176",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2802612970|rogue_icon_entry183|LuckyStrikeRuntime/rogue_icon_entry183.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:396.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry183",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry183",
+      "AddressHash": 2108189077,
+      "BundleHash": 2802612970,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry183.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:396",
+          "Name": "Lucky Heavy Strike"
+        }
+      ],
+      "TextureName": "rogue_icon_entry183",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "13a619497139b1d2e8910dbba46f5724211d98bb8dc4474c71e5198fc62456b0",
+      "ObjectPathId": "-6269163740520060153",
+      "SelectedObjectName": "rogue_icon_entry183",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2808542575|rogue_icon_entry188|LuckyStrikeRuntime/rogue_icon_entry188.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:401.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry188",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry188",
+      "AddressHash": 2108189082,
+      "BundleHash": 2808542575,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry188.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:401",
+          "Name": "Power of Desperation"
+        }
+      ],
+      "TextureName": "rogue_icon_entry188",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "4d9804e9956c007a910ab85c84a5fefe1e780dc86d350e5e8e4bf6a63e84bea6",
+      "ObjectPathId": "2682026527686964120",
+      "SelectedObjectName": "rogue_icon_entry188",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2847677968|rogue_icon_entry198|LuckyStrikeRuntime/rogue_icon_entry198.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:411.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry198",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry198",
+      "AddressHash": 2108189115,
+      "BundleHash": 2847677968,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry198.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:411",
+          "Name": "Low HP Luck"
+        }
+      ],
+      "TextureName": "rogue_icon_entry198",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "860bebe33e868f2bb84e98d116765f64637cd5bd3a8e05cb0ed4cc523a85e151",
+      "ObjectPathId": "7808908088859475265",
+      "SelectedObjectName": "rogue_icon_entry198",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|3777440032|rogue_icon_entry200|LuckyStrikeRuntime/rogue_icon_entry200.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.season-rogue-entry:413.iconPath",
+      "Value": "ui/textures/rouge_icon/rogue_icon_entry200",
+      "Address": "ui/textures/rouge_icon/rogue_icon_entry200",
+      "AddressHash": 2108189899,
+      "BundleHash": 3777440032,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry200.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "season-rogue-entry:413",
+          "Name": "Bloodburn Echo"
+        }
+      ],
+      "TextureName": "rogue_icon_entry200",
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "40d70f521c95310887af9a0b51cb114330c0113e0a059d833e2167aacc383975",
+      "ObjectPathId": "3083481409545471048",
+      "SelectedObjectName": "rogue_icon_entry200",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "LuckyStrikeRuntime|Sprite|857206578|s2talent01_01|LuckyStrikeRuntime/s2talent01_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -2055,7 +2410,7 @@
       "PngWidth": 160,
       "PngHeight": 145,
       "PngMode": "RGBA",
-      "PixelSha256": "a0a42005b338bb6eb8901d908db5ef811da904f90f90f079183fde9ef6fb9c48",
+      "PixelSha256": "4f8330b89e7400a3661d4531b7a1ef9cea042b62bf989cbd95f9350aeaed5371",
       "ObjectPathId": "-4425038869648588566",
       "SelectedObjectName": "s2talent01_01",
       "SelectedObjectType": "Sprite"
@@ -2128,7 +2483,7 @@
       "PngWidth": 39,
       "PngHeight": 39,
       "PngMode": "RGBA",
-      "PixelSha256": "25b74aa4d4f105255edddc79f95ca37e19e7e7d713a071948add077addeb8f7c",
+      "PixelSha256": "d0d65c9124f0267d8b0d9eb5e208fc0106fabd235c8ae2f66a47eb306f2f09ec",
       "ObjectPathId": "2147337168131099793",
       "SelectedObjectName": "s2talent01_04",
       "SelectedObjectType": "Sprite"
@@ -2196,9 +2551,281 @@
       "PngWidth": 149,
       "PngHeight": 159,
       "PngMode": "RGBA",
-      "PixelSha256": "a6a5c58c3db2eba5e1571e3333cbcd6df9b6130ac3bfe9af0047a0447251971e",
+      "PixelSha256": "99e20629a7518b0ea86dd69b1b8fd151c1be16e20ccec2003f5628365d175385",
       "ObjectPathId": "-3360515541200625557",
       "SelectedObjectName": "s2talent052_01",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu306|LuckyStrikeRuntime/shuangfu306.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:306.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu306",
+      "Address": "ui/atlas/talent_passive_3/shuangfu306",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu306.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:306",
+          "Name": "Crimson Lotus Duality"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu306",
+      "SpriteAddress": 2139436915,
+      "PngExported": true,
+      "PngWidth": 139,
+      "PngHeight": 140,
+      "PngMode": "RGBA",
+      "PixelSha256": "8e808d8f5e9f294e248c683d2562399f84fe651eb0ded3771a9d8a83f81d20ea",
+      "ObjectPathId": "1469404845953130158",
+      "SelectedObjectName": "shuangfu306",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu318|LuckyStrikeRuntime/shuangfu318.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:318.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu318",
+      "Address": "ui/atlas/talent_passive_3/shuangfu318",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu318.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:318",
+          "Name": "Lucky Explosion"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu318",
+      "SpriteAddress": 2139436950,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 146,
+      "PngMode": "RGBA",
+      "PixelSha256": "60bbb60f3def64d354fc4ec702b61f2863e2b1fc68637ad50b92b8e711f9113d",
+      "ObjectPathId": "-7124736638917428800",
+      "SelectedObjectName": "shuangfu318",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu319|LuckyStrikeRuntime/shuangfu319.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:319.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu319",
+      "Address": "ui/atlas/talent_passive_3/shuangfu319",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu319.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:319",
+          "Name": "Wasteland Raid"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu319",
+      "SpriteAddress": 2139436951,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "3ed9682410a0682b31642a917eb3f7b8853cf70e1fda41d94683355aa82f30b1",
+      "ObjectPathId": "-7483091062004570178",
+      "SelectedObjectName": "shuangfu319",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu320|LuckyStrikeRuntime/shuangfu320.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:320.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu320",
+      "Address": "ui/atlas/talent_passive_3/shuangfu320",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu320.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:320",
+          "Name": "Time Wheel Lucky Soul"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu320",
+      "SpriteAddress": 2139436975,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 144,
+      "PngMode": "RGBA",
+      "PixelSha256": "e17c7f825beb44fde6e3a492d7c328ac78e9f0963d49c87f4b697f35fe89e22a",
+      "ObjectPathId": "-3139401705317482643",
+      "SelectedObjectName": "shuangfu320",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu328|LuckyStrikeRuntime/shuangfu328.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:328.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu328",
+      "Address": "ui/atlas/talent_passive_3/shuangfu328",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu328.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:328",
+          "Name": "Formless Flame Slash Luck"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu328",
+      "SpriteAddress": 2139436983,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 129,
+      "PngMode": "RGBA",
+      "PixelSha256": "4ba60e6d79fd1ef93ddc6aad7f95e8bab5fbe1a7e219da1b0fac14443df0818b",
+      "ObjectPathId": "619996992613869099",
+      "SelectedObjectName": "shuangfu328",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu329|LuckyStrikeRuntime/shuangfu329.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:329.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu329",
+      "Address": "ui/atlas/talent_passive_3/shuangfu329",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu329.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:329",
+          "Name": "Formless Combo"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu329",
+      "SpriteAddress": 2139436984,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 129,
+      "PngMode": "RGBA",
+      "PixelSha256": "13e2370efbd43522ef7d85515b8dcfdb324c8180f4e8a66d60244f688167442b",
+      "ObjectPathId": "270719907217083196",
+      "SelectedObjectName": "shuangfu329",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu330|LuckyStrikeRuntime/shuangfu330.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:330.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu330",
+      "Address": "ui/atlas/talent_passive_3/shuangfu330",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu330.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:330",
+          "Name": "Formless Flame Slash - Break"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu330",
+      "SpriteAddress": 2139437008,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 129,
+      "PngMode": "RGBA",
+      "PixelSha256": "1c0c2de3f13d76b4acdf1045eee3ec209deff5f5a19a627c29151072195a92f6",
+      "ObjectPathId": "-441553709471701586",
+      "SelectedObjectName": "shuangfu330",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3804964470|shuangfu331|LuckyStrikeRuntime/shuangfu331.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:331.iconPath",
+      "Value": "ui/atlas/talent_passive_3/shuangfu331",
+      "Address": "ui/atlas/talent_passive_3/shuangfu331",
+      "AddressHash": 359924874,
+      "BundleHash": 3804964470,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/shuangfu331.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:331",
+          "Name": "Formless Flame Slash - Luck"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_3",
+      "AtlasHash": 359924874,
+      "SpriteName": "shuangfu331",
+      "SpriteAddress": 2139437009,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 130,
+      "PngMode": "RGBA",
+      "PixelSha256": "b8b5397a19bd32a35dbdf2c73f8db19572e437c44c10242e49927ffc92944cec",
+      "ObjectPathId": "-1971329198217311880",
+      "SelectedObjectName": "shuangfu331",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -2522,40 +3149,6 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_dps_lucky04|LuckyStrikeRuntime/talent_passive_icon_dps_lucky04.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.buff-source:21424.iconPath",
-      "Value": "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04",
-      "Address": "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04",
-      "AddressHash": 359924876,
-      "BundleHash": 2173254008,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_dps_lucky04.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:21424",
-          "Name": "Thorn"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_5",
-      "AtlasHash": 359924876,
-      "SpriteName": "talent_passive_icon_dps_lucky04",
-      "SpriteAddress": 3256921782,
-      "PngExported": true,
-      "PngWidth": 129,
-      "PngHeight": 148,
-      "PngMode": "RGBA",
-      "PixelSha256": "9c5df87b5b0407902d65218fb197dc04a34275e15ce5cdd2ae5fe94bb28a7f5c",
-      "ObjectPathId": "3630585918272962198",
-      "SelectedObjectName": "talent_passive_icon_dps_lucky04",
-      "SelectedObjectType": "Sprite"
-    },
-    {
       "AssetId": "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_dps_luckyconversion|LuckyStrikeRuntime/talent_passive_icon_dps_luckyconversion.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -2652,7 +3245,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "7397505fc16b2f8958318b62a22d9a394bef63ee709f532a2e3eb18d01ba74ba",
+      "PixelSha256": "8df185d5af5ee54de55e60cd4da5faf44c1697139e82e1a0b32603745aa69524",
       "ObjectPathId": "3128324889428365458",
       "SelectedObjectName": "talent_passive_icon_general_dps_arrtuprandom",
       "SelectedObjectType": "Sprite"
@@ -2723,6 +3316,40 @@
       "PixelSha256": "bbf6134128e0b55483a42c5a864674b94e609efecd52ea2fcd484f1e9c841f3c",
       "ObjectPathId": "1483048762046676683",
       "SelectedObjectName": "talent_passive_icon_general_dps_flyhitget",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_icearrowaoe|LuckyStrikeRuntime/talent_passive_icon_general_dps_icearrowaoe.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:208.iconPath",
+      "Value": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe",
+      "Address": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe",
+      "AddressHash": 359924873,
+      "BundleHash": 2473336053,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_general_dps_icearrowaoe.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:208",
+          "Name": "Frost Explosion"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_2",
+      "AtlasHash": 359924873,
+      "SpriteName": "talent_passive_icon_general_dps_icearrowaoe",
+      "SpriteAddress": 3808793589,
+      "PngExported": true,
+      "PngWidth": 130,
+      "PngHeight": 145,
+      "PngMode": "RGBA",
+      "PixelSha256": "aba20522e273df59082688ae4948e1ff7c19fe8927a33337f92cb0e6cd06d1d4",
+      "ObjectPathId": "-5890132798454636393",
+      "SelectedObjectName": "talent_passive_icon_general_dps_icearrowaoe",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -2828,6 +3455,40 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "LuckyStrikeRuntime|Sprite|1141707636|talent_passive_icon_general_dps_ignoredef|LuckyStrikeRuntime/talent_passive_icon_general_dps_ignoredef.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:173.iconPath",
+      "Value": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_ignoredef",
+      "Address": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_ignoredef",
+      "AddressHash": 359924872,
+      "BundleHash": 1141707636,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_general_dps_ignoredef.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:173",
+          "Name": "Luck Enhancement"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_1",
+      "AtlasHash": 359924872,
+      "SpriteName": "talent_passive_icon_general_dps_ignoredef",
+      "SpriteAddress": 1980507350,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 146,
+      "PngMode": "RGBA",
+      "PixelSha256": "fdbd27bf0ac34382db4fd903a33620d0146d5bc0def4e65281a7f34794ced40c",
+      "ObjectPathId": "7286603713275054058",
+      "SelectedObjectName": "talent_passive_icon_general_dps_ignoredef",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "LuckyStrikeRuntime|Sprite|2473336053|talent_passive_icon_general_dps_luckandcri|LuckyStrikeRuntime/talent_passive_icon_general_dps_luckandcri.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -2866,7 +3527,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
       "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.talent:320.iconPath",
+      "Field": "sourcesById.talent:422.iconPath",
       "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_ruthless",
       "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_ruthless",
       "AddressHash": 359924875,
@@ -2878,8 +3539,8 @@
       "RefCount": 1,
       "Rows": [
         {
-          "Id": "talent:320",
-          "Name": "Time Wheel Lucky Soul"
+          "Id": "talent:422",
+          "Name": "Chasing Step"
         }
       ],
       "AtlasAddress": "ui/atlas/talent_passive_4",
@@ -3032,40 +3693,6 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_tearget|LuckyStrikeRuntime/talent_passive_icon_general_dps_tearget.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.talent:306.iconPath",
-      "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tearget",
-      "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tearget",
-      "AddressHash": 359924875,
-      "BundleHash": 841625591,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_general_dps_tearget.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "talent:306",
-          "Name": "Crimson Lotus Duality"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_4",
-      "AtlasHash": 359924875,
-      "SpriteName": "talent_passive_icon_general_dps_tearget",
-      "SpriteAddress": 1703830162,
-      "PngExported": true,
-      "PngWidth": 128,
-      "PngHeight": 147,
-      "PngMode": "RGBA",
-      "PixelSha256": "c39455110a6e7b1bdc013063b2159c702bfe15c76d2d06e377aecf0b676e904c",
-      "ObjectPathId": "-4439643837671849030",
-      "SelectedObjectName": "talent_passive_icon_general_dps_tearget",
-      "SelectedObjectType": "Sprite"
-    },
-    {
       "AssetId": "LuckyStrikeRuntime|Sprite|1141707636|talent_passive_icon_general_dps_thunderstrike|LuckyStrikeRuntime/talent_passive_icon_general_dps_thunderstrike.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -3100,40 +3727,6 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "LuckyStrikeRuntime|Sprite|841625591|talent_passive_icon_general_dps_tornadoget|LuckyStrikeRuntime/talent_passive_icon_general_dps_tornadoget.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.talent:319.iconPath",
-      "Value": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tornadoget",
-      "Address": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tornadoget",
-      "AddressHash": 359924875,
-      "BundleHash": 841625591,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_general_dps_tornadoget.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "talent:319",
-          "Name": "Wasteland Raid"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_4",
-      "AtlasHash": 359924875,
-      "SpriteName": "talent_passive_icon_general_dps_tornadoget",
-      "SpriteAddress": 1411105981,
-      "PngExported": true,
-      "PngWidth": 146,
-      "PngHeight": 147,
-      "PngMode": "RGBA",
-      "PixelSha256": "eeee1fc565c8548abc25b20a5d1c1cf2ed843df5d58f317621a89cd91bc5f822",
-      "ObjectPathId": "8234457504861682088",
-      "SelectedObjectName": "talent_passive_icon_general_dps_tornadoget",
-      "SelectedObjectType": "Sprite"
-    },
-    {
       "AssetId": "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_general_sup_encourage|LuckyStrikeRuntime/talent_passive_icon_general_sup_encourage.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -3165,6 +3758,40 @@
       "PixelSha256": "0fae20734fdf3daee615c85ae0b2330193ec38386a33e01766feb2e01962c7ea",
       "ObjectPathId": "8876108180631058624",
       "SelectedObjectName": "talent_passive_icon_general_sup_encourage",
+      "SelectedObjectType": "Sprite"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_general_sup_grassdammastery|LuckyStrikeRuntime/talent_passive_icon_general_sup_grassdammastery.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:506.iconPath",
+      "Value": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdammastery",
+      "Address": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdammastery",
+      "AddressHash": 359924876,
+      "BundleHash": 2173254008,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_general_sup_grassdammastery.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:506",
+          "Name": "Arcane of Green"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_5",
+      "AtlasHash": 359924876,
+      "SpriteName": "talent_passive_icon_general_sup_grassdammastery",
+      "SpriteAddress": 1014038863,
+      "PngExported": true,
+      "PngWidth": 141,
+      "PngHeight": 146,
+      "PngMode": "RGBA",
+      "PixelSha256": "71d598ea8d6981d24b2b112888d0503e9eea00ad494183565100c4354c89c237",
+      "ObjectPathId": "-7240197960042963000",
+      "SelectedObjectName": "talent_passive_icon_general_sup_grassdammastery",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -3372,6 +3999,40 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "LuckyStrikeRuntime|Sprite|3204800380|talent_passive_icon_general_tank_pierce|LuckyStrikeRuntime/talent_passive_icon_general_tank_pierce.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.talent:962.iconPath",
+      "Value": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_pierce",
+      "Address": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_pierce",
+      "AddressHash": 359924880,
+      "BundleHash": 3204800380,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/talent_passive_icon_general_tank_pierce.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "talent:962",
+          "Name": "Granite Fury Pursuit"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/talent_passive_9",
+      "AtlasHash": 359924880,
+      "SpriteName": "talent_passive_icon_general_tank_pierce",
+      "SpriteAddress": 1965529322,
+      "PngExported": true,
+      "PngWidth": 148,
+      "PngHeight": 148,
+      "PngMode": "RGBA",
+      "PixelSha256": "f86ab44b8305ac7f1142cf9356d88c1500f0a06c3a8425dfc188269d8450a332",
+      "ObjectPathId": "3485067466456800186",
+      "SelectedObjectName": "talent_passive_icon_general_tank_pierce",
+      "SelectedObjectType": "Sprite"
+    },
+    {
       "AssetId": "LuckyStrikeRuntime|Sprite|2173254008|talent_passive_icon_sup_heal02|LuckyStrikeRuntime/talent_passive_icon_sup_heal02.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -3437,40 +4098,6 @@
       "PixelSha256": "1bc76872177c0248ef88bb036ee75f1d255342bdabe30d21aed9ccd6d19ac099",
       "ObjectPathId": "-6899993752557351730",
       "SelectedObjectName": "talent_passive_icon_tank_violent01",
-      "SelectedObjectType": "Sprite"
-    },
-    {
-      "AssetId": "LuckyStrikeRuntime|Sprite|841625591|talent_skill_300001|LuckyStrikeRuntime/talent_skill_300001.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.talent:331.iconPath",
-      "Value": "ui/atlas/talent_passive_4/talent_skill_300001",
-      "Address": "ui/atlas/talent_passive_4/talent_skill_300001",
-      "AddressHash": 359924875,
-      "BundleHash": 841625591,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/talent_skill_300001.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "talent:331",
-          "Name": "Formless Flame Slash - Luck"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_4",
-      "AtlasHash": 359924875,
-      "SpriteName": "talent_skill_300001",
-      "SpriteAddress": 2615737859,
-      "PngExported": true,
-      "PngWidth": 138,
-      "PngHeight": 144,
-      "PngMode": "RGBA",
-      "PixelSha256": "49e2b46f673720fc24ac43f118353d1d1eb6066afa9bcd4d1464f01e70deb66d",
-      "ObjectPathId": "-713103732695156529",
-      "SelectedObjectName": "talent_skill_300001",
       "SelectedObjectType": "Sprite"
     },
     {
@@ -3678,6 +4305,161 @@
       "SelectedObjectType": "Sprite"
     },
     {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|1314537264|xuwangyinzi_s2_05_003|LuckyStrikeRuntime/xuwangyinzi_s2_05_003.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.phantom-factor:3056400.iconPath",
+      "Value": "xuwangyinzi_s2_05_003",
+      "Address": "xuwangyinzi_s2_05_003",
+      "AddressHash": 3016483820,
+      "BundleHash": 1314537264,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/xuwangyinzi_s2_05_003.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "phantom-factor:3056400",
+          "Name": "Verdant Oracle Reality Factor X3"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s2_05_003",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "26233e53a8ac59cfb427f43a7a532c644ded30ae7716996d99effccd7bdf0de3",
+      "ObjectPathId": "2502582671655237305",
+      "SelectedObjectName": "xuwangyinzi_s2_05_003",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|2910849423|xuwangyinzi_s3_01_005|LuckyStrikeRuntime/xuwangyinzi_s3_01_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.phantom-factor:3050440.iconPath",
+      "Value": "xuwangyinzi_s3_01_005",
+      "Address": "xuwangyinzi_s3_01_005",
+      "AddressHash": 2680510155,
+      "BundleHash": 2910849423,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/xuwangyinzi_s3_01_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "phantom-factor:3050440",
+          "Name": "Stormblade Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_01_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "2029b8b6fc069520e1af03a5be8ac9200aa0c97d131cbe52bd516e9d133786a9",
+      "ObjectPathId": "1530950834844327804",
+      "SelectedObjectName": "xuwangyinzi_s3_01_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|571380497|xuwangyinzi_s3_02_006|LuckyStrikeRuntime/xuwangyinzi_s3_02_006.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.phantom-factor:3052450.iconPath",
+      "Value": "xuwangyinzi_s3_02_006",
+      "Address": "xuwangyinzi_s3_02_006",
+      "AddressHash": 2681696077,
+      "BundleHash": 571380497,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/xuwangyinzi_s3_02_006.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "phantom-factor:3052450",
+          "Name": "Frost Mage Reality Factor X6"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_02_006",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0a040fcb90f2960e2c850f4fde0166373b333ecc4645f33dc19d4eadcf23dd28",
+      "ObjectPathId": "-7264243937689689809",
+      "SelectedObjectName": "xuwangyinzi_s3_02_006",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|183852178|xuwangyinzi_s3_04_005|LuckyStrikeRuntime/xuwangyinzi_s3_04_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.phantom-factor:3051440.iconPath",
+      "Value": "xuwangyinzi_s3_04_005",
+      "Address": "xuwangyinzi_s3_04_005",
+      "AddressHash": 2684067918,
+      "BundleHash": 183852178,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/xuwangyinzi_s3_04_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "phantom-factor:3051440",
+          "Name": "Wind Knight Reality Factor X5"
+        }
+      ],
+      "TextureName": "xuwangyinzi_s3_04_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "6333d293ab54af0307c13457edaaa2f7b65049cb315342e0db68c2631fb94360",
+      "ObjectPathId": "-1120916642556136587",
+      "SelectedObjectName": "xuwangyinzi_s3_04_005",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|1401118032|yinzi_s2_01_010|LuckyStrikeRuntime/yinzi_s2_01_010.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.phantom-factor:3050100.iconPath",
+      "Value": "yinzi_s2_01_010",
+      "Address": "yinzi_s2_01_010",
+      "AddressHash": 843356876,
+      "BundleHash": 1401118032,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/yinzi_s2_01_010.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "phantom-factor:3050100",
+          "Name": "Stormblade X10"
+        }
+      ],
+      "TextureName": "yinzi_s2_01_010",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "05c645557ede19f6c57b3eeb122c4b0f3a7d836558dc97a0089df2aef092992c",
+      "ObjectPathId": "3371487395059469810",
+      "SelectedObjectName": "yinzi_s2_01_010",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "LuckyStrikeRuntime|Texture2D|3355430481|yinzi_s2_02_010|LuckyStrikeRuntime/yinzi_s2_02_010.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -3706,6 +4488,37 @@
       "PixelSha256": "36014d1e7bb7a0ebab1bc381ebea91e65e8e97337ac525321764c6ba6a490148",
       "ObjectPathId": "1525571984785754478",
       "SelectedObjectName": "yinzi_s2_02_010",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Texture2D|981569846|yinzi_s2_03_005|LuckyStrikeRuntime/yinzi_s2_03_005.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.phantom-factor:3060050.iconPath",
+      "Value": "yinzi_s2_03_005",
+      "Address": "yinzi_s2_03_005",
+      "AddressHash": 845728690,
+      "BundleHash": 981569846,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "LuckyStrikeRuntime/yinzi_s2_03_005.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "phantom-factor:3060050",
+          "Name": "Flame Vanguard X5"
+        }
+      ],
+      "TextureName": "yinzi_s2_03_005",
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "4cc53b06d9ae9368fd50bd50a6160af4c07865e8bc6b3d609cfaf7021ac1a20e",
+      "ObjectPathId": "8476563207510875146",
+      "SelectedObjectName": "yinzi_s2_03_005",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -3926,8 +4739,8 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-27T06:13:21.464Z",
-  "PngAssetCount": 117,
+  "PngExportedAt": "2026-05-29T04:14:03.923Z",
+  "PngAssetCount": 142,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }

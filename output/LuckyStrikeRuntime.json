@@ -3,45 +3,45 @@
   "generatedBy": "LuckyStrikeRuntime.gen",
   "runtimeOf": "LuckyStrikeTable.json",
   "stats": {
-    "sources": 146,
-    "buffIds": 166,
+    "sources": 173,
+    "buffIds": 190,
     "sourceKindCounts": {
       "imagine": 4,
-      "lucky-strike": 20,
-      "phantom-factor": 10,
-      "season-rogue-entry": 33,
+      "lucky-strike": 21,
+      "phantom-factor": 16,
+      "season-rogue-entry": 45,
       "season-talent-node": 15,
-      "talent-passive": 64
+      "talent-passive": 72
     },
     "formulaPolicyCounts": {
-      "behavior-only": 51,
-      "exact-produced-damage": 20,
-      "expected-value-candidate": 75
+      "behavior-only": 63,
+      "exact-produced-damage": 21,
+      "expected-value-candidate": 89
     },
     "termCounts": {
-      "exactLuckyDamage": 20,
+      "exactLuckyDamage": 21,
       "guaranteedLucky": 3,
-      "luckChancePct": 13,
+      "luckChancePct": 14,
       "luckEntryAcquisition": 5,
       "luckEntryDamageScaling": 4,
       "luckEntryEvidence": 1,
-      "luckEvidence": 19,
+      "luckEvidence": 24,
       "luckStatBehavior": 2,
-      "luckStatDamageScaling": 29,
-      "luckStatPct": 19,
-      "luckToLuckyScaling": 4,
+      "luckStatDamageScaling": 30,
+      "luckStatPct": 23,
+      "luckToLuckyScaling": 5,
       "luckyBlockTrigger": 8,
       "luckyChancePct": 6,
-      "luckyCritInteraction": 4,
-      "luckyDamagePct": 12,
-      "luckyEvidence": 19,
-      "luckyFinalDamagePct": 4,
-      "luckyMultiplierPct": 10,
-      "luckyTimingOrResource": 20,
-      "luckyTrigger": 33
+      "luckyCritInteraction": 8,
+      "luckyDamagePct": 16,
+      "luckyEvidence": 23,
+      "luckyFinalDamagePct": 5,
+      "luckyMultiplierPct": 17,
+      "luckyTimingOrResource": 27,
+      "luckyTrigger": 43
     },
-    "classScopedSources": 61,
-    "specScopedSources": 24,
+    "classScopedSources": 69,
+    "specScopedSources": 29,
     "contributionRuntimeLuckyRows": 0
   },
   "semantics": {
@@ -162,36 +162,43 @@
       "sourceKind": "lucky-strike",
       "sourceType": "lucky-strike",
       "sourceEntityId": 2031103,
-      "sourceName": "Unmapped Buff 2031103",
+      "sourceName": "Lucky Strike",
       "sourceNames": {
-        "en": "Unmapped Buff 2031103",
-        "zh-CN": "未映射增益 2031103",
-        "zh-TW": "未對應增益 2031103",
-        "ja": "未マッピングバフ 2031103",
-        "ko-KR": "매핑되지 않은 버프 2031103",
-        "fr": "Buff non mappé 2031103",
-        "de": "Nicht zugeordneter Buff 2031103",
-        "es": "Mejora sin asignar 2031103",
-        "pt-BR": "Bônus não mapeado 2031103",
-        "th": "บัฟที่ยังไม่แมป 2031103",
-        "id": "Buff belum dipetakan 2031103",
-        "design": "战斧-幸运"
+        "design": "战斧-幸运",
+        "en": "Lucky Strike",
+        "zh-CN": "幸运一击",
+        "zh-TW": "幸運一擊",
+        "ja": "狂熱の斬撃",
+        "ko-KR": "광열의 참격",
+        "fr": "Frappe chanceuse",
+        "de": "Glückstreffer",
+        "es": "Golpe de suerte",
+        "pt-BR": "Golpe de Sorte",
+        "th": "ฟันอย่างบ้าคลั่ง",
+        "id": "Zealous Slash"
       },
       "buffIds": [
         2031103
       ],
       "sourceRuleIds": [
-        "mrs:ddaf9514bce1"
+        "mrs:95a1bdf9754e"
       ],
       "targetDamageIds": [
         2203110303,
         2203110304
+      ],
+      "targetRecountIds": [
+        227
       ],
       "formulaPolicy": "exact-produced-damage",
       "luckyTerms": [
         {
           "termId": "exactLuckyDamage",
           "confidence": "target-map"
+        },
+        {
+          "termId": "luckyEvidence",
+          "confidence": "description-pattern"
         }
       ],
       "requiredRuntimeEvidence": [
@@ -199,6 +206,7 @@
         "damage id",
         "observed final lucky hit value",
         "produced damage row id",
+        "source-specific trigger predicate",
         "target uid"
       ]
     },
@@ -266,27 +274,27 @@
         "en": "Lucky Strike",
         "zh-CN": "幸运一击",
         "zh-TW": "幸運一擊",
-        "ja": "幸運の一撃",
-        "ko-KR": "행운의 일격",
+        "ja": "深葉・ブルームサークル",
+        "ko-KR": "만개・희망의 결계",
         "fr": "Frappe chanceuse",
         "de": "Glückstreffer",
         "es": "Golpe de suerte",
         "pt-BR": "Golpe de Sorte",
-        "th": "Lucky Strike",
-        "id": "Lucky Hit"
+        "th": "Divine Circle Bloom",
+        "id": "Flourish - Hope Barrier"
       },
       "buffIds": [
         2031105
       ],
       "sourceRuleIds": [
-        "mrs:5611a06b2750"
+        "mrs:70b8fcd8ebfb"
       ],
       "targetDamageIds": [
         2203110503,
         2203110504
       ],
       "targetRecountIds": [
-        165
+        169
       ],
       "formulaPolicy": "exact-produced-damage",
       "luckyTerms": [
@@ -515,27 +523,27 @@
         "en": "Lucky Strike",
         "zh-CN": "幸运一击",
         "zh-TW": "幸運一擊",
-        "ja": "幸運の一撃",
-        "ko-KR": "행운의 일격",
+        "ja": "ブレイヴバッシュ",
+        "ko-KR": "용맹의 방패",
         "fr": "Frappe chanceuse",
         "de": "Glückstreffer",
         "es": "Golpe de suerte",
         "pt-BR": "Golpe de Sorte",
-        "th": "Lucky Strike",
-        "id": "Lucky Hit"
+        "th": "Valor Bash",
+        "id": "Valor Shield Bash"
       },
       "buffIds": [
         2031110
       ],
       "sourceRuleIds": [
-        "mrs:ff920407b2f7"
+        "mrs:71bfd5f30680"
       ],
       "targetDamageIds": [
         2203111003,
         2203111004
       ],
       "targetRecountIds": [
-        138
+        140
       ],
       "formulaPolicy": "exact-produced-damage",
       "luckyTerms": [
@@ -568,27 +576,27 @@
         "en": "Lucky Strike",
         "zh-CN": "幸运一击",
         "zh-TW": "幸運一擊",
-        "ja": "幸運の一撃",
-        "ko-KR": "행운의 일격",
+        "ja": "コーラスヒーリング",
+        "ko-KR": "치유의 비트",
         "fr": "Frappe chanceuse",
         "de": "Glückstreffer",
         "es": "Golpe de suerte",
         "pt-BR": "Golpe de Sorte",
-        "th": "Lucky Strike",
-        "id": "Lucky Hit"
+        "th": "Healing Beat",
+        "id": "Healing Beat"
       },
       "buffIds": [
         2031111
       ],
       "sourceRuleIds": [
-        "mrs:e3df3094be69"
+        "mrs:71b2022d93ef"
       ],
       "targetDamageIds": [
         2203111103,
         2203111104
       ],
       "targetRecountIds": [
-        194
+        198
       ],
       "formulaPolicy": "exact-produced-damage",
       "luckyTerms": [
@@ -785,57 +793,6 @@
         "source-specific trigger predicate"
       ]
     },
-    "buff-source:21424": {
-      "sourceId": "buff-source:21424",
-      "sourceKind": "lucky-strike",
-      "sourceType": "talent",
-      "sourceEntityId": 21424,
-      "sourceName": "Thorn",
-      "sourceNames": {
-        "design": "荆棘",
-        "en": "Thorn",
-        "zh-CN": "荆棘",
-        "zh-TW": "荊棘",
-        "ja": "継続の茨",
-        "ko-KR": "가시",
-        "fr": "Épine",
-        "de": "Dorn",
-        "es": "Espina",
-        "pt-BR": "Espinho",
-        "th": "Thorns",
-        "id": "Thorns"
-      },
-      "iconPath": "ui/atlas/talent_passive_5/talent_passive_icon_dps_lucky04",
-      "buffIds": [
-        21424
-      ],
-      "sourceRuleIds": [
-        "mrs:e39365ad2b4a"
-      ],
-      "targetDamageIds": [
-        22142403
-      ],
-      "targetRecountIds": [
-        191
-      ],
-      "formulaPolicy": "exact-produced-damage",
-      "luckyTerms": [
-        {
-          "termId": "exactLuckyDamage",
-          "confidence": "target-map"
-        }
-      ],
-      "requiredRuntimeEvidence": [
-        "attacker uid",
-        "damage id",
-        "observed final lucky hit value",
-        "produced damage row id",
-        "target uid"
-      ],
-      "ownership": {
-        "talentId": 21424
-      }
-    },
     "buff-source:2201140": {
       "sourceId": "buff-source:2201140",
       "sourceKind": "lucky-strike",
@@ -1016,6 +973,114 @@
         "produced damage row id",
         "target uid"
       ]
+    },
+    "buff-source:2202291": {
+      "sourceId": "buff-source:2202291",
+      "sourceKind": "lucky-strike",
+      "sourceType": "lucky-strike",
+      "sourceEntityId": 2202291,
+      "sourceName": "Healing Orb",
+      "sourceNames": {
+        "design": "生命馈赠-治疗子buff",
+        "en": "Healing Orb",
+        "zh-CN": "治疗球",
+        "zh-TW": "治療球",
+        "ja": "幸運の一撃",
+        "ko-KR": "행운의 일격",
+        "fr": "Orbe de soin",
+        "de": "Heilungskugel",
+        "es": "Orbe curativo",
+        "pt-BR": "Orbe de Cura",
+        "th": "Lucky Strike",
+        "id": "Lucky Hit"
+      },
+      "buffIds": [
+        2202291
+      ],
+      "sourceRuleIds": [
+        "mrs:abd6404b2c5f"
+      ],
+      "targetDamageIds": [
+        2220229101
+      ],
+      "targetRecountIds": [
+        194
+      ],
+      "formulaPolicy": "exact-produced-damage",
+      "luckyTerms": [
+        {
+          "termId": "exactLuckyDamage",
+          "confidence": "target-map"
+        },
+        {
+          "termId": "luckyEvidence",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyEvidence",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker uid",
+        "damage id",
+        "healing/lifesteal event lane",
+        "modifier windows",
+        "observed final lucky hit value",
+        "produced damage row id",
+        "source-specific trigger predicate",
+        "target uid"
+      ]
+    },
+    "buff-source:2206240": {
+      "sourceId": "buff-source:2206240",
+      "sourceKind": "lucky-strike",
+      "sourceType": "talent",
+      "sourceEntityId": 2206240,
+      "sourceName": "Holy Radiance",
+      "sourceNames": {
+        "en": "Holy Radiance",
+        "zh-CN": "神圣光辉",
+        "zh-TW": "神聖光輝",
+        "ja": "神聖光輝",
+        "ko-KR": "신성한 빛",
+        "fr": "Radiance sacrée",
+        "de": "Heiliges Strahlen",
+        "es": "Resplandor Sagrado",
+        "pt-BR": "Radiância Sagrada",
+        "th": "Holy Radiance",
+        "id": "Holy Radiance"
+      },
+      "iconPath": "ui/atlas/talent_passive_12/jiandun1223",
+      "buffIds": [
+        2206240
+      ],
+      "sourceRuleIds": [
+        "mrs:7d7fd881cf24"
+      ],
+      "targetDamageIds": [
+        2220624004
+      ],
+      "targetRecountIds": [
+        165
+      ],
+      "formulaPolicy": "exact-produced-damage",
+      "luckyTerms": [
+        {
+          "termId": "exactLuckyDamage",
+          "confidence": "target-map"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker uid",
+        "damage id",
+        "observed final lucky hit value",
+        "produced damage row id",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 2206240
+      }
     },
     "buff-source:3601": {
       "sourceId": "buff-source:3601",
@@ -1202,6 +1267,113 @@
         "target uid"
       ]
     },
+    "phantom-factor:3050100": {
+      "sourceId": "phantom-factor:3050100",
+      "sourceKind": "phantom-factor",
+      "sourceType": "season-phantom-factor",
+      "sourceEntityId": 3050100,
+      "sourceName": "Stormblade X10",
+      "sourceNames": {
+        "en": "Stormblade X10",
+        "zh-CN": "雷影X10",
+        "zh-TW": "雷影X10",
+        "ja": "ストームブレイドX10",
+        "ko-KR": "스톰 블레이드X10",
+        "fr": "Lame-tempête X10",
+        "de": "Sturmklinge X10",
+        "es": "Filo tormentoso X10",
+        "pt-BR": "Lâmina Tempestuosa X10",
+        "th": "Raikage X10",
+        "id": "Stormblade X10"
+      },
+      "description": "Stormflash duration +; Moonstrike and Luck effect Illusion-Breaking DMG +. While Stormflash is active, grants Illusion Energy per second.",
+      "iconPath": "yinzi_s2_01_010",
+      "buffIds": [
+        3050100
+      ],
+      "sourceRuleIds": [
+        "mrs:1edc350e5f71"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckStatDamageScaling",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker Luck snapshot at hit time",
+        "attacker uid",
+        "cast timeline or cooldown state",
+        "crit flag",
+        "damage id",
+        "Luck-scaled damage source amount",
+        "lucky flag or exact lucky packet",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "target uid"
+      ]
+    },
+    "phantom-factor:3050440": {
+      "sourceId": "phantom-factor:3050440",
+      "sourceKind": "phantom-factor",
+      "sourceType": "season-phantom-factor",
+      "sourceEntityId": 3050440,
+      "sourceName": "Stormblade Reality Factor X5",
+      "sourceNames": {
+        "en": "Stormblade Reality Factor X5",
+        "zh-CN": "雷影真实因子X5",
+        "zh-TW": "雷影真實因子X5",
+        "ja": "ストームブレイド・実像因子X5",
+        "ko-KR": "스톰 블레이드 진실 인자X5",
+        "fr": "Facteur de réalité de Lame-tempête X5",
+        "de": "Sturmklinge X5",
+        "es": "Factor de Realidad de filo tormentoso X5",
+        "pt-BR": "Fator de Realidade de Lâmina Tempestuosa X5",
+        "th": "Stormblade Reality Factor X5",
+        "id": "Stormblade Truth Factor X5"
+      },
+      "description": "When Illusion Energy reaches points, Lucky Strike Multiplier increases by for 10s, and Moonblade's Luck Chance from any source is increased by .",
+      "iconPath": "xuwangyinzi_s3_01_005",
+      "buffIds": [
+        3050440
+      ],
+      "sourceRuleIds": [
+        "mrs:504ea4827638"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyChancePct",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker uid",
+        "cast timeline or cooldown state",
+        "crit flag",
+        "damage id",
+        "lucky chance source amount",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "source-specific trigger predicate",
+        "target uid"
+      ]
+    },
     "phantom-factor:3051050": {
       "sourceId": "phantom-factor:3051050",
       "sourceKind": "phantom-factor",
@@ -1221,35 +1393,29 @@
         "th": "Wind X5",
         "id": "Gale X5"
       },
-      "description": "Valor Cyclone can trigger Lucky Strike; Valor Cyclone Dream DMG +",
+      "description": "Valor Cyclone can trigger Lucky Strike; Valor Cyclone Illusion-Breaking DMG +. Triggering Lucky Strike with Valor Cyclone grants Illusion Energy.",
       "iconPath": "yinzi_s2_04_005",
       "buffIds": [
         3051050
       ],
       "sourceRuleIds": [
-        "mrs:919f6d99167d"
-      ],
-      "targetRecountIds": [
-        12
+        "mrs:9c2eae49ddb3"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
+        },
         {
           "termId": "luckyTrigger",
           "confidence": "description-pattern"
         }
       ],
       "requiredRuntimeEvidence": [
-        "damage id",
-        "hit timestamp",
-        "modifier value or component amount",
+        "cast timeline or cooldown state",
         "modifier windows",
-        "observed final hit value",
-        "season damage bonus snapshot at hit time",
-        "seasonal factor selection and season damage bonus snapshot at hit time",
-        "skill id",
-        "source-specific trigger predicate",
-        "sourceRuleId active on hit"
+        "source-specific trigger predicate"
       ]
     },
     "phantom-factor:3051090": {
@@ -1271,16 +1437,13 @@
         "th": "Wind X9",
         "id": "Gale X9"
       },
-      "description": "Tornado can trigger Lucky Strike; Tornado Dream DMG +",
+      "description": "Tornado can trigger Lucky Strike; Tornado Illusion-Breaking DMG +. Dealing damage with Tornado grants Illusion Energy.",
       "iconPath": "yinzi_s2_04_009",
       "buffIds": [
         3051090
       ],
       "sourceRuleIds": [
-        "mrs:09c03f3773e3"
-      ],
-      "targetRecountIds": [
-        20
+        "mrs:a51375eeefdf"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
@@ -1290,16 +1453,12 @@
         }
       ],
       "requiredRuntimeEvidence": [
-        "damage id",
-        "hit timestamp",
-        "modifier value or component amount",
+        "attacker uid",
+        "cast timeline or cooldown state",
         "modifier windows",
-        "observed final hit value",
-        "season damage bonus snapshot at hit time",
-        "seasonal factor selection and season damage bonus snapshot at hit time",
-        "skill id",
+        "produced damage row id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit"
+        "target uid"
       ]
     },
     "phantom-factor:3051140": {
@@ -1310,27 +1469,24 @@
       "sourceName": "Wind Knight Rhapsody X3",
       "sourceNames": {
         "en": "Wind Knight Rhapsody X3",
-        "zh-CN": "青岚狂想X3.G1",
-        "zh-TW": "青嵐狂想X3.G1",
-        "ja": "ゲイルランサー・狂想X3.G1",
+        "zh-CN": "青岚狂想X3",
+        "zh-TW": "青嵐狂想X3",
+        "ja": "ゲイルランサー・狂想X3",
         "ko-KR": "윈드 나이트 광상X3",
         "fr": "Rhapsodie de Chevalier du vent X3",
         "de": "Windritter-Rhapsodie X3",
         "es": "Rapsodia: Caballero del viento X3",
         "pt-BR": "Rapsódia do Cavaleiro do Vento X3",
         "th": "WInd Rhapsody X3",
-        "id": "Gale Rhapsody X3.G1"
+        "id": "Gale Rhapsody X3"
       },
-      "description": "When the second attack of Instant Edge triggers both a Lucky Strike and a Crit, it fires an Azure Sever. Azure Sever Dream DMG +.",
+      "description": "When the second attack of Instant Edge triggers both a Lucky Strike and a Crit, it fires an Azure Sever. Azure Sever Illusion-Breaking DMG +.",
       "iconPath": "kuangxiangyinzi_s2_04_003",
       "buffIds": [
         3051140
       ],
       "sourceRuleIds": [
-        "mrs:aebceee128ba"
-      ],
-      "targetRecountIds": [
-        17
+        "mrs:912ae61a3245"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
@@ -1351,8 +1507,55 @@
         "attacker uid",
         "modifier windows",
         "produced damage row id",
-        "seasonal factor selection and season damage bonus snapshot at hit time",
         "source-specific trigger predicate",
+        "target uid"
+      ]
+    },
+    "phantom-factor:3051440": {
+      "sourceId": "phantom-factor:3051440",
+      "sourceKind": "phantom-factor",
+      "sourceType": "season-phantom-factor",
+      "sourceEntityId": 3051440,
+      "sourceName": "Wind Knight Reality Factor X5",
+      "sourceNames": {
+        "en": "Wind Knight Reality Factor X5",
+        "zh-CN": "青岚真实因子X5",
+        "zh-TW": "青嵐真實因子X5",
+        "ja": "ゲイルランサー・実像因子X5",
+        "ko-KR": "윈드 나이트 진실 인자X5",
+        "fr": "Facteur de réalité de Chevalier du vent X5",
+        "de": "Windritter X5",
+        "es": "Factor de realidad de caballero del viento X5",
+        "pt-BR": "Fator de Realidade de Cavaleiro do Vento X5",
+        "th": "Wind Knight Reality Factor X5",
+        "id": "Gale Truth Factor X5"
+      },
+      "description": "When Illusion Energy reaches points, the next Instant Edge or Sharp Impact during Chasing Step has its Luck Chance from any source increased by .",
+      "iconPath": "xuwangyinzi_s3_04_005",
+      "buffIds": [
+        3051440
+      ],
+      "sourceRuleIds": [
+        "mrs:69951aab327a"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckChancePct",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker uid",
+        "cast timeline or cooldown state",
+        "crit flag",
+        "damage id",
+        "Luck chance source amount",
+        "lucky flag or exact lucky packet",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
         "target uid"
       ]
     },
@@ -1375,13 +1578,13 @@
         "th": "Frost X10",
         "id": "Frost X10"
       },
-      "description": "In the Permafrost status, Lucky Strike Dream DMG +",
+      "description": "While Permafrost is active, Lucky Strike Illusion-Breaking DMG +. Casting Permafrost grants Illusion Energy.",
       "iconPath": "yinzi_s2_02_010",
       "buffIds": [
         3052100
       ],
       "sourceRuleIds": [
-        "mrs:f13e8cc76a76"
+        "mrs:baff40b33388"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
@@ -1391,16 +1594,74 @@
         }
       ],
       "requiredRuntimeEvidence": [
+        "cast timeline or cooldown state",
+        "modifier windows",
+        "source-specific trigger predicate"
+      ]
+    },
+    "phantom-factor:3052450": {
+      "sourceId": "phantom-factor:3052450",
+      "sourceKind": "phantom-factor",
+      "sourceType": "season-phantom-factor",
+      "sourceEntityId": 3052450,
+      "sourceName": "Frost Mage Reality Factor X6",
+      "sourceNames": {
+        "en": "Frost Mage Reality Factor X6",
+        "zh-CN": "冰魔真实因子X6",
+        "zh-TW": "冰魔真實因子X6",
+        "ja": "フロストメイジ・実像因子X6",
+        "ko-KR": "프로스트 메이지 진실 인자X6",
+        "fr": "Facteur de réalité du Mage de givre X6",
+        "de": "Frostmagier X6",
+        "es": "Factor de realidad de mago gélido X6",
+        "pt-BR": "Fator de Realidade de Mago do Gelo X6",
+        "th": "Frost Mage Reality Factor X6",
+        "id": "Frost Truth Factor X6"
+      },
+      "description": "When Illusion Energy reaches points, during the next Permafrost, channeling Frostbeam allows Ice Arrows (excluding Frost Explosion) to trigger Lucky Strike, and Lucky Strike's Final DMG increases by .",
+      "iconPath": "xuwangyinzi_s3_02_006",
+      "buffIds": [
+        3052450
+      ],
+      "sourceRuleIds": [
+        "mrs:ebe761670621"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyFinalDamagePct",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker elemental damage snapshot at hit time",
+        "attacker uid",
+        "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
+        "crit flag",
+        "damage element mapping by damage id",
         "damage id",
+        "final damage bonus snapshot at hit time",
         "hit timestamp",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
         "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
-        "season damage bonus snapshot at hit time",
-        "seasonal factor selection and season damage bonus snapshot at hit time",
+        "parent hit pairing proof",
         "skill id",
         "source-specific trigger predicate",
-        "sourceRuleId active on hit"
+        "sourceRuleId active on hit",
+        "target uid"
       ]
     },
     "phantom-factor:3055100": {
@@ -1422,16 +1683,13 @@
         "th": "Heavy X10",
         "id": "Heavy X10"
       },
-      "description": "Countercrush can trigger Lucky Strike; Countercrush Dream DMG +",
+      "description": "Countercrush can trigger Lucky Strike; Countercrush Illusion-Breaking DMG +. Triggering Countercrush grants Illusion Energy.",
       "iconPath": "yinzi_s2_09_010",
       "buffIds": [
         3055100
       ],
       "sourceRuleIds": [
-        "mrs:c95b8fccb6d0"
-      ],
-      "targetRecountIds": [
-        129
+        "mrs:db415f8b2d4a"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
@@ -1441,16 +1699,9 @@
         }
       ],
       "requiredRuntimeEvidence": [
-        "damage id",
-        "hit timestamp",
-        "modifier value or component amount",
+        "cast timeline or cooldown state",
         "modifier windows",
-        "observed final hit value",
-        "season damage bonus snapshot at hit time",
-        "seasonal factor selection and season damage bonus snapshot at hit time",
-        "skill id",
-        "source-specific trigger predicate",
-        "sourceRuleId active on hit"
+        "source-specific trigger predicate"
       ]
     },
     "phantom-factor:3056060": {
@@ -1472,13 +1723,13 @@
         "th": "Verdant X6",
         "id": "Verdant X6"
       },
-      "description": "Nature Ward Shield Amount +, and for every 1% Luck or Crit, it gains an additional +1%;Nature Ward grants an additional All Element Resistance for 8s",
+      "description": "Nature Ward Shield Amount +, and for every 1% Luck or Crit, it gains an additional +1%; Nature Ward grants an additional All Element Resistance for 8s. While in Nature Ward state, grants Illusion Energy per second.",
       "iconPath": "yinzi_s2_05_010",
       "buffIds": [
         3056060
       ],
       "sourceRuleIds": [
-        "mrs:8145018d9c96"
+        "mrs:e6dcd91d13c8"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -1512,6 +1763,7 @@
         "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
+        "cast timeline or cooldown state",
         "crit flag",
         "damage id",
         "incoming hit direction",
@@ -1542,33 +1794,74 @@
         "th": "Verdant X11",
         "id": "Verdant X11"
       },
-      "description": "Lucky Strike Dream DMG +, but Symbiotic Mark converted healing is reduced by",
+      "description": "Lucky Strike Illusion-Breaking DMG +, but Symbiotic Mark converted healing is reduced by . Triggering Lucky Strike grants Illusion Energy.",
       "iconPath": "yinzi_s2_05_011",
       "buffIds": [
         3056110
       ],
       "sourceRuleIds": [
-        "mrs:98c1efa2e628"
+        "mrs:0971bd2719ec"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
         {
           "termId": "luckyEvidence",
           "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
         }
       ],
       "requiredRuntimeEvidence": [
-        "damage id",
+        "cast timeline or cooldown state",
         "healing/lifesteal event lane",
-        "hit timestamp",
-        "modifier value or component amount",
         "modifier windows",
-        "observed final hit value",
-        "season damage bonus snapshot at hit time",
-        "seasonal factor selection and season damage bonus snapshot at hit time",
-        "skill id",
-        "source-specific trigger predicate",
-        "sourceRuleId active on hit"
+        "source-specific trigger predicate"
+      ]
+    },
+    "phantom-factor:3056400": {
+      "sourceId": "phantom-factor:3056400",
+      "sourceKind": "phantom-factor",
+      "sourceType": "season-phantom-factor",
+      "sourceEntityId": 3056400,
+      "sourceName": "Verdant Oracle Reality Factor X3",
+      "sourceNames": {
+        "en": "Verdant Oracle Reality Factor X3",
+        "zh-CN": "森语真实因子X3",
+        "zh-TW": "森語真實因子X3",
+        "ja": "ヴァーダントオラクル・実像因子X3",
+        "ko-KR": "실반 오라클 진실 인자X3",
+        "fr": "Facteur de réalité de l'Oracle verdoyant X3",
+        "de": "Grünes Orakel X3",
+        "es": "Oráculo frondoso X3",
+        "pt-BR": "Fator de Realidade de Oráculo Verdejante X3",
+        "th": "Verdant Oracle Reality Factor X3",
+        "id": "Verdant Truth Factor X3"
+      },
+      "description": "When Illusion Energy reaches points, Thorn can trigger Lucky Strike for 7s.",
+      "iconPath": "xuwangyinzi_s2_05_003",
+      "buffIds": [
+        3056400
+      ],
+      "sourceRuleIds": [
+        "mrs:e36a571cb010"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "cast timeline or cooldown state",
+        "modifier windows",
+        "source-specific trigger predicate"
       ]
     },
     "phantom-factor:3057120": {
@@ -1579,16 +1872,16 @@
       "sourceName": "Beat Performer Rhapsody X1",
       "sourceNames": {
         "en": "Beat Performer Rhapsody X1",
-        "zh-CN": "灵魂狂想X1.G1",
-        "zh-TW": "靈魂狂想X1.G1",
-        "ja": "ビートパフォーマー・狂想X1.G1",
+        "zh-CN": "灵魂狂想X1",
+        "zh-TW": "靈魂狂想X1",
+        "ja": "ビートパフォーマー・狂想X1",
         "ko-KR": "비트 퍼포머 광상X1",
         "fr": "Rhapsodie de Virtuose du rythme X1",
         "de": "Beat-Performer-Rhapsodie X1",
         "es": "Rapsodia: Artista del ritmo X1",
         "pt-BR": "Rapsódia do Artista do Ritmo X1",
         "th": "Soul Rhapsody X1",
-        "id": "Beat Rhapsody X1.G1"
+        "id": "Beat Rhapsody X1"
       },
       "description": "Flame Note can now trigger Lucky Strike. Lucky Strike DMG +.",
       "iconPath": "kuangxiangyinzi_s2_13_001",
@@ -1688,6 +1981,54 @@
         }
       ],
       "requiredRuntimeEvidence": [
+        "source-specific trigger predicate"
+      ]
+    },
+    "phantom-factor:3060050": {
+      "sourceId": "phantom-factor:3060050",
+      "sourceKind": "phantom-factor",
+      "sourceType": "season-phantom-factor",
+      "sourceEntityId": 3060050,
+      "sourceName": "Flame Vanguard X5",
+      "sourceNames": {
+        "en": "Flame Vanguard X5",
+        "zh-CN": "赤炎X5",
+        "zh-TW": "赤炎X5",
+        "ja": "赤炎の狂戦士X5",
+        "ko-KR": "트윈 스트라이커X5",
+        "fr": "Avant-garde des flammes X5",
+        "de": "Flammen-Vorhut X5",
+        "es": "Vanguardia ígnea X5",
+        "pt-BR": "Vanguarda das Chamas X5",
+        "th": "Flame Vanguard X5",
+        "id": "Redflame X5"
+      },
+      "description": "Hellfire Meteor can trigger Lucky Strike; Hellfire Meteor Illusion-Breaking DMG +. When Hellfire Meteor triggers Lucky Strike, grants Illusion Energy.",
+      "iconPath": "yinzi_s2_03_005",
+      "buffIds": [
+        3060050
+      ],
+      "sourceRuleIds": [
+        "mrs:5e0aa777dac9"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "cast timeline or cooldown state",
+        "modifier windows",
         "source-specific trigger predicate"
       ]
     },
@@ -3620,13 +3961,13 @@
         "th": "Verdant Oracle - Luck: Stacking DMG",
         "id": "Verdant Oracle·Tumpukan Damage Luck"
       },
-      "description": "When Infusion hits a target, Lucky Strike's Dream DMG is increased by 1%. This effect stacks up to 50 times and lasts for 5s. Available only in [Hard] and [Nightmare].",
+      "description": "When Infusion hits a target, Lucky Strike's Illusion-Breaking DMG is increased by 1%. This effect stacks up to 50 times and lasts for 5s. Available only in [Hard] and [Nightmare].",
       "iconPath": "ui/textures/rouge_icon/rogue_icon_entry070",
       "buffIds": [
         3056290
       ],
       "sourceRuleIds": [
-        "mrs:7691637beac2"
+        "mrs:9f16ad22aa25"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -3650,16 +3991,10 @@
         "attacker uid",
         "crit flag",
         "damage id",
-        "hit timestamp",
         "lucky flag or exact lucky packet",
         "lucky multiplier or final-damage amount",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
-        "season damage bonus snapshot at hit time",
-        "skill id",
-        "sourceRuleId active on hit",
         "target uid"
       ]
     },
@@ -3800,6 +4135,761 @@
         "source-specific trigger predicate"
       ]
     },
+    "season-rogue-entry:349": {
+      "sourceId": "season-rogue-entry:349",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 349,
+      "sourceName": "Tactical Blessing",
+      "sourceNames": {
+        "en": "Tactical Blessing",
+        "zh-CN": "战术祝福",
+        "zh-TW": "戰術祝福",
+        "ja": "戦術の祝福",
+        "ko-KR": "전술 축복",
+        "fr": "Bénédiction tactique",
+        "de": "Taktischer Segen",
+        "es": "Bendición Táctica",
+        "pt-BR": "Bênção Tática",
+        "th": "Tactical Blessing",
+        "id": "Tactical Blessing"
+      },
+      "description": "Pulse Beam increases friendly units' Crit by 10% and Luck by 10%.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry136",
+      "buffIds": [
+        997557
+      ],
+      "sourceRuleIds": [
+        "mrs:0f486a5141c9"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckEvidence",
+          "values": [
+            {
+              "rawText": "10%",
+              "unit": "percent",
+              "value": 10,
+              "decimalValue": 0.1,
+              "polarity": "increase",
+              "scope": "owner",
+              "inferredFrom": "larger percent value is owner/self"
+            },
+            {
+              "rawText": "10%",
+              "unit": "percent",
+              "value": 10,
+              "decimalValue": 0.1,
+              "polarity": "increase",
+              "scope": "party",
+              "inferredFrom": "smaller percent value is party/other players"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit"
+      ]
+    },
+    "season-rogue-entry:350": {
+      "sourceId": "season-rogue-entry:350",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 350,
+      "sourceName": "Luck Trigger",
+      "sourceNames": {
+        "en": "Luck Trigger",
+        "zh-CN": "幸运触发",
+        "zh-TW": "幸運觸發",
+        "ja": "幸運のトリガー",
+        "ko-KR": "행운 발동",
+        "fr": "Déclencheur de chance",
+        "de": "Glücksauslöser",
+        "es": "Activador de Suerte",
+        "pt-BR": "Acionamento de Sorte",
+        "th": "Luck Trigger",
+        "id": "Luck Trigger"
+      },
+      "description": "Pulse Beam can trigger Lucky Strike.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry137",
+      "buffIds": [
+        997558
+      ],
+      "sourceRuleIds": [
+        "mrs:98f17cfa568f"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "source-specific trigger predicate"
+      ]
+    },
+    "season-rogue-entry:370": {
+      "sourceId": "season-rogue-entry:370",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 370,
+      "sourceName": "Crit DMG Multiplier",
+      "sourceNames": {
+        "en": "Crit DMG Multiplier",
+        "zh-CN": "暴伤倍率",
+        "zh-TW": "暴傷倍率",
+        "ja": "会心ダメージ倍率",
+        "ko-KR": "치명타 대미지 배율",
+        "fr": "Multiplicateur de dégâts critiques",
+        "de": "Krit-SCH-Multiplikator",
+        "es": "Multiplicador de DÑO Crítico",
+        "pt-BR": "Multiplicador de Dano Crítico",
+        "th": "Crit DMG Multiplier",
+        "id": "Crit DMG Multiplier"
+      },
+      "description": "When Mastery reaches 50%, grants 20% Crit DMG and 20% Lucky Strike Multiplier.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry157",
+      "buffIds": [
+        997588
+      ],
+      "sourceRuleIds": [
+        "mrs:d8305570446a"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyCritInteraction",
+          "values": [
+            {
+              "rawText": "50%",
+              "unit": "percent",
+              "value": 50,
+              "decimalValue": 0.5,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
+          "values": [
+            {
+              "rawText": "50%",
+              "unit": "percent",
+              "value": 50,
+              "decimalValue": 0.5,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit",
+        "target uid"
+      ]
+    },
+    "season-rogue-entry:376": {
+      "sourceId": "season-rogue-entry:376",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 376,
+      "sourceName": "Luck Multiplier",
+      "sourceNames": {
+        "en": "Luck Multiplier",
+        "zh-CN": "幸运倍率",
+        "zh-TW": "幸運倍率",
+        "ja": "幸運倍率",
+        "ko-KR": "행운 배율",
+        "fr": "Multiplicateur de chance",
+        "de": "Glücksmultiplikator",
+        "es": "Multiplicador de Suerte",
+        "pt-BR": "Multiplicador de Sorte",
+        "th": "Luck Multiplier",
+        "id": "Lucky Multiplier"
+      },
+      "description": "Every 1% of Mastery increases Lucky Strike Damage by 0.5%.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry163",
+      "buffIds": [
+        997594
+      ],
+      "sourceRuleIds": [
+        "mrs:6ff3f3b88109"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyDamagePct",
+          "values": [
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": 1,
+              "decimalValue": 0.01,
+              "polarity": "increase",
+              "scope": "owner",
+              "inferredFrom": "larger percent value is owner/self"
+            },
+            {
+              "rawText": "0.5%",
+              "unit": "percent",
+              "value": 0.5,
+              "decimalValue": 0.005,
+              "polarity": "increase",
+              "scope": "party",
+              "inferredFrom": "smaller percent value is party/other players"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target uid",
+        "target/source predicate evaluation"
+      ]
+    },
+    "season-rogue-entry:389": {
+      "sourceId": "season-rogue-entry:389",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 389,
+      "sourceName": "Physique Fortune",
+      "sourceNames": {
+        "en": "Physique Fortune",
+        "zh-CN": "体魄运势",
+        "zh-TW": "體魄運勢",
+        "ja": "体力の運勢",
+        "ko-KR": "체력의 운세",
+        "fr": "Fortune physique",
+        "de": "Körperbau-Glück",
+        "es": "Fortuna Física",
+        "pt-BR": "Sorte de Físico",
+        "th": "Physique Fortune",
+        "id": "Physique Fortune"
+      },
+      "description": "Every 20 points of Max HP increases Crit and Luck by 1.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry176",
+      "buffIds": [
+        997617
+      ],
+      "sourceRuleIds": [
+        "mrs:84176e874ffa"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckStatPct",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "attacker Luck snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "lucky flag or exact lucky packet",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target uid"
+      ]
+    },
+    "season-rogue-entry:396": {
+      "sourceId": "season-rogue-entry:396",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 396,
+      "sourceName": "Lucky Heavy Strike",
+      "sourceNames": {
+        "en": "Lucky Heavy Strike",
+        "zh-CN": "幸运重击",
+        "zh-TW": "幸運重擊",
+        "ja": "幸運の重撃",
+        "ko-KR": "행운 강타",
+        "fr": "Frappe lourde chanceuse",
+        "de": "Glücklicher Schwerer Schlag",
+        "es": "Golpe Pesado de Suerte",
+        "pt-BR": "Golpe Pesado de Sorte",
+        "th": "โจมตีหนัก Lucky",
+        "id": "Luck Bash"
+      },
+      "description": "Lucky Strike deals bonus damage equal to 10% of Max HP.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry183",
+      "buffIds": [
+        997624
+      ],
+      "sourceRuleIds": [
+        "mrs:9836f35d0fc8"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyDamagePct",
+          "values": [
+            {
+              "rawText": "10%",
+              "unit": "percent",
+              "value": 10,
+              "decimalValue": 0.1,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "produced damage row id",
+        "target uid"
+      ]
+    },
+    "season-rogue-entry:401": {
+      "sourceId": "season-rogue-entry:401",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 401,
+      "sourceName": "Power of Desperation",
+      "sourceNames": {
+        "en": "Power of Desperation",
+        "zh-CN": "绝境之力",
+        "zh-TW": "絕境之力",
+        "ja": "絶体絶命の力",
+        "ko-KR": "절망의 힘",
+        "fr": "Puissance du désespoir",
+        "de": "Macht der Verzweiflung",
+        "es": "Poder de Desesperación",
+        "pt-BR": "Poder de Desespero",
+        "th": "Power of Desperation",
+        "id": "Desperation Power"
+      },
+      "description": "When HP changes, grants 5% Crit, Haste, Luck, Mastery, and Versatility.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry188",
+      "buffIds": [
+        997629
+      ],
+      "sourceRuleIds": [
+        "mrs:fd1b06803538"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckEvidence",
+          "values": [
+            {
+              "rawText": "5%",
+              "unit": "percent",
+              "value": 5,
+              "decimalValue": 0.05,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "attacker versatility damage snapshot at hit time",
+        "attacker versatility snapshot at hit time",
+        "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit"
+      ]
+    },
+    "season-rogue-entry:411": {
+      "sourceId": "season-rogue-entry:411",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 411,
+      "sourceName": "Low HP Luck",
+      "sourceNames": {
+        "en": "Low HP Luck",
+        "zh-CN": "残血幸运",
+        "zh-TW": "殘血幸運",
+        "ja": "瀕死の幸運",
+        "ko-KR": "저체력 행운",
+        "fr": "Chance à faibles PV",
+        "de": "Niedrig-LP-Glück",
+        "es": "Suerte con PS Bajos",
+        "pt-BR": "Sorte de PV Baixo",
+        "th": "Low HP Luck",
+        "id": "Near Death Luck"
+      },
+      "description": "When HP falls below 30%, grants 20% Luck.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry198",
+      "buffIds": [
+        997639
+      ],
+      "sourceRuleIds": [
+        "mrs:05ab9e0aeca5"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckEvidence",
+          "values": [
+            {
+              "rawText": "30%",
+              "unit": "percent",
+              "value": 30,
+              "decimalValue": 0.3,
+              "polarity": "increase",
+              "scope": "owner",
+              "inferredFrom": "larger percent value is owner/self"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "party",
+              "inferredFrom": "smaller percent value is party/other players"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "source-specific trigger predicate"
+      ]
+    },
+    "season-rogue-entry:413": {
+      "sourceId": "season-rogue-entry:413",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 413,
+      "sourceName": "Bloodburn Echo",
+      "sourceNames": {
+        "en": "Bloodburn Echo",
+        "zh-CN": "燃血回响",
+        "zh-TW": "燃血迴響",
+        "ja": "燃血の残響",
+        "ko-KR": "선혈의 메아리",
+        "fr": "Écho de sang brûlant",
+        "de": "Blutbrand-Echo",
+        "es": "Eco de Quemasangre",
+        "pt-BR": "Eco de Queima de Sangue",
+        "th": "Bloodburn Echo",
+        "id": "Burning Blood Echo"
+      },
+      "description": "Restores HP based on the damage dealt by Lucky Strike, and deals additional AoE damage.",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry200",
+      "buffIds": [
+        997641
+      ],
+      "sourceRuleIds": [
+        "mrs:e40d3ffc59c1"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyFinalDamagePct",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "healing/lifesteal event lane",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "produced damage row id",
+        "target uid"
+      ]
+    },
+    "season-rogue-entry:414": {
+      "sourceId": "season-rogue-entry:414",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 414,
+      "sourceName": "Twin Striker - Lucky Flame Slash",
+      "sourceNames": {
+        "en": "Twin Striker - Lucky Flame Slash",
+        "zh-CN": "赤炎狂战士·幸运火斩",
+        "zh-TW": "赤炎狂戰士·幸運火斬",
+        "ja": "ツインストライカー・幸運の火斬",
+        "ko-KR": "트윈 스트라이커・행운의 화참",
+        "fr": "Frappe jumelle - Taillade de flamme chanceuse",
+        "de": "Zwillingsstürmer – Glücklicher Flammenhieb",
+        "es": "Golpeador Doble: Corte de Llama de Suerte",
+        "pt-BR": "Atacante Duplo – Corte de Chama de Sorte",
+        "th": "Twin Striker - Lucky Flame Slash",
+        "id": "Redflame Berserker - Lucky Slash"
+      },
+      "description": "Every 1% of Luck provides a 0.2% (Stage 1)/0.1% (Stage 2)/0.05% (Stage 3) chance to trigger Formless Flame Slash. Available only in [Nightmare].",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry111",
+      "buffIds": [
+        3060160
+      ],
+      "sourceRuleIds": [
+        "mrs:ecd72b286cf0"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckStatPct",
+          "values": [
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": 1,
+              "decimalValue": 0.01,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "0.2%",
+              "unit": "percent",
+              "value": 0.2,
+              "decimalValue": 0.002,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "0.1%",
+              "unit": "percent",
+              "value": 0.1,
+              "decimalValue": 0.001,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "0.05%",
+              "unit": "percent",
+              "value": 0.05,
+              "decimalValue": 0.0005,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker Luck snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "lucky flag or exact lucky packet",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "target uid"
+      ]
+    },
+    "season-rogue-entry:420": {
+      "sourceId": "season-rogue-entry:420",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 420,
+      "sourceName": "Twin Striker - Formless Buff",
+      "sourceNames": {
+        "en": "Twin Striker - Formless Buff",
+        "zh-CN": "赤炎狂战士·无相增益",
+        "zh-TW": "赤炎狂戰士·無相增益",
+        "ja": "ツインストライカー・無相バフ",
+        "ko-KR": "트윈 스트라이커・무상 버프",
+        "fr": "Frappe jumelle - Buff informe",
+        "de": "Zwillingsstürmer – Formlos-Buff",
+        "es": "Golpeador Doble: Ventaja de Amorfo",
+        "pt-BR": "Atacante Duplo – Bonificação Informe",
+        "th": "Twin Striker - Formless Buff",
+        "id": "Redflame Berserker - Formless Buff"
+      },
+      "description": "Each level of the Formless effect increases the highest among Crit, Haste, Luck, Mastery, and Versatility by 3%. Available only in [Hard] and [Nightmare].",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry117",
+      "buffIds": [
+        3060220
+      ],
+      "sourceRuleIds": [
+        "mrs:3e0cb5ed46cd"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckEvidence",
+          "values": [
+            {
+              "rawText": "3%",
+              "unit": "percent",
+              "value": 3,
+              "decimalValue": 0.03,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "attacker versatility damage snapshot at hit time",
+        "attacker versatility snapshot at hit time",
+        "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit"
+      ]
+    },
+    "season-rogue-entry:421": {
+      "sourceId": "season-rogue-entry:421",
+      "sourceKind": "season-rogue-entry",
+      "sourceType": "advanced-rogue-entry",
+      "sourceEntityId": 421,
+      "sourceName": "Twin Striker - Fortunate Flame Slash",
+      "sourceNames": {
+        "en": "Twin Striker - Fortunate Flame Slash",
+        "zh-CN": "赤炎狂战士·火斩强幸",
+        "zh-TW": "赤炎狂戰士·火斬強幸",
+        "ja": "ツインストライカー・火斬の強運",
+        "ko-KR": "트윈 스트라이커・화참의 행운",
+        "fr": "Frappe jumelle - Taillade de flamme de fortune",
+        "de": "Zwillingsstürmer – Begünstigter Flammenhieb",
+        "es": "Golpeador Doble: Corte de Llama Afortunado",
+        "pt-BR": "Atacante Duplo – Corte de Chama Afortunado",
+        "th": "Twin Striker - Fortunate Flame Slash",
+        "id": "Redflame Berserker - Slash Luck"
+      },
+      "description": "Increases the Final DMG of Formless Flame Slash by 40%, plus an additional 20% when hitting a target with Burn. Available only in [Nightmare].",
+      "iconPath": "ui/textures/rouge_icon/rogue_icon_entry118",
+      "buffIds": [
+        3060230
+      ],
+      "sourceRuleIds": [
+        "mrs:5e53c41dd516"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckEvidence",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "damage id",
+        "final damage bonus snapshot at hit time",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit"
+      ]
+    },
     "season-talent-node:1001": {
       "sourceId": "season-talent-node:1001",
       "sourceKind": "season-talent-node",
@@ -3819,7 +4909,7 @@
         "th": "Fantasy Blast",
         "id": "Fantasy Impact"
       },
-      "description": "Every 20 Lucky Strikes trigger Fantasia Impact, up to once every 10s. Each Lucky Strike triggered reduces internal CD of Fantasia Impact by 0.30s. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1,250% ATK to enemies within 3m.",
+      "description": "Every 20 Lucky Strikes trigger Fantasia Impact, up to once every 10s. Each Lucky Strike triggered reduces internal CD of Fantasia Impact by 0.30s. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1375% ATK to enemies within 3m, but cannot Crit.",
       "iconPath": "ui/atlas/season_talent/s2talent01_01",
       "buffIds": [
         3002010
@@ -3833,10 +4923,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "250%",
+              "rawText": "1375%",
               "unit": "percent",
-              "value": 250,
-              "decimalValue": 2.5,
+              "value": 1375,
+              "decimalValue": 13.75,
               "polarity": "increase",
               "scope": "target"
             }
@@ -3850,18 +4940,25 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
         "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
         "crit flag",
         "damage id",
+        "hit timestamp",
         "Luck-scaled damage source amount",
         "lucky flag or exact lucky packet",
+        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
         "produced damage row id",
+        "skill id",
         "source-specific trigger predicate",
+        "sourceRuleId active on hit",
         "target uid"
       ]
     },
@@ -4031,7 +5128,7 @@
         "th": "ขั้นเวลา",
         "id": "Time Tier"
       },
-      "description": "Internal CD of Fantasia Impact +5s; Dream DMG of Fantasia Impact +100%. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1,250% ATK to enemies within 3m.",
+      "description": "Internal CD of Fantasia Impact +5s; Illusion-Breaking DMG of Fantasia Impact +100%. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1375% ATK to enemies within 3m, but cannot Crit.",
       "iconPath": "ui/atlas/season_talent_icon/s2talent01_04",
       "buffIds": [
         3002040
@@ -4045,10 +5142,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "250%",
+              "rawText": "1375%",
               "unit": "percent",
-              "value": 250,
-              "decimalValue": 2.5,
+              "value": 1375,
+              "decimalValue": 13.75,
               "polarity": "increase",
               "scope": "target"
             }
@@ -4058,6 +5155,8 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
         "cast timeline or cooldown state",
@@ -4072,7 +5171,6 @@
         "observed final hit value",
         "parent hit pairing proof",
         "produced damage row id",
-        "season damage bonus snapshot at hit time",
         "skill id",
         "sourceRuleId active on hit",
         "target uid"
@@ -4097,7 +5195,7 @@
         "th": "โจมตีหลากมิติ",
         "id": "Multi Realm Strike"
       },
-      "description": "Fantasia Impact required triggers +10; Dream DMG of Fantasia Impact +100%. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1,250% ATK to enemies within 3m.",
+      "description": "Fantasia Impact required triggers +10; Illusion-Breaking DMG of Fantasia Impact +100%. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1375% ATK to enemies within 3m, but cannot Crit.",
       "iconPath": "ui/atlas/season_talent_icon/s2talent02_02sel",
       "buffIds": [
         3002050
@@ -4111,10 +5209,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "250%",
+              "rawText": "1375%",
               "unit": "percent",
-              "value": 250,
-              "decimalValue": 2.5,
+              "value": 1375,
+              "decimalValue": 13.75,
               "polarity": "increase",
               "scope": "target"
             }
@@ -4124,6 +5222,8 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
         "crit flag",
@@ -4136,7 +5236,6 @@
         "observed final hit value",
         "parent hit pairing proof",
         "produced damage row id",
-        "season damage bonus snapshot at hit time",
         "skill id",
         "sourceRuleId active on hit",
         "target uid"
@@ -4161,7 +5260,7 @@
         "th": "ระลอกคลื่นโชคร้ายดี",
         "id": "Luck and Calamity"
       },
-      "description": "For each additional enemy hit, increases Fantasia Impact Dream DMG by 15%, up to 60%. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1,250% ATK to enemies within 3m. Phantom Execution: Deals Adaptive DMG equal to 650% ATK to the enemies within 3m, and the Crit DMG reaches 500%.",
+      "description": "Fantasia Impact Illusion-Breaking DMG increases by 15% for each 1 additional enemy hit, up to a maximum of 60%. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1375% ATK to enemies within 3m, but cannot Crit.",
       "iconPath": "ui/atlas/season_talent_icon/s2talent01_04",
       "buffIds": [
         3002060
@@ -4175,10 +5274,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "250%",
+              "rawText": "1375%",
               "unit": "percent",
-              "value": 250,
-              "decimalValue": 2.5,
+              "value": 1375,
+              "decimalValue": 13.75,
               "polarity": "increase",
               "scope": "target"
             }
@@ -4188,6 +5287,8 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
         "crit flag",
@@ -4200,9 +5301,7 @@
         "observed final hit value",
         "parent hit pairing proof",
         "produced damage row id",
-        "season damage bonus snapshot at hit time",
         "skill id",
-        "source predicate evaluation, such as companion or summon",
         "sourceRuleId active on hit",
         "target uid"
       ]
@@ -4226,13 +5325,13 @@
         "th": "สองชั้น",
         "id": "Dual"
       },
-      "description": "Fantasia Impact has a fixed 50% chance to trigger one extra time. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1,250% ATK to enemies within 3m. Phantom Execution: Deals Adaptive DMG equal to 650% ATK to the enemies within 3m, and the Crit DMG reaches 500%.",
+      "description": "Fantasia Impact has a fixed 50% chance to trigger one extra time. Fantasia Impact: Luck Effect: Deals Adaptive DMG equal to 1375% ATK to enemies within 3m, but cannot Crit. Phantom Execution: Deals Adaptive DMG equal to 850% ATK to the enemies within 3m, and the Crit DMG reaches 500%.",
       "iconPath": "ui/atlas/season_talent_icon/s2talent01_04",
       "buffIds": [
         3002070
       ],
       "sourceRuleIds": [
-        "mrs:5a39143611d9"
+        "mrs:593c8383a962"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -4240,10 +5339,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "250%",
+              "rawText": "1375%",
               "unit": "percent",
-              "value": 250,
-              "decimalValue": 2.5,
+              "value": 1375,
+              "decimalValue": 13.75,
               "polarity": "increase",
               "scope": "target"
             }
@@ -4253,17 +5352,23 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
         "crit flag",
         "damage id",
+        "hit timestamp",
         "Luck-scaled damage source amount",
         "lucky flag or exact lucky packet",
+        "modifier value or component amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
         "produced damage row id",
+        "skill id",
         "source predicate evaluation, such as companion or summon",
+        "sourceRuleId active on hit",
         "target uid"
       ]
     },
@@ -4349,7 +5454,7 @@
         "th": "ขยายผล - Rare",
         "id": "Amplify - Ultimate"
       },
-      "description": "While Dreamforce is active, boosts the highest stat among the 4 following stats (Crit, Haste, Luck, and Mastery) by 3%. Dreamforce: Increases Main Stats by 450 (up to 1050, scaling with season level). Cannot gain Vestige during the duration.",
+      "description": "While Dreamforce is active, boosts the highest stat among the 4 following stats (Crit, Haste, Luck, and Mastery) by 3%. Dreamforce: Increases Main Stats by 630 (up to 1,470, scaling with season level). Cannot gain Vestige during the duration.",
       "iconPath": "ui/atlas/season_talent_icon/s2talent01_04",
       "buffIds": [
         3002870,
@@ -4950,14 +6055,13 @@
         "th": "คลื่นเสียงคลั่ง",
         "id": "Mad Tune"
       },
-      "description": "While in Rhapsody of Flame, increases all Luck Chance acquired by any means by 50% and increases DMG Reduction by 25%. Healing of Stillness: If you deal no DMG to enemies for 5s, each hit of your Basic Attack will heal up to 10 allies (Party Members Prioritized), with the full 4-hit combo restoring 15.05% of their max HP in total. Maintaining Heroic Melody and Rhapsody of Flame is crucial. Heroic Melody enhances healing while consecutive Fierce Strikes accelerate Harmonic Anthem casting frequency.",
+      "description": "While in Rhapsody of Flame, increases all Luck Chance acquired by any means by 50% and increases DMG Reduction by 25%. Healing of Stillness: If you deal no DMG to enemies for 5s, each hit of your Basic Attack will heal up to 10 allies (party members prioritized), with the full 4-hit combo restoring 15.75% of their max HP in total. After casting an Ultimate, Basic Attacks immediately start healing, and Fierce Strike can trigger the 4th hit healing effect, but this is disabled upon dealing DMG to enemies. Maintaining Heroic Melody and Rhapsody of Flame is crucial. Heroic Melody enhances healing while consecutive Fierce Strikes accelerate Harmonic Anthem casting frequency.",
       "iconPath": "ui/atlas/talent_passive_13/gita1308",
       "buffIds": [
-        55330,
         2207090
       ],
       "sourceRuleIds": [
-        "mrs:cc4238d2d018"
+        "mrs:64cc5320a2e1"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -5141,11 +6245,10 @@
       "description": "When Harmonic Anthem or Fierce Strike triggers a Lucky Strike, limited to a single activation when striking multiple targets, immediately resets Rhapsody of Flame's CD and allows Rhapsody of Flame not to consume Performance Passion for 10s, this effect is nullified upon casting Rhapsody of Flame.",
       "iconPath": "ui/atlas/talent_passive_13/gita1316",
       "buffIds": [
-        55330,
         2207170
       ],
       "sourceRuleIds": [
-        "mrs:46fe452e6ebf"
+        "mrs:84710d9006b7"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
@@ -5210,22 +6313,59 @@
         "th": "จังหวะ Encore ไร้จำกัด",
         "id": "Encore Infinite Sequence"
       },
-      "description": "When Encore Strings triggers, it activates a second time on the same target. Lucky Strike Chance is reduced by 20%. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
+      "description": "When Encore Strings triggers, it activates a second time on the same target. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
       "iconPath": "ui/atlas/talent_passive_13/gita1331",
       "buffIds": [
-        55333,
         2207320
       ],
       "sourceRuleIds": [
-        "mrs:82b78ace20af"
+        "mrs:c5530a38a229"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
         {
-          "termId": "luckyChancePct",
+          "termId": "luckyDamagePct",
+          "values": [
+            {
+              "rawText": "50%",
+              "unit": "percent",
+              "value": 50,
+              "decimalValue": 0.5,
+              "polarity": "increase",
+              "scope": "owner",
+              "inferredFrom": "larger percent value is owner/self"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "party",
+              "inferredFrom": "smaller percent value is party/other players"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
           "values": [
             {
               "rawText": "20%",
+              "unit": "percent",
+              "value": 20,
+              "decimalValue": 0.2,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
+          "values": [
+            {
+              "rawText": "-20%",
               "unit": "percent",
               "value": -20,
               "decimalValue": -0.2,
@@ -5242,8 +6382,8 @@
         "crit flag",
         "damage id",
         "healing/lifesteal event lane",
-        "lucky chance source amount",
         "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
         "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
@@ -5294,10 +6434,11 @@
       "description": "Every 1% Luck grants 0.5% Lucky Strike DMG Multiplier. After activating Heroic Melody, doubles its conversion efficiency.",
       "iconPath": "ui/atlas/talent_passive_13/gita1338",
       "buffIds": [
+        997594,
         2207390
       ],
       "sourceRuleIds": [
-        "mrs:053e502b3bdf"
+        "mrs:16955477c511"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -5384,6 +6525,86 @@
         "hardFilterEligible": false
       }
     },
+    "talent:1342": {
+      "sourceId": "talent:1342",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 1342,
+      "sourceName": "Flame's Rampage",
+      "sourceNames": {
+        "en": "Flame's Rampage",
+        "zh-CN": "炎律狂踏",
+        "zh-TW": "炎律狂踏",
+        "ja": "炎律の狂踏",
+        "ko-KR": "염율의 짓밟기",
+        "fr": "Déchaînement de flammes",
+        "de": "Flammenwut",
+        "es": "Desenfreno de Llamas",
+        "pt-BR": "Fúria da Chama",
+        "th": "Flame's Rampage",
+        "id": "Flame Rhythm Rampage"
+      },
+      "description": "When Heroic Melody is active, Rhapsody of Flame will erupt, dealing Magic DMG equal to 350% ATK every 3s to targets it touches (DMG interval affected by Haste). This DMG can trigger Lucky Strike. While in Rhapsody of Flame, each hit of Harmonic Anthem also heals 1 ally with the lowest HP for 30% of the DMG dealt (this value scales proportionally when hitting multiple targets). Note: Restores HP equal to 70% ATK in total within 10s, stacks up to 10 times. When applied at 10 stacks, it immediately triggers the remaining healing of the previous Note.",
+      "iconPath": "ui/atlas/talent_passive_13/gita1342",
+      "buffIds": [
+        2207430
+      ],
+      "sourceRuleIds": [
+        "mrs:80c5564aff00"
+      ],
+      "targetDamageIds": [
+        2220743103,
+        12301050101
+      ],
+      "targetRecountIds": [
+        207
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker stat snapshot at hit time",
+        "attacker uid",
+        "cast timeline or per-hit window buckets",
+        "damage row ATK/MATK lane",
+        "healing/lifesteal event lane",
+        "modifier windows",
+        "produced damage row id",
+        "source-specific trigger predicate",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 1342,
+        "classId": 13,
+        "className": "Beat Performer",
+        "classNames": {
+          "en": "Beat Performer",
+          "zh-CN": "灵魂乐手",
+          "zh-TW": "靈魂樂手",
+          "ja": "ビートパフォーマー",
+          "ko-KR": "비트 퍼포머",
+          "fr": "Virtuose du rythme",
+          "de": "Beat-Performer",
+          "es": "Artista del ritmo",
+          "pt-BR": "Artista do Ritmo",
+          "id": "Beat Performer",
+          "th": "Beat Performer"
+        },
+        "ownershipKind": "spec-exclusive",
+        "ownershipStatus": "high-confidence",
+        "ownerSpecIds": [
+          1308
+        ],
+        "ownerSpecNames": [
+          "Dissonance"
+        ],
+        "hardFilterEligible": true
+      }
+    },
     "talent:1346": {
       "sourceId": "talent:1346",
       "sourceKind": "talent-passive",
@@ -5406,11 +6627,10 @@
       "description": "Every 1% Luck Chance grants 1% trigger chance for Encore Strings. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
       "iconPath": "ui/atlas/talent_passive_13/gita1346",
       "buffIds": [
-        55333,
         2207470
       ],
       "sourceRuleIds": [
-        "mrs:900db670ced5"
+        "mrs:f584e2c73be5"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -5522,11 +6742,10 @@
       "description": "Triggering Encore Strings to deal DMG or healing grants 2 Performance Energy. If the Encore Strings triggers Lucky Strike, grants 3 additional Performance Energy. Encore Strings: Each time a damage or healing Expertise Skill is cast, there is a fixed 50% chance to trigger Encore Strings once, either dealing DMG to the current target or healing the ally with the lowest HP (Party Members Prioritized).",
       "iconPath": "ui/atlas/talent_passive_13/gita1347",
       "buffIds": [
-        55333,
         2207480
       ],
       "sourceRuleIds": [
-        "mrs:742cc85dd8d5"
+        "mrs:8da54e163719"
       ],
       "formulaPolicy": "behavior-only",
       "luckyTerms": [
@@ -5934,7 +7153,7 @@
         "th": "Divine Sickle",
         "id": "Scythe of Punishment"
       },
-      "description": "Casting Storm Scythe 7 times triggers Divine Sickle. Divine Sickle is guaranteed to Crit. When Luck is between 28% and 45%, Divine Sickle's final damage increases by 100%, but requires 14 casts of Storm Scythe to trigger. When Luck chance is above 45%, final damage increases by 200%, but requires 21 casts of Storm Scythe to trigger.",
+      "description": "Casting Storm Scythe 7 times triggers Divine Sickle. Divine Sickle is guaranteed to Crit. When Luck is between 28% and 45%, Divine Sickle's Final DMG increases by 150%, but requires 14 casts of Storm Scythe to trigger. When Luck chance is above 45%, Final DMG increases by 275%, but requires 21 casts of Storm Scythe to trigger.",
       "iconPath": "ui/atlas/talent_passive_1/taidao158",
       "buffIds": [
         2200600,
@@ -5958,10 +7177,10 @@
           "termId": "luckChancePct",
           "values": [
             {
-              "rawText": "200%",
+              "rawText": "275%",
               "unit": "percent",
-              "value": 200,
-              "decimalValue": 2,
+              "value": 275,
+              "decimalValue": 2.75,
               "polarity": "increase",
               "scope": "owner",
               "inferredFrom": "larger percent value is owner/self"
@@ -5982,10 +7201,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "200%",
+              "rawText": "275%",
               "unit": "percent",
-              "value": 200,
-              "decimalValue": 2,
+              "value": 275,
+              "decimalValue": 2.75,
               "polarity": "increase",
               "scope": "owner",
               "inferredFrom": "larger percent value is owner/self"
@@ -6022,10 +7241,10 @@
               "scope": "all"
             },
             {
-              "rawText": "100%",
+              "rawText": "150%",
               "unit": "percent",
-              "value": 100,
-              "decimalValue": 1,
+              "value": 150,
+              "decimalValue": 1.5,
               "polarity": "increase",
               "scope": "all"
             }
@@ -6189,7 +7408,7 @@
         "th": "สายฟ้าคำรามพันแสง",
         "id": "Thunder Roar Thousand Flashes"
       },
-      "description": "Each 2 Thunderstrike triggered reduces the CD of Stormflash by 0.5s. Thunderstrike: Luck Effect: Deals Attack DMG equal to 80% ATK to the enemy.",
+      "description": "Every 2 times Thunderstrike is triggered, the CD of Stormflash is reduced by 0.7s. Thunderstrike: Luck Effect: Deals Attack DMG equal to 80% ATK to the enemy.",
       "iconPath": "ui/atlas/talent_passive_1/taidao161",
       "buffIds": [
         2200630
@@ -6545,6 +7764,157 @@
         "hardFilterEligible": false
       }
     },
+    "talent:173": {
+      "sourceId": "talent:173",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 173,
+      "sourceName": "Luck Enhancement",
+      "sourceNames": {
+        "en": "Luck Enhancement",
+        "zh-CN": "幸运强效",
+        "zh-TW": "幸運強效",
+        "fr": "Amélioration de Chance",
+        "de": "Glück-Verbesserung",
+        "es": "Mejora de Suerte",
+        "pt-BR": "Melhoria de Sorte"
+      },
+      "description": "Lucky Strike ATK +100%.",
+      "iconPath": "ui/atlas/talent_passive_1/talent_passive_icon_general_dps_ignoredef",
+      "buffIds": [
+        2200130
+      ],
+      "sourceRuleIds": [
+        "mrs:e4357fabc659"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyEvidence",
+          "values": [
+            {
+              "rawText": "+100%",
+              "unit": "percent",
+              "value": 100,
+              "decimalValue": 1,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker stat snapshot at hit time",
+        "damage id",
+        "damage row ATK/MATK lane",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit"
+      ],
+      "ownership": {
+        "talentId": 173,
+        "classId": 1,
+        "className": "Stormblade",
+        "classNames": {
+          "en": "Stormblade",
+          "zh-CN": "雷影剑士",
+          "zh-TW": "雷影劍士",
+          "ja": "ストームブレイド",
+          "fr": "Lame-tempête",
+          "de": "Sturmklinge",
+          "es": "Filo tormentoso",
+          "pt-BR": "Lâmina Tempestuosa",
+          "th": "Stormblade",
+          "id": "Stormblade",
+          "ko-KR": "스톰 블레이드"
+        },
+        "ownershipKind": "class-wide-candidate",
+        "ownershipStatus": "unresolved-class-bucket",
+        "hardFilterEligible": false
+      }
+    },
+    "talent:208": {
+      "sourceId": "talent:208",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 208,
+      "sourceName": "Frost Explosion",
+      "sourceNames": {
+        "en": "Frost Explosion",
+        "zh-CN": "霜爆",
+        "zh-TW": "霜爆",
+        "ja": "霜爆",
+        "ko-KR": "서리 폭발",
+        "fr": "Explosion de givre",
+        "de": "Frostexplosion",
+        "es": "Explosión Gélida",
+        "pt-BR": "Explosão de Gelo",
+        "th": "Frost Explosion",
+        "id": "Frost Burst"
+      },
+      "description": "When Ice Arrows fired by Ice Crystal Cores deal a Crit, they deal an additional instance of Magic DMG equal to 28% ATK. This DMG can trigger Lucky Strike.",
+      "iconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_icearrowaoe",
+      "buffIds": [
+        2204080
+      ],
+      "sourceRuleIds": [
+        "mrs:2f873c61b750"
+      ],
+      "targetDamageIds": [
+        2220408101
+      ],
+      "targetRecountIds": [
+        40
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker elemental damage snapshot at hit time",
+        "attacker uid",
+        "damage element mapping by damage id",
+        "modifier windows",
+        "produced damage row id",
+        "source-specific trigger predicate",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 208,
+        "classId": 2,
+        "className": "Frost Mage",
+        "classNames": {
+          "en": "Frost Mage",
+          "zh-CN": "冰魔导师",
+          "zh-TW": "冰魔導師",
+          "ja": "フロストメイジ",
+          "fr": "Mage de givre",
+          "de": "Frostmagier",
+          "es": "Mago de hielo",
+          "pt-BR": "Mago do Gelo",
+          "th": "Frost Mage",
+          "id": "Frost Mage",
+          "ko-KR": "프로스트 메이지"
+        },
+        "ownershipKind": "spec-leaning",
+        "ownershipStatus": "medium-confidence",
+        "ownerSpecIds": [
+          233
+        ],
+        "ownerSpecNames": [
+          "Icicle"
+        ],
+        "hardFilterEligible": false
+      }
+    },
     "talent:215": {
       "sourceId": "talent:215",
       "sourceKind": "talent-passive",
@@ -6659,7 +8029,7 @@
         "th": "Frozen Stars",
         "id": "Frozen Stars"
       },
-      "description": "When Frost Lance triggers both a Crit and a Lucky Strike, Meteor Storm's CD is immediately reset. If Meteor Storm is already off cooldown, it will be automatically cast (but this Meteor Storm will deal half damage).",
+      "description": "When Frost Lance triggers both a Crit and a Lucky Strike, Meteor Storm's CD is immediately reset. If Meteor Storm is already off cooldown, it will be automatically cast (but this Meteor Storm will deal half damage). This effect can trigger up to 3 times within 1.5s (affected by Attack Speed).",
       "iconPath": "ui/atlas/talent_passive_2/talent_passive_icon_general_dps_luckandcri",
       "buffIds": [
         2204150
@@ -6685,6 +8055,7 @@
       "requiredRuntimeEvidence": [
         "attacker uid",
         "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
         "modifier windows",
         "produced damage row id",
         "source-specific trigger predicate",
@@ -7376,100 +8747,6 @@
         "hardFilterEligible": false
       }
     },
-    "talent:261": {
-      "sourceId": "talent:261",
-      "sourceKind": "talent-passive",
-      "sourceType": "talent",
-      "sourceEntityId": 261,
-      "sourceName": "Rapid Ice Arrow",
-      "sourceNames": {
-        "en": "Rapid Ice Arrow",
-        "zh-CN": "冰箭速射",
-        "zh-TW": "冰箭速射",
-        "ja": "氷矢速射",
-        "ko-KR": "아이스 애로우 속사",
-        "fr": "Flèche de glace rapide",
-        "de": "Schneller Eispfeil",
-        "es": "Flecha Helada Rápida",
-        "pt-BR": "Flecha de Gelo Rápida",
-        "th": "ยิงลูกธนูน้ำแข็งเร็ว",
-        "id": "Ice Arrow Rapid Fire"
-      },
-      "description": "During Permafrost, Frostbeam fires 2 additional Ice Arrows generated by Ice Crystal Core. However, during Permafrost, Lucky Strike's final damage is reduced by 50%.",
-      "iconPath": "ui/atlas/talent_passive_2/mozhang261",
-      "buffIds": [
-        27007,
-        972026,
-        2204580
-      ],
-      "sourceRuleIds": [
-        "mrs:cf3ac28a080c"
-      ],
-      "formulaPolicy": "expected-value-candidate",
-      "luckyTerms": [
-        {
-          "termId": "luckyFinalDamagePct",
-          "values": [
-            {
-              "rawText": "50%",
-              "unit": "percent",
-              "value": -50,
-              "decimalValue": -0.5,
-              "polarity": "decrease",
-              "scope": "all"
-            }
-          ],
-          "confidence": "description-pattern"
-        }
-      ],
-      "requiredRuntimeEvidence": [
-        "active source window at hit time",
-        "attacker elemental damage snapshot at hit time",
-        "attacker uid",
-        "crit flag",
-        "damage element mapping by damage id",
-        "damage id",
-        "final damage bonus snapshot at hit time",
-        "hit timestamp",
-        "lucky flag or exact lucky packet",
-        "lucky multiplier or final-damage amount",
-        "modifier value or component amount",
-        "modifier windows",
-        "observed final hit value",
-        "parent hit pairing proof",
-        "produced damage row id",
-        "skill id",
-        "sourceRuleId active on hit",
-        "target uid"
-      ],
-      "ownership": {
-        "talentId": 261,
-        "classId": 2,
-        "className": "Frost Mage",
-        "classNames": {
-          "en": "Frost Mage",
-          "zh-CN": "冰魔导师",
-          "zh-TW": "冰魔導師",
-          "ja": "フロストメイジ",
-          "fr": "Mage de givre",
-          "de": "Frostmagier",
-          "es": "Mago de hielo",
-          "pt-BR": "Mago do Gelo",
-          "th": "Frost Mage",
-          "id": "Frost Mage",
-          "ko-KR": "프로스트 메이지"
-        },
-        "ownershipKind": "spec-exclusive",
-        "ownershipStatus": "high-confidence",
-        "ownerSpecIds": [
-          212
-        ],
-        "ownerSpecNames": [
-          "Frostbeam"
-        ],
-        "hardFilterEligible": true
-      }
-    },
     "talent:306": {
       "sourceId": "talent:306",
       "sourceKind": "talent-passive",
@@ -7489,14 +8766,13 @@
         "th": "โกลเด้นโลตัสดับเบิ้ลเอ็กซ์ตรีม",
         "id": "Red Lotus Bipolar"
       },
-      "description": "Each stack of Infernal Combo grants effects based on the relationship between Luck Chance and Crit Rate: When Luck Chance is greater than or equal to Crit Rate, Lucky Strike Multiplier +10%. When Crit Rate is greater than Luck Chance, Crit DMG +10%.",
-      "iconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tearget",
+      "description": "Each stack of Infernal Combo grants effects based on the relationship between Luck Chance and Crit Chance: When Luck Chance is greater than or equal to Crit Chance, each stack of Infernal Combo grants 1.6% Lucky Strike Multiplier. When Crit Chance is greater than Luck Chance, each stack of Infernal Combo grants 1.2% Crit DMG. Infernal Combo.: Expertise Skill Attack SPD +5% for 10s, stacking up to 5 times.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu306",
       "buffIds": [
-        2208040,
         2208070
       ],
       "sourceRuleIds": [
-        "mrs:dc1b0720018a"
+        "mrs:2e127009921b"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
@@ -7504,10 +8780,10 @@
           "termId": "luckChancePct",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.6%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.6,
+              "decimalValue": 0.016,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7518,10 +8794,10 @@
           "termId": "luckChancePct",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.2%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.2,
+              "decimalValue": 0.012,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7532,10 +8808,10 @@
           "termId": "luckStatDamageScaling",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.2%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.2,
+              "decimalValue": 0.012,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7546,10 +8822,10 @@
           "termId": "luckToLuckyScaling",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.6%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.6,
+              "decimalValue": 0.016,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7560,10 +8836,10 @@
           "termId": "luckyCritInteraction",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.6%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.6,
+              "decimalValue": 0.016,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7574,10 +8850,10 @@
           "termId": "luckyMultiplierPct",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.6%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.6,
+              "decimalValue": 0.016,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7588,10 +8864,10 @@
           "termId": "luckyTimingOrResource",
           "values": [
             {
-              "rawText": "+10%",
+              "rawText": "1.6%",
               "unit": "percent",
-              "value": 10,
-              "decimalValue": 0.1,
+              "value": 1.6,
+              "decimalValue": 0.016,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7605,6 +8881,8 @@
         "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
+        "cast timeline or cooldown state",
+        "cast timeline or per-hit window buckets",
         "crit flag",
         "damage id",
         "hit timestamp",
@@ -7662,8 +8940,8 @@
         "th": "โชคดีไฟลุก",
         "id": "Ledakan Api Keberuntungan"
       },
-      "description": "Explosion can trigger Lucky Strike. This increases Explosion damage based on the target's current Burn stacks. Every additional 1 stack of Burn increases Explosion damage by 20%.",
-      "iconPath": "ui/atlas/talent_passive_4/changqiang459",
+      "description": "Burn can trigger Lucky Strike. Based on the target's current Burn stacks, increases Explosion damage. Each additional 1 stack of Burn increases Explosion damage by 5%. Burn.: Deals 35% × stack count ATK as Attack DMG every 2s for 10s, stacking up to 10 times. When Burn reaches max stacks, any newly applied Burn immediately deals 35% ATK as Attack DMG. Explosion.: Deals 800% ATK as Attack DMG to enemies in range, and grants 10 Flame Soul.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu318",
       "buffIds": [
         2208190
       ],
@@ -7729,8 +9007,8 @@
         "th": "การบุกทะลวงอาราคาวะ",
         "id": "Penggerebekan Arakawa"
       },
-      "description": "During Wasteland's End, triggering a Lucky Strike with Rage Cleave or Whirlwind Slash reduces the charge time of Blazing Assault by 1s.",
-      "iconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_tornadoget",
+      "description": "During Wasteland's End, triggering a Lucky Strike with Rage Cleave or Axe Wind reduces the charge time of Blazing Assault by 1s.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu319",
       "buffIds": [
         2208200
       ],
@@ -7764,9 +9042,15 @@
           "th": "Flame Berserker",
           "id": "Flame Berserker"
         },
-        "ownershipKind": "class-wide-candidate",
-        "ownershipStatus": "unresolved-class-bucket",
-        "hardFilterEligible": false
+        "ownershipKind": "spec-exclusive",
+        "ownershipStatus": "high-confidence",
+        "ownerSpecIds": [
+          312
+        ],
+        "ownerSpecNames": [
+          "Formless Expertise Spec"
+        ],
+        "hardFilterEligible": true
       }
     },
     "talent:320": {
@@ -7788,24 +9072,24 @@
         "th": "วิญญาณโชคแห่งกงล้อเวลา",
         "id": "Roda Waktu: Jiwa Keberuntungan"
       },
-      "description": "Each level of the Formless effect grants 1% Luck Damage.",
-      "iconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_ruthless",
+      "description": "Each 1 level of the Formless effect increases Lucky Strike DMG by 2%.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu320",
       "buffIds": [
         2208210
       ],
       "sourceRuleIds": [
-        "mrs:49c7d99e56c4"
+        "mrs:c103620127d1"
       ],
       "formulaPolicy": "expected-value-candidate",
       "luckyTerms": [
         {
-          "termId": "luckStatDamageScaling",
+          "termId": "luckyDamagePct",
           "values": [
             {
-              "rawText": "1%",
+              "rawText": "2%",
               "unit": "percent",
-              "value": 1,
-              "decimalValue": 0.01,
+              "value": 2,
+              "decimalValue": 0.02,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7815,18 +9099,395 @@
       ],
       "requiredRuntimeEvidence": [
         "active source window at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "skill id",
+        "sourceRuleId active on hit",
+        "target uid",
+        "target/source predicate evaluation"
+      ],
+      "ownership": {
+        "talentId": 320,
+        "classId": 3,
+        "className": "Flame Berserker",
+        "classNames": {
+          "en": "Flame Berserker",
+          "zh-CN": "赤炎狂战士",
+          "zh-TW": "赤炎狂戰士",
+          "ja": "Flame Berserker",
+          "ko-KR": "Flame Berserker",
+          "fr": "Flame Berserker",
+          "de": "Flame Berserker",
+          "es": "Flame Berserker",
+          "pt-BR": "Flame Berserker",
+          "th": "Flame Berserker",
+          "id": "Flame Berserker"
+        },
+        "ownershipKind": "ambiguous",
+        "ownershipStatus": "needs-review",
+        "ownerSpecIds": [
+          312
+        ],
+        "ownerSpecNames": [
+          "Formless Expertise Spec"
+        ],
+        "hardFilterEligible": false
+      }
+    },
+    "talent:328": {
+      "sourceId": "talent:328",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 328,
+      "sourceName": "Formless Flame Slash Luck",
+      "sourceNames": {
+        "en": "Formless Flame Slash Luck",
+        "zh-CN": "无相火斩幸运",
+        "zh-TW": "無相火斬幸運",
+        "ja": "無相火斬精通",
+        "ko-KR": "무상 화참 정통",
+        "fr": "Taillade de flamme informe - Chance",
+        "de": "Formloser Flammenhieb – Glück",
+        "es": "Corte de Llama Amorfa: Suerte",
+        "pt-BR": "Corte de Chama Informe – Sorte",
+        "th": "ความชำนาญในการฟันไฟไร้รูป",
+        "id": "Mastery Pemotongan Api Aspek"
+      },
+      "description": "Every 1% Luck increases the trigger chance of Formless Flame Slash stages 1 to 3 by 0.2%/0.1%/0.05% respectively, but the Crit Rate of Formless Flame Slash is halved. Formless Flame Slash.: Each hit has a chance to add extra stages based on the current skill multiplier * (30% + Mastery%): Formless Flame Slash Stage 1 Chance: 20%. Formless Flame Slash Stage 2 Chance: 10%. Formless Flame Slash Stage 3 Chance: 5%.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu328",
+      "buffIds": [
+        2208290
+      ],
+      "sourceRuleIds": [
+        "mrs:c49f5ad91ded"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckStatPct",
+          "values": [
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": 1,
+              "decimalValue": 0.01,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "0.2%",
+              "unit": "percent",
+              "value": 0.2,
+              "decimalValue": 0.002,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "0.1%",
+              "unit": "percent",
+              "value": 0.1,
+              "decimalValue": 0.001,
+              "polarity": "increase",
+              "scope": "all"
+            },
+            {
+              "rawText": "0.05%",
+              "unit": "percent",
+              "value": 0.05,
+              "decimalValue": 0.0005,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "ranges": [
+            {
+              "rawText": "1 to 3",
+              "unit": "count",
+              "min": 1,
+              "max": 3
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
         "attacker Luck snapshot at hit time",
         "attacker uid",
         "crit flag",
         "damage id",
-        "Luck-scaled damage source amount",
+        "hit timestamp",
         "lucky flag or exact lucky packet",
+        "modifier value or component amount",
+        "modifier windows",
         "observed final hit value",
         "parent hit pairing proof",
+        "skill id",
+        "sourceRuleId active on hit",
         "target uid"
       ],
       "ownership": {
-        "talentId": 320,
+        "talentId": 328,
+        "classId": 3,
+        "className": "Flame Berserker",
+        "classNames": {
+          "en": "Flame Berserker",
+          "zh-CN": "赤炎狂战士",
+          "zh-TW": "赤炎狂戰士",
+          "ja": "Flame Berserker",
+          "ko-KR": "Flame Berserker",
+          "fr": "Flame Berserker",
+          "de": "Flame Berserker",
+          "es": "Flame Berserker",
+          "pt-BR": "Flame Berserker",
+          "th": "Flame Berserker",
+          "id": "Flame Berserker"
+        },
+        "ownershipKind": "class-wide-candidate",
+        "ownershipStatus": "unresolved-class-bucket",
+        "hardFilterEligible": false
+      }
+    },
+    "talent:329": {
+      "sourceId": "talent:329",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 329,
+      "sourceName": "Formless Combo",
+      "sourceNames": {
+        "en": "Formless Combo",
+        "zh-CN": "连打无相",
+        "zh-TW": "連打無相",
+        "ja": "連打無相",
+        "ko-KR": "연타 무상",
+        "fr": "Combo informe",
+        "de": "Formlose Kombo",
+        "es": "Combo de Amorfo",
+        "pt-BR": "Combo Informe",
+        "th": "คอมโบไร้รูปแบบ",
+        "id": "Serangan Berturut-turut Tanpa Bentuk"
+      },
+      "description": "For every 5 hits an Expertise Skill deals to the main target, it grants a buff that increases the Lucky Strike Multiplier by 27% and reduces Lucky Strike Crit Rate by 20% for the next 8s. This effect stacks up to 3 times.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu329",
+      "buffIds": [
+        2208300
+      ],
+      "sourceRuleIds": [
+        "mrs:c6c051033bf2"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckyCritInteraction",
+          "values": [
+            {
+              "rawText": "27%",
+              "unit": "percent",
+              "value": -27,
+              "decimalValue": -0.27,
+              "polarity": "decrease",
+              "scope": "owner",
+              "inferredFrom": "larger percent value is owner/self"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": -20,
+              "decimalValue": -0.2,
+              "polarity": "decrease",
+              "scope": "party",
+              "inferredFrom": "smaller percent value is party/other players"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
+          "values": [
+            {
+              "rawText": "27%",
+              "unit": "percent",
+              "value": -27,
+              "decimalValue": -0.27,
+              "polarity": "decrease",
+              "scope": "owner",
+              "inferredFrom": "larger percent value is owner/self"
+            },
+            {
+              "rawText": "20%",
+              "unit": "percent",
+              "value": -20,
+              "decimalValue": -0.2,
+              "polarity": "decrease",
+              "scope": "party",
+              "inferredFrom": "smaller percent value is party/other players"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "skill id",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 329,
+        "classId": 3,
+        "className": "Flame Berserker",
+        "classNames": {
+          "en": "Flame Berserker",
+          "zh-CN": "赤炎狂战士",
+          "zh-TW": "赤炎狂戰士",
+          "ja": "Flame Berserker",
+          "ko-KR": "Flame Berserker",
+          "fr": "Flame Berserker",
+          "de": "Flame Berserker",
+          "es": "Flame Berserker",
+          "pt-BR": "Flame Berserker",
+          "th": "Flame Berserker",
+          "id": "Flame Berserker"
+        },
+        "ownershipKind": "class-wide-candidate",
+        "ownershipStatus": "unresolved-class-bucket",
+        "hardFilterEligible": false
+      }
+    },
+    "talent:330": {
+      "sourceId": "talent:330",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 330,
+      "sourceName": "Formless Flame Slash - Break",
+      "sourceNames": {
+        "en": "Formless Flame Slash - Break",
+        "zh-CN": "无相火斩·破",
+        "zh-TW": "無相火斬·破",
+        "ja": "無相火斬・破",
+        "ko-KR": "무상 화참・파괴",
+        "fr": "Taillade de flamme informe - Brisegarde",
+        "de": "Formloser Flammenhieb – Brechen",
+        "es": "Corte de Llama Amorfa: Ruptura",
+        "pt-BR": "Corte de Chama Informe – Quebra",
+        "th": "ไร้รูปไฟฟัน - ทำลาย",
+        "id": "Pemotongan Api Tanpa Bentuk·Hancur"
+      },
+      "description": "Formless Flame Slash can trigger Lucky Strike. Lucky Strike DMG Multiplier +5%. Every 1% Luck grants 0.8% Lucky Strike DMG Multiplier. Formless Flame Slash.: Each hit has a chance to add extra stages based on the current skill multiplier * (30% + Mastery%): Formless Flame Slash Stage 1 Chance: 20%. Formless Flame Slash Stage 2 Chance: 10%. Formless Flame Slash Stage 3 Chance: 5%.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu330",
+      "buffIds": [
+        2208310
+      ],
+      "sourceRuleIds": [
+        "mrs:b6354cbb60c3"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckToLuckyScaling",
+          "values": [
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": 1,
+              "decimalValue": 0.01,
+              "polarity": "increase",
+              "scope": "luck-input",
+              "inferredFrom": "Luck conversion input"
+            },
+            {
+              "rawText": "0.8%",
+              "unit": "percent",
+              "value": 0.8,
+              "decimalValue": 0.008,
+              "polarity": "increase",
+              "scope": "effect-output",
+              "inferredFrom": "Luck conversion output"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
+          "values": [
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": 1,
+              "decimalValue": 0.01,
+              "polarity": "increase",
+              "scope": "luck-input",
+              "inferredFrom": "Luck conversion input"
+            },
+            {
+              "rawText": "0.8%",
+              "unit": "percent",
+              "value": 0.8,
+              "decimalValue": 0.008,
+              "polarity": "increase",
+              "scope": "effect-output",
+              "inferredFrom": "Luck conversion output"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyMultiplierPct",
+          "values": [
+            {
+              "rawText": "+5%",
+              "unit": "percent",
+              "value": 5,
+              "decimalValue": 0.05,
+              "polarity": "increase",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker Luck snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "lucky flag or exact lucky packet",
+        "lucky multiplier or final-damage amount",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "source-specific trigger predicate",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 330,
         "classId": 3,
         "className": "Flame Berserker",
         "classNames": {
@@ -7866,8 +9527,8 @@
         "th": "ไร้รูปไฟเฉือน - โชค",
         "id": "Api Tanpa Wujud·Keberuntungan"
       },
-      "description": "Formless Flame Slash Luck Chance +3%.",
-      "iconPath": "ui/atlas/talent_passive_4/talent_skill_300001",
+      "description": "Formless Flame Slash Luck Chance +8%. Formless Flame Slash.: Each hit has a chance to add extra stages based on the current skill multiplier * (30% + Mastery%): Formless Flame Slash Stage 1 Chance: 20%. Formless Flame Slash Stage 2 Chance: 10%. Formless Flame Slash Stage 3 Chance: 5%.",
+      "iconPath": "ui/atlas/talent_passive_3/shuangfu331",
       "buffIds": [
         2208320
       ],
@@ -7880,10 +9541,10 @@
           "termId": "luckChancePct",
           "values": [
             {
-              "rawText": "+3%",
+              "rawText": "+8%",
               "unit": "percent",
-              "value": 3,
-              "decimalValue": 0.03,
+              "value": 8,
+              "decimalValue": 0.08,
               "polarity": "increase",
               "scope": "all"
             }
@@ -7996,6 +9657,103 @@
       ],
       "ownership": {
         "talentId": 416,
+        "classId": 4,
+        "className": "Wind Knight",
+        "classNames": {
+          "en": "Wind Knight",
+          "zh-CN": "青岚骑士",
+          "zh-TW": "青嵐騎士",
+          "ja": "ゲイルランサー",
+          "ko-KR": "윈드 나이트",
+          "fr": "Chevalier du vent",
+          "de": "Windritter",
+          "es": "Caballero del viento",
+          "pt-BR": "Cavaleiro do Vento",
+          "th": "Wind Knight",
+          "id": "Gale Lancer"
+        },
+        "ownershipKind": "spec-exclusive",
+        "ownershipStatus": "high-confidence",
+        "ownerSpecIds": [
+          432
+        ],
+        "ownerSpecNames": [
+          "Skyward"
+        ],
+        "hardFilterEligible": true
+      }
+    },
+    "talent:422": {
+      "sourceId": "talent:422",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 422,
+      "sourceName": "Chasing Step",
+      "sourceNames": {
+        "en": "Chasing Step",
+        "zh-CN": "追击身法",
+        "zh-TW": "追擊身法",
+        "ja": "追撃身法",
+        "ko-KR": "추격 신법",
+        "fr": "Pas de poursuite",
+        "de": "Verfolgungsschritt",
+        "es": "Paso Persecutor",
+        "pt-BR": "Postura de Caça",
+        "th": "Pursuit Technique",
+        "id": "Pursuit Maneuver"
+      },
+      "description": "When Skyfall or Falcon Toss deals a Crit or Lucky Strike, they trigger Chasing Step. When Skyfall or Falcon Toss trigger a Crit and Lucky Strike simultaneously, they grant 2 stacks of Chasing Step. Chasing Step: DMG of Instant Edge +30% for 10s. It stacks up to 2 times and 1 stack is consumed after the use of Instant Edge.",
+      "iconPath": "ui/atlas/talent_passive_4/talent_passive_icon_general_dps_ruthless",
+      "buffIds": [
+        2205210,
+        2205211,
+        2205580
+      ],
+      "sourceRuleIds": [
+        "mrs:3182ffe20df7"
+      ],
+      "formulaPolicy": "behavior-only",
+      "luckyTerms": [
+        {
+          "termId": "luckyCritInteraction",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyCritInteraction",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTimingOrResource",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        },
+        {
+          "termId": "luckyTrigger",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "attacker crit-damage snapshot at hit time",
+        "attacker crit-rate snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "hit timestamp",
+        "modifier value or component amount",
+        "modifier windows",
+        "observed final hit value",
+        "produced damage row id",
+        "skill id",
+        "source predicate evaluation, such as companion or summon",
+        "source-specific trigger predicate",
+        "sourceRuleId active on hit",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 422,
         "classId": 4,
         "className": "Wind Knight",
         "classNames": {
@@ -8617,7 +10375,7 @@
         "th": "inspire",
         "id": "Inspire"
       },
-      "description": "Applies Inspiration to yourself and allies within 30 meters. Inspiration: Grants the blessed target 100 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
+      "description": "Applies Inspiration to yourself and allies within 30 meters. Inspiration: Grants the blessed target 135 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
       "iconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_encourage",
       "buffIds": [
         2202040,
@@ -8680,6 +10438,83 @@
         "ownershipKind": "class-wide-candidate",
         "ownershipStatus": "unresolved-class-bucket",
         "hardFilterEligible": false
+      }
+    },
+    "talent:506": {
+      "sourceId": "talent:506",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 506,
+      "sourceName": "Arcane of Green",
+      "sourceNames": {
+        "en": "Arcane of Green",
+        "zh-CN": "绿意之爆发",
+        "zh-TW": "綠意之爆發",
+        "ja": "緑の爆発",
+        "ko-KR": "녹음의 향연",
+        "fr": "Arcane du Vert",
+        "de": "Arkana von Green",
+        "es": "Arcano Verde",
+        "pt-BR": "Arcano Verde",
+        "th": "Burst of Green",
+        "id": "Greenwill Burst"
+      },
+      "description": "When Feral Seed deals DMG, it increases ATK by Mastery % x Luck % for the next 10s.",
+      "iconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_grassdammastery",
+      "buffIds": [
+        2202080,
+        2202081
+      ],
+      "sourceRuleIds": [
+        "mrs:a1e6811faa32"
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckStatDamageScaling",
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker Luck snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "Luck-scaled damage source amount",
+        "lucky flag or exact lucky packet",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "produced damage row id",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 506,
+        "classId": 5,
+        "className": "Verdant Oracle",
+        "classNames": {
+          "en": "Verdant Oracle",
+          "zh-CN": "森语者",
+          "zh-TW": "森語者",
+          "ja": "ヴァーダントオラクル",
+          "ko-KR": "실반 오라클",
+          "fr": "Oracle verdoyant",
+          "de": "Grünes Orakel",
+          "es": "Oráculo frondoso",
+          "pt-BR": "Oráculo Verdejante",
+          "th": "Verdant Oracle",
+          "id": "Verdant Oracle"
+        },
+        "ownershipKind": "spec-exclusive",
+        "ownershipStatus": "high-confidence",
+        "ownerSpecIds": [
+          510
+        ],
+        "ownerSpecNames": [
+          "Smite"
+        ],
+        "hardFilterEligible": true
       }
     },
     "talent:507": {
@@ -8870,7 +10705,7 @@
         "th": "Defense ENH",
         "id": "Defense Blessing"
       },
-      "description": "Inspiration provides the target with an additional 380 Armor. Inspiration: Grants the blessed target 100 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
+      "description": "Inspiration provides the target with an additional 400 Armor. Inspiration: Grants the blessed target 135 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
       "iconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_seedtrriger",
       "buffIds": [
         2202310
@@ -8945,7 +10780,7 @@
         "th": "Warden Protection",
         "id": "Greenwill Protection"
       },
-      "description": "When HP of an ally with Inspiration drops below 20%, Blessing triggers. Blessing: Grants a Nature Shield and reduces the DMG taken by 35% for 8s, once every 60s. Inspiration: Grants the blessed target 100 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility. Nature Shield: Grants an ally a Shield equal to 150% ATK for 5s.",
+      "description": "When HP of an ally with Inspiration drops below 20%, Blessing triggers. Blessing: Grants a Nature Shield and reduces the DMG taken by 35% for 8s, once every 60s. Inspiration: Grants the blessed target 135 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility. Nature Shield: Grants an ally a Shield equal to 150% ATK for 5s.",
       "iconPath": "ui/atlas/talent_passive_5/talent_passive_icon_general_sup_shieldlimit",
       "buffIds": [
         2202380
@@ -9095,7 +10930,7 @@
         "th": "DMG Lucky",
         "id": "Lucky DMG"
       },
-      "description": "Lucky Strike DMG Multiplier +5%. Every 1% Luck grants 1.2% Lucky Strike DMG Multiplier.",
+      "description": "Lucky Strike DMG Multiplier +5%. Every 1% Luck grants 1.5% Lucky Strike DMG Multiplier.",
       "iconPath": "ui/atlas/talent_passive_5/fahuan553",
       "buffIds": [
         2202570,
@@ -9119,10 +10954,10 @@
               "inferredFrom": "Luck conversion input"
             },
             {
-              "rawText": "1.2%",
+              "rawText": "1.5%",
               "unit": "percent",
-              "value": 1.2,
-              "decimalValue": 0.012,
+              "value": 1.5,
+              "decimalValue": 0.015,
               "polarity": "increase",
               "scope": "effect-output",
               "inferredFrom": "Luck conversion output"
@@ -9143,10 +10978,10 @@
               "inferredFrom": "Luck conversion input"
             },
             {
-              "rawText": "1.2%",
+              "rawText": "1.5%",
               "unit": "percent",
-              "value": 1.2,
-              "decimalValue": 0.012,
+              "value": 1.5,
+              "decimalValue": 0.015,
               "polarity": "increase",
               "scope": "effect-output",
               "inferredFrom": "Luck conversion output"
@@ -9301,7 +11136,7 @@
         "th": "การดลใจของความหมายสูงสุด",
         "id": "Ultimate Inspiration"
       },
-      "description": "Doubles the effectiveness of Inspiration. Inspiration: Grants the blessed target 100 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
+      "description": "Doubles the effectiveness of Inspiration. Inspiration: Grants the blessed target 135 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
       "iconPath": "ui/atlas/talent_passive_5/fahuan557",
       "buffIds": [
         2202610
@@ -9384,7 +11219,7 @@
         "th": "การเพิ่มพลังของการดลใจ",
         "id": "Inspiration Boost"
       },
-      "description": "Inspiration grants 100 bonus Intellect, Strength, Agility, and Endurance. Inspiration: Grants the blessed target 100 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
+      "description": "Inspiration grants 135 bonus Intellect, Strength, Agility, and Endurance. Inspiration: Grants the blessed target 135 Intellect, Strength, Agility, and Endurance, as well as 1.5% Crit, Haste, Luck, Mastery, and Versatility.",
       "iconPath": "ui/atlas/talent_passive_5/fahuan568",
       "buffIds": [
         2202720
@@ -10167,6 +12002,110 @@
         "hardFilterEligible": true
       }
     },
+    "talent:962": {
+      "sourceId": "talent:962",
+      "sourceKind": "talent-passive",
+      "sourceType": "talent",
+      "sourceEntityId": 962,
+      "sourceName": "Granite Fury Pursuit",
+      "sourceNames": {
+        "en": "Granite Fury Pursuit",
+        "zh-CN": "岩怒追击",
+        "zh-TW": "岩怒追擊",
+        "ja": "岩拳回復",
+        "ko-KR": "바위 주먹 회복",
+        "fr": "Poursuite de la Furie de granit",
+        "de": "Granitfuror-Verfolgung",
+        "es": "Persecución de Furia de Granito",
+        "pt-BR": "Perseguição da Fúria de Granito",
+        "th": "Rock Heal",
+        "id": "Rock Fist Recovery",
+        "design": "岩拳回复"
+      },
+      "description": "Every 50 times damage is taken, the next Granite Fury deals additional fixed damage equal to 7,000% of Armor. Can trigger at most once every 20s. Every 2% Mastery reduces the required times of damage taken by 1. Every 1% Luck reduces the trigger interval by 1% (up to 50%).",
+      "iconPath": "ui/atlas/talent_passive_9/talent_passive_icon_general_tank_pierce",
+      "buffIds": [
+        50062,
+        2201640
+      ],
+      "sourceRuleIds": [
+        "mrs:1914bcf147a1"
+      ],
+      "targetDamageIds": [
+        2220164005
+      ],
+      "targetRecountIds": [
+        138
+      ],
+      "formulaPolicy": "expected-value-candidate",
+      "luckyTerms": [
+        {
+          "termId": "luckStatPct",
+          "values": [
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": -1,
+              "decimalValue": -0.01,
+              "polarity": "decrease",
+              "scope": "all"
+            },
+            {
+              "rawText": "1%",
+              "unit": "percent",
+              "value": -1,
+              "decimalValue": -0.01,
+              "polarity": "decrease",
+              "scope": "all"
+            },
+            {
+              "rawText": "50%",
+              "unit": "percent",
+              "value": -50,
+              "decimalValue": -0.5,
+              "polarity": "decrease",
+              "scope": "all"
+            }
+          ],
+          "confidence": "description-pattern"
+        }
+      ],
+      "requiredRuntimeEvidence": [
+        "active source window at hit time",
+        "attacker armor/defense snapshot at hit time",
+        "attacker Luck snapshot at hit time",
+        "attacker uid",
+        "crit flag",
+        "damage id",
+        "lucky flag or exact lucky packet",
+        "modifier windows",
+        "observed final hit value",
+        "parent hit pairing proof",
+        "produced damage row id",
+        "target uid"
+      ],
+      "ownership": {
+        "talentId": 962,
+        "classId": 9,
+        "className": "Heavy Guardian",
+        "classNames": {
+          "en": "Heavy Guardian",
+          "zh-CN": "巨刃守护者",
+          "zh-TW": "巨刃守護者",
+          "ja": "ヘヴィガーディアン",
+          "ko-KR": "헤비 가디언",
+          "fr": "Gardien imposant",
+          "de": "Schwerer Wächter",
+          "es": "Guardián pesado",
+          "pt-BR": "Guardião Pesado",
+          "th": "Heavy Guardian",
+          "id": "Heavy Guardian"
+        },
+        "ownershipKind": "class-wide-candidate",
+        "ownershipStatus": "unresolved-class-bucket",
+        "hardFilterEligible": false
+      }
+    },
     "talent:965": {
       "sourceId": "talent:965",
       "sourceKind": "talent-passive",
@@ -10434,30 +12373,13 @@
     "3601": [
       "buff-source:3601"
     ],
-    "21424": [
-      "buff-source:21424"
-    ],
-    "27007": [
-      "talent:261"
-    ],
     "50050": [
       "talent:907",
       "talent:930"
     ],
     "50062": [
-      "talent:923"
-    ],
-    "55330": [
-      "talent:1308",
-      "talent:1316"
-    ],
-    "55333": [
-      "talent:1331",
-      "talent:1346",
-      "talent:1347"
-    ],
-    "972026": [
-      "talent:261"
+      "talent:923",
+      "talent:962"
     ],
     "997025": [
       "talent:7"
@@ -10522,6 +12444,34 @@
     ],
     "997514": [
       "season-rogue-entry:197"
+    ],
+    "997557": [
+      "season-rogue-entry:349"
+    ],
+    "997558": [
+      "season-rogue-entry:350"
+    ],
+    "997588": [
+      "season-rogue-entry:370"
+    ],
+    "997594": [
+      "season-rogue-entry:376",
+      "talent:1338"
+    ],
+    "997617": [
+      "season-rogue-entry:389"
+    ],
+    "997624": [
+      "season-rogue-entry:396"
+    ],
+    "997629": [
+      "season-rogue-entry:401"
+    ],
+    "997639": [
+      "season-rogue-entry:411"
+    ],
+    "997641": [
+      "season-rogue-entry:413"
     ],
     "998140": [
       "season-rogue-entry:134"
@@ -10595,6 +12545,9 @@
     "2200080": [
       "talent:106"
     ],
+    "2200130": [
+      "talent:173"
+    ],
     "2200160": [
       "talent:114"
     ],
@@ -10665,6 +12618,9 @@
     "2201600": [
       "talent:958"
     ],
+    "2201640": [
+      "talent:962"
+    ],
     "2201670": [
       "talent:965"
     ],
@@ -10680,6 +12636,12 @@
     "2202041": [
       "talent:502"
     ],
+    "2202080": [
+      "talent:506"
+    ],
+    "2202081": [
+      "talent:506"
+    ],
     "2202090": [
       "talent:507"
     ],
@@ -10694,6 +12656,9 @@
     ],
     "2202142": [
       "buff-source:2202142"
+    ],
+    "2202291": [
+      "buff-source:2202291"
     ],
     "2202310": [
       "talent:529"
@@ -10717,6 +12682,9 @@
     ],
     "2202720": [
       "talent:568"
+    ],
+    "2204080": [
+      "talent:208"
     ],
     "2204140": [
       "talent:215"
@@ -10756,11 +12724,14 @@
       "talent:46",
       "talent:553"
     ],
-    "2204580": [
-      "talent:261"
-    ],
     "2205150": [
       "talent:416"
+    ],
+    "2205210": [
+      "talent:422"
+    ],
+    "2205211": [
+      "talent:422"
     ],
     "2205290": [
       "talent:432"
@@ -10773,6 +12744,7 @@
     ],
     "2205580": [
       "talent:416",
+      "talent:422",
       "talent:432"
     ],
     "2205630": [
@@ -10783,6 +12755,9 @@
     ],
     "2205680": [
       "talent:470"
+    ],
+    "2206240": [
+      "buff-source:2206240"
     ],
     "2207090": [
       "talent:1308"
@@ -10799,14 +12774,14 @@
     "2207390": [
       "talent:1338"
     ],
+    "2207430": [
+      "talent:1342"
+    ],
     "2207470": [
       "talent:1346"
     ],
     "2207480": [
       "talent:1347"
-    ],
-    "2208040": [
-      "talent:306"
     ],
     "2208070": [
       "talent:306"
@@ -10819,6 +12794,15 @@
     ],
     "2208210": [
       "talent:320"
+    ],
+    "2208290": [
+      "talent:328"
+    ],
+    "2208300": [
+      "talent:329"
+    ],
+    "2208310": [
+      "talent:330"
     ],
     "2208320": [
       "talent:331"
@@ -10888,11 +12872,17 @@
     "3010280": [
       "season-talent-node:5108"
     ],
+    "3050100": [
+      "phantom-factor:3050100"
+    ],
     "3050300": [
       "season-rogue-entry:229"
     ],
     "3050310": [
       "season-rogue-entry:230"
+    ],
+    "3050440": [
+      "phantom-factor:3050440"
     ],
     "3051050": [
       "phantom-factor:3051050"
@@ -10903,8 +12893,14 @@
     "3051140": [
       "phantom-factor:3051140"
     ],
+    "3051440": [
+      "phantom-factor:3051440"
+    ],
     "3052100": [
       "phantom-factor:3052100"
+    ],
+    "3052450": [
+      "phantom-factor:3052450"
     ],
     "3055100": [
       "phantom-factor:3055100"
@@ -10924,6 +12920,9 @@
     "3056290": [
       "season-rogue-entry:270"
     ],
+    "3056400": [
+      "phantom-factor:3056400"
+    ],
     "3057120": [
       "phantom-factor:3057120"
     ],
@@ -10941,6 +12940,18 @@
     ],
     "3058070": [
       "phantom-factor:3058070"
+    ],
+    "3060050": [
+      "phantom-factor:3060050"
+    ],
+    "3060160": [
+      "season-rogue-entry:414"
+    ],
+    "3060220": [
+      "season-rogue-entry:420"
+    ],
+    "3060230": [
+      "season-rogue-entry:421"
     ]
   },
   "byTermId": {
@@ -10956,11 +12967,12 @@
       "buff-source:2031109",
       "buff-source:2031110",
       "buff-source:2031111",
-      "buff-source:21424",
       "buff-source:2201140",
       "buff-source:2202130",
       "buff-source:2202131",
       "buff-source:2202142",
+      "buff-source:2202291",
+      "buff-source:2206240",
       "buff-source:3601",
       "buff-source:997419",
       "buff-source:997441",
@@ -10969,6 +12981,7 @@
     "luckyEvidence": [
       "buff-source:2031101",
       "buff-source:2031102",
+      "buff-source:2031103",
       "buff-source:2031104",
       "buff-source:2031105",
       "buff-source:2031107",
@@ -10976,11 +12989,13 @@
       "buff-source:2031110",
       "buff-source:2031111",
       "buff-source:2110110",
+      "buff-source:2202291",
       "phantom-factor:3052100",
       "phantom-factor:3056110",
       "phantom-factor:3057120",
       "season-rogue-entry:121",
       "season-rogue-entry:327",
+      "talent:173",
       "talent:319",
       "talent:906",
       "talent:956",
@@ -10989,8 +13004,8 @@
     ],
     "luckyChancePct": [
       "buff-source:2110102",
+      "phantom-factor:3050440",
       "talent:114",
-      "talent:1331",
       "talent:159",
       "talent:226",
       "talent:467"
@@ -11003,6 +13018,11 @@
       "season-rogue-entry:162",
       "season-rogue-entry:197",
       "season-rogue-entry:230",
+      "season-rogue-entry:349",
+      "season-rogue-entry:401",
+      "season-rogue-entry:411",
+      "season-rogue-entry:420",
+      "season-rogue-entry:421",
       "season-talent-node:1310",
       "season-talent-node:1410",
       "talent:119",
@@ -11016,115 +13036,8 @@
       "talent:7",
       "talent:923"
     ],
-    "luckyTrigger": [
-      "phantom-factor:3051050",
-      "phantom-factor:3051090",
-      "phantom-factor:3051140",
-      "phantom-factor:3055100",
-      "phantom-factor:3057120",
-      "season-rogue-entry:114",
-      "season-rogue-entry:134",
-      "season-rogue-entry:135",
-      "season-rogue-entry:136",
-      "season-rogue-entry:137",
-      "season-rogue-entry:164",
-      "season-rogue-entry:165",
-      "season-rogue-entry:166",
-      "season-rogue-entry:167",
-      "season-rogue-entry:168",
-      "season-rogue-entry:173",
-      "season-rogue-entry:174",
-      "season-rogue-entry:193",
-      "season-rogue-entry:229",
-      "season-rogue-entry:263",
-      "talent:1309",
-      "talent:1316",
-      "talent:1347",
-      "talent:159",
-      "talent:169",
-      "talent:216",
-      "talent:221",
-      "talent:226",
-      "talent:318",
-      "talent:416",
-      "talent:467",
-      "talent:512",
-      "talent:536"
-    ],
-    "luckyCritInteraction": [
-      "phantom-factor:3051140",
-      "season-rogue-entry:166",
-      "talent:216",
-      "talent:306"
-    ],
-    "luckyTimingOrResource": [
-      "phantom-factor:3051140",
-      "season-rogue-entry:114",
-      "season-rogue-entry:134",
-      "season-rogue-entry:135",
-      "season-rogue-entry:136",
-      "season-rogue-entry:137",
-      "season-rogue-entry:167",
-      "season-rogue-entry:168",
-      "season-rogue-entry:173",
-      "season-rogue-entry:174",
-      "season-rogue-entry:193",
-      "season-rogue-entry:333",
-      "season-talent-node:1001",
-      "talent:1309",
-      "talent:1316",
-      "talent:1347",
-      "talent:216",
-      "talent:306",
-      "talent:512",
-      "talent:907"
-    ],
-    "luckStatPct": [
-      "phantom-factor:3056060",
-      "season-rogue-entry:160",
-      "season-rogue-entry:161",
-      "season-rogue-entry:169",
-      "season-rogue-entry:172",
-      "season-rogue-entry:194",
-      "season-talent-node:1002",
-      "talent:1346",
-      "talent:157",
-      "talent:163",
-      "talent:233",
-      "talent:507",
-      "talent:906",
-      "talent:907",
-      "talent:930",
-      "talent:956",
-      "talent:957",
-      "talent:958",
-      "talent:971"
-    ],
-    "luckyDamagePct": [
-      "season-rogue-entry:114",
-      "season-rogue-entry:134",
-      "season-rogue-entry:135",
-      "season-rogue-entry:136",
-      "season-rogue-entry:137",
-      "season-rogue-entry:165",
-      "season-rogue-entry:167",
-      "season-rogue-entry:168",
-      "season-rogue-entry:170",
-      "season-rogue-entry:171",
-      "season-rogue-entry:270",
-      "talent:467"
-    ],
-    "guaranteedLucky": [
-      "season-rogue-entry:151",
-      "season-rogue-entry:164",
-      "season-rogue-entry:166"
-    ],
-    "luckEntryDamageScaling": [
-      "season-rogue-entry:159",
-      "season-rogue-entry:160",
-      "season-talent-node:5101"
-    ],
     "luckStatDamageScaling": [
+      "phantom-factor:3050100",
       "season-rogue-entry:159",
       "season-rogue-entry:160",
       "season-rogue-entry:268",
@@ -11145,31 +13058,112 @@
       "talent:233",
       "talent:237",
       "talent:306",
-      "talent:320",
       "talent:416",
       "talent:457",
       "talent:46",
       "talent:465",
+      "talent:506",
       "talent:555",
       "talent:965"
     ],
-    "luckyFinalDamagePct": [
-      "season-rogue-entry:164",
-      "talent:221",
-      "talent:261",
-      "talent:470"
-    ],
     "luckyMultiplierPct": [
+      "phantom-factor:3050440",
       "season-rogue-entry:230",
       "season-rogue-entry:331",
+      "season-rogue-entry:370",
       "season-talent-node:1003",
+      "talent:1331",
       "talent:1338",
       "talent:255",
       "talent:306",
+      "talent:329",
+      "talent:330",
       "talent:467",
       "talent:553"
     ],
+    "luckyTimingOrResource": [
+      "phantom-factor:3050440",
+      "phantom-factor:3051050",
+      "phantom-factor:3051140",
+      "phantom-factor:3052450",
+      "phantom-factor:3056110",
+      "phantom-factor:3056400",
+      "phantom-factor:3060050",
+      "season-rogue-entry:114",
+      "season-rogue-entry:134",
+      "season-rogue-entry:135",
+      "season-rogue-entry:136",
+      "season-rogue-entry:137",
+      "season-rogue-entry:167",
+      "season-rogue-entry:168",
+      "season-rogue-entry:173",
+      "season-rogue-entry:174",
+      "season-rogue-entry:193",
+      "season-rogue-entry:333",
+      "season-talent-node:1001",
+      "talent:1309",
+      "talent:1316",
+      "talent:1347",
+      "talent:216",
+      "talent:306",
+      "talent:422",
+      "talent:512",
+      "talent:907"
+    ],
+    "luckyTrigger": [
+      "phantom-factor:3051050",
+      "phantom-factor:3051090",
+      "phantom-factor:3051140",
+      "phantom-factor:3052450",
+      "phantom-factor:3055100",
+      "phantom-factor:3056400",
+      "phantom-factor:3057120",
+      "phantom-factor:3060050",
+      "season-rogue-entry:114",
+      "season-rogue-entry:134",
+      "season-rogue-entry:135",
+      "season-rogue-entry:136",
+      "season-rogue-entry:137",
+      "season-rogue-entry:164",
+      "season-rogue-entry:165",
+      "season-rogue-entry:166",
+      "season-rogue-entry:167",
+      "season-rogue-entry:168",
+      "season-rogue-entry:173",
+      "season-rogue-entry:174",
+      "season-rogue-entry:193",
+      "season-rogue-entry:229",
+      "season-rogue-entry:263",
+      "season-rogue-entry:350",
+      "talent:1309",
+      "talent:1316",
+      "talent:1342",
+      "talent:1347",
+      "talent:159",
+      "talent:169",
+      "talent:208",
+      "talent:216",
+      "talent:221",
+      "talent:226",
+      "talent:318",
+      "talent:330",
+      "talent:416",
+      "talent:422",
+      "talent:467",
+      "talent:512",
+      "talent:536"
+    ],
+    "luckyCritInteraction": [
+      "phantom-factor:3051140",
+      "season-rogue-entry:166",
+      "season-rogue-entry:370",
+      "talent:216",
+      "talent:306",
+      "talent:329",
+      "talent:422"
+    ],
     "luckChancePct": [
+      "phantom-factor:3051440",
       "season-talent-node:1002",
       "talent:106",
       "talent:1308",
@@ -11182,6 +13176,66 @@
       "talent:965",
       "talent:969",
       "talent:971"
+    ],
+    "luckyFinalDamagePct": [
+      "phantom-factor:3052450",
+      "season-rogue-entry:164",
+      "season-rogue-entry:413",
+      "talent:221",
+      "talent:470"
+    ],
+    "luckStatPct": [
+      "phantom-factor:3056060",
+      "season-rogue-entry:160",
+      "season-rogue-entry:161",
+      "season-rogue-entry:169",
+      "season-rogue-entry:172",
+      "season-rogue-entry:194",
+      "season-rogue-entry:389",
+      "season-rogue-entry:414",
+      "season-talent-node:1002",
+      "talent:1346",
+      "talent:157",
+      "talent:163",
+      "talent:233",
+      "talent:328",
+      "talent:507",
+      "talent:906",
+      "talent:907",
+      "talent:930",
+      "talent:956",
+      "talent:957",
+      "talent:958",
+      "talent:962",
+      "talent:971"
+    ],
+    "luckyDamagePct": [
+      "season-rogue-entry:114",
+      "season-rogue-entry:134",
+      "season-rogue-entry:135",
+      "season-rogue-entry:136",
+      "season-rogue-entry:137",
+      "season-rogue-entry:165",
+      "season-rogue-entry:167",
+      "season-rogue-entry:168",
+      "season-rogue-entry:170",
+      "season-rogue-entry:171",
+      "season-rogue-entry:270",
+      "season-rogue-entry:376",
+      "season-rogue-entry:396",
+      "talent:1331",
+      "talent:320",
+      "talent:467"
+    ],
+    "guaranteedLucky": [
+      "season-rogue-entry:151",
+      "season-rogue-entry:164",
+      "season-rogue-entry:166"
+    ],
+    "luckEntryDamageScaling": [
+      "season-rogue-entry:159",
+      "season-rogue-entry:160",
+      "season-talent-node:5101"
     ],
     "luckEntryAcquisition": [
       "season-talent-node:5101",
@@ -11197,6 +13251,7 @@
       "talent:1338",
       "talent:255",
       "talent:306",
+      "talent:330",
       "talent:553"
     ],
     "luckStatBehavior": [
@@ -11225,11 +13280,12 @@
       "buff-source:2031109",
       "buff-source:2031110",
       "buff-source:2031111",
-      "buff-source:21424",
       "buff-source:2201140",
       "buff-source:2202130",
       "buff-source:2202131",
       "buff-source:2202142",
+      "buff-source:2202291",
+      "buff-source:2206240",
       "buff-source:3601",
       "buff-source:997419",
       "buff-source:997441",
@@ -11237,6 +13293,10 @@
     ],
     "expected-value-candidate": [
       "buff-source:2110102",
+      "phantom-factor:3050100",
+      "phantom-factor:3050440",
+      "phantom-factor:3051440",
+      "phantom-factor:3052450",
       "phantom-factor:3056060",
       "season-rogue-entry:114",
       "season-rogue-entry:134",
@@ -11259,6 +13319,12 @@
       "season-rogue-entry:268",
       "season-rogue-entry:270",
       "season-rogue-entry:331",
+      "season-rogue-entry:370",
+      "season-rogue-entry:376",
+      "season-rogue-entry:389",
+      "season-rogue-entry:396",
+      "season-rogue-entry:413",
+      "season-rogue-entry:414",
       "season-talent-node:1001",
       "season-talent-node:1002",
       "season-talent-node:1003",
@@ -11288,9 +13354,11 @@
       "talent:233",
       "talent:237",
       "talent:255",
-      "talent:261",
       "talent:306",
       "talent:320",
+      "talent:328",
+      "talent:329",
+      "talent:330",
       "talent:331",
       "talent:416",
       "talent:44",
@@ -11299,6 +13367,7 @@
       "talent:465",
       "talent:467",
       "talent:470",
+      "talent:506",
       "talent:507",
       "talent:553",
       "talent:555",
@@ -11308,6 +13377,7 @@
       "talent:956",
       "talent:957",
       "talent:958",
+      "talent:962",
       "talent:965",
       "talent:969",
       "talent:971"
@@ -11322,9 +13392,11 @@
       "phantom-factor:3052100",
       "phantom-factor:3055100",
       "phantom-factor:3056110",
+      "phantom-factor:3056400",
       "phantom-factor:3057120",
       "phantom-factor:3058060",
       "phantom-factor:3058070",
+      "phantom-factor:3060050",
       "season-rogue-entry:121",
       "season-rogue-entry:151",
       "season-rogue-entry:162",
@@ -11337,6 +13409,12 @@
       "season-rogue-entry:263",
       "season-rogue-entry:327",
       "season-rogue-entry:333",
+      "season-rogue-entry:349",
+      "season-rogue-entry:350",
+      "season-rogue-entry:401",
+      "season-rogue-entry:411",
+      "season-rogue-entry:420",
+      "season-rogue-entry:421",
       "season-talent-node:1310",
       "season-talent-node:1410",
       "season-talent-node:5102",
@@ -11347,13 +13425,17 @@
       "talent:119",
       "talent:1309",
       "talent:1316",
+      "talent:1342",
       "talent:1347",
       "talent:169",
+      "talent:173",
+      "talent:208",
       "talent:216",
       "talent:219",
       "talent:228",
       "talent:318",
       "talent:319",
+      "talent:422",
       "talent:432",
       "talent:502",
       "talent:512",
@@ -11380,9 +13462,11 @@
       "talent:161",
       "talent:163",
       "talent:165",
-      "talent:169"
+      "talent:169",
+      "talent:173"
     ],
     "2": [
+      "talent:208",
       "talent:215",
       "talent:216",
       "talent:219",
@@ -11391,18 +13475,21 @@
       "talent:228",
       "talent:233",
       "talent:237",
-      "talent:255",
-      "talent:261"
+      "talent:255"
     ],
     "3": [
       "talent:306",
       "talent:318",
       "talent:319",
       "talent:320",
+      "talent:328",
+      "talent:329",
+      "talent:330",
       "talent:331"
     ],
     "4": [
       "talent:416",
+      "talent:422",
       "talent:432",
       "talent:457",
       "talent:465",
@@ -11411,6 +13498,7 @@
     ],
     "5": [
       "talent:502",
+      "talent:506",
       "talent:507",
       "talent:512",
       "talent:529",
@@ -11429,6 +13517,7 @@
       "talent:956",
       "talent:957",
       "talent:958",
+      "talent:962",
       "talent:965",
       "talent:969",
       "talent:971"
@@ -11439,6 +13528,7 @@
       "talent:1316",
       "talent:1331",
       "talent:1338",
+      "talent:1342",
       "talent:1346",
       "talent:1347"
     ]
@@ -11456,20 +13546,26 @@
     ],
     "212": [
       "talent:215",
-      "talent:221",
-      "talent:261"
+      "talent:221"
     ],
     "233": [
+      "talent:208",
       "talent:215",
       "talent:216",
       "talent:233"
     ],
+    "312": [
+      "talent:319",
+      "talent:320"
+    ],
     "432": [
       "talent:416",
+      "talent:422",
       "talent:432",
       "talent:470"
     ],
     "510": [
+      "talent:506",
       "talent:512",
       "talent:555"
     ],
@@ -11488,7 +13584,8 @@
     ],
     "1308": [
       "talent:1308",
-      "talent:1316"
+      "talent:1316",
+      "talent:1342"
     ]
   }
 }

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-27T21:20:02.797Z",
+  "generatedAt": "2026-05-28T21:24:35.132Z",
   "category": "items",
   "locale": "und",
   "sourceCatalog": "ItemDescriptions.json",
   "note": "Locale text split from the core modifier description catalog. Runtime/parser code can load only the locale it needs.",
   "stats": {
-    "entries": 29,
+    "entries": 33,
     "withDescriptions": 0,
     "withDescriptionBlocks": 0,
     "withBridgedPageContexts": 0
@@ -148,6 +148,14 @@
         "und": "Crunchyroll Eye Mask"
       }
     },
+    "7170049": {
+      "uid": "7170049",
+      "category": "items",
+      "name": "Crunchyroll Pulse Cleaver",
+      "names": {
+        "und": "Crunchyroll Pulse Cleaver"
+      }
+    },
     "9020042": {
       "uid": "9020042",
       "category": "items",
@@ -242,6 +250,30 @@
       "name": "Title - Illusion Breaker",
       "names": {
         "und": "Title - Illusion Breaker"
+      }
+    },
+    "9062037": {
+      "uid": "9062037",
+      "category": "items",
+      "name": "Title - Community Team",
+      "names": {
+        "und": "Title - Community Team"
+      }
+    },
+    "9062038": {
+      "uid": "9062038",
+      "category": "items",
+      "name": "Title - Champions of Dreams",
+      "names": {
+        "und": "Title - Champions of Dreams"
+      }
+    },
+    "9062039": {
+      "uid": "9062039",
+      "category": "items",
+      "name": "Title - Voice of Starland",
+      "names": {
+        "und": "Title - Voice of Starland"
       }
     }
   }

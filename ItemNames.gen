@@ -171,12 +171,23 @@ Output shape:
     readCtbTable,
     readU32
   });
-  const { candidates, wantedNameIds } = collectIdentityCandidates(
-    buffer,
-    args.regionStart,
-    args.regionEnd
-  );
+  const itemTableIdentity = collectItemTableIdentityCandidates(containerDir, metaEntries, {
+    readCtbTable,
+    readU32
+  });
+  const binaryIdentity = itemTableIdentity.candidates.length
+    ? { candidates: [], wantedNameIds: new Set() }
+    : collectIdentityCandidates(buffer, args.regionStart, args.regionEnd);
+  const candidates = itemTableIdentity.candidates.length
+    ? itemTableIdentity.candidates
+    : binaryIdentity.candidates;
+  const wantedNameIds = itemTableIdentity.candidates.length
+    ? itemTableIdentity.wantedNameIds
+    : binaryIdentity.wantedNameIds;
 
+  if (itemTableIdentity.candidates.length) {
+    console.log(`ItemTable identity rows: ${itemTableIdentity.candidates.length.toLocaleString()}`);
+  }
   console.log(`Candidate rows: ${candidates.length.toLocaleString()}`);
   console.log(`Referenced name ids: ${wantedNameIds.size.toLocaleString()}`);
   console.log(`Loaded localization files: ${localizationTables.length.toLocaleString()}`);
@@ -398,6 +409,30 @@ function collectIdentityCandidates(buffer, regionStart, regionEnd) {
     if (nameId < MIN_NAME_ID || nameId > MAX_NAME_ID) continue;
 
     candidates.push({ offset, itemId, nameId });
+    wantedNameIds.add(nameId);
+  }
+
+  return { candidates, wantedNameIds };
+}
+
+function collectItemTableIdentityCandidates(containerDir, metaEntries, helpers) {
+  const { readCtbTable, readU32 } = helpers;
+  const candidates = [];
+  const wantedNameIds = new Set();
+  const table = readCtbTable(containerDir, metaEntries, "ItemTable.ctb");
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const itemId = readU32(table.data, rowOffset);
+    const nameId = readU32(table.data, rowOffset + 4);
+    if (itemId < MIN_ITEM_ID || itemId > MAX_ITEM_ID) continue;
+    if (nameId < MIN_NAME_ID || nameId > MAX_NAME_ID) continue;
+
+    candidates.push({
+      offset: table.entry.offset + rowOffset,
+      itemId,
+      nameId
+    });
     wantedNameIds.add(nameId);
   }
 

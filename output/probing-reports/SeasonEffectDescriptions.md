@@ -8,13 +8,13 @@ This file is description grounding only. It does not prove runtime activation, s
 
 ## Summary
 
-- Source rows: 1,252
-- Exported rows: 1,237
-- Rows with English text: 1,237
-- Rows with value text: 924
-- Rows with paragraph breaks: 232
-- Rows with unresolved Decision placeholders: 344
-- Rows with linktext refs: 529
+- Source rows: 1,378
+- Exported rows: 1,364
+- Rows with English text: 1,364
+- Rows with value text: 999
+- Rows with paragraph breaks: 342
+- Rows with unresolved Decision placeholders: 450
+- Rows with linktext refs: 530
 
 ## Sample Rows
 
@@ -58,13 +58,14 @@ This file is description grounding only. It does not prove runtime activation, s
 | 2200040 | 1613950494 | Piercing Slash grants Overdrive 1 charge. | 1 | 0 | 2 |
 | 2200050 | 1613950527 | When Basic Attacks deal DMG, 10% chance to trigger Piercing Slash, once per second. | 1 | 0 | 1 |
 | 2200060 | 1613950560 | Increases the fixed chance to trigger Piercing Slash by 10%. | 1 | 0 | 1 |
-| 2200070 | 1613950593 | Iaido Slash Crit +10%. Each 1% Crit chance grants 0.15% Crit DMG for skills that consume Thunder Sigils. When Crit chance exceeds 60%, every extra 1% grants an additional 0.32% Crit DMG for skills that consume Thunder Sigils. | 5 | 0 | 2 |
+| 2200070 | 1613950593 | Iaido Slash Crit +10%. Each 1% Crit chance grants 0.15% Crit DMG for skills that consume Thunder Sigils. When Crit chance exceeds 60%, every extra 1% grants an additional 0.88% Crit DMG for skills that consume Thunder Sigils. | 5 | 0 | 2 |
 | 2200080 | 1613950626 | Crit Rate obtained in any way is increased by 12%, but Luck chance obtained in any way are reduced by 10%. | 2 | 0 | 0 |
 | 2200090 | 1613950659 | Crit hits of Special Attacks grant 100 Blade Intent. | 1 | 0 | 1 |
 | 2200100 | 1613951451 | Increases Max Thunder Sigil by 1. | 1 | 0 | 1 |
-| 2200110 | 1613951484 | Consumes 100 Blade Intent to gain stacks of Thunder Reversal Mark. When Thunder Reversal Mark reaches 5 stacks, casting Iaido Slash grants the Thunder Reversal effect and removes all Thunder Reversal Mark stacks. Thunder Reversal: Gain a 10% Thunder DMG bonus for 15s. During Thunder Reversal, Thunder Reversal Mark cannot be gained. | 4 | 0 | 2 |
+| 2200110 | 1613951484 | Consumes 100 Blade Intent to gain stacks of Thunder Reversal Mark. When Thunder Reversal Mark reaches 5 stacks, casting Iaido Slash grants the Thunder Reversal effect and removes all Thunder Reversal Mark stacks. Thunder Reversal: Gain a 10% Thunder DMG bonus for 15s. | 4 | 0 | 2 |
 | 2200120 | 1613951517 | Each cast of Flash Strike, Raijin Dash, or its enhanced skills grants 1 stack of Thundrage. When Thundrage reaches 5 stacks, Iaido Slash evolves into Thunder Cut. After casting Thunder Cut, 5 stacks of Thundrage are consumed. Thundrage stacks up to 8 times. | 3 | 0 | 4 |
-| 2200140 | 1613951583 | When Iaido Slash and its enhanced skill (Thunder Cut) deal DMG, there is a fixed 10% chance to reset the remaining CD of Flash Strike and Raijin Dash. For each Thunder Sigil consumed, the chance increases by 10%. | 1 | 0 | 5 |
+| 2200130 | 1613951550 | Lucky Strike ATK +100%. | 1 | 0 | 0 |
+| 2200140 | 1613951583 | When Iaido Slash and its enhanced skill (Thunder Cut) deal DMG, there is a fixed 10% chance to reset the remaining CD of Flash Strike and Raijin Dash. For each Thunder Sigil consumed, the chance increases by 10%. During Volt Surge, this chance is doubled. | 1 | 0 | 6 |
 | 2200150 | 1613951616 | Every 3 casts of Overdrive allows the next Iaido Slash to generate a Bladewind Domain in front. Each time Bladewind Domain deals DMG, reduces the CD of Oblivion Combo by 1.5s. | 2 | 0 | 4 |
 | 2200160 | 1613951649 | Moonblades have a fixed 60% chance to cast Thunderstrike on a Lucky Strike. Thunderstrike deals double DMG. | 1 | 0 | 2 |
 | 2200170 | 1613951682 | Lucky Strikes of Moonblades grant a fixed 30% chance to restore 1 Thunder Sigil, once per 2 seconds. | 3 | 0 | 2 |
@@ -94,9 +95,8 @@ This file is description grounding only. It does not prove runtime activation, s
 | 2200440 | 1613954850 | Raijin Dash and its enhanced skill (Phantom Slash) ignore the target's Armor. Raijin Dash and its enhanced skill (Phantom Slash) deal 10% more damage per additional 1 enemy hit. | 2 | 0 | 2 |
 | 2200450 | 1613954883 | Increases the critical rate of Iaido Slash and Thunder Cut by 12%. | 1 | 0 | 2 |
 | 2200460 | 1613954916 | Crit Rate obtained in any way is increased by 12%, but Luck chance obtained in any way are reduced by 10%. | 2 | 0 | 0 |
-| 2200470 | 1613954949 | When Blade Intent is at least 100, Flash Strike, Raijin Dash, and their enhanced skills (Dracoflash, Phantom Slash) gain Crit Rate by 10%. When Blade Intent is at least 100, greatly increases Flash Strike's and Raijin Dash's casting speed. | 2 | 0 | 5 |
+| 2200470 | 1613954949 | When Blade Intent is at least 100, Flash Strike, Raijin Dash, and their enhanced skills (Dracoflash, Phantom Slash) +10% Crit and +20% Thunder DMG. When Blade Intent is at least 100, greatly increases Flash Strike's and Raijin Dash's casting speed. | 3 | 0 | 5 |
 | 2200480 | 1613954982 | Each additional Thunder Sigil consumed by Expertise Skill or Special Attacks increases your Thunder DMG dealt by 1.5% when they deal DMG. | 1 | 0 | 1 |
 | 2200490 | 1613955015 | Each use of Dracoflash or Phantom Slash grants 4 stacks of Thundrage, up to 8 stacks. | 2 | 0 | 2 |
 | 2200500 | 1613955807 | Reduces the CD of Overdrive by 30%. | 1 | 0 | 1 |
 | 2200510 | 1613955840 | When Iaido Slash deals Crit DMG, if the Blade Intent exceeds 20, launches Thunderstrike (which can only be triggered once per use of Iaido Slash). | 1 | 0 | 3 |
-| 2200520 | 1613955873 | Increases Max Thunder Sigil by 1. | 1 | 0 | 1 |

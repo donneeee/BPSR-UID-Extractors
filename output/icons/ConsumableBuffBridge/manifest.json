@@ -1,8 +1,8 @@
 {
-  "GeneratedAt": "2026-05-27T06:11:05.757Z",
+  "GeneratedAt": "2026-05-29T04:11:29.566Z",
   "SourceGroup": "ConsumableBuffBridge",
   "OutputDir": "output/icons/ConsumableBuffBridge",
-  "AssetCount": 142,
+  "AssetCount": 190,
   "Assets": [
     {
       "AssetId": "ConsumableBuffBridge|Sprite|1447258277|buff_food_up|ConsumableBuffBridge/buff_food_up.png",
@@ -18,383 +18,407 @@
       "MatchKind": "atlas-sprite-address",
       "PngFile": "ConsumableBuffBridge/buff_food_up.png",
       "RequiresProbePixelMatch": false,
-      "RefCount": 94,
+      "RefCount": 136,
       "Rows": [
         {
           "Id": 2032011,
-          "Name": "Cuisine - ATK Lv.1"
+          "Name": "Cuisine - S1-ATK Lv.1"
         },
         {
           "Id": 2032012,
-          "Name": "Cuisine - ATK Lv.2"
+          "Name": "Cuisine - S1-ATK Lv.2"
         },
         {
           "Id": 2032013,
-          "Name": "Cuisine - ATK Lv.3"
+          "Name": "Cuisine - S1-ATK Lv.3"
         },
         {
           "Id": 2032014,
-          "Name": "Cuisine - ATK Lv.4"
+          "Name": "Cuisine - S1-ATK Lv.4"
         },
         {
           "Id": 2032015,
-          "Name": "Cuisine - ATK Lv.5"
+          "Name": "Cuisine - S1-ATK Lv.5"
         },
         {
           "Id": 2032016,
-          "Name": "Cuisine - ATK Lv.6"
+          "Name": "Cuisine - S1-ATK Lv.6"
         },
         {
           "Id": 2032017,
-          "Name": "Cuisine - ATK Lv.7"
+          "Name": "Cuisine - S1-ATK Lv.7"
         },
         {
           "Id": 2032018,
-          "Name": "Cuisine - ATK Lv.8"
+          "Name": "Cuisine - S1-ATK Lv.8"
         },
         {
           "Id": 2032021,
-          "Name": "Cuisine - MATK Lv.1"
+          "Name": "Cuisine - S1-MATK Lv.1"
         },
         {
           "Id": 2032022,
-          "Name": "Cuisine - MATK Lv.2"
+          "Name": "Cuisine - S1-MATK Lv.2"
         },
         {
           "Id": 2032023,
-          "Name": "Cuisine - MATK Lv.3"
+          "Name": "Cuisine - S1-MATK Lv.3"
         },
         {
           "Id": 2032024,
-          "Name": "Cuisine - MATK Lv.4"
+          "Name": "Cuisine - S1-MATK Lv.4"
         },
         {
           "Id": 2032025,
-          "Name": "Cuisine - MATK Lv.5"
+          "Name": "Cuisine - S1-MATK Lv.5"
         },
         {
           "Id": 2032026,
-          "Name": "Cuisine - MATK Lv.6"
+          "Name": "Cuisine - S1-MATK Lv.6"
         },
         {
           "Id": 2032027,
-          "Name": "Cuisine - MATK Lv.7"
+          "Name": "Cuisine - S1-MATK Lv.7"
         },
         {
           "Id": 2032028,
-          "Name": "Cuisine - MATK Lv.8"
+          "Name": "Cuisine - S1-MATK Lv.8"
         },
         {
           "Id": 2032031,
-          "Name": "Cuisine - Armor Lv.1"
+          "Name": "Cuisine - S1-Armor Lv.1"
         },
         {
           "Id": 2032032,
-          "Name": "Cuisine - Armor Lv.2"
+          "Name": "Cuisine - S1-Armor Lv.2"
         },
         {
           "Id": 2032033,
-          "Name": "Cuisine - Armor Lv.3"
+          "Name": "Cuisine - S1-Armor Lv.3"
         },
         {
           "Id": 2032034,
-          "Name": "Cuisine - Armor Lv.4"
+          "Name": "Cuisine - S1-Armor Lv.4"
         },
         {
           "Id": 2032035,
-          "Name": "Cuisine - Armor Lv.5"
+          "Name": "Cuisine - S1-Armor Lv.5"
         },
         {
           "Id": 2032036,
-          "Name": "Cuisine - Armor Lv.6"
+          "Name": "Cuisine - S1-Armor Lv.6"
         },
         {
           "Id": 2032037,
-          "Name": "Cuisine - Armor Lv.7"
+          "Name": "Cuisine - S1-Armor Lv.7"
         },
         {
           "Id": 2032038,
-          "Name": "Cuisine - Armor Lv.8"
+          "Name": "Cuisine - S1-Armor Lv.8"
         },
         {
           "Id": 2032041,
-          "Name": "Cuisine - Stamina Lv.1"
+          "Name": "Cuisine - S1-Stamina Lv.1"
         },
         {
           "Id": 2032042,
-          "Name": "Cuisine - HP Lv.2"
+          "Name": "Cuisine - S1-Stamina Lv.2"
         },
         {
           "Id": 2032043,
-          "Name": "Cuisine - HP Lv.3"
+          "Name": "Cuisine - S1-Stamina Lv.3"
         },
         {
           "Id": 2032044,
-          "Name": "Cuisine - HP Lv.4"
+          "Name": "Cuisine - S1-Stamina Lv.4"
         },
         {
           "Id": 2032045,
-          "Name": "Cuisine - HP Lv.5"
+          "Name": "Cuisine - S1-Stamina Lv.5"
         },
         {
           "Id": 2032046,
-          "Name": "Cuisine - HP Lv.6"
+          "Name": "Cuisine - S1-Stamina Lv.6"
         },
         {
           "Id": 2032047,
-          "Name": "Cuisine - HP Lv.7"
+          "Name": "Cuisine - S1-Stamina Lv.7"
         },
         {
           "Id": 2032048,
-          "Name": "Cuisine - HP Lv.8"
+          "Name": "Cuisine - S1-Stamina Lv.8"
         },
         {
           "Id": 2032051,
-          "Name": "Cuisine - HP Regen Lv.1"
+          "Name": "Cuisine - S1-HP Regen Lv.1"
         },
         {
           "Id": 2032052,
-          "Name": "Cuisine - HP Regen Lv.2"
+          "Name": "Cuisine - S1-HP Regen Lv.2"
         },
         {
           "Id": 2032053,
-          "Name": "Cuisine - HP Regen Lv.3"
+          "Name": "Cuisine - S1-HP Regen Lv.3"
         },
         {
           "Id": 2032054,
-          "Name": "Cuisine - HP Regen Lv.4"
+          "Name": "Cuisine - S1-HP Regen Lv.4"
         },
         {
           "Id": 2032055,
-          "Name": "Cuisine - HP Regen Lv.5"
+          "Name": "Cuisine - S1-HP Regen Lv.5"
         },
         {
           "Id": 2032056,
-          "Name": "Cuisine - HP Regen Lv.6"
+          "Name": "Cuisine - S1-HP Regen Lv.6"
         },
         {
           "Id": 2032057,
-          "Name": "Cuisine - HP Regen Lv.7"
+          "Name": "Cuisine - S1-HP Regen Lv.7"
         },
         {
           "Id": 2032058,
-          "Name": "Cuisine - HP Regen Lv.8"
+          "Name": "Cuisine - S1-HP Regen Lv.8"
         },
         {
           "Id": 2032065,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.1"
+          "Name": "Cuisine - S1-ATK + DMG to Elites Lv.1"
         },
         {
           "Id": 2032067,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.2"
+          "Name": "Cuisine - S1-ATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032075,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.1"
+          "Name": "Cuisine - S1-MATK + DMG to Elites Lv.1"
         },
         {
           "Id": 2032077,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.2"
+          "Name": "Cuisine - S1-MATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032086,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.1"
+          "Name": "Cuisine - S1-Armor + Elite DMG Reduction Lv.1"
         },
         {
           "Id": 2032088,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
+          "Name": "Cuisine - S1-Armor + Elite DMG Reduction Lv.2"
         },
         {
           "Id": 2032111,
-          "Name": "Cuisine - ATK Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032112,
-          "Name": "Cuisine - ATK Lv.2"
+          "Name": "Cuisine - [S2]ATK Lv.2"
         },
         {
           "Id": 2032113,
-          "Name": "Cuisine - ATK Lv.3"
+          "Name": "Cuisine - [S2]ATK Lv.3"
         },
         {
           "Id": 2032114,
-          "Name": "Cuisine - ATK Lv.4"
+          "Name": "Cuisine - [S2]ATK Lv.4"
         },
         {
           "Id": 2032115,
-          "Name": "Cuisine - ATK Lv.5"
+          "Name": "Cuisine - [S2]ATK Lv.5"
         },
         {
           "Id": 2032116,
-          "Name": "Cuisine - ATK Lv.6"
+          "Name": "Cuisine - [S2]ATK Lv.6"
         },
         {
           "Id": 2032121,
-          "Name": "Cuisine - MATK Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032122,
-          "Name": "Cuisine - MATK Lv.2"
+          "Name": "Cuisine - [S2]MATK Lv.2"
         },
         {
           "Id": 2032123,
-          "Name": "Cuisine - MATK Lv.3"
+          "Name": "Cuisine - [S2]MATK Lv.3"
         },
         {
           "Id": 2032124,
-          "Name": "Cuisine - MATK Lv.4"
+          "Name": "Cuisine - [S2]MATK Lv.4"
         },
         {
           "Id": 2032125,
-          "Name": "Cuisine - MATK Lv.5"
+          "Name": "Cuisine - [S2]MATK Lv.5"
         },
         {
           "Id": 2032126,
-          "Name": "Cuisine - MATK Lv.6"
+          "Name": "Cuisine - [S2]MATK Lv.6"
         },
         {
           "Id": 2032131,
-          "Name": "Cuisine - Armor Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032132,
-          "Name": "Cuisine - Armor Lv.2"
+          "Name": "Cuisine - [S2]Armor Lv.2"
         },
         {
           "Id": 2032133,
-          "Name": "Cuisine - Armor Lv.3"
+          "Name": "Cuisine - [S2]Armor Lv.3"
         },
         {
           "Id": 2032134,
-          "Name": "Cuisine - Armor Lv.4"
+          "Name": "Cuisine - [S2]Armor Lv.4"
         },
         {
           "Id": 2032135,
-          "Name": "Cuisine - Armor Lv.5"
+          "Name": "Cuisine - [S2]Armor Lv.5"
         },
         {
           "Id": 2032136,
-          "Name": "Cuisine - Armor Lv.6"
+          "Name": "Cuisine - [S2]Armor Lv.6"
         },
         {
           "Id": 2032141,
-          "Name": "Cuisine - HP Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032142,
-          "Name": "Cuisine - HP Lv.2"
+          "Name": "Cuisine - [S2]Stamina Lv.2"
         },
         {
           "Id": 2032143,
-          "Name": "Cuisine - HP Lv.3"
+          "Name": "Cuisine - [S2]Stamina Lv.3"
         },
         {
           "Id": 2032144,
-          "Name": "Cuisine - HP Lv.4"
+          "Name": "Cuisine - [S2]Stamina Lv.4"
         },
         {
           "Id": 2032145,
-          "Name": "Cuisine - HP Lv.5"
+          "Name": "Cuisine - [S2]Stamina Lv.5"
         },
         {
           "Id": 2032146,
-          "Name": "Cuisine - HP Lv.6"
+          "Name": "Cuisine - [S2]Stamina Lv.6"
         },
         {
           "Id": 2032151,
-          "Name": "Cuisine - HP Regen Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032152,
-          "Name": "Cuisine - HP Regen Lv.2"
+          "Name": "Cuisine - [S2]HP Regen Lv.2"
         },
         {
           "Id": 2032153,
-          "Name": "Cuisine - HP Regen Lv.3"
+          "Name": "Cuisine - [S2]HP Regen Lv.3"
         },
         {
           "Id": 2032154,
-          "Name": "Cuisine - HP Regen Lv.4"
+          "Name": "Cuisine - [S2]HP Regen Lv.4"
         },
         {
           "Id": 2032155,
-          "Name": "Cuisine - HP Regen Lv.5"
+          "Name": "Cuisine - [S2]HP Regen Lv.5"
         },
         {
           "Id": 2032156,
-          "Name": "Cuisine - HP Regen Lv.6"
+          "Name": "Cuisine - [S2]HP Regen Lv.6"
         },
         {
           "Id": 2032161,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032162,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.2"
+          "Name": "Cuisine - [S2]ATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032163,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.3"
+          "Name": "Cuisine - [S2]ATK + DMG to Elites Lv.3"
         },
         {
           "Id": 2032164,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.4"
+          "Name": "Cuisine - [S2]ATK + DMG to Elites Lv.4"
         },
         {
           "Id": 2032165,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.5"
+          "Name": "Cuisine - [S2]ATK + DMG to Elites Lv.5"
         },
         {
           "Id": 2032166,
-          "Name": "Cuisine - ATK + DMG to Elites Lv.6"
+          "Name": "Cuisine - [S2]ATK + DMG to Elites Lv.6"
         },
         {
           "Id": 2032171,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032172,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.2"
+          "Name": "Cuisine - [S2]MATK + DMG to Elites Lv.2"
         },
         {
           "Id": 2032173,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.3"
+          "Name": "Cuisine - [S2]MATK + DMG to Elites Lv.3"
         },
         {
           "Id": 2032174,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.4"
+          "Name": "Cuisine - [S2]MATK + DMG to Elites Lv.4"
         },
         {
           "Id": 2032175,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.5"
+          "Name": "Cuisine - [S2]MATK + DMG to Elites Lv.5"
         },
         {
           "Id": 2032176,
-          "Name": "Cuisine - MATK + DMG to Elites Lv.6"
+          "Name": "Cuisine - [S2]MATK + DMG to Elites Lv.6"
         },
         {
           "Id": 2032181,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.1"
+          "Name": "Cuisine"
         },
         {
           "Id": 2032182,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.2"
+          "Name": "Cuisine - [S2]Armor + Elite DMG Reduction Lv.2"
         },
         {
           "Id": 2032183,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.3"
+          "Name": "Cuisine - [S2]Armor + Elite DMG Reduction Lv.3"
         },
         {
           "Id": 2032184,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.4"
+          "Name": "Cuisine - [S2]Armor + Elite DMG Reduction Lv.4"
         },
         {
           "Id": 2032185,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.5"
+          "Name": "Cuisine - [S2]Armor + Elite DMG Reduction Lv.5"
         },
         {
           "Id": 2032186,
-          "Name": "Cuisine - Armor + Elite DMG Reduction Lv.6"
+          "Name": "Cuisine - [S2]Armor + Elite DMG Reduction Lv.6"
+        },
+        {
+          "Id": 2032211,
+          "Name": "Cuisine"
+        },
+        {
+          "Id": 2032212,
+          "Name": "Cuisine"
+        },
+        {
+          "Id": 2032213,
+          "Name": "Cuisine"
+        },
+        {
+          "Id": 2032214,
+          "Name": "Cuisine"
+        },
+        {
+          "Id": 2032215,
+          "Name": "Cuisine"
+        },
+        {
+          "Id": 2032216,
+          "Name": "Cuisine"
         }
       ],
       "AtlasAddress": "ui/atlas/buff",
@@ -495,7 +519,49 @@
         "foodBuffSourcesByBuffId.2032183.iconPath",
         "foodBuffSourcesByBuffId.2032184.iconPath",
         "foodBuffSourcesByBuffId.2032185.iconPath",
-        "foodBuffSourcesByBuffId.2032186.iconPath"
+        "foodBuffSourcesByBuffId.2032186.iconPath",
+        "foodBuffSourcesByBuffId.2032211.iconPath",
+        "foodBuffSourcesByBuffId.2032212.iconPath",
+        "foodBuffSourcesByBuffId.2032213.iconPath",
+        "foodBuffSourcesByBuffId.2032214.iconPath",
+        "foodBuffSourcesByBuffId.2032215.iconPath",
+        "foodBuffSourcesByBuffId.2032216.iconPath",
+        "foodBuffSourcesByBuffId.2032221.iconPath",
+        "foodBuffSourcesByBuffId.2032222.iconPath",
+        "foodBuffSourcesByBuffId.2032223.iconPath",
+        "foodBuffSourcesByBuffId.2032224.iconPath",
+        "foodBuffSourcesByBuffId.2032225.iconPath",
+        "foodBuffSourcesByBuffId.2032226.iconPath",
+        "foodBuffSourcesByBuffId.2032231.iconPath",
+        "foodBuffSourcesByBuffId.2032232.iconPath",
+        "foodBuffSourcesByBuffId.2032233.iconPath",
+        "foodBuffSourcesByBuffId.2032234.iconPath",
+        "foodBuffSourcesByBuffId.2032235.iconPath",
+        "foodBuffSourcesByBuffId.2032236.iconPath",
+        "foodBuffSourcesByBuffId.2032241.iconPath",
+        "foodBuffSourcesByBuffId.2032242.iconPath",
+        "foodBuffSourcesByBuffId.2032243.iconPath",
+        "foodBuffSourcesByBuffId.2032244.iconPath",
+        "foodBuffSourcesByBuffId.2032245.iconPath",
+        "foodBuffSourcesByBuffId.2032246.iconPath",
+        "foodBuffSourcesByBuffId.2032251.iconPath",
+        "foodBuffSourcesByBuffId.2032252.iconPath",
+        "foodBuffSourcesByBuffId.2032253.iconPath",
+        "foodBuffSourcesByBuffId.2032254.iconPath",
+        "foodBuffSourcesByBuffId.2032255.iconPath",
+        "foodBuffSourcesByBuffId.2032256.iconPath",
+        "foodBuffSourcesByBuffId.2032261.iconPath",
+        "foodBuffSourcesByBuffId.2032262.iconPath",
+        "foodBuffSourcesByBuffId.2032263.iconPath",
+        "foodBuffSourcesByBuffId.2032264.iconPath",
+        "foodBuffSourcesByBuffId.2032271.iconPath",
+        "foodBuffSourcesByBuffId.2032272.iconPath",
+        "foodBuffSourcesByBuffId.2032273.iconPath",
+        "foodBuffSourcesByBuffId.2032274.iconPath",
+        "foodBuffSourcesByBuffId.2032281.iconPath",
+        "foodBuffSourcesByBuffId.2032282.iconPath",
+        "foodBuffSourcesByBuffId.2032283.iconPath",
+        "foodBuffSourcesByBuffId.2032284.iconPath"
       ],
       "Values": [
         "ui/atlas/buff/buff_food_up"
@@ -507,7 +573,7 @@
       "PngWidth": 49,
       "PngHeight": 59,
       "PngMode": "RGBA",
-      "PixelSha256": "9dbf53a390fcd5665a9306beb93568e96588be1122731373c40f59a5a77c8f62",
+      "PixelSha256": "0e25eb3a164f43ec8f7ddc71f3856aa9e16e77543b4b71129f55959940474b83",
       "ObjectPathId": "-2204692683451143968",
       "SelectedObjectName": "buff_food_up",
       "SelectedObjectType": "Sprite"
@@ -960,6 +1026,906 @@
       "PixelSha256": "fe494f532e74412e35f902ca701a5f68ae47c1693f237a627c9932ffff752713",
       "ObjectPathId": "-921151592698589004",
       "SelectedObjectName": "item_icons_cuisine08_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2539943923|item_icons_cuisine100_01|ConsumableBuffBridge/item_icons_cuisine100_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.15.itemIconPath",
+      "Value": "item_icons_cuisine100_01",
+      "Address": "item_icons_cuisine100_01",
+      "AddressHash": 106547407,
+      "BundleHash": 2539943923,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine100_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "15",
+          "Name": ""
+        },
+        {
+          "Id": "171",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine100_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.15.itemIconPath",
+        "foodItemMappings.171.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine100_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "3f6c365a41c82c0df88bcfe042701649e4bffca2bee3b0198f7a1cbf42f61999",
+      "ObjectPathId": "-2816226088680736849",
+      "SelectedObjectName": "item_icons_cuisine100_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2541129844|item_icons_cuisine100_02|ConsumableBuffBridge/item_icons_cuisine100_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.12.itemIconPath",
+      "Value": "item_icons_cuisine100_02",
+      "Address": "item_icons_cuisine100_02",
+      "AddressHash": 106547408,
+      "BundleHash": 2541129844,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine100_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "12",
+          "Name": ""
+        },
+        {
+          "Id": "172",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine100_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.12.itemIconPath",
+        "foodItemMappings.172.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine100_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "4524fd44cb641f0c047a34be5531a7237c6176906fbc72600b3d4ad15b4321ae",
+      "ObjectPathId": "-2432974743644992926",
+      "SelectedObjectName": "item_icons_cuisine100_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2208713940|item_icons_cuisine101_01|ConsumableBuffBridge/item_icons_cuisine101_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.10.itemIconPath",
+      "Value": "item_icons_cuisine101_01",
+      "Address": "item_icons_cuisine101_01",
+      "AddressHash": 106583344,
+      "BundleHash": 2208713940,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine101_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "10",
+          "Name": ""
+        },
+        {
+          "Id": "173",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine101_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.10.itemIconPath",
+        "foodItemMappings.173.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine101_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "eccb7b500e41d0ae4172fedfd68ac4fb944f6271165aa1e2b8a00099b696d3d7",
+      "ObjectPathId": "1893949612087378139",
+      "SelectedObjectName": "item_icons_cuisine101_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2209899861|item_icons_cuisine101_02|ConsumableBuffBridge/item_icons_cuisine101_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.8.itemIconPath",
+      "Value": "item_icons_cuisine101_02",
+      "Address": "item_icons_cuisine101_02",
+      "AddressHash": 106583345,
+      "BundleHash": 2209899861,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine101_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "8",
+          "Name": ""
+        },
+        {
+          "Id": "174",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine101_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.8.itemIconPath",
+        "foodItemMappings.174.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine101_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ab9760c8348744149d1d56381e8219191bffa4f3789fc15ade89d91941ebe320",
+      "ObjectPathId": "-1196377543089471908",
+      "SelectedObjectName": "item_icons_cuisine101_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1877483957|item_icons_cuisine102_01|ConsumableBuffBridge/item_icons_cuisine102_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032075.evidence.0.candidateItems.4.itemIconPath",
+      "Value": "item_icons_cuisine102_01",
+      "Address": "item_icons_cuisine102_01",
+      "AddressHash": 106619281,
+      "BundleHash": 1877483957,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine102_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "4",
+          "Name": ""
+        },
+        {
+          "Id": "175",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine102_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032075.evidence.0.candidateItems.4.itemIconPath",
+        "foodItemMappings.175.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine102_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d1684f42300098630b6625de41894d1e54d7be977d2266f0586cd381542a5aa2",
+      "ObjectPathId": "-5327835336682535614",
+      "SelectedObjectName": "item_icons_cuisine102_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1878669878|item_icons_cuisine102_02|ConsumableBuffBridge/item_icons_cuisine102_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032077.evidence.0.candidateItems.4.itemIconPath",
+      "Value": "item_icons_cuisine102_02",
+      "Address": "item_icons_cuisine102_02",
+      "AddressHash": 106619282,
+      "BundleHash": 1878669878,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine102_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "4",
+          "Name": ""
+        },
+        {
+          "Id": "176",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine102_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032077.evidence.0.candidateItems.4.itemIconPath",
+        "foodItemMappings.176.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine102_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ecfb82276980afd39555133bc63a400fe0f3f7038a045573f1f425c8eab12775",
+      "ObjectPathId": "-3240153514445195177",
+      "SelectedObjectName": "item_icons_cuisine102_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1546253974|item_icons_cuisine103_01|ConsumableBuffBridge/item_icons_cuisine103_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine103_01",
+      "Address": "item_icons_cuisine103_01",
+      "AddressHash": 106655218,
+      "BundleHash": 1546253974,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine103_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "177",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine103_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.177.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine103_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "50d3257cfcd7abc8c2e204df41c66421c0960d4a1946faf1ba4d13a03585d649",
+      "ObjectPathId": "8044731987331359130",
+      "SelectedObjectName": "item_icons_cuisine103_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1547439895|item_icons_cuisine103_02|ConsumableBuffBridge/item_icons_cuisine103_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine103_02",
+      "Address": "item_icons_cuisine103_02",
+      "AddressHash": 106655219,
+      "BundleHash": 1547439895,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine103_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "178",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine103_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.178.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine103_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b4c2a1b24c597e32897dc573cb3e30e74fc64493891c33155a90f976c130f84f",
+      "ObjectPathId": "2126451427460185967",
+      "SelectedObjectName": "item_icons_cuisine103_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1215023991|item_icons_cuisine104_01|ConsumableBuffBridge/item_icons_cuisine104_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.16.itemIconPath",
+      "Value": "item_icons_cuisine104_01",
+      "Address": "item_icons_cuisine104_01",
+      "AddressHash": 106691155,
+      "BundleHash": 1215023991,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine104_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "16",
+          "Name": ""
+        },
+        {
+          "Id": "179",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine104_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.16.itemIconPath",
+        "foodItemMappings.179.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine104_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "52ba9de0bc1f86029e053a6efe12559b97ab38a4033dba8628da4e732e83378e",
+      "ObjectPathId": "-7227010831892521503",
+      "SelectedObjectName": "item_icons_cuisine104_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1216209912|item_icons_cuisine104_02|ConsumableBuffBridge/item_icons_cuisine104_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.13.itemIconPath",
+      "Value": "item_icons_cuisine104_02",
+      "Address": "item_icons_cuisine104_02",
+      "AddressHash": 106691156,
+      "BundleHash": 1216209912,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine104_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "13",
+          "Name": ""
+        },
+        {
+          "Id": "180",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine104_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.13.itemIconPath",
+        "foodItemMappings.180.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine104_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b6cdffdfb6d4fd3f3d68cd6dee9a1fd607db77e389778605df91a3c844e037e3",
+      "ObjectPathId": "-1043371949914388548",
+      "SelectedObjectName": "item_icons_cuisine104_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|883794008|item_icons_cuisine105_01|ConsumableBuffBridge/item_icons_cuisine105_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.11.itemIconPath",
+      "Value": "item_icons_cuisine105_01",
+      "Address": "item_icons_cuisine105_01",
+      "AddressHash": 106727092,
+      "BundleHash": 883794008,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine105_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "11",
+          "Name": ""
+        },
+        {
+          "Id": "181",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine105_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.11.itemIconPath",
+        "foodItemMappings.181.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine105_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ca051f0c6a71069364314b350f654839b53f0787821b83cbd2fdd2d6d6b8e4e2",
+      "ObjectPathId": "-1976002500141483076",
+      "SelectedObjectName": "item_icons_cuisine105_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|884979929|item_icons_cuisine105_02|ConsumableBuffBridge/item_icons_cuisine105_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine105_02",
+      "Address": "item_icons_cuisine105_02",
+      "AddressHash": 106727093,
+      "BundleHash": 884979929,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine105_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "182",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine105_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.182.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine105_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "60f7b487fcdae2115264e6b197cebcfeaa5b0dfbb8b7a0ce5cbc540c275524b5",
+      "ObjectPathId": "-6999401302750812001",
+      "SelectedObjectName": "item_icons_cuisine105_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|552564025|item_icons_cuisine106_01|ConsumableBuffBridge/item_icons_cuisine106_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032013.evidence.0.candidateItems.10.itemIconPath",
+      "Value": "item_icons_cuisine106_01",
+      "Address": "item_icons_cuisine106_01",
+      "AddressHash": 106763029,
+      "BundleHash": 552564025,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine106_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "10",
+          "Name": ""
+        },
+        {
+          "Id": "183",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine106_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032013.evidence.0.candidateItems.10.itemIconPath",
+        "foodItemMappings.183.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine106_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f23221e1e6902f8aa14336fe1e948d211dd20ff2ae1a8e5bbd62a85196b76719",
+      "ObjectPathId": "-4480746159565352538",
+      "SelectedObjectName": "item_icons_cuisine106_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|553749946|item_icons_cuisine106_02|ConsumableBuffBridge/item_icons_cuisine106_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032014.evidence.0.candidateItems.7.itemIconPath",
+      "Value": "item_icons_cuisine106_02",
+      "Address": "item_icons_cuisine106_02",
+      "AddressHash": 106763030,
+      "BundleHash": 553749946,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine106_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "7",
+          "Name": ""
+        },
+        {
+          "Id": "184",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine106_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032014.evidence.0.candidateItems.7.itemIconPath",
+        "foodItemMappings.184.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine106_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "45c6f357c40b45c71d0cd45ead786a27a3fa23c01653d28a9e2b318d0c7d4c65",
+      "ObjectPathId": "-1140899623794110633",
+      "SelectedObjectName": "item_icons_cuisine106_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|221334042|item_icons_cuisine107_01|ConsumableBuffBridge/item_icons_cuisine107_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032023.evidence.0.candidateItems.10.itemIconPath",
+      "Value": "item_icons_cuisine107_01",
+      "Address": "item_icons_cuisine107_01",
+      "AddressHash": 106798966,
+      "BundleHash": 221334042,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine107_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "10",
+          "Name": ""
+        },
+        {
+          "Id": "185",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine107_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032023.evidence.0.candidateItems.10.itemIconPath",
+        "foodItemMappings.185.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine107_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "d328806b4c438da9a2de2420f06d02589b3113d4a9c18ddefed93d93ef759c8b",
+      "ObjectPathId": "-9118760227684668825",
+      "SelectedObjectName": "item_icons_cuisine107_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|222519963|item_icons_cuisine107_02|ConsumableBuffBridge/item_icons_cuisine107_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032024.evidence.0.candidateItems.7.itemIconPath",
+      "Value": "item_icons_cuisine107_02",
+      "Address": "item_icons_cuisine107_02",
+      "AddressHash": 106798967,
+      "BundleHash": 222519963,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine107_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "7",
+          "Name": ""
+        },
+        {
+          "Id": "186",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine107_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032024.evidence.0.candidateItems.7.itemIconPath",
+        "foodItemMappings.186.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine107_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "3e8d0d20da1845a1d9942e4cb11a8c192646f5e9708696bd42fa12a3f4c84ed2",
+      "ObjectPathId": "1451515252739281539",
+      "SelectedObjectName": "item_icons_cuisine107_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|4185071355|item_icons_cuisine108_01|ConsumableBuffBridge/item_icons_cuisine108_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032033.evidence.0.candidateItems.7.itemIconPath",
+      "Value": "item_icons_cuisine108_01",
+      "Address": "item_icons_cuisine108_01",
+      "AddressHash": 106834903,
+      "BundleHash": 4185071355,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine108_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "7",
+          "Name": ""
+        },
+        {
+          "Id": "187",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine108_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032033.evidence.0.candidateItems.7.itemIconPath",
+        "foodItemMappings.187.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine108_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "47e724b54127b0f9d2eca54aaa1c7291fe638032ada656e5386fd4225840bd96",
+      "ObjectPathId": "3848298171900732660",
+      "SelectedObjectName": "item_icons_cuisine108_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|4186257276|item_icons_cuisine108_02|ConsumableBuffBridge/item_icons_cuisine108_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032034.evidence.0.candidateItems.4.itemIconPath",
+      "Value": "item_icons_cuisine108_02",
+      "Address": "item_icons_cuisine108_02",
+      "AddressHash": 106834904,
+      "BundleHash": 4186257276,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine108_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "4",
+          "Name": ""
+        },
+        {
+          "Id": "188",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine108_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032034.evidence.0.candidateItems.4.itemIconPath",
+        "foodItemMappings.188.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine108_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "e0c7f6ca2d16543efad4d6e5e7e033c7451ca022ade1deff7530be90c43427b3",
+      "ObjectPathId": "7931661670986132245",
+      "SelectedObjectName": "item_icons_cuisine108_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3853841372|item_icons_cuisine109_01|ConsumableBuffBridge/item_icons_cuisine109_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.17.itemIconPath",
+      "Value": "item_icons_cuisine109_01",
+      "Address": "item_icons_cuisine109_01",
+      "AddressHash": 106870840,
+      "BundleHash": 3853841372,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine109_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "17",
+          "Name": ""
+        },
+        {
+          "Id": "189",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine109_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.17.itemIconPath",
+        "foodItemMappings.189.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine109_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "8457e8778d9ae86c68d4f622fd25fc70c03692d70bfb13c562c4662d5248a361",
+      "ObjectPathId": "1069735926549458521",
+      "SelectedObjectName": "item_icons_cuisine109_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3855027293|item_icons_cuisine109_02|ConsumableBuffBridge/item_icons_cuisine109_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.14.itemIconPath",
+      "Value": "item_icons_cuisine109_02",
+      "Address": "item_icons_cuisine109_02",
+      "AddressHash": 106870841,
+      "BundleHash": 3855027293,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine109_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "14",
+          "Name": ""
+        },
+        {
+          "Id": "190",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine109_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.14.itemIconPath",
+        "foodItemMappings.190.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine109_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "11613a9269cd07cf4c96deabaf6023f55cf76a8a792e8718e40e2ea23555f9dc",
+      "ObjectPathId": "-7697275970802521137",
+      "SelectedObjectName": "item_icons_cuisine109_02",
       "SelectedObjectType": "Texture2D"
     },
     {
@@ -6068,6 +7034,1266 @@
       "SelectedObjectType": "Texture2D"
     },
     {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3472885776|item_icons_cuisine86_01|ConsumableBuffBridge/item_icons_cuisine86_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032065.evidence.0.candidateItems.3.itemIconPath",
+      "Value": "item_icons_cuisine86_01",
+      "Address": "item_icons_cuisine86_01",
+      "AddressHash": 2354504844,
+      "BundleHash": 3472885776,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine86_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "3",
+          "Name": ""
+        },
+        {
+          "Id": "143",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine86_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032065.evidence.0.candidateItems.3.itemIconPath",
+        "foodItemMappings.143.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine86_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "f580d6725d676651be0e78d0c1a0c58bfe9615da4ded5e5c9616602bf07bb90a",
+      "ObjectPathId": "-8156687179234997755",
+      "SelectedObjectName": "item_icons_cuisine86_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3474071697|item_icons_cuisine86_02|ConsumableBuffBridge/item_icons_cuisine86_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032067.evidence.0.candidateItems.3.itemIconPath",
+      "Value": "item_icons_cuisine86_02",
+      "Address": "item_icons_cuisine86_02",
+      "AddressHash": 2354504845,
+      "BundleHash": 3474071697,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine86_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "3",
+          "Name": ""
+        },
+        {
+          "Id": "144",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine86_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032067.evidence.0.candidateItems.3.itemIconPath",
+        "foodItemMappings.144.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine86_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "753643bba49b9441b2a5ea55a6d90d4e4ac4c705b39cff6a243a4c4c3b608743",
+      "ObjectPathId": "6664331176727393844",
+      "SelectedObjectName": "item_icons_cuisine86_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3141655793|item_icons_cuisine87_01|ConsumableBuffBridge/item_icons_cuisine87_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.6.itemIconPath",
+      "Value": "item_icons_cuisine87_01",
+      "Address": "item_icons_cuisine87_01",
+      "AddressHash": 2354540781,
+      "BundleHash": 3141655793,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine87_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "6",
+          "Name": ""
+        },
+        {
+          "Id": "145",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine87_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.6.itemIconPath",
+        "foodItemMappings.145.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine87_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "2772c6a7995c6b4d9b8a2a808e9e32f4df616e838b721e618ca0530e6aadd058",
+      "ObjectPathId": "-273171956349234976",
+      "SelectedObjectName": "item_icons_cuisine87_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3142841714|item_icons_cuisine87_02|ConsumableBuffBridge/item_icons_cuisine87_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.6.itemIconPath",
+      "Value": "item_icons_cuisine87_02",
+      "Address": "item_icons_cuisine87_02",
+      "AddressHash": 2354540782,
+      "BundleHash": 3142841714,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine87_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "6",
+          "Name": ""
+        },
+        {
+          "Id": "146",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine87_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.6.itemIconPath",
+        "foodItemMappings.146.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine87_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "16605e8e6f50e744fe88aa55703eea56078ed7eb7c49fc35647c65dca0d19158",
+      "ObjectPathId": "-6793114757652209343",
+      "SelectedObjectName": "item_icons_cuisine87_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2810425810|item_icons_cuisine88_01|ConsumableBuffBridge/item_icons_cuisine88_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.12.itemIconPath",
+      "Value": "item_icons_cuisine88_01",
+      "Address": "item_icons_cuisine88_01",
+      "AddressHash": 2354576718,
+      "BundleHash": 2810425810,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine88_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "12",
+          "Name": ""
+        },
+        {
+          "Id": "147",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine88_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.12.itemIconPath",
+        "foodItemMappings.147.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine88_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0c8385787b2de9c7921efe23a26aca9d8529f39fd3f671c1a806f504a9cc3512",
+      "ObjectPathId": "2965959060134751522",
+      "SelectedObjectName": "item_icons_cuisine88_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2811611731|item_icons_cuisine88_02|ConsumableBuffBridge/item_icons_cuisine88_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine88_02",
+      "Address": "item_icons_cuisine88_02",
+      "AddressHash": 2354576719,
+      "BundleHash": 2811611731,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine88_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "148",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine88_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.148.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine88_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "b58a11ab18aed1fe7173d6c2b205de00bdbc18b8d7b1d32a00b3ecb9466868bf",
+      "ObjectPathId": "-7573295218010045968",
+      "SelectedObjectName": "item_icons_cuisine88_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2479195827|item_icons_cuisine89_01|ConsumableBuffBridge/item_icons_cuisine89_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.8.itemIconPath",
+      "Value": "item_icons_cuisine89_01",
+      "Address": "item_icons_cuisine89_01",
+      "AddressHash": 2354612655,
+      "BundleHash": 2479195827,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine89_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "8",
+          "Name": ""
+        },
+        {
+          "Id": "149",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine89_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.8.itemIconPath",
+        "foodItemMappings.149.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine89_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "382cfacd577b4714f058544f741e39feace1f5b3222f3bf3d1d20786a8545474",
+      "ObjectPathId": "5980113336833549964",
+      "SelectedObjectName": "item_icons_cuisine89_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2480381748|item_icons_cuisine89_02|ConsumableBuffBridge/item_icons_cuisine89_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.6.itemIconPath",
+      "Value": "item_icons_cuisine89_02",
+      "Address": "item_icons_cuisine89_02",
+      "AddressHash": 2354612656,
+      "BundleHash": 2480381748,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine89_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "6",
+          "Name": ""
+        },
+        {
+          "Id": "150",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine89_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.6.itemIconPath",
+        "foodItemMappings.150.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine89_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "370732e0fb4ff48332fccacf90f2a943abe76bbe3068373824a0d58b3055ed85",
+      "ObjectPathId": "260112774091047831",
+      "SelectedObjectName": "item_icons_cuisine89_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3119610827|item_icons_cuisine90_01|ConsumableBuffBridge/item_icons_cuisine90_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032075.evidence.0.candidateItems.3.itemIconPath",
+      "Value": "item_icons_cuisine90_01",
+      "Address": "item_icons_cuisine90_01",
+      "AddressHash": 2355475143,
+      "BundleHash": 3119610827,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine90_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "3",
+          "Name": ""
+        },
+        {
+          "Id": "151",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine90_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032075.evidence.0.candidateItems.3.itemIconPath",
+        "foodItemMappings.151.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine90_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "4ff79f0307e7f6bb7d9b646d004febc6d80c84ea74e97bfb50950653013d1cd9",
+      "ObjectPathId": "-2247929891884980970",
+      "SelectedObjectName": "item_icons_cuisine90_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|3120796748|item_icons_cuisine90_02|ConsumableBuffBridge/item_icons_cuisine90_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032077.evidence.0.candidateItems.3.itemIconPath",
+      "Value": "item_icons_cuisine90_02",
+      "Address": "item_icons_cuisine90_02",
+      "AddressHash": 2355475144,
+      "BundleHash": 3120796748,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine90_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "3",
+          "Name": ""
+        },
+        {
+          "Id": "152",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine90_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032077.evidence.0.candidateItems.3.itemIconPath",
+        "foodItemMappings.152.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine90_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "466633595cb73199269375ec4c519e518863f9c56cf03a6744964448edf24c78",
+      "ObjectPathId": "247712892955751295",
+      "SelectedObjectName": "item_icons_cuisine90_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2788380844|item_icons_cuisine91_01|ConsumableBuffBridge/item_icons_cuisine91_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.7.itemIconPath",
+      "Value": "item_icons_cuisine91_01",
+      "Address": "item_icons_cuisine91_01",
+      "AddressHash": 2355511080,
+      "BundleHash": 2788380844,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine91_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "7",
+          "Name": ""
+        },
+        {
+          "Id": "153",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine91_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.7.itemIconPath",
+        "foodItemMappings.153.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine91_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "cfb4f83fb21740e7952eee9fed9ec3075fe5b6a846f1b5fc13b1dd1c9cf900dc",
+      "ObjectPathId": "4320171894194674820",
+      "SelectedObjectName": "item_icons_cuisine91_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2789566765|item_icons_cuisine91_02|ConsumableBuffBridge/item_icons_cuisine91_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.7.itemIconPath",
+      "Value": "item_icons_cuisine91_02",
+      "Address": "item_icons_cuisine91_02",
+      "AddressHash": 2355511081,
+      "BundleHash": 2789566765,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine91_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "7",
+          "Name": ""
+        },
+        {
+          "Id": "154",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine91_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.7.itemIconPath",
+        "foodItemMappings.154.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine91_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "56579e6ebdfca86be4c63aca2fbf65420e9bdeb62e1b59871e9822138cfa4307",
+      "ObjectPathId": "-6294390862747396570",
+      "SelectedObjectName": "item_icons_cuisine91_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2457150861|item_icons_cuisine92_01|ConsumableBuffBridge/item_icons_cuisine92_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.13.itemIconPath",
+      "Value": "item_icons_cuisine92_01",
+      "Address": "item_icons_cuisine92_01",
+      "AddressHash": 2355547017,
+      "BundleHash": 2457150861,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine92_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "13",
+          "Name": ""
+        },
+        {
+          "Id": "155",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine92_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.13.itemIconPath",
+        "foodItemMappings.155.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine92_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ad23d059c462f38eb746a56ccc64b1a0154005ce7656181ce228bae928dc0b9f",
+      "ObjectPathId": "455698105524153549",
+      "SelectedObjectName": "item_icons_cuisine92_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2458336782|item_icons_cuisine92_02|ConsumableBuffBridge/item_icons_cuisine92_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.10.itemIconPath",
+      "Value": "item_icons_cuisine92_02",
+      "Address": "item_icons_cuisine92_02",
+      "AddressHash": 2355547018,
+      "BundleHash": 2458336782,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine92_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "10",
+          "Name": ""
+        },
+        {
+          "Id": "156",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine92_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.10.itemIconPath",
+        "foodItemMappings.156.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine92_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "ae3c86b9aaa8092c38ef2b90d293cf312545998db6008b124e95a7f71311d853",
+      "ObjectPathId": "-2030796224899384818",
+      "SelectedObjectName": "item_icons_cuisine92_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2125920878|item_icons_cuisine93_01|ConsumableBuffBridge/item_icons_cuisine93_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine93_01",
+      "Address": "item_icons_cuisine93_01",
+      "AddressHash": 2355582954,
+      "BundleHash": 2125920878,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine93_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "157",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine93_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032053.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.157.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine93_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "a4c1592a7b3c6adc812f20c7275e455dc6ea7b0210f7561fe58d7b8b33410cd1",
+      "ObjectPathId": "2809266011727625218",
+      "SelectedObjectName": "item_icons_cuisine93_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|2127106799|item_icons_cuisine93_02|ConsumableBuffBridge/item_icons_cuisine93_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.7.itemIconPath",
+      "Value": "item_icons_cuisine93_02",
+      "Address": "item_icons_cuisine93_02",
+      "AddressHash": 2355582955,
+      "BundleHash": 2127106799,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine93_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "7",
+          "Name": ""
+        },
+        {
+          "Id": "158",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine93_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032054.evidence.0.candidateItems.7.itemIconPath",
+        "foodItemMappings.158.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine93_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "26641578cb816d49f6a5cfc1000cea42642c36676e65722657abf12eb618105a",
+      "ObjectPathId": "5137677328611989963",
+      "SelectedObjectName": "item_icons_cuisine93_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1794690895|item_icons_cuisine94_01|ConsumableBuffBridge/item_icons_cuisine94_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032013.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine94_01",
+      "Address": "item_icons_cuisine94_01",
+      "AddressHash": 2355618891,
+      "BundleHash": 1794690895,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine94_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "159",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine94_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032013.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.159.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine94_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "30cb324ff2c340950137fde9f980a7e09fb0a511fc9d985f675c6c30cf89239e",
+      "ObjectPathId": "-2721685028309671026",
+      "SelectedObjectName": "item_icons_cuisine94_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1795876816|item_icons_cuisine94_02|ConsumableBuffBridge/item_icons_cuisine94_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032014.evidence.0.candidateItems.6.itemIconPath",
+      "Value": "item_icons_cuisine94_02",
+      "Address": "item_icons_cuisine94_02",
+      "AddressHash": 2355618892,
+      "BundleHash": 1795876816,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine94_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "6",
+          "Name": ""
+        },
+        {
+          "Id": "160",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine94_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032014.evidence.0.candidateItems.6.itemIconPath",
+        "foodItemMappings.160.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine94_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "53127bccc91b685c47191717dce7cfade412f2a48a18b27061811ea2ae0498d7",
+      "ObjectPathId": "-1010365933767283389",
+      "SelectedObjectName": "item_icons_cuisine94_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1463460912|item_icons_cuisine95_01|ConsumableBuffBridge/item_icons_cuisine95_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032023.evidence.0.candidateItems.9.itemIconPath",
+      "Value": "item_icons_cuisine95_01",
+      "Address": "item_icons_cuisine95_01",
+      "AddressHash": 2355654828,
+      "BundleHash": 1463460912,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine95_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "9",
+          "Name": ""
+        },
+        {
+          "Id": "161",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine95_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032023.evidence.0.candidateItems.9.itemIconPath",
+        "foodItemMappings.161.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine95_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "90e2c49065e0c84cd4523fc01c09426387148f60fb5dfc0891e7d016e055e74f",
+      "ObjectPathId": "5235567603297779856",
+      "SelectedObjectName": "item_icons_cuisine95_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1464646833|item_icons_cuisine95_02|ConsumableBuffBridge/item_icons_cuisine95_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032024.evidence.0.candidateItems.6.itemIconPath",
+      "Value": "item_icons_cuisine95_02",
+      "Address": "item_icons_cuisine95_02",
+      "AddressHash": 2355654829,
+      "BundleHash": 1464646833,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine95_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "6",
+          "Name": ""
+        },
+        {
+          "Id": "162",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine95_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032024.evidence.0.candidateItems.6.itemIconPath",
+        "foodItemMappings.162.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine95_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "7c1b8f735061743c3e807f0b62e1824907ea6ab84adb5890c1cdbcd62fb44eac",
+      "ObjectPathId": "-714815476063899915",
+      "SelectedObjectName": "item_icons_cuisine95_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1132230929|item_icons_cuisine96_01|ConsumableBuffBridge/item_icons_cuisine96_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032033.evidence.0.candidateItems.6.itemIconPath",
+      "Value": "item_icons_cuisine96_01",
+      "Address": "item_icons_cuisine96_01",
+      "AddressHash": 2355690765,
+      "BundleHash": 1132230929,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine96_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "6",
+          "Name": ""
+        },
+        {
+          "Id": "163",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine96_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032033.evidence.0.candidateItems.6.itemIconPath",
+        "foodItemMappings.163.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine96_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0d097df4a162c4d6fafc96ea3780d65ffd200eb79dadcbc8bfad2765014e2620",
+      "ObjectPathId": "2796017207380895815",
+      "SelectedObjectName": "item_icons_cuisine96_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|1133416850|item_icons_cuisine96_02|ConsumableBuffBridge/item_icons_cuisine96_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032034.evidence.0.candidateItems.3.itemIconPath",
+      "Value": "item_icons_cuisine96_02",
+      "Address": "item_icons_cuisine96_02",
+      "AddressHash": 2355690766,
+      "BundleHash": 1133416850,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine96_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "3",
+          "Name": ""
+        },
+        {
+          "Id": "164",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine96_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032034.evidence.0.candidateItems.3.itemIconPath",
+        "foodItemMappings.164.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine96_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "55be0458cc85c0ded9b0186706edf7ad6fa93bda56cacc83f4eac655a585a24f",
+      "ObjectPathId": "4081835065171704150",
+      "SelectedObjectName": "item_icons_cuisine96_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|801000946|item_icons_cuisine97_01|ConsumableBuffBridge/item_icons_cuisine97_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.14.itemIconPath",
+      "Value": "item_icons_cuisine97_01",
+      "Address": "item_icons_cuisine97_01",
+      "AddressHash": 2355726702,
+      "BundleHash": 801000946,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine97_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "14",
+          "Name": ""
+        },
+        {
+          "Id": "165",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine97_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032043.evidence.0.candidateItems.14.itemIconPath",
+        "foodItemMappings.165.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine97_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0bf0ea4fdf93fffbed29fb71a6a821ce6c28b9afdfa040e9a6dc5161b4190a24",
+      "ObjectPathId": "8578229038338491320",
+      "SelectedObjectName": "item_icons_cuisine97_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|802186867|item_icons_cuisine97_02|ConsumableBuffBridge/item_icons_cuisine97_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.11.itemIconPath",
+      "Value": "item_icons_cuisine97_02",
+      "Address": "item_icons_cuisine97_02",
+      "AddressHash": 2355726703,
+      "BundleHash": 802186867,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine97_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "11",
+          "Name": ""
+        },
+        {
+          "Id": "166",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine97_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032044.evidence.0.candidateItems.11.itemIconPath",
+        "foodItemMappings.166.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine97_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "9e567922d0228af2892e3ffdde5fe66834556fe08425811db32907760f1149e3",
+      "ObjectPathId": "-8438374865134519326",
+      "SelectedObjectName": "item_icons_cuisine97_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|469770963|item_icons_cuisine98_01|ConsumableBuffBridge/item_icons_cuisine98_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032065.evidence.0.candidateItems.4.itemIconPath",
+      "Value": "item_icons_cuisine98_01",
+      "Address": "item_icons_cuisine98_01",
+      "AddressHash": 2355762639,
+      "BundleHash": 469770963,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine98_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "4",
+          "Name": ""
+        },
+        {
+          "Id": "167",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine98_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032065.evidence.0.candidateItems.4.itemIconPath",
+        "foodItemMappings.167.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine98_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "0390794055bd1917e242395489ab57adbc827bd0f9a6e54c2e9663ec89f9b16e",
+      "ObjectPathId": "1721796989482539546",
+      "SelectedObjectName": "item_icons_cuisine98_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|470956884|item_icons_cuisine98_02|ConsumableBuffBridge/item_icons_cuisine98_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032067.evidence.0.candidateItems.4.itemIconPath",
+      "Value": "item_icons_cuisine98_02",
+      "Address": "item_icons_cuisine98_02",
+      "AddressHash": 2355762640,
+      "BundleHash": 470956884,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine98_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "4",
+          "Name": ""
+        },
+        {
+          "Id": "168",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine98_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032067.evidence.0.candidateItems.4.itemIconPath",
+        "foodItemMappings.168.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine98_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "7f53dd90d93ab701ecdea0e35d493f090fd30c8c9b3b5dc6f0e3e5d3847dec00",
+      "ObjectPathId": "-4597803597724185076",
+      "SelectedObjectName": "item_icons_cuisine98_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|138540980|item_icons_cuisine99_01|ConsumableBuffBridge/item_icons_cuisine99_01.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.8.itemIconPath",
+      "Value": "item_icons_cuisine99_01",
+      "Address": "item_icons_cuisine99_01",
+      "AddressHash": 2355798576,
+      "BundleHash": 138540980,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine99_01.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "8",
+          "Name": ""
+        },
+        {
+          "Id": "169",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine99_01",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032086.evidence.0.candidateItems.8.itemIconPath",
+        "foodItemMappings.169.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine99_01"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "78c0736d2493c1b7a30a48196ab1680912ad011978e4590a520cd2fd865ed82a",
+      "ObjectPathId": "-2594274426881606253",
+      "SelectedObjectName": "item_icons_cuisine99_01",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "ConsumableBuffBridge|Texture2D|139726901|item_icons_cuisine99_02|ConsumableBuffBridge/item_icons_cuisine99_02.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "ConsumableBuffBridge.json",
+      "SourceGroup": "ConsumableBuffBridge",
+      "Field": "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.8.itemIconPath",
+      "Value": "item_icons_cuisine99_02",
+      "Address": "item_icons_cuisine99_02",
+      "AddressHash": 2355798577,
+      "BundleHash": 139726901,
+      "ResourceType": "Texture2D",
+      "MatchKind": "exact-address",
+      "PngFile": "ConsumableBuffBridge/item_icons_cuisine99_02.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 2,
+      "Rows": [
+        {
+          "Id": "8",
+          "Name": ""
+        },
+        {
+          "Id": "170",
+          "Name": ""
+        }
+      ],
+      "TextureName": "item_icons_cuisine99_02",
+      "Fields": [
+        "foodBuffSourcesByBuffId.2032088.evidence.0.candidateItems.8.itemIconPath",
+        "foodItemMappings.170.itemIconPath"
+      ],
+      "Values": [
+        "item_icons_cuisine99_02"
+      ],
+      "SourceFiles": [
+        "ConsumableBuffBridge.json"
+      ],
+      "PngExported": true,
+      "PngWidth": 256,
+      "PngHeight": 256,
+      "PngMode": "RGBA",
+      "PixelSha256": "6be6ef87d662cbd45ee178de51d4789753b5d67743e8115b1411f16b6bc47d82",
+      "ObjectPathId": "3103473250164036071",
+      "SelectedObjectName": "item_icons_cuisine99_02",
+      "SelectedObjectType": "Texture2D"
+    },
+    {
       "AssetId": "ConsumableBuffBridge|Texture2D|2808320604|item_icons_fish_01|ConsumableBuffBridge/item_icons_fish_01.png",
       "SourceKind": "generated-json",
       "SourceFile": "ConsumableBuffBridge.json",
@@ -6878,8 +9104,8 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-27T06:13:21.373Z",
-  "PngAssetCount": 142,
+  "PngExportedAt": "2026-05-29T04:14:03.847Z",
+  "PngAssetCount": 190,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0
 }
