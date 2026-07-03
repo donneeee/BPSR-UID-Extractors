@@ -3,14 +3,14 @@
   "generatedBy": "ModifierFormulaTermTable.gen",
   "runtimeOf": "ModifierFormulaTermTable.json",
   "stats": {
-    "sourceRules": 8757,
-    "entries": 39440,
+    "sourceRules": 8762,
+    "entries": 39436,
     "catalogStats": [
       {
         "category": "buffs",
         "file": "BuffDescriptions.json",
         "inputEntries": 9890,
-        "termEntries": 8954
+        "termEntries": 8955
       },
       {
         "category": "skills",
@@ -39,14 +39,14 @@
       {
         "category": "items",
         "file": "ItemDescriptions.json",
-        "inputEntries": 12469,
+        "inputEntries": 12470,
         "termEntries": 11903
       },
       {
         "category": "battle-imagines",
         "file": "BattleImagineDescriptions.json",
-        "inputEntries": 226,
-        "termEntries": 169
+        "inputEntries": 221,
+        "termEntries": 164
       },
       {
         "category": "linktext-tooltips",
@@ -57,8 +57,8 @@
     ],
     "syntheticSourceRuleEntries": 1,
     "categoryCounts": {
-      "battle-imagines": 169,
-      "buffs": 8954,
+      "battle-imagines": 164,
+      "buffs": 8955,
       "factors": 219,
       "items": 11903,
       "linktext-tooltips": 170,
@@ -69,53 +69,53 @@
     },
     "formulaReadinessCounts": {
       "description-grounded-needs-runtime-proof": 11999,
-      "formula-replay-required": 496,
-      "identity-only": 15512,
-      "mixed-exact-and-replay": 29,
-      "non-damage-or-support": 2515,
-      "overlap-only": 6423,
-      "packet-exact-produced-damage": 2015,
+      "formula-replay-required": 494,
+      "identity-only": 15518,
+      "mixed-exact-and-replay": 23,
+      "non-damage-or-support": 2513,
+      "overlap-only": 6420,
+      "packet-exact-produced-damage": 2018,
       "timing-model-required": 451
     },
     "stackPolicyCounts": {
-      "none": 37417,
-      "runtime-stack-count": 799,
-      "runtime-stack-count+max-stack-or-cap": 428,
-      "runtime-stack-count+max-stack-or-cap+target-stack-effect": 187,
-      "runtime-stack-count+target-stack-effect": 609
+      "none": 37404,
+      "runtime-stack-count": 798,
+      "runtime-stack-count+max-stack-or-cap": 427,
+      "runtime-stack-count+max-stack-or-cap+target-stack-effect": 196,
+      "runtime-stack-count+target-stack-effect": 611
     },
     "scopeKindCounts": {
-      "all": 4227,
-      "owner": 294,
-      "party": 255,
-      "target": 2141,
-      "unknown": 33641
+      "all": 4232,
+      "owner": 296,
+      "party": 257,
+      "target": 2145,
+      "unknown": 33629
     },
     "formulaZoneCounts": {
       "allRoundDamage": 285,
-      "baseAttackTerm": 4744,
-      "critical": 1171,
-      "elementalDamage": 8703,
-      "exactLuckyProducedDamage": 70,
+      "baseAttackTerm": 4761,
+      "critical": 1181,
+      "elementalDamage": 8708,
+      "exactLuckyProducedDamage": 63,
       "finalDamage": 107,
-      "generalDamage": 7016,
-      "luckyChance": 42,
-      "luckyEnhancement": 1066,
+      "generalDamage": 7019,
+      "luckyChance": 50,
+      "luckyEnhancement": 1062,
       "luckyStrikeBaseTerm": 178,
-      "physicalMagicEnhancement": 4478,
+      "physicalMagicEnhancement": 4491,
       "seasonDamage": 111,
-      "seasonSuppression": 71,
-      "skillMultiplier": 628,
-      "timingCadence": 3785
+      "seasonSuppression": 70,
+      "skillMultiplier": 654,
+      "timingCadence": 3791
     },
-    "entriesWithScopedValues": 5798,
+    "entriesWithScopedValues": 5806,
     "entriesWithRuntimeProof": 33171,
-    "entriesWithComponentValueHints": 4734,
-    "entriesWithDescriptionComponentValueHints": 4387,
-    "descriptionComponentValueHints": 5823,
-    "entriesWithDescriptionValues": 2426,
-    "entriesWithOwnerPartySplit": 85,
-    "runtimeEntries": 23928
+    "entriesWithComponentValueHints": 4739,
+    "entriesWithDescriptionComponentValueHints": 4400,
+    "descriptionComponentValueHints": 5932,
+    "entriesWithDescriptionValues": 2440,
+    "entriesWithOwnerPartySplit": 87,
+    "runtimeEntries": 23918
   },
   "entriesByKey": {
     "battle-imagines:2501": {
@@ -2388,78 +2388,6 @@
         "mrs:a6a6cf22a938"
       ]
     },
-    "battle-imagines:2110090": {
-      "uid": "2110090",
-      "category": "battle-imagines",
-      "runtimeKind": "battle-imagine",
-      "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "baseAttackTerm",
-        "elementalDamage",
-        "generalDamage",
-        "physicalMagicEnhancement"
-      ],
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "attacker uid",
-        "battle imagine owner/source actor uid",
-        "damage id",
-        "observed final hit value",
-        "produced damage row id",
-        "recipient actor uid for party-shared effects",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
-      ],
-      "directSourceRuleIds": [
-        "mrs:ea0fa740a3a0"
-      ]
-    },
-    "battle-imagines:2110091": {
-      "uid": "2110091",
-      "category": "battle-imagines",
-      "runtimeKind": "battle-imagine",
-      "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "baseAttackTerm",
-        "elementalDamage",
-        "generalDamage",
-        "physicalMagicEnhancement"
-      ],
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "attacker uid",
-        "battle imagine owner/source actor uid",
-        "damage id",
-        "observed final hit value",
-        "produced damage row id",
-        "recipient actor uid for party-shared effects",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
-      ],
-      "directSourceRuleIds": [
-        "mrs:93ccfefe3786"
-      ]
-    },
     "battle-imagines:2110095": {
       "uid": "2110095",
       "category": "battle-imagines",
@@ -4021,7 +3949,6 @@
       "runtimeKind": "battle-imagine",
       "formulaReadiness": "packet-exact-produced-damage",
       "formulaZoneIds": [
-        "elementalDamage",
         "generalDamage",
         "physicalMagicEnhancement"
       ],
@@ -4056,7 +3983,6 @@
       "runtimeKind": "battle-imagine",
       "formulaReadiness": "packet-exact-produced-damage",
       "formulaZoneIds": [
-        "elementalDamage",
         "generalDamage",
         "physicalMagicEnhancement"
       ],
@@ -4152,79 +4078,6 @@
         "mrs:f31180c5ee5e"
       ]
     },
-    "battle-imagines:3210061": {
-      "uid": "3210061",
-      "category": "battle-imagines",
-      "runtimeKind": "battle-imagine",
-      "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "baseAttackTerm",
-        "critical",
-        "generalDamage",
-        "physicalMagicEnhancement"
-      ],
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "attacker crit-rate snapshot at hit time",
-        "attacker uid",
-        "battle imagine owner/source actor uid",
-        "crit flag",
-        "damage id",
-        "modifier windows",
-        "observed final hit value",
-        "recipient actor uid for party-shared effects",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:7ecb6ac314fa"
-      ],
-      "directSourceRuleIds": [
-        "mrs:7ecb6ac314fa"
-      ]
-    },
-    "battle-imagines:3210081": {
-      "uid": "3210081",
-      "category": "battle-imagines",
-      "runtimeKind": "battle-imagine",
-      "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "elementalDamage",
-        "generalDamage",
-        "luckyEnhancement",
-        "physicalMagicEnhancement",
-        "seasonSuppression"
-      ],
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "attacker uid",
-        "battle imagine owner/source actor uid",
-        "damage id",
-        "observed final hit value",
-        "produced damage row id",
-        "recipient actor uid for party-shared effects",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:b55fe55fff15"
-      ],
-      "directSourceRuleIds": [
-        "mrs:b55fe55fff15"
-      ]
-    },
     "battle-imagines:3210092": {
       "uid": "3210092",
       "category": "battle-imagines",
@@ -4258,35 +4111,6 @@
       ],
       "directSourceRuleIds": [
         "mrs:cbfdc205333e"
-      ]
-    },
-    "battle-imagines:3210171": {
-      "uid": "3210171",
-      "category": "battle-imagines",
-      "runtimeKind": "battle-imagine",
-      "formulaReadiness": "packet-exact-produced-damage",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "attacker uid",
-        "battle imagine owner/source actor uid",
-        "damage id",
-        "observed final hit value",
-        "produced damage row id",
-        "recipient actor uid for party-shared effects",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:1ef8667c430f"
-      ],
-      "directSourceRuleIds": [
-        "mrs:1ef8667c430f"
       ]
     },
     "battle-imagines:3210210": {
@@ -5361,10 +5185,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:edcb4697c628"
+        "mrs:3bfebbcf0a6e"
       ],
       "directSourceRuleIds": [
-        "mrs:edcb4697c628"
+        "mrs:3bfebbcf0a6e"
       ]
     },
     "buffs:4601": {
@@ -7042,10 +6866,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:415f5e6e3469"
+        "mrs:3fd4c545d564"
       ],
       "directSourceRuleIds": [
-        "mrs:415f5e6e3469"
+        "mrs:3fd4c545d564"
       ]
     },
     "buffs:21412": {
@@ -7054,18 +6878,24 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "overlap-only",
       "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "physicalMagicEnhancement",
         "timingCadence"
       ],
-      "valueResolution": "no-value",
+      "valueResolution": "description-ambiguous-multiple-values",
       "scopeKinds": [
-        "unknown"
+        "all"
       ],
       "stackPolicy": "none",
+      "runtimeProofRequired": [
+        "description-derived value mapped to a formula component"
+      ],
       "sourceRuleIds": [
-        "mrs:ca2a4256798d"
+        "mrs:27f7c1a7bc9e"
       ],
       "directSourceRuleIds": [
-        "mrs:ca2a4256798d"
+        "mrs:27f7c1a7bc9e"
       ]
     },
     "buffs:21413": {
@@ -7106,10 +6936,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c3791c83cdcf"
+        "mrs:4690bfced548"
       ],
       "directSourceRuleIds": [
-        "mrs:c3791c83cdcf"
+        "mrs:4690bfced548"
       ]
     },
     "buffs:21415": {
@@ -7172,10 +7002,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:24c41dda072c"
+        "mrs:53fe38350951"
       ],
       "directSourceRuleIds": [
-        "mrs:24c41dda072c"
+        "mrs:53fe38350951"
       ]
     },
     "buffs:21419": {
@@ -7271,10 +7101,10 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:7ca7b1f4069a"
+        "mrs:73ba2f1918bf"
       ],
       "directSourceRuleIds": [
-        "mrs:7ca7b1f4069a"
+        "mrs:73ba2f1918bf"
       ]
     },
     "buffs:21424": {
@@ -8869,10 +8699,10 @@
       ],
       "stackPolicy": "none",
       "sourceRuleIds": [
-        "mrs:1f6ab46c0d78"
+        "mrs:63b22ce84cbe"
       ],
       "directSourceRuleIds": [
-        "mrs:1f6ab46c0d78"
+        "mrs:63b22ce84cbe"
       ]
     },
     "buffs:35107": {
@@ -10843,10 +10673,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:3b73c2ccd4a7"
+        "mrs:c7d5236b0131"
       ],
       "directSourceRuleIds": [
-        "mrs:3b73c2ccd4a7"
+        "mrs:c7d5236b0131"
       ]
     },
     "buffs:50042": {
@@ -10886,10 +10716,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:153ae62748ae"
+        "mrs:d66db856fc18"
       ],
       "directSourceRuleIds": [
-        "mrs:153ae62748ae"
+        "mrs:d66db856fc18"
       ]
     },
     "buffs:50044": {
@@ -11731,10 +11561,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:079f2c48a290"
+        "mrs:d1649b6988b6"
       ],
       "directSourceRuleIds": [
-        "mrs:079f2c48a290"
+        "mrs:d1649b6988b6"
       ]
     },
     "buffs:55221": {
@@ -11784,6 +11614,8 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -12088,6 +11920,36 @@
       ],
       "directSourceRuleIds": [
         "mrs:6a99ef421b16"
+      ]
+    },
+    "buffs:55239": {
+      "uid": "55239",
+      "category": "buffs",
+      "runtimeKind": "runtime-buff",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
+      "scopeKinds": [
+        "all",
+        "target"
+      ],
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
+      "runtimeProofRequired": [
+        "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
       ]
     },
     "buffs:55240": {
@@ -12786,18 +12648,36 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "overlap-only",
       "formulaZoneIds": [
-        "baseAttackTerm"
+        "baseAttackTerm",
+        "elementalDamage",
+        "generalDamage",
+        "luckyChance",
+        "luckyEnhancement",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
-      "valueResolution": "no-value",
+      "valueResolution": "description-ambiguous-multiple-values",
       "scopeKinds": [
-        "unknown"
+        "all",
+        "owner",
+        "party"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+target-stack-effect",
+      "runtimeProofRequired": [
+        "active buff window",
+        "description-derived value mapped to a formula component",
+        "owner/party scope resolved against encounter-local actors",
+        "recipient actor",
+        "source actor",
+        "stack count at hit time",
+        "target stack state at hit time"
+      ],
       "sourceRuleIds": [
-        "mrs:0b22ee54d145"
+        "mrs:c2a9521dfa84"
       ],
       "directSourceRuleIds": [
-        "mrs:0b22ee54d145"
+        "mrs:c2a9521dfa84"
       ]
     },
     "buffs:55331": {
@@ -12856,17 +12736,28 @@
       "uid": "55333",
       "category": "buffs",
       "runtimeKind": "runtime-buff",
-      "formulaReadiness": "non-damage-or-support",
-      "valueResolution": "no-value",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyChance",
+        "luckyEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "unknown"
+        "all"
       ],
       "stackPolicy": "none",
+      "runtimeProofRequired": [
+        "description-derived value mapped to a formula component"
+      ],
       "sourceRuleIds": [
-        "mrs:5e45a7154d04"
+        "mrs:cc73424946fa"
       ],
       "directSourceRuleIds": [
-        "mrs:5e45a7154d04"
+        "mrs:cc73424946fa"
       ]
     },
     "buffs:55334": {
@@ -13585,10 +13476,10 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ff88e0b24c41"
+        "mrs:69215e1cb671"
       ],
       "directSourceRuleIds": [
-        "mrs:ff88e0b24c41"
+        "mrs:69215e1cb671"
       ]
     },
     "buffs:55407": {
@@ -13673,30 +13564,80 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:a0193842b38f"
+        "mrs:90e16dd1539b"
       ],
       "directSourceRuleIds": [
-        "mrs:a0193842b38f"
+        "mrs:90e16dd1539b"
       ]
     },
     "buffs:55413": {
       "uid": "55413",
       "category": "buffs",
       "runtimeKind": "runtime-buff",
-      "formulaReadiness": "non-damage-or-support",
+      "formulaReadiness": "overlap-only",
       "formulaZoneIds": [
-        "generalDamage"
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
-      "valueResolution": "no-value",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "unknown"
+        "all",
+        "target"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
+      "runtimeProofRequired": [
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
+      ],
       "sourceRuleIds": [
-        "mrs:53404f807c87"
+        "mrs:133074e86783"
       ],
       "directSourceRuleIds": [
-        "mrs:53404f807c87"
+        "mrs:133074e86783"
+      ]
+    },
+    "buffs:55414": {
+      "uid": "55414",
+      "category": "buffs",
+      "runtimeKind": "runtime-buff",
+      "formulaReadiness": "overlap-only",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
+      "scopeKinds": [
+        "all",
+        "target"
+      ],
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
+      "runtimeProofRequired": [
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
+      ],
+      "sourceRuleIds": [
+        "mrs:9d2c238a397d"
+      ],
+      "directSourceRuleIds": [
+        "mrs:9d2c238a397d"
       ]
     },
     "buffs:55416": {
@@ -13747,10 +13688,10 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469"
+        "mrs:3c73ffb62f87"
       ],
       "directSourceRuleIds": [
-        "mrs:66cccfbbc469"
+        "mrs:3c73ffb62f87"
       ]
     },
     "buffs:55418": {
@@ -15860,10 +15801,10 @@
       ],
       "stackPolicy": "none",
       "sourceRuleIds": [
-        "mrs:23cc6f1b0114"
+        "mrs:a2afd0c46685"
       ],
       "directSourceRuleIds": [
-        "mrs:23cc6f1b0114"
+        "mrs:a2afd0c46685"
       ]
     },
     "buffs:510575": {
@@ -21496,10 +21437,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:5672aba27c77"
+        "mrs:d501ed8bb9d3"
       ],
       "directSourceRuleIds": [
-        "mrs:5672aba27c77"
+        "mrs:d501ed8bb9d3"
       ]
     },
     "buffs:700045": {
@@ -21522,10 +21463,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:4db3ccb216cd"
+        "mrs:0f1d8265bbaa"
       ],
       "directSourceRuleIds": [
-        "mrs:4db3ccb216cd"
+        "mrs:0f1d8265bbaa"
       ]
     },
     "buffs:700046": {
@@ -21661,10 +21602,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:e35812470774"
+        "mrs:63c03ed1e1d5"
       ],
       "directSourceRuleIds": [
-        "mrs:e35812470774"
+        "mrs:63c03ed1e1d5"
       ]
     },
     "buffs:700053": {
@@ -21976,10 +21917,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d4c7e3fc4b92"
+        "mrs:67d1c00506c0"
       ],
       "directSourceRuleIds": [
-        "mrs:d4c7e3fc4b92"
+        "mrs:67d1c00506c0"
       ]
     },
     "buffs:700072": {
@@ -22118,10 +22059,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:15f69177dd4f"
+        "mrs:358696fd3399"
       ],
       "directSourceRuleIds": [
-        "mrs:15f69177dd4f"
+        "mrs:358696fd3399"
       ]
     },
     "buffs:700079": {
@@ -22435,10 +22376,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:46b707c3d87c"
+        "mrs:99f2db918510"
       ],
       "directSourceRuleIds": [
-        "mrs:46b707c3d87c"
+        "mrs:99f2db918510"
       ]
     },
     "buffs:700102": {
@@ -22529,10 +22470,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:b06fd73eeae0"
+        "mrs:5dd4b629ef57"
       ],
       "directSourceRuleIds": [
-        "mrs:b06fd73eeae0"
+        "mrs:5dd4b629ef57"
       ]
     },
     "buffs:700107": {
@@ -22584,10 +22525,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:645ebd77d3c2"
+        "mrs:7e3da65e2fad"
       ],
       "directSourceRuleIds": [
-        "mrs:645ebd77d3c2"
+        "mrs:7e3da65e2fad"
       ]
     },
     "buffs:700109": {
@@ -24628,10 +24569,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:09eb2e7d2223"
+        "mrs:f3ab19b15183"
       ],
       "directSourceRuleIds": [
-        "mrs:09eb2e7d2223"
+        "mrs:f3ab19b15183"
       ]
     },
     "buffs:701015": {
@@ -31398,10 +31339,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d17fc801bb84"
+        "mrs:14a705d30c18"
       ],
       "directSourceRuleIds": [
-        "mrs:d17fc801bb84"
+        "mrs:14a705d30c18"
       ]
     },
     "buffs:823008": {
@@ -31441,10 +31382,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c5c05ad9a72b"
+        "mrs:bcc57e05dfde"
       ],
       "directSourceRuleIds": [
-        "mrs:c5c05ad9a72b"
+        "mrs:bcc57e05dfde"
       ]
     },
     "buffs:823010": {
@@ -39524,10 +39465,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:4d0fb846ebb3"
+        "mrs:d72c3fff9c3e"
       ],
       "directSourceRuleIds": [
-        "mrs:4d0fb846ebb3"
+        "mrs:d72c3fff9c3e"
       ]
     },
     "buffs:833019": {
@@ -50940,10 +50881,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:3c4ab5531b1c"
+        "mrs:68fb1f191fe7"
       ],
       "directSourceRuleIds": [
-        "mrs:3c4ab5531b1c"
+        "mrs:68fb1f191fe7"
       ]
     },
     "buffs:855138": {
@@ -54007,10 +53948,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d6602753234c"
+        "mrs:4ac1261bcb15"
       ],
       "directSourceRuleIds": [
-        "mrs:d6602753234c"
+        "mrs:4ac1261bcb15"
       ]
     },
     "buffs:873101": {
@@ -57507,10 +57448,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:0232d9abc13a"
+        "mrs:06b0c9a9f04c"
       ],
       "directSourceRuleIds": [
-        "mrs:0232d9abc13a"
+        "mrs:06b0c9a9f04c"
       ]
     },
     "buffs:880666": {
@@ -58583,10 +58524,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:89e70665d988"
+        "mrs:fca95129ac61"
       ],
       "directSourceRuleIds": [
-        "mrs:89e70665d988"
+        "mrs:fca95129ac61"
       ]
     },
     "buffs:880807": {
@@ -82889,10 +82830,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1d3769e44324"
+        "mrs:b835bc977645"
       ],
       "directSourceRuleIds": [
-        "mrs:1d3769e44324"
+        "mrs:b835bc977645"
       ]
     },
     "buffs:900126": {
@@ -93297,10 +93238,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:b282ecf8240f"
+        "mrs:bfd13a4b5530"
       ],
       "directSourceRuleIds": [
-        "mrs:b282ecf8240f"
+        "mrs:bfd13a4b5530"
       ]
     },
     "buffs:974341": {
@@ -95144,10 +95085,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:0914b04d18a9"
+        "mrs:87309a93cf4f"
       ],
       "directSourceRuleIds": [
-        "mrs:0914b04d18a9"
+        "mrs:87309a93cf4f"
       ]
     },
     "buffs:990811": {
@@ -110311,10 +110252,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d3bf9d646b87"
+        "mrs:140e4b1c20fc"
       ],
       "directSourceRuleIds": [
-        "mrs:d3bf9d646b87"
+        "mrs:140e4b1c20fc"
       ]
     },
     "buffs:999991": {
@@ -110337,10 +110278,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:aadfd904034e"
+        "mrs:72411a827a69"
       ],
       "directSourceRuleIds": [
-        "mrs:aadfd904034e"
+        "mrs:72411a827a69"
       ]
     },
     "buffs:999992": {
@@ -119739,10 +119680,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:bb267afe4fce"
+        "mrs:7b7ffadcc2df"
       ],
       "directSourceRuleIds": [
-        "mrs:bb267afe4fce"
+        "mrs:7b7ffadcc2df"
       ]
     },
     "buffs:2100007": {
@@ -119888,10 +119829,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:078333fa12f8"
+        "mrs:b005c2325a12"
       ],
       "directSourceRuleIds": [
-        "mrs:078333fa12f8"
+        "mrs:b005c2325a12"
       ]
     },
     "buffs:2100106": {
@@ -120215,10 +120156,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:2b8a6bc152c5"
+        "mrs:8ace5000794c"
       ],
       "directSourceRuleIds": [
-        "mrs:2b8a6bc152c5"
+        "mrs:8ace5000794c"
       ]
     },
     "buffs:2100156": {
@@ -120241,10 +120182,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:094c2ec29de3"
+        "mrs:a4a5f8c0a638"
       ],
       "directSourceRuleIds": [
-        "mrs:094c2ec29de3"
+        "mrs:a4a5f8c0a638"
       ]
     },
     "buffs:2100157": {
@@ -120284,10 +120225,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:3a56b7d00c73"
+        "mrs:b1ec766aaaac"
       ],
       "directSourceRuleIds": [
-        "mrs:3a56b7d00c73"
+        "mrs:b1ec766aaaac"
       ]
     },
     "buffs:2100159": {
@@ -120555,10 +120496,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ba9c7c820973"
+        "mrs:0bb2c480a96c"
       ],
       "directSourceRuleIds": [
-        "mrs:ba9c7c820973"
+        "mrs:0bb2c480a96c"
       ]
     },
     "buffs:2100300": {
@@ -120812,10 +120753,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ed17f41a842f"
+        "mrs:bab840cebe24"
       ],
       "directSourceRuleIds": [
-        "mrs:ed17f41a842f"
+        "mrs:bab840cebe24"
       ]
     },
     "buffs:2100410": {
@@ -121304,10 +121245,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7dc59dc9b83d"
+        "mrs:c46d572e7105"
       ],
       "directSourceRuleIds": [
-        "mrs:7dc59dc9b83d"
+        "mrs:c46d572e7105"
       ]
     },
     "buffs:2110041": {
@@ -122207,10 +122148,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe"
       ],
       "directSourceRuleIds": [
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe"
       ]
     },
     "buffs:2110091": {
@@ -122233,10 +122174,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786"
+        "mrs:8694f37c92f6"
       ],
       "directSourceRuleIds": [
-        "mrs:93ccfefe3786"
+        "mrs:8694f37c92f6"
       ]
     },
     "buffs:2110092": {
@@ -127272,10 +127213,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:9ca34d004297"
+        "mrs:30e474fb5b0e"
       ],
       "directSourceRuleIds": [
-        "mrs:9ca34d004297"
+        "mrs:30e474fb5b0e"
       ]
     },
     "buffs:2201344": {
@@ -127351,10 +127292,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c77cdee14b36"
+        "mrs:938873cde96f"
       ],
       "directSourceRuleIds": [
-        "mrs:c77cdee14b36"
+        "mrs:938873cde96f"
       ]
     },
     "buffs:2201360": {
@@ -127433,10 +127374,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ae6840edacff"
+        "mrs:20e3731580ba"
       ],
       "directSourceRuleIds": [
-        "mrs:ae6840edacff"
+        "mrs:20e3731580ba"
       ]
     },
     "buffs:2201370": {
@@ -128114,10 +128055,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:08b6aa72e298"
+        "mrs:85fc72b5343e"
       ],
       "directSourceRuleIds": [
-        "mrs:08b6aa72e298"
+        "mrs:85fc72b5343e"
       ]
     },
     "buffs:2201570": {
@@ -128377,7 +128318,7 @@
       "uid": "2201640",
       "category": "buffs",
       "runtimeKind": "runtime-buff",
-      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaReadiness": "packet-exact-produced-damage",
       "formulaZoneIds": [
         "baseAttackTerm",
         "generalDamage",
@@ -128392,12 +128333,23 @@
       ],
       "stackPolicy": "runtime-stack-count+target-stack-effect",
       "runtimeProofRequired": [
-        "buffs UID observed, selected, equipped, or otherwise active",
+        "attacker uid",
+        "damage id",
         "description-derived value mapped to a formula component",
+        "observed final hit value",
+        "produced damage row id",
+        "sourceRuleId active on hit",
         "stack count at hit time",
+        "target damage/recount id match",
         "target stack state at hit time",
         "target uid",
         "target-side buff/debuff/window state at hit time"
+      ],
+      "sourceRuleIds": [
+        "mrs:01d94acd5e02"
+      ],
+      "directSourceRuleIds": [
+        "mrs:01d94acd5e02"
       ]
     },
     "buffs:2201641": {
@@ -128930,10 +128882,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:07a263a8d0ef"
+        "mrs:0995fdec0b2b"
       ],
       "directSourceRuleIds": [
-        "mrs:07a263a8d0ef"
+        "mrs:0995fdec0b2b"
       ]
     },
     "buffs:2202113": {
@@ -128999,10 +128951,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:270d78b78585"
+        "mrs:eae211d8cff4"
       ],
       "directSourceRuleIds": [
-        "mrs:270d78b78585"
+        "mrs:eae211d8cff4"
       ]
     },
     "buffs:2202130": {
@@ -129648,19 +129600,16 @@
       "category": "buffs",
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "non-damage-or-support",
-      "formulaZoneIds": [
-        "exactLuckyProducedDamage"
-      ],
       "valueResolution": "no-value",
       "scopeKinds": [
         "unknown"
       ],
       "stackPolicy": "none",
       "sourceRuleIds": [
-        "mrs:abd6404b2c5f"
+        "mrs:484ab24b3456"
       ],
       "directSourceRuleIds": [
-        "mrs:abd6404b2c5f"
+        "mrs:484ab24b3456"
       ]
     },
     "buffs:2202300": {
@@ -129735,10 +129684,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ee63368d2a15"
+        "mrs:5c1bb7eeb1f5"
       ],
       "directSourceRuleIds": [
-        "mrs:ee63368d2a15"
+        "mrs:5c1bb7eeb1f5"
       ]
     },
     "buffs:2202312": {
@@ -130597,7 +130546,9 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
         "critical",
+        "physicalMagicEnhancement",
         "timingCadence"
       ],
       "valueResolution": "description-ambiguous-multiple-values",
@@ -131195,10 +131146,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f"
+        "mrs:347b98b1d8e6"
       ],
       "directSourceRuleIds": [
-        "mrs:007ee6314d8f"
+        "mrs:347b98b1d8e6"
       ]
     },
     "buffs:2203100": {
@@ -131239,10 +131190,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:25203b3cf888"
+        "mrs:0847cf1563dc"
       ],
       "directSourceRuleIds": [
-        "mrs:25203b3cf888"
+        "mrs:0847cf1563dc"
       ]
     },
     "buffs:2203102": {
@@ -131265,10 +131216,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:8afd51cf7d1b"
+        "mrs:805ca49810d5"
       ],
       "directSourceRuleIds": [
-        "mrs:8afd51cf7d1b"
+        "mrs:805ca49810d5"
       ]
     },
     "buffs:2203110": {
@@ -131399,10 +131350,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:4bbc2bcf09cc"
+        "mrs:816b5ee507ad"
       ],
       "directSourceRuleIds": [
-        "mrs:4bbc2bcf09cc"
+        "mrs:816b5ee507ad"
       ]
     },
     "buffs:2203150": {
@@ -131415,6 +131366,7 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -131534,10 +131486,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7925fdb75133"
+        "mrs:6481d43847e4"
       ],
       "directSourceRuleIds": [
-        "mrs:7925fdb75133"
+        "mrs:6481d43847e4"
       ]
     },
     "buffs:2203190": {
@@ -131546,17 +131498,28 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
-        "elementalDamage"
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
-      "valueResolution": "no-value",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "unknown"
+        "all",
+        "target"
       ],
-      "stackPolicy": "runtime-stack-count+target-stack-effect",
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
       "runtimeProofRequired": [
         "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
         "stack count at hit time",
-        "target stack state at hit time"
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
       ]
     },
     "buffs:2203191": {
@@ -131641,6 +131604,7 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -131669,6 +131633,7 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -131877,10 +131842,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:911cf59a2cc7"
+        "mrs:2e30d4351ad5"
       ],
       "directSourceRuleIds": [
-        "mrs:911cf59a2cc7"
+        "mrs:2e30d4351ad5"
       ]
     },
     "buffs:2203292": {
@@ -131972,10 +131937,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:76239a707058"
+        "mrs:0d8d54a9aa9b"
       ],
       "directSourceRuleIds": [
-        "mrs:76239a707058"
+        "mrs:0d8d54a9aa9b"
       ]
     },
     "buffs:2203310": {
@@ -132532,6 +132497,7 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -132560,6 +132526,7 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -132624,18 +132591,28 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
         "critical",
+        "elementalDamage",
         "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "all"
+        "all",
+        "target"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
       "runtimeProofRequired": [
         "buffs UID observed, selected, equipped, or otherwise active",
-        "description-derived value mapped to a formula component"
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
       ]
     },
     "buffs:2203571": {
@@ -132698,16 +132675,58 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
-      "valueResolution": "description-ambiguous-multiple-values",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "all"
+        "all",
+        "target"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
       "runtimeProofRequired": [
         "buffs UID observed, selected, equipped, or otherwise active",
-        "description-derived value mapped to a formula component"
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
+      ]
+    },
+    "buffs:2203591": {
+      "uid": "2203591",
+      "category": "buffs",
+      "runtimeKind": "runtime-buff",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
+      "scopeKinds": [
+        "all",
+        "target"
+      ],
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
+      "runtimeProofRequired": [
+        "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
       ]
     },
     "buffs:2203600": {
@@ -132720,6 +132739,8 @@
         "critical",
         "elementalDamage",
         "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -132744,18 +132765,28 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
         "elementalDamage",
         "generalDamage",
-        "skillMultiplier"
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "all"
+        "all",
+        "target"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
       "runtimeProofRequired": [
         "buffs UID observed, selected, equipped, or otherwise active",
-        "description-derived value mapped to a formula component"
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
       ]
     },
     "buffs:2203620": {
@@ -132942,9 +132973,11 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
         "critical",
         "elementalDamage",
         "generalDamage",
+        "skillMultiplier",
         "timingCadence"
       ],
       "valueResolution": "mixed-component-values",
@@ -135717,10 +135750,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ab3192170cf4"
+        "mrs:1624d78a75fa"
       ],
       "directSourceRuleIds": [
-        "mrs:ab3192170cf4"
+        "mrs:1624d78a75fa"
       ]
     },
     "buffs:2205163": {
@@ -137372,16 +137405,26 @@
       "category": "buffs",
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
+      "formulaZoneIds": [
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "unknown"
+        "all"
       ],
       "stackPolicy": "none",
+      "runtimeProofRequired": [
+        "description-derived value mapped to a formula component"
+      ],
       "sourceRuleIds": [
-        "mrs:edba96ac8c77"
+        "mrs:b5d5c3f92d9f"
       ],
       "directSourceRuleIds": [
-        "mrs:edba96ac8c77"
+        "mrs:b5d5c3f92d9f"
       ]
     },
     "buffs:2206130": {
@@ -137471,10 +137514,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:168f24447825"
+        "mrs:cbe5e3fdf29b"
       ],
       "directSourceRuleIds": [
-        "mrs:168f24447825"
+        "mrs:cbe5e3fdf29b"
       ]
     },
     "buffs:2206152": {
@@ -137497,10 +137540,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:8711ec5e87f0"
+        "mrs:d492c3371015"
       ],
       "directSourceRuleIds": [
-        "mrs:8711ec5e87f0"
+        "mrs:d492c3371015"
       ]
     },
     "buffs:2206160": {
@@ -137614,11 +137657,14 @@
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
         "baseAttackTerm",
+        "critical",
+        "elementalDamage",
         "generalDamage",
         "physicalMagicEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
-      "valueResolution": "description-ambiguous-multiple-values",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
         "all",
         "target"
@@ -137729,9 +137775,6 @@
       "category": "buffs",
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "exactLuckyProducedDamage"
-      ],
       "valueResolution": "no-value",
       "scopeKinds": [
         "unknown"
@@ -137747,10 +137790,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7d7fd881cf24"
+        "mrs:1ab2484705f8"
       ],
       "directSourceRuleIds": [
-        "mrs:7d7fd881cf24"
+        "mrs:1ab2484705f8"
       ]
     },
     "buffs:2206241": {
@@ -137773,10 +137816,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:77bc05a5a7f4"
+        "mrs:7d60d1c50055"
       ],
       "directSourceRuleIds": [
-        "mrs:77bc05a5a7f4"
+        "mrs:7d60d1c50055"
       ]
     },
     "buffs:2206242": {
@@ -137819,10 +137862,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:43c5ffac9c60"
+        "mrs:be95790f74c1"
       ],
       "directSourceRuleIds": [
-        "mrs:43c5ffac9c60"
+        "mrs:be95790f74c1"
       ]
     },
     "buffs:2206250": {
@@ -137858,6 +137901,36 @@
       ],
       "directSourceRuleIds": [
         "mrs:b32d2a13cc9f"
+      ]
+    },
+    "buffs:2206260": {
+      "uid": "2206260",
+      "category": "buffs",
+      "runtimeKind": "runtime-buff",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "critical",
+        "elementalDamage",
+        "generalDamage",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
+      "scopeKinds": [
+        "all",
+        "target"
+      ],
+      "stackPolicy": "runtime-stack-count+max-stack-or-cap+target-stack-effect",
+      "runtimeProofRequired": [
+        "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component",
+        "stack cap or threshold state at hit time",
+        "stack count at hit time",
+        "target stack state at hit time",
+        "target uid",
+        "target-side buff/debuff/window state at hit time"
       ]
     },
     "buffs:2206261": {
@@ -138245,10 +138318,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:85445c2edcb9"
+        "mrs:65ffd99f5339"
       ],
       "directSourceRuleIds": [
-        "mrs:85445c2edcb9"
+        "mrs:65ffd99f5339"
       ]
     },
     "buffs:2206410": {
@@ -138308,10 +138381,10 @@
       ],
       "stackPolicy": "none",
       "sourceRuleIds": [
-        "mrs:7c3f40557180"
+        "mrs:06b7f639f5d3"
       ],
       "directSourceRuleIds": [
-        "mrs:7c3f40557180"
+        "mrs:06b7f639f5d3"
       ]
     },
     "buffs:2206430": {
@@ -138588,10 +138661,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006"
+        "mrs:16431695de9e"
       ],
       "directSourceRuleIds": [
-        "mrs:5888a9948006"
+        "mrs:16431695de9e"
       ]
     },
     "buffs:2206542": {
@@ -138687,10 +138760,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:89149b7b1a8d"
+        "mrs:fe47b91e713f"
       ],
       "directSourceRuleIds": [
-        "mrs:89149b7b1a8d"
+        "mrs:fe47b91e713f"
       ]
     },
     "buffs:2206570": {
@@ -139151,10 +139224,14 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
         "elementalDamage",
         "generalDamage",
         "luckyChance",
-        "luckyEnhancement"
+        "luckyEnhancement",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
       "valueResolution": "description-ambiguous-multiple-values",
       "scopeKinds": [
@@ -139162,14 +139239,16 @@
         "owner",
         "party"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+target-stack-effect",
       "runtimeProofRequired": [
         "active buff window",
         "buffs UID observed, selected, equipped, or otherwise active",
         "description-derived value mapped to a formula component",
         "owner/party scope resolved against encounter-local actors",
         "recipient actor",
-        "source actor"
+        "source actor",
+        "stack count at hit time",
+        "target stack state at hit time"
       ]
     },
     "buffs:2207100": {
@@ -139432,17 +139511,31 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
         "elementalDamage",
+        "generalDamage",
+        "luckyChance",
         "luckyEnhancement",
+        "physicalMagicEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
-      "valueResolution": "no-value",
+      "valueResolution": "description-ambiguous-multiple-values",
       "scopeKinds": [
-        "unknown"
+        "all",
+        "owner",
+        "party"
       ],
-      "stackPolicy": "none",
+      "stackPolicy": "runtime-stack-count+target-stack-effect",
       "runtimeProofRequired": [
-        "buffs UID observed, selected, equipped, or otherwise active"
+        "active buff window",
+        "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component",
+        "owner/party scope resolved against encounter-local actors",
+        "recipient actor",
+        "source actor",
+        "stack count at hit time",
+        "target stack state at hit time"
       ]
     },
     "buffs:2207171": {
@@ -139778,15 +139871,21 @@
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
         "baseAttackTerm",
-        "critical"
+        "critical",
+        "generalDamage",
+        "luckyChance",
+        "luckyEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
-      "valueResolution": "no-value",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
-        "unknown"
+        "all"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
-        "buffs UID observed, selected, equipped, or otherwise active"
+        "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component"
       ]
     },
     "buffs:2207281": {
@@ -139863,10 +139962,14 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyChance",
         "luckyEnhancement",
-        "skillMultiplier"
+        "skillMultiplier",
+        "timingCadence"
       ],
-      "valueResolution": "description-clause-single",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
         "all"
       ],
@@ -140259,9 +140362,14 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
-        "generalDamage"
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyChance",
+        "luckyEnhancement",
+        "skillMultiplier",
+        "timingCadence"
       ],
-      "valueResolution": "description-ambiguous-multiple-values",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
         "all"
       ],
@@ -140323,11 +140431,14 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
         "luckyChance",
         "luckyEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
-      "valueResolution": "description-clause-single",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
         "all"
       ],
@@ -140343,10 +140454,14 @@
       "runtimeKind": "runtime-buff",
       "formulaReadiness": "description-grounded-needs-runtime-proof",
       "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyChance",
         "luckyEnhancement",
+        "skillMultiplier",
         "timingCadence"
       ],
-      "valueResolution": "description-ambiguous-multiple-values",
+      "valueResolution": "mixed-component-values",
       "scopeKinds": [
         "all"
       ],
@@ -140702,6 +140817,29 @@
         "mrs:3773ca4891a1"
       ]
     },
+    "buffs:2207630": {
+      "uid": "2207630",
+      "category": "buffs",
+      "runtimeKind": "runtime-buff",
+      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaZoneIds": [
+        "baseAttackTerm",
+        "generalDamage",
+        "luckyChance",
+        "luckyEnhancement",
+        "skillMultiplier",
+        "timingCadence"
+      ],
+      "valueResolution": "mixed-component-values",
+      "scopeKinds": [
+        "all"
+      ],
+      "stackPolicy": "none",
+      "runtimeProofRequired": [
+        "buffs UID observed, selected, equipped, or otherwise active",
+        "description-derived value mapped to a formula component"
+      ]
+    },
     "buffs:2207631": {
       "uid": "2207631",
       "category": "buffs",
@@ -140840,10 +140978,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:4920256af371"
+        "mrs:b56696aa5c8f"
       ],
       "directSourceRuleIds": [
-        "mrs:4920256af371"
+        "mrs:b56696aa5c8f"
       ]
     },
     "buffs:2208010": {
@@ -141358,10 +141496,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:0b00db7c5103"
+        "mrs:5b7f5e728880"
       ],
       "directSourceRuleIds": [
-        "mrs:0b00db7c5103"
+        "mrs:5b7f5e728880"
       ]
     },
     "buffs:2208180": {
@@ -141406,10 +141544,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:a90832609db6"
+        "mrs:598bb19a7c0c"
       ],
       "directSourceRuleIds": [
-        "mrs:a90832609db6"
+        "mrs:598bb19a7c0c"
       ]
     },
     "buffs:2208182": {
@@ -142957,10 +143095,10 @@
         "Decision placeholder parameter source must be resolved from the owning UI/effect table before numeric contribution math"
       ],
       "sourceRuleIds": [
-        "mrs:02bdabcfbe1a"
+        "mrs:0898671452a2"
       ],
       "directSourceRuleIds": [
-        "mrs:02bdabcfbe1a"
+        "mrs:0898671452a2"
       ]
     },
     "buffs:2300110": {
@@ -144123,10 +144261,10 @@
         "description-derived value mapped to a formula component"
       ],
       "sourceRuleIds": [
-        "mrs:1bc023d7826a"
+        "mrs:34a6621ccad3"
       ],
       "directSourceRuleIds": [
-        "mrs:1bc023d7826a"
+        "mrs:34a6621ccad3"
       ]
     },
     "buffs:2302321": {
@@ -148354,7 +148492,7 @@
       "uid": "3001030",
       "category": "buffs",
       "runtimeKind": "runtime-buff",
-      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaReadiness": "overlap-only",
       "formulaZoneIds": [
         "baseAttackTerm",
         "elementalDamage",
@@ -148367,8 +148505,13 @@
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
-        "buffs UID observed, selected, equipped, or otherwise active",
         "Decision placeholder parameter source must be resolved from the owning UI/effect table before numeric contribution math"
+      ],
+      "sourceRuleIds": [
+        "mrs:c3c9f6ebccff"
+      ],
+      "directSourceRuleIds": [
+        "mrs:c3c9f6ebccff"
       ]
     },
     "buffs:3001031": {
@@ -148394,10 +148537,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:24f7cc7dc131"
+        "mrs:f92282ef92f1"
       ],
       "directSourceRuleIds": [
-        "mrs:24f7cc7dc131"
+        "mrs:f92282ef92f1"
       ]
     },
     "buffs:3001040": {
@@ -148728,10 +148871,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c58102785af8"
+        "mrs:05aed61357a1"
       ],
       "directSourceRuleIds": [
-        "mrs:c58102785af8"
+        "mrs:05aed61357a1"
       ]
     },
     "buffs:3001171": {
@@ -148820,10 +148963,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:239f2cd664b3"
+        "mrs:89ec17684654"
       ],
       "directSourceRuleIds": [
-        "mrs:239f2cd664b3"
+        "mrs:89ec17684654"
       ]
     },
     "buffs:3001200": {
@@ -148869,10 +149012,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1f8cd39f4186"
+        "mrs:276c7d595faf"
       ],
       "directSourceRuleIds": [
-        "mrs:1f8cd39f4186"
+        "mrs:276c7d595faf"
       ]
     },
     "buffs:3001210": {
@@ -148918,10 +149061,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ea81e4c3b134"
+        "mrs:40889cc58f97"
       ],
       "directSourceRuleIds": [
-        "mrs:ea81e4c3b134"
+        "mrs:40889cc58f97"
       ]
     },
     "buffs:3001212": {
@@ -149011,10 +149154,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:a86d0315fde1"
+        "mrs:43aa3fbcf961"
       ],
       "directSourceRuleIds": [
-        "mrs:a86d0315fde1"
+        "mrs:43aa3fbcf961"
       ]
     },
     "buffs:3001232": {
@@ -149751,7 +149894,7 @@
       "uid": "3002210",
       "category": "buffs",
       "runtimeKind": "runtime-buff",
-      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaReadiness": "overlap-only",
       "formulaZoneIds": [
         "baseAttackTerm",
         "generalDamage",
@@ -149762,8 +149905,11 @@
         "unknown"
       ],
       "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "buffs UID observed, selected, equipped, or otherwise active"
+      "sourceRuleIds": [
+        "mrs:354291768ba1"
+      ],
+      "directSourceRuleIds": [
+        "mrs:354291768ba1"
       ]
     },
     "buffs:3002211": {
@@ -149861,10 +150007,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:872be889ba37"
+        "mrs:7fdf8ffd0a0b"
       ],
       "directSourceRuleIds": [
-        "mrs:872be889ba37"
+        "mrs:7fdf8ffd0a0b"
       ]
     },
     "buffs:3002220": {
@@ -150470,10 +150616,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d9e28a5ee4d0"
+        "mrs:9db23eab0d4d"
       ],
       "directSourceRuleIds": [
-        "mrs:d9e28a5ee4d0"
+        "mrs:9db23eab0d4d"
       ]
     },
     "buffs:3002680": {
@@ -150744,11 +150890,11 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:230c18f398bb",
-        "mrs:e5f47703089b"
+        "mrs:39b85a9618a0",
+        "mrs:afe5af949a84"
       ],
       "directSourceRuleIds": [
-        "mrs:e5f47703089b"
+        "mrs:39b85a9618a0"
       ]
     },
     "buffs:3003024": {
@@ -150791,11 +150937,11 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:230c18f398bb",
-        "mrs:e5f47703089b"
+        "mrs:39b85a9618a0",
+        "mrs:afe5af949a84"
       ],
       "directSourceRuleIds": [
-        "mrs:230c18f398bb"
+        "mrs:afe5af949a84"
       ]
     },
     "buffs:3003030": {
@@ -151007,7 +151153,7 @@
       "uid": "3003210",
       "category": "buffs",
       "runtimeKind": "runtime-buff",
-      "formulaReadiness": "description-grounded-needs-runtime-proof",
+      "formulaReadiness": "packet-exact-produced-damage",
       "formulaZoneIds": [
         "elementalDamage",
         "generalDamage"
@@ -151018,8 +151164,21 @@
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
-        "buffs UID observed, selected, equipped, or otherwise active",
-        "description-derived value mapped to a formula component"
+        "attacker uid",
+        "damage id",
+        "description-derived value mapped to a formula component",
+        "observed final hit value",
+        "produced damage row id",
+        "sourceRuleId active on hit",
+        "target damage/recount id match",
+        "target uid"
+      ],
+      "sourceRuleIds": [
+        "mrs:30d325f45d7d",
+        "mrs:61af1749a103"
+      ],
+      "directSourceRuleIds": [
+        "mrs:61af1749a103"
       ]
     },
     "buffs:3003211": {
@@ -151076,10 +151235,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1566c1d0d4ae"
+        "mrs:53ab93e164fc"
       ],
       "directSourceRuleIds": [
-        "mrs:1566c1d0d4ae"
+        "mrs:53ab93e164fc"
       ]
     },
     "buffs:3003220": {
@@ -164068,10 +164227,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7ecb6ac314fa"
+        "mrs:7eba124e09eb"
       ],
       "directSourceRuleIds": [
-        "mrs:7ecb6ac314fa"
+        "mrs:7eba124e09eb"
       ]
     },
     "buffs:3210070": {
@@ -164168,10 +164327,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:b55fe55fff15"
+        "mrs:a81c0fd9b651"
       ],
       "directSourceRuleIds": [
-        "mrs:b55fe55fff15"
+        "mrs:a81c0fd9b651"
       ]
     },
     "buffs:3210090": {
@@ -164702,10 +164861,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ],
       "directSourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "buffs:3210180": {
@@ -254788,10 +254947,10 @@
         "modifier windows"
       ],
       "sourceRuleIds": [
-        "mrs:e4f8c527b434"
+        "mrs:f465860f2f23"
       ],
       "directSourceRuleIds": [
-        "mrs:e4f8c527b434"
+        "mrs:f465860f2f23"
       ]
     },
     "seasonal-talents:265": {
@@ -254866,7 +255025,7 @@
       "uid": "267",
       "category": "seasonal-talents",
       "runtimeKind": "selected-seasonal-talent",
-      "formulaReadiness": "packet-exact-produced-damage",
+      "formulaReadiness": "overlap-only",
       "formulaZoneIds": [
         "elementalDamage",
         "generalDamage",
@@ -254879,20 +255038,16 @@
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "damage id",
         "description-derived value mapped to a formula component",
         "modifier windows",
-        "observed final hit value",
         "produced damage row id",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7c5719779419"
+        "mrs:17eada55ea80"
       ],
       "directSourceRuleIds": [
-        "mrs:7c5719779419"
+        "mrs:17eada55ea80"
       ]
     },
     "seasonal-talents:268": {
@@ -255000,10 +255155,10 @@
         "description-derived value mapped to a formula component"
       ],
       "sourceRuleIds": [
-        "mrs:977fc78117da"
+        "mrs:1f6beb249c16"
       ],
       "directSourceRuleIds": [
-        "mrs:977fc78117da"
+        "mrs:1f6beb249c16"
       ]
     },
     "seasonal-talents:272": {
@@ -255642,10 +255797,10 @@
         "target/source predicate evaluation"
       ],
       "sourceRuleIds": [
-        "mrs:5d69b8fbbcf6"
+        "mrs:6a84c723a25a"
       ],
       "directSourceRuleIds": [
-        "mrs:5d69b8fbbcf6"
+        "mrs:6a84c723a25a"
       ]
     },
     "seasonal-talents:297": {
@@ -255814,10 +255969,10 @@
         "description-derived value mapped to a formula component"
       ],
       "sourceRuleIds": [
-        "mrs:858e7bfa50fd"
+        "mrs:74209e7dd691"
       ],
       "directSourceRuleIds": [
-        "mrs:858e7bfa50fd"
+        "mrs:74209e7dd691"
       ]
     },
     "seasonal-talents:303": {
@@ -256010,11 +256165,11 @@
         "shield event lane"
       ],
       "sourceRuleIds": [
-        "mrs:9b44647e2ec5",
+        "mrs:96e4dbe68233",
         "mrs:ccccf7010174"
       ],
       "directSourceRuleIds": [
-        "mrs:9b44647e2ec5",
+        "mrs:96e4dbe68233",
         "mrs:ccccf7010174"
       ]
     },
@@ -256448,10 +256603,10 @@
         "stack count at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:dee862ca35b4"
+        "mrs:d28e0d133815"
       ],
       "directSourceRuleIds": [
-        "mrs:dee862ca35b4"
+        "mrs:d28e0d133815"
       ]
     },
     "seasonal-talents:327": {
@@ -259621,10 +259776,12 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:872be889ba37",
+        "mrs:354291768ba1",
+        "mrs:7fdf8ffd0a0b",
         "mrs:cfa4a01ac8b3"
       ],
       "directSourceRuleIds": [
+        "mrs:354291768ba1",
         "mrs:cfa4a01ac8b3"
       ]
     },
@@ -260972,9 +261129,11 @@
       ],
       "sourceRuleIds": [
         "mrs:30d325f45d7d",
+        "mrs:61af1749a103",
         "mrs:a26968736dea"
       ],
       "directSourceRuleIds": [
+        "mrs:61af1749a103",
         "mrs:a26968736dea"
       ]
     },
@@ -264028,7 +264187,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:911cf59a2cc7"
+        "mrs:2e30d4351ad5"
       ]
     },
     "skills:95": {
@@ -264055,7 +264214,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:911cf59a2cc7"
+        "mrs:2e30d4351ad5"
       ]
     },
     "skills:96": {
@@ -264109,7 +264268,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:d38dd2c7f232"
+        "mrs:37886c2b02c4"
       ]
     },
     "skills:99": {
@@ -264133,11 +264292,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f",
-        "mrs:25203b3cf888",
-        "mrs:4bbc2bcf09cc",
-        "mrs:76239a707058",
-        "mrs:8afd51cf7d1b"
+        "mrs:0847cf1563dc",
+        "mrs:0d8d54a9aa9b",
+        "mrs:347b98b1d8e6",
+        "mrs:805ca49810d5",
+        "mrs:816b5ee507ad"
       ]
     },
     "skills:100": {
@@ -264773,7 +264932,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ae6840edacff"
+        "mrs:20e3731580ba"
       ]
     },
     "skills:135": {
@@ -264887,6 +265046,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
+        "mrs:01d94acd5e02",
         "mrs:1914bcf147a1"
       ]
     },
@@ -264968,42 +265128,25 @@
       "uid": "144",
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "mixed-exact-and-replay",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement",
-        "timingCadence"
-      ],
-      "valueResolution": "single",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
       "scopeKinds": [
-        "all",
         "target"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
-        "shield event lane",
-        "skill id",
         "sourceRuleId active on hit",
         "target damage/recount id match",
         "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
+        "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006",
-        "mrs:5d69b8fbbcf6",
-        "mrs:89149b7b1a8d",
-        "mrs:9b44647e2ec5"
+        "mrs:16431695de9e",
+        "mrs:fe47b91e713f"
       ]
     },
     "skills:146": {
@@ -265082,7 +265225,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ff88e0b24c41"
+        "mrs:69215e1cb671"
       ]
     },
     "skills:154": {
@@ -265106,8 +265249,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -265136,40 +265279,6 @@
         "mrs:bffb114c0798"
       ]
     },
-    "skills:159": {
-      "uid": "159",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "formula-replay-required",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement"
-      ],
-      "valueResolution": "single",
-      "scopeKinds": [
-        "all",
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
-        "observed final hit value",
-        "shield event lane",
-        "skill id",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
-      ],
-      "sourceRuleIds": [
-        "mrs:5d69b8fbbcf6",
-        "mrs:858e7bfa50fd"
-      ]
-    },
     "skills:160": {
       "uid": "160",
       "category": "skills",
@@ -265191,9 +265300,9 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:43c5ffac9c60",
-        "mrs:77bc05a5a7f4",
-        "mrs:93e237bbcff8"
+        "mrs:7d60d1c50055",
+        "mrs:93e237bbcff8",
+        "mrs:be95790f74c1"
       ]
     },
     "skills:161": {
@@ -265217,7 +265326,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:85445c2edcb9"
+        "mrs:65ffd99f5339"
       ]
     },
     "skills:162": {
@@ -265315,7 +265424,6 @@
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "packet-exact-produced-damage",
       "formulaZoneIds": [
-        "exactLuckyProducedDamage",
         "luckyEnhancement"
       ],
       "valueResolution": "no-value",
@@ -265336,8 +265444,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:62dd9ed0b837",
-        "mrs:7d7fd881cf24"
+        "mrs:1ab2484705f8",
+        "mrs:62dd9ed0b837"
       ]
     },
     "skills:166": {
@@ -265474,9 +265582,6 @@
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "timingCadence"
-      ],
       "valueResolution": "no-value",
       "scopeKinds": [
         "target"
@@ -265484,10 +265589,7 @@
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
         "sourceRuleId active on hit",
@@ -265497,8 +265599,7 @@
       ],
       "sourceRuleIds": [
         "mrs:37d17628312a",
-        "mrs:418badb1e5f5",
-        "mrs:e4f8c527b434"
+        "mrs:418badb1e5f5"
       ]
     },
     "skills:173": {
@@ -265522,32 +265623,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:c3791c83cdcf"
-      ]
-    },
-    "skills:175": {
-      "uid": "175",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "packet-exact-produced-damage",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "attacker uid",
-        "damage id",
-        "modifier windows",
-        "observed final hit value",
-        "produced damage row id",
-        "sourceRuleId active on hit",
-        "target damage/recount id match",
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:7c5719779419"
+        "mrs:4690bfced548"
       ]
     },
     "skills:177": {
@@ -265590,24 +265666,6 @@
       ],
       "sourceRuleIds": [
         "mrs:4f839f8a7d34"
-      ]
-    },
-    "skills:179": {
-      "uid": "179",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:977fc78117da"
       ]
     },
     "skills:180": {
@@ -265704,7 +265762,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:24c41dda072c"
+        "mrs:53fe38350951"
       ]
     },
     "skills:186": {
@@ -265744,7 +265802,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:7ca7b1f4069a"
+        "mrs:73ba2f1918bf"
       ]
     },
     "skills:188": {
@@ -265768,7 +265826,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ee63368d2a15"
+        "mrs:5c1bb7eeb1f5"
       ]
     },
     "skills:189": {
@@ -265916,7 +265974,6 @@
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "non-damage-or-support",
       "formulaZoneIds": [
-        "exactLuckyProducedDamage",
         "luckyEnhancement"
       ],
       "valueResolution": "no-value",
@@ -265929,7 +265986,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:abd6404b2c5f"
+        "mrs:484ab24b3456"
       ]
     },
     "skills:195": {
@@ -266029,24 +266086,6 @@
       ],
       "sourceRuleIds": [
         "mrs:f4415d9dda23"
-      ]
-    },
-    "skills:201": {
-      "uid": "201",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:dee862ca35b4"
       ]
     },
     "skills:202": {
@@ -266511,7 +266550,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:4920256af371"
+        "mrs:b56696aa5c8f"
       ]
     },
     "skills:225": {
@@ -266890,7 +266929,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:0b00db7c5103"
+        "mrs:5b7f5e728880"
       ]
     },
     "skills:247": {
@@ -266914,7 +266953,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:a90832609db6"
+        "mrs:598bb19a7c0c"
       ]
     },
     "skills:249": {
@@ -267066,7 +267105,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:7ecb6ac314fa"
+        "mrs:7eba124e09eb"
       ]
     },
     "skills:258": {
@@ -267094,7 +267133,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:b55fe55fff15"
+        "mrs:a81c0fd9b651"
       ]
     },
     "skills:259": {
@@ -267240,8 +267279,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:271": {
@@ -267795,7 +267834,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:313": {
@@ -267901,7 +267940,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:02bdabcfbe1a"
+        "mrs:0898671452a2"
       ]
     },
     "skills:323": {
@@ -267949,8 +267988,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:226488bd88c0",
-        "mrs:c58102785af8"
+        "mrs:05aed61357a1",
+        "mrs:226488bd88c0"
       ]
     },
     "skills:326": {
@@ -267974,7 +268013,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:24f7cc7dc131"
+        "mrs:f92282ef92f1"
       ]
     },
     "skills:327": {
@@ -267998,7 +268037,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:872be889ba37"
+        "mrs:7fdf8ffd0a0b"
       ]
     },
     "skills:328": {
@@ -268022,7 +268061,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:d9e28a5ee4d0"
+        "mrs:9db23eab0d4d"
       ]
     },
     "skills:329": {
@@ -268046,8 +268085,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:230c18f398bb",
-        "mrs:e5f47703089b"
+        "mrs:39b85a9618a0",
+        "mrs:afe5af949a84"
       ]
     },
     "skills:330": {
@@ -275500,6 +275539,32 @@
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "skills UID observed, selected, equipped, or otherwise active"
+      ]
+    },
+    "skills:4501": {
+      "uid": "4501",
+      "category": "skills",
+      "runtimeKind": "skill-or-damage-row",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
+      "scopeKinds": [
+        "unknown"
+      ],
+      "stackPolicy": "none",
+      "runtimeProofRequired": [
+        "attacker uid",
+        "damage id",
+        "observed final hit value",
+        "produced damage row id",
+        "sourceRuleId active on hit",
+        "target damage/recount id match",
+        "target uid"
+      ],
+      "sourceRuleIds": [
+        "mrs:3bfebbcf0a6e"
+      ],
+      "directSourceRuleIds": [
+        "mrs:3bfebbcf0a6e"
       ]
     },
     "skills:4502": {
@@ -395468,6 +395533,32 @@
         "skills UID observed, selected, equipped, or otherwise active"
       ]
     },
+    "skills:700101": {
+      "uid": "700101",
+      "category": "skills",
+      "runtimeKind": "skill-or-damage-row",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
+      "scopeKinds": [
+        "unknown"
+      ],
+      "stackPolicy": "none",
+      "runtimeProofRequired": [
+        "attacker uid",
+        "damage id",
+        "observed final hit value",
+        "produced damage row id",
+        "sourceRuleId active on hit",
+        "target damage/recount id match",
+        "target uid"
+      ],
+      "sourceRuleIds": [
+        "mrs:99f2db918510"
+      ],
+      "directSourceRuleIds": [
+        "mrs:99f2db918510"
+      ]
+    },
     "skills:700509": {
       "uid": "700509",
       "category": "skills",
@@ -399723,7 +399814,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:edcb4697c628"
+        "mrs:3bfebbcf0a6e"
+      ],
+      "directSourceRuleIds": [
+        "mrs:3bfebbcf0a6e"
       ]
     },
     "skills:2460103": {
@@ -401904,7 +401998,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:edcb4697c628"
+        "mrs:3bfebbcf0a6e"
+      ],
+      "directSourceRuleIds": [
+        "mrs:3bfebbcf0a6e"
       ]
     },
     "skills:3450401": {
@@ -409281,9 +409378,6 @@
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "timingCadence"
-      ],
       "valueResolution": "no-value",
       "scopeKinds": [
         "target"
@@ -409291,10 +409385,7 @@
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
         "sourceRuleId active on hit",
@@ -409304,8 +409395,7 @@
       ],
       "sourceRuleIds": [
         "mrs:37d17628312a",
-        "mrs:418badb1e5f5",
-        "mrs:e4f8c527b434"
+        "mrs:418badb1e5f5"
       ]
     },
     "skills:22070103": {
@@ -409336,9 +409426,6 @@
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "timingCadence"
-      ],
       "valueResolution": "no-value",
       "scopeKinds": [
         "target"
@@ -409346,10 +409433,7 @@
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
         "sourceRuleId active on hit",
@@ -409359,8 +409443,7 @@
       ],
       "sourceRuleIds": [
         "mrs:37d17628312a",
-        "mrs:418badb1e5f5",
-        "mrs:e4f8c527b434"
+        "mrs:418badb1e5f5"
       ]
     },
     "skills:22130103": {
@@ -409603,7 +409686,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:415f5e6e3469"
+        "mrs:3fd4c545d564"
       ]
     },
     "skills:22141404": {
@@ -409627,7 +409710,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:c3791c83cdcf"
+        "mrs:4690bfced548"
       ]
     },
     "skills:22141405": {
@@ -409651,7 +409734,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:c3791c83cdcf"
+        "mrs:4690bfced548"
       ]
     },
     "skills:22141804": {
@@ -409675,7 +409758,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:24c41dda072c"
+        "mrs:53fe38350951"
       ]
     },
     "skills:22142201": {
@@ -409727,7 +409810,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:7ca7b1f4069a"
+        "mrs:73ba2f1918bf"
       ]
     },
     "skills:22142403": {
@@ -410093,7 +410176,7 @@
       ],
       "stackPolicy": "none",
       "sourceRuleIds": [
-        "mrs:1f6ab46c0d78"
+        "mrs:63b22ce84cbe"
       ]
     },
     "skills:23510703": {
@@ -410695,7 +410778,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:3b73c2ccd4a7"
+        "mrs:c7d5236b0131"
       ]
     },
     "skills:25004301": {
@@ -410718,7 +410801,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:153ae62748ae"
+        "mrs:d66db856fc18"
       ]
     },
     "skills:25004904": {
@@ -410919,7 +411002,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:079f2c48a290"
+        "mrs:d1649b6988b6"
       ]
     },
     "skills:25522303": {
@@ -411729,7 +411812,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ff88e0b24c41"
+        "mrs:69215e1cb671"
       ]
     },
     "skills:25540504": {
@@ -411752,7 +411835,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ff88e0b24c41"
+        "mrs:69215e1cb671"
       ]
     },
     "skills:25541203": {
@@ -411776,8 +411859,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411803,8 +411886,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411830,8 +411913,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411857,8 +411940,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411884,8 +411967,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411911,8 +411994,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411938,8 +412021,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -411965,8 +412048,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -412016,8 +412099,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -412043,8 +412126,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:66cccfbbc469",
-        "mrs:a0193842b38f",
+        "mrs:3c73ffb62f87",
+        "mrs:90e16dd1539b",
         "mrs:a56762959989",
         "mrs:f3a6953bcae1"
       ]
@@ -416408,7 +416491,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:c3791c83cdcf"
+        "mrs:4690bfced548"
       ]
     },
     "skills:115180102": {
@@ -419970,60 +420053,6 @@
         "mrs:f4415d9dda23"
       ]
     },
-    "skills:123060101": {
-      "uid": "123060101",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:dee862ca35b4"
-      ]
-    },
-    "skills:123060103": {
-      "uid": "123060103",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:dee862ca35b4"
-      ]
-    },
-    "skills:123060104": {
-      "uid": "123060104",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:dee862ca35b4"
-      ]
-    },
     "skills:123120123": {
       "uid": "123120123",
       "category": "skills",
@@ -420505,7 +420534,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:d38dd2c7f232"
+        "mrs:37886c2b02c4"
       ]
     },
     "skills:123520103": {
@@ -420528,7 +420557,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:d38dd2c7f232"
+        "mrs:37886c2b02c4"
       ]
     },
     "skills:123620111": {
@@ -420936,126 +420965,75 @@
       "uid": "124060104",
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "mixed-exact-and-replay",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement",
-        "timingCadence"
-      ],
-      "valueResolution": "single",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
       "scopeKinds": [
-        "all",
         "target"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
-        "shield event lane",
-        "skill id",
         "sourceRuleId active on hit",
         "target damage/recount id match",
         "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
+        "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006",
-        "mrs:5d69b8fbbcf6",
-        "mrs:89149b7b1a8d",
-        "mrs:9b44647e2ec5"
+        "mrs:16431695de9e",
+        "mrs:fe47b91e713f"
       ]
     },
     "skills:124060105": {
       "uid": "124060105",
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "mixed-exact-and-replay",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement",
-        "timingCadence"
-      ],
-      "valueResolution": "single",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
       "scopeKinds": [
-        "all",
         "target"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
-        "shield event lane",
-        "skill id",
         "sourceRuleId active on hit",
         "target damage/recount id match",
         "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
+        "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006",
-        "mrs:5d69b8fbbcf6",
-        "mrs:89149b7b1a8d",
-        "mrs:9b44647e2ec5"
+        "mrs:16431695de9e",
+        "mrs:fe47b91e713f"
       ]
     },
     "skills:124060108": {
       "uid": "124060108",
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "mixed-exact-and-replay",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement",
-        "timingCadence"
-      ],
-      "valueResolution": "single",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
       "scopeKinds": [
-        "all",
         "target"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
-        "shield event lane",
-        "skill id",
         "sourceRuleId active on hit",
         "target damage/recount id match",
         "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
+        "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006",
-        "mrs:5d69b8fbbcf6",
-        "mrs:89149b7b1a8d",
-        "mrs:9b44647e2ec5"
+        "mrs:16431695de9e",
+        "mrs:fe47b91e713f"
       ]
     },
     "skills:124100101": {
@@ -421123,40 +421101,6 @@
         "skills UID observed, selected, equipped, or otherwise active",
         "target uid",
         "target-side buff/debuff/window state at hit time"
-      ]
-    },
-    "skills:124500101": {
-      "uid": "124500101",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "formula-replay-required",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement"
-      ],
-      "valueResolution": "single",
-      "scopeKinds": [
-        "all",
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
-        "observed final hit value",
-        "shield event lane",
-        "skill id",
-        "sourceRuleId active on hit",
-        "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
-      ],
-      "sourceRuleIds": [
-        "mrs:5d69b8fbbcf6",
-        "mrs:858e7bfa50fd"
       ]
     },
     "skills:124510101": {
@@ -423386,7 +423330,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:5672aba27c77"
+        "mrs:d501ed8bb9d3"
       ]
     },
     "skills:270004503": {
@@ -423409,7 +423353,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:4db3ccb216cd"
+        "mrs:0f1d8265bbaa"
       ]
     },
     "skills:270005201": {
@@ -423435,7 +423379,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:e35812470774"
+        "mrs:63c03ed1e1d5"
       ]
     },
     "skills:270007101": {
@@ -423458,7 +423402,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d4c7e3fc4b92"
+        "mrs:67d1c00506c0"
       ]
     },
     "skills:270007801": {
@@ -423481,7 +423425,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:15f69177dd4f"
+        "mrs:358696fd3399"
       ]
     },
     "skills:270008001": {
@@ -423596,7 +423540,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:b06fd73eeae0"
+        "mrs:5dd4b629ef57"
       ]
     },
     "skills:270010801": {
@@ -423619,7 +423563,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:645ebd77d3c2"
+        "mrs:7e3da65e2fad"
       ]
     },
     "skills:270011001": {
@@ -423941,7 +423885,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:09eb2e7d2223"
+        "mrs:f3ab19b15183"
       ]
     },
     "skills:270201201": {
@@ -424714,7 +424658,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d17fc801bb84"
+        "mrs:14a705d30c18"
       ]
     },
     "skills:282300901": {
@@ -424737,7 +424681,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c5c05ad9a72b"
+        "mrs:bcc57e05dfde"
       ]
     },
     "skills:282301003": {
@@ -425779,7 +425723,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:4d0fb846ebb3"
+        "mrs:d72c3fff9c3e"
       ]
     },
     "skills:283305601": {
@@ -426915,7 +426859,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:3c4ab5531b1c"
+        "mrs:68fb1f191fe7"
       ]
     },
     "skills:285514201": {
@@ -427332,7 +427276,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d6602753234c"
+        "mrs:4ac1261bcb15"
       ]
     },
     "skills:287310104": {
@@ -427643,7 +427587,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:0232d9abc13a"
+        "mrs:06b0c9a9f04c"
       ]
     },
     "skills:288067003": {
@@ -427712,7 +427656,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:89e70665d988"
+        "mrs:fca95129ac61"
       ]
     },
     "skills:288080903": {
@@ -431030,7 +430974,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1d3769e44324"
+        "mrs:b835bc977645"
       ]
     },
     "skills:290034001": {
@@ -432176,7 +432120,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:b282ecf8240f"
+        "mrs:bfd13a4b5530"
       ]
     },
     "skills:299000101": {
@@ -432596,7 +432540,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:0914b04d18a9"
+        "mrs:87309a93cf4f"
       ]
     },
     "skills:299082102": {
@@ -434672,7 +434616,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:d3bf9d646b87"
+        "mrs:140e4b1c20fc"
       ]
     },
     "skills:299999104": {
@@ -434695,7 +434639,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:aadfd904034e"
+        "mrs:72411a827a69"
       ]
     },
     "skills:301002001": {
@@ -435142,7 +435086,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:24c41dda072c"
+        "mrs:53fe38350951"
       ]
     },
     "skills:315010200": {
@@ -435181,78 +435125,6 @@
         "skills UID observed, selected, equipped, or otherwise active",
         "target uid",
         "target-side buff/debuff/window state at hit time"
-      ]
-    },
-    "skills:315010500": {
-      "uid": "315010500",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:977fc78117da"
-      ]
-    },
-    "skills:315010600": {
-      "uid": "315010600",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:977fc78117da"
-      ]
-    },
-    "skills:315010700": {
-      "uid": "315010700",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:977fc78117da"
-      ]
-    },
-    "skills:315011000": {
-      "uid": "315011000",
-      "category": "skills",
-      "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "overlap-only",
-      "valueResolution": "no-value",
-      "scopeKinds": [
-        "target"
-      ],
-      "stackPolicy": "none",
-      "runtimeProofRequired": [
-        "target uid",
-        "target-side buff/debuff/window state at hit time"
-      ],
-      "sourceRuleIds": [
-        "mrs:977fc78117da"
       ]
     },
     "skills:315011200": {
@@ -436525,8 +436397,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:339100200": {
@@ -436553,8 +436425,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:339100300": {
@@ -436581,8 +436453,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:339100400": {
@@ -436609,8 +436481,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:339100500": {
@@ -436637,8 +436509,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:339100600": {
@@ -436665,8 +436537,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:339100800": {
@@ -439514,7 +439386,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:bb267afe4fce"
+        "mrs:7b7ffadcc2df"
       ]
     },
     "skills:2210010403": {
@@ -439537,7 +439409,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:078333fa12f8"
+        "mrs:b005c2325a12"
       ]
     },
     "skills:2210011103": {
@@ -439675,7 +439547,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:2b8a6bc152c5"
+        "mrs:8ace5000794c"
       ]
     },
     "skills:2210015603": {
@@ -439698,7 +439570,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:094c2ec29de3"
+        "mrs:a4a5f8c0a638"
       ]
     },
     "skills:2210015803": {
@@ -439721,7 +439593,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:3a56b7d00c73"
+        "mrs:b1ec766aaaac"
       ]
     },
     "skills:2210021203": {
@@ -439744,7 +439616,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ba9c7c820973"
+        "mrs:0bb2c480a96c"
       ]
     },
     "skills:2210040901": {
@@ -439767,7 +439639,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ed17f41a842f"
+        "mrs:bab840cebe24"
       ]
     },
     "skills:2210041001": {
@@ -439861,7 +439733,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7dc59dc9b83d"
+        "mrs:c46d572e7105"
       ]
     },
     "skills:2211006203": {
@@ -440094,8 +439966,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:2211009103": {
@@ -440122,8 +439994,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:93ccfefe3786",
-        "mrs:ea0fa740a3a0"
+        "mrs:37a69123a8fe",
+        "mrs:8694f37c92f6"
       ]
     },
     "skills:2211009601": {
@@ -440717,7 +440589,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:9ca34d004297"
+        "mrs:30e474fb5b0e"
       ]
     },
     "skills:2220135003": {
@@ -440764,7 +440636,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c77cdee14b36"
+        "mrs:938873cde96f"
       ]
     },
     "skills:2220136203": {
@@ -440788,7 +440660,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ae6840edacff"
+        "mrs:20e3731580ba"
       ]
     },
     "skills:2220141005": {
@@ -440958,7 +440830,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:08b6aa72e298"
+        "mrs:85fc72b5343e"
       ]
     },
     "skills:2220156103": {
@@ -440981,7 +440853,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:08b6aa72e298"
+        "mrs:85fc72b5343e"
       ]
     },
     "skills:2220157003": {
@@ -441034,6 +440906,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
+        "mrs:01d94acd5e02",
         "mrs:1914bcf147a1"
       ]
     },
@@ -441134,7 +441007,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:07a263a8d0ef"
+        "mrs:0995fdec0b2b"
       ]
     },
     "skills:2220212004": {
@@ -441198,7 +441071,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:270d78b78585"
+        "mrs:eae211d8cff4"
       ]
     },
     "skills:2220213001": {
@@ -441366,7 +441239,6 @@
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "non-damage-or-support",
       "formulaZoneIds": [
-        "exactLuckyProducedDamage",
         "luckyEnhancement"
       ],
       "valueResolution": "no-value",
@@ -441379,7 +441251,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:abd6404b2c5f"
+        "mrs:484ab24b3456"
       ]
     },
     "skills:2220231103": {
@@ -441403,7 +441275,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ee63368d2a15"
+        "mrs:5c1bb7eeb1f5"
       ]
     },
     "skills:2220231104": {
@@ -441427,7 +441299,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:ee63368d2a15"
+        "mrs:5c1bb7eeb1f5"
       ]
     },
     "skills:2220232103": {
@@ -441600,11 +441472,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f",
-        "mrs:25203b3cf888",
-        "mrs:4bbc2bcf09cc",
-        "mrs:76239a707058",
-        "mrs:8afd51cf7d1b"
+        "mrs:0847cf1563dc",
+        "mrs:0d8d54a9aa9b",
+        "mrs:347b98b1d8e6",
+        "mrs:805ca49810d5",
+        "mrs:816b5ee507ad"
       ]
     },
     "skills:2220310102": {
@@ -441628,11 +441500,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f",
-        "mrs:25203b3cf888",
-        "mrs:4bbc2bcf09cc",
-        "mrs:76239a707058",
-        "mrs:8afd51cf7d1b"
+        "mrs:0847cf1563dc",
+        "mrs:0d8d54a9aa9b",
+        "mrs:347b98b1d8e6",
+        "mrs:805ca49810d5",
+        "mrs:816b5ee507ad"
       ]
     },
     "skills:2220310202": {
@@ -441656,11 +441528,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f",
-        "mrs:25203b3cf888",
-        "mrs:4bbc2bcf09cc",
-        "mrs:76239a707058",
-        "mrs:8afd51cf7d1b"
+        "mrs:0847cf1563dc",
+        "mrs:0d8d54a9aa9b",
+        "mrs:347b98b1d8e6",
+        "mrs:805ca49810d5",
+        "mrs:816b5ee507ad"
       ]
     },
     "skills:2220314102": {
@@ -441684,11 +441556,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f",
-        "mrs:25203b3cf888",
-        "mrs:4bbc2bcf09cc",
-        "mrs:76239a707058",
-        "mrs:8afd51cf7d1b"
+        "mrs:0847cf1563dc",
+        "mrs:0d8d54a9aa9b",
+        "mrs:347b98b1d8e6",
+        "mrs:805ca49810d5",
+        "mrs:816b5ee507ad"
       ]
     },
     "skills:2220318101": {
@@ -441711,7 +441583,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7925fdb75133"
+        "mrs:6481d43847e4"
       ]
     },
     "skills:2220325003": {
@@ -441759,7 +441631,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:911cf59a2cc7"
+        "mrs:2e30d4351ad5"
       ]
     },
     "skills:2220329109": {
@@ -441786,7 +441658,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:911cf59a2cc7"
+        "mrs:2e30d4351ad5"
       ]
     },
     "skills:2220330202": {
@@ -441810,11 +441682,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:007ee6314d8f",
-        "mrs:25203b3cf888",
-        "mrs:4bbc2bcf09cc",
-        "mrs:76239a707058",
-        "mrs:8afd51cf7d1b"
+        "mrs:0847cf1563dc",
+        "mrs:0d8d54a9aa9b",
+        "mrs:347b98b1d8e6",
+        "mrs:805ca49810d5",
+        "mrs:816b5ee507ad"
       ]
     },
     "skills:2220331101": {
@@ -442266,7 +442138,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ab3192170cf4"
+        "mrs:1624d78a75fa"
       ]
     },
     "skills:2220545004": {
@@ -442328,7 +442200,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:168f24447825"
+        "mrs:cbe5e3fdf29b"
       ]
     },
     "skills:2220615201": {
@@ -442351,7 +442223,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:8711ec5e87f0"
+        "mrs:d492c3371015"
       ]
     },
     "skills:2220615203": {
@@ -442374,7 +442246,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:8711ec5e87f0"
+        "mrs:d492c3371015"
       ]
     },
     "skills:2220624004": {
@@ -442383,7 +442255,6 @@
       "runtimeKind": "skill-or-damage-row",
       "formulaReadiness": "packet-exact-produced-damage",
       "formulaZoneIds": [
-        "exactLuckyProducedDamage",
         "luckyEnhancement"
       ],
       "valueResolution": "no-value",
@@ -442404,8 +442275,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:62dd9ed0b837",
-        "mrs:7d7fd881cf24"
+        "mrs:1ab2484705f8",
+        "mrs:62dd9ed0b837"
       ]
     },
     "skills:2220624103": {
@@ -442429,9 +442300,9 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:43c5ffac9c60",
-        "mrs:77bc05a5a7f4",
-        "mrs:93e237bbcff8"
+        "mrs:7d60d1c50055",
+        "mrs:93e237bbcff8",
+        "mrs:be95790f74c1"
       ]
     },
     "skills:2220624105": {
@@ -442455,9 +442326,9 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:43c5ffac9c60",
-        "mrs:77bc05a5a7f4",
-        "mrs:93e237bbcff8"
+        "mrs:7d60d1c50055",
+        "mrs:93e237bbcff8",
+        "mrs:be95790f74c1"
       ]
     },
     "skills:2220624301": {
@@ -442481,9 +442352,9 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:43c5ffac9c60",
-        "mrs:77bc05a5a7f4",
-        "mrs:93e237bbcff8"
+        "mrs:7d60d1c50055",
+        "mrs:93e237bbcff8",
+        "mrs:be95790f74c1"
       ]
     },
     "skills:2220625006": {
@@ -442507,9 +442378,9 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:43c5ffac9c60",
-        "mrs:77bc05a5a7f4",
-        "mrs:93e237bbcff8"
+        "mrs:7d60d1c50055",
+        "mrs:93e237bbcff8",
+        "mrs:be95790f74c1"
       ]
     },
     "skills:2220626201": {
@@ -442584,7 +442455,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:85445c2edcb9"
+        "mrs:65ffd99f5339"
       ]
     },
     "skills:2220646003": {
@@ -442619,42 +442490,25 @@
       "uid": "2220654103",
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "mixed-exact-and-replay",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement",
-        "timingCadence"
-      ],
-      "valueResolution": "single",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
       "scopeKinds": [
-        "all",
         "target"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
-        "shield event lane",
-        "skill id",
         "sourceRuleId active on hit",
         "target damage/recount id match",
         "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
+        "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006",
-        "mrs:5d69b8fbbcf6",
-        "mrs:89149b7b1a8d",
-        "mrs:9b44647e2ec5"
+        "mrs:16431695de9e",
+        "mrs:fe47b91e713f"
       ]
     },
     "skills:2220655203": {
@@ -442721,42 +442575,25 @@
       "uid": "2220656103",
       "category": "skills",
       "runtimeKind": "skill-or-damage-row",
-      "formulaReadiness": "mixed-exact-and-replay",
-      "formulaZoneIds": [
-        "generalDamage",
-        "luckyEnhancement",
-        "timingCadence"
-      ],
-      "valueResolution": "single",
+      "formulaReadiness": "packet-exact-produced-damage",
+      "valueResolution": "no-value",
       "scopeKinds": [
-        "all",
         "target"
       ],
       "stackPolicy": "none",
       "runtimeProofRequired": [
         "attacker uid",
-        "cast timeline or cooldown state",
-        "cast timeline or per-hit window buckets",
         "damage id",
-        "description-derived value mapped to a formula component",
-        "hit timestamp",
-        "modifier value or component amount",
-        "modifier windows",
         "observed final hit value",
         "produced damage row id",
-        "shield event lane",
-        "skill id",
         "sourceRuleId active on hit",
         "target damage/recount id match",
         "target uid",
-        "target-side buff/debuff/window state at hit time",
-        "target/source predicate evaluation"
+        "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:5888a9948006",
-        "mrs:5d69b8fbbcf6",
-        "mrs:89149b7b1a8d",
-        "mrs:9b44647e2ec5"
+        "mrs:16431695de9e",
+        "mrs:fe47b91e713f"
       ]
     },
     "skills:2220668005": {
@@ -443080,7 +442917,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:4920256af371"
+        "mrs:b56696aa5c8f"
       ]
     },
     "skills:2220817203": {
@@ -443104,7 +442941,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:0b00db7c5103"
+        "mrs:5b7f5e728880"
       ]
     },
     "skills:2220817204": {
@@ -443128,7 +442965,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:0b00db7c5103"
+        "mrs:5b7f5e728880"
       ]
     },
     "skills:2220818103": {
@@ -443152,7 +442989,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:a90832609db6"
+        "mrs:598bb19a7c0c"
       ]
     },
     "skills:2230004201": {
@@ -443233,7 +443070,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:02bdabcfbe1a"
+        "mrs:0898671452a2"
       ]
     },
     "skills:2230222003": {
@@ -443418,7 +443255,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:24f7cc7dc131"
+        "mrs:f92282ef92f1"
       ]
     },
     "skills:2300103104": {
@@ -443442,7 +443279,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:24f7cc7dc131"
+        "mrs:f92282ef92f1"
       ]
     },
     "skills:2300117005": {
@@ -443465,7 +443302,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c58102785af8"
+        "mrs:05aed61357a1"
       ]
     },
     "skills:2300117006": {
@@ -443489,8 +443326,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:226488bd88c0",
-        "mrs:c58102785af8"
+        "mrs:05aed61357a1",
+        "mrs:226488bd88c0"
       ]
     },
     "skills:2300119203": {
@@ -443513,7 +443350,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:239f2cd664b3"
+        "mrs:89ec17684654"
       ]
     },
     "skills:2300120102": {
@@ -443536,7 +443373,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1f8cd39f4186"
+        "mrs:276c7d595faf"
       ]
     },
     "skills:2300121103": {
@@ -443559,7 +443396,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:ea81e4c3b134"
+        "mrs:40889cc58f97"
       ]
     },
     "skills:2300122003": {
@@ -443605,7 +443442,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:a86d0315fde1"
+        "mrs:43aa3fbcf961"
       ]
     },
     "skills:2300221501": {
@@ -443629,7 +443466,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:872be889ba37"
+        "mrs:7fdf8ffd0a0b"
       ]
     },
     "skills:2300221503": {
@@ -443653,7 +443490,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:872be889ba37"
+        "mrs:7fdf8ffd0a0b"
       ]
     },
     "skills:2300267103": {
@@ -443677,7 +443514,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:d9e28a5ee4d0"
+        "mrs:9db23eab0d4d"
       ]
     },
     "skills:2300302301": {
@@ -443701,8 +443538,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:230c18f398bb",
-        "mrs:e5f47703089b"
+        "mrs:39b85a9618a0",
+        "mrs:afe5af949a84"
       ]
     },
     "skills:2300302501": {
@@ -443726,8 +443563,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:230c18f398bb",
-        "mrs:e5f47703089b"
+        "mrs:39b85a9618a0",
+        "mrs:afe5af949a84"
       ]
     },
     "skills:2300321301": {
@@ -443750,7 +443587,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:1566c1d0d4ae"
+        "mrs:53ab93e164fc"
       ]
     },
     "skills:2300325003": {
@@ -444667,7 +444504,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:7ecb6ac314fa"
+        "mrs:7eba124e09eb"
       ]
     },
     "skills:2321008101": {
@@ -444695,7 +444532,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:b55fe55fff15"
+        "mrs:a81c0fd9b651"
       ]
     },
     "skills:2321009201": {
@@ -444838,7 +444675,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:2321021003": {
@@ -450996,7 +450833,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:46b707c3d87c"
+        "mrs:99f2db918510"
       ]
     },
     "skills:17001010102": {
@@ -451019,7 +450856,7 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:46b707c3d87c"
+        "mrs:99f2db918510"
       ]
     },
     "skills:17010010101": {
@@ -451067,8 +450904,8 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:226488bd88c0",
-        "mrs:c58102785af8"
+        "mrs:05aed61357a1",
+        "mrs:226488bd88c0"
       ]
     },
     "skills:17060050102": {
@@ -452625,7 +452462,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:7ecb6ac314fa"
+        "mrs:7eba124e09eb"
       ]
     },
     "skills:110028010102": {
@@ -453377,7 +453214,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:b55fe55fff15"
+        "mrs:a81c0fd9b651"
       ]
     },
     "skills:110104400102": {
@@ -453405,7 +453242,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:b55fe55fff15"
+        "mrs:a81c0fd9b651"
       ]
     },
     "skills:110104990101": {
@@ -453577,7 +453414,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:110112150102": {
@@ -453601,7 +453438,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:110112150103": {
@@ -453625,7 +453462,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:110112160101": {
@@ -453649,7 +453486,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:110112160102": {
@@ -453673,7 +453510,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:110112170102": {
@@ -453697,7 +453534,7 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:1ef8667c430f"
+        "mrs:59a68620823e"
       ]
     },
     "skills:110112220101": {
@@ -471120,10 +470957,10 @@
         "sourceRuleId active on hit"
       ],
       "sourceRuleIds": [
-        "mrs:08cb664e2adc"
+        "mrs:8089ffd0230f"
       ],
       "directSourceRuleIds": [
-        "mrs:08cb664e2adc"
+        "mrs:8089ffd0230f"
       ]
     },
     "talents:563": {
@@ -472904,9 +472741,11 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
+        "mrs:01d94acd5e02",
         "mrs:1914bcf147a1"
       ],
       "directSourceRuleIds": [
+        "mrs:01d94acd5e02",
         "mrs:1914bcf147a1"
       ]
     },
@@ -473679,10 +473518,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:92ee7c530118"
+        "mrs:64ae2e279e78"
       ],
       "directSourceRuleIds": [
-        "mrs:92ee7c530118"
+        "mrs:64ae2e279e78"
       ]
     },
     "talents:1120": {
@@ -474838,10 +474677,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:dce829ce8cff"
+        "mrs:53aa18a9c82b"
       ],
       "directSourceRuleIds": [
-        "mrs:dce829ce8cff"
+        "mrs:53aa18a9c82b"
       ]
     },
     "talents:1158": {
@@ -474889,10 +474728,10 @@
         "modifier windows"
       ],
       "sourceRuleIds": [
-        "mrs:d71f22658ff5"
+        "mrs:e70f3bf728d3"
       ],
       "directSourceRuleIds": [
-        "mrs:d71f22658ff5"
+        "mrs:e70f3bf728d3"
       ]
     },
     "talents:1160": {
@@ -474915,10 +474754,10 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:d38dd2c7f232"
+        "mrs:37886c2b02c4"
       ],
       "directSourceRuleIds": [
-        "mrs:d38dd2c7f232"
+        "mrs:37886c2b02c4"
       ]
     },
     "talents:1161": {
@@ -474944,10 +474783,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:b41a7831e358"
+        "mrs:b712182f2cb2"
       ],
       "directSourceRuleIds": [
-        "mrs:b41a7831e358"
+        "mrs:b712182f2cb2"
       ]
     },
     "talents:1162": {
@@ -475683,10 +475522,10 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:4e9aa912b2d2"
+        "mrs:142369ecf079"
       ],
       "directSourceRuleIds": [
-        "mrs:4e9aa912b2d2"
+        "mrs:142369ecf079"
       ]
     },
     "talents:1219": {
@@ -475801,9 +475640,6 @@
       "category": "talents",
       "runtimeKind": "selected-talent",
       "formulaReadiness": "packet-exact-produced-damage",
-      "formulaZoneIds": [
-        "exactLuckyProducedDamage"
-      ],
       "valueResolution": "no-value",
       "scopeKinds": [
         "target"
@@ -475822,12 +475658,12 @@
         "target-side buff/debuff/window state at hit time"
       ],
       "sourceRuleIds": [
-        "mrs:62dd9ed0b837",
-        "mrs:7d7fd881cf24"
+        "mrs:1ab2484705f8",
+        "mrs:62dd9ed0b837"
       ],
       "directSourceRuleIds": [
-        "mrs:62dd9ed0b837",
-        "mrs:7d7fd881cf24"
+        "mrs:1ab2484705f8",
+        "mrs:62dd9ed0b837"
       ]
     },
     "talents:1224": {
@@ -475864,10 +475700,10 @@
       ],
       "stackPolicy": "none",
       "sourceRuleIds": [
-        "mrs:54683826610a"
+        "mrs:61dee985a16a"
       ],
       "directSourceRuleIds": [
-        "mrs:54683826610a"
+        "mrs:61dee985a16a"
       ]
     },
     "talents:1226": {
@@ -476305,10 +476141,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c822d52623af"
+        "mrs:2ba1e6a60599"
       ],
       "directSourceRuleIds": [
-        "mrs:c822d52623af"
+        "mrs:2ba1e6a60599"
       ]
     },
     "talents:1242": {
@@ -477258,10 +477094,10 @@
         "source actor"
       ],
       "sourceRuleIds": [
-        "mrs:64cc5320a2e1"
+        "mrs:cc4238d2d018"
       ],
       "directSourceRuleIds": [
-        "mrs:64cc5320a2e1"
+        "mrs:cc4238d2d018"
       ]
     },
     "talents:1309": {
@@ -477521,10 +477357,10 @@
         "modifier windows"
       ],
       "sourceRuleIds": [
-        "mrs:84710d9006b7"
+        "mrs:46fe452e6ebf"
       ],
       "directSourceRuleIds": [
-        "mrs:84710d9006b7"
+        "mrs:46fe452e6ebf"
       ]
     },
     "talents:1317": {
@@ -477823,10 +477659,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c9994138263d"
+        "mrs:0921845145a5"
       ],
       "directSourceRuleIds": [
-        "mrs:c9994138263d"
+        "mrs:0921845145a5"
       ]
     },
     "talents:1328": {
@@ -477869,10 +477705,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:c5530a38a229"
+        "mrs:82b78ace20af"
       ],
       "directSourceRuleIds": [
-        "mrs:c5530a38a229"
+        "mrs:82b78ace20af"
       ]
     },
     "talents:1332": {
@@ -478306,10 +478142,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:7b1a6e8dcac0"
+        "mrs:191070b501f4"
       ],
       "directSourceRuleIds": [
-        "mrs:7b1a6e8dcac0"
+        "mrs:191070b501f4"
       ]
     },
     "talents:1346": {
@@ -478336,10 +478172,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:f584e2c73be5"
+        "mrs:900db670ced5"
       ],
       "directSourceRuleIds": [
-        "mrs:f584e2c73be5"
+        "mrs:900db670ced5"
       ]
     },
     "talents:1347": {
@@ -478367,10 +478203,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:8da54e163719"
+        "mrs:742cc85dd8d5"
       ],
       "directSourceRuleIds": [
-        "mrs:8da54e163719"
+        "mrs:742cc85dd8d5"
       ]
     },
     "talents:1348": {
@@ -478756,10 +478592,10 @@
         "target uid"
       ],
       "sourceRuleIds": [
-        "mrs:a868bad98b52"
+        "mrs:7af12e8c7296"
       ],
       "directSourceRuleIds": [
-        "mrs:a868bad98b52"
+        "mrs:7af12e8c7296"
       ]
     },
     "talents:1363": {

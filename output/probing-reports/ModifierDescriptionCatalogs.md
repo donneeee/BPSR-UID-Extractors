@@ -1,6 +1,6 @@
 # Modifier Description Catalogs
 
-Generated: 2026-05-28T21:24:35.132Z
+Generated: 2026-06-09T10:48:41.842Z
 
 ## Boundaries
 
@@ -14,13 +14,13 @@ Generated: 2026-05-28T21:24:35.132Z
 
 | Category | Entries | Descriptions | Paragraph Breaks | Page Context | Bridged Context | Values | Structured Values | Decision Refs | Unresolved Decision Refs | Stack | Max Stack | Target Stack | Owner/Party Candidates | Output |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| buffs | 9890 | 2634 | 611 | 2605 | 359 | 3080 | 42 | 450 | 450 | 465 | 18 | 112 | 395 | `BuffDescriptions.json` |
-| skills | 26940 | 6135 | 1 | 6135 | 0 | 10105 | 0 | 0 | 0 | 1312 | 99 | 631 | 749 | `SkillDescriptions.json` + `SkillDescriptions.locales/` (12 locales) |
+| buffs | 9890 | 2635 | 627 | 2605 | 377 | 3087 | 42 | 450 | 450 | 474 | 35 | 123 | 406 | `BuffDescriptions.json` |
+| skills | 26940 | 6135 | 1 | 6135 | 0 | 10106 | 0 | 0 | 0 | 1312 | 99 | 631 | 749 | `SkillDescriptions.json` + `SkillDescriptions.locales/` (12 locales) |
 | talents | 648 | 613 | 173 | 613 | 0 | 612 | 0 | 0 | 0 | 77 | 4 | 30 | 140 | `TalentDescriptions.json` |
 | seasonal-talents | 464 | 464 | 147 | 464 | 0 | 415 | 0 | 0 | 0 | 48 | 8 | 12 | 86 | `SeasonalTalentDescriptions.json` |
 | factors | 219 | 219 | 127 | 219 | 0 | 190 | 0 | 218 | 0 | 6 | 0 | 0 | 2 | `FactorDescriptions.json` |
-| items | 12469 | 11880 | 2059 | 11880 | 0 | 2918 | 0 | 0 | 0 | 96 | 1 | 6 | 1 | `ItemDescriptions.json` + `ItemDescriptions.locales/` (13 locales) |
-| battle-imagines | 226 | 142 | 74 | 69 | 74 | 71 | 58 | 0 | 0 | 6 | 1 | 2 | 57 | `BattleImagineDescriptions.json` |
+| items | 12470 | 11880 | 2059 | 11880 | 0 | 2918 | 0 | 0 | 0 | 96 | 1 | 6 | 1 | `ItemDescriptions.json` + `ItemDescriptions.locales/` (13 locales) |
+| battle-imagines | 221 | 138 | 70 | 69 | 70 | 70 | 58 | 0 | 0 | 6 | 1 | 2 | 57 | `BattleImagineDescriptions.json` |
 | linktext-tooltips | 367 | 235 | 11 | 235 | 0 | 116 | 0 | 0 | 0 | 13 | 1 | 3 | 27 | `LinkTextTooltipDescriptions.json` |
 
 ## Notes

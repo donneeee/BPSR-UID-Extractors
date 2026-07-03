@@ -12,9 +12,9 @@ This is a worklist/report only. It separates direct game-file evidence from prob
 - descriptionLinkTextRefs: 881
 - opcode3BuffRecords: 593
 - opcode6SkillPairRecords: 15
-- skillRowsWithAnyTalentEvidence: 166
+- skillRowsWithAnyTalentEvidence: 255
 - skillRowsWithOpcode6PairEvidence: 28
-- skillRowsWithDescriptionLinkTextEvidence: 164
+- skillRowsWithDescriptionLinkTextEvidence: 253
 - skillRowsWithFormulaBuffEvidence: 3
 - recountRowsWithProbeEvidence: 76
 - recountRowsWithCurrentProductionTalentLinks: 40

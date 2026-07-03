@@ -1,5 +1,5 @@
 {
-  "GeneratedAt": "2026-05-29T04:11:29.621Z",
+  "GeneratedAt": "2026-06-09T10:52:58.654Z",
   "SourceGroup": "LuckyStrikeRuntime",
   "OutputDir": "output/icons/LuckyStrikeRuntime",
   "AssetCount": 142,
@@ -806,40 +806,6 @@
       "SelectedObjectType": "Sprite"
     },
     {
-      "AssetId": "LuckyStrikeRuntime|Sprite|3586866662|jiandun1223|LuckyStrikeRuntime/jiandun1223.png",
-      "SourceKind": "generated-json",
-      "SourceFile": "LuckyStrikeRuntime.json",
-      "SourceGroup": "LuckyStrikeRuntime",
-      "Field": "sourcesById.buff-source:2206240.iconPath",
-      "Value": "ui/atlas/talent_passive_12/jiandun1223",
-      "Address": "ui/atlas/talent_passive_12/jiandun1223",
-      "AddressHash": 3287586234,
-      "BundleHash": 3586866662,
-      "ResourceType": "Sprite",
-      "MatchKind": "atlas-sprite-address",
-      "PngFile": "LuckyStrikeRuntime/jiandun1223.png",
-      "RequiresProbePixelMatch": false,
-      "RefCount": 1,
-      "Rows": [
-        {
-          "Id": "buff-source:2206240",
-          "Name": "Holy Radiance"
-        }
-      ],
-      "AtlasAddress": "ui/atlas/talent_passive_12",
-      "AtlasHash": 3287586234,
-      "SpriteName": "jiandun1223",
-      "SpriteAddress": 4243426650,
-      "PngExported": true,
-      "PngWidth": 138,
-      "PngHeight": 143,
-      "PngMode": "RGBA",
-      "PixelSha256": "7488dec8ab4ca1ac39f31f1dc59ae05f66f7e95b8ecf9989969fcbe7a6cd63e2",
-      "ObjectPathId": "1117255614674905977",
-      "SelectedObjectName": "jiandun1223",
-      "SelectedObjectType": "Sprite"
-    },
-    {
       "AssetId": "LuckyStrikeRuntime|Texture2D|642366018|kuangxiangyinzi_s2_04_003|LuckyStrikeRuntime/kuangxiangyinzi_s2_04_003.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
@@ -1438,7 +1404,7 @@
       "SelectedObjectType": "Texture2D"
     },
     {
-      "AssetId": "LuckyStrikeRuntime|Texture2D|1472009608|rogue_icon_entry073|LuckyStrikeRuntime/rogue_icon_entry073.png",
+      "AssetId": "LuckyStrikeRuntime|Texture2D|1472009608|rogue_icon_entry073|LuckyStrikeRuntime/rogue_icon_entry073_1472009608.png",
       "SourceKind": "generated-json",
       "SourceFile": "LuckyStrikeRuntime.json",
       "SourceGroup": "LuckyStrikeRuntime",
@@ -1449,7 +1415,7 @@
       "BundleHash": 1472009608,
       "ResourceType": "Texture2D",
       "MatchKind": "exact-address",
-      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry073.png",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry073_1472009608.png",
       "RequiresProbePixelMatch": false,
       "RefCount": 1,
       "Rows": [
@@ -1467,6 +1433,40 @@
       "ObjectPathId": "8424876202894886668",
       "SelectedObjectName": "rogue_icon_entry073",
       "SelectedObjectType": "Texture2D"
+    },
+    {
+      "AssetId": "LuckyStrikeRuntime|Sprite|2980642045|rogue_icon_entry073|LuckyStrikeRuntime/rogue_icon_entry073.png",
+      "SourceKind": "generated-json",
+      "SourceFile": "LuckyStrikeRuntime.json",
+      "SourceGroup": "LuckyStrikeRuntime",
+      "Field": "sourcesById.buff-source:997441.iconPath",
+      "Value": "ui/atlas/rouge_entry_icon/rogue_icon_entry073",
+      "Address": "ui/atlas/rouge_entry_icon/rogue_icon_entry073",
+      "AddressHash": 1849333905,
+      "BundleHash": 2980642045,
+      "ResourceType": "Sprite",
+      "MatchKind": "atlas-sprite-address",
+      "PngFile": "LuckyStrikeRuntime/rogue_icon_entry073.png",
+      "RequiresProbePixelMatch": false,
+      "RefCount": 1,
+      "Rows": [
+        {
+          "Id": "buff-source:997441",
+          "Name": "Unmapped Buff 997441"
+        }
+      ],
+      "AtlasAddress": "ui/atlas/rouge_entry_icon",
+      "AtlasHash": 1849333905,
+      "SpriteName": "rogue_icon_entry073",
+      "SpriteAddress": 4240359125,
+      "PngExported": true,
+      "PngWidth": 37,
+      "PngHeight": 30,
+      "PngMode": "RGBA",
+      "PixelSha256": "af37a6ec717834238199e1c817c8d8ba36c7a40bd3a861d6ddf4fb56d812858c",
+      "ObjectPathId": "6565580308908233092",
+      "SelectedObjectName": "rogue_icon_entry073",
+      "SelectedObjectType": "Sprite"
     },
     {
       "AssetId": "LuckyStrikeRuntime|Texture2D|1473195529|rogue_icon_entry074|LuckyStrikeRuntime/rogue_icon_entry074.png",
@@ -4739,7 +4739,7 @@
       "SelectedObjectType": "Texture2D"
     }
   ],
-  "PngExportedAt": "2026-05-29T04:14:03.923Z",
+  "PngExportedAt": "2026-06-09T10:55:23.409Z",
   "PngAssetCount": 142,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0

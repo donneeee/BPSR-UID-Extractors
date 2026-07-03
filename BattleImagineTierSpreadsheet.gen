@@ -1,0 +1,1344 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const LOCALES = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+const TIER_LABELS = [0, 1, 2, 3, 4, 5].map((tier) => `T${tier}`);
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    displayPath,
+    loadMetaEntries,
+    parseArgs,
+    printHelp,
+    readCtbTable,
+    readU32,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+  const args = parseArgs(process.argv.slice(2), {
+    csv: "",
+  });
+
+  if (args.help) {
+    printHelp(
+      "BattleImagineTierSpreadsheet.gen - export Battle Imagine item, rarity, locale, and tier-effect rows.",
+      `
+Options:
+  --csv <path>              Output checklist CSV path. Defaults beside --out.
+
+Notes:
+  The CSV is English-only and emits exactly six tier rows per imagine item.
+  Direct item-to-aoyi rows from SkillAoyiItemTable.ctb are preferred before
+  fallback context/icon bridges.
+  T0 rows keep the effect text even when structured base values are missing.
+  T1-T5 values come from current SkillAoyiStarTable-backed rows with
+  context-aware labels where the description proves the value target.
+`
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, path.join("spreadsheets", "BattleImagineTierSpreadsheet.json"));
+  const outputDir = path.resolve(paths.outputDir);
+  const out = path.resolve(args.out || paths.out);
+  const csvOut = path.resolve(args.csv || out.replace(/\.json$/i, ".csv"));
+
+  const sourceFiles = {
+    itemNames: path.join(outputDir, "itemnames.json"),
+    itemDescriptions: path.join(outputDir, "ItemDescriptionSources.json"),
+    battleImagineDescriptions: path.join(outputDir, "BattleImagineDescriptions.json"),
+    skillDescriptions: path.join(outputDir, "SkillDescriptions.json"),
+    skillAoyiIcons: path.join(outputDir, "skill_aoyi_icons.json"),
+  };
+
+  const itemNames = readJson(sourceFiles.itemNames, []);
+  const itemDescriptions = readJson(sourceFiles.itemDescriptions, {});
+  const battleImagineDescriptions = readJson(sourceFiles.battleImagineDescriptions, {});
+  const skillDescriptions = readJson(sourceFiles.skillDescriptions, {});
+  const skillAoyiIcons = readJson(sourceFiles.skillAoyiIcons, []);
+  const containerDir = path.dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+
+  const itemRows = itemNames.filter(isBattleImagineItem);
+  const itemById = new Map(itemNames.map((item) => [String(item.Id ?? item.id), item]));
+  const itemDescriptionById = itemDescriptions.descriptionsByItemId || {};
+  const battleEntriesByUid = battleImagineDescriptions.entriesByUid || {};
+  const skillEntriesByUid = skillDescriptions.entriesByUid || {};
+  const battleContext = buildBattleImagineContextIndex(battleEntriesByUid);
+  const aoyiById = new Map(skillAoyiIcons.map((entry) => [String(entry.Id ?? entry.id), entry]));
+  const iconBridge = buildAoyiIconBridge(skillAoyiIcons);
+  const itemAoyiBridge = buildSkillAoyiItemBridge(containerDir, metaEntries, { readCtbTable, readU32 });
+
+  const imagines = itemRows
+    .map((item) => buildImagineEntry({
+      item,
+      itemById,
+      itemDescriptionById,
+      battleEntriesByUid,
+      skillEntriesByUid,
+      battleContext,
+      aoyiById,
+      iconBridge,
+      itemAoyiBridge,
+    }))
+    .sort((left, right) => Number(left.itemId) - Number(right.itemId));
+
+  const checklistSelection = selectChecklistImagines(imagines);
+  const checklistRows = checklistSelection.selected.flatMap(buildChecklistRows);
+  const unresolvedItems = imagines
+    .filter((entry) => !entry.bridge.descriptionUid && !entry.bridge.aoyiSkillId)
+    .map((entry) => ({
+      itemId: entry.itemId,
+      itemName: entry.displayName,
+      itemTier: entry.itemTier,
+      iconPath: entry.itemIconPath,
+      reason: "No item-page-context or skill_aoyi icon bridge was found.",
+    }));
+  const conflicts = imagines
+    .filter((entry) => entry.bridge.conflict)
+    .map((entry) => ({
+      itemId: entry.itemId,
+      itemName: entry.displayName,
+      contextUid: entry.bridge.contextUid,
+      iconUid: entry.bridge.iconUid,
+    }));
+
+  const output = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    source: {
+      files: Object.fromEntries(Object.entries(sourceFiles).map(([key, value]) => [key, displayPath(value)])),
+      notes: [
+        "itemTier is read from ItemTable via ItemDescriptionSources.json; rarityCandidate is derived from observed itemTier buckets only.",
+        "The checklist CSV emits exactly six English-only rows per Battle Imagine item: T0 through T5.",
+        "SkillAoyiItemTable.ctb direct item-to-aoyi rows are used before item-page or icon-number fallbacks.",
+        "T1-T5 rows are structured SkillAoyiStarTable-derived values from skill_aoyi_icons.json and BattleImagineDescriptions.json.",
+        "T0 rows keep the card effect text; structured T0 numeric values are only shown when BaseEffectValues are available.",
+        "Tier value labels are context-aware where proven by the linked Battle Imagine or SkillDescription text; unresolved slots keep their raw key in the label.",
+        "SSR is not directly distinguished by the current itemTier source; ssrCandidate is left empty unless a stronger source is added later.",
+      ],
+    },
+    summary: {
+      itemCount: imagines.length,
+      checklistItemCount: checklistSelection.selected.length,
+      checklistRowCount: checklistRows.length,
+      expectedChecklistRowCount: checklistSelection.selected.length * 6,
+      rarityCounts: countBy(imagines, (entry) => entry.rarityCandidate || "unknown"),
+      bridgeMethodCounts: countBy(imagines, (entry) => entry.bridge.method || "unknown"),
+      unresolvedCount: unresolvedItems.length,
+      checklistExcludedCount: checklistSelection.excluded.length,
+      conflictCount: conflicts.length,
+      t0StructuredCount: imagines.filter((entry) => entry.tierRows.some((row) => row.tierIndex === 0 && row.values.length > 0)).length,
+    },
+    unresolvedItems,
+    checklistExcludedItems: checklistSelection.excluded,
+    bridgeConflicts: conflicts,
+    imagines,
+  };
+
+  console.log(`Battle Imagine item rows: ${imagines.length}`);
+  console.log(`Checklist item rows: ${checklistSelection.selected.length}`);
+  console.log(`Checklist CSV rows: ${checklistRows.length}`);
+  console.log(`Unresolved item rows: ${unresolvedItems.length}`);
+  console.log(`Output JSON: ${displayPath(out)}`);
+  console.log(`Output CSV: ${displayPath(csvOut)}`);
+
+  if (!args.dryRun) {
+    writeJson(out, { ...output, checklistRows });
+    writeCsv(csvOut, checklistRows, checklistCsvColumns());
+  }
+}
+
+function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    if (error && error.code === "ENOENT" && fallback !== undefined) {
+      return fallback;
+    }
+    throw error;
+  }
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeCsv(filePath, rows, columns) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  const lines = [
+    columns.join(","),
+    ...rows.map((row) => columns.map((column) => csvCell(row[column])).join(",")),
+  ];
+  fs.writeFileSync(filePath, `${lines.join("\n")}\n`, "utf8");
+}
+
+function csvCell(value) {
+  const text = value == null
+    ? ""
+    : typeof value === "object"
+      ? JSON.stringify(value)
+      : String(value);
+  return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+}
+
+function chooseText(texts, fallback = "") {
+  if (!texts || typeof texts !== "object") return fallback || "";
+  return texts.en || texts["zh-CN"] || texts["zh-TW"] || texts.ja || Object.values(texts).find(Boolean) || fallback || "";
+}
+
+function isBattleImagineItem(item) {
+  const id = Number(item.Id ?? item.id);
+  if (!Number.isInteger(id) || id <= 0) return false;
+  const name = chooseText(item.Names, item.Name || item.NameDesign || item.name || "");
+  const icon = String(item.IconPath || item.Icon || item.iconPath || item.icon || "");
+  return /^Battle Imagine\b/i.test(name) || /skill_aoyi_product_icon/i.test(icon);
+}
+
+function buildBattleImagineContextIndex(entriesByUid) {
+  const byItemId = new Map();
+  for (const [uid, entry] of Object.entries(entriesByUid || {})) {
+    const evidence = collectEvidence(entry);
+    for (const value of evidence) {
+      const match = String(value).match(/item-page-context:(\d+)/i);
+      if (!match) continue;
+      const itemId = match[1];
+      const rows = byItemId.get(itemId) || [];
+      rows.push({
+        uid,
+        source: String(value),
+        category: entry?.category || "",
+      });
+      byItemId.set(itemId, rows);
+    }
+  }
+  return byItemId;
+}
+
+function collectEvidence(entry) {
+  const out = [];
+  if (Array.isArray(entry?.provenance?.evidence)) out.push(...entry.provenance.evidence);
+  if (Array.isArray(entry?.bridgedPageContexts)) {
+    for (const context of entry.bridgedPageContexts) {
+      if (context?.itemId) out.push(`item-page-context:${context.itemId}`);
+    }
+  }
+  return out;
+}
+
+function buildAoyiIconBridge(skillAoyiIcons) {
+  const byIconNumber = new Map();
+  for (const entry of skillAoyiIcons) {
+    const id = String(entry.Id ?? entry.id ?? "");
+    if (!id) continue;
+    for (const candidate of [entry.Icon, entry.IconTexture, entry.IconPath, entry.Sprite]) {
+      const iconNumberValue = iconNumber(candidate);
+      if (!iconNumberValue) continue;
+      if (!byIconNumber.has(iconNumberValue)) {
+        byIconNumber.set(iconNumberValue, []);
+      }
+      byIconNumber.get(iconNumberValue).push(id);
+    }
+  }
+  return { byIconNumber };
+}
+
+function buildSkillAoyiItemBridge(containerDir, metaEntries, helpers) {
+  const { readCtbTable, readU32 } = helpers;
+  const byItemId = new Map();
+  const byAoyiSkillId = new Map();
+  let table;
+  try {
+    table = readCtbTable(containerDir, metaEntries, "SkillAoyiItemTable.ctb");
+  } catch {
+    return { byItemId, byAoyiSkillId, rowCount: 0 };
+  }
+
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const itemId = readU32(table.data, rowOffset);
+    const aoyiSkillId = readU32(table.data, rowOffset + 4);
+    if (!itemId || !aoyiSkillId) continue;
+    const row = {
+      itemId: String(itemId),
+      aoyiSkillId: String(aoyiSkillId),
+      sourceTable: "SkillAoyiItemTable.ctb",
+      sourceOffset: table.entry.offset + rowOffset,
+    };
+    byItemId.set(row.itemId, row);
+    if (!byAoyiSkillId.has(row.aoyiSkillId)) byAoyiSkillId.set(row.aoyiSkillId, []);
+    byAoyiSkillId.get(row.aoyiSkillId).push(row);
+  }
+
+  return { byItemId, byAoyiSkillId, rowCount: table.rowCount };
+}
+
+function buildImagineEntry(context) {
+  const {
+    item,
+    itemById,
+    itemDescriptionById,
+    battleEntriesByUid,
+    skillEntriesByUid,
+    battleContext,
+    aoyiById,
+    iconBridge,
+    itemAoyiBridge,
+  } = context;
+  const itemId = String(item.Id ?? item.id);
+  const itemDescription = itemDescriptionById[itemId] || {};
+  const itemIconPath = item.IconPath || item.Icon || itemDescription.iconPath || "";
+  const willItemId = inferWillItemId(itemId, itemById);
+  const willItem = willItemId ? itemById.get(String(willItemId)) : null;
+  const contextMatches = battleContext.get(itemId) || [];
+  const contextUid = chooseContextUid(contextMatches, battleEntriesByUid);
+  const itemIconNumber = iconNumber(itemIconPath);
+  const iconMatches = itemIconNumber ? (iconBridge.byIconNumber.get(itemIconNumber) || []) : [];
+  const iconUid = iconMatches[0] || "";
+  const directBridge = itemAoyiBridge.byItemId.get(itemId) || null;
+  const directAoyiSkillId = directBridge?.aoyiSkillId || "";
+  const descriptionUid = contextUid || directAoyiSkillId || iconUid || "";
+  const aoyiSkillId = chooseAoyiSkillId({ directAoyiSkillId, contextUid, iconUid, aoyiById });
+  const battleEntry = descriptionUid ? battleEntriesByUid[String(descriptionUid)] || null : null;
+  const aoyiEntry = aoyiSkillId ? aoyiById.get(String(aoyiSkillId)) || null : null;
+  const skillEntry = aoyiSkillId ? skillEntriesByUid[String(aoyiSkillId)] || null : null;
+  const descriptionContext = selectDescriptionContext({ battleEntry, skillEntry, itemDescription });
+  const baseEffectValues = normalizeBaseValues(aoyiEntry?.BaseEffectValues);
+  const tierRows = buildTierRows({ aoyiEntry, battleEntry, baseEffectValues });
+  const itemTier = Number.isFinite(Number(itemDescription.itemTier)) ? Number(itemDescription.itemTier) : null;
+  const rarity = rarityFromItemTier(itemTier);
+  const conflict = Boolean(contextUid && iconUid && String(contextUid) !== String(iconUid));
+
+  return {
+    itemId,
+    displayName: chooseText(item.Names, item.Name || item.NameDesign || ""),
+    itemNames: item.Names || {},
+    itemTier,
+    rarityCandidate: rarity.rarityCandidate,
+    rarityConfidence: rarity.rarityConfidence,
+    ssrCandidate: "",
+    ssrCandidateReason: "not-distinguished-in-current-source",
+    willItemId: willItemId || "",
+    willNames: willItem?.Names || {},
+    itemIconPath,
+    itemDescriptionIds: itemDescription.descriptionIds || [],
+    aoyiSkillId: aoyiSkillId || "",
+    aoyiSkillName: chooseText(aoyiEntry?.Names, aoyiEntry?.Name || ""),
+    aoyiSkillNames: aoyiEntry?.Names || {},
+    monsterName: chooseText(aoyiEntry?.MonsterNames, ""),
+    monsterNames: aoyiEntry?.MonsterNames || {},
+    skillEffectId: aoyiEntry?.SkillEffectId || battleEntry?.valueRows?.find((row) => row.skillEffectId)?.skillEffectId || "",
+    descriptions: descriptionContext.descriptions,
+    cleanDescriptions: descriptionContext.cleanDescriptions,
+    descriptionParagraphs: descriptionContext.descriptionParagraphs,
+    descriptionSource: descriptionContext.source,
+    tierRows,
+    untieredValueRows: (battleEntry?.valueRows || []).filter((row) => !Number.isInteger(Number(row.tier))),
+    bridge: {
+      method: bridgeMethod({ directAoyiSkillId, contextUid, iconUid, conflict }),
+      confidence: bridgeConfidence({ directAoyiSkillId, contextUid, iconUid }),
+      directAoyiSkillId,
+      directBridge,
+      contextUid,
+      iconUid,
+      descriptionUid,
+      aoyiSkillId: aoyiSkillId || "",
+      iconNumber: itemIconNumber || "",
+      conflict,
+      contextMatches,
+      iconMatches,
+    },
+    sourceOffsets: {
+      itemDescription: itemDescription.sourceOffset || "",
+      itemTable: itemDescription.itemTableSourceOffset || "",
+      battleImagineDescription: battleEntry?.provenance?.sourceOffsets || [],
+      aoyi: aoyiEntry?.SourceOffset || "",
+    },
+  };
+}
+
+function selectDescriptionContext({ battleEntry, skillEntry, itemDescription }) {
+  const battleContext = normalizeDescriptionContext(battleEntry, "BattleImagineDescriptions.json");
+  const skillContext = normalizeDescriptionContext(skillEntry, "SkillDescriptions.json");
+  const itemContext = normalizeDescriptionContext(itemDescription, "ItemDescriptionSources.json");
+
+  if (hasSpecificEffectText(skillContext) && (!hasSpecificEffectText(battleContext) || isGenericBattleImagineLore(battleContext))) {
+    return skillContext;
+  }
+  if (hasSpecificEffectText(battleContext)) return battleContext;
+  if (hasSpecificEffectText(skillContext)) return skillContext;
+  if (hasAnyDescription(battleContext) && !isGenericBattleImagineLore(battleContext)) return battleContext;
+  if (hasAnyDescription(skillContext)) return skillContext;
+  return itemContext;
+}
+
+function normalizeDescriptionContext(entry, source) {
+  if (!entry || typeof entry !== "object") {
+    return {
+      source: "",
+      descriptions: {},
+      cleanDescriptions: {},
+      descriptionParagraphs: {},
+    };
+  }
+
+  const descriptions = entry.descriptions && typeof entry.descriptions === "object"
+    ? entry.descriptions
+    : entry.description
+      ? { en: entry.description }
+      : {};
+  const cleanDescriptions = entry.cleanDescriptions && typeof entry.cleanDescriptions === "object"
+    ? entry.cleanDescriptions
+    : entry.cleanDescription
+      ? { en: entry.cleanDescription }
+      : {};
+  const descriptionParagraphs = entry.descriptionParagraphsByLocale && typeof entry.descriptionParagraphsByLocale === "object"
+    ? entry.descriptionParagraphsByLocale
+    : Array.isArray(entry.descriptionParagraphs)
+      ? { en: entry.descriptionParagraphs }
+      : entry.descriptionParagraphs && typeof entry.descriptionParagraphs === "object"
+        ? entry.descriptionParagraphs
+        : {};
+
+  return {
+    source,
+    descriptions,
+    cleanDescriptions,
+    descriptionParagraphs,
+  };
+}
+
+function hasSpecificEffectText(context) {
+  const text = descriptionContextText(context);
+  return /\b(summons?|transforms?|after casting|upon the skill cast|passive:|dealing|grants?|increases?|reduces?|revives?)\b/i.test(text)
+    && !isGenericBattleImagineLore(context);
+}
+
+function hasAnyDescription(context) {
+  return Boolean(descriptionContextText(context));
+}
+
+function isGenericBattleImagineLore(context) {
+  const text = descriptionContextText(context);
+  return /crystal(?:l)?ized materialization of thought|principle behind them has been a mystery|Bapharian civilization/i.test(text);
+}
+
+function descriptionContextText(context) {
+  if (!context) return "";
+  return [
+    context.cleanDescriptions?.en,
+    context.descriptions?.en,
+    ...(Array.isArray(context.descriptionParagraphs?.en) ? context.descriptionParagraphs.en : []),
+  ].map(compactText).filter(Boolean).join(" ");
+}
+
+function chooseContextUid(matches, entriesByUid) {
+  if (!matches.length) return "";
+  const withStructuredValues = matches.find((match) => {
+    const entry = entriesByUid[String(match.uid)];
+    return (entry?.valueRows || []).some((row) => Number.isInteger(Number(row.tier)));
+  });
+  return String((withStructuredValues || matches[0]).uid);
+}
+
+function chooseAoyiSkillId({ directAoyiSkillId, contextUid, iconUid, aoyiById }) {
+  if (directAoyiSkillId && aoyiById.has(String(directAoyiSkillId))) return String(directAoyiSkillId);
+  if (contextUid && aoyiById.has(String(contextUid))) return String(contextUid);
+  if (iconUid && aoyiById.has(String(iconUid))) return String(iconUid);
+  return "";
+}
+
+function inferWillItemId(itemId, itemById) {
+  const numeric = Number(itemId);
+  if (!Number.isInteger(numeric)) return "";
+  const candidate = String(numeric + 10000);
+  return itemById.has(candidate) ? candidate : "";
+}
+
+function rarityFromItemTier(itemTier) {
+  if (itemTier === 3) {
+    return { rarityCandidate: "purple", rarityConfidence: "observed-itemTier-3" };
+  }
+  if (itemTier === 4) {
+    return { rarityCandidate: "gold", rarityConfidence: "observed-itemTier-4" };
+  }
+  return {
+    rarityCandidate: "unknown",
+    rarityConfidence: itemTier == null ? "missing-itemTier" : `unmapped-itemTier-${itemTier}`,
+  };
+}
+
+function bridgeMethod({ directAoyiSkillId, contextUid, iconUid, conflict }) {
+  if (directAoyiSkillId) return "direct-skill-aoyi-item";
+  if (contextUid && iconUid && conflict) return "item-page-context-over-icon-conflict";
+  if (contextUid) return "item-page-context";
+  if (iconUid) return "icon-number";
+  return "unresolved";
+}
+
+function bridgeConfidence({ directAoyiSkillId, contextUid, iconUid }) {
+  if (directAoyiSkillId) return "direct";
+  if (contextUid) return "high";
+  if (iconUid) return "medium";
+  return "none";
+}
+
+function normalizeBaseValues(baseEffectValues) {
+  if (!baseEffectValues || typeof baseEffectValues !== "object") return [];
+  if (Array.isArray(baseEffectValues.values)) return baseEffectValues.values.map((value) => ({ ...value, ...sourceFields(baseEffectValues) }));
+  if (Array.isArray(baseEffectValues)) return baseEffectValues;
+  return [];
+}
+
+function buildTierRows({ aoyiEntry, battleEntry, baseEffectValues }) {
+  const aoyiTierByTier = new Map();
+  for (const tierRow of aoyiEntry?.TierEffects || []) {
+    const tier = Number(tierRow.tier);
+    if (!Number.isInteger(tier)) continue;
+    aoyiTierByTier.set(tier, tierRow);
+  }
+
+  const battleRowsByTier = new Map();
+  for (const valueRow of battleEntry?.valueRows || []) {
+    const tier = Number(valueRow.tier);
+    if (!Number.isInteger(tier)) continue;
+    if (!battleRowsByTier.has(tier)) battleRowsByTier.set(tier, []);
+    battleRowsByTier.get(tier).push(valueRow);
+  }
+
+  return [0, 1, 2, 3, 4, 5].map((tier) => {
+    if (tier === 0) {
+      return {
+        tierIndex: 0,
+        tierLabel: "T0",
+        values: baseEffectValues,
+        notes: baseEffectValues.length
+          ? "Structured base values were present in BaseEffectValues."
+          : "No structured T0/base values found in current generated data.",
+      };
+    }
+
+    const aoyiTier = aoyiTierByTier.get(tier);
+    const battleRows = battleRowsByTier.get(tier) || [];
+    const values = aoyiTier?.values?.length
+      ? aoyiTier.values.map((value) => ({
+          ...value,
+          ...sourceFields(aoyiTier),
+          sourceFile: "skill_aoyi_icons.json",
+        }))
+      : battleRows.map(normalizeBattleValueRow);
+
+    return {
+      tierIndex: tier,
+      tierLabel: `T${tier}`,
+      values,
+      sourceTable: aoyiTier?.sourceTable || firstValue(battleRows, "sourceTable"),
+      sourceOffset: aoyiTier?.sourceOffset || firstValue(battleRows, "sourceOffset"),
+      rowId: aoyiTier?.rowId || firstValue(battleRows, "rowId"),
+      notes: values.length ? "" : "No structured values found for this tier.",
+    };
+  });
+}
+
+function sourceFields(row) {
+  return {
+    sourceTable: row.sourceTable || "",
+    sourceOffset: row.sourceOffset || "",
+    rowId: row.rowId || "",
+  };
+}
+
+function normalizeBattleValueRow(row) {
+  return {
+    key: row.key || "",
+    scope: row.scope || "",
+    rawValue: row.rawValue ?? "",
+    percentValue: row.percentValue ?? row.value ?? "",
+    decimalValue: row.decimalValue ?? "",
+    valueText: row.sourceText || row.rawText || (row.value != null && row.unit ? `${row.value} ${row.unit}` : ""),
+    sourceFile: row.sourceFile || "BattleImagineDescriptions.json",
+    sourceTable: row.sourceTable || "",
+    sourceOffset: row.sourceOffset || "",
+    rowId: row.rowId || "",
+  };
+}
+
+function firstValue(rows, key) {
+  for (const row of rows) {
+    if (row && row[key] !== undefined && row[key] !== null && row[key] !== "") return row[key];
+  }
+  return "";
+}
+
+function buildChecklistRows(entry) {
+  const activeBase = summarizeActiveEffect(entry);
+  const passiveBase = summarizePassiveEffect(entry);
+  return entry.tierRows.map((tier) => {
+    const { activeValues, passiveValues } = splitTierValues(tier.values, entry);
+    const activeEffect = joinEffectText([
+      activeBase,
+      formatValueList(activeValues, entry, tier),
+    ]);
+    const passiveEffect = joinEffectText([
+      passiveBase,
+      formatValueList(passiveValues, entry, tier),
+    ]);
+    const t0Missing = tier.tierIndex === 0 && tier.values.length === 0;
+    return {
+      imagineName: entry.displayName,
+      tier: tier.tierLabel,
+      activeEffect,
+      passiveEffect,
+      rarity: entry.rarityCandidate,
+      itemTier: entry.itemTier ?? "",
+      battleSkill: entry.aoyiSkillName,
+      monsterName: entry.monsterName,
+      itemId: entry.itemId,
+      aoyiSkillId: entry.aoyiSkillId,
+      skillEffectId: entry.skillEffectId,
+      bridgeMethod: entry.bridge.method,
+      bridgeConflict: entry.bridge.conflict ? "yes" : "",
+      notes: joinEffectText([
+        tier.notes || "",
+        t0Missing ? "T0 effect text is present, but structured T0 numeric values were not found in current extracted data." : "",
+      ]),
+    };
+  });
+}
+
+function selectChecklistImagines(imagines) {
+  const excluded = [];
+  const eligible = [];
+  for (const entry of imagines) {
+    if (!entry.aoyiSkillId) {
+      excluded.push({
+        itemId: entry.itemId,
+        itemName: entry.displayName,
+        reason: "excluded-from-checklist-unresolved-aoyi-skill",
+        bridgeMethod: entry.bridge.method,
+      });
+      continue;
+    }
+    eligible.push(entry);
+  }
+
+  const byAoyi = new Map();
+  for (const entry of eligible) {
+    if (!byAoyi.has(entry.aoyiSkillId)) byAoyi.set(entry.aoyiSkillId, []);
+    byAoyi.get(entry.aoyiSkillId).push(entry);
+  }
+
+  const selected = [];
+  for (const group of byAoyi.values()) {
+    group.sort((left, right) => checklistPreferenceScore(right) - checklistPreferenceScore(left)
+      || Number(right.itemId) - Number(left.itemId));
+    const [winner, ...duplicates] = group;
+    selected.push(winner);
+    for (const duplicate of duplicates) {
+      excluded.push({
+        itemId: duplicate.itemId,
+        itemName: duplicate.displayName,
+        aoyiSkillId: duplicate.aoyiSkillId,
+        selectedItemId: winner.itemId,
+        selectedItemName: winner.displayName,
+        reason: "excluded-from-checklist-duplicate-aoyi-skill",
+        bridgeMethod: duplicate.bridge.method,
+      });
+    }
+  }
+
+  selected.sort((left, right) => Number(left.itemId) - Number(right.itemId));
+  excluded.sort((left, right) => Number(left.itemId) - Number(right.itemId));
+  return { selected, excluded };
+}
+
+function checklistPreferenceScore(entry) {
+  const method = entry?.bridge?.method || "";
+  if (method === "direct-skill-aoyi-item") return 100;
+  if (method === "item-page-context") return 80;
+  if (method === "item-page-context-over-icon-conflict") return 75;
+  if (method === "icon-number") return 60;
+  return 0;
+}
+
+function splitTierValues(values, entry) {
+  const activeValues = [];
+  const passiveValues = [];
+  for (const value of values || []) {
+    if (isPassiveValue(value, entry)) {
+      passiveValues.push(value);
+    } else {
+      activeValues.push(value);
+    }
+  }
+  return { activeValues, passiveValues };
+}
+
+function isPassiveValue(value, entry) {
+  if (String(value?.scope || "").toLowerCase() === "owner") return true;
+  const label = contextualEffectLabel(value, entry);
+  if (/bonus|owner|self|your|party|allies|shield|hp|heal|cd reduction|cooldown reduction/i.test(label)) {
+    if (!/armor penetration|target/i.test(label)) return true;
+  }
+  return /owner|self|passive/i.test(String(value?.key || ""));
+}
+
+function summarizeActiveEffect(entry) {
+  const paragraphs = englishParagraphs(entry);
+  const summonParagraph = paragraphs.find((paragraph) => /\bsummons?\b/i.test(paragraph));
+  if (summonParagraph) {
+    return joinEffectText([entry.aoyiSkillName, summonParagraph]);
+  }
+  if (entry.aoyiSkillName) {
+    return entry.aoyiSkillName;
+  }
+  return "";
+}
+
+function summarizePassiveEffect(entry) {
+  const paragraphs = englishParagraphs(entry);
+  const passiveParagraphs = paragraphs.filter((paragraph) => {
+    if (/\bsummons?\b/i.test(paragraph)) return false;
+    return /\b(passive|upon|your|owner|gains?|increased?|reduced?|stack|charge|duration|period)\b/i.test(paragraph);
+  });
+  return passiveParagraphs.join(" ");
+}
+
+function englishParagraphs(entry) {
+  const localizedParagraphs = entry.descriptionParagraphs?.en;
+  if (Array.isArray(localizedParagraphs)) {
+    return localizedParagraphs.map(compactText).filter(Boolean);
+  }
+  if (Array.isArray(entry.descriptionParagraphs)) {
+    return entry.descriptionParagraphs.map(compactText).filter(Boolean);
+  }
+  const clean = entry.cleanDescriptions?.en || entry.descriptions?.en || "";
+  return clean ? [compactText(clean)] : [];
+}
+
+function formatValueList(values, entry, tier) {
+  const parts = [];
+  const seen = new Set();
+  for (const value of values || []) {
+    const label = contextualEffectLabel(value, entry, tier);
+    if (shouldSuppressValue(value, label)) continue;
+    const amount = contextualEffectAmount(value, label);
+    if (!label && (amount === undefined || amount === "")) continue;
+    const part = amount === undefined || amount === "" ? label : `${label}: ${amount}`;
+    const dedupeKey = part.toLowerCase();
+    if (seen.has(dedupeKey)) continue;
+    seen.add(dedupeKey);
+    parts.push(part);
+  }
+  return parts.join("; ");
+}
+
+function shouldSuppressValue(value, label) {
+  const raw = Number(value?.rawValue);
+  if (!Number.isFinite(raw)) return false;
+  if (raw === 0 && /duration|time/i.test(label)) return true;
+  if (raw === 0 && /hp percent|life steal|unresolved|effect value/i.test(label)) return true;
+  if (raw === 0 && /level scaling/i.test(label)) return true;
+  return false;
+}
+
+function contextualEffectLabel(value, entry) {
+  const key = String(value?.key || "").trim();
+  const normalizedKey = key.replace(/\d+$/g, "");
+  const text = englishParagraphs(entry).join(" ");
+  const aoyiId = String(entry?.aoyiSkillId || "");
+  const override = labelOverride(aoyiId, key);
+  if (override) return override;
+
+  if (/attrAdd3914/i.test(key)) return "Armor Penetration";
+  if (/attrPer3914/i.test(key)) return "Block DMG Reduction Bonus";
+  if (/attrPer3915/i.test(key)) return "Luck Bonus";
+  if (/attrAdd3915|attrMax3915/i.test(key)) return "Lucky Strike Multiplier Bonus";
+  if (/attrPer3926/i.test(key)) return "Luck / DMG Dealt and Healing Bonus";
+  if (/attrAdd3926|attrMax3926/i.test(key)) return "Lucky Strike Multiplier Bonus";
+  if (/attrPer3927/i.test(key)) return "Strength Bonus";
+  if (/attrPer3940/i.test(key)) return "Thunder Bonus";
+
+  const ownerLabels = ownerEffectLabels(text);
+  if (normalizedKey === "attrPer" && ownerLabels[0]) return ownerLabels[0];
+  if ((normalizedKey === "attrAdd" || normalizedKey === "attrMax") && ownerLabels[1]) return ownerLabels[1];
+  if (normalizedKey === "attrOther") return partyEffectLabel(text) || "Party effect value";
+  if (normalizedKey === "healHp") return healingLabel(text) || "HP Recovery";
+  if (normalizedKey === "hpPer") return hpPercentLabel(text) || "HP Percent";
+  if (normalizedKey === "lockHp") return "Minimum HP Lock";
+  if (normalizedKey === "shield" || normalizedKey === "shieldHp") return "Shield";
+  if (normalizedKey === "prob" || normalizedKey.startsWith("prob")) return "Chance";
+  if (normalizedKey === "time") return "Duration";
+  if (normalizedKey === "subAoyiCdPct") return "Battle Imagine Cooldown Reduction";
+  if (normalizedKey === "skillPer" || normalizedKey === "skillPerElse" || normalizedKey === "skillPerLv") {
+    return "Skill effect value";
+  }
+  if (normalizedKey === "speed") return "Speed";
+  if (/^speed1$/i.test(key)) return "Attack SPD Bonus";
+  if (/^speed2$/i.test(key)) return "Casting SPD Bonus";
+  if (normalizedKey === "attrDef") return "DEF Bonus";
+  if (normalizedKey === "attrHp") return "Max HP Bonus";
+  if (normalizedKey === "attrElse") return "Secondary effect value";
+  if (/^attr[A-C]$/i.test(normalizedKey)) return `Unresolved ${normalizedKey} value`;
+  if (normalizedKey === "attr") return ownerLabels[0] || "Effect value";
+  if (normalizedKey === "attrLv") return "Level scaling";
+
+  return humanEffectKey(key);
+}
+
+function labelOverride(aoyiId, key) {
+  const overrides = {
+    "3908": {
+      attrPer: "Healing Received Bonus",
+    },
+    "3920": {
+      attrPer: "Revive Recovery Value",
+      skillPerLv: "Revive Level Scaling",
+    },
+    "3914": {
+      attrPer: "Block DMG Reduction Bonus",
+      attrAdd: "Armor Penetration",
+    },
+    "3926": {
+      attrPer: "Luck Bonus",
+      attrAdd: "Luck Effect DMG/Healing Bonus",
+      attrMax: "Luck Effect DMG/Healing Cap",
+    },
+    "3930": {
+      attrPer: "Endurance Bonus",
+      healHp: "Lost HP Recovery when Hit",
+    },
+    "3948": {
+      attrPer: "Base DMG Boost",
+      attrPerElse: "Extra DMG Boost per 10 Hits",
+      hpPer: "Life Steal HP Recovery",
+    },
+    "3946": {
+      attrPer3914: "Goblin Guard Block DMG Reduction Bonus",
+      attrAdd3914: "Goblin Guard Armor Penetration",
+      attrPer3915: "Goblin Warrior Luck Bonus",
+      attrAdd3915: "Goblin Warrior Lucky Strike Multiplier Bonus",
+      attrMax3915: "Goblin Warrior Lucky Strike Multiplier Cap",
+      attrPer3926: "Storm Goblin King Luck / DMG Dealt and Healing Bonus",
+      attrAdd3926: "Storm Goblin King Lucky Strike Multiplier Bonus",
+      attrMax3926: "Storm Goblin King Lucky Strike Multiplier Cap",
+      attrPer3927: "Jungle Goblin Warrior Strength Bonus",
+      attrPer3940: "Storm Goblin Warrior Thunder Bonus",
+      prob1: "Goblin March summon chance 1",
+      prob2: "Goblin March summon chance 2",
+    },
+    "3950": {
+      attrPer: "ATK Bonus",
+      attrPerElse: "Extra ATK per Special Attack Stack",
+      speed1: "Attack SPD Bonus at Max Stacks",
+      speed2: "Casting SPD Bonus at Max Stacks",
+    },
+    "3951": {
+      attrPer: "Final DMG Reduction",
+      skillPer: "Bonus DMG from DEF",
+      skillPerElse: "Secondary Bonus DMG from DEF",
+    },
+    "3953": {
+      attrPer: "Expertise Skill DMG/Healing Bonus",
+    },
+    "3954": {
+      attrPer: "Companion ATK Bonus",
+    },
+    "3957": {
+      attrPer: "All-Element Bonus",
+    },
+    "3958": {
+      attrPer: "Versatility Bonus",
+    },
+    "3959": {
+      attr: "Armor-Based Bonus DMG",
+      attrElse: "Secondary Armor-Based Bonus DMG",
+    },
+    "3962": {
+      attr: "Class-Skill Self-Healing Splash DMG",
+    },
+    "3963": {
+      attrPer: "Mastery Bonus",
+    },
+    "3964": {
+      attr1: "Cabbage Sigil 1 Crit Bonus",
+      attrMax1: "Cabbage Sigil 1 Crit Bonus",
+      attrPer1: "Cabbage Sigil 1 Crit DMG Bonus",
+      attr2: "Cabbage Sigil 2 Crit Bonus",
+      attrMax2: "Cabbage Sigil 2 Crit Bonus",
+      attrPer2: "Cabbage Sigil 2 Crit DMG Bonus",
+      attr3: "Cabbage Sigil 3 Crit Bonus",
+      attrMax3: "Cabbage Sigil 3 Crit Bonus",
+      attrPer3: "Cabbage Sigil 3 Crit DMG Bonus",
+    },
+    "3966": {
+      attrPer: "Haste Bonus",
+    },
+    "3968": {
+      attr: "Base DMG Boost",
+      attrElse: "Extra DMG Boost per 100,000 Max HP",
+      attrMax: "Total DMG Boost Cap",
+      hp: "Max HP Self-Damage per Tick",
+    },
+    "3969": {
+      attr: "Igoreus Attack DMG Value",
+      attrAdd: "Crit-to-Crit-DMG Conversion Ratio",
+      attrMax: "Crit DMG Conversion Cap",
+      attrPer: "Temporary Crit Bonus",
+    },
+    "3970": {
+      attr: "Ultimate-Mode DMG Bonus",
+      subAoyiCdPct: "Battle Imagine Cooldown Reduction",
+    },
+    "3971": {
+      attrA: "Main Stat Bonus",
+      attrB: "Healing Received Bonus",
+    },
+    "3972": {
+      attrElse: "Extra ATK per 5% Mastery",
+      attrMax: "Mastery-Based Extra ATK Cap",
+    },
+    "3974": {
+      attrA: "ATK Bonus",
+      attrB: "Attack SPD Bonus",
+      attrC: "Casting SPD Bonus",
+    },
+    "3976": {
+      attr: "Extra Class/Luck DMG from ATK",
+    },
+    "3979": {
+      attr: "Fire Bonus",
+    },
+    "3980": {
+      attr: "HP-Based Attack DMG",
+      hpPer: "Max HP Bonus",
+    },
+    "3981": {
+      attr: "Shield",
+    },
+    "3982": {
+      shieldHp: "Celestial Guardian Shield",
+      attrA: "Enemy ATK Reduction",
+      attrB: "Enemy Vulnerability",
+      attrC: "Enemy Element Resistance Reduction",
+    },
+    "3983": {
+      attr: "Dragon Force Fire Bonus",
+      attrA: "Max-Dragon-Force Skill CD Reduction",
+      attrB: "Max-Dragon-Force Fire Bonus",
+    },
+  };
+  return overrides[String(aoyiId)]?.[String(key)] || "";
+}
+
+function ownerEffectLabels(text) {
+  const clean = compactText(text);
+  const labels = [];
+  if (/main stats?/i.test(clean)) labels.push("Main Stat Bonus");
+  if (/healing received/i.test(clean)) labels.push("Healing Received Bonus");
+  if (/luck\b.{0,80}lucky strike multiplier|lucky strike multiplier.{0,80}luck\b/i.test(clean)) {
+    labels.push("Luck Bonus", "Lucky Strike Multiplier Bonus");
+  }
+  if (/\bcrit\b.{0,80}\bcrit(?:ical)?\s*dmg\b|\bcrit(?:ical)?\s*dmg\b.{0,80}\bcrit\b/i.test(clean)) {
+    labels.push("Crit Bonus", "Crit DMG Bonus");
+  }
+  if (/\bcrit\b/i.test(clean)) labels.push("Crit Bonus");
+  if (/\bcrit(?:ical)?\s*dmg\b/i.test(clean)) labels.push("Crit DMG Bonus");
+  if (/block dmg reduction/i.test(clean)) labels.push("Block DMG Reduction Bonus");
+  if (/final dmg reduction|final damage reduction/i.test(clean)) labels.push("Final DMG Reduction");
+  if (/resilience break bonus/i.test(clean)) labels.push("Resilience Break Bonus");
+  if (/expertise skill/i.test(clean) && /\b(?:dmg|damage)\b/i.test(clean) && /healing/i.test(clean)) {
+    labels.push("Expertise Skill DMG/Healing Bonus");
+  }
+  if (/\bcd reduction|cooldown reduction/i.test(clean)) labels.push("CD Reduction");
+  if (/\ball[- ]element bonus|\ball elements?\b/i.test(clean)) labels.push("All-Element Bonus");
+  if (/\bversatility\b/i.test(clean)) labels.push("Versatility Bonus");
+  if (/\bendurance\b/i.test(clean)) labels.push("Endurance Bonus");
+  if (/\bcompanion\s+ATK\b/i.test(clean)) labels.push("Companion ATK Bonus");
+  if (/\bATK\b|\battack\b/i.test(clean) && /\bparty\b/i.test(clean)) labels.push("Self ATK Bonus");
+  if (/\bATK\b|\battack\b/i.test(clean)) labels.push("ATK Bonus");
+  if (/\bstrength\b/i.test(clean)) labels.push("Strength Bonus");
+  if (/\bintellect\b/i.test(clean)) labels.push("Intellect Bonus");
+  if (/\bagility\b/i.test(clean)) labels.push("Agility Bonus");
+  if (/\bmastery\b/i.test(clean)) labels.push("Mastery Bonus");
+  if (/\bhaste\b/i.test(clean)) labels.push("Haste Bonus");
+  if (/\battack speed\b|\batk speed\b|\bcasting spd\b|\bcasting speed\b/i.test(clean)) labels.push("Attack/Casting Speed Bonus");
+  if (/\blight bonus\b/i.test(clean)) labels.push("Light Bonus");
+  if (/\bthunder bonus\b/i.test(clean)) labels.push("Thunder Bonus");
+  if (/\bice bonus\b/i.test(clean)) labels.push("Ice Bonus");
+  if (/\bfire bonus\b/i.test(clean)) labels.push("Fire Bonus");
+  if (/\bdmg dealt\b|\bdamage dealt\b/i.test(clean) && /healing/i.test(clean)) labels.push("DMG Dealt/Healing Bonus");
+  if (/\bvulnerability\b|\bwound\b/i.test(clean)) labels.push("Target Vulnerability");
+  if (/\bshield\b/i.test(clean)) labels.push("Shield");
+  return uniqueStrings(labels);
+}
+
+function partyEffectLabel(text) {
+  if (/\bparty'?s?\s+ATK\b|\bparty\b.{0,60}\bATK\b/i.test(text)) return "Party ATK Bonus";
+  if (/\bvulnerability\b|\bwound\b/i.test(text)) return "Target Vulnerability";
+  return "";
+}
+
+function healingLabel(text) {
+  if (/lost hp|lost health|missing hp/i.test(text)) return "Lost HP Recovery";
+  if (/self-healing|self healing/i.test(text)) return "Self-Healing Value";
+  return "";
+}
+
+function hpPercentLabel(text) {
+  if (/max hp|maximum hp|hp is also temporarily increased/i.test(text)) return "Max HP Bonus";
+  if (/life steal|restoring hp equal to/i.test(text)) return "Life Steal HP Recovery";
+  return "";
+}
+
+function contextualEffectAmount(value, label) {
+  const raw = Number(value?.rawValue);
+  if (!Number.isFinite(raw)) {
+    return value?.valueText || value?.sourceText || value?.rawText || "";
+  }
+  if (/max hp self-damage per tick/i.test(label)) return `${formatNumber(raw / 1000000)}%`;
+  if (/armor penetration/i.test(label)) return formatNumber(raw);
+  if (/duration|time/i.test(label)) return `${formatNumber(raw / 100)}s`;
+  if (/level scaling/i.test(label)) return formatNumber(raw);
+  if (/chance/i.test(label)) return `${formatNumber(raw / 100)}%`;
+  if (/cooldown reduction|cd reduction|bonus|shield|hp percent|minimum hp lock|vulnerability|multiplier|crit|luck|haste|mastery|agility|strength|intellect|attack|atk|def|fire|ice|light|thunder|healing|dmg|damage|effect value|speed/i.test(label)) {
+    return `${formatNumber(raw / 100)}%`;
+  }
+  return value?.valueText || value?.sourceText || value?.rawText || formatNumber(raw);
+}
+
+function uniqueStrings(values) {
+  const seen = new Set();
+  const out = [];
+  for (const value of values) {
+    const text = String(value || "").trim();
+    if (!text || seen.has(text.toLowerCase())) continue;
+    seen.add(text.toLowerCase());
+    out.push(text);
+  }
+  return out;
+}
+
+function formatNumber(value) {
+  if (!Number.isFinite(Number(value))) return "";
+  const number = Number(value);
+  if (Number.isInteger(number)) return String(number);
+  return String(Number(number.toFixed(4))).replace(/\.?0+$/, "");
+}
+
+function humanEffectKey(key) {
+  const value = String(key || "").trim();
+  const known = {
+    attr: "Effect value",
+    attrAdd: "Added effect value",
+    attrElse: "Secondary effect value",
+    attrLv: "Level scaling",
+    attrMax: "Maximum effect value",
+    attrPer: "Owner effect value",
+    attrPerElse: "Secondary owner value",
+    hp: "HP value",
+    hpPer: "HP percent value",
+    time: "Duration",
+  };
+  return known[value] || value;
+}
+
+function joinEffectText(parts) {
+  return parts
+    .map((part) => compactText(part))
+    .filter(Boolean)
+    .filter((part, index, all) => all.indexOf(part) === index)
+    .join(" ");
+}
+
+function buildLongCsvRows(entry) {
+  const base = baseCsvFields(entry);
+  const descriptionEn = descriptionText(entry, "en");
+  const rows = [];
+  for (const tier of entry.tierRows) {
+    if (!tier.values.length) {
+      rows.push({
+        ...base,
+        tierLabel: tier.tierLabel,
+        tierIndex: tier.tierIndex,
+        effectKind: "base-placeholder",
+        effectGroup: "",
+        effectKey: "",
+        scope: "",
+        valueText: "",
+        rawValue: "",
+        percentValue: "",
+        decimalValue: "",
+        sourceTable: "",
+        sourceOffset: "",
+        rowId: "",
+        descriptionEn,
+        notes: tier.notes,
+      });
+      continue;
+    }
+    for (const value of tier.values) {
+      rows.push({
+        ...base,
+        tierLabel: tier.tierLabel,
+        tierIndex: tier.tierIndex,
+        effectKind: effectKindForValue(value),
+        effectGroup: effectGroupForValue(value),
+        effectKey: value.key || "",
+        scope: value.scope || "",
+        valueText: value.valueText || value.sourceText || "",
+        rawValue: value.rawValue ?? "",
+        percentValue: value.percentValue ?? "",
+        decimalValue: value.decimalValue ?? "",
+        sourceTable: value.sourceTable || tier.sourceTable || "",
+        sourceOffset: value.sourceOffset || tier.sourceOffset || "",
+        rowId: value.rowId || tier.rowId || "",
+        descriptionEn,
+        notes: tier.notes || "",
+      });
+    }
+  }
+  return rows;
+}
+
+function buildWideCsvRows(imagines) {
+  const rows = [];
+  for (const entry of imagines) {
+    const grouped = new Map();
+    for (const tier of entry.tierRows) {
+      for (const value of tier.values) {
+        const key = [
+          effectKindForValue(value),
+          effectGroupForValue(value),
+          value.key || "",
+          value.scope || "",
+        ].join("\u001f");
+        const current = grouped.get(key) || {
+          ...baseCsvFields(entry),
+          effectKind: effectKindForValue(value),
+          effectGroup: effectGroupForValue(value),
+          effectKey: value.key || "",
+          scope: value.scope || "",
+          sourceTables: new Set(),
+          sourceOffsets: new Set(),
+          rowIds: new Set(),
+          descriptionEn: descriptionText(entry, "en"),
+          notes: "",
+        };
+        current[tier.tierLabel] = value.valueText || value.sourceText || value.percentValue || value.rawValue || "";
+        if (value.sourceTable) current.sourceTables.add(value.sourceTable);
+        if (value.sourceOffset) current.sourceOffsets.add(value.sourceOffset);
+        if (value.rowId) current.rowIds.add(value.rowId);
+        grouped.set(key, current);
+      }
+    }
+
+    if (grouped.size === 0) {
+      rows.push({
+        ...baseCsvFields(entry),
+        effectKind: "base-placeholder",
+        effectGroup: "",
+        effectKey: "",
+        scope: "",
+        T0: "",
+        T1: "",
+        T2: "",
+        T3: "",
+        T4: "",
+        T5: "",
+        sourceTables: "",
+        sourceOffsets: "",
+        rowIds: "",
+        descriptionEn: descriptionText(entry, "en"),
+        notes: "No structured tier values found.",
+      });
+      continue;
+    }
+
+    for (const row of grouped.values()) {
+      rows.push({
+        ...row,
+        T0: row.T0 || "",
+        T1: row.T1 || "",
+        T2: row.T2 || "",
+        T3: row.T3 || "",
+        T4: row.T4 || "",
+        T5: row.T5 || "",
+        sourceTables: [...row.sourceTables].join("; "),
+        sourceOffsets: [...row.sourceOffsets].join("; "),
+        rowIds: [...row.rowIds].join("; "),
+      });
+    }
+  }
+  return rows;
+}
+
+function baseCsvFields(entry) {
+  const fields = {
+    itemId: entry.itemId,
+    itemName: entry.displayName,
+    itemTier: entry.itemTier ?? "",
+    rarityCandidate: entry.rarityCandidate,
+    rarityConfidence: entry.rarityConfidence,
+    ssrCandidate: entry.ssrCandidate,
+    ssrCandidateReason: entry.ssrCandidateReason,
+    willItemId: entry.willItemId,
+    aoyiSkillId: entry.aoyiSkillId,
+    aoyiSkillName: entry.aoyiSkillName,
+    monsterName: entry.monsterName,
+    skillEffectId: entry.skillEffectId,
+    itemIconPath: entry.itemIconPath,
+    bridgeMethod: entry.bridge.method,
+    bridgeConfidence: entry.bridge.confidence,
+    bridgeConflict: entry.bridge.conflict ? "yes" : "",
+    contextUid: entry.bridge.contextUid,
+    iconUid: entry.bridge.iconUid,
+    descriptionUid: entry.bridge.descriptionUid,
+  };
+  for (const locale of LOCALES) {
+    fields[`itemName.${locale}`] = entry.itemNames?.[locale] || "";
+    fields[`aoyiSkillName.${locale}`] = entry.aoyiSkillNames?.[locale] || "";
+    fields[`monsterName.${locale}`] = entry.monsterNames?.[locale] || "";
+    fields[`description.${locale}`] = descriptionText(entry, locale);
+  }
+  return fields;
+}
+
+function descriptionText(entry, locale) {
+  const clean = entry.cleanDescriptions?.[locale] || entry.descriptions?.[locale] || "";
+  if (clean) return compactText(clean);
+  const paragraphs = entry.descriptionParagraphs?.[locale] || entry.descriptionParagraphs;
+  if (Array.isArray(paragraphs)) return compactText(paragraphs.join(" "));
+  return "";
+}
+
+function compactText(value) {
+  return String(value || "")
+    .replace(/<\s*br\s*\/?>/gi, ". ")
+    .replace(/\s*\n+\s*/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function effectKindForValue(value) {
+  if (value.sourceFile === "BattleImagineDescriptions.json") return "description-tier-modifier";
+  return "tier-modifier";
+}
+
+function effectGroupForValue(value) {
+  if (value.scope === "owner") return "owner-passive";
+  if (value.scope) return value.scope;
+  return "battle-skill-or-effect";
+}
+
+function iconNumber(value) {
+  const text = String(value || "");
+  const match = text.match(/skill_aoyi_(?:product|skill)_icon_?(\d+)/i)
+    || text.match(/skill_aoyi_advanced_texture_?(\d+)/i)
+    || text.match(/skill_aoyi_skill_icon_(\d+)/i);
+  return match ? String(Number(match[1])) : "";
+}
+
+function countBy(rows, keyFn) {
+  const out = {};
+  for (const row of rows) {
+    const key = String(keyFn(row));
+    out[key] = (out[key] || 0) + 1;
+  }
+  return out;
+}
+
+function checklistCsvColumns() {
+  return [
+    "imagineName",
+    "tier",
+    "activeEffect",
+    "passiveEffect",
+    "rarity",
+    "itemTier",
+    "battleSkill",
+    "monsterName",
+    "itemId",
+    "aoyiSkillId",
+    "skillEffectId",
+    "bridgeMethod",
+    "bridgeConflict",
+    "notes",
+  ];
+}
+
+function longCsvColumns() {
+  return [
+    ...baseColumns(),
+    "tierLabel",
+    "tierIndex",
+    "effectKind",
+    "effectGroup",
+    "effectKey",
+    "scope",
+    "valueText",
+    "rawValue",
+    "percentValue",
+    "decimalValue",
+    "sourceTable",
+    "sourceOffset",
+    "rowId",
+    "descriptionEn",
+    "notes",
+    ...localeColumns("description"),
+  ];
+}
+
+function wideCsvColumns() {
+  return [
+    ...baseColumns(),
+    "effectKind",
+    "effectGroup",
+    "effectKey",
+    "scope",
+    ...TIER_LABELS,
+    "sourceTables",
+    "sourceOffsets",
+    "rowIds",
+    "descriptionEn",
+    "notes",
+    ...localeColumns("description"),
+  ];
+}
+
+function baseColumns() {
+  return [
+    "itemId",
+    "itemName",
+    "itemTier",
+    "rarityCandidate",
+    "rarityConfidence",
+    "ssrCandidate",
+    "ssrCandidateReason",
+    "willItemId",
+    "aoyiSkillId",
+    "aoyiSkillName",
+    "monsterName",
+    "skillEffectId",
+    "itemIconPath",
+    "bridgeMethod",
+    "bridgeConfidence",
+    "bridgeConflict",
+    "contextUid",
+    "iconUid",
+    "descriptionUid",
+    ...localeColumns("itemName"),
+    ...localeColumns("aoyiSkillName"),
+    ...localeColumns("monsterName"),
+  ];
+}
+
+function localeColumns(prefix) {
+  return LOCALES.map((locale) => `${prefix}.${locale}`);
+}

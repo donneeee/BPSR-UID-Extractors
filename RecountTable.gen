@@ -8,6 +8,8 @@ const TALENT_NAME_MATCH_MIN_LOCALES = 10;
 const TALENT_FORMULA_MATCH_MIN_LOCALES = 5;
 const BASE_SKILL_NAME_MATCH_MIN_LOCALES = 8;
 const AOYI_ICON_NAME_MATCH_MIN_LOCALES = 7;
+const RECOUNT_LOCALE_SANITIZER_LOCALES = ["ja", "ko-KR", "th", "id"];
+const RECOUNT_LOCALE_SANITIZER_NEARBY_WINDOW = 4;
 
 main().catch((error) => {
   console.error(error.stack || error.message || String(error));
@@ -182,6 +184,7 @@ Notes:
     };
   }
 
+  const sanitizerReport = sanitizeShiftedRecountLocaleCells(out);
   const sorted = Object.fromEntries(
     Object.entries(out).sort(([left], [right]) => compareNumericStrings(left, right))
   );
@@ -194,6 +197,9 @@ Notes:
   console.log(`Recount talent name bridges: ${Object.values(sorted).filter((row) => row.LinkedTalentId).length}`);
   console.log(`Recount talent formula bridges: ${Object.values(sorted).filter((row) => row.TalentFormulaBridge).length}`);
   console.log(`Recount base skill name bridges: ${Object.values(sorted).filter((row) => row.LinkedBaseSkillId).length}`);
+  console.log(`Recount locale sanitizer family replacements: ${sanitizerReport.familyReplacements}`);
+  console.log(`Recount locale sanitizer shifted removals: ${sanitizerReport.shiftedRemovals}`);
+  console.log(`Recount locale sanitizer shifted rows: ${sanitizerReport.shiftedRows}`);
   console.log(`Output: ${displayPath(paths.out)}`);
   maybeWriteJson(paths.out, sorted, Boolean(args.dryRun));
 }
@@ -689,6 +695,119 @@ function matchingLocaleCount(left, right) {
 
 function normalizeLocaleText(value) {
   return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function sanitizeShiftedRecountLocaleCells(out) {
+  const rows = Object.values(out || {})
+    .filter((row) => row && Number.isFinite(Number(row.Id)))
+    .sort((left, right) => Number(left.Id) - Number(right.Id));
+  const familyMajorities = buildRecountFamilyMajorities(rows);
+  const familyProtected = new Set();
+  const shiftedRows = new Set();
+  let familyReplacements = 0;
+  let shiftedRemovals = 0;
+
+  for (const row of rows) {
+    const names = row.Names || {};
+    const familyKey = normalizeLocaleText(row.RecountName || row.Name || names.en);
+    if (!familyKey) continue;
+
+    for (const locale of RECOUNT_LOCALE_SANITIZER_LOCALES) {
+      const current = names[locale];
+      const majority = familyMajorities.get(`${familyKey}:${locale}`);
+      if (!current || !majority || majority.count < 2) continue;
+      if (normalizeLocaleText(current) === normalizeLocaleText(majority.value)) {
+        familyProtected.add(`${row.Id}:${locale}`);
+        continue;
+      }
+
+      names[locale] = majority.value;
+      familyProtected.add(`${row.Id}:${locale}`);
+      familyReplacements += 1;
+    }
+  }
+
+  const rowsToClean = rows.filter((row) => isLikelyShiftedRecountLocaleRow(row, rows));
+  for (const row of rowsToClean) {
+    const names = row.Names || {};
+    for (const locale of RECOUNT_LOCALE_SANITIZER_LOCALES) {
+      if (!names[locale] || familyProtected.has(`${row.Id}:${locale}`)) continue;
+      delete names[locale];
+      shiftedRemovals += 1;
+      shiftedRows.add(row.Id);
+    }
+  }
+
+  return {
+    familyReplacements,
+    shiftedRemovals,
+    shiftedRows: shiftedRows.size
+  };
+}
+
+function buildRecountFamilyMajorities(rows) {
+  const families = new Map();
+  for (const row of rows) {
+    const key = normalizeLocaleText(row.RecountName || row.Name || row.Names?.en);
+    if (!key) continue;
+    const family = families.get(key) || [];
+    family.push(row);
+    families.set(key, family);
+  }
+
+  const out = new Map();
+  for (const [familyKey, family] of families) {
+    if (family.length < 2) continue;
+    for (const locale of RECOUNT_LOCALE_SANITIZER_LOCALES) {
+      const values = family.map((row) => row.Names?.[locale]).filter(Boolean);
+      const majority = mostCommonLocaleValue(values);
+      if (!majority || majority.count < 2) continue;
+      out.set(`${familyKey}:${locale}`, {
+        ...majority,
+        total: family.length
+      });
+    }
+  }
+  return out;
+}
+
+function mostCommonLocaleValue(values) {
+  const counts = new Map();
+  for (const value of values) {
+    const normalized = normalizeLocaleText(value);
+    if (!normalized) continue;
+    const current = counts.get(normalized) || { value, count: 0 };
+    current.count += 1;
+    counts.set(normalized, current);
+  }
+  return [...counts.values()].sort((left, right) =>
+    right.count - left.count || String(left.value).localeCompare(String(right.value))
+  )[0];
+}
+
+function isLikelyShiftedRecountLocaleRow(row, rows) {
+  const ownCanonical = normalizeLocaleText(row.RecountName || row.Name || row.Names?.en);
+  if (!ownCanonical) return false;
+  const nearbyRows = rows.filter((candidate) =>
+    candidate !== row &&
+    Math.abs(Number(candidate.Id) - Number(row.Id)) <= RECOUNT_LOCALE_SANITIZER_NEARBY_WINDOW
+  );
+
+  for (const locale of ["th", "id"]) {
+    const current = normalizeLocaleText(row.Names?.[locale]);
+    if (!current || current === ownCanonical) continue;
+    if (nearbyRows.some((candidate) => current === normalizeLocaleText(candidate.RecountName || candidate.Name || candidate.Names?.en))) {
+      return true;
+    }
+  }
+
+  return nearbyRows.some((candidate) => {
+    const candidateName = normalizeLocaleText(candidate.RecountName || candidate.Name || candidate.Names?.en);
+    if (!candidateName || candidateName === ownCanonical) return false;
+    return RECOUNT_LOCALE_SANITIZER_LOCALES.some((locale) =>
+      ownCanonical === normalizeLocaleText(candidate.Names?.[locale])
+    );
+  });
 }
 
 function normalizeDesignLookupText(value) {

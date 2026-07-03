@@ -8,11 +8,11 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Metric | Value |
 | --- | --- |
-| Source entries | 39440 |
-| Included entries | 39437 |
-| Runtime entries | 8967 |
-| Selected values | 6449 |
-| Ready selected values | 1894 |
+| Source entries | 39436 |
+| Included entries | 39433 |
+| Runtime entries | 8972 |
+| Selected values | 6514 |
+| Ready selected values | 1885 |
 | Formula zones | 15 |
 | Selector kinds | 14 |
 
@@ -21,17 +21,17 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Status | Count |
 | --- | --- |
-| missing-value-data | 30470 |
-| non-damage-or-support | 2526 |
-| packet-exact-value-not-required | 2015 |
-| needs-timing-model | 1828 |
-| value-ready | 1179 |
-| needs-expected-model | 301 |
+| missing-value-data | 30461 |
+| non-damage-or-support | 2524 |
+| packet-exact-value-not-required | 2018 |
+| needs-timing-model | 1825 |
+| value-ready | 1170 |
+| needs-expected-model | 304 |
 | needs-description-parameter-source | 233 |
 | needs-hit-count-model | 187 |
-| needs-stat-conversion-model | 172 |
+| needs-stat-conversion-model | 169 |
 | needs-target-window-proof | 155 |
-| needs-value-selection | 120 |
+| needs-value-selection | 136 |
 | needs-value-ladder-selector | 109 |
 | needs-skill-stage-selector | 64 |
 | value-ready-runtime-scope | 28 |
@@ -47,30 +47,30 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Blocker | Count |
 | --- | --- |
-| missing-component-value-hint | 30488 |
-| component:cooldown-or-resource:timing-model-required | 2155 |
-| component:haste-or-attack-speed:timing-model-required | 402 |
-| component:critical-rate:expected-value-model-required | 350 |
-| component:hit-count-model:hit-count-model-required | 246 |
+| missing-component-value-hint | 30479 |
+| component:cooldown-or-resource:timing-model-required | 2173 |
+| component:haste-or-attack-speed:timing-model-required | 411 |
+| component:critical-rate:expected-value-model-required | 363 |
+| component:hit-count-model:hit-count-model-required | 252 |
 | component:target-resistance-mitigation:target-window-proof-required | 190 |
 | component:adaptive-primary-stat:stat-conversion-model-required | 124 |
-| component:hit-count-model:ambiguous-scoped-value:all | 101 |
+| component:hit-count-model:ambiguous-scoped-value:all | 108 |
 | component:target-vulnerability:target-window-proof-required | 101 |
 | component:mastery-stat:stat-conversion-model-required | 98 |
 | component:generic-damage:skill-stage-selector-required | 62 |
+| component:skill-multiplier:ambiguous-scoped-value:all | 62 |
 | component:versatility:stat-conversion-model-required | 59 |
-| component:skill-multiplier:ambiguous-scoped-value:all | 45 |
-| component:lucky-rate:expected-value-model-required | 42 |
+| component:critical-rate:ambiguous-scoped-value:all | 55 |
+| component:lucky-rate:expected-value-model-required | 50 |
 | component:atk:value-ladder-selection-required | 40 |
 | component:haste-or-attack-speed:stat-conversion-model-required | 39 |
-| component:critical-rate:ambiguous-scoped-value:all | 37 |
 | component:elemental-damage:value-ladder-selection-required | 37 |
+| component:cooldown-or-resource:stat-conversion-model-required | 30 |
 | component:elemental-damage:ambiguous-scoped-value:all | 27 |
 | component:generic-damage:ambiguous-scoped-value:all | 26 |
 | component:atk:ambiguous-value-selection-required | 25 |
 | component:critical-rate:value-ladder-selection-required | 25 |
 | component:matk:value-ladder-selection-required | 21 |
-| component:cooldown-or-resource:stat-conversion-model-required | 20 |
 | component:final-damage:value-ladder-selection-required | 18 |
 | component:atk:stat-conversion-model-required | 17 |
 | component:physical-magic-enhancement:stat-conversion-model-required | 15 |
@@ -83,16 +83,16 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Selector | Count |
 | --- | --- |
-| timing-cadence-model | 2557 |
-| runtime-stack | 1145 |
-| stat-conversion-model | 375 |
-| critical-expected-value | 350 |
+| timing-cadence-model | 2584 |
+| runtime-stack | 1157 |
+| stat-conversion-model | 385 |
+| critical-expected-value | 363 |
 | target-window-state | 291 |
-| hit-count-model | 246 |
+| hit-count-model | 252 |
 | runtime-scope | 184 |
 | runtime-value-ladder | 168 |
 | skill-stage-or-charge-selector | 69 |
-| lucky-expected-value | 42 |
+| lucky-expected-value | 50 |
 | runtime-tier-or-level | 28 |
 | value-ramp-or-stack-selector | 18 |
 | threshold-or-consumed-state | 11 |
@@ -103,8 +103,8 @@ It is intentionally metadata only. Packet final damage remains the truth source,
 
 | Model | Kind | Status | Selectors | Formula | Validation |
 | --- | --- | --- | --- | --- | --- |
-| critical-expected-v1 | critical | contract-ready-unvalidated | 350 | expected critical multiplier = 1 + critChance * (critDamageMultiplier - 1) | observed-rate-delta; min hits 100 |
-| lucky-expected-v1 | lucky | contract-ready-unvalidated | 42 | expected lucky multiplier = luckyChance * (0.4 + 0.25 * luckyChance) * (1 + luckyChance + lucky/general damage bonuses) | paired-hit-or-observed-rate-delta; min hits 100 |
+| critical-expected-v1 | critical | contract-ready-unvalidated | 363 | expected critical multiplier = 1 + critChance * (critDamageMultiplier - 1) | observed-rate-delta; min hits 100 |
+| lucky-expected-v1 | lucky | contract-ready-unvalidated | 50 | expected lucky multiplier = luckyChance * (0.4 + 0.25 * luckyChance) * (1 + luckyChance + lucky/general damage bonuses) | paired-hit-or-observed-rate-delta; min hits 100 |
 
 
 These contracts are still proof gates. They define the required inputs and validation policy for crit/lucky probability rows, but selector-blocked rows are not deterministic contribution totals.
@@ -155,6 +155,7 @@ These contracts are still proof gates. They define the required inputs and valid
 | buffs:2010082 | Foodie's Grace | needs-expected-model | critical | adaptive-primary-stat:all=2percent; critical-rate:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; critical-expected-value |
 | buffs:2010083 | Foodie's Grace | needs-expected-model | luckyChance, luckyEnhancement | adaptive-primary-stat:all=2percent; lucky-rate:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required; component:lucky-rate:expected-value-model-required | stat-conversion-model; lucky-expected-value |
 | buffs:2100151 | True Sight | needs-expected-model | critical | critical-rate:all=35percent | component:critical-rate:expected-value-model-required | critical-expected-value |
+| buffs:21412 | Fast Growth | needs-expected-model | baseAttackTerm, critical, physicalMagicEnhancement, timingCadence | cooldown-or-resource:all=50percent; critical-rate:all=10percent | component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | timing-cadence-model; critical-expected-value |
 | buffs:2200070 | 居合天授 | needs-expected-model | critical, elementalDamage, generalDamage |  | component:critical-damage:threshold-state-selector-required; component:critical-rate:ambiguous-scoped-value:all; component:critical-rate:expected-value-model-required | threshold-or-consumed-state; critical-expected-value; value-ramp-or-stack-selector |
 | buffs:2200080 | 追击风袭 | needs-expected-model | critical, luckyChance, luckyEnhancement | critical-rate:all=12percent; lucky-rate:all=10percent | component:critical-rate:expected-value-model-required; component:lucky-rate:expected-value-model-required | critical-expected-value; lucky-expected-value |
 | buffs:2200340 | 锐击传承 | needs-expected-model | critical, elementalDamage, generalDamage | critical-rate:all=10percent; elemental-damage:all=10percent | component:critical-rate:expected-value-model-required | critical-expected-value |
@@ -166,19 +167,18 @@ These contracts are still proof gates. They define the required inputs and valid
 | buffs:2200610 | 月刃电荷之种 | needs-expected-model | generalDamage, luckyChance, luckyEnhancement, timingCadence | cooldown-or-resource:all=25percent; generic-damage:all=25percent; lucky-rate:all=25percent | component:cooldown-or-resource:timing-model-required; component:lucky-rate:expected-value-model-required | timing-cadence-model; lucky-expected-value |
 | buffs:2201710 | Rock Luck | needs-expected-model | critical, luckyChance, luckyEnhancement | critical-rate:all=50percent; lucky-rate:all=5percent | component:critical-rate:expected-value-model-required; component:lucky-rate:expected-value-model-required | critical-expected-value; lucky-expected-value |
 | buffs:2201730 | 反击强化 | needs-expected-model | luckyChance, luckyEnhancement | lucky-rate:all=10percent | component:lucky-rate:expected-value-model-required | lucky-expected-value |
-| buffs:2202660 | Energy Arcane | needs-expected-model | critical, timingCadence | cooldown-or-resource:all=50percent; critical-rate:all=10percent | component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | timing-cadence-model; critical-expected-value |
-| buffs:2203150 | 光能之矢 | needs-expected-model | baseAttackTerm, critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
+| buffs:2202660 | Energy Arcane | needs-expected-model | baseAttackTerm, critical, physicalMagicEnhancement, timingCadence | cooldown-or-resource:all=50percent; critical-rate:all=10percent | component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | timing-cadence-model; critical-expected-value |
 | buffs:2203200 | Piercing Shot | needs-expected-model | critical | critical-rate:all=7percent | component:critical-rate:expected-value-model-required | critical-expected-value |
-| buffs:2203230 | Focused Shot | needs-expected-model | baseAttackTerm, critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
-| buffs:2203231 | Focused Shot | needs-expected-model | baseAttackTerm, critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
 | buffs:2203360 | Wolf Sharp Strike | needs-expected-model | critical, generalDamage | critical-damage:all=50percent; critical-rate:all=50percent | component:critical-rate:expected-value-model-required | critical-expected-value |
-| buffs:2203540 | Focused Concentration | needs-expected-model | baseAttackTerm, critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
-| buffs:2203541 | Focused Concentration | needs-expected-model | baseAttackTerm, critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
 | buffs:2203560 | Sharp Double Arrow I | needs-expected-model | critical, generalDamage | critical-damage:all=15percent; critical-rate:all=15percent | component:critical-rate:expected-value-model-required | critical-expected-value |
-| buffs:2203570 | Light Energy Stasis | needs-expected-model | critical, generalDamage, timingCadence | cooldown-or-resource:all=-30percent; critical-rate:all=-30percent; haste-or-attack-speed:all=-30percent | component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required; component:haste-or-attack-speed:timing-model-required | timing-cadence-model; critical-expected-value; timing-cadence-model |
 | buffs:2203580 | 猎鹰破式 | needs-expected-model | critical, generalDamage, physicalMagicEnhancement | critical-rate:all=40percent | component:critical-damage:threshold-state-selector-required; component:critical-rate:expected-value-model-required | threshold-or-consumed-state; critical-expected-value |
-| buffs:2203600 | Celestial Eagle | needs-expected-model | baseAttackTerm, critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
-| buffs:2203660 | 天界雄鹰不消耗钢制喙 | needs-expected-model | critical, elementalDamage, generalDamage, timingCadence | critical-damage:all=1percent; critical-rate:all=5flat; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:expected-value-model-required | stat-conversion-model; timing-cadence-model; runtime-stack |
+| buffs:2204260 | Icy Calm | needs-expected-model | critical, elementalDamage, luckyChance, luckyEnhancement, timingCadence | adaptive-primary-stat:target=2percent; critical-rate:all=2percent; haste-or-attack-speed:all=2percent | component:adaptive-primary-stat:stat-conversion-model-required; component:critical-rate:expected-value-model-required; component:haste-or-attack-speed:timing-model-required | stat-conversion-model; critical-expected-value; timing-cadence-model |
+| buffs:2204261 | Icy Calm | needs-expected-model | critical, elementalDamage, luckyChance, luckyEnhancement, timingCadence | critical-rate:all=2percent; haste-or-attack-speed:all=2percent; lucky-rate:all=2percent | component:critical-rate:expected-value-model-required; component:haste-or-attack-speed:timing-model-required; component:lucky-rate:expected-value-model-required | critical-expected-value; timing-cadence-model; lucky-expected-value |
+| buffs:2204300 | Icicle Spec | needs-expected-model | critical, elementalDamage, generalDamage, luckyEnhancement | critical-rate:all=30percent; elemental-damage:all=30percent | component:critical-rate:expected-value-model-required | critical-expected-value |
+| buffs:2204441 | Frost Lance Crit | needs-expected-model | critical, elementalDamage, generalDamage | critical-damage:all=1.5percent; critical-rate:all=1.5percent | component:critical-rate:expected-value-model-required | runtime-stack; critical-expected-value |
+| buffs:2204650 | Sharp Ice Arrow | needs-expected-model | critical, elementalDamage, generalDamage, skillMultiplier | critical-damage:all=10percent; critical-rate:all=10percent; elemental-damage:all=10percent | component:critical-rate:expected-value-model-required | critical-expected-value |
+| buffs:2205140 | Instantaneous Crit | needs-expected-model | critical, generalDamage | critical-damage:all=3percent | component:critical-damage:stat-conversion-model-required; component:critical-rate:ambiguous-scoped-value:all; component:critical-rate:expected-value-model-required | stat-conversion-model; critical-expected-value |
+| buffs:2205380 | 刚勇 | needs-expected-model | baseAttackTerm, critical, generalDamage, physicalMagicEnhancement, skillMultiplier | critical-rate:all=5percent; generic-damage:all=50percent; skill-multiplier:all=200percent | component:adaptive-primary-stat:ambiguous-scoped-value:all; component:adaptive-primary-stat:stat-conversion-model-required; component:critical-rate:expected-value-model-required | critical-expected-value; runtime-stack; target-window-state |
 
 
 ## Needs Stat Conversion Model
@@ -214,7 +214,7 @@ These contracts are still proof gates. They define the required inputs and valid
 | buffs:2201330 | 护盾打击 | needs-stat-conversion-model | baseAttackTerm, elementalDamage, generalDamage | target-resistance-mitigation:all=0.6percent | component:adaptive-primary-stat:ambiguous-scoped-value:all; component:adaptive-primary-stat:stat-conversion-model-required; component:target-resistance-mitigation:target-window-proof-required | target-window-state; runtime-stack; stat-conversion-model |
 | buffs:2201360 | 幸缘维护 | needs-stat-conversion-model | baseAttackTerm, generalDamage, physicalMagicEnhancement, timingCadence | atk:target=10percent; atk:all=-30percent | component:cooldown-or-resource:timing-model-required; component:mastery-stat:ambiguous-scoped-value:all; component:mastery-stat:stat-conversion-model-required | runtime-stack; timing-cadence-model; stat-conversion-model |
 | buffs:2201490 | Recovery | needs-stat-conversion-model | baseAttackTerm, generalDamage | atk:all=1percent; generic-damage:all=20percent; adaptive-primary-stat:all=1percent | component:adaptive-primary-stat:stat-conversion-model-required | runtime-stack; stat-conversion-model |
-| buffs:2201640 | 岩拳回复 | needs-stat-conversion-model | baseAttackTerm, generalDamage, luckyEnhancement, physicalMagicEnhancement, timingCadence | adaptive-primary-stat:all=2percent; atk:target=10percent; cooldown-or-resource:all=10percent | component:adaptive-primary-stat:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required | stat-conversion-model; runtime-stack; timing-cadence-model |
+| buffs:2201650 | Rampart Fortitude | needs-stat-conversion-model | baseAttackTerm, generalDamage, physicalMagicEnhancement, timingCadence | atk:all=-30percent; cooldown-or-resource:all=3flat | component:cooldown-or-resource:timing-model-required; component:mastery-stat:ambiguous-scoped-value:all; component:mastery-stat:stat-conversion-model-required | timing-cadence-model; stat-conversion-model |
 
 
 ## Needs Hit Count Model
@@ -478,11 +478,11 @@ _None._
 | buffs:2202570 | Luck Damage | needs-value-selection | generalDamage, luckyEnhancement, skillMultiplier | lucky-damage:all=5percent | component:skill-multiplier:ambiguous-scoped-value:all |  |
 | buffs:2203040 | Wolf Pact | needs-value-selection | baseAttackTerm, generalDamage, physicalMagicEnhancement, skillMultiplier, timingCadence | atk:all=30percent; hit-count-model:all=30percent | component:hit-count-model:hit-count-model-required; component:skill-multiplier:ambiguous-scoped-value:all | hit-count-model |
 | buffs:2203070 | Direwolf's Hunger | needs-value-selection | baseAttackTerm, critical, generalDamage, skillMultiplier, timingCadence | adaptive-primary-stat:all=1percent; critical-damage:all=2percent; skill-multiplier:all=2percent | component:adaptive-primary-stat:stat-conversion-model-required; component:atk:ambiguous-scoped-value:all; component:haste-or-attack-speed:timing-model-required | stat-conversion-model; runtime-stack; timing-cadence-model |
+| buffs:2203150 | 光能之矢 | needs-value-selection | baseAttackTerm, critical, elementalDamage, generalDamage, skillMultiplier, timingCadence | cooldown-or-resource:target=2flat; critical-damage:all=1percent; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:ambiguous-scoped-value:all | stat-conversion-model; timing-cadence-model; runtime-stack |
+| buffs:2203190 | 天空之落星 | needs-value-selection | baseAttackTerm, critical, elementalDamage, generalDamage, physicalMagicEnhancement, skillMultiplier, timingCadence | cooldown-or-resource:target=2flat; critical-damage:all=1percent; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:ambiguous-scoped-value:all | stat-conversion-model; timing-cadence-model; runtime-stack |
 | buffs:2203220 | 暴击双生 | needs-value-selection | critical, generalDamage, timingCadence | cooldown-or-resource:all=2flat; critical-rate:all=1percent | component:cooldown-or-resource:timing-model-required; component:critical-damage:ambiguous-scoped-value:all; component:critical-rate:expected-value-model-required | timing-cadence-model; critical-expected-value |
-| buffs:2203260 | 成熟之翼展 | needs-value-selection | baseAttackTerm, critical, generalDamage, timingCadence | atk:all=100percent; critical-rate:all=200percent; hit-count-model:all=100percent | component:critical-damage:ambiguous-scoped-value:all; component:critical-rate:expected-value-model-required; component:hit-count-model:hit-count-model-required | critical-expected-value; hit-count-model |
-| buffs:2203370 | Beast Tidal Power | needs-value-selection | elementalDamage |  | component:elemental-damage:ambiguous-scoped-value:all |  |
-| buffs:2203610 | 光能裂隙-爆炸箭增伤 | needs-value-selection | elementalDamage, generalDamage, skillMultiplier | generic-damage:all=20percent | component:skill-multiplier:ambiguous-scoped-value:all |  |
-| buffs:2204060 | Tide Mastery | needs-value-selection | baseAttackTerm, critical, elementalDamage, finalDamage, generalDamage, physicalMagicEnhancement, timingCadence | adaptive-primary-stat:all=10percent; cooldown-or-resource:target=15flat; critical-damage:all=15percent | component:adaptive-primary-stat:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:ambiguous-scoped-value:all | stat-conversion-model; runtime-scope; timing-cadence-model |
+| buffs:2203230 | Focused Shot | needs-value-selection | baseAttackTerm, critical, elementalDamage, generalDamage, skillMultiplier, timingCadence | cooldown-or-resource:target=2flat; critical-damage:all=1percent; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:ambiguous-scoped-value:all | stat-conversion-model; timing-cadence-model; runtime-stack |
+| buffs:2203231 | Focused Shot | needs-value-selection | baseAttackTerm, critical, elementalDamage, generalDamage, skillMultiplier, timingCadence | cooldown-or-resource:target=2flat; critical-damage:all=1percent; elemental-damage:target=1percent | component:cooldown-or-resource:stat-conversion-model-required; component:cooldown-or-resource:timing-model-required; component:critical-rate:ambiguous-scoped-value:all | stat-conversion-model; timing-cadence-model; runtime-stack |
 
 
 ## No Formula Value Needed
@@ -501,8 +501,6 @@ _None._
 | battle-imagines:2110083 | Arcane! Flame Roar | packet-exact-value-not-required | elementalDamage, physicalMagicEnhancement |  |  |  |
 | battle-imagines:2110084 | Shield of Flowing Fire | non-damage-or-support | elementalDamage |  |  |  |
 | battle-imagines:2110085 | Arcane! Flash Execution | packet-exact-value-not-required | baseAttackTerm, elementalDamage, generalDamage, physicalMagicEnhancement, timingCadence | cooldown-or-resource:target=20flat | component:cooldown-or-resource:timing-model-required | timing-cadence-model |
-| battle-imagines:2110090 | Stunt! Chaotic Barrage | packet-exact-value-not-required | baseAttackTerm, elementalDamage, generalDamage, physicalMagicEnhancement |  |  |  |
-| battle-imagines:2110091 | Stunt! Chaotic Barrage | packet-exact-value-not-required | baseAttackTerm, elementalDamage, generalDamage, physicalMagicEnhancement |  |  |  |
 | battle-imagines:2110096 | Boarrier King - Electro Shield | packet-exact-value-not-required | baseAttackTerm, elementalDamage, generalDamage |  |  |  |
 | battle-imagines:2110099 | Arcane! Poison Explosion | packet-exact-value-not-required | baseAttackTerm, generalDamage, physicalMagicEnhancement |  |  |  |
 | battle-imagines:2110100 | Iron Fang - Healing Prohibition | non-damage-or-support |  |  |  |  |
@@ -519,6 +517,8 @@ _None._
 | battle-imagines:2110140 | Great Tower Boss - Mechanical Power | non-damage-or-support |  |  |  |  |
 | battle-imagines:2110142 | Rapid Slash Combo | non-damage-or-support |  |  |  |  |
 | battle-imagines:2110144 | Boarrier - Strong Physique | non-damage-or-support |  |  |  |  |
+| battle-imagines:2110149 | Power of the Mighty Colossus | non-damage-or-support |  |  |  |  |
+| battle-imagines:2110161 | Lucy - Celestial Spirit Mage! | packet-exact-value-not-required |  |  |  |  |
 
 
 ## Needs Component Mapping

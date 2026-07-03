@@ -222,7 +222,7 @@ Use `--out <file>` or `--output-dir <dir>` to redirect output. By default, outpu
 }
 ```
 
-Supported presets are `steam`, `epic`, `standalone`, and `auto`. Use `--game <path|preset>` for a one-off run. For a machine-specific install path, create `gamepath.local.json`; it is ignored by git and overrides `gamepath.json`.
+Supported presets are `steam`, `epic`, `standalone`, and `auto`. The `steam` preset checks Steam's default install path and any extra library folders listed in `steamapps/libraryfolders.vdf`. Use `--game <path|preset>` for a one-off run. For a machine-specific install path, create `gamepath.local.json`; it is ignored by git and overrides `gamepath.json`.
 
 Extract icons from generated outputs and configured probe folders:
 

@@ -179,8 +179,10 @@ function normalizeGamePathPreset(value) {
 function launcherRootCandidates(preset) {
   const roots = [];
   if (preset === "steam" || preset === "auto") {
-    for (const programRoot of programFileRoots()) {
-      roots.push(path.join(programRoot, "Steam", "steamapps", "common", "Blue Protocol Star Resonance"));
+    for (const steamRoot of steamInstallRootCandidates()) {
+      for (const libraryRoot of steamLibraryRootCandidates(steamRoot)) {
+        roots.push(path.join(libraryRoot, "steamapps", "common", "Blue Protocol Star Resonance"));
+      }
     }
   }
   if (preset === "epic" || preset === "auto") {
@@ -198,6 +200,38 @@ function launcherRootCandidates(preset) {
     }
   }
   return uniquePathCandidates(roots);
+}
+
+function steamInstallRootCandidates() {
+  return uniquePathCandidates(programFileRoots().map((programRoot) => path.join(programRoot, "Steam")));
+}
+
+function steamLibraryRootCandidates(steamRoot) {
+  const roots = [steamRoot];
+  const libraryFoldersPath = path.join(steamRoot, "steamapps", "libraryfolders.vdf");
+  try {
+    const text = fs.readFileSync(libraryFoldersPath, "utf8");
+    for (const line of text.split(/\r?\n/)) {
+      const pathMatch = line.match(/"path"\s+"([^"]+)"/);
+      if (pathMatch) {
+        roots.push(unescapeSteamVdfPath(pathMatch[1]));
+        continue;
+      }
+
+      const legacyMatch = line.match(/"\d+"\s+"([^"]+)"/);
+      if (legacyMatch && /[:\\\/]/.test(legacyMatch[1])) {
+        roots.push(unescapeSteamVdfPath(legacyMatch[1]));
+      }
+    }
+  } catch {
+    // The default Steam install path is still checked when the library index is unavailable.
+  }
+
+  return uniquePathCandidates(roots);
+}
+
+function unescapeSteamVdfPath(value) {
+  return String(value || "").replace(/\\\\/g, "\\");
 }
 
 function programFileRoots() {

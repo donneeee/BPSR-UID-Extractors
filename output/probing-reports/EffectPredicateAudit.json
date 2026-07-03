@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-05-28T21:29:18.523Z",
+    "generatedAt": "2026-06-09T10:52:43.130Z",
     "sourceFiles": [
       "output/EffectSources.json",
       "output/SeasonPhantomFactors.json",
@@ -15,13 +15,13 @@
       "activation.focus-state": 14,
       "attacker.elite-or-stronger": 14,
       "direction.damage-dealt": 543,
-      "direction.damage-taken-or-defense": 284,
+      "direction.damage-taken-or-defense": 282,
       "effect.compound-components": 582,
       "needs.description-extraction": 70,
       "needs.effect-component-classification": 175,
       "needs.module-description-extraction": 16,
-      "relationship.produced-damage-row": 712,
-      "scope.skill-or-recount-targeted": 832,
+      "relationship.produced-damage-row": 713,
+      "scope.skill-or-recount-targeted": 826,
       "source.armor-or-defense-scaling": 22,
       "source.battle-imagine": 11,
       "source.companion-or-summon": 145,
@@ -31,7 +31,7 @@
       "target.resistance": 1,
       "target.state-or-debuff": 23,
       "target.super-armor": 2,
-      "window.stack-state": 27,
+      "window.stack-state": 28,
       "window.timed": 96
     },
     "familyCounts": {
@@ -2052,6 +2052,7 @@
       "name": "Arcane! Blazing Axe",
       "sourceKind": "imagine",
       "sourceType": "imagine",
+      "iconPath": "ui/textures/skill_aoyi/skill_aoyi_skill_icon_018",
       "buffIds": [
         3210051
       ],
@@ -2084,7 +2085,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Arcane! Blazing Axe | 山贼首领 - 被动 - 子buff dot | 奥义！炽炎战斧 | 奧義！熾炎戰斧 | 絶技！サンダープレッシャー | 비기! 강압의 번개 | Arcane ! Hache ardente | Arkana! Lodernde Axt | ¡Arcano! Hacha Ardiente | Arcano! Machado Flamejante | Stunt! Thunder Suppress | Ultimate! Overbearing Thunder | Parent or linked row is an Arcane/Imagine entry.",
+      "text": "Arcane! Blazing Axe | 山贼首领 - 被动 - 子buff dot | 奥义！炽炎战斧 | 奧義！熾炎戰斧 | Arcane ! Hache ardente | Arkana! Lodernde Axt | ¡Arcano! Hacha Ardiente | Arcano! Machado Flamejante | ui/textures/skill_aoyi/skill_aoyi_skill_icon_018 | Parent or linked row is an Arcane/Imagine entry.",
       "predicateTags": [
         "relationship.produced-damage-row",
         "scope.skill-or-recount-targeted",
@@ -2588,7 +2589,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 827820972,
+              "sourceOffset": 827820876,
               "rowId": 56
             },
             {
@@ -2617,7 +2618,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 827821028,
+              "sourceOffset": 827820932,
               "rowId": 57
             },
             {
@@ -2646,7 +2647,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 827821084,
+              "sourceOffset": 827820988,
               "rowId": 58
             },
             {
@@ -2675,7 +2676,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 827821140,
+              "sourceOffset": 827821044,
               "rowId": 59
             },
             {
@@ -2704,7 +2705,7 @@
                 }
               ],
               "sourceTable": "SkillAoyiStarTable.ctb",
-              "sourceOffset": 827821196,
+              "sourceOffset": 827821100,
               "rowId": 60
             }
           ],
@@ -2849,6 +2850,8 @@
       "iconPath": "ui/atlas/talent_passive_11/gongjian1160",
       "buffIds": [
         55223,
+        55413,
+        55414,
         2203600
       ],
       "effectComponents": [
@@ -12321,6 +12324,8 @@
       "sourceType": "talent",
       "iconPath": "ui/atlas/talent_passive_11/talent_passive_icon_general_dps_skyhitcri",
       "buffIds": [
+        55413,
+        55414,
         2203190
       ],
       "effectComponents": [
@@ -12352,7 +12357,7 @@
       "targetCount": 0,
       "targets": [],
       "descriptionTextCaptured": true,
-      "text": "Meteor | 天空之落星 | 空裂く閃光 | 하늘에서 떨어지는 별 | Météore | Meteoro | Skyfall Star | Falling Star of Sky | ui/atlas/talent_passive_11/talent_passive_icon_general_dps_skyhitcri",
+      "text": "Meteor | 天空之落星 | 空裂く閃光 | 하늘에서 떨어지는 별 | Météore | Meteoro | Skyfall Star | Falling Star of Sky | ui/atlas/talent_passive_11/talent_passive_icon_general_dps_skyhitcri | Activation aliases map a talent/passive source row to the runtime buff window that enables it. They only expose uptime; they do not imply a damage formula.",
       "predicateTags": [
         "activation.active-modifier-window",
         "source.companion-or-summon"
@@ -14522,8 +14527,8 @@
       "sourcePath": "output/EffectSources.json",
       "id": "buff-source:3210171",
       "name": "Stunt! Cabbage Blitz",
-      "sourceKind": "imagine",
-      "sourceType": "imagine",
+      "sourceKind": "passive-proc",
+      "sourceType": "passive",
       "buffIds": [
         3210171
       ],
@@ -14556,7 +14561,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Stunt! Cabbage Blitz | 卷心菜精英2-被动触发 | 绝技！卷心菜霹雳闪 | 絕技！捲心菜霹靂閃 | 奥義！指令の象限 | 오의! 지령 사분면 | Acrobatie ! Foudre du chou | Stunt! Kohlblitz | ¡Proeza! Bombardeo de Col | Proeza! Bombardeio Repolho | Arcane! Command Quadrant | Parent or linked row is an Arcane/Imagine entry.",
+      "text": "Stunt! Cabbage Blitz | 卷心菜精英2-被动触发 | 绝技！卷心菜霹雳闪 | 絕技！捲心菜霹靂閃 | Acrobatie ! Foudre du chou | Stunt! Kohlblitz | ¡Proeza! Bombardeo de Col | Proeza! Bombardeio Repolho | Name marks a passive-triggered row.",
       "predicateTags": [
         "relationship.produced-damage-row",
         "scope.skill-or-recount-targeted",
@@ -15900,8 +15905,9 @@
       "sourcePath": "output/EffectSources.json",
       "id": "buff-source:823009",
       "name": "Unmapped Buff 823009",
-      "sourceKind": "buff-proc",
-      "sourceType": "buff",
+      "sourceKind": "talent-skill",
+      "sourceType": "talent",
+      "iconPath": "ui/atlas/buff/buff_talent_skill_360102",
       "buffIds": [
         823009
       ],
@@ -15931,7 +15937,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Unmapped Buff 823009 | 未映射增益 823009 | 未對應增益 823009 | 未マッピングバフ 823009 | 매핑되지 않은 버프 823009 | Buff non mappé 823009 | Nicht zugeordneter Buff 823009 | Mejora sin asignar 823009 | Bônus não mapeado 823009 | บัฟที่ยังไม่แมป 823009 | Buff belum dipetakan 823009 | 精英大机器人群体强化自身护盾 | DamageAttr row links directly to BuffName.",
+      "text": "Unmapped Buff 823009 | 未映射增益 823009 | 未對應增益 823009 | 未マッピングバフ 823009 | 매핑되지 않은 버프 823009 | Buff non mappé 823009 | Nicht zugeordneter Buff 823009 | Mejora sin asignar 823009 | Bônus não mapeado 823009 | บัฟที่ยังไม่แมป 823009 | Buff belum dipetakan 823009 | 精英大机器人群体强化自身护盾 | ui/atlas/buff/buff_talent_skill_360102 | Name/icon path marks a talent-linked row.",
       "predicateTags": [
         "relationship.produced-damage-row",
         "scope.skill-or-recount-targeted",
@@ -15955,8 +15961,9 @@
       "sourcePath": "output/EffectSources.json",
       "id": "buff-source:880665",
       "name": "Unmapped Buff 880665",
-      "sourceKind": "buff-proc",
-      "sourceType": "buff",
+      "sourceKind": "talent-skill",
+      "sourceType": "talent",
+      "iconPath": "ui/atlas/buff/buff_talent_skill_300001",
       "buffIds": [
         880665
       ],
@@ -15986,7 +15993,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Unmapped Buff 880665 | 未映射增益 880665 | 未對應增益 880665 | 未マッピングバフ 880665 | 매핑되지 않은 버프 880665 | Buff non mappé 880665 | Nicht zugeordneter Buff 880665 | Mejora sin asignar 880665 | Bônus não mapeado 880665 | บัฟที่ยังไม่แมป 880665 | Buff belum dipetakan 880665 | boss捶地护盾 | DamageAttr row links directly to BuffName.",
+      "text": "Unmapped Buff 880665 | 未映射增益 880665 | 未對應增益 880665 | 未マッピングバフ 880665 | 매핑되지 않은 버프 880665 | Buff non mappé 880665 | Nicht zugeordneter Buff 880665 | Mejora sin asignar 880665 | Bônus não mapeado 880665 | บัฟที่ยังไม่แมป 880665 | Buff belum dipetakan 880665 | boss捶地护盾 | ui/atlas/buff/buff_talent_skill_300001 | Name/icon path marks a talent-linked row.",
       "predicateTags": [
         "relationship.produced-damage-row",
         "scope.skill-or-recount-targeted",
@@ -16133,6 +16140,7 @@
       "name": "Unmapped Buff 882847",
       "sourceKind": "buff-proc",
       "sourceType": "buff",
+      "iconPath": "ui/atlas/debuff/debuff_icon_83",
       "buffIds": [
         882847
       ],
@@ -16162,7 +16170,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Unmapped Buff 882847 | 未映射增益 882847 | 未對應增益 882847 | 未マッピングバフ 882847 | 매핑되지 않은 버프 882847 | Buff non mappé 882847 | Nicht zugeordneter Buff 882847 | Mejora sin asignar 882847 | Bônus não mapeado 882847 | บัฟที่ยังไม่แมป 882847 | Buff belum dipetakan 882847 | 亡灵还魂-BOSS-结算全体伤害 | DamageAttr row links directly to BuffName.",
+      "text": "Unmapped Buff 882847 | 未映射增益 882847 | 未對應增益 882847 | 未マッピングバフ 882847 | 매핑되지 않은 버프 882847 | Buff non mappé 882847 | Nicht zugeordneter Buff 882847 | Mejora sin asignar 882847 | Bônus não mapeado 882847 | บัฟที่ยังไม่แมป 882847 | Buff belum dipetakan 882847 | 亡灵还魂-BOSS-结算全体伤害 | ui/atlas/debuff/debuff_icon_83 | DamageAttr row links directly to BuffName.",
       "predicateTags": [
         "direction.damage-dealt",
         "relationship.produced-damage-row",
@@ -16633,8 +16641,9 @@
       "sourcePath": "output/EffectSources.json",
       "id": "buff-source:999990",
       "name": "Unmapped Buff 999990",
-      "sourceKind": "buff-proc",
-      "sourceType": "buff",
+      "sourceKind": "talent-skill",
+      "sourceType": "talent",
+      "iconPath": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
       "buffIds": [
         999990
       ],
@@ -16664,7 +16673,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Unmapped Buff 999990 | 未映射增益 999990 | 未對應增益 999990 | 未マッピングバフ 999990 | 매핑되지 않은 버프 999990 | Buff non mappé 999990 | Nicht zugeordneter Buff 999990 | Mejora sin asignar 999990 | Bônus não mapeado 999990 | บัฟที่ยังไม่แมป 999990 | Buff belum dipetakan 999990 | 肉鸽本-翡翠角羊召唤怪2 | DamageAttr row links directly to BuffName.",
+      "text": "Unmapped Buff 999990 | 未映射增益 999990 | 未對應增益 999990 | 未マッピングバフ 999990 | 매핑되지 않은 버프 999990 | Buff non mappé 999990 | Nicht zugeordneter Buff 999990 | Mejora sin asignar 999990 | Bônus não mapeado 999990 | บัฟที่ยังไม่แมป 999990 | Buff belum dipetakan 999990 | 肉鸽本-翡翠角羊召唤怪2 | ui/atlas/buff/talent_passive_icon_general_sup_grassarea | Name/icon path marks a talent-linked row.",
       "predicateTags": [
         "relationship.produced-damage-row",
         "scope.skill-or-recount-targeted",
@@ -16688,8 +16697,9 @@
       "sourcePath": "output/EffectSources.json",
       "id": "buff-source:999991",
       "name": "Unmapped Buff 999991",
-      "sourceKind": "buff-proc",
-      "sourceType": "buff",
+      "sourceKind": "talent-skill",
+      "sourceType": "talent",
+      "iconPath": "ui/atlas/buff/talent_passive_icon_general_sup_grassarea",
       "buffIds": [
         999991
       ],
@@ -16719,7 +16729,7 @@
         }
       ],
       "descriptionTextCaptured": false,
-      "text": "Unmapped Buff 999991 | 未映射增益 999991 | 未對應增益 999991 | 未マッピングバフ 999991 | 매핑되지 않은 버프 999991 | Buff non mappé 999991 | Nicht zugeordneter Buff 999991 | Mejora sin asignar 999991 | Bônus não mapeado 999991 | บัฟที่ยังไม่แมป 999991 | Buff belum dipetakan 999991 | 肉鸽本-翡翠角羊召唤怪3 | DamageAttr row links directly to BuffName.",
+      "text": "Unmapped Buff 999991 | 未映射增益 999991 | 未對應增益 999991 | 未マッピングバフ 999991 | 매핑되지 않은 버프 999991 | Buff non mappé 999991 | Nicht zugeordneter Buff 999991 | Mejora sin asignar 999991 | Bônus não mapeado 999991 | บัฟที่ยังไม่แมป 999991 | Buff belum dipetakan 999991 | 肉鸽本-翡翠角羊召唤怪3 | ui/atlas/buff/talent_passive_icon_general_sup_grassarea | Name/icon path marks a talent-linked row.",
       "predicateTags": [
         "relationship.produced-damage-row",
         "scope.skill-or-recount-targeted",

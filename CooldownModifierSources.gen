@@ -1,0 +1,752 @@
+#!/usr/bin/env node
+const fs = require("node:fs");
+const path = require("node:path");
+
+const DEFAULT_OUT = path.join("cooldown-modifiers", "CooldownModifierSources.json");
+
+const SOURCE_FILES = [
+  { kind: "skill", file: "SkillDescriptions.json", container: "entriesByUid" },
+  { kind: "talent", file: "TalentDescriptions.json", container: "entriesByUid" },
+  { kind: "seasonalTalent", file: "SeasonalTalentDescriptions.json", container: "entriesByUid" },
+  { kind: "factor", file: "FactorDescriptions.json", container: "entriesByUid" },
+  { kind: "itemOrEquipment", file: "ItemDescriptions.json", container: "entriesByUid" },
+  { kind: "battleImagine", file: "BattleImagineDescriptions.json", container: "entriesByUid" },
+  { kind: "seasonEffect", file: "SeasonEffectDescriptions.json", container: "rows" },
+];
+
+const LOCALES = ["en", "zh-CN", "zh-TW", "ja", "ko-KR", "fr", "de", "es", "pt-BR", "th", "id"];
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp();
+    return;
+  }
+
+  const outputDir = path.resolve(args.outputDir || path.join(__dirname, "output"));
+  const out = path.resolve(args.out || path.join(outputDir, DEFAULT_OUT));
+  const csvOut = path.resolve(args.csv || out.replace(/\.json$/i, ".csv"));
+  const mdOut = path.resolve(args.md || out.replace(/\.json$/i, ".md"));
+
+  const allRows = [];
+  const fileSummaries = [];
+  const context = {
+    factorGradeRowsByBuffId: loadFactorGradeRowsByBuffId(outputDir),
+  };
+  for (const source of SOURCE_FILES) {
+    const filePath = path.join(outputDir, source.file);
+    const data = readJson(filePath, null);
+    if (!data) {
+      fileSummaries.push({ ...source, filePath, entries: 0, rows: 0, missing: true });
+      continue;
+    }
+    const entries = collectEntries(data, source);
+    const rows = [];
+    for (const entry of entries) {
+      rows.push(...buildRows(source, entry, context));
+    }
+    allRows.push(...rows);
+    fileSummaries.push({
+      ...source,
+      filePath: displayPath(filePath),
+      entries: entries.length,
+      rows: rows.length,
+      missing: false,
+    });
+  }
+
+  allRows.sort((left, right) => {
+    const kindCompare = left.sourceKind.localeCompare(right.sourceKind);
+    if (kindCompare) return kindCompare;
+    return Number(left.uid) - Number(right.uid) || left.name.localeCompare(right.name);
+  });
+
+  const output = {
+    schemaVersion: 2,
+    generatedAt: new Date().toISOString(),
+    source: {
+      outputDir: displayPath(outputDir),
+      files: fileSummaries,
+      notes: [
+        "This is an evidence catalog, not an automatic runtime rule table.",
+        "Rows marked runtimeReadiness=eventEvidenceRequired need packet/log proof before they can safely change timers.",
+        "Rows marked runtimeReadiness=activeBuffOrAttrCandidate are likely candidates for runtime wiring once their buff/attr source is known.",
+        "Rows with statDependencies should consume the final exposed character stat value instead of reconstructing gear/talent/stat formulas.",
+        "gameFileEvidence lists deterministic definition data; runtimeEvidence lists observable player state or events needed to apply it.",
+        "remainingEvidence is the part that still needs a runtime bridge or controlled encounter proof.",
+        "Item-use cooldowns are kept so they can be filtered out explicitly instead of disappearing from review.",
+      ],
+    },
+    summary: {
+      rows: allRows.length,
+      bySourceKind: countBy(allRows, (row) => row.sourceKind),
+      byCategory: countBy(allRows, (row) => row.category),
+      byRuntimeReadiness: countBy(allRows, (row) => row.runtimeReadiness),
+      byRuntimeEvidence: countBy(allRows.flatMap((row) => row.runtimeEvidence), (kind) => kind),
+      byRemainingEvidence: countBy(allRows.flatMap((row) => row.remainingEvidence), (kind) => kind),
+      byStatDependency: countBy(allRows.flatMap((row) => row.statDependencies), (stat) => stat),
+      highConfidenceRows: allRows.filter((row) => row.confidence === "high").length,
+      needsEncounterEvidenceRows: allRows.filter((row) => row.needsEncounterEvidence).length,
+    },
+    rows: allRows,
+  };
+
+  console.log(`Cooldown modifier rows: ${allRows.length}`);
+  console.log(`Output JSON: ${displayPath(out)}`);
+  console.log(`Output CSV: ${displayPath(csvOut)}`);
+  console.log(`Output Markdown: ${displayPath(mdOut)}`);
+
+  if (args.dryRun) {
+    return;
+  }
+
+  writeJson(out, output);
+  writeCsv(csvOut, allRows, csvColumns());
+  writeMarkdown(mdOut, output);
+}
+
+function printHelp() {
+  console.log(`CooldownModifierSources.gen - catalog cooldown, haste, and cooldown-acceleration sources.
+
+Options:
+  --output-dir <path>       Directory containing generated description JSON files.
+  --out <path>              Output JSON path. Defaults to output/${DEFAULT_OUT}.
+  --csv <path>              Output CSV path. Defaults beside --out.
+  --md <path>               Output Markdown path. Defaults beside --out.
+  --dry-run                 Scan and print counts without writing files.
+  --help                    Show this help.
+
+Notes:
+  The generator reads already-generated description surfaces from the extractor
+  output folder. It keeps provenance snippets visible and classifies rows as
+  active-buff/attr candidates, event-evidence-required, item-use cooldowns, or
+  text-only rows so runtime math can be patched safely.`);
+}
+
+function parseArgs(argv) {
+  const args = {
+    help: false,
+    dryRun: false,
+    out: "",
+    csv: "",
+    md: "",
+    outputDir: "",
+  };
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === "--help" || arg === "-h") args.help = true;
+    else if (arg === "--dry-run") args.dryRun = true;
+    else if (arg === "--out") args.out = argv[++index] || "";
+    else if (arg === "--csv") args.csv = argv[++index] || "";
+    else if (arg === "--md") args.md = argv[++index] || "";
+    else if (arg === "--output-dir") args.outputDir = argv[++index] || "";
+  }
+  return args;
+}
+
+function loadFactorGradeRowsByBuffId(outputDir) {
+  const data = readJson(path.join(outputDir, "SeasonPhantomFactors.json"), null);
+  const rowsByBuffId = new Map();
+  const factors = data?.factorsByBuffId;
+  if (!factors || typeof factors !== "object") return rowsByBuffId;
+
+  for (const [buffId, factor] of Object.entries(factors)) {
+    const gradeRows = factor?.modifierEvidence?.gradeRows;
+    if (Array.isArray(gradeRows) && gradeRows.length > 0) {
+      rowsByBuffId.set(String(factor.buffId ?? buffId), gradeRows);
+    }
+  }
+  return rowsByBuffId;
+}
+
+function collectEntries(data, source) {
+  if (source.container === "entriesByUid" && data.entriesByUid && typeof data.entriesByUid === "object") {
+    return Object.entries(data.entriesByUid).map(([uid, entry]) => ({ uid, entry }));
+  }
+  if (source.container === "rows" && Array.isArray(data.rows)) {
+    return data.rows.map((entry, index) => ({
+      uid: String(entry.uid ?? entry.id ?? entry.buffId ?? entry.Id ?? index),
+      entry,
+    }));
+  }
+  if (data.byBuffId && typeof data.byBuffId === "object") {
+    return Object.entries(data.byBuffId).map(([uid, entry]) => ({ uid, entry }));
+  }
+  return [];
+}
+
+function buildRows(source, wrappedEntry, context) {
+  const entry = wrappedEntry.entry || {};
+  const uid = String(wrappedEntry.uid || entry.uid || entry.id || entry.Id || "");
+  const name = chooseName(entry, uid);
+  const names = chooseNames(entry);
+  const texts = collectTexts(entry, name);
+  const snippets = collectCooldownSnippets(texts);
+  return snippets
+    .filter((snippet) => keepSnippet(snippet, name))
+    .map((snippet, index) => {
+    const classification = classifySnippet(source.kind, snippet);
+    const statDependencies = extractStatDependencies(snippet);
+    const evidence = classifyEvidence(source.kind, uid, snippet, classification, statDependencies, entry, context);
+    return {
+      sourceKind: source.kind,
+      sourceFile: source.file,
+      uid,
+      name,
+      names,
+      rowKey: `${source.kind}:${uid}:${index + 1}`,
+      category: classification.category,
+      contributionKind: classification.contributionKind,
+      runtimeReadiness: classification.runtimeReadiness,
+      confidence: classification.confidence,
+      needsEncounterEvidence: classification.needsEncounterEvidence,
+      targetScope: classification.targetScope,
+      targetText: classification.targetText,
+      statDependencies,
+      usesFinalStats: statDependencies.length > 0,
+      gameFileEvidence: evidence.gameFileEvidence,
+      runtimeEvidence: evidence.runtimeEvidence,
+      remainingEvidence: evidence.remainingEvidence,
+      needsRuntimeOwnership: evidence.runtimeEvidence.length > 0,
+      values: extractValues(snippet),
+      snippet,
+      provenance: collectProvenance(entry),
+    };
+  });
+}
+
+function keepSnippet(snippet, name) {
+  const normalizedSnippet = cleanText(snippet).toLowerCase();
+  const normalizedName = cleanText(name).toLowerCase();
+  if (!normalizedSnippet) return false;
+  if (normalizedSnippet === normalizedName) return false;
+  return true;
+}
+
+function collectTexts(entry, name) {
+  const texts = [];
+  pushText(texts, name);
+  pushText(texts, entry.cleanDescription);
+  pushText(texts, entry.description);
+  pushText(texts, entry.effect);
+  pushText(texts, entry.effectText);
+  pushText(texts, entry.text);
+  pushText(texts, entry.cleanText);
+  if (Array.isArray(entry.descriptionBlocks)) {
+    for (const block of entry.descriptionBlocks) {
+      pushText(texts, block.cleanText);
+      pushText(texts, block.text);
+    }
+  }
+  if (Array.isArray(entry.levels)) {
+    for (const level of entry.levels) {
+      pushText(texts, level.cleanDescription);
+      pushText(texts, level.description);
+      pushText(texts, level.effect);
+    }
+  }
+  if (Array.isArray(entry.tiers)) {
+    for (const tier of entry.tiers) {
+      pushText(texts, tier.cleanDescription);
+      pushText(texts, tier.description);
+      pushText(texts, tier.effect);
+    }
+  }
+  if (Array.isArray(entry.valueRows)) {
+    for (const row of entry.valueRows) {
+      pushText(texts, row.label);
+      pushText(texts, row.text);
+      pushText(texts, row.description);
+    }
+  }
+  return unique(texts.map(cleanText).filter(Boolean));
+}
+
+function collectCooldownSnippets(texts) {
+  const snippets = [];
+  for (const text of texts) {
+    for (const part of splitSentences(text)) {
+      const snippet = cleanText(part);
+      if (!snippet || !isCooldownRelated(snippet)) continue;
+      snippets.push(snippet);
+    }
+  }
+  return unique(snippets);
+}
+
+function isCooldownRelated(text) {
+  return /(?:cooldown|cool down|\bCD\b|recast|remaining CD|CD Boost|accelerat(?:e|ion)|Haste)/i.test(text);
+}
+
+function classifySnippet(sourceKind, snippet) {
+  const text = snippet.toLowerCase();
+  const targetText = extractTargetText(snippet);
+  const targetScope = classifyTargetScope(snippet);
+  let category = "cooldownTextUnclassified";
+  let contributionKind = "evidence";
+  let runtimeReadiness = "textOnly";
+  let confidence = "medium";
+  let needsEncounterEvidence = false;
+
+  if (/will not include haste|cannot include haste|does not include haste/i.test(snippet)) {
+    category = "hasteExcluded";
+    contributionKind = "notModifier";
+    runtimeReadiness = "notCombatSkillModifier";
+    confidence = "high";
+  } else if (/\bcd\s*:?\s*\d+(?:\.\d+)?\s*s\b/i.test(snippet) && sourceKind === "itemOrEquipment") {
+    category = "itemUseCooldown";
+    contributionKind = "itemCooldown";
+    runtimeReadiness = "notCombatSkillModifier";
+    confidence = "high";
+  } else if (/(?:does not|won't|will not|no longer)\s+trigger\s+cd|no cd|without triggering cd/i.test(snippet)) {
+    category = "noCooldownTrigger";
+    contributionKind = "noCooldownTrigger";
+    runtimeReadiness = "eventEvidenceRequired";
+    confidence = "high";
+    needsEncounterEvidence = true;
+  } else if (/\breset(?:s|ting)?\b[^.]{0,100}\bcd\b|\bcd\b[^.]{0,100}\breset(?:s|ting)?\b/i.test(snippet)) {
+    category = "resetCooldown";
+    contributionKind = "reset";
+    runtimeReadiness = "eventEvidenceRequired";
+    confidence = "high";
+    needsEncounterEvidence = true;
+  } else if (/reduce(?:s|d)?[^.]{0,140}(?:remaining\s+)?[^.]{0,80}\bcd\b|\bcd\b[^.]{0,100}reduce/i.test(snippet)) {
+    category = /%|％/.test(snippet) ? "percentCooldownReduce" : "flatCooldownReduce";
+    contributionKind = /%|％/.test(snippet) ? "pctReduce" : "flatReduceMs";
+    runtimeReadiness = requiresEventEvidence(snippet)
+      ? "eventEvidenceRequired"
+      : "activeBuffOrAttrCandidate";
+    confidence = "high";
+    needsEncounterEvidence = runtimeReadiness === "eventEvidenceRequired";
+  } else if (/\bcds?\b[^.]{0,80}accelerat|\baccelerat[^.]{0,80}\bcds?\b|cd boost|increase cd speed/i.test(snippet)) {
+    category = "cooldownAcceleration";
+    contributionKind = "accelerate";
+    runtimeReadiness = requiresEventEvidence(snippet)
+      ? "eventEvidenceRequired"
+      : "activeBuffOrAttrCandidate";
+    confidence = "high";
+    needsEncounterEvidence = runtimeReadiness === "eventEvidenceRequired";
+  } else if (/extends?[^.]{0,80}duration|duration[^.]{0,80}(?:paused|pause)/i.test(snippet)) {
+    category = text.includes("pause") ? "durationPause" : "durationExtend";
+    contributionKind = category;
+    runtimeReadiness = "activeBuffOrAttrCandidate";
+    confidence = "medium";
+  } else if (/haste/i.test(snippet)) {
+    category = "hasteStat";
+    contributionKind = "hasteEvidence";
+    runtimeReadiness = "attrOrBuffEvidence";
+    confidence = "medium";
+  }
+
+  return {
+    category,
+    contributionKind,
+    runtimeReadiness,
+    confidence,
+    needsEncounterEvidence,
+    targetScope,
+    targetText,
+  };
+}
+
+function requiresEventEvidence(snippet) {
+  return /when|after|dealing|cast|hit|defeat|take damage|successful|crit|each use|each time|using|uses/i.test(snippet);
+}
+
+function classifyTargetScope(snippet) {
+  if (/expertise skills?/i.test(snippet)) return "expertiseSkill";
+  if (/special attacks?/i.test(snippet)) return "specialAttack";
+  if (/class skills?/i.test(snippet)) return "classSkill";
+  if (/weapon skills?/i.test(snippet)) return "weaponSkill";
+  if (/ultimate skills?/i.test(snippet)) return "ultimateSkill";
+  if (/battle imagine/i.test(snippet)) return "battleImagine";
+  if (/this skill|this Skill/i.test(snippet)) return "selfSkill";
+  return "unknown";
+}
+
+function classifyEvidence(sourceKind, uid, snippet, classification, statDependencies, entry, context) {
+  const text = snippet.toLowerCase();
+  const gameFileEvidence = new Set(["localizedDescription"]);
+  const runtimeEvidence = new Set();
+  const remainingEvidence = new Set();
+
+  if (statDependencies.length > 0) {
+    runtimeEvidence.add("finalCharacterStats");
+  }
+
+  switch (sourceKind) {
+    case "skill":
+      gameFileEvidence.add("skillDefinition");
+      gameFileEvidence.add("skillTags");
+      gameFileEvidence.add("skillCooldownTable");
+      runtimeEvidence.add("skillCastOrDamageEvent");
+      break;
+    case "talent":
+      gameFileEvidence.add("talentDefinition");
+      runtimeEvidence.add("activeProfessionTalent");
+      break;
+    case "seasonalTalent":
+      gameFileEvidence.add("seasonalTalentDefinition");
+      runtimeEvidence.add("activeSeasonTalent");
+      break;
+    case "factor":
+      gameFileEvidence.add("factorDefinition");
+      if (entryHasGradeRows(sourceKind, uid, entry, context)) {
+        gameFileEvidence.add("factorGradeRows");
+      }
+      runtimeEvidence.add("selectedFactorGradeItem");
+      if (/illusion energy reaches/i.test(snippet)) {
+        runtimeEvidence.add("illusionEnergyTracker");
+      }
+      break;
+    case "itemOrEquipment":
+      gameFileEvidence.add("itemDefinition");
+      runtimeEvidence.add(/set|piece/i.test(snippet) ? "gearSetPieceCount" : "equippedItemConfigId");
+      break;
+    case "battleImagine":
+      gameFileEvidence.add("battleImagineDefinition");
+      runtimeEvidence.add("equippedBattleImagine");
+      runtimeEvidence.add("battleImagineTier");
+      break;
+    case "seasonEffect":
+      gameFileEvidence.add("seasonEffectDefinition");
+      runtimeEvidence.add("activeSeasonEffect");
+      break;
+    default:
+      break;
+  }
+
+  if (/while[^.]{0,80}active|active[^.]{0,80}while/i.test(snippet)) {
+    runtimeEvidence.add("activeBuffState");
+  }
+  if (/each stack|stacking|stacks?/i.test(snippet)) {
+    runtimeEvidence.add("activeBuffStacks");
+  }
+  if (/cast|using|uses|each use|special attacks?/i.test(snippet)) {
+    runtimeEvidence.add("skillCastEvent");
+  }
+  if (/dealing damage|hit|successful|damage/i.test(snippet)) {
+    runtimeEvidence.add("damageEvent");
+  }
+  if (/crit|critical/i.test(snippet)) {
+    runtimeEvidence.add("damageEventCritFlag");
+  }
+  if (/lucky/i.test(snippet)) {
+    runtimeEvidence.add("damageEventLuckyFlag");
+  }
+  if (/take damage|taking damage|when damaged/i.test(snippet)) {
+    runtimeEvidence.add("tankedDamageEvent");
+  }
+  if (/healing|providing healing|restore hp/i.test(snippet)) {
+    runtimeEvidence.add("healEvent");
+  }
+  if (/defeat|kill|target dies/i.test(snippet)) {
+    runtimeEvidence.add("killEvent");
+  }
+
+  if (classification.needsEncounterEvidence) {
+    remainingEvidence.add("controlledEncounterTriggerProof");
+  }
+  if (classification.runtimeReadiness === "textOnly") {
+    remainingEvidence.add("runtimeIdBridge");
+  }
+  if (classification.targetScope === "unknown" && classification.category !== "cooldownTextUnclassified") {
+    remainingEvidence.add("targetSkillScopeMapping");
+  }
+  if (sourceKind === "factor" && !entryHasGradeRows(sourceKind, uid, entry, context)) {
+    remainingEvidence.add("factorGradeRowBridge");
+  }
+  if ((sourceKind === "itemOrEquipment" || sourceKind === "battleImagine") && /tier|lv\\.?|level/i.test(snippet)) {
+    remainingEvidence.add("equippedTierOrLevelBridge");
+  }
+  if (/cooldown|\\bcd\\b|recast/i.test(text) && runtimeEvidence.size === 0) {
+    remainingEvidence.add("runtimeOwnershipEvidence");
+  }
+
+  return {
+    gameFileEvidence: [...gameFileEvidence].sort(),
+    runtimeEvidence: [...runtimeEvidence].sort(),
+    remainingEvidence: [...remainingEvidence].sort(),
+  };
+}
+
+function entryHasGradeRows(sourceKind, uid, entry, context) {
+  if (Array.isArray(entry?.modifierEvidence?.gradeRows) && entry.modifierEvidence.gradeRows.length > 0) {
+    return true;
+  }
+  if (Array.isArray(entry?.relationships?.gradeRows) && entry.relationships.gradeRows.length > 0) {
+    return true;
+  }
+  if (Array.isArray(entry?.gradeRows) && entry.gradeRows.length > 0) {
+    return true;
+  }
+  if (sourceKind === "factor" && context?.factorGradeRowsByBuffId?.has(String(uid))) {
+    return true;
+  }
+  return false;
+}
+
+function extractTargetText(snippet) {
+  const patterns = [
+    /(?:remaining\s+)?CD of ([^.;]+?)(?: by|\.|$)/i,
+    /reduces? (?:the )?(?:remaining )?([^.;]+?) CD(?: by|\.|$)/i,
+    /resets? ([^.;]+?) CD(?:\.|$)/i,
+    /CD Boost of ([^.;]+?)(?: by|\.|$)/i,
+    /duration of ([^.;]+?)(?: by|\.|$)/i,
+  ];
+  for (const pattern of patterns) {
+    const match = snippet.match(pattern);
+    if (match?.[1]) return cleanText(match[1]);
+  }
+  return "";
+}
+
+function extractValues(snippet) {
+  const values = [];
+  for (const match of snippet.matchAll(/([+-]?\d+(?:\.\d+)?)\s*(%|％|ms|s|sec|secs|second|seconds)?/gi)) {
+    values.push({
+      value: Number(match[1]),
+      unit: normalizeUnit(match[2] || ""),
+      raw: match[0],
+    });
+  }
+  return values;
+}
+
+function extractStatDependencies(snippet) {
+  const stats = [];
+  const checks = [
+    ["strength", /\b(?:strength|str)\b/i],
+    ["endurance", /\bendurance\b/i],
+    ["agility", /\b(?:agility|agi|dex)\b/i],
+    ["versatility", /\bversatility\b/i],
+    ["haste", /\bhaste\b/i],
+    ["mastery", /\bmastery\b/i],
+    ["lucky", /\b(?:lucky|luck)\b/i],
+    ["crit", /\b(?:crit|critical)\b/i],
+    ["critDamage", /\bcrit(?:ical)?\s*(?:dmg|damage)\b/i],
+  ];
+  for (const [key, pattern] of checks) {
+    if (pattern.test(snippet)) stats.push(key);
+  }
+  return stats;
+}
+
+function normalizeUnit(unit) {
+  const lower = unit.toLowerCase();
+  if (lower === "％") return "percent";
+  if (lower === "%") return "percent";
+  if (lower === "ms") return "ms";
+  if (["s", "sec", "secs", "second", "seconds"].includes(lower)) return "seconds";
+  return "";
+}
+
+function collectProvenance(entry) {
+  const rows = [];
+  pushProvenance(rows, entry.provenance);
+  pushProvenance(rows, entry.source);
+  if (Array.isArray(entry.descriptionBlocks)) {
+    for (const block of entry.descriptionBlocks) {
+      pushProvenance(rows, block.provenance);
+      pushProvenance(rows, {
+        sourceFile: block.sourceFile,
+        sourceOffset: block.sourceOffset,
+        sourceKind: block.sourceKind,
+      });
+    }
+  }
+  return rows.slice(0, 8);
+}
+
+function pushProvenance(rows, value) {
+  if (!value) return;
+  if (typeof value === "string") {
+    if (value.trim()) rows.push(value.trim());
+    return;
+  }
+  if (typeof value === "object") {
+    const compact = {};
+    for (const key of ["source", "sourceFile", "sourceKind", "sourceOffset", "tableHash", "rowOffset", "method"]) {
+      if (value[key] !== undefined && value[key] !== null && value[key] !== "") compact[key] = value[key];
+    }
+    if (Object.keys(compact).length > 0) rows.push(compact);
+  }
+}
+
+function chooseName(entry, fallback) {
+  return cleanText(
+    entry.name
+      || entry.displayName
+      || entry.Name
+      || entry.title
+      || chooseLocaleText(entry.names)
+      || chooseLocaleText(entry.Names)
+      || fallback,
+  );
+}
+
+function chooseNames(entry) {
+  const source = entry.names || entry.Names || {};
+  const names = {};
+  for (const locale of LOCALES) {
+    const value = source[locale] || source[locale.replace("-", "_")] || "";
+    if (value) names[locale] = cleanText(value);
+  }
+  return names;
+}
+
+function chooseLocaleText(source) {
+  if (!source || typeof source !== "object") return "";
+  for (const locale of LOCALES) {
+    if (source[locale]) return source[locale];
+  }
+  return Object.values(source).find(Boolean) || "";
+}
+
+function splitSentences(text) {
+  return cleanText(text)
+    .replace(/<br\s*\/?>/gi, ". ")
+    .split(/(?<=[.!?])\s+|\r?\n+/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
+function cleanText(value) {
+  return String(value || "")
+    .replace(/<style=[^>]*>/gi, "")
+    .replace(/<\/style>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\{[^}]+\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function pushText(rows, value) {
+  if (value === undefined || value === null) return;
+  const text = String(value);
+  if (text.trim()) rows.push(text);
+}
+
+function unique(values) {
+  return [...new Set(values)];
+}
+
+function countBy(rows, getKey) {
+  const counts = {};
+  for (const row of rows) {
+    const key = getKey(row) || "unknown";
+    counts[key] = (counts[key] || 0) + 1;
+  }
+  return Object.fromEntries(Object.entries(counts).sort(([left], [right]) => left.localeCompare(right)));
+}
+
+function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error) {
+    if (error && error.code === "ENOENT") return fallback;
+    throw error;
+  }
+}
+
+function writeJson(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function writeCsv(filePath, rows, columns) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  const lines = [
+    columns.join(","),
+    ...rows.map((row) => columns.map((column) => csvCell(row[column])).join(",")),
+  ];
+  fs.writeFileSync(filePath, `${lines.join("\n")}\n`, "utf8");
+}
+
+function writeMarkdown(filePath, output) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  const lines = [];
+  lines.push("# Cooldown Modifier Sources");
+  lines.push("");
+  lines.push(`Generated: ${output.generatedAt}`);
+  lines.push("");
+  lines.push("## Summary");
+  lines.push("");
+  lines.push(`- Rows: ${output.summary.rows}`);
+  lines.push(`- Needs encounter evidence: ${output.summary.needsEncounterEvidenceRows}`);
+  lines.push(`- High confidence: ${output.summary.highConfidenceRows}`);
+  lines.push("");
+  lines.push("## Runtime Readiness");
+  lines.push("");
+  for (const [key, count] of Object.entries(output.summary.byRuntimeReadiness)) {
+    lines.push(`- ${key}: ${count}`);
+  }
+  lines.push("");
+  lines.push("## Remaining Evidence");
+  lines.push("");
+  for (const [key, count] of Object.entries(output.summary.byRemainingEvidence)) {
+    lines.push(`- ${key}: ${count}`);
+  }
+  lines.push("");
+  lines.push("## Rows");
+  lines.push("");
+  lines.push("| Source | UID | Name | Category | Scope | Stats | Runtime Evidence | Remaining Evidence | Readiness | Snippet |");
+  lines.push("| --- | ---: | --- | --- | --- | --- | --- | --- | --- | --- |");
+  for (const row of output.rows) {
+    lines.push(`| ${mdCell(row.sourceKind)} | ${mdCell(row.uid)} | ${mdCell(row.name)} | ${mdCell(row.category)} | ${mdCell(row.targetScope)} | ${mdCell(row.statDependencies.join(", "))} | ${mdCell(row.runtimeEvidence.join(", "))} | ${mdCell(row.remainingEvidence.join(", "))} | ${mdCell(row.runtimeReadiness)} | ${mdCell(row.snippet)} |`);
+  }
+  fs.writeFileSync(filePath, `${lines.join("\n")}\n`, "utf8");
+}
+
+function csvColumns() {
+  return [
+    "sourceKind",
+    "sourceFile",
+    "uid",
+    "name",
+    "rowKey",
+    "category",
+    "contributionKind",
+    "runtimeReadiness",
+    "confidence",
+    "needsEncounterEvidence",
+    "targetScope",
+    "targetText",
+    "statDependencies",
+    "usesFinalStats",
+    "gameFileEvidence",
+    "runtimeEvidence",
+    "remainingEvidence",
+    "needsRuntimeOwnership",
+    "values",
+    "snippet",
+    "provenance",
+  ];
+}
+
+function csvCell(value) {
+  const text = value == null
+    ? ""
+    : typeof value === "object"
+      ? JSON.stringify(value)
+      : String(value);
+  return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+}
+
+function mdCell(value) {
+  const text = value == null
+    ? ""
+    : typeof value === "object"
+      ? JSON.stringify(value)
+      : String(value);
+  return text.replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
+}
+
+function displayPath(filePath) {
+  return path.relative(process.cwd(), filePath).replace(/\\/g, "/") || ".";
+}

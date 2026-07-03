@@ -4,10 +4,10 @@ This report scans localized and generated description-like text for effect seman
 
 ## Summary
 
-- Localization strings scanned: 1161165
-- CTB string-pool strings scanned: 103801
-- Generated JSON strings scanned: 2559594
-- Effect-like strings matched: 154961
+- Localization strings scanned: 1161175
+- CTB string-pool strings scanned: 103837
+- Generated JSON strings scanned: 2583497
+- Effect-like strings matched: 154609
 - Records retained: 20000
 
 ### Tag Counts

@@ -1,7 +1,7 @@
 {
-  "GeneratedAt": "2026-05-29T04:11:29.672Z",
+  "GeneratedAt": "2026-06-09T10:52:58.712Z",
   "OutputDir": "output/icons",
-  "JsonFilesScanned": 48,
+  "JsonFilesScanned": 49,
   "ProbeImageDirs": [
     "Probing Sources/images"
   ],
@@ -10,13 +10,13 @@
   ],
   "ProbeImageFilesScanned": 0,
   "ProbeTextFilesScanned": 0,
-  "GeneratedReferencesFound": 56505,
+  "GeneratedReferencesFound": 57631,
   "ProbeImageReferencesFound": 0,
   "ProbeTextReferencesFound": 0,
-  "UniqueReferences": 56505,
+  "UniqueReferences": 57631,
   "AddressCatalogEntries": 210750,
   "SpriteCatalogEntries": 8925,
-  "ResolvedAssetCount": 17640,
+  "ResolvedAssetCount": 17768,
   "MissingAssetCount": 2813,
   "AmbiguousAssetCount": 101,
   "GroupManifests": [
@@ -43,7 +43,7 @@
     {
       "SourceGroup": "EffectSources",
       "Manifest": "EffectSources/manifest.json",
-      "AssetCount": 1326
+      "AssetCount": 1358
     },
     {
       "SourceGroup": "ItemDescriptionSources",
@@ -68,12 +68,12 @@
     {
       "SourceGroup": "ModifierClassificationTable",
       "Manifest": "ModifierClassificationTable/manifest.json",
-      "AssetCount": 1159
+      "AssetCount": 1191
     },
     {
       "SourceGroup": "ModifierDisplayTable",
       "Manifest": "ModifierDisplayTable/manifest.json",
-      "AssetCount": 1161
+      "AssetCount": 1193
     },
     {
       "SourceGroup": "ModifierObservedUidBridge",
@@ -83,7 +83,7 @@
     {
       "SourceGroup": "ModifierSourceIndex",
       "Manifest": "ModifierSourceIndex/manifest.json",
-      "AssetCount": 1159
+      "AssetCount": 1191
     },
     {
       "SourceGroup": "RecountTable",
@@ -19001,7 +19001,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "59.IconPath",
+      "Field": "60.IconPath",
       "Value": "item_icon_bloodvial",
       "CandidateAddresses": [
         "item_icon_bloodvial"
@@ -19023,7 +19023,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "4133.IconPath",
+      "Field": "4134.IconPath",
       "Value": "item_icons_fish27",
       "CandidateAddresses": [
         "item_icons_fish27"
@@ -19045,7 +19045,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10269.IconPath",
+      "Field": "10270.IconPath",
       "Value": "clothes_icon_m_dressmaker01",
       "CandidateAddresses": [
         "clothes_icon_m_dressmaker01"
@@ -19067,7 +19067,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10270.IconPath",
+      "Field": "10271.IconPath",
       "Value": "clothes_icon_f_dressmaker01",
       "CandidateAddresses": [
         "clothes_icon_f_dressmaker01"
@@ -19089,7 +19089,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10271.IconPath",
+      "Field": "10272.IconPath",
       "Value": "clothes_icon_m_dressmaker06",
       "CandidateAddresses": [
         "clothes_icon_m_dressmaker06"
@@ -19111,7 +19111,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10272.IconPath",
+      "Field": "10273.IconPath",
       "Value": "clothes_icon_f_dressmaker06",
       "CandidateAddresses": [
         "clothes_icon_f_dressmaker06"
@@ -19133,7 +19133,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10289.IconPath",
+      "Field": "10290.IconPath",
       "Value": "clothes_icon_m_armourpower03",
       "CandidateAddresses": [
         "clothes_icon_m_armourpower03"
@@ -19155,7 +19155,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10290.IconPath",
+      "Field": "10291.IconPath",
       "Value": "clothes_icon_f_armourpower03",
       "CandidateAddresses": [
         "clothes_icon_f_armourpower03"
@@ -19177,7 +19177,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10291.IconPath",
+      "Field": "10292.IconPath",
       "Value": "clothes_icon_m_armourmagic03",
       "CandidateAddresses": [
         "clothes_icon_m_armourmagic03"
@@ -19199,7 +19199,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10292.IconPath",
+      "Field": "10293.IconPath",
       "Value": "clothes_icon_f_armourmagic03",
       "CandidateAddresses": [
         "clothes_icon_f_armourmagic03"
@@ -19221,7 +19221,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10293.IconPath",
+      "Field": "10294.IconPath",
       "Value": "clothes_icon_m_armouragile03",
       "CandidateAddresses": [
         "clothes_icon_m_armouragile03"
@@ -19243,7 +19243,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10294.IconPath",
+      "Field": "10295.IconPath",
       "Value": "clothes_icon_f_armouragile03",
       "CandidateAddresses": [
         "clothes_icon_f_armouragile03"
@@ -19265,7 +19265,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10297.IconPath",
+      "Field": "10298.IconPath",
       "Value": "clothes_icon_m_christmas02",
       "CandidateAddresses": [
         "clothes_icon_m_christmas02"
@@ -19287,7 +19287,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10298.IconPath",
+      "Field": "10299.IconPath",
       "Value": "clothes_icon_f_christmas02",
       "CandidateAddresses": [
         "clothes_icon_f_christmas02"
@@ -19309,7 +19309,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10555.IconPath",
+      "Field": "10556.IconPath",
       "Value": "gloves_icon_m_dressmaker01",
       "CandidateAddresses": [
         "gloves_icon_m_dressmaker01"
@@ -19331,7 +19331,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10556.IconPath",
+      "Field": "10557.IconPath",
       "Value": "gloves_icon_f_dressmaker01",
       "CandidateAddresses": [
         "gloves_icon_f_dressmaker01"
@@ -19353,7 +19353,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10557.IconPath",
+      "Field": "10558.IconPath",
       "Value": "gloves_icon_m_dressmaker06",
       "CandidateAddresses": [
         "gloves_icon_m_dressmaker06"
@@ -19375,7 +19375,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10558.IconPath",
+      "Field": "10559.IconPath",
       "Value": "gloves_icon_f_dressmaker06",
       "CandidateAddresses": [
         "gloves_icon_f_dressmaker06"
@@ -19397,7 +19397,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10575.IconPath",
+      "Field": "10576.IconPath",
       "Value": "gloves_icon_m_armourpower03",
       "CandidateAddresses": [
         "gloves_icon_m_armourpower03"
@@ -19419,7 +19419,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10576.IconPath",
+      "Field": "10577.IconPath",
       "Value": "gloves_icon_f_armourpower03",
       "CandidateAddresses": [
         "gloves_icon_f_armourpower03"
@@ -19441,7 +19441,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10577.IconPath",
+      "Field": "10578.IconPath",
       "Value": "gloves_icon_m_armourmagic03",
       "CandidateAddresses": [
         "gloves_icon_m_armourmagic03"
@@ -19463,7 +19463,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10578.IconPath",
+      "Field": "10579.IconPath",
       "Value": "gloves_icon_f_armourmagic03",
       "CandidateAddresses": [
         "gloves_icon_f_armourmagic03"
@@ -19485,7 +19485,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10579.IconPath",
+      "Field": "10580.IconPath",
       "Value": "gloves_icon_m_armouragile03",
       "CandidateAddresses": [
         "gloves_icon_m_armouragile03"
@@ -19507,7 +19507,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10580.IconPath",
+      "Field": "10581.IconPath",
       "Value": "gloves_icon_f_armouragile03",
       "CandidateAddresses": [
         "gloves_icon_f_armouragile03"
@@ -19529,7 +19529,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10583.IconPath",
+      "Field": "10584.IconPath",
       "Value": "gloves_icon_m_christmas02",
       "CandidateAddresses": [
         "gloves_icon_m_christmas02"
@@ -19551,7 +19551,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10584.IconPath",
+      "Field": "10585.IconPath",
       "Value": "gloves_icon_f_christmas02",
       "CandidateAddresses": [
         "gloves_icon_f_christmas02"
@@ -19573,7 +19573,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10719.IconPath",
+      "Field": "10720.IconPath",
       "Value": "shoes_icon_m_dressmaker01",
       "CandidateAddresses": [
         "shoes_icon_m_dressmaker01"
@@ -19595,7 +19595,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10720.IconPath",
+      "Field": "10721.IconPath",
       "Value": "shoes_icon_f_dressmaker01",
       "CandidateAddresses": [
         "shoes_icon_f_dressmaker01"
@@ -19617,7 +19617,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10721.IconPath",
+      "Field": "10722.IconPath",
       "Value": "shoes_icon_m_dressmaker06",
       "CandidateAddresses": [
         "shoes_icon_m_dressmaker06"
@@ -19639,7 +19639,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10722.IconPath",
+      "Field": "10723.IconPath",
       "Value": "shoes_icon_f_dressmaker06",
       "CandidateAddresses": [
         "shoes_icon_f_dressmaker06"
@@ -19661,7 +19661,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10739.IconPath",
+      "Field": "10740.IconPath",
       "Value": "shoes_icon_m_armourpower03",
       "CandidateAddresses": [
         "shoes_icon_m_armourpower03"
@@ -19683,7 +19683,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10740.IconPath",
+      "Field": "10741.IconPath",
       "Value": "shoes_icon_f_armourpower03",
       "CandidateAddresses": [
         "shoes_icon_f_armourpower03"
@@ -19705,7 +19705,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10741.IconPath",
+      "Field": "10742.IconPath",
       "Value": "shoes_icon_m_armourmagic03",
       "CandidateAddresses": [
         "shoes_icon_m_armourmagic03"
@@ -19727,7 +19727,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10742.IconPath",
+      "Field": "10743.IconPath",
       "Value": "shoes_icon_f_armourmagic03",
       "CandidateAddresses": [
         "shoes_icon_f_armourmagic03"
@@ -19749,7 +19749,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10743.IconPath",
+      "Field": "10744.IconPath",
       "Value": "shoes_icon_m_armouragile03",
       "CandidateAddresses": [
         "shoes_icon_m_armouragile03"
@@ -19771,7 +19771,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10744.IconPath",
+      "Field": "10745.IconPath",
       "Value": "shoes_icon_f_armouragile03",
       "CandidateAddresses": [
         "shoes_icon_f_armouragile03"
@@ -19793,7 +19793,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10747.IconPath",
+      "Field": "10748.IconPath",
       "Value": "shoes_icon_m_christmas02",
       "CandidateAddresses": [
         "shoes_icon_m_christmas02"
@@ -19815,7 +19815,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "10748.IconPath",
+      "Field": "10749.IconPath",
       "Value": "shoes_icon_f_christmas02",
       "CandidateAddresses": [
         "shoes_icon_f_christmas02"
@@ -19837,7 +19837,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11055.IconPath",
+      "Field": "11056.IconPath",
       "Value": "headwear_icon_c_armourpower03",
       "CandidateAddresses": [
         "headwear_icon_c_armourpower03"
@@ -19859,7 +19859,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11056.IconPath",
+      "Field": "11057.IconPath",
       "Value": "headwear_icon_c_armourmagic03",
       "CandidateAddresses": [
         "headwear_icon_c_armourmagic03"
@@ -19881,7 +19881,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11057.IconPath",
+      "Field": "11058.IconPath",
       "Value": "headwear_icon_c_armouragile03",
       "CandidateAddresses": [
         "headwear_icon_c_armouragile03"
@@ -19903,7 +19903,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11075.IconPath",
+      "Field": "11076.IconPath",
       "Value": "headwear_icon_c_mahjong01",
       "CandidateAddresses": [
         "headwear_icon_c_mahjong01"
@@ -19925,7 +19925,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11179.IconPath",
+      "Field": "11180.IconPath",
       "Value": "mouthwear_icon_c_television01",
       "CandidateAddresses": [
         "mouthwear_icon_c_television01"
@@ -19947,7 +19947,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11200.IconPath",
+      "Field": "11201.IconPath",
       "Value": "back_icon_c_wings01",
       "CandidateAddresses": [
         "back_icon_c_wings01"
@@ -19969,7 +19969,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11276.IconPath",
+      "Field": "11277.IconPath",
       "Value": "ears_icon_c_earring04",
       "CandidateAddresses": [
         "ears_icon_c_earring04"
@@ -19991,7 +19991,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11279.IconPath",
+      "Field": "11280.IconPath",
       "Value": "ears_icon_c_tassels010",
       "CandidateAddresses": [
         "ears_icon_c_tassels010"
@@ -20013,7 +20013,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11783.IconPath",
+      "Field": "11784.IconPath",
       "Value": "personalzone_medal_icon_01_120",
       "CandidateAddresses": [
         "personalzone_medal_icon_01_120"
@@ -20035,7 +20035,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "11832.IconPath",
+      "Field": "11833.IconPath",
       "Value": "ui/atlas/personalzone_medal/personalzone_medal_icon_03_01",
       "CandidateAddresses": [
         "ui/atlas/personalzone_medal/personalzone_medal_icon_03_01"
@@ -20062,7 +20062,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12450.IconPath",
+      "Field": "12451.IconPath",
       "Value": "monthly_reward_card_item_icon_14",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_14"
@@ -20084,7 +20084,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12451.IconPath",
+      "Field": "12452.IconPath",
       "Value": "monthly_reward_card_item_icon_15",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_15"
@@ -20106,7 +20106,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12452.IconPath",
+      "Field": "12453.IconPath",
       "Value": "monthly_reward_card_item_icon_16",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_16"
@@ -20128,7 +20128,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12453.IconPath",
+      "Field": "12454.IconPath",
       "Value": "monthly_reward_card_item_icon_17",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_17"
@@ -20150,7 +20150,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12454.IconPath",
+      "Field": "12455.IconPath",
       "Value": "monthly_reward_card_item_icon_18",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_18"
@@ -20172,7 +20172,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12455.IconPath",
+      "Field": "12456.IconPath",
       "Value": "monthly_reward_card_item_icon_19",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_19"
@@ -20194,7 +20194,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12456.IconPath",
+      "Field": "12457.IconPath",
       "Value": "monthly_reward_card_item_icon_20",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_20"
@@ -20216,7 +20216,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12457.IconPath",
+      "Field": "12458.IconPath",
       "Value": "monthly_reward_card_item_icon_21",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_21"
@@ -20238,7 +20238,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12458.IconPath",
+      "Field": "12459.IconPath",
       "Value": "monthly_reward_card_item_icon_22",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_22"
@@ -20260,7 +20260,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12459.IconPath",
+      "Field": "12460.IconPath",
       "Value": "monthly_reward_card_item_icon_23",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_23"
@@ -20282,7 +20282,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12460.IconPath",
+      "Field": "12461.IconPath",
       "Value": "monthly_reward_card_item_icon_24",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_24"
@@ -20304,7 +20304,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12461.IconPath",
+      "Field": "12462.IconPath",
       "Value": "monthly_reward_card_item_icon_25",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_25"
@@ -20326,7 +20326,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12462.IconPath",
+      "Field": "12463.IconPath",
       "Value": "monthly_reward_card_item_icon_26",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_26"
@@ -20348,7 +20348,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12463.IconPath",
+      "Field": "12464.IconPath",
       "Value": "monthly_reward_card_item_icon_27",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_27"
@@ -20370,7 +20370,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12464.IconPath",
+      "Field": "12465.IconPath",
       "Value": "monthly_reward_card_item_icon_28",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_28"
@@ -20392,7 +20392,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12465.IconPath",
+      "Field": "12466.IconPath",
       "Value": "monthly_reward_card_item_icon_29",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_29"
@@ -20414,7 +20414,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12466.IconPath",
+      "Field": "12467.IconPath",
       "Value": "monthly_reward_card_item_icon_30",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_30"
@@ -20436,7 +20436,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12467.IconPath",
+      "Field": "12468.IconPath",
       "Value": "monthly_reward_card_item_icon_31",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_31"
@@ -20458,7 +20458,7 @@
       "SourceKind": "generated-json",
       "SourceFile": "itemnames.json",
       "SourceGroup": "itemnames",
-      "Field": "12468.IconPath",
+      "Field": "12469.IconPath",
       "Value": "monthly_reward_card_item_icon_32",
       "CandidateAddresses": [
         "monthly_reward_card_item_icon_32"
@@ -65963,8 +65963,8 @@
       ]
     }
   ],
-  "PngExportedAt": "2026-05-29T04:14:03.982Z",
-  "PngAssetCount": 17640,
+  "PngExportedAt": "2026-06-09T10:55:23.472Z",
+  "PngAssetCount": 17768,
   "PngFailedCount": 0,
   "PngVerifiedCount": 0,
   "PngFailures": []

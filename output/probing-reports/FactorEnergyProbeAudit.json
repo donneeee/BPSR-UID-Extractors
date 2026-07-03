@@ -1,0 +1,3677 @@
+{
+  "generatedBy": "audit-factor-energy-probes.mjs",
+  "inputs": {
+    "roots": [
+      "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs",
+      "C:\\Users\\dbcas\\AppData\\Local\\com.resonance-logs-global\\EventLogs"
+    ],
+    "scannedFiles": [
+      "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    ],
+    "maxFiles": 1,
+    "maxPairWindowMs": 2000
+  },
+  "summary": {
+    "scannedFileCount": 1,
+    "filesWithEntries": 1,
+    "filesWithProbeRows": 1,
+    "fightResourceRows": 0,
+    "containerProbeRows": 2,
+    "containerFullRows": 0,
+    "containerDirtyRows": 2,
+    "dirtyFrameDecodedRows": 2,
+    "dirtyDelimitedTreeRows": 0,
+    "factorCounterRows": 140,
+    "panelAttrRows": 233,
+    "panelAttrIdsSeen": 5,
+    "panelAttrChanges": 228,
+    "resourceIdsSeen": 0,
+    "packetResourceChanges": 0,
+    "counterSlotsSeen": 5,
+    "pairStats": 0,
+    "panelAttrPairStats": 25
+  },
+  "actionCounts": [
+    {
+      "action": "player_target_skill_damage|snapshot",
+      "count": 2547
+    },
+    {
+      "action": "player_target_damage|snapshot",
+      "count": 1633
+    },
+    {
+      "action": "buff|update",
+      "count": 1377
+    },
+    {
+      "action": "player_skill_damage|snapshot",
+      "count": 1187
+    },
+    {
+      "action": "hate|update",
+      "count": 1055
+    },
+    {
+      "action": "monster_buff|update",
+      "count": 1019
+    },
+    {
+      "action": "factor_energy_probe|sync_near_delta_attrs",
+      "count": 866
+    },
+    {
+      "action": "factor_energy_probe|sync_to_me_delta_attrs",
+      "count": 812
+    },
+    {
+      "action": "player|snapshot",
+      "count": 505
+    },
+    {
+      "action": "live_totals|snapshot",
+      "count": 504
+    },
+    {
+      "action": "raw_service_probe|notify",
+      "count": 498
+    },
+    {
+      "action": "mob|snapshot",
+      "count": 248
+    },
+    {
+      "action": "system|panel_attr",
+      "count": 233
+    },
+    {
+      "action": "factor_energy_probe|fight_resource_tuple_candidate",
+      "count": 231
+    },
+    {
+      "action": "factor_energy_probe|factor_counter_update",
+      "count": 140
+    },
+    {
+      "action": "chat|message",
+      "count": 9
+    },
+    {
+      "action": "container_probe|sync_container_dirty",
+      "count": 2
+    },
+    {
+      "action": "system|entity_names",
+      "count": 2
+    }
+  ],
+  "fileSummaries": [
+    {
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json",
+      "entries": 12868,
+      "factorEnergyProbeRows": 140,
+      "fightResourceRows": 0,
+      "actions": [
+        {
+          "action": "player_target_skill_damage|snapshot",
+          "count": 2547
+        },
+        {
+          "action": "player_target_damage|snapshot",
+          "count": 1633
+        },
+        {
+          "action": "buff|update",
+          "count": 1377
+        },
+        {
+          "action": "player_skill_damage|snapshot",
+          "count": 1187
+        },
+        {
+          "action": "hate|update",
+          "count": 1055
+        },
+        {
+          "action": "monster_buff|update",
+          "count": 1019
+        },
+        {
+          "action": "factor_energy_probe|sync_near_delta_attrs",
+          "count": 866
+        },
+        {
+          "action": "factor_energy_probe|sync_to_me_delta_attrs",
+          "count": 812
+        },
+        {
+          "action": "player|snapshot",
+          "count": 505
+        },
+        {
+          "action": "live_totals|snapshot",
+          "count": 504
+        },
+        {
+          "action": "raw_service_probe|notify",
+          "count": 498
+        },
+        {
+          "action": "mob|snapshot",
+          "count": 248
+        },
+        {
+          "action": "system|panel_attr",
+          "count": 233
+        },
+        {
+          "action": "factor_energy_probe|fight_resource_tuple_candidate",
+          "count": 231
+        },
+        {
+          "action": "factor_energy_probe|factor_counter_update",
+          "count": 140
+        },
+        {
+          "action": "chat|message",
+          "count": 9
+        },
+        {
+          "action": "container_probe|sync_container_dirty",
+          "count": 2
+        },
+        {
+          "action": "system|entity_names",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "resources": [],
+  "counters": [
+    {
+      "key": "920020412:1",
+      "ruleId": 920020412,
+      "slotId": 1,
+      "count": 140,
+      "min": 60,
+      "max": 7295,
+      "last": 7295,
+      "lastTsMs": 1780347059334,
+      "values": [
+        60,
+        90,
+        182,
+        242,
+        272,
+        332,
+        362,
+        422,
+        473,
+        503,
+        614,
+        644,
+        695,
+        755,
+        806,
+        836,
+        896,
+        926,
+        956,
+        986,
+        1078,
+        1129,
+        1180,
+        1231,
+        1282,
+        1333,
+        1384,
+        1476,
+        1527,
+        1578,
+        1629,
+        1680
+      ],
+      "thresholds": [
+        0
+      ],
+      "resetActiveCount": 0
+    },
+    {
+      "key": "920020424:1",
+      "ruleId": 920020424,
+      "slotId": 1,
+      "count": 140,
+      "min": 0,
+      "max": 804,
+      "last": 153,
+      "lastTsMs": 1780347059334,
+      "values": [
+        0,
+        51,
+        60,
+        90,
+        102,
+        150,
+        153,
+        180,
+        204,
+        240,
+        255,
+        264,
+        291,
+        294,
+        306,
+        321,
+        354,
+        384,
+        432,
+        444,
+        462,
+        474,
+        513,
+        525,
+        573,
+        585,
+        624,
+        654,
+        714,
+        744,
+        774,
+        804
+      ],
+      "thresholds": [
+        0
+      ],
+      "resetActiveCount": 38
+    },
+    {
+      "key": "920021032:1",
+      "ruleId": 920021032,
+      "slotId": 1,
+      "count": 140,
+      "min": 60,
+      "max": 7295,
+      "last": 7295,
+      "lastTsMs": 1780347059334,
+      "values": [
+        60,
+        90,
+        182,
+        242,
+        272,
+        332,
+        362,
+        422,
+        473,
+        503,
+        614,
+        644,
+        695,
+        755,
+        806,
+        836,
+        896,
+        926,
+        956,
+        986,
+        1078,
+        1129,
+        1180,
+        1231,
+        1282,
+        1333,
+        1384,
+        1476,
+        1527,
+        1578,
+        1629,
+        1680
+      ],
+      "thresholds": [
+        0
+      ],
+      "resetActiveCount": 0
+    },
+    {
+      "key": "920021042:1",
+      "ruleId": 920021042,
+      "slotId": 1,
+      "count": 140,
+      "min": 60,
+      "max": 7295,
+      "last": 7295,
+      "lastTsMs": 1780347059334,
+      "values": [
+        60,
+        90,
+        182,
+        242,
+        272,
+        332,
+        362,
+        422,
+        473,
+        503,
+        614,
+        644,
+        695,
+        755,
+        806,
+        836,
+        896,
+        926,
+        956,
+        986,
+        1078,
+        1129,
+        1180,
+        1231,
+        1282,
+        1333,
+        1384,
+        1476,
+        1527,
+        1578,
+        1629,
+        1680
+      ],
+      "thresholds": [
+        0
+      ],
+      "resetActiveCount": 140
+    },
+    {
+      "key": "920021944:1",
+      "ruleId": 920021944,
+      "slotId": 1,
+      "count": 140,
+      "min": 60,
+      "max": 7295,
+      "last": 7295,
+      "lastTsMs": 1780347059334,
+      "values": [
+        60,
+        90,
+        182,
+        242,
+        272,
+        332,
+        362,
+        422,
+        473,
+        503,
+        614,
+        644,
+        695,
+        755,
+        806,
+        836,
+        896,
+        926,
+        956,
+        986,
+        1078,
+        1129,
+        1180,
+        1231,
+        1282,
+        1333,
+        1384,
+        1476,
+        1527,
+        1578,
+        1629,
+        1680
+      ],
+      "thresholds": [
+        100
+      ],
+      "resetActiveCount": 0
+    }
+  ],
+  "panelAttrs": [
+    {
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "count": 64,
+      "first": 5032,
+      "firstTsMs": 1780346924022,
+      "min": 5032,
+      "max": 5782,
+      "last": 5782,
+      "lastTsMs": 1780347056306,
+      "lastDelta": 50,
+      "changeCount": 63,
+      "increaseCount": 60,
+      "decreaseCount": 3,
+      "unchangedCount": 0,
+      "values": [
+        5032,
+        5082,
+        5132,
+        5182,
+        5232,
+        5282,
+        5332,
+        5382,
+        5432,
+        5482,
+        5532,
+        5582,
+        5632,
+        5682,
+        5732,
+        5782
+      ]
+    },
+    {
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "count": 141,
+      "first": 8916,
+      "firstTsMs": 1780346924022,
+      "min": 8916,
+      "max": 12891,
+      "last": 12891,
+      "lastTsMs": 1780347059731,
+      "lastDelta": 420,
+      "changeCount": 140,
+      "increaseCount": 132,
+      "decreaseCount": 8,
+      "unchangedCount": 0,
+      "values": [
+        8916,
+        9016,
+        9041,
+        9141,
+        9166,
+        9586,
+        10106,
+        10131,
+        10551,
+        11071,
+        11096,
+        11516,
+        11616,
+        11641,
+        11741,
+        11766,
+        11866,
+        11891,
+        11991,
+        12016,
+        12116,
+        12141,
+        12241,
+        12266,
+        12366,
+        12391,
+        12491,
+        12516,
+        12616,
+        12641,
+        12741,
+        12766
+      ]
+    },
+    {
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "count": 17,
+      "first": 4761,
+      "firstTsMs": 1780346948013,
+      "min": 3428,
+      "max": 8205,
+      "last": 8205,
+      "lastTsMs": 1780347049009,
+      "lastDelta": 444,
+      "changeCount": 16,
+      "increaseCount": 9,
+      "decreaseCount": 7,
+      "unchangedCount": 0,
+      "values": [
+        3428,
+        3872,
+        4761,
+        5205,
+        6428,
+        6872,
+        7761,
+        8205
+      ]
+    },
+    {
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "count": 7,
+      "first": 5058,
+      "firstTsMs": 1780346948013,
+      "min": 2835,
+      "max": 5058,
+      "last": 5058,
+      "lastTsMs": 1780347049008,
+      "lastDelta": 2223,
+      "changeCount": 6,
+      "increaseCount": 3,
+      "decreaseCount": 3,
+      "unchangedCount": 0,
+      "values": [
+        2835,
+        5058
+      ]
+    },
+    {
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "count": 4,
+      "first": 4824,
+      "firstTsMs": 1780346949294,
+      "min": 4561,
+      "max": 4824,
+      "last": 4561,
+      "lastTsMs": 1780347059731,
+      "lastDelta": -263,
+      "changeCount": 3,
+      "increaseCount": 1,
+      "decreaseCount": 2,
+      "unchangedCount": 0,
+      "values": [
+        4561,
+        4824
+      ]
+    }
+  ],
+  "recentPanelAttrChanges": [
+    {
+      "tsMs": 1780347021355,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12116,
+      "value": 12141,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347021805,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5482,
+      "value": 5532,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347021805,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12141,
+      "value": 12241,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347021896,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12241,
+      "value": 12266,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347022240,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5532,
+      "value": 5582,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347022240,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12266,
+      "value": 12366,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347022331,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12366,
+      "value": 12391,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347022747,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5582,
+      "value": 5632,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347022747,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12391,
+      "value": 12491,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347022974,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12491,
+      "value": 12516,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347023294,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5632,
+      "value": 5682,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347023294,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12516,
+      "value": 12616,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347023296,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12616,
+      "value": 12641,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347023793,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5682,
+      "value": 5732,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347023793,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12641,
+      "value": 12741,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347023794,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12741,
+      "value": 12766,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347024326,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5732,
+      "value": 5782,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347024326,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12766,
+      "value": 12866,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347024440,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12866,
+      "value": 12891,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347035016,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5782,
+      "value": 5032,
+      "delta": -750,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347035016,
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "previousValue": 8205,
+      "value": 6872,
+      "delta": -1333,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347035016,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12891,
+      "value": 11391,
+      "delta": -1500,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347035016,
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "previousValue": 5058,
+      "value": 2835,
+      "delta": -2223,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347035078,
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "previousValue": 6872,
+      "value": 6428,
+      "delta": -444,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347035078,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11391,
+      "value": 11016,
+      "delta": -375,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049008,
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "previousValue": 6428,
+      "value": 7761,
+      "delta": 1333,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049008,
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "previousValue": 2835,
+      "value": 5058,
+      "delta": 2223,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049009,
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "previousValue": 7761,
+      "value": 8205,
+      "delta": 444,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049233,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5032,
+      "value": 5082,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049233,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11016,
+      "value": 11116,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049399,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11116,
+      "value": 11141,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049699,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5082,
+      "value": 5132,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049699,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11141,
+      "value": 11241,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049780,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11241,
+      "value": 11266,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347050354,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5132,
+      "value": 5182,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347050354,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11266,
+      "value": 11366,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347050356,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11366,
+      "value": 11391,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347050764,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5182,
+      "value": 5232,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347050764,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11391,
+      "value": 11491,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347050909,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11491,
+      "value": 11516,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051215,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5232,
+      "value": 5282,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051215,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11516,
+      "value": 11616,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051347,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11616,
+      "value": 11641,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051743,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5282,
+      "value": 5332,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051743,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11641,
+      "value": 11741,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051888,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11741,
+      "value": 11766,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052345,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5332,
+      "value": 5382,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052345,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11766,
+      "value": 11866,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052347,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11866,
+      "value": 11891,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052763,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5382,
+      "value": 5432,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052763,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11891,
+      "value": 11991,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052854,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11991,
+      "value": 12016,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347053252,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5432,
+      "value": 5482,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347053252,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12016,
+      "value": 12116,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347053470,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12116,
+      "value": 12141,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347053704,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5482,
+      "value": 5532,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347053704,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12141,
+      "value": 12241,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347053953,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12241,
+      "value": 12266,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347054394,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5532,
+      "value": 5582,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347054394,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12266,
+      "value": 12366,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347054395,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12366,
+      "value": 12391,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347054710,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5582,
+      "value": 5632,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347054710,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12391,
+      "value": 12491,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347054954,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12491,
+      "value": 12516,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347055279,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5632,
+      "value": 5682,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347055279,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12516,
+      "value": 12616,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347055638,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12616,
+      "value": 12641,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347055815,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5682,
+      "value": 5732,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347055815,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12641,
+      "value": 12741,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347056026,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12741,
+      "value": 12766,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347056306,
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "previousValue": 5732,
+      "value": 5782,
+      "delta": 50,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347056306,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12766,
+      "value": 12866,
+      "delta": 100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347056307,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12866,
+      "value": 12891,
+      "delta": 25,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347056716,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12891,
+      "value": 10791,
+      "delta": -2100,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347058922,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 10791,
+      "value": 11211,
+      "delta": 420,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347059103,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11211,
+      "value": 11631,
+      "delta": 420,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347059336,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 11631,
+      "value": 12051,
+      "delta": 420,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347059483,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12051,
+      "value": 12471,
+      "delta": 420,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347059731,
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "previousValue": 4824,
+      "value": 4561,
+      "delta": -263,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347059731,
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "previousValue": 12471,
+      "value": 12891,
+      "delta": 420,
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    }
+  ],
+  "resourceCounterPairs": [],
+  "panelAttrCounterPairs": [
+    {
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "counterKey": "920020424:1",
+      "pairs": 943,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 6,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 6,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 2000,
+      "lastAttrValue": 11211,
+      "lastCounterValue": 153,
+      "lastResourceValue": 11211
+    },
+    {
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "counterKey": "920020412:1",
+      "pairs": 943,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 2,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 2,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 2000,
+      "lastAttrValue": 11211,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 11211
+    },
+    {
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "counterKey": "920021032:1",
+      "pairs": 943,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 2,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 2,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 2000,
+      "lastAttrValue": 11211,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 11211
+    },
+    {
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "counterKey": "920021042:1",
+      "pairs": 943,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 2,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 2,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 2000,
+      "lastAttrValue": 11211,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 11211
+    },
+    {
+      "attrId": 12510,
+      "attrIdHex": "0x30DE",
+      "counterKey": "920021944:1",
+      "pairs": 943,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 2,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 2,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 2000,
+      "lastAttrValue": 11211,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 11211
+    },
+    {
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "counterKey": "920020424:1",
+      "pairs": 435,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 1,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 1,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1993,
+      "lastAttrValue": 5282,
+      "lastCounterValue": 102,
+      "lastResourceValue": 5282
+    },
+    {
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "counterKey": "920020424:1",
+      "pairs": 33,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 1,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 1,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 60,
+      "maxDeltaMs": 1917,
+      "lastAttrValue": 5058,
+      "lastCounterValue": 204,
+      "lastResourceValue": 5058
+    },
+    {
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "counterKey": "920020412:1",
+      "pairs": 435,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1993,
+      "lastAttrValue": 5282,
+      "lastCounterValue": 7244,
+      "lastResourceValue": 5282
+    },
+    {
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "counterKey": "920021032:1",
+      "pairs": 435,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1993,
+      "lastAttrValue": 5282,
+      "lastCounterValue": 7244,
+      "lastResourceValue": 5282
+    },
+    {
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "counterKey": "920021042:1",
+      "pairs": 435,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1993,
+      "lastAttrValue": 5282,
+      "lastCounterValue": 7244,
+      "lastResourceValue": 5282
+    },
+    {
+      "attrId": 11710,
+      "attrIdHex": "0x2DBE",
+      "counterKey": "920021944:1",
+      "pairs": 435,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1993,
+      "lastAttrValue": 5282,
+      "lastCounterValue": 7244,
+      "lastResourceValue": 5282
+    },
+    {
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "counterKey": "920020412:1",
+      "pairs": 92,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1979,
+      "lastAttrValue": 7761,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 7761
+    },
+    {
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "counterKey": "920020424:1",
+      "pairs": 92,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1979,
+      "lastAttrValue": 7761,
+      "lastCounterValue": 204,
+      "lastResourceValue": 7761
+    },
+    {
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "counterKey": "920021032:1",
+      "pairs": 92,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1979,
+      "lastAttrValue": 7761,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 7761
+    },
+    {
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "counterKey": "920021042:1",
+      "pairs": 92,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1979,
+      "lastAttrValue": 7761,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 7761
+    },
+    {
+      "attrId": 11720,
+      "attrIdHex": "0x2DC8",
+      "counterKey": "920021944:1",
+      "pairs": 92,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 1,
+      "maxDeltaMs": 1979,
+      "lastAttrValue": 7761,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 7761
+    },
+    {
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "counterKey": "920020412:1",
+      "pairs": 33,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 60,
+      "maxDeltaMs": 1917,
+      "lastAttrValue": 5058,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 5058
+    },
+    {
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "counterKey": "920021032:1",
+      "pairs": 33,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 60,
+      "maxDeltaMs": 1917,
+      "lastAttrValue": 5058,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 5058
+    },
+    {
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "counterKey": "920021042:1",
+      "pairs": 33,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 60,
+      "maxDeltaMs": 1917,
+      "lastAttrValue": 5058,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 5058
+    },
+    {
+      "attrId": 11930,
+      "attrIdHex": "0x2E9A",
+      "counterKey": "920021944:1",
+      "pairs": 33,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 60,
+      "maxDeltaMs": 1917,
+      "lastAttrValue": 5058,
+      "lastCounterValue": 6948,
+      "lastResourceValue": 5058
+    },
+    {
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "counterKey": "920020412:1",
+      "pairs": 18,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 57,
+      "maxDeltaMs": 1967,
+      "lastAttrValue": 4561,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 4561
+    },
+    {
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "counterKey": "920020424:1",
+      "pairs": 18,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 57,
+      "maxDeltaMs": 1967,
+      "lastAttrValue": 4561,
+      "lastCounterValue": 153,
+      "lastResourceValue": 4561
+    },
+    {
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "counterKey": "920021032:1",
+      "pairs": 18,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 57,
+      "maxDeltaMs": 1967,
+      "lastAttrValue": 4561,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 4561
+    },
+    {
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "counterKey": "920021042:1",
+      "pairs": 18,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 57,
+      "maxDeltaMs": 1967,
+      "lastAttrValue": 4561,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 4561
+    },
+    {
+      "attrId": 11330,
+      "attrIdHex": "0x2C42",
+      "counterKey": "920021944:1",
+      "pairs": 18,
+      "exactMatches": 0,
+      "div10Matches": 0,
+      "div100Matches": 0,
+      "div1000Matches": 0,
+      "nonZeroExactMatches": 0,
+      "nonZeroDiv10Matches": 0,
+      "nonZeroDiv100Matches": 0,
+      "nonZeroDiv1000Matches": 0,
+      "minDeltaMs": 57,
+      "maxDeltaMs": 1967,
+      "lastAttrValue": 4561,
+      "lastCounterValue": 7295,
+      "lastResourceValue": 4561
+    }
+  ],
+  "recentFightRows": [],
+  "recentContainerRows": [
+    {
+      "tsMs": 1780346954708,
+      "action": "sync_container_dirty",
+      "method": "SyncContainerDirtyData",
+      "uid": 0,
+      "sourceUid": 0,
+      "sourceLabel": "WorldNtf",
+      "targetLabel": "SyncContainerDirtyData",
+      "summary": "method=SyncContainerDirtyData buffer=64B factorCandidates=1 protoCandidates=0 values=131072 rootFields=2:char_base,104:unknown",
+      "value": "64",
+      "charId": null,
+      "bufferLength": 64,
+      "vdataBytesLength": null,
+      "factorCandidateCount": 1,
+      "rawProtoCandidateCount": 0,
+      "factorCandidateValues": [
+        {
+          "value": 131072,
+          "count": 1,
+          "encodings": [
+            "u32-le"
+          ],
+          "kinds": [
+            "season-medal-core-node-id"
+          ],
+          "offsets": [
+            6
+          ]
+        }
+      ],
+      "rawProtoCandidateValues": [],
+      "equippedFactorItems": [],
+      "seasonMedal": null,
+      "seasonSectionsSeen": [],
+      "dirtyBuffer": {
+        "byteLength": 64,
+        "delimiterCount": 0,
+        "frameCount": 2,
+        "frameLengths": [
+          {
+            "length": 24,
+            "count": 1
+          },
+          {
+            "length": 52,
+            "count": 1
+          }
+        ],
+        "frames": [
+          {
+            "offset": 0,
+            "length": 52,
+            "bodyStart": 8,
+            "bodyEnd": 60,
+            "endMarkerOk": true
+          },
+          {
+            "offset": 12,
+            "length": 24,
+            "bodyStart": 20,
+            "bodyEnd": 44,
+            "endMarkerOk": true
+          }
+        ],
+        "rootFields": [
+          {
+            "fieldId": 2,
+            "fieldName": "char_base",
+            "offset": 8
+          },
+          {
+            "fieldId": 104,
+            "fieldName": "unknown",
+            "offset": 48
+          }
+        ],
+        "interestingValues": [
+          {
+            "value": 1780346955,
+            "category": "epoch-seconds-like",
+            "count": 2,
+            "width": 4,
+            "offsets": [
+              36,
+              36
+            ]
+          },
+          {
+            "value": 93750,
+            "category": "mid-id-like",
+            "count": 2,
+            "width": 4,
+            "offsets": [
+              52,
+              52
+            ]
+          }
+        ],
+        "topU32Values": [
+          {
+            "value": 0,
+            "count": 3
+          },
+          {
+            "value": 2,
+            "count": 1
+          },
+          {
+            "value": 24,
+            "count": 1
+          },
+          {
+            "value": 26,
+            "count": 1
+          },
+          {
+            "value": 32,
+            "count": 1
+          },
+          {
+            "value": 52,
+            "count": 1
+          },
+          {
+            "value": 104,
+            "count": 1
+          },
+          {
+            "value": 93750,
+            "count": 1
+          },
+          {
+            "value": 7734269,
+            "count": 1
+          },
+          {
+            "value": 1780346955,
+            "count": 1
+          }
+        ],
+        "seasonRootFields": []
+      },
+      "bufferHexPrefix": "feffffff3400000002000000feffffff180000001a000000fd03760000000000200000004bf01d6a00000000fdffffff",
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json",
+      "seasonMedalBaseline": null,
+      "nearbyCounters": [
+        {
+          "deltaMs": -69,
+          "sourceItemIds": [
+            20010396,
+            20010417,
+            20010420,
+            20020412,
+            20020424
+          ],
+          "slotItemIds": [
+            20020412,
+            20020424,
+            20021032,
+            20021042,
+            20021944
+          ],
+          "slots": [
+            {
+              "ruleId": 920020412,
+              "slotId": 1,
+              "key": "920020412:1",
+              "currentCount": 1180,
+              "threshold": 0,
+              "effectiveThreshold": 0,
+              "isCounting": true,
+              "resetBuffActive": false
+            },
+            {
+              "ruleId": 920020424,
+              "slotId": 1,
+              "key": "920020424:1",
+              "currentCount": 102,
+              "threshold": 0,
+              "effectiveThreshold": 0,
+              "isCounting": true,
+              "resetBuffActive": false
+            },
+            {
+              "ruleId": 920021032,
+              "slotId": 1,
+              "key": "920021032:1",
+              "currentCount": 1180,
+              "threshold": 0,
+              "effectiveThreshold": 0,
+              "isCounting": true,
+              "resetBuffActive": false
+            },
+            {
+              "ruleId": 920021042,
+              "slotId": 1,
+              "key": "920021042:1",
+              "currentCount": 1180,
+              "threshold": 0,
+              "effectiveThreshold": 0,
+              "isCounting": true,
+              "resetBuffActive": true
+            },
+            {
+              "ruleId": 920021944,
+              "slotId": 1,
+              "key": "920021944:1",
+              "currentCount": 1180,
+              "threshold": 100,
+              "effectiveThreshold": 100,
+              "isCounting": true,
+              "resetBuffActive": false
+            }
+          ],
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        }
+      ],
+      "nearbyBuffs": [
+        {
+          "deltaMs": 15,
+          "uid": 3053101,
+          "baseId": 3053101,
+          "sourceConfigId": 3053100,
+          "layer": 1,
+          "durationMs": 10000,
+          "remainingMs": 10000,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": 15,
+          "uid": 3059061,
+          "baseId": 3059061,
+          "sourceConfigId": 3059060,
+          "layer": 1,
+          "durationMs": 0,
+          "remainingMs": 0,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": 15,
+          "uid": 3002611,
+          "baseId": 3002611,
+          "sourceConfigId": 3002630,
+          "layer": 8,
+          "durationMs": 10000,
+          "remainingMs": 10000,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": -69,
+          "uid": 3053101,
+          "baseId": 3053101,
+          "sourceConfigId": 3053100,
+          "layer": 1,
+          "durationMs": 10000,
+          "remainingMs": 10000,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": -69,
+          "uid": 3059061,
+          "baseId": 3059061,
+          "sourceConfigId": 3059060,
+          "layer": 1,
+          "durationMs": 0,
+          "remainingMs": 0,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": -69,
+          "uid": 3002611,
+          "baseId": 3002611,
+          "sourceConfigId": 3002630,
+          "layer": 8,
+          "durationMs": 10000,
+          "remainingMs": 10000,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": -152,
+          "uid": 3053101,
+          "baseId": 3053101,
+          "sourceConfigId": 3053100,
+          "layer": 1,
+          "durationMs": 10000,
+          "remainingMs": 10000,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        },
+        {
+          "deltaMs": -152,
+          "uid": 3059061,
+          "baseId": 3059061,
+          "sourceConfigId": 3059060,
+          "layer": 1,
+          "durationMs": 0,
+          "remainingMs": 0,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        }
+      ]
+    },
+    {
+      "tsMs": 1780347014838,
+      "action": "sync_container_dirty",
+      "method": "SyncContainerDirtyData",
+      "uid": 0,
+      "sourceUid": 0,
+      "sourceLabel": "WorldNtf",
+      "targetLabel": "SyncContainerDirtyData",
+      "summary": "method=SyncContainerDirtyData buffer=64B factorCandidates=1 protoCandidates=0 values=131072 rootFields=2:char_base,104:unknown",
+      "value": "64",
+      "charId": null,
+      "bufferLength": 64,
+      "vdataBytesLength": null,
+      "factorCandidateCount": 1,
+      "rawProtoCandidateCount": 0,
+      "factorCandidateValues": [
+        {
+          "value": 131072,
+          "count": 1,
+          "encodings": [
+            "u32-le"
+          ],
+          "kinds": [
+            "season-medal-core-node-id"
+          ],
+          "offsets": [
+            6
+          ]
+        }
+      ],
+      "rawProtoCandidateValues": [],
+      "equippedFactorItems": [],
+      "seasonMedal": null,
+      "seasonSectionsSeen": [],
+      "dirtyBuffer": {
+        "byteLength": 64,
+        "delimiterCount": 0,
+        "frameCount": 2,
+        "frameLengths": [
+          {
+            "length": 24,
+            "count": 1
+          },
+          {
+            "length": 52,
+            "count": 1
+          }
+        ],
+        "frames": [
+          {
+            "offset": 0,
+            "length": 52,
+            "bodyStart": 8,
+            "bodyEnd": 60,
+            "endMarkerOk": true
+          },
+          {
+            "offset": 12,
+            "length": 24,
+            "bodyStart": 20,
+            "bodyEnd": 44,
+            "endMarkerOk": true
+          }
+        ],
+        "rootFields": [
+          {
+            "fieldId": 2,
+            "fieldName": "char_base",
+            "offset": 8
+          },
+          {
+            "fieldId": 104,
+            "fieldName": "unknown",
+            "offset": 48
+          }
+        ],
+        "interestingValues": [
+          {
+            "value": 1780347015,
+            "category": "epoch-seconds-like",
+            "count": 2,
+            "width": 4,
+            "offsets": [
+              36,
+              36
+            ]
+          },
+          {
+            "value": 93751,
+            "category": "mid-id-like",
+            "count": 2,
+            "width": 4,
+            "offsets": [
+              52,
+              52
+            ]
+          }
+        ],
+        "topU32Values": [
+          {
+            "value": 0,
+            "count": 3
+          },
+          {
+            "value": 2,
+            "count": 1
+          },
+          {
+            "value": 24,
+            "count": 1
+          },
+          {
+            "value": 26,
+            "count": 1
+          },
+          {
+            "value": 32,
+            "count": 1
+          },
+          {
+            "value": 52,
+            "count": 1
+          },
+          {
+            "value": 104,
+            "count": 1
+          },
+          {
+            "value": 93751,
+            "count": 1
+          },
+          {
+            "value": 7734329,
+            "count": 1
+          },
+          {
+            "value": 1780347015,
+            "count": 1
+          }
+        ],
+        "seasonRootFields": []
+      },
+      "bufferHexPrefix": "feffffff3400000002000000feffffff180000001a00000039047600000000002000000087f01d6a00000000fdffffff",
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json",
+      "seasonMedalBaseline": null,
+      "nearbyCounters": [],
+      "nearbyBuffs": [
+        {
+          "deltaMs": -176,
+          "uid": 3059061,
+          "baseId": 3059061,
+          "sourceConfigId": 3059060,
+          "layer": 1,
+          "durationMs": 0,
+          "remainingMs": 0,
+          "sourceUid": 3296036,
+          "sourceLabel": "MarieRose (You)",
+          "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+        }
+      ]
+    }
+  ],
+  "recentPacketResourceChanges": [],
+  "recentCounterRows": [
+    {
+      "tsMs": 1780347039613,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6298,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 192,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6298,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6298,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6298,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347039985,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6358,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 252,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6358,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6358,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6358,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347040075,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6409,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 303,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6409,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6409,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6409,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347040393,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6439,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 333,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6439,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6439,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6439,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347040738,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6499,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 393,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6499,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6499,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6499,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347043032,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6550,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 444,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6550,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6550,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6550,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347044563,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6601,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 495,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6601,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6601,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6601,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347045039,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6652,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 546,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6652,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6652,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6652,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347045212,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6744,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 0,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6744,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6744,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6744,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347045421,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6744,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 0,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6744,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6744,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6744,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347045581,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6795,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 51,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6795,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6795,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6795,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347046027,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6846,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 102,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6846,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6846,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6846,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347046589,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6897,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 153,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6897,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6897,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6897,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347049535,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6948,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 204,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6948,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6948,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6948,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347051502,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 6999,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 255,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 6999,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 6999,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 6999,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052018,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 7050,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 306,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 7050,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 7050,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 7050,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052247,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 7142,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 0,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 7142,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 7142,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 7142,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052521,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 7193,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 51,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 7193,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 7193,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 7193,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347052978,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 7244,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 102,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 7244,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 7244,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 7244,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    },
+    {
+      "tsMs": 1780347059334,
+      "sourceItemIds": [
+        20010396,
+        20010417,
+        20010420,
+        20020412,
+        20020424
+      ],
+      "slotItemIds": [
+        20020412,
+        20020424,
+        20021032,
+        20021042,
+        20021944
+      ],
+      "slots": [
+        {
+          "ruleId": 920020412,
+          "slotId": 1,
+          "key": "920020412:1",
+          "currentCount": 7295,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920020424,
+          "slotId": 1,
+          "key": "920020424:1",
+          "currentCount": 153,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021032,
+          "slotId": 1,
+          "key": "920021032:1",
+          "currentCount": 7295,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": false
+        },
+        {
+          "ruleId": 920021042,
+          "slotId": 1,
+          "key": "920021042:1",
+          "currentCount": 7295,
+          "threshold": 0,
+          "effectiveThreshold": 0,
+          "isCounting": true,
+          "resetBuffActive": true
+        },
+        {
+          "ruleId": 920021944,
+          "slotId": 1,
+          "key": "920021944:1",
+          "currentCount": 7295,
+          "threshold": 100,
+          "effectiveThreshold": 100,
+          "isCounting": true,
+          "resetBuffActive": false
+        }
+      ],
+      "file": "C:\\Users\\dbcas\\AppData\\Roaming\\com.resonance-logs-global\\EventLogs\\2026.06.01\\MarieRose.3296036.Guild_Center.01062026-165100.json"
+    }
+  ],
+  "notes": [
+    "Packet resource rows come from ATTR_FIGHT_RESOURCE_IDS/ATTR_FIGHT_RESOURCES, currently observed through fight-res-update.",
+    "Packet resource changes are raw current resource value deltas and do not use inferred factor counter guesses.",
+    "Container probe rows come from SyncContainerData/SyncContainerDirtyData and are summarized separately because the fresh captures did not expose New Factor energy through fight-resource attrs.",
+    "Dirty container correlation uses generic frame/value scanning plus nearby counter/buff timing; it is evidence only, not a runtime decoder.",
+    "Panel attr/counter pairing is a side-channel check only. Panel attrs are normal local stat attrs unless a later controlled capture proves a specific attr is current factor energy.",
+    "Factor counter rows are inferred New Factor tracker values, logged only when RESONANCE_ENABLE_FACTOR_ENERGY_PROBES=1.",
+    "A high exact/div10/div100/div1000 match is only a candidate for the real packet-backed energy meter; confirm with controlled spend/gain captures before wiring runtime behavior."
+  ]
+}

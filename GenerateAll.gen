@@ -15,6 +15,7 @@ const scripts = [
   "MonsterNames.gen",
   "SceneNames.gen",
   "SkillNames.gen",
+  "SkillTagLabels.gen",
   "SkillCooldowns.gen",
   "SkillDamageChainBridge.gen",
   "ClassSpecSkillModelProbe.gen",

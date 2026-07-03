@@ -40,9 +40,9 @@ This report classifies broad effect-description matches into component, behavior
 - source-player-or-party-host: 116
 - stack-count-window: 1524
 - stat-conversion-chain: 110
-- stat-snapshot-or-temp-attr: 8421
+- stat-snapshot-or-temp-attr: 8420
 - structured-source-row-bridge: 16459
-- target-debuff-host-window: 212
+- target-debuff-host-window: 213
 - target-monster-type-per-hit: 1959
 
 ## Component Buckets
@@ -112,8 +112,8 @@ This report classifies broad effect-description matches into component, behavior
 - Cuisine - [S2]Armor + Elite DMG Reduction Lv.3 [needs-component-parser]: Cuisine - [S2]Armor + Elite DMG Reduction Lv.3 | 料理 | 요리 | Cuisine | Kochkunst | Cocina | Culinária | ทำอาหาร | [S2]护甲+精英减伤Lv3 | [S2]Armor + Elite DMG Reduction Lv.3
 ### component.elemental-stat
 
-- Count: 426
-- Top evidence: damage-id-or-recount-produced-row=83, focus-or-activation-window=12, modifier-window-open-close=147, raw-attacker-vs-top-summoner=95, selected-loadout-or-static-state=14, separate-tanked-or-healing-report=126
+- Count: 425
+- Top evidence: damage-id-or-recount-produced-row=82, focus-or-activation-window=12, modifier-window-open-close=147, raw-attacker-vs-top-summoner=95, selected-loadout-or-static-state=14, separate-tanked-or-healing-report=126
 
 - Wind Knight X10 [needs-runtime-predicate-before-attribution]: Wind Knight X10 | 青岚X10 | 青嵐X10 | ゲイルランサーX10 | 윈드 나이트X10 | Chevalier du vent X10 | Windritter X10 | Caballero del viento X10 | Cavaleiro do Vento X10 | Wind X10 | Gale X10 | yinzi_s2_04_010 | Direct game-file ID links map child damage rows. Structured Dream DMG target clauses from localized factor descriptions map pare
 - Wind King's Pact [needs-runtime-predicate-before-attribution]: Wind King's Pact | 风王契约 | 風王契約 | 風の王の契約 | 바람 왕의 계약 | Pacte du Roi du Vent | Pakt des Windkönigs | Pacto del Rey del Viento | Pacto do Rei do Vento | พันธสัญญาจ้าววายุ | Wind King Covenant | ui/textures/rouge_icon/rogue_icon_entry087
@@ -232,13 +232,13 @@ This report classifies broad effect-description matches into component, behavior
 - Frost Mage Reality Factor X2 [needs-runtime-predicate-before-attribution]: Frost Mage Reality Factor X2 | 冰魔真实因子X2 | 冰魔真實因子X2 | フロストメイジ・実像因子X2 | 프로스트 메이지 진실 인자X2 | Facteur de réalité du Mage de givre X2 | Frostmagier X2 | Factor de realidad de mago gélido X2 | Fator de Realidade de Mago do Gelo X2 | Frost Truth Factor X2 | When Illusion Energy reaches points, dealing damage summons a Blizzard
 ### behavior.proc-buff
 
-- Count: 494
-- Top evidence: damage-id-or-recount-produced-row=118, focus-or-activation-window=19, modifier-window-open-close=195, raw-attacker-vs-top-summoner=51, separate-tanked-or-healing-report=173, source-player-or-party-host=41
+- Count: 495
+- Top evidence: damage-id-or-recount-produced-row=119, focus-or-activation-window=19, modifier-window-open-close=195, raw-attacker-vs-top-summoner=51, separate-tanked-or-healing-report=173, source-player-or-party-host=41
 
 - Summon on Crit [needs-runtime-predicate-before-attribution]: Summon on Crit | 暴击召唤 | 暴擊召喚 | 会心召喚 | 치명타 소환 | Invocation sur Critique | Beschwörung bei Krit | Invocación por Crítico | Invocação por Crítico | อัญเชิญ CRIT | Critical Summon | ui/textures/rouge_icon/rogue_icon_entry072
+- Stunt! Cabbage Blitz [needs-runtime-predicate-before-attribution]: Stunt! Cabbage Blitz | 卷心菜精英2-被动触发 | 绝技！卷心菜霹雳闪 | 絕技！捲心菜霹靂閃 | Acrobatie ! Foudre du chou | Stunt! Kohlblitz | ¡Proeza! Bombardeo de Col | Proeza! Bombardeio Repolho | Name marks a passive-triggered row.
 - Heavy Guardian - Twentyfold Rockfall [needs-runtime-predicate-before-attribution]: Heavy Guardian - Twentyfold Rockfall | 巨刃守护者·二十岩陨 | 巨刃守護者·二十岩隕 | ヘヴィガーディアン・20ロックフォール | 헤비 가디언・이십중 암석 낙하 | Gardien imposant - Éboulement vingtuplé | Schwerer Wächter – Zwanzigfacher Steinschlag | Guardián pesado: Caída de Rocas x20 | Guardião Pesado — Queda de Rochas Víntupla | Heavy Guardian - 20-Fold Rockfall | Heavy 
 - Marksman X2 [needs-runtime-predicate-before-attribution]: Marksman X2 | 神射X2 | ディバインアーチャーX2 | 디바인 아처X2 | Tireur d'élite X2 | Scharfschütze X2 | Tirador X2 | Atirador de Elite X2 | Divine X2 | Wild Wolf - Tail Sweep Illusion-Breaking DMG +. Casting Arrow Rain grants Illusion Energy. | 野狼扫尾破妄伤害+。 施放箭雨获得点虚妄能量。 | 野狼掃尾破妄傷害+。 施放箭雨獲得點虛妄能量。 | 臣狼の掃撃の滅妄ダメージ+。 アローレインを発動すると虚妄エネルギー+pt。 | 
-- Marksman X3 [needs-runtime-predicate-before-attribution]: Marksman X3 | 神射X3 | ディバインアーチャーX3 | 디바인 아처X3 | Tireur d'élite X3 | Scharfschütze X3 | Tirador X3 | Atirador de Elite X3 | Divine X3 | Wild Wolf - Bite Illusion-Breaking DMG +. Dealing damage with Wild Wolf grants Illusion Energy. | 野狼撕咬破妄伤害+。 野狼造成伤害获得点虚妄能量。 | 野狼撕咬破妄傷害+。 野狼造成傷害獲得點虛妄能量。 | 臣狼の噛みつきの滅妄ダメージ+。 臣狼でダメージを与えると虚妄エ
 ### behavior.cooldown-resource
 
 - Count: 450
@@ -268,13 +268,13 @@ This report classifies broad effect-description matches into component, behavior
 - chinese [discovery-only-needs-bridge]: 次元崩坏：裂隙崩裂后，卡特格里夫对场景中所有玩家造成持续高额伤害，在正确的次元裂隙位置会形成保护罩提供大量伤害减免效果。 技巧攻略：想象次元和现实次元的玩家，需要集合后再进行次元逃离，否则会受到高额伤害。治疗注意对队友进行集中治疗。
 ### behavior.target-debuff
 
-- Count: 212
-- Top evidence: damage-id-or-recount-produced-row=14, focus-or-activation-window=2, modifier-window-open-close=31, raw-attacker-vs-top-summoner=8, separate-tanked-or-healing-report=154, source-player-or-party-host=5
+- Count: 213
+- Top evidence: damage-id-or-recount-produced-row=15, focus-or-activation-window=2, modifier-window-open-close=31, raw-attacker-vs-top-summoner=8, separate-tanked-or-healing-report=154, source-player-or-party-host=5
 
+- Unmapped Buff 882847 [needs-runtime-predicate-before-attribution]: Unmapped Buff 882847 | 未映射增益 882847 | 未對應增益 882847 | 未マッピングバフ 882847 | 매핑되지 않은 버프 882847 | Buff non mappé 882847 | Nicht zugeordneter Buff 882847 | Mejora sin asignar 882847 | Bônus não mapeado 882847 | บัฟที่ยังไม่แมป 882847 | Buff belum dipetakan 882847 | 亡灵还魂-BOSS-结算全体伤害 | ui/atlas/debuff/debuff_icon_83 | DamageAttr
 - EffectSources.json [keep-out-of-offensive-damage-until-report-split]: Armor +400, DMG taken from Elites or stronger enemies -5%
 - EffectSources.json [keep-out-of-offensive-damage-until-report-split]: Armor +400, DMG taken from Elites or stronger enemies -5%
 - EffectSources.json [keep-out-of-offensive-damage-until-report-split]: Armor +400, DMG taken from Elites or stronger enemies -5%
-- EffectSources.json [keep-out-of-offensive-damage-until-report-split]: Armor +640, DMG taken from Elites or stronger enemies -10%
 ### behavior.party-or-external
 
 - Count: 116

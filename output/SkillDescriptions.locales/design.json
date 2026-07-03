@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-28T21:24:35.132Z",
+  "generatedAt": "2026-06-09T10:48:41.842Z",
   "category": "skills",
   "locale": "design",
   "sourceCatalog": "SkillDescriptions.json",
   "note": "Locale text split from the core modifier description catalog. Runtime/parser code can load only the locale it needs.",
   "stats": {
-    "entries": 25890,
+    "entries": 25902,
     "withDescriptions": 0,
     "withDescriptionBlocks": 0,
     "withBridgedPageContexts": 0
@@ -158604,6 +158604,30 @@
         "design": "剑盾特攻B"
       }
     },
+    "124060104": {
+      "uid": "124060104",
+      "category": "skills",
+      "name": "剑盾特攻B",
+      "names": {
+        "design": "剑盾特攻B"
+      }
+    },
+    "124060105": {
+      "uid": "124060105",
+      "category": "skills",
+      "name": "剑盾特攻B",
+      "names": {
+        "design": "剑盾特攻B"
+      }
+    },
+    "124060108": {
+      "uid": "124060108",
+      "category": "skills",
+      "name": "剑盾特攻B",
+      "names": {
+        "design": "剑盾特攻B"
+      }
+    },
     "124070103": {
       "uid": "124070103",
       "category": "skills",
@@ -168692,6 +168716,14 @@
         "design": "飓风野猪-龙卷风-英雄本"
       }
     },
+    "315010100": {
+      "uid": "315010100",
+      "category": "skills",
+      "name": "艾露娜ATK_01",
+      "names": {
+        "design": "艾露娜ATK_01"
+      }
+    },
     "315010800": {
       "uid": "315010800",
       "category": "skills",
@@ -172068,12 +172100,28 @@
         "design": "集束弹（普攻）"
       }
     },
+    "339100200": {
+      "uid": "339100200",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
+      }
+    },
     "339100201": {
       "uid": "339100201",
       "category": "skills",
       "name": "原子爆炸",
       "names": {
         "design": "原子爆炸"
+      }
+    },
+    "339100300": {
+      "uid": "339100300",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
       }
     },
     "339100301": {
@@ -172084,12 +172132,28 @@
         "design": "远程制导"
       }
     },
+    "339100400": {
+      "uid": "339100400",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
+      }
+    },
     "339100401": {
       "uid": "339100401",
       "category": "skills",
       "name": "追击集束弹",
       "names": {
         "design": "追击集束弹"
+      }
+    },
+    "339100500": {
+      "uid": "339100500",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
       }
     },
     "339100501": {
@@ -172100,12 +172164,36 @@
         "design": "Type-δ弹幕机器人-点射"
       }
     },
+    "339100600": {
+      "uid": "339100600",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
+      }
+    },
     "339100601": {
       "uid": "339100601",
       "category": "skills",
       "name": "弱化-raid",
       "names": {
         "design": "弱化-raid"
+      }
+    },
+    "339100700": {
+      "uid": "339100700",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
+      }
+    },
+    "339100800": {
+      "uid": "339100800",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
       }
     },
     "342010100": {
@@ -189578,6 +189666,14 @@
       "name": "剑盾哥布林戳刺",
       "names": {
         "design": "剑盾哥布林戳刺"
+      }
+    },
+    "31004010200": {
+      "uid": "31004010200",
+      "category": "skills",
+      "name": "AutoAttack",
+      "names": {
+        "design": "AutoAttack"
       }
     },
     "31004010300": {

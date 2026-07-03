@@ -13,13 +13,13 @@ This report flags generated effect sources that likely need extra runtime predic
 - activation.focus-state: 14
 - attacker.elite-or-stronger: 14
 - direction.damage-dealt: 543
-- direction.damage-taken-or-defense: 284
+- direction.damage-taken-or-defense: 282
 - effect.compound-components: 582
 - needs.description-extraction: 70
 - needs.effect-component-classification: 175
 - needs.module-description-extraction: 16
-- relationship.produced-damage-row: 712
-- scope.skill-or-recount-targeted: 832
+- relationship.produced-damage-row: 713
+- scope.skill-or-recount-targeted: 826
 - source.armor-or-defense-scaling: 22
 - source.battle-imagine: 11
 - source.companion-or-summon: 145
@@ -29,7 +29,7 @@ This report flags generated effect sources that likely need extra runtime predic
 - target.resistance: 1
 - target.state-or-debuff: 23
 - target.super-armor: 2
-- window.stack-state: 27
+- window.stack-state: 28
 - window.timed: 96
 
 ### Family Counts
@@ -357,8 +357,9 @@ This report flags generated effect sources that likely need extra runtime predic
 - Tags: relationship.produced-damage-row, scope.skill-or-recount-targeted, target.elite-or-stronger
 - Buff ids: 3210051
 - Components: Produced Damage [proc-damage; relationship.produced-damage-row]
+- Icon: ui/textures/skill_aoyi/skill_aoyi_skill_icon_018
 - Target count: 2
-- Text: Arcane! Blazing Axe | 山贼首领 - 被动 - 子buff dot | 奥义！炽炎战斧 | 奧義！熾炎戰斧 | 絶技！サンダープレッシャー | 비기! 강압의 번개 | Arcane ! Hache ardente | Arkana! Lodernde Axt | ¡Arcano! Hacha Ardiente | Arcano! Machado Flamejante | Stunt! Thunder Suppress | Ultimate! Overbearing Thunder | Parent or linked row is an Arcane/Imagine entry.
+- Text: Arcane! Blazing Axe | 山贼首领 - 被动 - 子buff dot | 奥义！炽炎战斧 | 奧義！熾炎戰斧 | Arcane ! Hache ardente | Arkana! Lodernde Axt | ¡Arcano! Hacha Ardiente | Arcano! Machado Flamejante | ui/textures/skill_aoyi/skill_aoyi_skill_icon_018 | Parent or linked row is an Arcane/Imagine entry.
 ### Arrow Rain Acceleration (talent:1138)
 - Family: EffectSources
 - Kind: talent-passive / talent
@@ -457,7 +458,7 @@ This report flags generated effect sources that likely need extra runtime predic
 - Family: EffectSources
 - Kind: talent-passive / talent
 - Tags: activation.active-modifier-window, effect.compound-components, scope.skill-or-recount-targeted, source.companion-or-summon, target.state-or-debuff
-- Buff ids: 55223, 2203600
+- Buff ids: 55223, 55413, 55414, 2203600
 - Components: Haste / Attack Speed [hit-timing; target.state-or-debuff, source.companion-or-summon, activation.active-modifier-window] / Cooldown / Resource [cooldown-or-resource; target.state-or-debuff, source.companion-or-summon, activation.active-modifier-window] / Damage Reduction / Defense [damage-reduction; target.state-or-debuff, source.companion-or-summon, activation.active-modifier-window] / Produced Damage [proc-damage; target.state-or-debuff, source.companion-or-summon, activation.active-modifier-window]
 - Icon: ui/atlas/talent_passive_11/gongjian1160
 - Target count: 3

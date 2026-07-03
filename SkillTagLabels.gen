@@ -1,0 +1,104 @@
+#!/usr/bin/env node
+const SKILL_TAG_LABEL_TABLE_HASH = 3306028438;
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});
+
+async function main() {
+  const {
+    buildLocaleTextObject,
+    choosePreferredLocaleText,
+    displayPath,
+    loadLocalizationTables,
+    loadMetaEntries,
+    maybeWriteJson,
+    parseArgs,
+    printHelp,
+    readCtbTableByHash,
+    readU32,
+    resolvePaths,
+  } = await import("./generator-common.mjs");
+
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    printHelp(
+      "SkillTagLabels.gen - generate localized skill tag/chip labels from game CTB data.",
+      `
+Notes:
+  Reads CTB hash ${SKILL_TAG_LABEL_TABLE_HASH}, which maps SkillEffectTable tag IDs
+  to localization string IDs and visible skill chip metadata.
+`,
+    );
+    process.exit(0);
+  }
+
+  const paths = resolvePaths(args, "SkillTagLabels.json");
+  const containerDir = require("node:path").dirname(paths.m0Path);
+  const metaEntries = loadMetaEntries(containerDir);
+  const localizationTables = loadLocalizationTables(containerDir, { metaEntries });
+  const table = readCtbTableByHash(
+    containerDir,
+    metaEntries,
+    SKILL_TAG_LABEL_TABLE_HASH,
+    `CTB:${SKILL_TAG_LABEL_TABLE_HASH}`,
+  );
+
+  const rows = {};
+  for (let index = 0; index < table.rowCount; index += 1) {
+    const rowOffset = table.rowStart + index * table.rowSize;
+    const id = readU32(table.data, rowOffset);
+    const nameId = readU32(table.data, rowOffset + 4);
+    if (!id || !nameId) continue;
+
+    const names = buildLocaleTextObject(
+      localizationTables.map((localeTable) => {
+        const stringIndex = localeTable.index.get(nameId);
+        return {
+          language: localeTable.language,
+          text: stringIndex === undefined ? "" : localeTable.strings[stringIndex],
+        };
+      }),
+      { includeDesign: false },
+    );
+    const name = choosePreferredLocaleText(names, "");
+    if (!name) continue;
+
+    rows[String(id)] = {
+      Id: id,
+      Name: name,
+      Names: names,
+      NameId: nameId,
+      SecondaryNameId: readU32(table.data, rowOffset + 8) || 0,
+      Type: readU32(table.data, rowOffset + 12) || 0,
+      IconId: readU32(table.data, rowOffset + 16) || 0,
+      SourceHash: SKILL_TAG_LABEL_TABLE_HASH,
+      SourceOffset: table.entry.offset + rowOffset,
+    };
+  }
+
+  const data = {
+    schemaVersion: 1,
+    generatedAt: new Date().toISOString(),
+    source: {
+      tableHash: SKILL_TAG_LABEL_TABLE_HASH,
+      tableName: `CTB:${SKILL_TAG_LABEL_TABLE_HASH}`,
+    },
+    summary: {
+      labels: Object.keys(rows).length,
+    },
+    labels: sortObjectByNumericKey(rows),
+  };
+
+  maybeWriteJson(paths.out, data, args.dryRun);
+  console.log(
+    `${args.dryRun ? "Dry run: scanned" : "Generated"} ${displayPath(paths.out)} (${data.summary.labels.toLocaleString()} labels).`,
+  );
+}
+
+function sortObjectByNumericKey(value) {
+  return Object.fromEntries(
+    Object.entries(value).sort(([left], [right]) => Number(left) - Number(right)),
+  );
+}

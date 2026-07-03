@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-28T21:24:35.132Z",
+  "generatedAt": "2026-06-09T10:48:41.842Z",
   "category": "items",
   "locale": "design",
   "sourceCatalog": "ItemDescriptions.json",
   "note": "Locale text split from the core modifier description catalog. Runtime/parser code can load only the locale it needs.",
   "stats": {
-    "entries": 12469,
+    "entries": 12470,
     "withDescriptions": 0,
     "withDescriptionBlocks": 0,
     "withBridgedPageContexts": 0
@@ -478,6 +478,14 @@
     },
     "13010": {
       "uid": "13010",
+      "category": "items",
+      "name": "Adventure Bond Proof Drop Pack",
+      "names": {
+        "design": "Adventure Bond Proof Drop Pack"
+      }
+    },
+    "13011": {
+      "uid": "13011",
       "category": "items",
       "name": "Adventure Bond Proof Drop Pack",
       "names": {
