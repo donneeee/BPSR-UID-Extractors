@@ -141,7 +141,7 @@ def select_image(bundle, item):
     texture_name = item.get("TextureName", "")
     if texture_name and texture_name in bundle["textures"]:
         return bundle["textures"][texture_name]
-    if bundle["first_texture"] is not None:
+    if bundle["first_texture"] is not None and item.get("AllowFirstTextureFallback", True):
         return bundle["first_texture"]
     raise ValueError("Texture2D image not found in bundle")
 
